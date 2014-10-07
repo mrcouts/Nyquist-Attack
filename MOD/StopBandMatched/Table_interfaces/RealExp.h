@@ -3,4 +3,4 @@
 
 using namespace std;
 
-complex<double> ExponencialReal( double x);
+double ExponencialReal( double x);

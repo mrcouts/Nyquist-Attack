@@ -1,6 +1,8 @@
 #include <cmath>
 #include <iostream>
 #include "MatchedFilters.h"
+#include "Cos.h"
+#include "RealExp.h"
 
 using namespace std;
 
@@ -37,12 +39,10 @@ void SBF1(double *u, double *y, int N, double f_before, double f_now, double BW_
 	dw = 2*M_PI*BW;
 	wcT = wc*T;
 	dwT = dw*T;
-	A = -2*exp(-dwT/2)*cos(0.5*sqrt(4*wcT*wcT - dwT*dwT) );
-	B = exp(-dwT);
-	cos_wcT = cos(wcT);
+	A = -2*ExponencialReal(-dwT/2)*Cos(0.5*sqrt(4*wcT*wcT - dwT*dwT) );
+	B = ExponencialReal(-dwT);
+	cos_wcT = Cos(wcT);
 	K = (1+A+B)/(2*(1-cos_wcT));
-
-	cout << "A =" << A << " B = " << B << " K = " << K <<  " cos_wcT = " << cos_wcT << " dwT = " << dwT << " wcT = " << wcT <<"\n" ;
 	
 	y[0] = -A*y_1 - B*y_2 + K*(u[0] -2*cos_wcT*u_1 + u_2);
 	
@@ -52,9 +52,9 @@ void SBF1(double *u, double *y, int N, double f_before, double f_now, double BW_
 	dw = 2*M_PI*BW;
 	wcT = wc*T;
 	dwT = dw*T;
-	A = -2*exp(-dwT/2)*cos(0.5*sqrt(4*wcT*wcT - dwT*dwT) );
-	B = exp(-dwT);
-	cos_wcT = cos(wcT);
+	A = -2*ExponencialReal(-dwT/2)*Cos(0.5*sqrt(4*wcT*wcT - dwT*dwT) );
+	B = ExponencialReal(-dwT);
+	cos_wcT = Cos(wcT);
 	K = (1+A+B)/(2*(1-cos_wcT));
 	
 	y[1] = -A*y[0] - B*y_1 + K*(u[1] -2*cos_wcT*u[0] + u_1);
@@ -67,9 +67,9 @@ void SBF1(double *u, double *y, int N, double f_before, double f_now, double BW_
 		dw = 2*M_PI*BW;
 		wcT = wc*T;
 		dwT = dw*T;
-		A = -2*exp(-dwT/2)*cos(0.5*sqrt(4*wcT*wcT - dwT*dwT) );
-		B = exp(-dwT);
-		cos_wcT = cos(wcT);
+		A = -2*ExponencialReal(-dwT/2)*Cos(0.5*sqrt(4*wcT*wcT - dwT*dwT) );
+		B = ExponencialReal(-dwT);
+		cos_wcT = Cos(wcT);
 		K = (1+A+B)/(2*(1-cos_wcT));
 
 		y[i] = -A*y[i-1] - B*y[i-2] + K*(u[i] -2*cos_wcT*u[i-1] + u[i-2]);

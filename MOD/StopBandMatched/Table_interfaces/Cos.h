@@ -3,4 +3,4 @@
 
 using namespace std;
 
-complex<double> ExponencialComplexa( double x);
+double Cos( double x);
