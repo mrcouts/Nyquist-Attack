@@ -521,6 +521,8 @@ void PitchShifter::run(LV2_Handle instance, uint32_t n_samples)
 		    SBF1(plugin->u, plugin->y, n_samples, 2*plugin->frequency_1, 2*plugin->frequency, 20, 20, 1/plugin->SampleRate, &plugin->u_1, &plugin->u_2, &plugin->y_1, &plugin->y_2);
 		    plugin->frequency_1 = plugin->frequency;
 
+		    
+
 		    for (uint32_t i=0; i < n_samples;i++)
 		    {
 				plugin->u[i] = plugin->y[i];
@@ -566,7 +568,7 @@ void PitchShifter::run(LV2_Handle instance, uint32_t n_samples)
 				plugin->u[i] = plugin->y[i];
 			}
 
-			SBF1(plugin->u, plugin->y, n_samples, 14*plugin->frequency_1, 14*plugin->frequency, 140, 140, 1/plugin->SampleRate, &plugin->u5_1, &plugin->u5_2, &plugin->y5_1, &plugin->y5_2);
+			SBF1(plugin->u, plugin->y, n_samples, 14*plugin->frequency_1, 14*plugin->frequency, 140, 140, 1/plugin->SampleRate, &plugin->u6_1, &plugin->u6_2, &plugin->y6_1, &plugin->y6_2);
 		    plugin->frequency_1 = plugin->frequency;
 
 		    for (uint32_t i=0; i < n_samples;i++)
@@ -574,7 +576,7 @@ void PitchShifter::run(LV2_Handle instance, uint32_t n_samples)
 				plugin->u[i] = plugin->y[i];
 			}
 
-			SBF1(plugin->u, plugin->y, n_samples, 16*plugin->frequency_1, 16*plugin->frequency, 160, 160, 1/plugin->SampleRate, &plugin->u5_1, &plugin->u5_2, &plugin->y5_1, &plugin->y5_2);
+			SBF1(plugin->u, plugin->y, n_samples, 16*plugin->frequency_1, 16*plugin->frequency, 160, 160, 1/plugin->SampleRate, &plugin->u7_1, &plugin->u7_2, &plugin->y7_1, &plugin->y7_2);
 		    plugin->frequency_1 = plugin->frequency;
 
 		    for (uint32_t i=0; i < n_samples;i++)
@@ -582,7 +584,7 @@ void PitchShifter::run(LV2_Handle instance, uint32_t n_samples)
 				plugin->u[i] = plugin->y[i];
 			}
 
-			SBF1(plugin->u, plugin->y, n_samples, 18*plugin->frequency_1, 18*plugin->frequency, 180, 180, 1/plugin->SampleRate, &plugin->u5_1, &plugin->u5_2, &plugin->y5_1, &plugin->y5_2);
+			SBF1(plugin->u, plugin->y, n_samples, 18*plugin->frequency_1, 18*plugin->frequency, 180, 180, 1/plugin->SampleRate, &plugin->u8_1, &plugin->u8_2, &plugin->y8_1, &plugin->y8_2);
 		    plugin->frequency_1 = plugin->frequency;
 
 		    for (uint32_t i=0; i < n_samples;i++)
@@ -590,10 +592,8 @@ void PitchShifter::run(LV2_Handle instance, uint32_t n_samples)
 				plugin->u[i] = plugin->y[i];
 			}
 
-			SBF1(plugin->u, plugin->y, n_samples, 20*plugin->frequency_1, 20*plugin->frequency, 200, 200, 1/plugin->SampleRate, &plugin->u5_1, &plugin->u5_2, &plugin->y5_1, &plugin->y5_2);
+			SBF1(plugin->u, plugin->y, n_samples, 20*plugin->frequency_1, 20*plugin->frequency, 200, 200, 1/plugin->SampleRate, &plugin->u9_1, &plugin->u9_2, &plugin->y9_1, &plugin->y9_2);
 		    plugin->frequency_1 = plugin->frequency;
-
-
 
 		    for (uint32_t i=0; i < n_samples;i++)
 		    {
