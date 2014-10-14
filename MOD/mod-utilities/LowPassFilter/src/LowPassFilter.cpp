@@ -4,6 +4,9 @@
 #include <math.h>
 #include <lv2.h>
 #include "FilterClass.h"
+#include <iostream>
+
+using namespace std;
 
 /**********************************************************************************************************************************************************/
 
@@ -110,24 +113,38 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
 {
     LowPassFilter *plugin;
     plugin = (LowPassFilter *) instance;
-    float Order;
-    
-    double f = (double)(*(plugin->freq));
-    Order = (float)(*(plugin->order));
-    Order = round(Order)+1;
 
-    if ( (plugin->lpf)->N != (int)n_samples )
+    float soma_abs = 0;
+    for (uint32_t i = 0; i < n_samples; i++) soma_abs += abs(plugin->in[i]);
+
+    if (soma_abs == 0)
     {
-        double samplerate = (plugin->lpf)->SampleRate;
-        delete plugin->lpf;
-        plugin->lpf = new FilterClass(samplerate, (int)n_samples );
+        for (uint32_t i = 0; i < n_samples; i++) plugin->out_1[i] = 0;
     }
+    else
+    {
+        float Order;
     
-    for (uint32_t i=0; i < n_samples;i++) (plugin->lpf)->u[i] = plugin->in[i];
+        double f = (double)(*(plugin->freq));
+        Order = (float)(*(plugin->order));
+        Order = round(Order)+1;
 
-    (plugin->lpf)->LPF1_Bilinear(f);
+        if ( (plugin->lpf)->N != (int)n_samples )
+        {
+            double samplerate = (plugin->lpf)->SampleRate;
+            delete plugin->lpf;
+            plugin->lpf = new FilterClass(samplerate, (int)n_samples );
+        }
+        
+        for (uint32_t i=0; i < n_samples;i++) (plugin->lpf)->u[i] = plugin->in[i];
 
-    for (uint32_t i=0; i < n_samples;i++) plugin->out_1[i] = (plugin->lpf)->y[i];
+        (plugin->lpf)->LPF1_Bilinear(f);
+
+        for (uint32_t i=0; i < n_samples;i++) plugin->out_1[i] = (plugin->lpf)->y[i];
+
+    }
+
+    
 }
 
 /**********************************************************************************************************************************************************/
