@@ -138,7 +138,18 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
         
         for (uint32_t i=0; i < n_samples;i++) (plugin->lpf)->u[i] = plugin->in[i];
 
-        (plugin->lpf)->LPF1_Bilinear(f);
+            switch ((int)Order)
+            {
+                case 1:
+                    (plugin->lpf)->LPF1_Bilinear(f);
+                    break;
+                case 2:
+                    (plugin->lpf)->LPF2_Bilinear(f);
+                    break;
+                case 3:
+                    (plugin->lpf)->LPF2_Bilinear(f);
+                    break;
+            }
 
         for (uint32_t i=0; i < n_samples;i++) plugin->out_1[i] = (plugin->lpf)->y[i];
 

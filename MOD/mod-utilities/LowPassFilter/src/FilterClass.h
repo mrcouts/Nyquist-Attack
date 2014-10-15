@@ -6,6 +6,7 @@ public:
     FilterClass( double samplerate, int N );
     ~FilterClass();
     void LPF1_Bilinear(double f);
+    void LPF2_Bilinear(double f);
 
     //Variáveis:
     double SampleRate; //Frequência de amostragem em Hz
