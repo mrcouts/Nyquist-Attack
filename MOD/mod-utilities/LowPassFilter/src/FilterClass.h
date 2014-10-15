@@ -7,12 +7,14 @@ public:
     ~FilterClass();
     void LPF1_Bilinear(double f);
     void LPF2_Bilinear(double f);
+    void LPF3_Bilinear(double f);
 
     //Variáveis:
     double SampleRate; //Frequência de amostragem em Hz
     double T; //Periodo de amostragem em segundos
 
     double *u; //Sinal de entrada
+    double *u2; // u-->| |-->u2-->| |-->y
     double *y; //Sinal de saída
     int N; // Tamanho dos vetores
 
@@ -20,6 +22,9 @@ public:
 
     double u_1;
     double u_2;
+
+    double u2_1;
+    double u2_2;
 
     double y_1;
     double y_2;

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     11611,        393]
-NotebookOptionsPosition[     10668,        355]
-NotebookOutlinePosition[     11005,        370]
-CellTagsIndexPosition[     10962,        367]
+NotebookDataLength[     13384,        456]
+NotebookOptionsPosition[     12217,        410]
+NotebookOutlinePosition[     12554,        425]
+CellTagsIndexPosition[     12511,        422]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -156,6 +156,61 @@ Cell[BoxData[
  CellChangeTimes->{
   3.622298924078183*^9, {3.622299004270536*^9, 3.622299027817416*^9}, {
    3.622387897929847*^9, 3.6223879270072327`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "@", 
+  RowBox[{"DenButter", "[", 
+   RowBox[{"3", ",", 
+    SubscriptBox["\[Omega]", "c"]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.622392507483885*^9, 3.6223925161963043`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"s", "+", 
+    SubscriptBox["\[Omega]", "c"]}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["s", "2"], "+", 
+    RowBox[{
+     SubscriptBox["\[Omega]", "c"], " ", 
+     RowBox[{"(", 
+      RowBox[{"s", "+", 
+       SubscriptBox["\[Omega]", "c"]}], ")"}]}]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.622392512603302*^9, 3.622392516672683*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "@", 
+  RowBox[{"DenButter", "[", 
+   RowBox[{"4", ",", 
+    SubscriptBox["\[Omega]", "c"]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6223934560479517`*^9, 3.622393456152054*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["s", "2"], "+", 
+    RowBox[{"2", " ", "s", " ", 
+     RowBox[{"Cos", "[", 
+      FractionBox["\[Pi]", "8"], "]"}], " ", 
+     SubscriptBox["\[Omega]", "c"]}], "+", 
+    SubsuperscriptBox["\[Omega]", "c", "2"]}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["s", "2"], "+", 
+    RowBox[{"2", " ", "s", " ", 
+     RowBox[{"Sin", "[", 
+      FractionBox["\[Pi]", "8"], "]"}], " ", 
+     SubscriptBox["\[Omega]", "c"]}], "+", 
+    SubsuperscriptBox["\[Omega]", "c", "2"]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.6223934570352163`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -381,19 +436,27 @@ Cell[2521, 83, 908, 27, 91, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[3466, 115, 430, 11, 32, "Input"],
-Cell[3899, 128, 976, 29, 140, "Output"]
+Cell[3899, 128, 976, 29, 107, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4912, 162, 383, 10, 32, "Input"],
-Cell[5298, 174, 1601, 48, 149, "Output"]
+Cell[4912, 162, 219, 5, 32, "Input"],
+Cell[5134, 169, 411, 13, 37, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6936, 227, 329, 9, 32, "Input"],
-Cell[7268, 238, 1385, 45, 187, "Output"]
+Cell[5582, 187, 219, 5, 32, "Input"],
+Cell[5804, 194, 620, 18, 46, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8690, 288, 330, 9, 32, "Input"],
-Cell[9023, 299, 1629, 53, 220, "Output"]
+Cell[6461, 217, 383, 10, 32, "Input"],
+Cell[6847, 229, 1601, 48, 149, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8485, 282, 329, 9, 32, "Input"],
+Cell[8817, 293, 1385, 45, 187, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10239, 343, 330, 9, 32, "Input"],
+Cell[10572, 354, 1629, 53, 220, "Output"]
 }, Open  ]]
 }
 ]

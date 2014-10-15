@@ -147,7 +147,7 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
                     (plugin->lpf)->LPF2_Bilinear(f);
                     break;
                 case 3:
-                    (plugin->lpf)->LPF2_Bilinear(f);
+                    (plugin->lpf)->LPF3_Bilinear(f);
                     break;
             }
 
