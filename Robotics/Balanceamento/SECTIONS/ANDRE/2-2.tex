@@ -4,34 +4,64 @@
 
 \item Massa pontual:
 
+\begin{equation}
+\mq_n = \begin{bmatrix}
+x_n \\
+y_n \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+q_{n,1} \\
+q_{n,2} \\
+\end{bmatrix}
+\end{equation}
 
+\begin{equation}
+\mp_n = \begin{bmatrix}
+p_{n,1} \\
+p_{n,2} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+\dot{q}_{n,1} \\
+\dot{q}_{n,2} \\
+\end{bmatrix}
+\end{equation}
 
 \begin{equation}
 \begin{cases}
 
 \begin{bmatrix}
-\dot{x}_i \\
-\dot{y}_i \\
+\dot{q}_{n,1} \\
+\dot{q}_{n,2} \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-v_{i,x} \\
-v_{i,y} \\
+1 & 0 \\
+0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+p_{n,1} \\
+p_{n,2} \\
 \end{bmatrix} \\
 
 \begin{bmatrix}
-M_i \dot{v}_{i,x} \\
-M_i \dot{v}_{i,y} \\
+M_n \dot{p}_{n,1} \\
+M_n \dot{p}_{n,2} \\
 \end{bmatrix}
 +
 g \begin{bmatrix}
 0 \\
-M_i \\
+M_n \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-F_{i,x} \\
-F_{i,y} \\
+f_{n, 1} \\
+f_{n, 2} \\
 \end{bmatrix}
 \end{cases}
 \end{equation}
@@ -40,39 +70,78 @@ Que pode ser reescrito como:
 
 $$
 \begin{bmatrix}
-M_i & 0 \\
-0 & M_i \\
+M_n & 0 \\
+0 & M_n \\
 \end{bmatrix}
 \begin{bmatrix}
-\ddot{x}_i \\
-\ddot{y}_i \\
+\ddot{q}_{n,1} \\
+\ddot{q}_{n,2} \\
 \end{bmatrix}
 +
 g \begin{bmatrix}
 0 \\
-M_i \\
+M_n \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-F_{i,x} \\
-F_{i,y} \\
+f_{n,1} \\
+f_{n,2} \\
 \end{bmatrix}
 $$
 
 \item RR:
 
 \begin{equation}
-\begin{cases}
-
-\begin{bmatrix}
-\dot{\theta}_{i,1} \\
-\dot{\theta}_{i,2} \\
+\mq_n = \begin{bmatrix}
+\theta_{1 \, n} \\
+\theta_{2 \, n} \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-\omega_{0,z1} \\
-\omega_{0,z2}-\omega_{0,z1} \\
+q_{n,1} \\
+q_{n,2} \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mp_n = \begin{bmatrix}
+p_{n,1} \\
+p_{n,2} \\
+p_{n,3} \\
+p_{n,4} \\
+p_{n,5} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+1 & 1 \\
+l_{g1} & 0\\
+l_1 \ssin_{n,2} & 0 \\
+l_{g2} + l_1 \ccos_{n,2} & l_{g2}
+\end{bmatrix}
+\begin{bmatrix}
+\dot{q}_{n,1} \\
+\dot{q}_{n,2} \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+
+\begin{bmatrix}
+\dot{q}_{n,1} \\
+\dot{q}_{n,2} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+-1 & 1\\
+\end{bmatrix}
+\begin{bmatrix}
+p_{n,1} \\
+p_{n,2} \\
 \end{bmatrix} \\
+
 
 \begin{bmatrix}
 1 & 0 \\
@@ -82,58 +151,58 @@ $$
  1 & 0 \\
  0 & 1 \\
  l_{g1} & 0 \\
- l_1 \ssin_{i,2} & 0 \\
- l_1 \ccos_{i,2} & l_{g2} \\
+ l_1 \ssin_{n,2} & 0 \\
+ l_1 \ccos_{n,2} & l_{g2} \\
 \end{bmatrix}^T
 \begin{Bmatrix}
 	\begin{bmatrix}
-	J_{z1} \dot{\omega}_{i,z1} \\
-	J_{z2} \dot{\omega}_{i,z2} \\
-	m_1 \dot{v}_{i,y1} \\
-	m_2 \dot{v}_{i,x2} \\
-	m_2 \dot{v}_{i,y2} \\
+	J_{z1} \dot{p}_{n,1} \\
+	J_{z2} \dot{p}_{n,2} \\
+	m_1 \dot{p}_{n,3} \\
+	m_2 \dot{p}_{n,4} \\
+	m_2 \dot{p}_{n,5} \\
 	\end{bmatrix}
 	+
 	\begin{bmatrix}
 	0 \\
 	0 \\
 	0 \\
-	- m_1 v_{i,y2} \omega_{i,z2} \\
-	  m_1 v_{i,x2} \omega_{i,z2} \\
+	- m_1 p_{n,2} p_{n,5} \\
+	  m_1 p_{n,2} p_{n,4} \\
 	\end{bmatrix}
 	+
 	g \begin{bmatrix}
 	0 \\
 	0 \\
-	m_1 \ccos_{i,1} \\
-	m_2 \ssin_{i,1+2} \\
-	m_2 \ccos_{i,1+2} \\
+	m_1 \ccos_{n,1} \\
+	m_2 \ssin_{n,1+2} \\
+	m_2 \ccos_{n,1+2} \\
 	\end{bmatrix}
 \end{Bmatrix}
 =
 \begin{bmatrix}
-\tau_{i,1} \\
-\tau_{i,2}
+u_{n,1} \\
+u_{n,2}
 \end{bmatrix} \\
 
 \begin{bmatrix}
 l_{g1} & 0 & -1 & 0 & 0 \\
-l_1 \ssin_{i,2} & 0 & 0 & -1 & 0 \\
-l_1 \ccos_{i,2} & l_{g2}  & 0 & 0 & -1 \\
+l_1 \ssin_{n,2} & 0 & 0 & -1 & 0 \\
+l_1 \ccos_{n,2} & l_{g2}  & 0 & 0 & -1 \\
 \end{bmatrix}
 \begin{bmatrix}
-\dot{\omega}_{i,z1} \\
-\dot{\omega}_{i,z2} \\
-\dot{v}_{i,y1} \\
-\dot{v}_{i,x2} \\
-\dot{v}_{i,y2} \\
+\dot{p}_{n,1} \\
+\dot{p}_{n,2} \\
+\dot{p}_{n,3} \\
+\dot{p}_{n,4} \\
+\dot{p}_{n,5} \\
 \end{bmatrix}
 =
 -
 \begin{bmatrix}
 0 \\
-l_1 \ccos_{i,2} \omega_{i,z1} (-\omega_{i,z1}+\omega_{i,z2}) \\
-l_1 \ssin_{i,2} \omega_{i,z1} (\omega_{i,z1}-\omega_{i,z2}) \\
+l_1 \ccos_{n,2} p_{n,1} (-p_{n,1}+p_{n,2}) \\
+l_1 \ssin_{n,2} p_{n,1} (p_{n,1}-p_{n,2}) \\
 \end{bmatrix}
 
 \end{cases}
@@ -143,29 +212,29 @@ Que pode ser reescrito como:
 
 $$
 \begin{bmatrix}
-J_{z1} + J_{z2} + m_1 l_{g1}^2 + m_2 (l_1^2 + 2 l_1 l_{g2} \ccos_2 + l_{g2}^2) & J_{z2} + m_2 l_{g2} (l_1 \ccos_2 + l_{g2}) \\
-J_{z2} + m_2 l_{g2} (l_1 \ccos_2 + l_{g2}) & J_{z2} + m_2 l_{g2}^2
+J_{z1} + J_{z2} + m_1 l_{g1}^2 + m_2 (l_1^2 + 2 l_1 l_{g2} \ccos_{n,2} + l_{g2}^2) & J_{z2} + m_2 l_{g2} (l_1 \ccos_{n,2} + l_{g2}) \\
+J_{z2} + m_2 l_{g2} (l_1 \ccos_{n,2} + l_{g2}) & J_{z2} + m_2 l_{g2}^2
 \end{bmatrix}
 \begin{bmatrix}
-\ddot{\theta}_{i,1} \\
-\ddot{\theta}_{i,2} \\
+\ddot{q}_{n,1} \\
+\ddot{q}_{n,2} \\
 \end{bmatrix}
 $$
 $$
 +
 \begin{bmatrix}
-- m_2 l_1 l_{g2} \ssin_{i,2} \dot{\theta}_{i,2}^2 -2 m_2 l_1 l_{g2} \ssin_{i,2} \dot{\theta}_{i,1}  \dot{\theta} _{i,2} \\
-m_2 l_1 l_{g2} \ssin_{i,2} \dot{\theta}_{i,1}^2 \\
+- m_2 l_1 l_{g2} \ssin_{n,2} \dot{q}_{n,2}^2 -2 m_2 l_1 l_{g2} \ssin_{n,2} \dot{q}_{n,1}  \dot{q} _{n,2} \\
+m_2 l_1 l_{g2} \ssin_{n,2} \dot{q}_{n,1}^2 \\
 \end{bmatrix}
 +
 g \begin{bmatrix}
-m_1 l_{g1} \ccos_{i,1} + m_2 (l_{g2} \ccos_{i,1+2} + l_1 \ccos_{i,1}) \\
- m_2 l_{g2} \ccos_{i,1+2} \\
+m_1 l_{g1} \ccos_{n,1} + m_2 (l_{g2} \ccos_{n,1+2} + l_1 \ccos_{n,1}) \\
+ m_2 l_{g2} \ccos_{n,1+2} \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-\tau_{i,1} \\
-\tau_{i,2} \\
+u_{n,1} \\
+u_{n,2} \\
 \end{bmatrix}
 $$
 
@@ -175,21 +244,17 @@ $$
 \begin{cases}
 
 \begin{bmatrix}
-\dot{\theta}_{0,1} \\
-\dot{\theta}_{0,2} \\
-\dot{x}_1 \\
-\dot{y}_1 \\
-\dot{x}_2 \\
-\dot{y}_2 \\
+\dot{q}_{0,1} \\
+\dot{q}_{0,2} \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-\omega_{0,z1} \\
-\omega_{0,z2}-\omega_{0,z1} \\
-v_{1,x} \\
-v_{1,y} \\
-v_{2,x} \\
-v_{2,y} \\
+1 & 0 \\
+-1 & 1\\
+\end{bmatrix}
+\begin{bmatrix}
+p_{0,1} \\
+p_{0,2} \\
 \end{bmatrix} \\
 
 \begin{bmatrix}
@@ -209,23 +274,23 @@ v_{2,y} \\
 \end{bmatrix}^T
 \begin{Bmatrix}
 	\begin{bmatrix}
-	J_{z1} \dot{\omega}_{0,z1} \\
-	J_{z2} \dot{\omega}_{0,z2} \\
-	m_1 \dot{v}_{0,y1} \\
-	m_2 \dot{v}_{0,x2} \\
-	m_2 \dot{v}_{0,y2} \\
-	M_1 \dot{v}_{1,x} \\
-	M_1 \dot{v}_{1,y} \\
-	M_2 \dot{v}_{2,x} \\
-	M_2 \dot{v}_{2,y} \\
+	J_{z1} \dot{p}_{0,1} \\
+	J_{z2} \dot{p}_{0,2} \\
+	m_1 \dot{p}_{0,3} \\
+	m_2 \dot{p}_{0,4} \\
+	m_2 \dot{p}_{0,5} \\
+	M_1 \dot{p}_{1,1} \\
+	M_1 \dot{p}_{1,2} \\
+	M_2 \dot{p}_{2,1} \\
+	M_2 \dot{p}_{2,1} \\
 	\end{bmatrix}
 	+
 	\begin{bmatrix}
 	0 \\
 	0 \\
 	0 \\
-	- m_1 v_{0,y2} \omega_{i,z2} \\
-	  m_1 v_{0,x2} \omega_{i,z2} \\
+	- m_1 p_{0,2} p_{0,5} \\
+	  m_1 p_{0,2} p_{0,4} \\
 	0 \\
 	0 \\
 	0 \\
@@ -246,37 +311,105 @@ v_{2,y} \\
 \end{Bmatrix}
 =
 \begin{bmatrix}
-\tau_{0,1} \\
-\tau_{0,2}
+u_{0,1} \\
+u_{0,2}
 \end{bmatrix} \\
 
 \begin{bmatrix}
 l_{g1} & 0 & -1 & 0 & 0 & 0 & 0 & 0 & 0 \\
 l_1 \ssin_{i,2} & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0 \\
 l_1 \ccos_{i,2} & l_{g2}  & 0 & 0 & -1 & 0 & 0 & 0 & 0 \\
+L_1 \ssin_{0,1} & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+-L_1 \ccos_{0,1} & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+l_1 \ssin_{0,1} & L_2 \ssin_{0,1+2}  & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+-l_1 \ccos_{0,1} & -L_2 \ccos_{0,1+2} & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
 \end{bmatrix}
 \begin{bmatrix}
-\dot{\omega}_{0,z1} \\
-\dot{\omega}_{0,z2} \\
-\dot{v}_{0,y1} \\
-\dot{v}_{0,x2} \\
-\dot{v}_{0,y2} \\
-\dot{v}_{1,x} \\
-\dot{v}_{1,y} \\
-\dot{v}_{2,x} \\
-\dot{v}_{2,y} \\
+\dot{p}_{0,1} \\
+\dot{p}_{0,2} \\
+\dot{p}_{0,3} \\
+\dot{p}_{0,4} \\
+\dot{p}_{0,5} \\
+\dot{p}_{1,1} \\
+\dot{p}_{1,2} \\
+\dot{p}_{2,1} \\
+\dot{p}_{2,1} \\
 \end{bmatrix}
 =
 -
 \begin{bmatrix}
 0 \\
-l_1 \ccos_{0,2} \omega_{0,z1} (-\omega_{0,z1}+\omega_{0,z2}) \\
-l_1 \ssin_{0,2} \omega_{0,z1} (\omega_{0,z1}-\omega_{0,z2}) \\
+l_1 \ccos_{0,2} p_{0,1} (-p_{0,1}+p_{0,2}) \\
+l_1 \ssin_{0,2} p_{0,1} (p_{0,1}-p_{0,2}) \\
+L_1 \ccos_{0,1} p_{0,1}^2 \\
+L_1 \ssin_{0,1} p_{0,1}^2 \\
+l_1 \ccos_{0,1} p_{0,1}^2 + L_1 \ccos_{0,1+2} p_{0,2}^2  \\
+l_1 \ssin_{0,1} p_{0,1}^2 + L_1 \ssin_{0,1+2} p_{0,2}^2 \\
 \end{bmatrix}
 
 \end{cases}
 \end{equation}
 
+Que pode ser reescrito como:
 
+\begin{equation}
+\mM\ssh \ddot{\mq}_0 + \mv\ssh + \mg\ssh = \mu_0
+\end{equation}
+
+Sendo:
+
+\begin{equation}
+\mM\ssh_{1,1} = J_{z1} + J_{z2} + M_1 L_1^2 + M_2 L_2^2 + m_1 l_{g1}^2 + m_2 l_{g2}^2 + (M_2 + m_2)l_1^2 + 2 l_1 \ccos_{0,2} (L_2 M_2 + m_2 l_{g2})
+\end{equation}
+\begin{equation}
+\mM\ssh_{1,2} = \mM\ssh_{2,1} = J_{z2} + M_2 L_2 (l_1 \ccos_{0,2} + L_2) + m_2 l_{g2} (l_1 \ccos_{0,2} + l_{g2})
+\end{equation}
+\begin{equation}
+\mM\ssh_{2,2} = J_{z2} + M_2 L_2^2 + m_2 l_{g2}^2
+\end{equation}
+
+\begin{equation}
+\mv\ssh_1 = - (M_2 L_2 + m_2 l_{g2}) l_1 \ssin_{0,2} \dot{q}_{0,2} (2 \dot{q}_{0,1} + \dot{q}_{0,2})  
+\end{equation}
+\begin{equation}
+\mv\ssh_2 = (M_2 L_2 + m_2 l_{g2}) l_1 \ssin_{0,2} \dot{q}_{0,1}^2  
+\end{equation}
+
+\begin{equation}
+\mg\ssh_1 = g( M_1 L_1 \ccos_{0,1} + m_1 l_{g1} \ccos_{0,1} + (M_2 + m_2) l_1 \ccos_{0,1} + (M_2 L_2 + m_2 l_{g2}) \ccos_{0,1+2} ) 
+\end{equation}
+
+\begin{equation}
+\mg\ssh_2 = g( M_2 L_2 + m_2 l_{g2} ) \ccos_{0,1+2} 
+\end{equation}
+
+\item RR balanceado: \\
+
+Escolhendo $L_1$ e $L_2$ de modo que $\mg\ssh = \mzr$:
+
+\begin{equation}
+\begin{cases}
+L_1 = -\frac{ M_2 l_1 + m_1 l_{g1} + m_2 l_2 }{M_1} \\
+L_2 = -\frac{ m_2 l_{g2} }{ M_2 }
+\end{cases}
+\end{equation}
+
+Obtemos o seguinte sistema:
+
+\begin{equation}
+\begin{bmatrix}
+J_{z	1} + J_{z_2} + m_1 l_{g2}^2 + l_1^2 (M_2 + m_2) + \frac{m_2^2 l_{g2}^2}{M_2} + \frac{(m_1 l_{g1} + (M_2 + m_2) l_1 )^2 }{M_1} & J_{z2} + \frac{ m_2 (M_2 + m_2) l_{g2}^2}{M_2} \\
+J_{z2} + \frac{ m_2 (M_2 + m_2) l_{g2}^2}{M_2} & J_{z2} + \frac{ m_2 (M_2 + m_2) l_{g2}^2}{M_2}
+\end{bmatrix}
+\begin{bmatrix}
+\ddot{q}_{n,1} \\
+\ddot{q}_{n,2} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+u_{n,1} \\
+u_{n,2} \\
+\end{bmatrix}
+\end{equation}
 
 \end{itemize}
