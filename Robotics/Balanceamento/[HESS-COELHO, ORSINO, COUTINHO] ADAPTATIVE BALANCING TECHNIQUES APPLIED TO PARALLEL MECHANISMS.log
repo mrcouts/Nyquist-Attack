@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.2)  19 OCT 2014 16:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.8)  19 OCT 2014 20:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -547,6 +547,11 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 39.
 LaTeX Info: Redefining \pageref on input line 39.
 LaTeX Info: Redefining \nameref on input line 39.
+
+(./[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIED TO P
+ARALLEL MECHANISMS.out)
+(./[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIED TO P
+ARALLEL MECHANISMS.out)
 \@outlinefile=\write4
 \openout4 = `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES A
 PPLIED TO PARALLEL MECHANISMS.out"'.
@@ -595,7 +600,7 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ¢ in font cmr10!
 
-<RR.jpg, id=4, 144.54pt x 105.0324pt>
+<RR.jpg, id=12, 144.54pt x 105.0324pt>
 File: RR.jpg Graphic file (type jpg)
  <use RR.jpg>
 Package pdftex.def Info: RR.jpg used on input line 8.
@@ -682,16 +687,11 @@ LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <8> not available
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <6> not available
 (Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 245
 .
- [3]
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no £ in font cmr10!
- [4]
+ [3] [4]
 Underfull \hbox (badness 10000) in paragraph at lines 405--406
 
  []
 
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no £ in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no £ in font cmr10!
 Missing character: There is no Ã in font cmr10!
@@ -766,27 +766,16 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 122.
 ARALLEL MECHANISMS.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 122.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 122.
-
-
-Package rerunfilecheck Warning: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATI
-VE BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"[HESS-COELHO, ORSINO, COUTINHO] AD
-APTATIVE BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  EFC79266D570F971151AD708EB8C6890;132.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE 
+BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has not changed.
+(rerunfilecheck)             Checksum: EFC79266D570F971151AD708EB8C6890;132.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 122.
  ) 
 Here is how much of TeX's memory you used:
- 8538 strings out of 493304
- 119165 string characters out of 6139872
- 248121 words of memory out of 5000000
- 11715 multiletter control sequences out of 15000+600000
+ 8545 strings out of 493304
+ 119590 string characters out of 6139872
+ 248605 words of memory out of 5000000
+ 11718 multiletter control sequences out of 15000+600000
  19750 words of font info for 76 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  34i,22n,31p,641b,550s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -811,10 +800,10 @@ ts/type1/public/amsfonts/euler/eusm10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/hfbright/hfbrmb10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/symbols/msam10.pfb>
 Output written on "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQ
-UES APPLIED TO PARALLEL MECHANISMS.pdf" (10 pages, 263660 bytes).
+UES APPLIED TO PARALLEL MECHANISMS.pdf" (10 pages, 264561 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 186 compressed objects within 2 object streams
+ 229 PDF objects out of 1000 (max. 8388607)
+ 193 compressed objects within 2 object streams
  79 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 22 words of extra memory for PDF output out of 10000 (max. 10000000)
 

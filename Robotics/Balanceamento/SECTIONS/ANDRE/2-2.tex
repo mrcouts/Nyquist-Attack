@@ -1,7 +1,7 @@
 \subsection{Dynamic Models}\label{S02-2}
 
 \begin{itemize}
-\item[•] Modelo do mecanismo \underline{R}\underline{R}
+\item[•] $\mathbb{\Re}$ Modelo do mecanismo \underline{R}\underline{R}
 
 \begin{figure}[h!]
 	\centering
@@ -289,7 +289,7 @@
 	\end{bmatrix}
 	\end{equation}
 	
-	\item[vii)] Passamos as velocidades dos centros de massa para as bases pesas nas barras:
+	\item[vii)] Passamos as velocidades dos centros de massa para as bases presas nas barras:
 
 	$$ \nmat{\vv_1}_{\ttB_1} = \nmat{\vone}_{\ttB_1 \rl \ttB_0} \nmat{\vv_1}_{\ttB_0} = \mR_1^T \nmat{\vv_1}_{\ttB_0} $$
 	$$ \nmat{\vv_2}_{\ttB_2} = \nmat{\vone}_{\ttB_2 \rl \ttB_0} \nmat{\vv_2}_{\ttB_0} = \mR_2^T \nmat{\vv_2}_{\ttB_0} $$
@@ -298,17 +298,17 @@
 	
 	
 	\begin{equation}
-	\mathbf{R} =
+	\mR_\clubsuit =
 	\begin{bmatrix}
-	R_1 & 0_{2x2} \\
-	0_{2x2} & R_2
+	\mR_1 & \mzr_{2x2} \\
+	\mzr_{2x2} & \mR_2
 	\end{bmatrix}
 	\end{equation}
 	
 	Temos:
 	
 	\begin{equation}
-	\nu_v = \mathbf{R}^T \dot{q}^o
+	\mw_v = \mR_\clubsuit^T \dot{\mq}^\circ
 	\end{equation}
 	
 	
@@ -322,10 +322,10 @@
 	\end{bmatrix}
 	=
 	\begin{bmatrix}
-	c_1 & -s_1 & 0 & 0 \\
-	s_1 & c_1 & 0 & 0 \\
-	0 & 0 & c_{1+2} & -s_{1+2} \\
-	0 & 0 & s_{1+2} & c_{1+2} \\
+	\ccos_1 & -\ssin_1 & 0 & 0 \\
+	\ssin_1 & \ccos_1 & 0 & 0 \\
+	0 & 0 & \ccos_{1+2} & -\ssin_{1+2} \\
+	0 & 0 & \ssin_{1+2} & \ccos_{1+2} \\
 	\end{bmatrix}^T
 	\begin{bmatrix}
 	\dot{x}_1 \\
@@ -337,20 +337,20 @@
 	\begin{bmatrix}
 	0 \\
 	l_{1g} \dot{\theta}_1 \\
-	l_1 s_2 \dot{\theta}_1\\
-	(l_1 c_2 + l_{2g} )\dot{\theta}_1 + l_{2g} \dot{\theta}_2 \\
+	l_1 \ssin_2 \dot{\theta}_1\\
+	(l_1 \ccos_2 + l_{2g} )\dot{\theta}_1 + l_{2g} \dot{\theta}_2 \\
 	\end{bmatrix}
 	\end{equation}
 	
-	\item[viii)] Montamos os vetores $p^{\#}$ e $p^o$ em fun\c{c}\~ao de $q^{\#}$ e $\dot{q}^{\#}$:
+	\item[viii)] Montamos os vetores $\mp\ssh$ e $\mp^\circ$ em fun\c{c}\~ao de $\mq\ssh$ e $\dot{\mq}\ssh$:
 
 	\begin{equation}
-	p^{\#} = 
+	\mp\ssh = 
 	\begin{bmatrix}
 	\omega_{z1} \\
 	\omega_{z2} \\
 	\end{bmatrix}
-	= P^{\#} (q^{\#}, \dot{q}^{\#} ) =
+	= \mp\ssh_\star (\mq\ssh, \dot{\mq}\ssh ) =
 	\begin{bmatrix}
 	\dot{\theta}_1 \\
 	\dot{\theta}_1 +\dot{\theta}_2 \\
@@ -358,36 +358,36 @@
 	\end{equation}
 	
 	\begin{equation}
-	p^o = 
+	\mp^\circ = 
 	\begin{bmatrix}
 	v_{x1} \\
 	v_{y1} \\
 	v_{x2} \\
 	v_{y2} \\
 	\end{bmatrix}
-	= P^o (q^{\#}, \dot{q}^{\#} ) =
+	= \mp^\circ_ \star (\mq\ssh, \dot{\mq}\ssh ) =
 	\begin{bmatrix}
 	0 \\
 	l_{1g} \dot{\theta}_1 \\
-	l_1 s_2 \dot{\theta}_1\\
-	(l_1 c_2 + l_{2g} )\dot{\theta}_1 + l_{2g} \dot{\theta}_2 \\
+	l_1 \ssin_2 \dot{\theta}_1\\
+	(l_1 \ccos_2 + l_{2g} )\dot{\theta}_1 + l_{2g} \dot{\theta}_2 \\
 	\end{bmatrix}
 	\end{equation}
 	
-	\item[ix)] Utilizando o fato de que $P^{\#} (q^{\#}, \dot{q}^{\#} ) $ e $P^o (q^{\#}, \dot{q}^{\#} )$ são lineares em $\dot{q}^{\#}$, encontramos as transforma\c{c}\~oes lineares $\Psi(q)$ e $\Upsilon(q)$ e o vetor dos v\'inculos de velocidades $\Lambda(q,p)$:
+	\item[ix)] Utilizando o fato de que $\mp\ssh_\star (\mq\ssh, \dot{\mq}\ssh )$ e $\mp^\circ_ \star (\mq\ssh, \dot{\mq}\ssh )$ s\~ao lineares em $\dot{\mq}\ssh$, encontramos as transforma\c{c}\~oes lineares $\mathbb{\Psi}(\mq)$ e $\mathbb{\Upsilon}(\mq)$ e o vetor dos v\'inculos de velocidades $\mathbb{\Lambda}(\mq,\mp)$:
 	
 	\begin{equation}
-	p^{\#} = P^{\#} (q^{\#}, \dot{q}^{\#} ) = \frac{\partial P^{\#}}{\partial \dot{q}^{\#}} \dot{q}^{\#} = \Psi \dot{q}^{\#}
+	\mp\ssh = \mp\ssh_\star (\mq\ssh, \dot{\mq}\ssh ) = \frac{\partial \mp\ssh_\star}{\partial \dot{\mq}\ssh} \dot{\mq}\ssh = \mathbb{\Psi} \dot{\mq}\ssh
 	\end{equation}
 	
 	\begin{equation}
-	p^o = P^o (q^{\#}, \dot{q}^{\#} ) = \frac{\partial P^o}{\partial \dot{q}^{\#}} \dot{q}^{\#} = \Upsilon \dot{q}^{\#}
+	\mp^\circ = \mp^\circ_\star (\mq\ssh, \dot{\mq}\ssh ) = \frac{\partial \mp^\circ_\star}{\partial \dot{\mq}\ssh} \dot{\mq}\ssh = \mathbb{\Upsilon} \dot{\mq}\ssh
 	\end{equation}
 
 	No caso do mecanismo $\underline{R}\underline{R}$, temos:
 	
 	\begin{equation}
-	\Psi = \frac{\partial P^{\#}}{\partial \dot{q}^{\#}} =
+	\mathbb{\Psi} = \frac{\partial \mp\ssh_\star}{\partial \dot{\mq}\ssh} =
 	\begin{bmatrix}
 	1 & 0  \\
 	1 & 1  \\
@@ -395,38 +395,38 @@
 	\end{equation}
 	
 	\begin{equation}
-	\Upsilon = \frac{\partial P^o}{\partial \dot{q}^{\#}} =
+	\mathbb{\Upsilon} = \frac{\partial \mp^\circ_\star}{\partial \dot{\mq}\ssh} =
 	\begin{bmatrix}
 	0 & 0 \\
 	l_{1g} & 0 \\
-	l_1 s_2 & 0 \\
-	l_1 c_2 + l_{2g} & l_{2g} 
+	l_1 \ssin_2 & 0 \\
+	l_1 \ccos_2 + l_{2g} & l_{2g} 
 	\end{bmatrix}
 	\end{equation}\\
 
-	Como $p^{\#}$ e $\dot{q}^{\#}$ são independentes e tem o mesmo tamanho:
+	Como $\mp\ssh$ e $\dot{\mq}\ssh$ s\~ao independentes e tem o mesmo tamanho:
 
-	$$ \dot{q}^{\#} = \Psi^{-1} p^{\#} $$
-	$$ \Rightarrow  p^o = \Upsilon \Psi^{-1} p^{\#} $$
+	$$ \dot{\mq}\ssh = \mathbb{\Psi}^{-1} \mp\ssh $$
+	$$ \Rightarrow  \mp^\circ = \mathbb{\Upsilon} \mathbb{\Psi}^{-1} \mp\ssh $$
 	\begin{equation}
-	\therefore \Lambda(q,p) =  \Upsilon \Psi^{-1} p^{\#} - p^o  = 0
+	\therefore \mathbb{\Lambda}(\mq,\mp) = \mathbb{\Upsilon} \mathbb{\Psi}^{-1} \mp\ssh - \mp^\circ  = 0
 	\end{equation}
 	
 	\item[x)] A partir dos v\'inculos de velocidades, encontramos a matriz $\mathbb{C}$ dos v\'inculos cinem\'aticos:
 	
-	$$ p^o = \Upsilon \Psi^{-1} p^{\#} \Rightarrow p =
+	$$ \mp^\circ = \mathbb{\Upsilon} \mathbb{\Psi}^{-1} \mp\ssh \Rightarrow \mp =
 	\begin{bmatrix}
-	I_{nxn}\\
-	\Upsilon \Psi^{-1}
+	\mone\\
+	\mathbb{\Upsilon} \mathbb{\Psi}^{-1}
 	\end{bmatrix}
-	p^{\#}
+	\mp\ssh
 	$$
 	
 	\begin{equation}
 	\therefore \mathbb{C} =
 	\begin{bmatrix}
-	I_{nxn}\\
-	\Upsilon \Psi^{-1}
+	\mone\\
+	\mathbb{\Upsilon} \mathbb{\Psi}^{-1}
 	\end{bmatrix}
 	=
 	\begin{bmatrix}
