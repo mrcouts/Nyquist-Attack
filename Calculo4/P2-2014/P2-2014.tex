@@ -34,7 +34,7 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
 \begin{itemize}
 	\item[a)] (1,0 ponto) Seja $ f(x) = \displaystyle\frac{1}{1+2x^3}$. Calcule $f^{(30)}(0)$.
 	
-	\item[b)] Obtenha uma expressão para a soma da série $\displaystyle\sum_{n=1}^\infty (-1)^n \, 2^n 9 n^2 x^{3n}$ 
+	\item[b)] Obtenha uma expressão para a soma da série $\displaystyle\sum_{n=1}^\infty (-1)^n \, 2^n \, 9 n^2 \, x^{3n}$ 
 	\item[c)] Encontre um valor para a soma do item $b)$, quando $x = \displaystyle\frac{1}{2}$.
 \end{itemize}
 
@@ -60,7 +60,7 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
     $$ \therefore f^{(30)} = 2^{10} \, 30! $$
 
 
-    \item[b)] Deseja-se encontrar uma expressão para $\displaystyle\sum_{n=1}^\infty (-1)^n \, 2^n 9 n^2 x^{3n}$.
+    \item[b)] Deseja-se encontrar uma expressão para $\displaystyle\sum_{n=1}^\infty (-1)^n \, 2^n \, 9 n^2 x^{3n}$.
     
      Pode-se observar que há uma certa semelhança entre os termos gerais desta série e da série do exercicio anterior. Repare que derivando em x, multiplicando por x, derivando mais uma vez e multplicando por x mais uma vez, chegamos na mesma expressão. Sendo assim:
      
@@ -82,7 +82,7 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
      
      \item[c)] Como $ x = \frac{1}{2}$ está dentro do intervalo de convergência da série do item $b)$, temos que:
      
-     $$  \sum_{n=0}^\infty   \frac{(-1)^n  \, 9 n^2}{4^n} = \frac{-18 \cdot \frac{1}{8} (1 - 2 \cdot \frac{1}{8})}{(1 + 2  \cdot \frac{1}{8})^3} = -\frac{3^3 4}{5^3} = -\frac{108}{125} $$
+     $$  \sum_{n=0}^\infty   \frac{(-1)^n  \, 9 n^2}{4^n} = \frac{-18 \cdot \frac{1}{8} (1 - 2 \cdot \frac{1}{8})}{(1 + 2  \cdot \frac{1}{8})^3} = -\frac{3^3 \, 4}{5^3} = -\frac{108}{125} $$
     
 
 \end{itemize}
@@ -91,98 +91,87 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
 %---------------------------------------QUESTAO 2-----------------------------------------
 \newpage
 
-\noindent{\bf Questão 2}
-(3,0 pontos) Calcule a integral
+\noindent{\bf Questão 2:}
 
-$$ \int \int \int_E xz \,dx \,dy \,dz $$
+\begin{itemize}
+\item[a)] (1,5 pontos) Seja $ f(x) = \begin{cases} \displaystyle\frac{e^{3x}-1}{x} \, , \, $ se $ x \neq 0 \\ 3 \, , \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, $ se $x = 0 \end{cases} $
 
-sobre a região $ E = \{ (x,y,z): x^2 + y^2 + z^2 \leq 36 $ e $ z \geq \sqrt{ x^2 + (y-6)^2 }, x \geq 0 \} $ \\
+\begin{itemize}
+\item[a1)] Encontre uma série numérica cuja soma seja igual a $ \displaystyle\int_0^{1/6} \, f(x) \, dx$.
+\item[a2)] Encontre um valor aproximado para $ \displaystyle\int_0^{1/6} \, f(x) \, dx$, com erro, em módulo, menor que $10^{-4}$. 
+\end{itemize}
+
+\item[b)] (1,5 pontos) Sabendo que a série de Fourier de senos de $g(x) = x(\pi - x)$, em $[0, \pi]$ é
+
+\begin{center}
+$ \displaystyle\frac{8}{\pi} \Big( \sen x + \displaystyle\frac{\sen (3x)}{3^3} + \displaystyle\frac{\sen (5x)}{5^3} + ... \Big) \,$,
+\end{center} 
+
+calcule $ \displaystyle\sum_{n=0}^{\infty} \, \Big( \displaystyle\frac{1}{2n + 1} \Big)^6 $.
+
+\end{itemize}
 
 \noindent{\bf Solução:} \\
 
-O sólido descrito pela região $E$ está compreendido na região acima do cone $z = \sqrt{ x^2 + (y-6)^2 } $ e abaixo da esfera $ x^2 + y^2 + z^2 = 36 $.
+\begin{itemize}
+\item[a1)] Sabe-se que:
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.5]{Q2A.jpg}  
-	\caption{Região $E$}
-	\label{fig:figura4}
-\end{figure}
+$$ e^x  = \sum_{n=0}^\infty \frac{x^n}{n!} \, , \forall x \in \mathbb{R}$$
 
-Portanto:
+Sendo assim:
 
-$$ \int \int \int_E xz \,dx \,dy \,dz =  \int \int_R \Big( \int_{ \sqrt{x^2 + (y-6)^2} }^{ \sqrt{36 - x^2 - y^2} } xz \,dz \Big) \,dx \,dy = \int \int_R x \frac{z^2}{2} \Big|_{ \sqrt{x^2 + (y-6)^2} }^{ \sqrt{36 - x^2 - y^2} } \,dx \,dy  $$
-$$ = \frac{1}{2} \int \int_R x (-2x^2 - 2y^2 + 12y) \,dx \,dy = - \int \int_R x (x^2 + y^2 - 6y) \,dx \,dy $$ \\
+$$ e^{3x} - 1 = \sum_{n=0}^\infty \frac{(3x)^n}{n!} - 1 =  \sum_{n=1}^\infty \frac{3^n \, x^n}{n!} \, , \forall x \in \mathbb{R} $$
+$$ \therefore \frac{e^{3x} - 1}{x} = \sum_{n=1}^\infty \frac{3^n \, x^{n-1}}{n!} \, , \forall x \neq 0 $$
 
-Sendo $R$ a projeção do sólido $E$ no plano $xy$. \\
+Para x = 0:
 
-Realizando a intersecção das 2 superfícies que delimitam o sólido, temos:
+$$ \sum_{n=1}^\infty \frac{3^n \, x^{n-1}}{n!} = 3 $$
 
-$$
-\left\{
-\begin{array}{lc}
-x^2 + y^2 + z^2 = 36\\
-z^2 = x^2 + (y-6)^2 \\
-\end{array}
-\right. \Rightarrow
-\left\{
-\begin{array}{lc}
-2x^2 + y^2 + (y-6)^2 = 36\\
-z^2 = x^2 + (y-6)^2 \\
-\end{array}
-\right.
-$$
+$$ \therefore f(x) = \sum_{n=1}^\infty \frac{3^n \, x^{n-1}}{n!} \, , \forall x \in \mathbb{R} $$
 
-A projeção no plano $xy$ desta intersecção é dada por:
+Assim:
 
-$$ 2x^2 + y^2 + (y-6)^2 = 36 \Rightarrow 2x^2 + 2y^2 -12y + 36 = 36 \Rightarrow 2x^2 + 2y^2 = 12y $$
-$$   \therefore x^2 + y^2 = 6y \Leftrightarrow x^2 + (y-3)^2 = 9 $$
+$$ \int_{0}^{x'} f(x) \, dx = \sum_{n=1}^\infty \frac{3^n \, x^{n}}{n \cdot n!} \Big|_{0}^{x'} = \sum_{n=1}^\infty \frac{3^n \, (x')^{n}}{n \cdot n!} \, , \forall x \in \mathbb{R} $$
 
-Sendo assim, a região $R$ é dada por:
+Para $ x' = 1/6$:
 
-$$ R = \{ (x,y): x^2 + (y-3)^2  \leq 9 , x \geq 0 \} $$
+$$ \int_{0}^{1/6} f(x) \, dx =  \sum_{n=1}^\infty \frac{3^n}{ 6^n \, n \cdot n!} = \sum_{n=1}^\infty \frac{1}{ 2^n \, n \cdot n!} $$
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.5]{Q2bA.jpg}  
-	\caption{Região $R$}
-	\label{fig:figura5}
-\end{figure}
+\item[a2)] Deseja-se calcular $ \displaystyle\int_{0}^{1/6} f(x) \, dx$ com $erro < \varepsilon = 10^{-4}$. Do item anterior, sabe-se que:
 
-Realizando uma mudança de coordenadas para coordenadas polares:
+$$ \int_{0}^{1/6} f(x) \, dx = \sum_{n=1}^\infty \frac{1}{ 2^n \, n \cdot n!} \simeq \sum_{n=1}^k \frac{1}{ 2^n \, n \cdot n!}  $$
 
-$$
-\left\{
-\begin{array}{lc}
-x = \rho \cos \theta\\
-y = \rho \sin \theta \\
-\end{array}
-\right.
-$$
-$$ | \det J | = \rho $$
+O erro da aproximação é dado por:
 
-Substituindo a mudança na equação da fronteira de $R$:
+$$ erro = \sum_{n=k+1}^\infty \frac{1}{ 2^n \, n \cdot n!} $$
 
-$$ x^2 + y^2 = 6y \Rightarrow \rho^2 = 6 \rho \sin \theta \Rightarrow \rho = 6 \sin \theta $$
+Rapare que se não tivessemos $ n \cdot n!$ multiplicando $2^n$, teríamos a soma de uma PG de razão $1/2$, a qual é fácil de calcular o valor exato da soma.
 
-Sendo assim, a região $R$ pode ser escrita em coordenadas polares da seguinte maneira:
+Repare também que o termo $ \frac{1}{n \cdot n!} $ é sempre decrescente, ou seja:
 
-$$ 0 \leq \rho \leq  \ 6 \sin \theta $$
-$$ 0 \leq \theta \leq \frac{\pi}{2} $$
+$$ \frac{1}{n \cdot n!} \leq \frac{1}{ (k+1) \cdot (k+1)!} ,\ \forall n \geq k+1 $$
 
-Aplicando a mudança na integral, temos:
+Sendo assim:
+
+$$ erro = \sum_{n=k+1}^\infty \frac{1}{ 2^n \, n \cdot n!} \leq \frac{1}{(k+1)(k+1)!} \sum_{n=k+1}^\infty \frac{1}{ 2^n} < \varepsilon $$
+
+$$ \frac{1}{(k+1)(k+1)!} \frac{ \frac{1}{2^{k+1}} }{1 - \frac{1}{2}} = \frac{1}{(k+1)(k+1)!} \frac{1}{2^k} < \varepsilon  $$
+
+$$ \therefore 2^k (k+1)(k+1)! > \frac{1}{\varepsilon} = 10^4 $$
+
+Para $k = 5$:
+
+$$ 2^k (k+1)(k+1)! = 32 \cdot 6 \cdot 720 = 192 \cdot 720 > 10^4 $$
+
+Portanto: 
+
+$$ \int_{0}^{1/6} f(x) \, dx  \simeq \sum_{n=1}^5 \frac{1}{ 2^n \, n \cdot n!}  $$
+
+Com $erro < 10^{-4}$.
+
+\end{itemize}
 
 
-$$- \int \int_R x (x^2 + y^2 - 6y) \,dx \,dy  = - \int_0^{\frac{\pi}{2}} \int_0^{6 \sin \theta} \rho \cos \theta ( \rho^2 - 6 \rho \sin \theta ) \rho \,d\rho
- \,d\theta $$
- $$ =  - \int_0^{\frac{\pi}{2}} \int_0^{6 \sin \theta} ( \rho^4 \cos \theta - 6 \rho^3 \sin \theta \cos \theta ) \,d\rho
- \,d\theta = - \int_0^{\frac{\pi}{2}}  \Big( \frac{\rho^5}{5} \Big|_0^{6 \sin \theta} \cos \theta - 6 \frac{\rho^4}{4} \Big|_0^{6 \sin \theta} \sin \theta \cos \theta \Big) 
- \,d\theta  $$
- $$ = 6^5 \Big( \frac{1}{4} - \frac{1}{5} \Big) \int_0^{\frac{\pi}{2}} \sin^5 \theta \cos \theta \,d\theta  $$
- 
- Realizando a seguinte mudança de variáveis: $u = \sin \theta \Rightarrow du = \cos \theta \,d\theta $, temos:
- 
-$$ = \frac{6^5}{20} \int_0^1 u^5 \,du = \frac{6^5}{20} \frac{u^6}{6} \Big|_0^1 = \frac{6^4}{20} = \frac{324}{5}$$
 
 \newpage
 \noindent{\bf Questão 3: }
