@@ -18,7 +18,7 @@
 
 \newcommand{\re}{\mathbb{R}}
 
-\newcommand{\sen}{\mbox{\, sen}\,}
+\newcommand{\sen}{\mbox{\,sen}}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TURMA A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,7 +191,7 @@ $$ \therefore \sum_{n=0}^\infty  \frac{1}{ (2n + 1)^6} = \frac{\pi^2}{64} \cdot 
 
 \end{itemize}
 
-
+%---------------------------------------QUESTAO 3-----------------------------------------
 
 \newpage
 \noindent{\bf 3ª Questão: }
@@ -229,110 +229,97 @@ $$ \therefore a_n =  \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\f
 $b_n = \displaystyle\frac{1}{\pi} \displaystyle\int_{-\pi}^\pi f(x) \sen (n x) \, dx = 0 \,\,$ (função ímpar)
 \end{center}
 
-$$ \therefore S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n \cos (nx) + b_n \sen (nx) \Big) = \frac{\pi}{4} + \sum_{n=1}^\infty \Big( \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} \Big) \cos (nx) $$
+$$ \therefore S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n \cos(nx) + b_n \sen(nx) \Big) = \frac{\pi}{4} + \sum_{n=1}^\infty \Big( \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} \Big) \cos (nx) $$
+
+\item[b)] Pelo toerema da convergência da série de Fourier, $S(x)$ converge para:
+
+\begin{itemize}
+\item[•] Para $x \in  (-\pi,\pi)$:
+	\begin{itemize}
+	\item[-] $f(x), \,$ onde f(x) é contínua
+	\item[-] A média dos limites laterais, onde f(x) é descontínua
+	\end{itemize}
+\item[•] $\displaystyle\frac{f(\pi)+f(-\pi)}{2}, \, $ para $ x = \pi $ ou $ x = -\pi $ 
+\item[•] Para $x \notin [ -\pi,\pi]$: repete-se periodicamente.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{Fourier.pdf}  
+	\caption{Série de Fourier de $f(x)$ para $x \in [-3\pi, 3\pi]$}
+	\label{fig:figura1}
+\end{figure}
+
+Sendo assim:
+$$ S\Big(\frac{39 \pi}{2}\Big) = S\Big(17\pi + \frac{\pi}{2}\Big) = S\Big(\pi + \frac{\pi}{2}\Big) = S\Big(- \frac{\pi}{2}\Big) = \frac{1}{2} ( \lim_{x \rightarrow - \frac{\pi}{2}^+ } f(x) + \lim_{x \rightarrow - \frac{\pi}{2}^- } f(x) ) = \frac{1}{2} ( \pi + 0) = \frac{\pi}{2} $$
+
+$$ S\Big(1223 \cdot \frac{\pi}{8}\Big) = S\Big(152\pi + \frac{7 \pi}{8}\Big) = S\Big(\frac{7\pi}{8}\Big) = f\Big(\frac{7\pi}{8}\Big) = 0 $$
 
 \end{itemize}
 
-
-
-
-
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TURMA B%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 \textbf{Instituto de Matemática e Estatística da USP\\
-MAT2455 - Cálculo Diferencial e Integral III para Engenharia\\}
-\textbf{1a. Prova - 1o. Semestre 2014 - 01/04/2010}
+MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
+\textbf{2a. Prova - 2o. Semestre 2014 - 13/10/2014}
 \end{center}
 
 \noindent {\bf Turma B}
 
-\noindent{\bf Questão 1:}(4,0 pontos)
+\noindent{\bf 1ª Questão:}
 \begin{itemize}
-	\item[(a)] Calcule $ \displaystyle{ \int_{0}^{3}  \int_{\ln{(x+1)}}^{\ln{4}} \cos{(y-e^y)}\,dy\, dx } $.
+	\item[a)] (1,0 ponto) Seja $ f(x) = \displaystyle\frac{1}{1+2x^3}$. Calcule $f^{(30)}(0)$.
 	
-	\item[(b)] Calcule $\displaystyle{\int\!\!\!\int_R \frac{(y-2x)^8}{(y+x)^5}\,dx\,dy}$, onde $R$ é a região limitada pelas retas $y=2x$, $y=2+2x$,$y=2-x$ e $y=3-x$
-	
+	\item[b)] Obtenha uma expressão para a soma da série $\displaystyle\sum_{n=1}^\infty (-1)^n \, 2^n \, 9 n^2 \, x^{3n}$ 
+	\item[c)] Encontre um valor para a soma do item $b)$, quando $x = \displaystyle\frac{1}{2}$.
 \end{itemize}
 
 
 \noindent{\bf \\ \\Solução:}
 \begin{itemize}
-    \item[(a)] Esboçando o domínio de integração, teremos:
-    \\
+    \item[a)] Sabe-se que $ \displaystyle\frac{1}{1-x} = \displaystyle\sum_{n=0}^\infty x^n $, para $|x|<1$ (soma da PG). Sendo assim:
     
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.5]{Q1aB.jpg}  
-	\caption{Domínio de integração}
-	\label{fig:figura7}
-\end{figure}
-
-Não é possível encontrar uma primitiva em $y$ para a função do integrando. Para calcular a integral é necessário inverter a ordem de integração. Baseado na imagem acima, o domínio pode ser expresso, também, por:
-$$D(x,y)=\{(x,y)\in\re^2 | 0\leq x \leq e^y-1\,\, \mbox{,}\,\,0\leq y \leq \ln{4}\}$$
-
-A integral será calculada por:
-\begin{eqnarray*}
-&=&\int_0^{\ln{4}}\!\!\!\int_0^{e^y-1}\cos{(y-e^y)}\,dx\,dy\\
-&=&\int_0^{\ln{4}} (e^y-1)\cos{(y-e^y)}\,dy\\
-&=&-\sin{(y-e^y)}\Big|_0^{\ln{4}}\\
-&=&-\sin{(\ln{4}-4)}+\sin{(-1)}
-\end{eqnarray*}
-
-
-    \item[(b)] O domínio de integração é exibido abaixo
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.5]{Q1bB.jpg}  
-	\caption{Domínio de integração}
-	\label{fig:figura8}
-\end{figure}
+    $$\frac{1}{1 + 2x^3} = \sum_{n=0}^\infty (-2 x^3), |-2x^3| < 1$$
+    $$ = \sum_{n=0}^\infty (-1)^n  \, 2^n \, x^{3n}, |x| < \frac{1}{\sqrt[3]{2}} $$
     
-Faz-se a seguinte mudança de coordenadas:
-    $$\left\{
-	\begin{array}{lr}
-	u = y-2x\\
-	v = y+x
-	\end{array}
-	\right. 
-	$$
     
-O jacobiano da transformação é dado por:
+    Sabe-se que para uma série de potencias positivas $ \, \displaystyle\sum_{k=0}^\infty a_k (x-x_0)^k $, $a_k$ é dado pelo coeficiênte de Taylor: $a_k = \displaystyle\frac{f^{(k)}(x_0)}{k!}$.
+    
+    Como a série encontrada foi expandida em torno de $x_0 = 0$, temos que: $a_{30} = \displaystyle\frac{f^{(30)}(0)}{30!}$, o qual é coeficiente de $x^{30}$. \\
+    
+    O termo geral da série obtida é dado por $ \bar{a}_n = (-1)^n  \, 2^n \, x^{3n}$.
+    
+    Para $n=10$, temos $\bar{a}_{10} = 2^{10} x^{30}$, o que significa que o coeficiente de $x^{30}$ na série é $2^{10}$.
+    
+    Sendo assim, temos: $ \displaystyle\frac{f^{(30)}(0)}{30!} = 2^{10} $
+    
+    $$ \therefore f^{(30)} = 2^{10} \, 30! $$
 
-$$
-\frac{\partial(x,y)}{\partial(u,v)}=
-\left|
-\begin{array}{cc}
--\frac{1}{3} & \frac{1}{3} \\
-\frac{1}{3} & \frac{2}{3}\\
-\end{array}
-\right|
-=-\frac{1}{3} \Rightarrow |J|=\frac{1}{3}\\
-$$    
 
-O domínio de integração é exibido abaixo
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.5]{Q1b2B.jpg}  
-	\caption{Domínio de integração após mudança}
-	\label{fig:figura9}
-\end{figure}
-
-E passa a ser dado por:
-
-$$D(u,v)=\{(u,v)\in \re^2|0\leq u \leq 2\,\,\mbox{,}\,\,2 \leq v \leq 3 \}$$
-
-A integral a ser calculada passa a ser:
-
-\begin{eqnarray*}
-&=&\int_0^2\!\!\!\int_2^3 \frac{1}{3}\frac{u^8}{v^5}\,dv\,du\\
-&=&\frac{1}{3} \int_0^2\!\!\!\int_2^3 u^8.v^{-5}\,dv\,du\\
-&=& -\frac{1}{12}\int_0^2 v^{-4}\Big|_2^3 u^8\,du\\
-&=& \frac{65}{15552}\frac{u^9}{9}\Big|_0^2\\
-&=& \frac{520}{2187}
-\end{eqnarray*}
+    \item[b)] Deseja-se encontrar uma expressão para $\displaystyle\sum_{n=1}^\infty (-1)^n \, 2^n \, 9 n^2 x^{3n}$.
+    
+     Pode-se observar que há uma certa semelhança entre os termos gerais desta série e da série do exercicio anterior. Repare que derivando em x, multiplicando por x, derivando mais uma vez e multplicando por x mais uma vez, chegamos na mesma expressão. Sendo assim:
+     
+     $$\frac{1}{1 + 2x^3} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, x^{3n}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     
+     Derivando em x:
+     
+     $$\frac{-2 \cdot 3 x^2}{(1 + 2x^3)^2} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, 3 n \, x^{3n-1}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     
+     $$ \Rightarrow \frac{-6 x^3}{(1 + 2x^3)^2} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, 3 n \, x^{3n}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     
+     Derivando mais uma vez:
+     
+     $$ \frac{-6 [ (3 x^2) (1 + 2x^3)^2 - x^3 \cdot 2 (1 + 2 x^3) 6 x^2 ] }{(1 + 2x^3)^4} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, 9 n^2 \, x^{3n-1}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     
+     $$ \frac{-6 [ 3 x^2 - 6 x^5 ] }{(1 + 2x^3)^3} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, 9 n^2 \, x^{3n-1}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     
+     $$ \therefore \sum_{n=0}^\infty (-1)^n  \, 2^n \, 9 n^2 \, x^{3n} = \frac{-18 x^3 (1 - 2 x^3)}{(1 + 2 x^3)^3} , |x| < \frac{1}{\sqrt[3]{2}} $$
+     
+     \item[c)] Como $ x = \frac{1}{2}$ está dentro do intervalo de convergência da série do item $b)$, temos que:
+     
+     $$  \sum_{n=0}^\infty   \frac{(-1)^n  \, 9 n^2}{4^n} = \frac{-18 \cdot \frac{1}{8} (1 - 2 \cdot \frac{1}{8})}{(1 + 2  \cdot \frac{1}{8})^3} = -\frac{3^3 \, 4}{5^3} = -\frac{108}{125} $$
     
 
 \end{itemize}
@@ -341,144 +328,171 @@ A integral a ser calculada passa a ser:
 %---------------------------------------QUESTAO 2-----------------------------------------
 \newpage
 
-\noindent{\bf Questão 2}
-(3,0 pontos) Calcule a integral
+\noindent{\bf 2ª Questão:}
 
-$$ \int \int \int_E xz \,dx \,dy \,dz $$
+\begin{itemize}
+\item[a)] (1,5 pontos) Seja $ f(x) = \begin{cases} \displaystyle\frac{e^{3x}-1}{x} \, , \, $ se $ x \neq 0 \\ 3 \, , \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, $ se $x = 0 \end{cases} $
 
-sobre a região $ E = \{ (x,y,z): x^2 + y^2 + z^2 \leq 16 $ e $ z \geq \sqrt{ x^2 + (y-4)^2 }, x \geq 0 \} $ \\
+\begin{itemize}
+\item[a1)] Encontre uma série numérica cuja soma seja igual a $ \displaystyle\int_0^{1/6} \, f(x) \, dx$.
+\item[a2)] Encontre um valor aproximado para $ \displaystyle\int_0^{1/6} \, f(x) \, dx$, com erro, em módulo, menor que $10^{-4}$. 
+\end{itemize}
+
+\item[b)] (1,5 pontos) Sabendo que a série de Fourier de senos de $g(x) = x(\pi - x)$, em $[0, \pi]$ é
+
+\begin{center}
+$ \displaystyle\frac{8}{\pi} \Big( \sen x + \displaystyle\frac{\sen (3x)}{3^3} + \displaystyle\frac{\sen (5x)}{5^3} + ... \Big) \,$,
+\end{center} 
+
+calcule $ \displaystyle\sum_{n=0}^{\infty} \, \Big( \displaystyle\frac{1}{2n + 1} \Big)^6 $.
+
+\end{itemize}
 
 \noindent{\bf Solução:} \\
 
-O sólido descrito pela região $E$ está compreendido na região acima do cone $z = \sqrt{ x^2 + (y-4)^2 } $ e abaixo da esfera $ x^2 + y^2 + z^2 = 16 $.
+\begin{itemize}
+\item[a1)] Sabe-se que:
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.5]{Q2A.jpg}  
-	\caption{Região $E$}
-	\label{fig:figura10}
-\end{figure}
+$$ e^x  = \sum_{n=0}^\infty \frac{x^n}{n!} \, , \forall x \in \mathbb{R}$$
 
-Portanto:
+Sendo assim:
 
-$$ \int \int \int_E xz \,dx \,dy \,dz =  \int \int_R \Big( \int_{ \sqrt{x^2 + (y-4)^2} }^{ \sqrt{16 - x^2 - y^2} } xz \,dz \Big) \,dx \,dy = \int \int_R x \frac{z^2}{2} \Big|_{ \sqrt{x^2 + (y-4)^2} }^{ \sqrt{16 - x^2 - y^2} } \,dx \,dy  $$
-$$ = \frac{1}{2} \int \int_R x (-2x^2 - 2y^2 + 8y) \,dx \,dy = - \int \int_R x (x^2 + y^2 - 4y) \,dx \,dy $$ \\
+$$ e^{3x} - 1 = \sum_{n=0}^\infty \frac{(3x)^n}{n!} - 1 =  \sum_{n=1}^\infty \frac{3^n \, x^n}{n!} \, , \forall x \in \mathbb{R} $$
+$$ \therefore \frac{e^{3x} - 1}{x} = \sum_{n=1}^\infty \frac{3^n \, x^{n-1}}{n!} \, , \forall x \neq 0 $$
 
-Sendo $R$ a projeção do sólido $E$ no plano $xy$. \\
+Para x = 0:
 
-Realizando a intersecção das 2 superfícies que delimitam o sólido, temos:
+$$ \sum_{n=1}^\infty \frac{3^n \, x^{n-1}}{n!} = 3 $$
 
-$$
-\left\{
-\begin{array}{lc}
-x^2 + y^2 + z^2 = 16\\
-z^2 = x^2 + (y-4)^2 \\
-\end{array}
-\right. \Rightarrow
-\left\{
-\begin{array}{lc}
-2x^2 + y^2 + (y-4)^2 = 16\\
-z^2 = x^2 + (y-4)^2 \\
-\end{array}
-\right.
-$$
+$$ \therefore f(x) = \sum_{n=1}^\infty \frac{3^n \, x^{n-1}}{n!} \, , \forall x \in \mathbb{R} $$
 
-A projeção no plano $xy$ desta intersecção é dada por:
+Assim:
 
-$$ 2x^2 + y^2 + (y-4)^2 = 16 \Rightarrow 2x^2 + 2y^2 -8y + 16 = 16 \Rightarrow 2x^2 + 2y^2 = 8y $$
-$$   \therefore x^2 + y^2 = 4y \Leftrightarrow x^2 + (y-2)^2 = 4 $$
+$$ \int_{0}^{x'} f(x) \, dx = \sum_{n=1}^\infty \frac{3^n \, x^{n}}{n \cdot n!} \Big|_{0}^{x'} = \sum_{n=1}^\infty \frac{3^n \, (x')^{n}}{n \cdot n!} \, , \forall x \in \mathbb{R} $$
 
-Sendo assim, a região $R$ é dada por:
+Para $ x' = 1/6$:
 
-$$ R = \{ (x,y): x^2 + (y-2)^2  \leq 4 , x \geq 0 \} $$
+$$ \int_{0}^{1/6} f(x) \, dx =  \sum_{n=1}^\infty \frac{3^n}{ 6^n \, n \cdot n!} = \sum_{n=1}^\infty \frac{1}{ 2^n \, n \cdot n!} $$
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.5]{Q2bB.jpg}  
-	\caption{Região $R$}
-	\label{fig:figura11}
-\end{figure}
+\item[a2)] Deseja-se calcular $ \displaystyle\int_{0}^{1/6} f(x) \, dx$ com $erro < \varepsilon = 10^{-4}$. Do item anterior, sabe-se que:
 
-Realizando uma mudança de coordenadas para coordenadas polares:
+$$ \int_{0}^{1/6} f(x) \, dx = \sum_{n=1}^\infty \frac{1}{ 2^n \, n \cdot n!} \simeq \sum_{n=1}^k \frac{1}{ 2^n \, n \cdot n!}  $$
 
-$$
-\left\{
-\begin{array}{lc}
-x = \rho \cos \theta\\
-y = \rho \sin \theta \\
-\end{array}
-\right.
-$$
-$$ | \det J | = \rho $$
+O erro da aproximação é dado por:
 
-Substituindo a mudança na equação da fronteira de $R$:
+$$ erro = \sum_{n=k+1}^\infty \frac{1}{ 2^n \, n \cdot n!} $$
 
-$$ x^2 + y^2 = 4y \Rightarrow \rho^2 = 4 \rho \sin \theta \Rightarrow \rho = 4 \sin \theta $$
+Rapare que se não tivessemos $ n \cdot n!$ multiplicando $2^n$, teríamos a soma de uma PG de razão $1/2$, a qual é fácil de calcular o valor exato da soma.
 
-Sendo assim, a região $R$ pode ser escrita em coordenadas polares da seguinte maneira:
+Repare também que o termo $ \frac{1}{n \cdot n!} $ é sempre decrescente, ou seja:
 
-$$ 0 \leq \rho \leq  \ 4 \sin \theta $$
-$$ 0 \leq \theta \leq \frac{\pi}{2} $$
+$$ \frac{1}{n \cdot n!} \leq \frac{1}{ (k+1) \cdot (k+1)!} ,\ \forall n \geq k+1 $$
 
-Aplicando a mudança na integral, temos:
+Sendo assim:
 
+$$ erro = \sum_{n=k+1}^\infty \frac{1}{ 2^n \, n \cdot n!} \leq \frac{1}{(k+1)(k+1)!} \sum_{n=k+1}^\infty \frac{1}{ 2^n} < \varepsilon $$
 
-$$- \int \int_R x (x^2 + y^2 - 4y) \,dx \,dy  = - \int_0^{\frac{\pi}{2}} \int_0^{4 \sin \theta} \rho \cos \theta ( \rho^2 - 4 \rho \sin \theta ) \rho \,d\rho
- \,d\theta $$
- $$ =  - \int_0^{\frac{\pi}{2}} \int_0^{4 \sin \theta} ( \rho^4 \cos \theta - 4 \rho^3 \sin \theta \cos \theta ) \,d\rho
- \,d\theta = - \int_0^{\frac{\pi}{2}}  \Big( \frac{\rho^5}{5} \Big|_0^{4 \sin \theta} \cos \theta - 4 \frac{\rho^4}{4} \Big|_0^{4 \sin \theta} \sin \theta \cos \theta \Big) 
- \,d\theta  $$
- $$ = 4^5 \Big( \frac{1}{4} - \frac{1}{5} \Big) \int_0^{\frac{\pi}{2}} \sin^5 \theta \cos \theta \,d\theta  $$
- 
- Realizando a seguinte mudança de variáveis: $u = \sin \theta \Rightarrow du = \cos \theta \,d\theta $, temos:
- 
-$$ = \frac{4^5}{20} \int_0^1 u^5 \,du = \frac{4^5}{20} \frac{u^6}{6} \Big|_0^1 = \frac{4^5}{20 \cdot 6} = \frac{256}{30}$$
+$$ \frac{1}{(k+1)(k+1)!} \frac{ \frac{1}{2^{k+1}} }{1 - \frac{1}{2}} = \frac{1}{(k+1)(k+1)!} \frac{1}{2^k} < \varepsilon  $$
+
+$$ \therefore 2^k (k+1)(k+1)! > \frac{1}{\varepsilon} = 10^4 $$
+
+Para $k = 5$:
+
+$$ 2^k (k+1)(k+1)! = 32 \cdot 6 \cdot 720 = 192 \cdot 720 > 10^4 $$
+
+Portanto: 
+
+$$ \int_{0}^{1/6} f(x) \, dx  \simeq \sum_{n=1}^5 \frac{1}{ 2^n \, n \cdot n!}  $$
+
+Com $erro < 10^{-4}$.
+
+\item[b)] Seja $\tilde{g}(x)$ a extensão ímpar de $g(x)$. A série de Fourier de $\tilde{g}(x)$ é a série de senos de $g(x)$. Sabe-se que os coeficientes da série de Fourier de $\tilde{g}(x)$ são:
+
+$$ a_0 = a_n = 0 $$
+$$ b_{2n} = 0 $$
+$$ b_{2n+1} = \frac{8}{\pi (2n + 1)^3} $$
+
+Aplicando a identidade de Parceval:
+
+$$ \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n^2 + b_n^2 \Big) =\frac{1}{\pi} \int_{-\pi}^{\pi} \tilde{g}^2(x) \, dx $$
+
+$$ \Rightarrow  \sum_{n=1}^\infty  b_{2n}^2 + \sum_{n=0}^\infty  b_{2n+1}^2  =\frac{1}{\pi} \int_{-\pi}^{\pi} \tilde{g}^2(x) \, dx $$
+
+Como $\tilde{g}(x)$ é impar, $\tilde{g}^2(x)$ é par. Além disso, como $\tilde{g}(x)$ é extensão ímpar de $g(x)$, $\tilde{g}(x) = g(x)$ para $x \in [0, \pi]$. Assim, temos:
+
+$$ \sum_{n=0}^\infty  \frac{64}{\pi^2 (2n + 1)^6}  =\frac{2}{\pi} \int_{0}^{\pi} g^2(x) \, dx $$.
+
+$$ \int_{0}^{\pi} g^2(x) \, dx = \int_{0}^{\pi} x^2 \pi^2 - 2 \pi x^3 + x^4 \, dx = \Big( \frac{\pi^2 x^3}{3} - \frac{ 2\pi x^4 }{4} + \frac{x^5}{5}  \Big)_0^\pi = \frac{\pi^5}{30} $$
+
+$$ \therefore \sum_{n=0}^\infty  \frac{1}{ (2n + 1)^6} = \frac{\pi^2}{64} \cdot \frac{2}{\pi} \cdot \frac{\pi^5}{30} = \frac{\pi^6}{960}  $$
+
+\end{itemize}
+
+%---------------------------------------QUESTAO 3-----------------------------------------
 
 \newpage
-\noindent{\bf Questão 3: }
-(3,0 pontos) Calcule a massa do sólido dado por:
-$$u^2+v^2+w^2 \geq 1$$
-$$u \geq \sqrt{3v^2+3w^2}$$
-$$u\leq 6$$
+\noindent{\bf 3ª Questão: }
+\begin{itemize}
+\item[a)] (2,0 pontos) Seja
 
-tal que $w\geq 0$ e com densidade $\displaystyle{\delta(u,v,w)=\frac{1}{\sqrt{u^2+v^2+w^2}}}$\\
+\begin{center}
+$ f(x) = \displaystyle\begin{cases} 0 \, , \,\,\,\,\,\,\, $ se $ x \in \Big[-\pi, -\frac{\pi}{2} \Big[ \,$ ou $x \in \Big]\frac{\pi}{2}, \pi \Big] \\\\ 2|x| \,,$ se $ x \in \Big[-\frac{\pi}{2}, \frac{\pi}{2} \Big] \end{cases}$
+\end{center}
+
+Encontre a série de Fourier de $f$.
+
+\item[b)] (1,5 pontos) Se $S(x)$ é a soma da série encontrada em $a)$, esboce o gráfico de $S$ no intervalo $[-3\pi,3\pi]$, calcule $S\Big(39 \displaystyle\frac{\pi}{2}\Big)$ e $S\Big(1223 \displaystyle\frac{\pi}{8}\Big)$.
+
+\end{itemize}
+
+
 \noindent{\bf Solução:}
 \\
 
-O sólido está compreendido na região interna ao cone, exterior à esfera e inferior ao plano, conforme visto na figura abaixo:
+\begin{itemize}
+\item[a)]
 
-\begin{figure}[h!]
+$$ a_0 = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \, dx = \frac{1}{\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 2 |x| \, dx = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} 2 x \, dx = \frac{2}{\pi} x^2 \Big|_0^{\frac{\pi}{2}} = \frac{\pi}{2} $$
+
+$$ a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (n x) \, dx = \frac{1}{\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 2 |x| \cos (n x) \, dx = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} 2 x \cos (n x) \, dx $$
+
+$$ \int_{0}^{\frac{\pi}{2}}  x \cos (n x) \, dx =  \frac{x \sen (nx)}{n} \Big|_0^\frac{\pi}{2} -  \int_{0}^{\frac{\pi}{2}} \frac{\sen(nx)}{n} \,dx = \frac{\pi \sen( \frac{n \pi}{2})}{2 n} + \frac{\cos (nx)}{n^2} \Big|_0^\frac{\pi}{2}    $$
+
+$$ = \frac{\pi \sen( \frac{n \pi}{2})}{2 n} + \frac{ ( \cos (\frac{n \pi}{2}) -1)}{n^2} $$
+
+$$ \therefore a_n =  \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} $$
+
+\begin{center}
+$b_n = \displaystyle\frac{1}{\pi} \displaystyle\int_{-\pi}^\pi f(x) \sen (n x) \, dx = 0 \,\,$ (função ímpar)
+\end{center}
+
+$$ \therefore S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n \cos(nx) + b_n \sen(nx) \Big) = \frac{\pi}{4} + \sum_{n=1}^\infty \Big( \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} \Big) \cos (nx) $$
+
+\item[b)] Pelo toerema da convergência da série de Fourier, $S(x)$ converge para:
+
+\begin{itemize}
+\item[•] Para $x \in  (-\pi,\pi)$:
+	\begin{itemize}
+	\item[-] $f(x), \,$ onde f(x) é contínua
+	\item[-] A média dos limites laterais, onde f(x) é descontínua
+	\end{itemize}
+\item[•] $\displaystyle\frac{f(\pi)+f(-\pi)}{2}, \, $ para $ x = \pi $ ou $ x = -\pi $ 
+\item[•] Para $x \notin [ -\pi,\pi]$: repete-se periodicamente.
+\end{itemize}
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{Q3A.jpg}  
-	\caption{Esboço do sólido}
-	\label{fig:figura12}
+	\includegraphics[scale=0.7]{Fourier.pdf}  
+	\caption{Série de Fourier de $f(x)$ para $x \in [-3\pi, 3\pi]$}
+	\label{fig:figura2}
 \end{figure}
 
-A massa do sólido pode ser calculada por:
-$$ Massa = \int\!\!\int\!\!\int_{D_{u,v,w}} \delta(u,v,w)\,du\,dv\,dw $$
+Sendo assim:
+$$ S\Big(\frac{39 \pi}{2}\Big) = S\Big(17\pi + \frac{\pi}{2}\Big) = S\Big(\pi + \frac{\pi}{2}\Big) = S\Big(- \frac{\pi}{2}\Big) = \frac{1}{2} ( \lim_{x \rightarrow - \frac{\pi}{2}^+ } f(x) + \lim_{x \rightarrow - \frac{\pi}{2}^- } f(x) ) = \frac{1}{2} ( \pi + 0) = \frac{\pi}{2} $$
 
-Faz-se a mudança para coordenadas esféricas e as regiões ficam descritas por:
-$$\left\{\begin{array}{lc}
-u=\rho \cdot \cos{\phi}\\
-v=\rho \cdot \sen{\theta}\cdot \sen{\phi}\\
-w=\rho \cdot \cos{\theta}\cdot \sen{\phi} \\
-|J(\rho,\theta,\phi)|=\rho^2 \cdot \sen{\phi}
-\end{array}\right.
-$$
-\\
-Assim o domínio de integração em coordenadas esféricas fica:\\
-$$D_{\rho,\theta,\phi}= \left\{- \frac{\pi}{2}  \leq \theta \leq \frac{\pi}{2} \, \,\, , \,\, 1 \leq \rho \leq \frac{6}{\cos{\phi}}\, \, \mbox{  e  } 
-\,\,0 \leq \phi \leq \frac{\pi}{6}\right\}$$
+$$ S\Big(1223 \cdot \frac{\pi}{8}\Big) = S\Big(152\pi + \frac{7 \pi}{8}\Big) = S\Big(\frac{7\pi}{8}\Big) = f\Big(\frac{7\pi}{8}\Big) = 0 $$
 
-Logo:
-\begin{eqnarray*}
-\mbox{Massa} &=& \int\!\!\int\!\!\int_{D_{u,v,w}} \delta(u,v,w)\,du\,dv\,dw = \int\!\!\int\!\!\int_{D_{\rho,\theta,\phi}} \delta(\rho,\theta,\phi)\cdot |J(\rho,\theta,\phi)|\,d\rho\,d\theta\,d\phi\\
-&=& \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\!\!\!\int_{0}^{\frac{\pi}{6}}\!\!\!\int_1^{\frac{6}{\cos{\phi}}}\frac{\rho^2\sen{\phi}}{\rho}\,d\rho\,d\phi\,d\theta\\
-&=& \frac{\pi}{2} \int_0^{\frac{\pi}{6}} \rho^2\sen{\phi}\Big|_1^{\frac{6}{\cos{\phi}}}\,d\phi\\
-&=& \frac{\pi}{2} \int_0^{\frac{\pi}{6}} 36\frac{\sen{\phi}}{\cos^2{\phi}}-\sen{\phi}\,d\phi\\
-&=& 18\pi \frac{1}{\cos{\phi}}\Big|_0^{\frac{\pi}{6}} + \frac{\pi}{2}\cos{\phi}\Big|_0^{\frac{\pi}{6}}\\
-&=& 18\pi\left(\frac{2}{\sqrt{3}}-1\right) + \frac{\pi}{2}\left(\frac{\sqrt{3}}{2}-1\right)\\
-M &=& \frac{49 \pi \sqrt{3} - 74 \pi}{4}
-\end{eqnarray*}
+\end{itemize}
+
 
 \end{document} 
