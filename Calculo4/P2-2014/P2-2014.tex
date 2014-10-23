@@ -30,7 +30,7 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
 
 \noindent {\bf Turma A}
 
-\noindent{\bf Questão 1:}
+\noindent{\bf 1ª Questão:}
 \begin{itemize}
 	\item[a)] (1,0 ponto) Seja $ f(x) = \displaystyle\frac{1}{1+2x^3}$. Calcule $f^{(30)}(0)$.
 	
@@ -91,7 +91,7 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
 %---------------------------------------QUESTAO 2-----------------------------------------
 \newpage
 
-\noindent{\bf Questão 2:}
+\noindent{\bf 2ª Questão:}
 
 \begin{itemize}
 \item[a)] (1,5 pontos) Seja $ f(x) = \begin{cases} \displaystyle\frac{e^{3x}-1}{x} \, , \, $ se $ x \neq 0 \\ 3 \, , \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, $ se $x = 0 \end{cases} $
@@ -169,56 +169,71 @@ $$ \int_{0}^{1/6} f(x) \, dx  \simeq \sum_{n=1}^5 \frac{1}{ 2^n \, n \cdot n!}  
 
 Com $erro < 10^{-4}$.
 
+\item[b)] Seja $\tilde{g}(x)$ a extensão ímpar de $g(x)$. A série de Fourier de $\tilde{g}(x)$ é a série de senos de $g(x)$. Sabe-se que os coeficientes da série de Fourier de $\tilde{g}(x)$ são:
+
+$$ a_0 = a_n = 0 $$
+$$ b_{2n} = 0 $$
+$$ b_{2n+1} = \frac{8}{\pi (2n + 1)^3} $$
+
+Aplicando a identidade de Parceval:
+
+$$ \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n^2 + b_n^2 \Big) =\frac{1}{\pi} \int_{-\pi}^{\pi} \tilde{g}^2(x) \, dx $$
+
+$$ \Rightarrow  \sum_{n=1}^\infty  b_{2n}^2 + \sum_{n=0}^\infty  b_{2n+1}^2  =\frac{1}{\pi} \int_{-\pi}^{\pi} \tilde{g}^2(x) \, dx $$
+
+Como $\tilde{g}(x)$ é impar, $\tilde{g}^2(x)$ é par. Além disso, como $\tilde{g}(x)$ é extensão ímpar de $g(x)$, $\tilde{g}(x) = g(x)$ para $x \in [0, \pi]$. Assim, temos:
+
+$$ \sum_{n=0}^\infty  \frac{64}{\pi^2 (2n + 1)^6}  =\frac{2}{\pi} \int_{0}^{\pi} g^2(x) \, dx $$.
+
+$$ \int_{0}^{\pi} g^2(x) \, dx = \int_{0}^{\pi} x^2 \pi^2 - 2 \pi x^3 + x^4 \, dx = \Big( \frac{\pi^2 x^3}{3} - \frac{ 2\pi x^4 }{4} + \frac{x^5}{5}  \Big)_0^\pi = \frac{\pi^5}{30} $$
+
+$$ \therefore \sum_{n=0}^\infty  \frac{1}{ (2n + 1)^6} = \frac{\pi^2}{64} \cdot \frac{2}{\pi} \cdot \frac{\pi^5}{30} = \frac{\pi^6}{960}  $$
+
 \end{itemize}
 
 
 
 \newpage
-\noindent{\bf Questão 3: }
-(3,0 pontos) Calcule a massa do sólido dado por:
-$$u^2+v^2+w^2 \geq 1$$
-$$u \geq \sqrt{3v^2+3w^2}$$
-$$u\leq 4$$
+\noindent{\bf 3ª Questão: }
+\begin{itemize}
+\item[a)] (2,0 pontos) Seja
 
-tal que $w\geq 0$ e com densidade $\displaystyle{\delta(u,v,w)=\frac{1}{\sqrt{u^2+v^2+w^2}}}$\\
+\begin{center}
+$ f(x) = \displaystyle\begin{cases} 0 \, , \,\,\,\,\,\,\, $ se $ x \in \Big[-\pi, -\frac{\pi}{2} \Big[ \,$ ou $x \in \Big]\frac{\pi}{2}, \pi \Big] \\\\ 2|x| \,,$ se $ x \in \Big[-\frac{\pi}{2}, \frac{\pi}{2} \Big] \end{cases}$
+\end{center}
+
+Encontre a série de Fourier de $f$.
+
+\item[b)] (1,5 pontos) Se $S(x)$ é a soma da série encontrada em $a)$, esboce o gráfico de $S$ no intervalo $[-3\pi,3\pi]$, calcule $S\Big(39 \displaystyle\frac{\pi}{2}\Big)$ e $S\Big(1223 \displaystyle\frac{\pi}{8}\Big)$.
+
+\end{itemize}
+
+
 \noindent{\bf Solução:}
 \\
 
-O sólido está compreendido na região interna ao cone, exterior à esfera e inferior ao plano, conforme visto na figura abaixo:
+\begin{itemize}
+\item[a)]
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.5]{Q3A.jpg}  
-	\caption{Esboço do sólido}
-	\label{fig:figura6}
-\end{figure}
+$$ a_0 = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \, dx = \frac{1}{\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 2 |x| \, dx = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} 2 x \, dx = \frac{2}{\pi} x^2 \Big|_0^{\frac{\pi}{2}} = \frac{\pi}{2} $$
 
-A massa do sólido pode ser calculada por:
-$$ Massa = \int\!\!\int\!\!\int_{D_{u,v,w}} \delta(u,v,w)\,du\,dv\,dw $$
+$$ a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (n x) \, dx = \frac{1}{\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 2 |x| \cos (n x) \, dx = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} 2 x \cos (n x) \, dx $$
 
-Faz-se a mudança para coordenadas esféricas e as regiões ficam descritas por:
-$$\left\{\begin{array}{lc}
-u=\rho \cdot \cos{\phi}\\
-v=\rho \cdot \sen{\theta}\cdot \sen{\phi}\\
-w=\rho \cdot \cos{\theta}\cdot \sen{\phi} \\
-|J(\rho,\theta,\phi)|=\rho^2 \cdot \sen{\phi}
-\end{array}\right.
-$$
-\\
-Assim o domínio de integração em coordenadas esféricas fica:\\
-$$D_{\rho,\theta,\phi}= \left\{-\frac{\pi}{2} \leq \theta \leq \frac{\pi}{2}\, \,\, , \,\, 1 \leq \rho \leq \frac{4}{\cos{\phi}}\, \, \mbox{  e  } 
-\,\,0 \leq \phi \leq \frac{\pi}{6}\right\}$$
+$$ \int_{0}^{\frac{\pi}{2}}  x \cos (n x) \, dx =  \frac{x \sen (nx)}{n} \Big|_0^\frac{\pi}{2} -  \int_{0}^{\frac{\pi}{2}} \frac{\sen(nx)}{n} \,dx = \frac{\pi \sen( \frac{n \pi}{2})}{2 n} + \frac{\cos (nx)}{n^2} \Big|_0^\frac{\pi}{2}    $$
 
-Logo:
-\begin{eqnarray*}
-\mbox{Massa} &=& \int\!\!\int\!\!\int_{D_{u,v,w}} \delta(u,v,w)\,du\,dv\,dw = \int\!\!\int\!\!\int_{D_{\rho,\theta,\phi}} \delta(\rho,\theta,\phi)\cdot |J(\rho,\theta,\phi)|\,d\rho\,d\theta\,d\phi\\
-&=& \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\!\!\!\int_{0}^{\frac{\pi}{6}}\!\!\!\int_1^{\frac{4}{\cos{\phi}}}\frac{\rho^2\sen{\phi}}{\rho}\,d\rho\,d\phi\,d\theta\\
-&=& \frac{\pi}{2} \int_0^{\frac{\pi}{6}} \rho^2\sen{\phi}\Big|_1^{\frac{4}{\cos{\phi}}}\,d\phi\\
-&=& \frac{\pi}{2} \int_0^{\frac{\pi}{6}} 16\frac{\sen{\phi}}{\cos^2{\phi}}-\sen{\phi}\,d\phi\\
-&=& 8\pi \frac{1}{\cos{\phi}}\Big|_0^{\frac{\pi}{6}} + \frac{\pi}{2}\cos{\phi}\Big|_0^{\frac{\pi}{6}}\\
-&=& 8\pi\left(\frac{2}{\sqrt{3}}-1\right) + \frac{\pi}{2}\left(\frac{\sqrt{3}}{2}-1\right)\\
-M &=& \frac{67\pi \sqrt{3}-102 \pi}{12}
-\end{eqnarray*}
+$$ = \frac{\pi \sen( \frac{n \pi}{2})}{2 n} + \frac{ ( \cos (\frac{n \pi}{2}) -1)}{n^2} $$
+
+$$ \therefore a_n =  \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} $$
+
+\begin{center}
+$b_n = \displaystyle\frac{1}{\pi} \displaystyle\int_{-\pi}^\pi f(x) \sen (n x) \, dx = 0 \,\,$ (função ímpar)
+\end{center}
+
+$$ \therefore S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n \cos (nx) + b_n \sen (nx) \Big) = \frac{\pi}{4} + \sum_{n=1}^\infty \Big( \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} \Big) \cos (nx) $$
+
+\end{itemize}
+
+
 
 
 
