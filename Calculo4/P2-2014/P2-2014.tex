@@ -269,9 +269,9 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
 
 \noindent{\bf 1ª Questão:}
 \begin{itemize}
-	\item[a)] (1,0 ponto) Seja $ f(x) = \displaystyle\frac{1}{1+2x^3}$. Calcule $f^{(30)}(0)$.
+	\item[a)] (1,0 ponto) Seja $ f(x) = \displaystyle\frac{1}{1+3x^4}$. Calcule $f^{(40)}(0)$.
 	
-	\item[b)] Obtenha uma expressão para a soma da série $\displaystyle\sum_{n=1}^\infty (-1)^n \, 2^n \, 9 n^2 \, x^{3n}$ 
+	\item[b)] Obtenha uma expressão para a soma da série $\displaystyle\sum_{n=1}^\infty (-1)^n \, 3^n \, 16 n^2 \, x^{4n}$ 
 	\item[c)] Encontre um valor para a soma do item $b)$, quando $x = \displaystyle\frac{1}{2}$.
 \end{itemize}
 
@@ -280,42 +280,42 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
 \begin{itemize}
     \item[a)] Sabe-se que $ \displaystyle\frac{1}{1-x} = \displaystyle\sum_{n=0}^\infty x^n $, para $|x|<1$ (soma da PG). Sendo assim:
     
-    $$\frac{1}{1 + 2x^3} = \sum_{n=0}^\infty (-2 x^3), |-2x^3| < 1$$
-    $$ = \sum_{n=0}^\infty (-1)^n  \, 2^n \, x^{3n}, |x| < \frac{1}{\sqrt[3]{2}} $$
+    $$\frac{1}{1 + 3x^4} = \sum_{n=0}^\infty (-3 x^4), |-3x^4| < 1$$
+    $$ = \sum_{n=0}^\infty (-1)^n  \, 3^n \, x^{4n}, |x| < \frac{1}{\sqrt[4]{3}} $$
     
     
     Sabe-se que para uma série de potencias positivas $ \, \displaystyle\sum_{k=0}^\infty a_k (x-x_0)^k $, $a_k$ é dado pelo coeficiênte de Taylor: $a_k = \displaystyle\frac{f^{(k)}(x_0)}{k!}$.
     
-    Como a série encontrada foi expandida em torno de $x_0 = 0$, temos que: $a_{30} = \displaystyle\frac{f^{(30)}(0)}{30!}$, o qual é coeficiente de $x^{30}$. \\
+    Como a série encontrada foi expandida em torno de $x_0 = 0$, temos que: $a_{40} = \displaystyle\frac{f^{(40)}(0)}{40!}$, o qual é coeficiente de $x^{40}$. \\
     
-    O termo geral da série obtida é dado por $ \bar{a}_n = (-1)^n  \, 2^n \, x^{3n}$.
+    O termo geral da série obtida é dado por $ \bar{a}_n = (-1)^n  \, 3^n \, x^{4n}$.
     
-    Para $n=10$, temos $\bar{a}_{10} = 2^{10} x^{30}$, o que significa que o coeficiente de $x^{30}$ na série é $2^{10}$.
+    Para $n=10$, temos $\bar{a}_{10} = 3^{10} x^{40}$, o que significa que o coeficiente de $x^{40}$ na série é $3^{10}$.
     
-    Sendo assim, temos: $ \displaystyle\frac{f^{(30)}(0)}{30!} = 2^{10} $
+    Sendo assim, temos: $ \displaystyle\frac{f^{(40)}(0)}{40!} = 3^{10} $
     
-    $$ \therefore f^{(30)} = 2^{10} \, 30! $$
+    $$ \therefore f^{(40)} = 3^{10} \, 40! $$
 
 
-    \item[b)] Deseja-se encontrar uma expressão para $\displaystyle\sum_{n=1}^\infty (-1)^n \, 2^n \, 9 n^2 x^{3n}$.
+    \item[b)] Deseja-se encontrar uma expressão para $\displaystyle\sum_{n=1}^\infty (-1)^n \, 3^n \, 16 n^2 x^{4n}$.
     
      Pode-se observar que há uma certa semelhança entre os termos gerais desta série e da série do exercicio anterior. Repare que derivando em x, multiplicando por x, derivando mais uma vez e multplicando por x mais uma vez, chegamos na mesma expressão. Sendo assim:
      
-     $$\frac{1}{1 + 2x^3} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, x^{3n}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     $$\frac{1}{1 + 3x^4} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, x^{4n}, |x| < \frac{1}{\sqrt[4]{3}} $$
      
      Derivando em x:
      
-     $$\frac{-2 \cdot 3 x^2}{(1 + 2x^3)^2} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, 3 n \, x^{3n-1}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     $$\frac{-3 \cdot 4 x^3}{(1 + 3x^4)^2} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, 4 n \, x^{4n-1}, |x| < \frac{1}{\sqrt[4]{3}} $$
      
-     $$ \Rightarrow \frac{-6 x^3}{(1 + 2x^3)^2} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, 3 n \, x^{3n}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     $$ \Rightarrow \frac{-12 x^4}{(1 + 3x^4)^2} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, 4 n \, x^{4n}, |x| < \frac{1}{\sqrt[4]{3}} $$
      
      Derivando mais uma vez:
      
-     $$ \frac{-6 [ (3 x^2) (1 + 2x^3)^2 - x^3 \cdot 2 (1 + 2 x^3) 6 x^2 ] }{(1 + 2x^3)^4} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, 9 n^2 \, x^{3n-1}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     $$ \frac{-12 [ (4 x^3) (1 + 3x^4)^2 - x^4 \cdot 2 (1 + 3 x^4) 12 x^3 ] }{(1 + 3x^4)^4} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, 16 n^2 \, x^{4n-1}, |x| < \frac{1}{\sqrt[4]{3}} $$
      
-     $$ \frac{-6 [ 3 x^2 - 6 x^5 ] }{(1 + 2x^3)^3} =  \sum_{n=0}^\infty (-1)^n  \, 2^n \, 9 n^2 \, x^{3n-1}, |x| < \frac{1}{\sqrt[3]{2}} $$
+     $$ \frac{-12 [ 4 x^3 - 12 x^7 ] }{(1 + 3x^4)^3} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, 16 n^2 \, x^{4n-1}, |x| < \frac{1}{\sqrt[4]{3}} $$
      
-     $$ \therefore \sum_{n=0}^\infty (-1)^n  \, 2^n \, 9 n^2 \, x^{3n} = \frac{-18 x^3 (1 - 2 x^3)}{(1 + 2 x^3)^3} , |x| < \frac{1}{\sqrt[3]{2}} $$
+     $$ \therefore \sum_{n=0}^\infty (-1)^n  \, 3^n \, 16 n^2 \, x^{4n} = \frac{-18 x^3 (1 - 2 x^3)}{(1 + 2 x^3)^3} , |x| < \frac{1}{\sqrt[4]{3}} $$
      
      \item[c)] Como $ x = \frac{1}{2}$ está dentro do intervalo de convergência da série do item $b)$, temos que:
      
