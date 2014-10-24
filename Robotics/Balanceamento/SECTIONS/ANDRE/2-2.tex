@@ -47,13 +47,13 @@
 	
 	\begin{equation}
 	\mw_\omega = \begin{bmatrix}
-	\omega_{z1} & \omega_{z2}
+	\omega_{z_1} & \omega_{z_2}
 	\end{bmatrix}^T
 	\end{equation}
 	
 	\begin{equation}
 	\mw_v = \begin{bmatrix}
-	v_{x1} & v_{y1} & v_{x2} & v_{y2}
+	v_{x_1} & v_{y_1} & v_{x_2} & v_{y_2}
 	\end{bmatrix}^T
 	\end{equation}
 	
@@ -86,8 +86,8 @@
 
 	\begin{equation}
 	\momega\ssh = \begin{bmatrix}
-	\omega_{z1} \\
-	\omega_{z2}
+	\omega_{z_1} \\
+	\omega_{z_2}
 	\end{bmatrix}
 	\end{equation}
 	
@@ -101,7 +101,7 @@
 	
 	\begin{equation}
 	\mathbb{\nu}^\circ = \begin{bmatrix}
-	v_{x1} & v_{y1} & v_{x2} & v_{y2}
+	v_{x_1} & v_{y_1} & v_{x_2} & v_{y_2}
 	\end{bmatrix}^T
 	\end{equation}\\
 
@@ -298,7 +298,7 @@
 	
 	
 	\begin{equation}
-	\mR_\clubsuit =
+	\mR_\Diamond =
 	\begin{bmatrix}
 	\mR_1 & \mzr_{2x2} \\
 	\mzr_{2x2} & \mR_2
@@ -308,17 +308,17 @@
 	Temos:
 	
 	\begin{equation}
-	\mw_v = \mR_\clubsuit^T \dot{\mq}^\circ
+	\mw_v = \mR_\Diamond^T \dot{\mq}^\circ
 	\end{equation}
 	
 	
 	\begin{equation}
 	\therefore
 	\begin{bmatrix}
-	v_{x1} \\
-	v_{y1} \\
-	v_{x2} \\
-	v_{y2} \\
+	v_{x_1} \\
+	v_{y_1} \\
+	v_{x_2} \\
+	v_{y_2} \\
 	\end{bmatrix}
 	=
 	\begin{bmatrix}
@@ -347,8 +347,8 @@
 	\begin{equation}
 	\mp\ssh = 
 	\begin{bmatrix}
-	\omega_{z1} \\
-	\omega_{z2} \\
+	\omega_{z_1} \\
+	\omega_{z_2} \\
 	\end{bmatrix}
 	= \mp\ssh_\star (\mq\ssh, \dot{\mq}\ssh ) =
 	\begin{bmatrix}
@@ -360,10 +360,10 @@
 	\begin{equation}
 	\mp^\circ = 
 	\begin{bmatrix}
-	v_{x1} \\
-	v_{y1} \\
-	v_{x2} \\
-	v_{y2} \\
+	v_{x_1} \\
+	v_{y_1} \\
+	v_{x_2} \\
+	v_{y_2} \\
 	\end{bmatrix}
 	= \mp^\circ_ \star (\mq\ssh, \dot{\mq}\ssh ) =
 	\begin{bmatrix}
@@ -439,39 +439,39 @@
 	\end{bmatrix}
 	\end{equation}
 	
-	\item[xi)] Como (39) e (43) são transforma\c{c}\~oes invers\'iveis, encontramos a transforma\c{c}\~ao linear $\Gamma(q)$:
+	\item[xi)] Como (39) e (43) s\~ao transforma\c{c}\~oes invers\'iveis, encontramos a transforma\c{c}\~ao linear $\mathbb{\Gamma}(\mq)$:
 	
 	\begin{equation}
-	\dot{q} =
+	\dot{\mq} =
 	\begin{bmatrix}
-	\dot{q}^{\#} \\
-	\dot{q}^o \\
+	\dot{\mq}^{\#} \\
+	\dot{\mq}^\circ \\
 	\end{bmatrix}
-	= \dot{Q}(q,p) =
+	= \dot{\mq}_\star(\mq,\mp) =
 	\begin{bmatrix}
-	\Psi^{-1} (q) p^{\#} \\
-	\mathbf{R} (q) \nu_v (p)
+	\mathbb{\Psi}^{-1} (\mq) \mp\ssh \\
+	\mR_\Diamond (\mq) \mw_v (\mp)
 	\end{bmatrix}
 	=
 	\begin{bmatrix}
-	\omega_{z1} \\
-	\omega_{z2}-\omega_{z1}\\
-	v_{x1} c_1 - v_{y1} s_1 \\
-	v_{x1} s_1 + v_{y1} c_1 \\
-	v_{x2} c_{1+2} - v_{y2} s_{1+2} \\
-	v_{x2} s_{1+2} + v_{y2} c_{1+2} \\
+	\omega_{z_1} \\
+	\omega_{z_2}-\omega_{z_1}\\
+	v_{x_1} \, \ccos_1 - v_{y_1} \, \ssin_1 \\
+	v_{x_1} \, \ssin_1 + v_{y_1} \, \ccos_1 \\
+	v_{x_2} \, \ccos_{1+2} - v_{y_2} \, \ssin_{1+2} \\
+	v_{x_2} \, \ssin_{1+2} + v_{y_2} \, \ccos_{1+2} \\
 	\end{bmatrix}
 	\end{equation}
 	
 	\begin{equation}
-	\Gamma(q) = \frac{\partial \dot{Q}}{\partial p} =
+	\mathbb{\Gamma}(\mq) = \frac{\partial \dot{\mq}_\star}{\partial \mp} =
 	\begin{bmatrix}
 	1 & 0 & 0 & 0 & 0 & 0 \\
 	-1 & 1 & 0 & 0 & 0 & 0 \\
-	0 & 0 & c_1 & -s_1 & 0 & 0 \\
-	0 & 0 & s_1 & c_1 & 0 & 0 \\
-	0 & 0 & 0 & 0 & c_{1+2} & -s_{1+2} \\
-	0 & 0 & 0 & 0 & s_{1+2} & c_{1+2} \\
+	0 & 0 & \ccos_1 & -\ssin_1 & 0 & 0 \\
+	0 & 0 & \ssin_1 & \ccos_1 & 0 & 0 \\
+	0 & 0 & 0 & 0 & \ccos_{1+2} & -\ssin_{1+2} \\
+	0 & 0 & 0 & 0 & \ssin_{1+2} & \ccos_{1+2} \\
 	\end{bmatrix}
 	\end{equation}
 
@@ -479,36 +479,63 @@
 	
 	O método de Gibbs-Appell apresenta certa simularidade com o método de Lagrange, pois utiliza derivadas de uma fun\c{c}\~ao energia para encontrar a equa\c{c}\~oes de movimento do sistema. Por\'em, a fun\c{c}\~ao energia utilizada não é a energia cinética, mas sim a energia de acelera\c{c}\~oes. A energia de acelera\c{c}\~oes para um corpo r\'igido \'e dada pela seguinte express\~ao:
 
-	$$ \mathcal{S} = \frac{1}{2} m ( a_G \cdot a_G ) + \frac{1}{2}( \dot{\omega} \cdot \mathbb{I} \dot{\omega} + 2 \dot{\omega} (\omega \wedge 	\mathbb{I} \omega )  )  $$
+	$$ \mathcal{S} = \frac{1}{2} m ( \va_G \cdot \va_G ) + \frac{1}{2}( \dot{\vomega} \cdot \vI \dot{\vomega} + 2 \dot{\vomega} (\vomega \wedge 	\vI \vomega )  )  $$
  
-	Sendo $m$ a massa do corpo r\'igido, $\mathbb{I}$ seu tensor de in\'ercia, $a_G$ o vetor acelera\c{c}\~ao absoluta de seu centro de massa e $\omega$ o vetor velocidade angular absoluta.  \\
+	Sendo $m$ a massa do corpo r\'igido, $\vI$ seu tensor de in\'ercia, $\va_G$ o vetor acelera\c{c}\~ao absoluta de seu centro de massa e $\vomega$ o vetor velocidade angular absoluta.  \\
 
 	O modelo dinâmico utilizando o método de Gibbs-Appel extendido, é dado pela seguinte expressão:
 	
 	\begin{equation}
-	\mathbb{C}(q)^T ( \mathbb{M}(q) \dot{p} + \mathbb{V}(q,p) + \mathbb{G}(q)) = (\Psi^T)^{-1} f_{\dot{q}^{\#}} 
+	\mC(q)^T ( \mM(\mq) \dot{\mp} + \mv(\mq,\mp) + \mg(\mq)) = (\mathbb{\Psi}^T)^{-1} \mf_{\dot{\mq}\ssh} 
 	\end{equation}
 	
 	Com:
 	
 	\begin{equation}
-	\mathbb{M}(q) = \frac{\partial^2 \mathcal{S}}{\partial \dot{p}^2}
+	\mM(\mq) = \frac{\partial^2 \mathcal{S}}{\partial \dot{\mp}^2}
 	\end{equation}
 	
 	\begin{equation}
-	\mathbb{V}(q,p) =  \frac{\partial \mathcal{S}}{\partial \dot{p}} - \frac{\partial^2 \mathcal{S}}{\partial \dot{p}^2} \dot{p}
+	\mv(\mq,\mp) =  \frac{\partial \mathcal{S}}{\partial \dot{\mp}} - \frac{\partial^2 \mathcal{S}}{\partial \dot{\mp}^2} \dot{\mp}
 	\end{equation}
 	
 	\begin{equation}
-	\mathbb{G}(q) =  \Gamma^T \frac{\partial E_p}{\partial q}
+	\mg(\mq) =  \mathbb{\Gamma}^T \frac{\partial E_p}{\partial \mq}
 	\end{equation}
 	
-	Sendo $E_p$ a energia potencial do sistema e $f_{\dot{q}^{\#}}$ os esfor\c{c}os nas dire\c{c}\~oes de $\dot{q}^{\#}$.
+	Sendo $E_p$ a energia potencial do sistema e $\mf_{\dot{\mq}\ssh}$ os esfor\c{c}os nas dire\c{c}\~oes de $\dot{q}^{\#}$. \\
+	
+	Como j\'a calculamos os vetores de velocidades absolutas dos centros de massa e de velocidades angulares absolutas, escritos em bases presas às barras, as acelera\c{c}\~oes absolutas dos centros de massa são dadas por:
+	
+	$$ \nvct{\va_i}_{\ttB_i} = \frac{\dd}{\dd t} \nvct{ \vv_i }_{\ttB_i} + \nsmat{\vomega_i}_{\ttB_i \rl \ttB_i}  \nvct{ \vv_i }_{\ttB_i} $$
+	
+	Como o mecanismo é plano:
+	
+	$$\nvct{\va_i}_{\ttB_i} = 
+	\begin{bmatrix}
+	\dot{v}_{x_i} \\
+	\dot{v}_{y_i} \\
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+	0  & -\omega_{z_i} \\
+	\omega_{z_i} & 0 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+	v_{x_i} \\
+	v_{y_i} \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	\dot{v}_{x_i} - \omega_{z_i} v_{y_i} \\
+	\dot{v}_{y_i} + \omega_{z_i} v_{x_i}
+	\end{bmatrix}
+	 $$
 	
 	No caso do mecanismo $\underline{R}\underline{R}$, temos:
 	
 	\begin{equation}
-	\mathcal{S} = \frac{1}{2} \Big( m_1 ( \dot{v}_{x1}^2 + \dot{v}_{y1}^2 ) + m_2 ( \dot{v}_{x2}^2 + \dot{v}_{y2}^2  ) + J_{z1} \dot{\omega}_{z1}^2 + + J_{z2} \dot{\omega}_{z2}^2 \Big)
+	\mathcal{S} = \frac{1}{2} \Big( m_1 ( (\dot{v}_{x_1} - \omega_{z_1} v_{y_1})^2 + (\dot{v}_{y_1} + \omega_{z_1} v_{x_1})^2 ) + m_2 ( (\dot{v}_{x_2} - \omega_{z_2} v_{y_2})^2 + (\dot{v}_{y_2} + \omega_{z_2} v_{x_2})^2  ) + J_{z_1} \dot{\omega}_{z_1}^2 + J_{z_2} \dot{\omega}_{z_2}^2 \Big)
 	\end{equation}
 	
 	\begin{equation}
@@ -518,10 +545,10 @@
 	Calculando as derivadas:
 	
 	\begin{equation}
-	\mathbb{M}(q) =
+	\mM(\mq) =
 	\begin{bmatrix}
-	J_{z1} & 0 & 0 & 0 & 0 & 0 \\
-	0 & J_{z2} & 0 & 0 & 0 & 0 \\
+	J_{z_1} & 0 & 0 & 0 & 0 & 0 \\
+	0 & J_{z_2} & 0 & 0 & 0 & 0 \\
 	0 & 0 & m_1 & 0 & 0 & 0 \\
 	0 & 0 & 0 & m_1 & 0 & 0 \\
 	0 & 0 & 0 & 0 & m_2 & 0 \\
@@ -530,18 +557,26 @@
 	\end{equation}
 	
 	\begin{equation}
-	\mathbb{V}(q,p) = 0
-	\end{equation}
-	
-	\begin{equation}
-	\mathbb{G}(q) =
+	\mv(\mq,\mp) =
 	\begin{bmatrix}
 	0 \\
 	0 \\
-	m_1 g s_1 \\
-	m_1 g c_1 \\
-	m_1 g s_{1+2} \\
-	m_1 g c_{1+2}\\
+	-m_1 \omega_{z_1} v_{y_1} \\
+	m_1 \omega_{z_1} v_{x_1} \\
+	-m_2 \omega_{z_2} v_{y_2} \\
+	m_2 \omega_{z_2} v_{x_2} \\
+	\end{bmatrix}
+	\end{equation}
+	
+	\begin{equation}
+	\mg =
+	g \begin{bmatrix}
+	0 \\
+	0 \\
+	m_1  \ssin_1 \\
+	m_1  \ccos_1 \\
+	m_2  \ssin_{1+2} \\
+	m_2  \ccos_{1+2}\\
 	\end{bmatrix}
 	\end{equation}
 	
@@ -553,26 +588,35 @@
 	0 & 1 \\
 	0 & 0 \\
 	l_{1g} & 0\\
-	l_1 s_{2} & 0 \\
-	l_1 c_{2} & l_{2g} \\
+	l_1 \ssin_{2} & 0 \\
+	l_1 \ccos_{2} & l_{2g} \\
 	\end{bmatrix}^T
 	\begin{Bmatrix}
 		\begin{bmatrix}
-		J_{z1} \dot{\omega}_{z11} \\
-		J_{z2} \dot{\omega}_{z12} \\
-		m_1 \dot{v}_{x11} \\ 
-		m_1 \dot{v}_{y11} \\
-		m_2 \dot{v}_{x12} \\
-		m_2 \dot{v}_{y12} \\
+		J_{z_1} \dot{\omega}_{z_1} \\
+		J_{z_2} \dot{\omega}_{z_2} \\
+		m_1 \dot{v}_{x_1} \\ 
+		m_1 \dot{v}_{y_1} \\
+		m_2 \dot{v}_{x_2} \\
+		m_2 \dot{v}_{y_2} \\
 		\end{bmatrix}
 		+
 		\begin{bmatrix}
 		0 \\
 		0 \\
-		m_1 g s_{1} \\
-		m_1 g c_{1} \\
-		m_2 g s_{1+2} \\
-		m_2 g c_{1+2} \\
+		-m_1 \omega_{z_1} v_{y_1} \\
+		m_1 \omega_{z_1} v_{x_1} \\
+		-m_2 \omega_{z_2} v_{y_2} \\
+		m_2 \omega_{z_2} v_{x_2} \\
+		\end{bmatrix}
+		+
+		g \begin{bmatrix}
+		0 \\
+		0 \\
+		m_1  \ssin_1 \\
+		m_1  \ccos_1 \\
+		m_1  \ssin_{1+2} \\
+		m_1  \ccos_{1+2}\\
 		\end{bmatrix}
 	\end{Bmatrix}
 	=
@@ -581,12 +625,12 @@
 	0 & 1 \\
 	\end{bmatrix}^{-1}
 	\begin{bmatrix}
-	\tau_{11} \\
-	\tau_{12} \\
+	\tau_{1} \\
+	\tau_{2} \\
 	\end{bmatrix}
 	\end{equation}
 	
-	Repare que o modelo não depende das coordenadas $q^o$. Elas foram uteis para a dedu\c{c}\~ao do modelo, mas com o modelo deduzido elas não tem mais utilidade.
+	Repare que o modelo não depende das coordenadas $\mq^\circ$. Elas foram uteis para a dedu\c{c}\~ao do modelo, mas com o modelo deduzido elas não tem mais utilidade.
 	
 	
 	
