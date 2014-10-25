@@ -412,9 +412,26 @@
 	\therefore \mathbb{\Lambda}(\mq,\mp) = \mathbb{\Upsilon} \mathbb{\Psi}^{-1} \mp\ssh - \mp^\circ  = 0
 	\end{equation}
 	
-	\item[x)] A partir dos v\'inculos de velocidades, encontramos a matriz $\mathbb{C}$ dos v\'inculos cinem\'aticos:
+	\item[x)] A partir de $\mathbb{\Lambda} (\mq, \mp)$, encontramos o jacobiano $\mA$ dos v\'inculos de velocidade e a matriz $\mathbb{C}$ dos v\'inculos cinem\'aticos:
 	
-	$$ \mp^\circ = \mathbb{\Upsilon} \mathbb{\Psi}^{-1} \mp\ssh \Rightarrow \mp =
+	$$ \mathbb{\Lambda}(\mq, \mp) = \begin{bmatrix}
+	\mathbb{\Upsilon} \mathbb{\Psi}^{-1} & -\mone\\
+	\end{bmatrix} \mp  $$
+	
+	\begin{equation}
+	\mA = \frac{\partial \mathbb{\Lambda}}{\partial \mp} = \begin{bmatrix}
+	\mathbb{\Upsilon} \mathbb{\Psi}^{-1} & -\mone\\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	0 & 0 & -1 & 0 & 0 & 0 \\
+	l_{1g} & 0 & 0 & -1 & 0 & 0\\
+	l_1 s_{2} & 0 & 0 & 0 & -1 & 0\\
+	l_1 c_{2} & l_{2g} & 0 & 0 & 0 & -1\
+	\end{bmatrix}
+	\end{equation}
+	
+	$$ \mathbb{\Lambda}(\mq, \mp) = 0 \Rightarrow \mp^\circ = \mathbb{\Upsilon} \mathbb{\Psi}^{-1} \mp\ssh \Rightarrow \mp =
 	\begin{bmatrix}
 	\mone\\
 	\mathbb{\Upsilon} \mathbb{\Psi}^{-1}
@@ -439,7 +456,7 @@
 	\end{bmatrix}
 	\end{equation}
 	
-	\item[xi)] Como (39) e (43) s\~ao transforma\c{c}\~oes invers\'iveis, encontramos a transforma\c{c}\~ao linear $\mathbb{\Gamma}(\mq)$:
+	\item[xi)] Como (19) e (23) s\~ao transforma\c{c}\~oes invers\'iveis, encontramos a transforma\c{c}\~ao linear $\mathbb{\Gamma}(\mq)$:
 	
 	\begin{equation}
 	\dot{\mq} =
@@ -503,7 +520,7 @@
 	\mg(\mq) =  \mathbb{\Gamma}^T \frac{\partial E_p}{\partial \mq}
 	\end{equation}
 	
-	Sendo $E_p$ a energia potencial do sistema e $\mf_{\dot{\mq}\ssh}$ os esfor\c{c}os nas dire\c{c}\~oes de $\dot{q}^{\#}$. \\
+	Sendo $E_p$ a energia potencial do sistema e $\mf_{\dot{\mq}\ssh}$ os esfor\c{c}os nas dire\c{c}\~oes de $\dot{\mq}\ssh$. \\
 	
 	Como j\'a calculamos os vetores de velocidades absolutas dos centros de massa e de velocidades angulares absolutas, escritos em bases presas às barras, as acelera\c{c}\~oes absolutas dos centros de massa são dadas por:
 	
