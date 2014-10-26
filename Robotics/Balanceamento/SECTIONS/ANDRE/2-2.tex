@@ -1,7 +1,88 @@
 \subsection{Dynamic Models}\label{S02-2}
 
+\noindent{ Algumas definições importantes: \\}
+
+Seja $\ssB$ um sistema mecânico de $\nu\ssh$ graus de liberdade. Para encontrar as equações diferenciais de movimento do sistema, é conveniente fazer as seguintes definições:
+
 \begin{itemize}
-\item[•] $\mathbb{\Re}$ Modelo do mecanismo \underline{R}\underline{R}
+\item[-]$\mq\ssh$: vetor de $\nu\ssh$ coordenadas generalizadas independentes
+\item[-]$\mq^\circ$: vetor de $m_q$ coordenadas generalizadas redundandes
+\item[-]$\mq$: vetor contendo todas as coordenadas generalizadas. Usualmente $\mq = \begin{bmatrix} \mq\ssh \\\mq^\circ \end{bmatrix} $
+\item[-]$\mphi(\mq)$: vetor de tamanho $\nu_q^\circ$ dos vínculos de posição, de modo que conhecendo $\mq\ssh$ seja possível determinar $\mq^\circ$ resolvendo $\mphi(\mq) = \mzr$
+\item[-]$\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes
+\item[-]$\mp^\circ$: vetor de $\nu_p^\circ$ velocidades generalizadas redundandes
+\item[-]$\mp$: vetor contendo todas as velocidades generalizadas. Usualmente $\mp = \begin{bmatrix} \mp\ssh \\\mp^\circ \end{bmatrix} $
+\item[-]$\mathbb{\Lambda(\mq,\mp)}$: vetor de tamanho $\nu_p^\circ$ dos vínculos de velocidades, de modo que conhecendo $\mq$ e $\mp\ssh$ seja possível determinar $\mp^\circ$ resolvendo $\mathbb{\Lambda} (\mq,\mp) = \mzr$
+\item[-]$\mA(\mq)$: Jacobiano dos vínculos de velocidades, ou seja: $\mA = \displaystyle\frac{\partial \mathbb{\Lambda}}{\partial \mp}$
+\item[-]$\mC(\mq)$: Complemento ortogonal de $\mA(\mq)$. Usualmente faz-se com que $\mC$ respeite a seguinte propriedade: $ \mp = \mC \mp\ssh $
+\end{itemize}
+
+Na dinâmica de sistemas mecânicos multi-corpos, é muito vantajosa a utilização de coordenadas/velocidades generalizadas redundantes, pois a utilização destas diminui a complexidade da utilização dos métodos de dedução das equações de movimento (como Lagrange, Kane e Gibbs-Appell) e em contrapartida aumenta a complexidade da cinemática (pois torna necessário definir $\phi(q)$ e $\Lambda(q,p)$). \\
+
+Nos métodos citados, é necessário o cálculo das velocidades absolutas dos centros de massa $\vec{v}_{G_i}$ e das velocidades angulares absolutas $\vec{\omega}_i$ de todos os corpos rígidos do sistema, em função de $p$ e $q$. Sendo assim, é conveniente definir o vetor de velocidades generalizadas $p$ como sendo todas as componentes dos $\vec{v}_{G_i}$ e dos $\vec{\omega}_i$, em alguma ordem conveniente. Fazendo isso, tornamos a apliação dos métodos extremamente simples, deixando praticamente toda a complexidade do problema no cálculo de $\phi(q)$ e $\Lambda(q,p)$. \\
+
+Aqui segue um algoritmo, baseado no m\'etodo Orsino, de como encontrar o modelo din\^amico de qualquer mecanismo serial. \\
+
+Para a din\^amica direta, o modelo assume a seguinte forma:
+
+\begin{equation} \label{eq:SerialDinamics}
+\begin{cases}
+\dot{\mq}\ssh = \mathbb{\Psi}^{-1}(\mq\ssh) \mp\ssh \\
+\Big( \mC(\mq\ssh) \mathbb{\Psi} (\mq\ssh) \Big)^\top \Big( \mM \dot{\mp} + \mv (\mq\ssh,\mp) + \mg (\mq\ssh) \Big) = \mf_{\dot{\mq}\ssh} \\
+\mA (\mq\ssh) \dot{\mp} + \mb (\mq\ssh,\mp) = \mzr
+\end{cases}
+\end{equation}
+
+Em forma matricial:
+
+\begin{equation} \label{eq:SerialDinamicsMatrix}
+\begin{bmatrix}
+\mone & \mzr \\
+\mzr & ( \mC \mathbb{\Psi})^\top \mM \\
+\mzr & \mA \\
+\end{bmatrix}
+\begin{bmatrix}
+\dot{\mq}\ssh \\
+\dot{\mp} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mathbb{\Psi}^{-1} \mp\ssh \\
+ \mf_{\dot{\mq}\ssh} - ( \mC \mathbb{\Psi})^\top (\mv + \mg) \\
+-\mb \\
+\end{bmatrix}
+\end{equation} \\
+
+Para a din\^amica inversa:
+
+\begin{equation} \label{eq:SerialInverseDinamics}
+\begin{cases}
+\mp = \Big( \mC(\mq\ssh) \mathbb{\Psi} (\mq\ssh) \Big) \dot{\mq}\ssh \\
+\dot{\mp} = \Big( \displaystyle\frac{\dd (\mC \mathbb{\Psi})}{\dd t} (\mq\ssh, \dot{\mq}\ssh) \Big) \dot{\mq}\ssh + \Big( \mC(\mq\ssh) \mathbb{\Psi} (\mq\ssh) \Big) \ddot{\mq}\ssh \\
+\Big( \mC(\mq\ssh) \mathbb{\Psi} (\mq\ssh) \Big)^\top \Big( \mM \dot{\mp} + \mv (\mq\ssh,\mp) + \mg (\mq\ssh) \Big) = \mf_{\dot{\mq}\ssh} \\
+\end{cases}
+\end{equation}
+
+
+
+As matrizes $\mathbb{\Psi}$, $\mC$, $\mA$ e $\mb$ s\~ao encontradas atraves da cinem\'atica, enquanto $\mM$, $\mv$ e $\mg$ necessitam de considera\c{c}\~oes din\^amicas. \\
+
+O procedimento consiste nas seguintes etapas:
+
+\begin{itemize}
+\item[i)] Defini\c{c}\~ao das coordenadas generalizadas $\mq$
+\item[ii)] Defini\c{c}\~ao das velocidades absolutas  $\mw$
+\item[iii)] Defini\c{c}\~ao das velocidades generalizadas $\mp$
+\item[iv)] Cinem\'atica de posição dos centros de massa
+\item[v)] Cinem\'atica de velocidades angulares
+\item[vi)] Cinem\'atica de velocidades dos centros de massa
+\item[vii)] Encontrar $\mp$ em função de $\mq\ssh$ e $\dot{\mq}\ssh$
+\item[viii)] Definir as transforma\c{c}\~oes lineares $\mathbb{\Psi}$, $\mathbb{\Upsilon}$ e o vínculos de velocidades generalizadas $\mathbb{\Lambda}$
+\end{itemize}
+
+
+\begin{itemize}
+\item[•] Modelo do mecanismo \underline{R}\underline{R}
 
 \begin{figure}[h!]
 	\centering
@@ -496,14 +577,14 @@
 	
 	O método de Gibbs-Appell apresenta certa simularidade com o método de Lagrange, pois utiliza derivadas de uma fun\c{c}\~ao energia para encontrar a equa\c{c}\~oes de movimento do sistema. Por\'em, a fun\c{c}\~ao energia utilizada não é a energia cinética, mas sim a energia de acelera\c{c}\~oes. A energia de acelera\c{c}\~oes para um corpo r\'igido \'e dada pela seguinte express\~ao:
 
-	$$ \mathcal{S} = \frac{1}{2} m ( \va_G \cdot \va_G ) + \frac{1}{2}( \dot{\vomega} \cdot \vI \dot{\vomega} + 2 \dot{\vomega} (\vomega \wedge 	\vI \vomega )  )  $$
+	$$ \mathcal{S} = \frac{1}{2} m ( \va_\ttG \cdot \va_\ttG ) + \frac{1}{2}( \dot{\vomega} \cdot \vI \dot{\vomega} + 2 \dot{\vomega} (\vomega \wedge 	\vI \vomega )  )  $$
  
-	Sendo $m$ a massa do corpo r\'igido, $\vI$ seu tensor de in\'ercia, $\va_G$ o vetor acelera\c{c}\~ao absoluta de seu centro de massa e $\vomega$ o vetor velocidade angular absoluta.  \\
+	Sendo $m$ a massa do corpo r\'igido, $\vI$ seu tensor de in\'ercia, $\va_\ttG$ o vetor acelera\c{c}\~ao absoluta de seu centro de massa e $\vomega$ o vetor velocidade angular absoluta.  \\
 
 	O modelo dinâmico utilizando o método de Gibbs-Appel extendido, é dado pela seguinte expressão:
 	
 	\begin{equation}
-	\mC(q)^T ( \mM(\mq) \dot{\mp} + \mv(\mq,\mp) + \mg(\mq)) = (\mathbb{\Psi}^T)^{-1} \mf_{\dot{\mq}\ssh} 
+	\mC(\mq)^T ( \mM(\mq) \dot{\mp} + \mv(\mq,\mp) + \mg(\mq)) = (\mathbb{\Psi}^T)^{-1} \mf_{\dot{\mq}\ssh} 
 	\end{equation}
 	
 	Com:
@@ -648,6 +729,33 @@
 	\end{equation}
 	
 	Repare que o modelo não depende das coordenadas $\mq^\circ$. Elas foram uteis para a dedu\c{c}\~ao do modelo, mas com o modelo deduzido elas não tem mais utilidade.
+	
+	Para realizar simulações dinâmicas diretas do mecanismo, são necessárias mais 2 equações matriciais:
+	
+	\begin{equation}
+	\dot{\mq}\ssh = \dot{\mq}\ssh_\star (\mq\ssh, \mp)
+	\end{equation}
+	\begin{equation}
+	\mA \dot{\mp} = -\mb
+	\end{equation}
+	
+	A primeira é obtida a partir da equação (?) ($\dot{\mq}\ssh  = \mathbb{\Psi}^{-1} \mp\ssh $), e a segunda derivando a equação (?):
+	
+	$$ \frac{\dd }{\dd t} \Big( \mA \mp  \Big) = \mzr \Rightarrow \mA \dot{\mp} + \dot{ \mA} \mp  = \mzr  $$
+	\begin{equation}
+	\therefore \mb (\mq, \mp) = \dot{ \mA} \mp 
+	\end{equation}
+	
+	Para o mecanismo $\underline{R}\underline{R}$:
+	
+	\begin{equation}
+	\mb = \begin{bmatrix}
+	0 \\
+	0 \\
+	l_1 \ccos_2 \omega_{z_1} (-\omega_{z_1} + \omega_{z_2}) \\
+	l_1 \ccos_2 \omega_{z_1} (\omega_{z_1} - \omega_{z_2})
+	\end{bmatrix}
+	\end{equation}
 	
 	
 	

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.23)  18 AUG 2014 13:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.4)  26 OCT 2014 18:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -397,7 +397,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 717--718
 [9] (./Dinamica.aux) ) 
 Here is how much of TeX's memory you used:
  4037 strings out of 493304
- 53433 string characters out of 6139871
+ 53433 string characters out of 6139872
  135729 words of memory out of 5000000
  7420 multiletter control sequences out of 15000+600000
  8592 words of font info for 33 fonts, out of 8000000 for 9000

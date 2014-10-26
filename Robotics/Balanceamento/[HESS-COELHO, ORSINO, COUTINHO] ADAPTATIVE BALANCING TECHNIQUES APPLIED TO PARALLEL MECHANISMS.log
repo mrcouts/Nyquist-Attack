@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.4)  26 OCT 2014 14:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.4)  26 OCT 2014 18:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -596,107 +596,240 @@ Underfull \hbox (badness 10000) in paragraph at lines 45--50
 No file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIE
 D TO PARALLEL MECHANISMS".nls.
 ) (./SECTIONS/TARCISIO/1.tex) (./SECTIONS/ANDRE/2-2.tex
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no µ in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+LaTeX Font Info:    Try loading font information for U+BOONDOX-cal on input lin
+e 5.
+(/usr/share/texlive/texmf-dist/tex/latex/boondox/uboondox-cal.fd
+File: uboondox-cal.fd 2011/04/26 Fontinst v1.933 font definitions for U/BOONDOX
+-cal.
+)
+Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¢ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no µ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no µ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ­ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ­ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ­ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ­ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ­ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¢ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¢ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no µ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¡ in font cmr10!
 
-<RR.jpg, id=12, 144.54pt x 105.0324pt>
-File: RR.jpg Graphic file (type jpg)
- <use RR.jpg>
-Package pdftex.def Info: RR.jpg used on input line 8.
-(pdftex.def)             Requested size: 216.80943pt x 157.5482pt.
+Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
+ []
+
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ­ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--23
 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}pdfTeX warning (ext4): desti
-nation with the same identifier (name{figure.1}) has been already used, duplica
-te ignored
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
+
+ []
+
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ­ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ¢ in font cmr10!
+<RR.jpg, id=35, 144.54pt x 105.0324pt>
+File: RR.jpg Graphic file (type jpg)
+ <use RR.jpg>
+Package pdftex.def Info: RR.jpg used on input line 89.
+(pdftex.def)             Requested size: 216.80943pt x 157.5482pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+
+ []
+
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no   in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no   in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
+
+ []
+
+[3pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.41 	$
-       $ \mw = <./RR.jpg>]
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no   in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no   in font cmr10!
-
-Underfull \hbox (badness 10000) in paragraph at lines 60--61
+l.147 	$
+         \mp = \begin{bmatrix} <./RR.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--84
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
 
  []
 
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¡ in font cmr10!
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 114.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 195.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 114.
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <8> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 114.
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <6> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 114.
- [2]
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 195.
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ª in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
+ [4]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¡ in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
-LaTeX Font Info:    Try loading font information for OML+cmbr on input line 245
+LaTeX Font Info:    Try loading font information for OML+cmbr on input line 326
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbr.fd
 File: omlcmbr.fd 2005/04/13 v8.1 (WaS)
 )
-LaTeX Font Info:    Try loading font information for OML+cmbrm on input line 24
-5.
+LaTeX Font Info:    Try loading font information for OML+cmbrm on input line 32
+6.
 
 (/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
 File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
 )
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <10.95> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 245
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 326
 .
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <8> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 245
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 326
 .
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <6> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 245
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 326
 .
- [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 405--406
+ [5]
+Underfull \hbox (badness 10000) in paragraph at lines 486--487
 
  []
 
-[5]
+[6]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 495--496
+Underfull \hbox (badness 10000) in paragraph at lines 576--577
 
  []
 
@@ -710,11 +843,11 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
-LaTeX Font Info:    Try loading font information for U+eus on input line 499.
+LaTeX Font Info:    Try loading font information for U+eus on input line 580.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 )
-Underfull \hbox (badness 10000) in paragraph at lines 501--502
+Underfull \hbox (badness 10000) in paragraph at lines 582--583
 
  []
 
@@ -726,8 +859,8 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no £ in font cmr10!
-
-Underfull \hbox (badness 10000) in paragraph at lines 523--524
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 604--605
 
  []
 
@@ -737,7 +870,7 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no £ in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
-[6]
+[8]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¢ in font cmr10!
 Missing character: There is no Ã in font cmr10!
@@ -746,24 +879,48 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no £ in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no £ in font cmr10!
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 660.
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no µ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¢ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no µ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no £ in font cmr10!
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 768.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 660.
- [7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 1041--1042
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 768.
+ [9] [10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 1149--1150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1093--1094
+Underfull \hbox (badness 10000) in paragraph at lines 1201--1202
 
  []
 
-[10]) (./SECTIONS/ANDRE/3-2.tex [11]
+[12]) (./SECTIONS/ANDRE/3-2.tex [13]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no § in font cmr10!
 Missing character: There is no Ã in font cmr10!
@@ -773,37 +930,26 @@ Missing character: There is no £ in font cmr10!
 No file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIE
 D TO PARALLEL MECHANISMS".bbl.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 122.
-[12]
+[14]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 122.
 
 (./[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIED TO P
 ARALLEL MECHANISMS.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 122.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 122.
-
-
-Package rerunfilecheck Warning: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATI
-VE BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"[HESS-COELHO, ORSINO, COUTINHO] AD
-APTATIVE BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out':
-(rerunfilecheck)             Before: 58F9A1BB826C160E91F5233E59CA1F12;125
-(rerunfilecheck)             After:  74548774974F8DF5B158361C3C32A90E;188.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE 
+BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has not changed.
+(rerunfilecheck)             Checksum: 74548774974F8DF5B158361C3C32A90E;188.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 122.
  ) 
 Here is how much of TeX's memory you used:
- 8551 strings out of 493304
- 119653 string characters out of 6139872
- 240562 words of memory out of 5000000
- 11720 multiletter control sequences out of 15000+600000
- 19750 words of font info for 76 fonts, out of 8000000 for 9000
+ 8581 strings out of 493304
+ 120234 string characters out of 6139872
+ 240763 words of memory out of 5000000
+ 11735 multiletter control sequences out of 15000+600000
+ 20768 words of font info for 80 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 34i,22n,31p,641b,550s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,22n,31p,714b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/tex
@@ -824,12 +970,13 @@ ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/euler/eusm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/hfbright/hfbrmb10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/symbols/msam10.pfb>
+amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/b
+oondox/zxxrw8a.pfb>
 Output written on "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQ
-UES APPLIED TO PARALLEL MECHANISMS.pdf" (12 pages, 272338 bytes).
+UES APPLIED TO PARALLEL MECHANISMS.pdf" (14 pages, 281853 bytes).
 PDF statistics:
- 244 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 83 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 269 PDF objects out of 1000 (max. 8388607)
+ 226 compressed objects within 3 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 30 words of extra memory for PDF output out of 10000 (max. 10000000)
 
