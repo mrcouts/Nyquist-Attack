@@ -1,1 +1,79 @@
-% \subsection{Bal2}\label{S03-2}
+ \subsection{Control}\label{S03-2}
+ 
+$$
+\begin{bmatrix}
+\mC^T \mM \\
+\mA
+\end{bmatrix}
+\ddot{\mq}
+=
+\begin{bmatrix}
+\mathbb{\zeta} \mu \\
+-\mb
+\end{bmatrix}
+$$
+
+$$ \mu = \mathbb{\zeta}^{-1} \mC^T \mM \mu' $$
+$$ \mu' = \ddot{\mq}_d + \lambda \dot{\me} - k  \sign (\ms) $$
+
+$$ \ms = - \dot{\me} - \lambda \me $$
+$$ \dot{\ms} = - \ddot{\me} - \lambda \dot{\me} = \ddot{\mq} - \ddot{\mq}_d  - \lambda \dot{\me} $$
+$$ \dot{\ms} =  \begin{bmatrix}
+\mC^T \mM \\
+\mA
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+\mathbb{\zeta} \mu \\
+-\mb
+\end{bmatrix}
+ - \ddot{\mq}_d  - \lambda \dot{\me} $$
+ 
+Aplicando a lei de controle:
+
+$$ \dot{\ms} =  \begin{bmatrix}
+\mC^T \mM \\
+\mA
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+ \mC^T \mM (\ddot{\mq}_d + \lambda \dot{\me} - k  \sign (\ms)) \\
+-\mb
+\end{bmatrix}
+ - \ddot{\mq}_d  - \lambda \dot{\me} $$
+ 
+ $$ \dot{\ms} =  \begin{bmatrix}
+\mC^T \mM \\
+\mA
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+ \mC^T \mM (\ddot{\mq}_d + \lambda \dot{\me} - k  \sign (\ms)) -  \mC^T \mM(\ddot{\mq}_d  + \lambda \dot{\me}) \\
+-\mb - \mA(\ddot{\mq}_d  + \lambda \dot{\me})
+\end{bmatrix} $$
+
+ $$ \dot{\ms} =  \begin{bmatrix}
+\mC^T \mM \\
+\mA
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+- \mC^T \mM  k  \sign (\ms) \\
+-\mb - \mA(\ddot{\mq}_d  + \lambda \dot{\me})
+\end{bmatrix} $$
+
+Definindo:
+$$\begin{bmatrix}
+\mC^T \mM \\
+\mA
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+(\mC^T \mM)^\dagger & \mA^\dagger
+\end{bmatrix} $$
+
+Temos:
+
+$$\dot{\ms} = 
+- (\mC^T \mM)^\dagger \mC^T \mM  k  \sign (\ms) - \mA^\dagger\mb - \mA^\dagger \mA(\ddot{\mq}_d  + \lambda \dot{\me}) $$
+
+Sendo assim, se a seguinte inequação for respeitada para pelo menos $\nu\ssh$ componentes de $\dot{\ms}$, o erro vai a zero:
+
+$$\dot{\ms} = 
+- (\mC^T \mM)^\dagger \mC^T \mM  k  \sign (\ms) - \mA^\dagger\mb - \mA^\dagger \mA(\ddot{\mq}_d  + \lambda \dot{\me}) \leq \mzr $$
