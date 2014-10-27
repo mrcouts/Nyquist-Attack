@@ -13,8 +13,15 @@ Seja $\ssB$ um sistema mecânico de $\nu\ssh$ graus de liberdade. Para encontrar
 \item[-]$\mp^\circ$: vetor de $\nu_p^\circ$ velocidades generalizadas redundandes
 \item[-]$\mp$: vetor contendo todas as velocidades generalizadas. Usualmente $\mp = \begin{bmatrix} \mp\ssh \\\mp^\circ \end{bmatrix} $
 \item[-]$\mathbb{\Lambda(\mq,\mp)}$: vetor de tamanho $\nu_p^\circ$ dos vínculos de velocidades, de modo que conhecendo $\mq$ e $\mp\ssh$ seja possível determinar $\mp^\circ$ resolvendo $\mathbb{\Lambda} (\mq,\mp) = \mzr$
-\item[-]$\mA(\mq)$: Jacobiano dos vínculos de velocidades, ou seja: $\mA = \displaystyle\frac{\partial \mathbb{\Lambda}}{\partial \mp}$
-\item[-]$\mC(\mq)$: Complemento ortogonal de $\mA(\mq)$. Usualmente faz-se com que $\mC$ respeite a seguinte propriedade: $ \mp = \mC \mp\ssh $
+\item[-]$\mA(\mq)$: Jacobiano dos vínculos de velocidades, ou seja: $\mA = \frac{\partial \mathbb{\Lambda}}{\partial \mp}$. Como $\mathbb{\Lambda} (\mq,\mp)$ \'e linear em $\mp$, os vinculos de velocidades podem ser reescritos como sendo $\mathbb{\Lambda} (\mq,\mp) = \mA(\mq) \mp = \mzr$
+\item[-]$\mC(\mq)$: Complemento ortogonal de $\mA(\mq)$. Usualmente calcula-se $\mC$ tal que: $ \mp = \mC (\mq) \mp\ssh $, o que garante que $\mC$ seja complemento ortogonal de $\mA$ e a torna util para a cinemática.
+\item[-]$\mf_{\dot{\mq}\ssh}$: vetor de $\nu\ssh$ esfor\c{c}os ativos dos atuadores na dire\c{c}\~ao $\dot{\mq}\ssh$ ($f_{\dot{\mq}\ssh \, i}$ est\'a na dire\c{c}\~ao de $\dot{q}\ssh_i, i = 1,2,...,\nu\ssh$)
+\item[-]$\mf_{\mp\ssh}$: vetor de $\nu\ssh$ esfor\c{c}os ativos dos atuadores na dire\c{c}\~ao $\mp\ssh$ ($f_{\mp\ssh \, i}$ est\'a na dire\c{c}\~ao de $p\ssh_i, i = 1,2,...,\nu\ssh$)
+\item[-]$\mf_{\dot{\mq}}$: vetor de $\nu_q$ esfor\c{c}os ativos dos atuadores na dire\c{c}\~ao $\dot{\mq}$ ($f_{\dot{\mq} \, i}$ est\'a na dire\c{c}\~ao de $\dot{q}_i, i = 1,2,...,\nu_q$)
+\item[-]$\mf_{\mp}$: vetor de $\nu_p$ esfor\c{c}os ativos dos atuadores na dire\c{c}\~ao $\mp$ ($f_{\mp \, i}$ est\'a na dire\c{c}\~ao de $p\ssh_i, i = 1,2,...,\nu_p$)
+\item[-]$\mathbb{\Psi}(\mq)$: Transformação linear inversível que relaciona $\mp\ssh$ com $\dot{\mq}\ssh$, ou seja: $\mp\ssh = \mathbb{\Psi}(\mq) \dot{\mq}\ssh$. Consequentemente $\mathbb{\Psi}(\mq)^\top \mf_{\mp\ssh} = \mf_{\dot{\mq}\ssh} $
+\item[-]$\mathbb{\Upsilon}(\mq)$: Transformação linear que relaciona $\mp^\circ$ com $\dot{\mq}\ssh$, ou seja: $\mp^\circ = \mathbb{\Upsilon}(\mq) \dot{\mq}\ssh$
+\item[-]$\mathbb{\Gamma}(\mq)$: Transformação linear que relaciona $\dot{\mq}$ com $\mp$, ou seja: $ \dot{\mq} = \mathbb{\Gamma}(\mq) \mp $. Consequentemente $ \mf_{\mp} = \mathbb{\Gamma}(\mq)^\top \mf_{\dot{\mq}}$
 \end{itemize}
 
 Na dinâmica de sistemas mecânicos multi-corpos, é muito vantajosa a utilização de coordenadas/velocidades generalizadas redundantes, pois a utilização destas diminui a complexidade da utilização dos métodos de dedução das equações de movimento (como Lagrange, Kane e Gibbs-Appell) e em contrapartida aumenta a complexidade da cinemática (pois torna necessário definir $\phi(q)$ e $\Lambda(q,p)$). \\
