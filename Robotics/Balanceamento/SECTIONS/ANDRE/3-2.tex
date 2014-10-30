@@ -1,4 +1,4 @@
- \subsection{Control}\label{S03-2}
+\subsection{Control}\label{S03-2}
  
 \noindent {\bf Controle por modos deslizantes}\\
 
@@ -78,19 +78,19 @@ s_0 + k t, \, t < t_s \\
 Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz o sistema \eqref{eq:SimpleODE} siga o sinal de referência, pois o erro de controle converge para zero. \\
 
 \noindent {\bf Controle por modos deslizantes extendido}\\
- 
-Modelo do mecanismo:
 
-$$
+Como foi visto na seção de modelagem, é muito conveniente utilizar coordenadas redundantes para realizar a modelagem de mecanismos paralelos. Sendo assim, propomos nesta seção uma lei de controle para sistemas descritos com coordenadas redundantes. \\
+ 
+O modelo de um sistema mec\^anico multi-corpos pode ser descrito de maneira gen\'erica pelas seguintes equa\c{c}\~oes:
+\begin{equation} \label{eq:MechanicalSystem}
 \begin{cases}
 \mC_n^\top (\mq_n) \Big( \mM_n (\mq_n) \ddot{\mq}_n + \mw_n (\mq_n, \dot{\mq}_n) + \mz_n (\mq_n) \Big) = \mu_n \\
-\mA_n \ddot{\mq}_n = - \mb_n (\mq_n, \dot{\mq}_n)
+\mA_n \ddot{\mq}_n + \mb_n (\mq_n, \dot{\mq}_n) = \mzr
 \end{cases}
-$$
+\end{equation}
 
 De maneira matricial compacta:
-
-$$
+\begin{equation} \label{eq:MechanicalSystemMatrix}
 \begin{bmatrix}
 \mC_n^\top \mM_n \\
 \mA_n
@@ -101,20 +101,21 @@ $$
 \mu_n - \mC_n^\top(\mw_n + \mz_n) \\
 -\mb_n
 \end{bmatrix}
-$$
+\end{equation}
 
-Gostaria que $ \ddot{\mq}_n = \mv_n $, sendo $\mv'_n$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
+Gostaria que $ \ddot{\mq}_n = \mv_n $, sendo $\mv_n$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
+\begin{equation} \label{eq:ControlLawV}
+\mu_n = \mC_n^\top ( \mM_n \mv_n + \mw_n + \mz_n )
+\end{equation}
 
-$$ \mu_n = \mC_n^\top ( \mM_n \mv_n + \mw_n + \mz_n ) $$
+Como queremos que $ \ddot{\mq}_n = \mv_n $ e $\ddot{\mq}_n$ tem restri\c{c}\~oes, $\mv_n$ deve respeitar as mesmas restri\c{c}\~oes, ou seja:
+\begin{equation} \label{eq:ControlLawVRestriction}
+\mA_n \mv_n + \mb_n = \mzr
+\end{equation}
 
-Como queremos que $ \ddot{\mq}_n = \mv_n $ e $\ddot{\mq}_n$ tem restri\c{c}\~oes, $\mv_n$ deve respeitar as mesmas resti\c{c}\~oes, ou seja:
-
-$$ \mA_n \mv_n = -\mb_n $$
-
-Aplicando a lei de controle, temos:
-
-$$
-\begin{bmatrix}
+Aplicando a lei de controle \eqref{eq:ControlLawV} em \eqref{eq:MechanicalSystemMatrix}, temos:
+\begin{center}
+$ \begin{bmatrix}
 \mC_n^\top \mM_n \\
 \mA_n
 \end{bmatrix}
@@ -134,14 +135,17 @@ $$
 \mC_n^\top \mM_n \\
 \mA_n
 \end{bmatrix}
-\mv_n
-$$
-$$
+\mv_n $
+\end{center}
+\begin{equation} \label{eq:ClosedLoopV}
 \therefore \ddot{\mq}_n = \mv_n
-$$
-Seja $\mv'_n$ a lei de controle por modos deslizantes:
-$$ \mv'_n = \ddot{\mq}_{n, d} + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n) $$
-Sendo $ \me_n = \mq_{n,d} - \mq_n $. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv_n = \mv'_n $ :
+\end{equation}
+
+Seja $\mv'_n$ dado pela lei de controle por modos deslizantes:
+\begin{equation} \label{eq:SMControlowLasV1'}
+\mv'_n = \ddot{\mq}_{n, d} + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n)
+\end{equation}
+Sendo $ \me_n = \mq_{n,d} - \mq_n $ o erro de controle de $\mq_{n,d}$ o sinal de ref\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv_n = \mv'_n $ :
 $$ \ddot{\mq}_n = \mv_n \Rightarrow  \ddot{\me}_n + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n) = \mzr$$
 Isso garantiria que $\me_n \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais. \\
 
