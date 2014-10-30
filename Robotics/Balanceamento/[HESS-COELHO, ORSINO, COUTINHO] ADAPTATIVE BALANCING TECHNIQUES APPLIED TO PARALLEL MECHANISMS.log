@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.2)  30 OCT 2014 12:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.2)  30 OCT 2014 15:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -605,13 +605,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+
+ []
+
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no ª in font cmr10!
 
 Underfull \hbox (badness 10000) in paragraph at lines 78--79
 
@@ -622,18 +625,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no § in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no £ in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no © in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no § in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no £ in font cmr10!
 
 Underfull \hbox (badness 10000) in paragraph at lines 82--83
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
 
  []
 
@@ -644,17 +642,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--151
 
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
-LaTeX Font Info:    Try loading font information for U+eus on input line 170.
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
-File: ueus.fd 2013/01/14 v3.01 Euler Script
-)
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no £ in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no © in font cmr10!
- [3]
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no § in font cmr10!
 Missing character: There is no Ã in font cmr10!
@@ -676,13 +675,13 @@ BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 122.
  ) 
 Here is how much of TeX's memory you used:
- 8402 strings out of 493304
- 117398 string characters out of 6139872
- 219008 words of memory out of 5000000
- 11670 multiletter control sequences out of 15000+600000
- 17081 words of font info for 67 fonts, out of 8000000 for 9000
+ 8397 strings out of 493304
+ 117284 string characters out of 6139872
+ 220148 words of memory out of 5000000
+ 11665 multiletter control sequences out of 15000+600000
+ 16481 words of font info for 64 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 34i,13n,31p,436b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,14n,31p,462b,355s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/tex
@@ -699,13 +698,12 @@ sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 Output written on "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQ
-UES APPLIED TO PARALLEL MECHANISMS.pdf" (4 pages, 176225 bytes).
+UES APPLIED TO PARALLEL MECHANISMS.pdf" (4 pages, 175754 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
- 107 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
+ 138 PDF objects out of 1000 (max. 8388607)
+ 112 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 500000)
  9 words of extra memory for PDF output out of 10000 (max. 10000000)
 

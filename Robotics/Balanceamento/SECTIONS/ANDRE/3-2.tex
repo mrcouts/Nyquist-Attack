@@ -23,7 +23,7 @@ Sendo assim, o erro cai exponencialmente para zero, com constante de tempo $1/\l
 
 Para encontrar a lei de controle que leva o sistema \`a superf\'icie de escorregamento, parte-se da defini\c{c}\~ao de $s$:
 
-$$ s = -(\dot{e} + \lambda e) $$
+$ s = -(\dot{e} + \lambda e) $ \\
 
 Derivando no tempo:
 \begin{equation} \label{eq:dotS}
@@ -75,11 +75,11 @@ s_0 + k t, \, t < t_s \\
 \end{cases}
 \end{equation}
 
-Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz o sistema \eqref{eq:SimpleODE} siga o sinal de referência, pois o erro de controle converge para zero. \\
+Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero. \\
 
 \noindent {\bf Controle por modos deslizantes extendido}\\
 
-Como foi visto na seção de modelagem, é muito conveniente utilizar coordenadas redundantes para realizar a modelagem de mecanismos paralelos. Sendo assim, propomos nesta seção uma lei de controle para sistemas descritos com coordenadas redundantes. \\
+Como foi visto na se\c{c}\~ao de modelagem, \'e muito conveniente utilizar coordenadas redundantes para realizar a modelagem de mecanismos paralelos. Sendo assim, propomos nesta se\c{c}\~ao uma lei de controle para sistemas descritos por coordenadas redundantes. \\
  
 O modelo de um sistema mec\^anico multi-corpos pode ser descrito de maneira gen\'erica pelas seguintes equa\c{c}\~oes:
 \begin{equation} \label{eq:MechanicalSystem}
@@ -113,8 +113,8 @@ Como queremos que $ \ddot{\mq}_n = \mv_n $ e $\ddot{\mq}_n$ tem restri\c{c}\~oes
 \mA_n \mv_n + \mb_n = \mzr
 \end{equation}
 
-Aplicando a lei de controle \eqref{eq:ControlLawV} em \eqref{eq:MechanicalSystemMatrix}, temos:
-\begin{center}
+Aplicando a lei de controle \eqref{eq:ControlLawV} e a restri\c{c}\~ao \eqref{eq:ControlLawVRestriction} em \eqref{eq:MechanicalSystemMatrix}, temos: \\
+
 $ \begin{bmatrix}
 \mC_n^\top \mM_n \\
 \mA_n
@@ -136,7 +136,7 @@ $ \begin{bmatrix}
 \mA_n
 \end{bmatrix}
 \mv_n $
-\end{center}
+
 \begin{equation} \label{eq:ClosedLoopV}
 \therefore \ddot{\mq}_n = \mv_n
 \end{equation}
@@ -145,59 +145,60 @@ Seja $\mv'_n$ dado pela lei de controle por modos deslizantes:
 \begin{equation} \label{eq:SMControlowLasV1'}
 \mv'_n = \ddot{\mq}_{n, d} + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n)
 \end{equation}
-Sendo $ \me_n = \mq_{n,d} - \mq_n $ o erro de controle de $\mq_{n,d}$ o sinal de ref\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv_n = \mv'_n $ :
+Sendo $ \me_n = \mq_{n,d} - \mq_n $ o erro de controle e $\mq_{n,d}$ o sinal de refer\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv_n = \mv'_n $ :
 $$ \ddot{\mq}_n = \mv_n \Rightarrow  \ddot{\me}_n + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n) = \mzr$$
-Isso garantiria que $\me_n \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais. \\
+Isso garantiria que $\me_n \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais, como visto na se\c{c}\~ao anterior. \\
 
 Como temos restri\c{c}\~oes em $\mv_n$, procuramos $\mv_n$ mais pr\'oximo poss\'ivel de $\mv'_n$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
-
-\begin{center}
-$\begin{aligned}
+\begin{equation} \label{eq:Optimization}
+\begin{aligned}
 & \underset{\mv_n}{\text{Min}}
 & & (\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) \\
 & \text{tal que}
 & & \mA_n \mv_n + \mb_n = \mzr
-\end{aligned}$
-\end{center}
+\end{aligned}
+\end{equation}
 
 Como $\mM_n$ \'e n\~ao-negativa definida, temos que $(\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) \geq 0 $ para qualquer valor de $\mv_n$.
 
 Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema é equivalente:
-
-\begin{center}
-$\begin{aligned}
+\begin{equation}
+\begin{aligned}
 & \underset{\mv_n, \mlambda}{\text{Min}}
-& & \llL = (\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) + (\mA_n \mv_n + \mb_n)^\top \mlambda \\
-\end{aligned}$
-\end{center}
+& & L = (\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) + (\mA_n \mv_n + \mb_n)^\top \mlambda \\
+\end{aligned}
+\end{equation}
+
 
 Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
 
-$$ \dl \llL = 0 \Rightarrow \dl \mv_n^\top \mM_n (\mv_n - \mv'_n) + (\mv_n - \mv'_n)^\top \mM_n \dl \mv_n + (\mA_n \dl \mv_n)^\top \mlambda + (\mA_n \mv_n + \mb_n)^\top \dl \mlambda = 0 $$
+$$ \dl L = 0 \Rightarrow \dl \mv_n^\top \mM_n (\mv_n - \mv'_n) + (\mv_n - \mv'_n)^\top \mM_n \dl \mv_n + (\mA_n \dl \mv_n)^\top \mlambda + (\mA_n \mv_n + \mb_n)^\top \dl \mlambda = 0 $$
 $$ \Rightarrow \dl \mv_n^\top \Big( (\mM_n + \mM_n^\top)(\mv_n - \mv'_n) + \mA_n^\top \mlambda \Big) + \dl \mlambda^\top (\mA_n \mv_n + \mb_n) = 0 $$
 
-Como $\mM_n$ é sim\'etrica e $\dl \mv_n$ e $\dl \mlambda$ são arbitr\'arios, temos:
-
-$$
+Como $\mM_n$ \'e sim\'etrica e $\dl \mv_n$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
+\begin{equation} \label{eq:OptimizationSol}
 \begin{cases}
 2 \mM_n (\mv_n - \mv'_n) + \mA_n^\top \mlambda = \mzr \\
 \mA_n \mv_n + \mb_n = \mzr
 \end{cases}
-$$
+\end{equation}
 
-Como $\mC_n$ é o complemento ortogonal de $\mA_n$, multiplicando a primeira equa\c{c}\~ao por $\mC_n^\top$, temos:
+Como $\mC_n$ é o complemento ortogonal de $\mA_n$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC_n^\top$, temos: \\
 
-$$ 2 \mC_n^\top \mM_n (\mv_n - \mv'_n) + \mC_n^\top \mA_n^\top \mlambda = \mzr $$
-$$ \Rightarrow  \mC_n^\top \mM_n (\mv_n - \mv'_n)  = \mzr $$
-$$ \therefore \mC_n^\top \mM_n \mv_n  = \mC_n^\top \mM_n  \mv'_n $$
+$ 2 \mC_n^\top \mM_n (\mv_n - \mv'_n) + \mC_n^\top \mA_n^\top \mlambda = \mzr $
+$ \Rightarrow  \mC_n^\top \mM_n (\mv_n - \mv'_n)  = \mzr $
+\begin{equation} \label{eq:OptimizationSol2}
+\therefore \mC_n^\top \mM_n \mv_n  = \mC_n^\top \mM_n  \mv'_n
+\end{equation}
 
-Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel, segundo o crit\'erio de otimiza\c{c}\~ao adotado, de $\ddot{\mq}_n = \mv'$ \'e:
-
-$$ \mu_n = \mC_n^\top ( \mM_n \mv'_n + \mw_n + \mz_n ) $$
+Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\ddot{\mq}_n = \mv'$, segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
+\begin{equation} \label{eq:ControlLawFinal}
+\mu_n = \mC_n^\top ( \mM_n \mv'_n + \mw_n + \mz_n )
+\end{equation}
 
 \newpage
 
-
+\noindent {\bf Prova que o m\'etodo converge, n\~ao vai para o livro}\\
 
 $$
 \begin{bmatrix}
