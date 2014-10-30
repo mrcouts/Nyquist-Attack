@@ -1,5 +1,159 @@
  \subsection{Control}\label{S03-2}
  
+\noindent {\bf Controle por modos deslizantes}\\
+
+Seja um sistema dinâmico dado pela seguinte equação diferencial:
+
+$$ \ddot{x} = u $$
+
+Definimos a seguinte superfície, chamada de superfície de escorregamento:
+
+$$ s(e, \dot{e}) = - (\dot{e} + \lambda e) = 0, \, \lambda > 0 $$
+
+Sendo $e = x_d - x$ o erro de controle e $x_d$ o sinal de referência. Repare que se o sistema estiver na superfície de escorregamento, temos:
+
+$$ \dot{e} + \lambda e = 0 \Rightarrow e(t) = C e^{- \lambda t} $$
+
+Sendo assim, o erro cai exponencialmente para zero, com constante de tempo $\lambda$.
+
+Para encontrar a lei de controle que leva o sistema à superficie de escorregamento, parte-se da definição de $s$:
+
+$$ s = -(\dot{e} + \lambda e) $$
+
+Derivando no tempo:
+
+$$ \dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}_d - \lambda \dot{e} $$
+
+Substituindo a equação dinâmica:
+
+$$ \dot{s} = u - \ddot{x}_d - \lambda \dot{e} $$
+
+Utizando a seguinte lei de controle:
+
+$$ u = \ddot{x}_d + \lambda \dot{e} - k \sign (s), \, k>0$$
+
+Temos:
+
+$$ \dot{s} = -k \sign(s) $$
+
+
+ 
+Modelo do mecanismo:
+
+$$
+\begin{cases}
+\mC_n^\top (\mq_n) \Big( \mM_n (\mq_n) \ddot{\mq}_n + \mw_n (\mq_n, \dot{\mq}_n) + \mz_n (\mq_n) \Big) = \mu_n \\
+\mA_n \ddot{\mq}_n = - \mb_n (\mq_n, \dot{\mq}_n)
+\end{cases}
+$$
+
+De maneira matricial compacta:
+
+$$
+\begin{bmatrix}
+\mC_n^\top \mM_n \\
+\mA_n
+\end{bmatrix}
+\ddot{\mq}_n
+=
+\begin{bmatrix}
+\mu_n - \mC_n^\top(\mw_n + \mz_n) \\
+-\mb_n
+\end{bmatrix}
+$$
+
+Gostaria que $ \ddot{\mq}_n = \mv_n $, sendo $\mv'_n$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
+
+$$ \mu_n = \mC_n^\top ( \mM_n \mv_n + \mw_n + \mz_n ) $$
+
+Como queremos que $ \ddot{\mq}_n = \mv_n $ e $\ddot{\mq}_n$ tem restri\c{c}\~oes, $\mv_n$ deve respeitar as mesmas resti\c{c}\~oes, ou seja:
+
+$$ \mA_n \mv_n = -\mb_n $$
+
+Aplicando a lei de controle, temos:
+
+$$
+\begin{bmatrix}
+\mC_n^\top \mM_n \\
+\mA_n
+\end{bmatrix}
+\ddot{\mq}_n
+=
+\begin{bmatrix}
+\mC_n^\top ( \mM_n \mv_n + \mw_n + \mz_n ) - \mC_n^\top(\mw_n + \mz_n) \\
+\mA_n \mv_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mC_n^\top  \mM_n \mv_n \\
+\mA_n \mv_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mC_n^\top \mM_n \\
+\mA_n
+\end{bmatrix}
+\mv_n
+$$
+$$
+\therefore \ddot{\mq}_n = \mv_n
+$$
+Seja $\mv'_n$ a lei de controle por modos deslizantes:
+$$ \mv'_n = \ddot{\mq}_{n, d} + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n) $$
+Sendo $ \me_n = \mq_{n,d} - \mq_n $. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv_n = \mv'_n $ :
+$$ \ddot{\mq}_n = \mv_n \Rightarrow  \ddot{\me}_n + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n) = \mzr$$
+Isso garantiria que $\me_n \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais. \\
+
+Como temos restri\c{c}\~oes em $\mv_n$, procuramos $\mv_n$ mais pr\'oximo poss\'ivel de $\mv'_n$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
+
+\begin{center}
+$\begin{aligned}
+& \underset{\mv_n}{\text{Min}}
+& & (\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) \\
+& \text{tal que}
+& & \mA_n \mv_n + \mb_n = \mzr
+\end{aligned}$
+\end{center}
+
+Como $\mM_n$ \'e n\~ao-negativa definida, temos que $(\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) \geq 0 $ para qualquer valor de $\mv_n$.
+
+Aplicando a ténica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema é equivalente:
+
+\begin{center}
+$\begin{aligned}
+& \underset{\mv_n, \mlambda}{\text{Min}}
+& & \llL = (\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) + (\mA_n \mv_n + \mb_n)^\top \mlambda \\
+\end{aligned}$
+\end{center}
+
+Para solucionar o problema, impõe-se a estacionariedade da função lagrangeana:
+
+$$ \dl \llL = 0 \Rightarrow \dl \mv_n^\top \mM_n (\mv_n - \mv'_n) + (\mv_n - \mv'_n)^\top \mM_n \dl \mv_n + (\mA_n \dl \mv_n)^\top \mlambda + (\mA_n \mv_n + \mb_n)^\top \dl \mlambda = 0 $$
+$$ \Rightarrow \dl \mv_n^\top \Big( (\mM_n + \mM_n^\top)(\mv_n - \mv'_n) + \mA_n^\top \mlambda \Big) + \dl \mlambda^\top (\mA_n \mv_n + \mb_n) = 0 $$
+
+Como $\mM_n$ é simétrica e $\dl \mv_n$ e $\dl \mlambda$ são arbitr\'arios, temos:
+
+$$
+\begin{cases}
+2 \mM_n (\mv_n - \mv'_n) + \mA_n^\top \mlambda = \mzr \\
+\mA_n \mv_n + \mb_n = \mzr
+\end{cases}
+$$
+
+Como $\mC_n$ é o complemento ortogonal de $\mA_n$, multiplicando a primeira equação por $\mC_n^\top$, temos:
+
+$$ 2 \mC_n^\top \mM_n (\mv_n - \mv'_n) + \mC_n^\top \mA_n^\top \mlambda = \mzr $$
+$$ \Rightarrow  \mC_n^\top \mM_n (\mv_n - \mv'_n)  = \mzr $$
+$$ \therefore \mC_n^\top \mM_n \mv_n  = \mC_n^\top \mM_n  \mv'_n $$
+
+Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel, segundo o crit\'erio de otimiza\c{c}\~ao adotado, de $\ddot{\mq}_n = \mv'$ \'e:
+
+$$ \mu_n = \mC_n^\top ( \mM_n \mv'_n + \mw_n + \mz_n ) $$
+
+\newpage
+
+
+
 $$
 \begin{bmatrix}
 \mC^T \mM \\
@@ -12,6 +166,8 @@ $$
 -\mb
 \end{bmatrix}
 $$
+
+
 
 $$ \mu = \mathbb{\zeta}^{-1} \mC^T \mM \mu' $$
 $$ \mu' = \ddot{\mq}_d + \lambda \dot{\me} - k  \sign (\ms) $$
