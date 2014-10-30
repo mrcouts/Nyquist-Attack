@@ -2,41 +2,82 @@
  
 \noindent {\bf Controle por modos deslizantes}\\
 
-Seja um sistema dinâmico dado pela seguinte equação diferencial:
+Nesta se\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. O tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas, para n\~ao fugir do escopo do cap\'itulo. \\
 
-$$ \ddot{x} = u $$
+Seja um sistema din\^amico dado pela seguinte equa\c{c}\~ao diferencial:
+\begin{equation} \label{eq:SimpleODE}
+\ddot{x} = u
+\end{equation}
 
-Definimos a seguinte superfície, chamada de superfície de escorregamento:
+Definimos a seguinte superf\'icie, chamada de superf\'icie de escorregamento:
+\begin{equation} \label{eq:SlidingSurface}
+s(e, \dot{e}) = - (\dot{e} + \lambda e) = 0, \, \lambda > 0
+\end{equation}
 
-$$ s(e, \dot{e}) = - (\dot{e} + \lambda e) = 0, \, \lambda > 0 $$
+Sendo $e = x_d - x$ o erro de controle e $x_d$ o sinal de refer\^encia. Repare que se o sistema estiver na superf\'icie de escorregamento, temos:
+\begin{equation} \label{eq:SlidingError}
+\dot{e} + \lambda e = 0 \Rightarrow e(t) = C e^{- \lambda t}
+\end{equation}
 
-Sendo $e = x_d - x$ o erro de controle e $x_d$ o sinal de referência. Repare que se o sistema estiver na superfície de escorregamento, temos:
+Sendo assim, o erro cai exponencialmente para zero, com constante de tempo $1/\lambda$.
 
-$$ \dot{e} + \lambda e = 0 \Rightarrow e(t) = C e^{- \lambda t} $$
-
-Sendo assim, o erro cai exponencialmente para zero, com constante de tempo $\lambda$.
-
-Para encontrar a lei de controle que leva o sistema à superficie de escorregamento, parte-se da definição de $s$:
+Para encontrar a lei de controle que leva o sistema \`a superf\'icie de escorregamento, parte-se da defini\c{c}\~ao de $s$:
 
 $$ s = -(\dot{e} + \lambda e) $$
 
 Derivando no tempo:
+\begin{equation} \label{eq:dotS}
+\dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}_d - \lambda \dot{e} 
+\end{equation}
 
-$$ \dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}_d - \lambda \dot{e} $$
-
-Substituindo a equação dinâmica:
-
-$$ \dot{s} = u - \ddot{x}_d - \lambda \dot{e} $$
+Substituindo \eqref{eq:SimpleODE} em \eqref{eq:dotS}:
+\begin{equation} \label{dotS2}
+\dot{s} = u - \ddot{x}_d - \lambda \dot{e}
+\end{equation}
 
 Utizando a seguinte lei de controle:
-
-$$ u = \ddot{x}_d + \lambda \dot{e} - k \sign (s), \, k>0$$
+\begin{equation} \label{SMControlLaw1D}
+u = \ddot{x}_d + \lambda \dot{e} - k \sign (s), \, k>0
+\end{equation}
 
 Temos:
+\begin{equation} \label{CloserLoop1D}
+\dot{s} = -k \sign(s) 
+\end{equation}
 
-$$ \dot{s} = -k \sign(s) $$
+Supondo que o sistema come\c{c}a em $s(0) = s_0 >0$. Resolvendo a EDO para $s>0$:
 
+$$ \dot{s} = -k \Rightarrow s = -k t + C $$
+$$ s(0) = s_0 \Rightarrow C = s_0 $$
+$$ \therefore s = s_0 - k t, \, s>0 $$
 
+Em $t = t_s = \frac{|s_0|}{k}$, $s$ chega em zero. Resolvendo a EDO para $s(t_s) = 0$:
+
+$$ \dot{s} = 0 \Rightarrow s =  C $$
+$$ s(t_s) = 0 \Rightarrow C = 0 $$
+
+Portanto, para a solu\c{c}\~ao da EDO para $s(0) = s_0 > 0$ é
+\begin{equation} \label{eq:SM-ODE-Sol1}
+s(t) =
+\begin{cases}
+s_0 - k t, \, t < t_s \\
+0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
+\end{cases}
+\end{equation}
+
+Resolvendo para $s(0) = s_0 < 0$, temos um resultado an\'alogo:
+
+\begin{equation} \label{eq:SM-ODE-Sol2}
+s(t) =
+\begin{cases}
+s_0 + k t, \, t < t_s \\
+0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
+\end{cases}
+\end{equation}
+
+Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz o sistema \eqref{eq:SimpleODE} siga o sinal de referência, pois o erro de controle converge para zero. \\
+
+\noindent {\bf Controle por modos deslizantes extendido}\\
  
 Modelo do mecanismo:
 
@@ -117,7 +158,7 @@ $\begin{aligned}
 
 Como $\mM_n$ \'e n\~ao-negativa definida, temos que $(\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) \geq 0 $ para qualquer valor de $\mv_n$.
 
-Aplicando a ténica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema é equivalente:
+Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema é equivalente:
 
 \begin{center}
 $\begin{aligned}
@@ -126,12 +167,12 @@ $\begin{aligned}
 \end{aligned}$
 \end{center}
 
-Para solucionar o problema, impõe-se a estacionariedade da função lagrangeana:
+Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
 
 $$ \dl \llL = 0 \Rightarrow \dl \mv_n^\top \mM_n (\mv_n - \mv'_n) + (\mv_n - \mv'_n)^\top \mM_n \dl \mv_n + (\mA_n \dl \mv_n)^\top \mlambda + (\mA_n \mv_n + \mb_n)^\top \dl \mlambda = 0 $$
 $$ \Rightarrow \dl \mv_n^\top \Big( (\mM_n + \mM_n^\top)(\mv_n - \mv'_n) + \mA_n^\top \mlambda \Big) + \dl \mlambda^\top (\mA_n \mv_n + \mb_n) = 0 $$
 
-Como $\mM_n$ é simétrica e $\dl \mv_n$ e $\dl \mlambda$ são arbitr\'arios, temos:
+Como $\mM_n$ é sim\'etrica e $\dl \mv_n$ e $\dl \mlambda$ são arbitr\'arios, temos:
 
 $$
 \begin{cases}
@@ -140,7 +181,7 @@ $$
 \end{cases}
 $$
 
-Como $\mC_n$ é o complemento ortogonal de $\mA_n$, multiplicando a primeira equação por $\mC_n^\top$, temos:
+Como $\mC_n$ é o complemento ortogonal de $\mA_n$, multiplicando a primeira equa\c{c}\~ao por $\mC_n^\top$, temos:
 
 $$ 2 \mC_n^\top \mM_n (\mv_n - \mv'_n) + \mC_n^\top \mA_n^\top \mlambda = \mzr $$
 $$ \Rightarrow  \mC_n^\top \mM_n (\mv_n - \mv'_n)  = \mzr $$
