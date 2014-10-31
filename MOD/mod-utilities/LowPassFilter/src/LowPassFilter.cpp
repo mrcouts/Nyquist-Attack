@@ -125,15 +125,11 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
     for (uint32_t i = 0; i < n_samples; i++) soma_abs += abs(plugin->in[i]);
 
     if (soma_abs == 0)
-    {
-        for (uint32_t i = 0; i < n_samples; i++) plugin->out_1[i] = 0;
-    }
+        fill_n(plugin->out_1, n_samples, 0);
     else
     {
-        float Order;
-    
         double f = (double)(*(plugin->freq));
-        Order = (float)(*(plugin->order));
+        float Order = (float)(*(plugin->order));
         Order = round(Order)+1;
 
         if ( (plugin->lpf)->N != (int)n_samples )

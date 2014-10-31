@@ -1,5 +1,6 @@
 #include <cmath>
 #include "FilterClass.h"
+#include "PreWarping.h"
 #include <iostream>
 
 using namespace std;
@@ -45,7 +46,8 @@ void FilterClass::LPF1_Bilinear(double f) //Método da classe pai
 	wc = 2*M_PI*f;
 
 	w = wc_1;
-	c = w/tan(w*T/2);
+	//c = w/tan(w*T/2);
+	c = _C_(w*T)/T;
 
 	b_1 = 0;
 	b_0 = w;
@@ -62,7 +64,7 @@ void FilterClass::LPF1_Bilinear(double f) //Método da classe pai
 	for (int i=1; i < N; i++)
 	{
 		w = wc_1 + ((wc - wc_1)/(N-1))*(i);
-		c = w/tan(w*T/2);
+		c = _C_(w*T)/T;
 		//b_1 = 0;
 		b_0 = w;
 		//a_1 = 1;
@@ -94,7 +96,8 @@ void FilterClass::LPF2_Bilinear(double f) //Método da classe pai
 	wc = 2*M_PI*f;
 
 	w = wc_1;
-	c = w/tan(w*T/2);
+	//c = w/tan(w*T/2);
+	c = _C_(w*T)/T;
 	c2 = c*c;
 
 	b_2 = 0;
@@ -114,7 +117,7 @@ void FilterClass::LPF2_Bilinear(double f) //Método da classe pai
 	y[0] = (-A_1*y_1 - A_2*y_2 + B_0*u[0] + B_1*u_1 + B_2*u_2)/A_0;
 
 	w = wc_1 + ((wc - wc_1)/(N-1))*(1);
-	c = w/tan(w*T/2);
+	c = _C_(w*T)/T;
 	c2 = c*c;
 
 	//b_2 = 0;
@@ -136,7 +139,7 @@ void FilterClass::LPF2_Bilinear(double f) //Método da classe pai
 	for (int i=2; i < N; i++)
 	{
 		w = wc_1 + ((wc - wc_1)/(N-1))*(i);
-		c = w/tan(w*T/2);
+		c = _C_(w*T)/T;
 		c2 = c*c;
 
 		//b_2 = 0;
@@ -177,7 +180,8 @@ void FilterClass::LPF3_Bilinear(double f) //Método da classe pai
 	wc = 2*M_PI*f;
 
 	w = wc_1;
-	c = w/tan(w*T/2);
+	//c = w/tan(w*T/2);
+	c = _C_(w*T)/T;
 
 	b_1 = 0;
 	b_0 = w;
@@ -194,7 +198,7 @@ void FilterClass::LPF3_Bilinear(double f) //Método da classe pai
 	for (int i=1; i < N; i++)
 	{
 		w = wc_1 + ((wc - wc_1)/(N-1))*(i);
-		c = w/tan(w*T/2);
+		c = _C_(w*T)/T;
 		//b_1 = 0;
 		b_0 = w;
 		//a_1 = 1;
@@ -210,7 +214,8 @@ void FilterClass::LPF3_Bilinear(double f) //Método da classe pai
 	//Parte 2
 
 	w = wc_1;
-	c = w/tan(w*T/2);
+	//c = w/tan(w*T/2);
+	c = _C_(w*T)/T;
 	c2 = c*c;
 
 	b_2 = 0;
@@ -230,7 +235,7 @@ void FilterClass::LPF3_Bilinear(double f) //Método da classe pai
 	y[0] = (-A_1*y_1 - A_2*y_2 + B_0*u2[0] + B_1*u2_1 + B_2*u2_2)/A_0;
 
 	w = wc_1 + ((wc - wc_1)/(N-1))*(1);
-	c = w/tan(w*T/2);
+	c = _C_(w*T)/T;
 	c2 = c*c;
 
 	//b_2 = 0;
@@ -252,7 +257,7 @@ void FilterClass::LPF3_Bilinear(double f) //Método da classe pai
 	for (int i=2; i < N; i++)
 	{
 		w = wc_1 + ((wc - wc_1)/(N-1))*(i);
-		c = w/tan(w*T/2);
+		c = _C_(w*T)/T;
 		c2 = c*c;
 
 		//b_2 = 0;
