@@ -1,4 +1,15 @@
 \subsection{Control}\label{S03-2}
+
+\noindent {\bf Din\^amica Inversa}\\
+
+O problema da din\^amica inversa constitui-se basicamente em calcular os esfor\c{c}os ativos aplicados pelos atuadores necess\'arios para um mecanismo realizar uma dada trajet\'oria. Ou seja, para cada instante de tempo $t$, conhencendo-se $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$, desaja-se determinar $\mu_n$. \'E um procedimento importante para avaliar a efic\'acia do balanceamento realizado, pois torna poss\'ivel comparar os esfor\c{c}os dos atuadores em diferentes trajet\'orias para o mecanismo balanceado e desbalanceado, mostrando em quais casos o balanceamento \'e vantajoso.
+
+Como foi visto na se\c{c}\~ao anterior, \'e poss\'ivel calcular dos esfor\c{c}os dos atuadores pela seguinte express\~ao:
+\begin{equation} \label{eq:InverseDynamics}
+\mu_n = \mC_n^\top(\mq_n) \Big( \mM_n(\mq_n) \dot{\mp}_n + \mw_n(\mq_n, \mp_n) + \mz_n(\mq_n) \Big)
+\end{equation}
+
+Por\'em, nesta express\~ao, $\mu_n$ depende de $\mq_n$, $\mp_n$ e $\dot{\mp}_n$. Sendo assim, para o problema da din\^amica inversa ser resolvido, \'e necess\'ario determinar $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ dados $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$.  \\
  
 \noindent {\bf Controle por modos deslizantes}\\
 
@@ -146,7 +157,7 @@ Seja $\mv'_n$ dado pela lei de controle por modos deslizantes:
 \mv'_n = \ddot{\mq}_{n, d} + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n)
 \end{equation}
 Sendo $ \me_n = \mq_{n,d} - \mq_n $ o erro de controle e $\mq_{n,d}$ o sinal de refer\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv_n = \mv'_n $ :
-$$ \ddot{\mq}_n = \mv_n \Rightarrow  \ddot{\me}_n + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n) = \mzr$$
+$$ \ddot{\mq}_n = \mv_n \Rightarrow  \ddot{\me}_n + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n) = \mzr \Leftrightarrow \dot{\ms}_n = - k \sign(\ms_n)$$
 Isso garantiria que $\me_n \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais, como visto na se\c{c}\~ao anterior. \\
 
 Como temos restri\c{c}\~oes em $\mv_n$, procuramos $\mv_n$ mais pr\'oximo poss\'ivel de $\mv'_n$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
@@ -161,7 +172,7 @@ Como temos restri\c{c}\~oes em $\mv_n$, procuramos $\mv_n$ mais pr\'oximo poss\'
 
 Como $\mM_n$ \'e n\~ao-negativa definida, temos que $(\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) \geq 0 $ para qualquer valor de $\mv_n$.
 
-Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema é equivalente:
+Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema \'e equivalente:
 \begin{equation}
 \begin{aligned}
 & \underset{\mv_n, \mlambda}{\text{Min}}
@@ -183,7 +194,7 @@ Como $\mM_n$ \'e sim\'etrica e $\dl \mv_n$ e $\dl \mlambda$ s\~ao arbitr\'arios,
 \end{cases}
 \end{equation}
 
-Como $\mC_n$ é o complemento ortogonal de $\mA_n$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC_n^\top$, temos: \\
+Como $\mC_n$ \'e o complemento ortogonal de $\mA_n$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC_n^\top$, temos: \\
 
 $ 2 \mC_n^\top \mM_n (\mv_n - \mv'_n) + \mC_n^\top \mA_n^\top \mlambda = \mzr $
 $ \Rightarrow  \mC_n^\top \mM_n (\mv_n - \mv'_n)  = \mzr $
