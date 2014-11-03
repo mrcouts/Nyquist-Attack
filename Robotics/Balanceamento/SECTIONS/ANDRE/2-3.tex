@@ -1,20 +1,24 @@
-\subsection{Control}\label{S02-3}
+\subsection{Inverse Dynamics and Control}\label{S02-3}
 
 \noindent {\bf Din\^amica Inversa}\\
 
-\begin{align}
-&	\mq_n\ssh = \nvct{q_{n,r}\ssh}
-	\qquad \text{for} \qquad
-	r \in \{1, 2, \ldots, \nu\ssh(\ssS_n) \}
-	\label{eq:Teste} %\\
-\end{align}
+O problema da din\^amica inversa constitui-se basicamente em calcular os esfor\c{c}os ativos aplicados pelos atuadores necess\'arios para um mecanismo realizar uma dada trajet\'oria.
 
+\'E um procedimento importante para avaliar a efic\'acia do balanceamento realizado, pois torna poss\'ivel comparar os esfor\c{c}os dos atuadores em diferentes trajet\'orias para o mecanismo balanceado e desbalanceado, mostrando em quais casos o balanceamento \'e vantajoso. \\
+
+Primeiramente, devemos fazer algumas defini\c{c}\~oes:
+
+\begin{itemize}
+\item $\mq_n\ssh$: vetor de coordenadas generalizadas independentes. \'E um sub-vetor de $\mq_n$, contendo $\nu\ssh(\ssS_n)$ elementos de $\mq_n$ independentes;
+\item $\mu_n$: vetor de $\nu\ssh(\ssS_n)$ entradas de controle independentes. Cada elemento $u_{n,k}$ de $\mu_n$ atua na dire\c{c}\~ao da velocidade generalizada independente $\dot{q}_{n,k}\ssh$.
+\item $\mh_n$: vetor dos v\'inculos cinem\'aticos de posi\c{c}\~ao. Como $h_{n, r}$ foi definido anteriormente, podemos definir:
 \begin{align}
 &	\mh_n = \nvct{h_{n,r}}
 	\qquad \text{for} \qquad
 	r \in \{1, 2, \ldots, \nu_q(\ssS_n) - \nu\ssh(\ssS_n)\}
 	\label{eq:Teste2} %\\
 \end{align}
+\item $\mathbb{\psi}_n$: vetor dos v\'inculos cinem\'aticos de velocidades. Como $\psi_{n, r}$ foi definido anteriormente, podemos definir:
 
 \begin{align}
 &	\mathbb{\psi}_n = \nvct{\psi_{n,r}}
@@ -23,16 +27,35 @@
 	\label{eq:Teste3} %\\
 \end{align}
 
-O problema da din\^amica inversa constitui-se basicamente em calcular os esfor\c{c}os ativos aplicados pelos atuadores necess\'arios para um mecanismo realizar uma dada trajet\'oria. Ou seja, para cada instante de tempo $t$, conhencendo-se $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$, desaja-se determinar $\mu_n$.
+\end{itemize}
 
-\'E um procedimento importante para avaliar a efic\'acia do balanceamento realizado, pois torna poss\'ivel comparar os esfor\c{c}os dos atuadores em diferentes trajet\'orias para o mecanismo balanceado e desbalanceado, mostrando em quais casos o balanceamento \'e vantajoso.
+Feitas as defini\c{c}\~oes acima, pode-se dizer o objetivo da din\^amica inversa \'e: para cada instante de tempo $t$, conhencendo-se $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$, determinar $\mu_n$.
 
-Como foi visto na se\c{c}\~ao anterior, \'e poss\'ivel calcular dos esfor\c{c}os dos atuadores pela seguinte express\~ao:
+Como foi visto na se\c{c}\~ao 2-1, a equa\c{c}\~ao \eqref{eq:02-112B} nos mostra que: \\
+
+$ \mC_{n}^\msT \left( \mf_{n} + \mg_{n} - \mM_{n} \, \dot \mp_{n} \right) = \mzr $ \\
+
+Usualmente \'e poss\'ivel decompor os esfor\c{c}os ativos $\mf_{n}$ em duas parcelas: $\mf'_n$, os esfor\c{c}os ativos provenientes dos atuadores, e $-\mz_n$, os esfor\c{c}os ativos provevientes da for\c{c}a peso.
+\begin{equation} \label{eq:ActiveForces}
+\mf_n (\mq_n) = \mf'_n - \mz_n(\mq_n)
+\end{equation}
+
+Supondo que a decomposi\c{c}\~ao acima seja poss\'ivel e n\~ao haja atua\c{c}\~ao redundante, temos que $\mf'_n$ cont\'em apenas $ \nu\ssh(\ssS_n)$ elementos n\~ao nulos. Supondo tamb\'em $\mC_n^\msT \mf'_n$ contenha apenas os elemementos n\~ao nulos de $\mf'_n$, o que \'e muito comum, temos que:
+\begin{equation} \label{eq:ControlInputs}
+\mu_n = \mC_n^\msT \mf'_n
+\end{equation}
+
+Al\'em disso, definimos:
+\begin{equation} \label{eq:GiroscopycForces}
+\mw_n (\mq_n, \mp_n) = -\mg_n (\mq_n, \mp_n)
+\end{equation}
+
+Substituindo \eqref{eq:ActiveForces}, \eqref{eq:ControlInputs}, e \eqref{eq:GiroscopycForces} em \eqref{eq:02-112B}, \'e poss\'ivel calcular dos esfor\c{c}os dos atuadores pela seguinte express\~ao:
 \begin{equation} \label{eq:InverseDynamics}
 \mu_n = \mC_n^\msT(\mq_n) \Big( \mM_n(\mq_n) \dot{\mp}_n + \mw_n(\mq_n, \mp_n) + \mz_n(\mq_n) \Big)
 \end{equation}
 
-Por\'em, nesta express\~ao, $\mu_n$ depende de $\mq_n$, $\mp_n$ e $\dot{\mp}_n$. Sendo assim, para o problema da din\^amica inversa ser resolvido, \'e necess\'ario determinar $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ dados $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$.
+Por\'em, nesta express\~ao, $\mu_n$ depende de $\mq_n$, $\mp_n$ e $\dot{\mp}_n$. Sendo assim, para o problema da din\^amica inversa ser resolvido, \'e necess\'ario determinar $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ dados $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$. \\
 
 Para determinar $\mq_n$ dado $\mq_n\ssh$, basta resolver as equa\c{c}\~oes vinculares de posi\c{c}\~ao: 
 \begin{equation} \label{eq:PositionConstraints}
@@ -144,13 +167,15 @@ Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, inde
 
 \noindent {\bf Controle por modos deslizantes extendido}\\
 
-Como foi visto na se\c{c}\~ao de modelagem, \'e muito conveniente utilizar coordenadas redundantes para realizar a modelagem de mecanismos paralelos. Sendo assim, propomos nesta se\c{c}\~ao uma lei de controle para sistemas descritos por coordenadas redundantes. \\
- 
-O modelo de um sistema mec\^anico multi-corpos pode ser descrito de maneira gen\'erica pelas seguintes equa\c{c}\~oes:
+Nesta se\c{c}\~ao, para tornar o texto mais leg\'ivel, iremos omitir o \'indice $n$ referente ao sub-sistema mec\^anico. \\
+
+Como foi visto na se\c{c}\~ao de modelagem, \'e muito conveniente utilizar coordenadas redundantes para realizar a modelagem de mecanismos paralelos. Sendo assim, propomos nesta se\c{c}\~ao uma lei de controle para sistemas descritos por coordenadas redundantes. Por\'em, para o ponto de vista do controle, \'e conveniente utilizar $\dot{\mq}$ no lugar de $\mp$, pois muitas vezes as velocidades generalizadas $\mp$ s\~ao n\~ao integr\'aveis, o que impossibilita a realimenta\c{c}\~ao de posi\c{c}\~ao na dire\c{c}\~ao destas coordenadas, ent\~ao assim faremos. \\
+
+Baseado nas equa\c{c}\~oes \eqref{eq:InverseDynamics} e \eqref{eq:02-201A}, seja o modelo de um sistema mec\^anico multi-corpos descrito pelas seguintes equa\c{c}\~oes:
 \begin{equation} \label{eq:MechanicalSystem}
 \begin{cases}
 \mC^\msT (\mq) \Big( \mM (\mq) \ddot{\mq} + \mw (\mq, \dot{\mq}) + \mz (\mq) \Big) = \mu \\
-\mA \ddot{\mq} + \mb (\mq, \dot{\mq}) = \mzr
+\mA (\mq) \ddot{\mq} + \mb (\mq, \dot{\mq}) = \mzr
 \end{cases}
 \end{equation}
 
