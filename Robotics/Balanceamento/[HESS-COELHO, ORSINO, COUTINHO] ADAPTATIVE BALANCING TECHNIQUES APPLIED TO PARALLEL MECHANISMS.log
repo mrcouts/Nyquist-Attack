@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.6)  3 NOV 2014 06:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.2)  3 NOV 2014 10:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -339,10 +339,22 @@ Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
 \nom@tempdim=\dimen140
 \nomitemsep=\skip56
 )
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks21
+\thm@bodyfont=\toks22
+\thm@headfont=\toks23
+\thm@notefont=\toks24
+\thm@headpunct=\toks25
+\thm@preskip=\skip57
+\thm@postskip=\skip58
+\thm@headsep=\skip59
+\dth@everypar=\toks26
+)
 (./EXTRAS/special-char.sty
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip57
+\@mathmargin=\skip60
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -350,7 +362,7 @@ Package: amstext 2000/06/29 v2.01
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks21
+\@emptytoks=\toks27
 \ex@=\dimen141
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
@@ -380,21 +392,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \dotsspace@=\muskip11
 \c@parentequation=\count120
 \dspbrk@lvl=\count121
-\tag@help=\toks22
+\tag@help=\toks28
 \row@=\count122
 \column@=\count123
 \maxfields@=\count124
-\andhelp@=\toks23
+\andhelp@=\toks29
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
 \tagshift@=\dimen146
 \tagwidth@=\dimen147
 \totwidth@=\dimen148
 \lineht@=\dimen149
-\@envbody=\toks24
-\multlinegap=\skip58
-\multlinetaggap=\skip59
-\mathdisplay@stack=\toks25
+\@envbody=\toks30
+\multlinegap=\skip61
+\multlinetaggap=\skip62
+\mathdisplay@stack=\toks31
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
@@ -501,41 +513,47 @@ Writing nomenclature file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING
  TECHNIQUES APPLIED TO PARALLEL MECHANISMS".nlo
 
 (./[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIED TO P
-ARALLEL MECHANISMS.aux)
+ARALLEL MECHANISMS.aux
+
+LaTeX Warning: Label `eq:03-101B' multiply defined.
+
+
+LaTeX Warning: Label `eq:03-201' multiply defined.
+
+)
 \openout1 = `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES A
 PPLIED TO PARALLEL MECHANISMS.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count127
 \scratchdimen=\dimen150
 \scratchbox=\box59
 \nofMPsegments=\count128
 \nofMParguments=\count129
-\everyMPshowfont=\toks26
+\everyMPshowfont=\toks32
 \MPscratchCnt=\count130
 \MPscratchDim=\dimen151
 \MPnumerator=\count131
 \makeMPintoPDFobject=\count132
-\everyMPtoPDFconversion=\toks27
+\everyMPtoPDFconversion=\toks33
 )
 \AtBeginShipoutBox=\box60
-Package hyperref Info: Link coloring ON on input line 39.
+Package hyperref Info: Link coloring ON on input line 40.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -544,9 +562,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count133
 )
-LaTeX Info: Redefining \ref on input line 39.
-LaTeX Info: Redefining \pageref on input line 39.
-LaTeX Info: Redefining \nameref on input line 39.
+LaTeX Info: Redefining \ref on input line 40.
+LaTeX Info: Redefining \pageref on input line 40.
+LaTeX Info: Redefining \nameref on input line 40.
 
 (./[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIED TO P
 ARALLEL MECHANISMS.out)
@@ -572,63 +590,113 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Underfull \hbox (badness 10000) in paragraph at lines 42--44
+Underfull \hbox (badness 10000) in paragraph at lines 43--45
 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 46.
+LaTeX Font Info:    Try loading font information for U+msa on input line 47.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 46.
+LaTeX Font Info:    Try loading font information for U+msb on input line 47.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+bbold on input line 46.
+LaTeX Font Info:    Try loading font information for U+bbold on input line 47.
 
 (/usr/share/texlive/texmf-dist/tex/latex/bbold/Ubbold.fd)
-Underfull \hbox (badness 10000) in paragraph at lines 45--50
+Underfull \hbox (badness 10000) in paragraph at lines 46--51
 
  []
 
 (./EXTRAS/symbols.tex
 No file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIE
 D TO PARALLEL MECHANISMS".nls.
-) (./SECTIONS/ANDRE/3-2.tex
+) (./SECTIONS/RENATO/2-1.tex
+LaTeX Font Info:    Try loading font information for U+BOONDOX-cal on input lin
+e 5.
+
+(/usr/share/texlive/texmf-dist/tex/latex/boondox/uboondox-cal.fd
+File: uboondox-cal.fd 2011/04/26 Fontinst v1.933 font definitions for U/BOONDOX
+-cal.
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for U+eus on input line 148.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 153.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 153.
+LaTeX Font Info:    Try loading font information for OML+cmbr on input line 154
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbr.fd
+File: omlcmbr.fd 2005/04/13 v8.1 (WaS)
+)
+LaTeX Font Info:    Try loading font information for OML+cmbrm on input line 15
+4.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
+File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
+)
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <10.95> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
+.
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <8> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
+.
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <6> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
+.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 160.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <8> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <6> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
+ [2] [3])
+(./SECTIONS/RENATO/2-2.tex [4] [5]) (./SECTIONS/ANDRE/2-3.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 23--24
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--33
-
- []
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 41--42
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 64--65
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
@@ -637,40 +705,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+
+ []
+
+[7]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 181--182
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
+Underfull \hbox (badness 10000) in paragraph at lines 214--216
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--195
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 230--231
-
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
 
  []
 
@@ -678,52 +752,149 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no § in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no £ in font cmr10!
-)
+) (./SECTIONS/RENATO/3-1.tex [11]
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
+) (./SECTIONS/RENATO/3-2.tex [12])
+(./SECTIONS/RENATO/4-1.tex
+<FIGURES/RR_U.pdf, id=254, 308.82074pt x 201.17558pt>
+File: FIGURES/RR_U.pdf Graphic file (type pdf)
+ <use FIGURES/RR_U.pdf>
+Package pdftex.def Info: FIGURES/RR_U.pdf used on input line 38.
+(pdftex.def)             Requested size: 308.81998pt x 201.17508pt.
+
+[13] [14pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.120 \end{align}
+                  <./FIGURES/RR_U.pdf>]
+Overfull \hbox (21.9582pt too wide) in paragraph at lines 168--168
+[] 
+ []
+
+[15]) (./SECTIONS/RENATO/4-2.tex
+<FIGURES/RR_G.pdf, id=321, 380.50558pt x 213.88908pt>
+File: FIGURES/RR_G.pdf Graphic file (type pdf)
+ <use FIGURES/RR_G.pdf>
+Package pdftex.def Info: FIGURES/RR_G.pdf used on input line 12.
+(pdftex.def)             Requested size: 304.40488pt x 171.11148pt.
+
+[16] <FIGURES/model-RR_.pdf, id=339, 414.54875pt x 245.91875pt>
+File: FIGURES/model-RR_.pdf Graphic file (type pdf)
+
+<use FIGURES/model-RR_.pdf>
+Package pdftex.def Info: FIGURES/model-RR_.pdf used on input line 33.
+(pdftex.def)             Requested size: 476.72736pt x 282.80435pt.
+ [17pdfTeX warning (ext4): destination with the same identifier (name{figure.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.62 \end{align}
+                pdfTeX warning (ext4): destination with the same identifier (na
+me{figure.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.62 \end{align}
+                 <./FIGURES/RR_G.pdf> <./FIGURES/model-RR_.pdf>] [18] [19])
+(./SECTIONS/RENATO/4-3.tex <FIGURES/5R.pdf, id=385, 471.36092pt x 301.64093pt>
+File: FIGURES/5R.pdf Graphic file (type pdf)
+
+<use FIGURES/5R.pdf>
+Package pdftex.def Info: FIGURES/5R.pdf used on input line 13.
+(pdftex.def)             Requested size: 329.95038pt x 211.1472pt.
+ [20]
+<FIGURES/model-5R_.pdf, id=403, 232.87pt x 124.465pt>
+File: FIGURES/model-5R_.pdf Graphic file (type pdf)
+
+<use FIGURES/model-5R_.pdf>
+Package pdftex.def Info: FIGURES/model-5R_.pdf used on input line 38.
+(pdftex.def)             Requested size: 267.7984pt x 143.13362pt.
+ [21pdfTeX warning (ext4): destination with the same identifier (name{figure.4}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.88 \end{align}
+                pdfTeX warning (ext4): destination with the same identifier (na
+me{figure.5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.88 \end{align}
+                 <./FIGURES/5R.pdf> <./FIGURES/model-5R_.pdf>]
+Overfull \hbox (5.05533pt too wide) in paragraph at lines 122--126
+[]\OT1/cmr/m/n/10.95 Again fol-low-ing the pro-ce-dure de-scribed in Sec-tion [
+][]1.2[][], a ma-trix $[]$ sat-is-fy-ing the con-di-tion $[] [] \OT1/cmss/m/n/1
+0.95 =
+ []
+
+[22])
 No file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIE
 D TO PARALLEL MECHANISMS".bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
-[5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
+[23]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
 
 (./[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIED TO P
 ARALLEL MECHANISMS.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 124.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
 Package rerunfilecheck Info: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE 
 BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has not changed.
-(rerunfilecheck)             Checksum: C034C1100B7CDED79D06D0C15F7A3112;47.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 124.
+(rerunfilecheck)             Checksum: A5ED697C58D2CE78DCE7124C192B0E43;820.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
  ) 
 Here is how much of TeX's memory you used:
- 8410 strings out of 493304
- 117459 string characters out of 6139872
- 220300 words of memory out of 5000000
- 11673 multiletter control sequences out of 15000+600000
- 16481 words of font info for 64 fonts, out of 8000000 for 9000
+ 8861 strings out of 493304
+ 123772 string characters out of 6139872
+ 237950 words of memory out of 5000000
+ 11938 multiletter control sequences out of 15000+600000
+ 21225 words of font info for 82 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 34i,14n,31p,1029b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+ 34i,24n,31p,1029b,415s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{equation.2.61} has been referenced but does not e
+xist, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+tt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmb10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/boondox/zxxrw8a.pfb>
 Output written on "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQ
-UES APPLIED TO PARALLEL MECHANISMS.pdf" (5 pages, 180800 bytes).
+UES APPLIED TO PARALLEL MECHANISMS.pdf" (23 pages, 579899 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 121 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 9 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 560 PDF objects out of 1000 (max. 8388607)
+ 490 compressed objects within 5 object streams
+ 154 named destinations out of 1000 (max. 500000)
+ 114 words of extra memory for PDF output out of 10000 (max. 10000000)
 

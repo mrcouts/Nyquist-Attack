@@ -1,6 +1,27 @@
-\subsection{Control}\label{S03-2}
+\subsection{Control}\label{S02-3}
 
 \noindent {\bf Din\^amica Inversa}\\
+
+\begin{align}
+&	\mq_n\ssh = \nvct{q_{n,r}\ssh}
+	\qquad \text{for} \qquad
+	r \in \{1, 2, \ldots, \nu\ssh(\ssS_n) \}
+	\label{eq:Teste} %\\
+\end{align}
+
+\begin{align}
+&	\mh_n = \nvct{h_{n,r}}
+	\qquad \text{for} \qquad
+	r \in \{1, 2, \ldots, \nu_q(\ssS_n) - \nu\ssh(\ssS_n)\}
+	\label{eq:Teste2} %\\
+\end{align}
+
+\begin{align}
+&	\mathbb{\psi}_n = \nvct{\psi_{n,r}}
+	\qquad \text{for} \qquad
+	r \in \{1, 2, \ldots, \nu_p(\ssS_n) - \nu\ssh(\ssS_n)\}
+	\label{eq:Teste3} %\\
+\end{align}
 
 O problema da din\^amica inversa constitui-se basicamente em calcular os esfor\c{c}os ativos aplicados pelos atuadores necess\'arios para um mecanismo realizar uma dada trajet\'oria. Ou seja, para cada instante de tempo $t$, conhencendo-se $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$, desaja-se determinar $\mu_n$.
 
@@ -8,7 +29,7 @@ O problema da din\^amica inversa constitui-se basicamente em calcular os esfor\c
 
 Como foi visto na se\c{c}\~ao anterior, \'e poss\'ivel calcular dos esfor\c{c}os dos atuadores pela seguinte express\~ao:
 \begin{equation} \label{eq:InverseDynamics}
-\mu_n = \mC_n^\top(\mq_n) \Big( \mM_n(\mq_n) \dot{\mp}_n + \mw_n(\mq_n, \mp_n) + \mz_n(\mq_n) \Big)
+\mu_n = \mC_n^\msT(\mq_n) \Big( \mM_n(\mq_n) \dot{\mp}_n + \mw_n(\mq_n, \mp_n) + \mz_n(\mq_n) \Big)
 \end{equation}
 
 Por\'em, nesta express\~ao, $\mu_n$ depende de $\mq_n$, $\mp_n$ e $\dot{\mp}_n$. Sendo assim, para o problema da din\^amica inversa ser resolvido, \'e necess\'ario determinar $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ dados $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$.
@@ -128,116 +149,116 @@ Como foi visto na se\c{c}\~ao de modelagem, \'e muito conveniente utilizar coord
 O modelo de um sistema mec\^anico multi-corpos pode ser descrito de maneira gen\'erica pelas seguintes equa\c{c}\~oes:
 \begin{equation} \label{eq:MechanicalSystem}
 \begin{cases}
-\mC_n^\top (\mq_n) \Big( \mM_n (\mq_n) \ddot{\mq}_n + \mw_n (\mq_n, \dot{\mq}_n) + \mz_n (\mq_n) \Big) = \mu_n \\
-\mA_n \ddot{\mq}_n + \mb_n (\mq_n, \dot{\mq}_n) = \mzr
+\mC^\msT (\mq) \Big( \mM (\mq) \ddot{\mq} + \mw (\mq, \dot{\mq}) + \mz (\mq) \Big) = \mu \\
+\mA \ddot{\mq} + \mb (\mq, \dot{\mq}) = \mzr
 \end{cases}
 \end{equation}
 
 De maneira matricial compacta:
 \begin{equation} \label{eq:MechanicalSystemMatrix}
 \begin{bmatrix}
-\mC_n^\top \mM_n \\
-\mA_n
+\mC^\msT \mM \\
+\mA
 \end{bmatrix}
-\ddot{\mq}_n
+\ddot{\mq}
 =
 \begin{bmatrix}
-\mu_n - \mC_n^\top(\mw_n + \mz_n) \\
--\mb_n
+\mu - \mC^\msT(\mw + \mz) \\
+-\mb
 \end{bmatrix}
 \end{equation}
 
-Gostaria que $ \ddot{\mq}_n = \mv_n $, sendo $\mv_n$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
+Gostaria que $ \ddot{\mq} = \mv $, sendo $\mv$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
 \begin{equation} \label{eq:ControlLawV}
-\mu_n = \mC_n^\top ( \mM_n \mv_n + \mw_n + \mz_n )
+\mu = \mC^\msT ( \mM \mv + \mw + \mz )
 \end{equation}
 
-Como queremos que $ \ddot{\mq}_n = \mv_n $ e $\ddot{\mq}_n$ tem restri\c{c}\~oes, $\mv_n$ deve respeitar as mesmas restri\c{c}\~oes, ou seja:
+Como queremos que $ \ddot{\mq} = \mv $ e $\ddot{\mq}$ tem restri\c{c}\~oes, $\mv$ deve respeitar as mesmas restri\c{c}\~oes, ou seja:
 \begin{equation} \label{eq:ControlLawVRestriction}
-\mA_n \mv_n + \mb_n = \mzr
+\mA \mv + \mb = \mzr
 \end{equation}
 
 Aplicando a lei de controle \eqref{eq:ControlLawV} e a restri\c{c}\~ao \eqref{eq:ControlLawVRestriction} em \eqref{eq:MechanicalSystemMatrix}, temos: \\
 
 $ \begin{bmatrix}
-\mC_n^\top \mM_n \\
-\mA_n
+\mC^\msT \mM \\
+\mA
 \end{bmatrix}
-\ddot{\mq}_n
+\ddot{\mq}
 =
 \begin{bmatrix}
-\mC_n^\top ( \mM_n \mv_n + \mw_n + \mz_n ) - \mC_n^\top(\mw_n + \mz_n) \\
-\mA_n \mv_n
-\end{bmatrix}
-=
-\begin{bmatrix}
-\mC_n^\top  \mM_n \mv_n \\
-\mA_n \mv_n
+\mC^\msT ( \mM \mv + \mw + \mz ) - \mC^\msT(\mw + \mz) \\
+\mA \mv
 \end{bmatrix}
 =
 \begin{bmatrix}
-\mC_n^\top \mM_n \\
-\mA_n
+\mC^\msT  \mM \mv \\
+\mA \mv
 \end{bmatrix}
-\mv_n $
+=
+\begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\mv $
 
 \begin{equation} \label{eq:ClosedLoopV}
-\therefore \ddot{\mq}_n = \mv_n
+\therefore \ddot{\mq} = \mv
 \end{equation}
 
-Seja $\mv'_n$ dado pela lei de controle por modos deslizantes:
+Seja $\mv'$ dado pela lei de controle por modos deslizantes:
 \begin{equation} \label{eq:SMControlowLasV1'}
-\mv'_n = \ddot{\mq}_{n, d} + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n)
+\mv' = \ddot{\mq}_{n, d} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me)
 \end{equation}
-Sendo $ \me_n = \mq_{n,d} - \mq_n $ o erro de controle e $\mq_{n,d}$ o sinal de refer\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv_n = \mv'_n $ :
-$$ \ddot{\mq}_n = \mv_n \Rightarrow  \ddot{\me}_n + \lambda \dot{\me}_n + k \sign (\dot{\me}_n + \lambda \me_n) = \mzr \Leftrightarrow \dot{\ms}_n = - k \sign(\ms_n)$$
-Isso garantiria que $\me_n \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais, como visto na se\c{c}\~ao anterior. \\
+Sendo $ \me = \mq_{n,d} - \mq $ o erro de controle e $\mq_{n,d}$ o sinal de refer\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv = \mv' $ :
+$$ \ddot{\mq} = \mv \Rightarrow  \ddot{\me} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me) = \mzr \Leftrightarrow \dot{\ms} = - k \sign(\ms)$$
+Isso garantiria que $\me \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais, como visto na se\c{c}\~ao anterior. \\
 
-Como temos restri\c{c}\~oes em $\mv_n$, procuramos $\mv_n$ mais pr\'oximo poss\'ivel de $\mv'_n$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
+Como temos restri\c{c}\~oes em $\mv$, procuramos $\mv$ mais pr\'oximo poss\'ivel de $\mv'$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
 \begin{equation} \label{eq:Optimization}
 \begin{aligned}
-& \underset{\mv_n}{\text{Min}}
-& & (\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) \\
+& \underset{\mv}{\text{Min}}
+& & (\mv - \mv')^\msT \mM (\mv - \mv') \\
 & \text{tal que}
-& & \mA_n \mv_n + \mb_n = \mzr
+& & \mA \mv + \mb = \mzr
 \end{aligned}
 \end{equation}
 
-Como $\mM_n$ \'e n\~ao-negativa definida, temos que $(\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) \geq 0 $ para qualquer valor de $\mv_n$.
+Como $\mM$ \'e n\~ao-negativa definida, temos que $(\mv - \mv')^\msT \mM (\mv - \mv') \geq 0 $ para qualquer valor de $\mv$.
 
 Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema \'e equivalente:
 \begin{equation}
 \begin{aligned}
-& \underset{\mv_n, \mlambda}{\text{Min}}
-& & L = (\mv_n - \mv'_n)^\top \mM_n (\mv_n - \mv'_n) + (\mA_n \mv_n + \mb_n)^\top \mlambda \\
+& \underset{\mv, \mlambda}{\text{Min}}
+& & L = (\mv - \mv')^\msT \mM (\mv - \mv') + (\mA \mv + \mb)^\msT \mlambda \\
 \end{aligned}
 \end{equation}
 
 
 Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
 
-$$ \dl L = 0 \Rightarrow \dl \mv_n^\top \mM_n (\mv_n - \mv'_n) + (\mv_n - \mv'_n)^\top \mM_n \dl \mv_n + (\mA_n \dl \mv_n)^\top \mlambda + (\mA_n \mv_n + \mb_n)^\top \dl \mlambda = 0 $$
-$$ \Rightarrow \dl \mv_n^\top \Big( (\mM_n + \mM_n^\top)(\mv_n - \mv'_n) + \mA_n^\top \mlambda \Big) + \dl \mlambda^\top (\mA_n \mv_n + \mb_n) = 0 $$
+$$ \dl L = 0 \Rightarrow \dl \mv^\msT \mM (\mv - \mv') + (\mv - \mv')^\msT \mM \dl \mv + (\mA \dl \mv)^\msT \mlambda + (\mA \mv + \mb)^\msT \dl \mlambda = 0 $$
+$$ \Rightarrow \dl \mv^\msT \Big( (\mM + \mM^\msT)(\mv - \mv') + \mA^\msT \mlambda \Big) + \dl \mlambda^\msT (\mA \mv + \mb) = 0 $$
 
-Como $\mM_n$ \'e sim\'etrica e $\dl \mv_n$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
+Como $\mM$ \'e sim\'etrica e $\dl \mv$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
 \begin{equation} \label{eq:OptimizationSol}
 \begin{cases}
-2 \mM_n (\mv_n - \mv'_n) + \mA_n^\top \mlambda = \mzr \\
-\mA_n \mv_n + \mb_n = \mzr
+2 \mM (\mv - \mv') + \mA^\msT \mlambda = \mzr \\
+\mA \mv + \mb = \mzr
 \end{cases}
 \end{equation}
 
-Como $\mC_n$ \'e o complemento ortogonal de $\mA_n$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC_n^\top$, temos: \\
+Como $\mC$ \'e o complemento ortogonal de $\mA$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC^\msT$, temos: \\
 
-$ 2 \mC_n^\top \mM_n (\mv_n - \mv'_n) + \mC_n^\top \mA_n^\top \mlambda = \mzr $
-$ \Rightarrow  \mC_n^\top \mM_n (\mv_n - \mv'_n)  = \mzr $
+$ 2 \mC^\msT \mM (\mv - \mv') + \mC^\msT \mA^\msT \mlambda = \mzr $
+$ \Rightarrow  \mC^\msT \mM (\mv - \mv')  = \mzr $
 \begin{equation} \label{eq:OptimizationSol2}
-\therefore \mC_n^\top \mM_n \mv_n  = \mC_n^\top \mM_n  \mv'_n
+\therefore \mC^\msT \mM \mv  = \mC^\msT \mM  \mv'
 \end{equation}
 
-Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\ddot{\mq}_n = \mv'$, segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
+Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\ddot{\mq} = \mv'$, segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
 \begin{equation} \label{eq:ControlLawFinal}
-\mu_n = \mC_n^\top ( \mM_n \mv'_n + \mw_n + \mz_n )
+\mu = \mC^\msT ( \mM \mv' + \mw + \mz )
 \end{equation}
 
 \newpage
