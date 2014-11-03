@@ -2,14 +2,47 @@
 
 \noindent {\bf Din\^amica Inversa}\\
 
-O problema da din\^amica inversa constitui-se basicamente em calcular os esfor\c{c}os ativos aplicados pelos atuadores necess\'arios para um mecanismo realizar uma dada trajet\'oria. Ou seja, para cada instante de tempo $t$, conhencendo-se $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$, desaja-se determinar $\mu_n$. \'E um procedimento importante para avaliar a efic\'acia do balanceamento realizado, pois torna poss\'ivel comparar os esfor\c{c}os dos atuadores em diferentes trajet\'orias para o mecanismo balanceado e desbalanceado, mostrando em quais casos o balanceamento \'e vantajoso.
+O problema da din\^amica inversa constitui-se basicamente em calcular os esfor\c{c}os ativos aplicados pelos atuadores necess\'arios para um mecanismo realizar uma dada trajet\'oria. Ou seja, para cada instante de tempo $t$, conhencendo-se $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$, desaja-se determinar $\mu_n$.
+
+\'E um procedimento importante para avaliar a efic\'acia do balanceamento realizado, pois torna poss\'ivel comparar os esfor\c{c}os dos atuadores em diferentes trajet\'orias para o mecanismo balanceado e desbalanceado, mostrando em quais casos o balanceamento \'e vantajoso.
 
 Como foi visto na se\c{c}\~ao anterior, \'e poss\'ivel calcular dos esfor\c{c}os dos atuadores pela seguinte express\~ao:
 \begin{equation} \label{eq:InverseDynamics}
 \mu_n = \mC_n^\top(\mq_n) \Big( \mM_n(\mq_n) \dot{\mp}_n + \mw_n(\mq_n, \mp_n) + \mz_n(\mq_n) \Big)
 \end{equation}
 
-Por\'em, nesta express\~ao, $\mu_n$ depende de $\mq_n$, $\mp_n$ e $\dot{\mp}_n$. Sendo assim, para o problema da din\^amica inversa ser resolvido, \'e necess\'ario determinar $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ dados $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$.  \\
+Por\'em, nesta express\~ao, $\mu_n$ depende de $\mq_n$, $\mp_n$ e $\dot{\mp}_n$. Sendo assim, para o problema da din\^amica inversa ser resolvido, \'e necess\'ario determinar $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ dados $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$.
+
+Para determinar $\mq_n$ dado $\mq_n\ssh$, basta resolver as equa\c{c}\~oes vinculares de posi\c{c}\~ao: 
+\begin{equation} \label{eq:PositionConstraints}
+\mh_n(t, \mq_n) = \mzr
+\end{equation}
+
+%Como $\mh_n$ \'e um vetor de tamanho $\nu_q - \nu\ssh$ e $\nu\ssh$ elementos de $\mq_n$ s\~ao conhecidos ($\mq_n\ssh$), temos $\nu_q - \nu\ssh$ equa\c{c}\~oes linearmente independentes e $\nu_q - \nu\ssh$ incognitas, o que garante que o sistema tenha um n\'umero finito de solu\c{c}\~oes.
+
+Como os v\'inculos de posi\c{c}\~ao normalmente s\~ao equa\c{c}\~oes n\~ao-lineares, para configura\c{c}\~oes poss\'iveis \'e comum encontrar duas ou mais solu\c{c}\~oes para dados $t$ e $\mq_n\ssh$. Para saber qual \'e a solu\c{c}\~ao representativa para o problema em quest\~ao, \'e necess\'ario verificar qual delas \'e condizente com as configura\c{c}\~oes de montagem do mecanismo. No caso de solu\c{c}\~oes anal\'iticas, basta identificar qual solu\c{c}\~ao representa a configura\c{c}\~ao de montagem e utiliza-la para todos os pontos da trajet\'oria. No caso de solu\c{c}\~oes num\'ericas, \'e necess\'ario uma estimativa da configura\c{c}\~ao desejada para determinar $\mq_n$ com uma dada precis\~ao. Normalmente estima-se uma solu\c{c}\~ao para $t=0$, e para os demais instantes de tempo utiliza-se como estimativa a configura\c{c}\~ao do \'ultimo instante de tempo calculado. \\
+
+Com $\mq_n$ j\'a definido e dado $\dot{\mq}_n\ssh = \mp_n\ssh$, $\mp_n$ pode ser determinado atrav\'es dos v\'inculos de velocidade:
+\begin{equation} \label{eq:VelocityConstraints}
+\mathbb{\psi}_n (t, \mq, \mp) = \mzr
+\end{equation}
+
+%Como $\mathbb{\psi}_n$ \'e um vetor de tamanho $\nu_p - \nu\ssh$ e $\nu\ssh$ elementos de $\mp_n$ s\~ao conhecidos ($\mp_n\ssh$), temos $\nu_p - \nu\ssh$ equa\c{c}\~oes linearmente independentes e $\nu_p - \nu\ssh$ incognitas, o que garante que o sistema tenha um n\'umero finito de solu\c{c}\~oes.
+
+Os v\'inculos de velocidades normalmente s\~ao equa\c{c}\~oes lineares em $\mp_n$, o que torna simples determinar $\mp_n$, dados $t$, $\mq_n$ e $\mp_n\ssh$. \\
+
+Com $\mq_n$ e $\mp_n$ j\'a definidos e dado $\ddot{\mq}_n\ssh = \dot{\mp}_n\ssh$, $\dot{\mp}_n$ pode ser determinado atrav\'es dos v\'inculos de acelera\c{c}\~ao:
+\begin{equation} \label{eq:AccelerationConstraints}
+\mc_n (t, \mq, \mp, \dot{\mp}) = \mzr
+\end{equation}
+
+%Como $\mc_n$ \'e um vetor de tamanho $\nu_p - \nu\ssh$ e $\nu\ssh$ elementos de $\dot{\mp}_n$ s\~ao conhecidos ($\dot{\mp}_n\ssh$), temos $\nu_p - \nu\ssh$ equa\c{c}\~oes linearmente independentes e $\nu_p - \nu\ssh$ incognitas, o que garante que o sistema tenha um n\'umero finito de solu\c{c}\~oes.
+
+Analogamente aos v\'inculos de velocidades, os v\'inculos de acelera\c{c}\~oes normalmente s\~ao equa\c{c}\~oes lineares em $\dot{\mp}_n$, o que torna simples determinar $\dot{\mp}_n$, dados $t$, $\mq_n$, $\mp_n$ e $\dot{\mp}\ssh$. \\
+
+Finalmente, com $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ determinados, a express\~ao \eqref{eq:InverseDynamics} pode ser utilizada para o c\'alculo dos esfor\c{c}os nos atuadores. \\
+
+
  
 \noindent {\bf Controle por modos deslizantes}\\
 

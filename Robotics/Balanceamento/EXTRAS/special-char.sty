@@ -32,7 +32,7 @@
 \def\img{\mathsf{i}}					% unidade imaginária
 \def\eul{\mathsf{e}}					% número de Euler
 
-\newcommand{\noo}[1]{\nu_{\scriptstyle{#1}}} 			%número de ...
+\newcommand{\noo}[1]{\nu_{\scriptstyle{#1}}} 			% número de ...
 
 \DeclareMathOperator*{\sign}{sign}		% função sinal
 \DeclareMathOperator*{\Rea}{Re}			% parte real
@@ -48,6 +48,7 @@
 %---------------------------------------------------------------------------------------%
 
 \newcommand{\suphash}{{\scriptscriptstyle \#}}										% #
+\newcommand{\ud}{{\underline{\phantom{0}} }}                                        % _
 
 \DeclareMathOperator*{\rl}{															% |
 	\mathchoice																			
@@ -432,4 +433,9 @@
 \def\ssX{\mathrs{X}}
 \def\ssY{\mathrs{Y}}
 \def\ssZ{\mathrs{Z}}
+
+
+% eliminação de conflitos de notação
+
+\DeclareMathSymbol{\gmu}{\mathalpha}{letters}{22}
 

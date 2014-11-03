@@ -8,8 +8,7 @@
 \nomenclatureentry{A032$\ttA, \ttB, \ldots$@[{$\ttA, \ttB, \ldots$}]\begingroup Coordinate systems\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{A041$\llA, \llB, \ldots$@[{$\llA, \llB, \ldots$}]\begingroup Rigid bodies or reference frames\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{A051$\ssA, \ssB, \ldots$@[{$\ssA, \ssB, \ldots$}]\begingroup Sets or multibody mechanical systems\footnote{ A multibody mechanical system will be conceived as a set whose elements are material bodies, joints, actuators, energy storage, dissipation and transformation elements and a mathematical model (which includes physical parameters, model variables and constitutive, constraint and dynamic equations). }\nomeqref {0}|nompageref}{1}
-\nomenclatureentry{CAA01$a_{n,l}$@[{$a_{n,l}$}]\begingroup Adjustable physical parameter\nomeqref {0}|nompageref}{1}
-\nomenclatureentry{CAA02$\nb a_{n,l}$@[{$\nb a_{n,l}$}]\begingroup Fixed physical parameter\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{CAA01$a_{n,l}$@[{$a_{n,l}$}]\begingroup Arbitrary physical parameter\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAA11$\mA_{n}$@[{$\mA_{n}$}]\begingroup Jacobian matrix of kinematic invariants ($\mc_n$) with respect to quasi-accelerations ($\dot\mp_n$)\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAA21$\va_{\ttp \rl \llE}$@[{$\va_{\ttp \rl \llE}$}]\begingroup Acceleration of point $\ttp$ measured relatively to reference frame $\llE$\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAC11$\mc_{n}$@[{$\mc_{n}$}]\begingroup Kinematic invariants (constraints) column-matrix\nomeqref {0}|nompageref}{1}
@@ -20,14 +19,14 @@
 \nomenclatureentry{CGD91$\dl$@[{$\dl$}]\begingroup Variation operator\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAF01$f_{n,j}$@[{$f_{n,j}$}]\begingroup Generalized force\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAF11$\mf_{n}$@[{$\mf_{n}$}]\begingroup Generalized forces column-matrix\nomeqref {0}|nompageref}{1}
-\nomenclatureentry{CAF21$\vf_{s}$@[{$\vf_{s}$}]\begingroup Arbitrary force\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{CAF21$\vf_{\llB}$@[{$\vf_{\llB}$}]\begingroup Resultant force acting on body $\llB$ (excluding constraint forces)\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAG01$g_{n,j}$@[{$g_{n,j}$}]\begingroup Generalized gyroscopic inertia force\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAG11$\mg_{n}$@[{$\mg_{n}$}]\begingroup Generalized gyroscopic inertia forces column-matrix\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAI01$I_s$@[{$I_s$}]\begingroup Arbitrary moment of inertia\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAI21$\vI_{\llB \rl \ttp}$@[{$\vI_{\llB \rl \ttp}$}]\begingroup Inertia tensor of rigid body $\llB$ relative to point $\ttp$\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAI51$\ssI_{x}(\ssS_{n})$@[{$\ssI_{x}(\ssS_{n})$}]\begingroup Set of indexes of variables $x_{n,r}$ defined in the model of system $\ssS_{n}$, i.e., $\ssI_{x}(\ssS_{n}) = \{ r \,\vert\, x_{n,r} \in \ssS_{n} \}$ \nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAM01$m_{s}$@[{$m_{s}$}]\begingroup Arbitrary mass\nomeqref {0}|nompageref}{1}
-\nomenclatureentry{CAM21$\vm_{s}$@[{$\vm_{s}$}]\begingroup Arbitrary moment (torque)\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{CAM21$\vm_{\llB \rl \ttp}$@[{$\vm_{\llB \rl \ttp}$}]\begingroup Resultant moment (torque) acting on body $\llB$ measured relatively to pole $\ttp$ (excluding constraint moments)\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAM11$\mM_{n}$@[{$\mM_{n}$}]\begingroup Generalized inertia matrix\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CAN41$\llN$@[{$\llN$}]\begingroup Inertial reference frame\nomeqref {0}|nompageref}{1}
 \nomenclatureentry{CGN01$\nu_{x}(\ssS_{n})$@[{$\nu_{x}(\ssS_{n})$}]\begingroup Number of elements of the set $\ssI_{x}(\ssS_{n})$\nomeqref {0}|nompageref}{1}
