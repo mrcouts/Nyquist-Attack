@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.2)  5 NOV 2014 10:50
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.2)  5 NOV 2014 15:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -513,7 +513,14 @@ Writing nomenclature file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING
  TECHNIQUES APPLIED TO PARALLEL MECHANISMS".nlo
 
 (./[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIED TO P
-ARALLEL MECHANISMS.aux)
+ARALLEL MECHANISMS.aux
+
+LaTeX Warning: Label `eq:03-101B' multiply defined.
+
+
+LaTeX Warning: Label `eq:03-201' multiply defined.
+
+)
 \openout1 = `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES A
 PPLIED TO PARALLEL MECHANISMS.aux"'.
 
@@ -531,8 +538,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count127
 \scratchdimen=\dimen150
@@ -607,7 +613,200 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--51
 (./EXTRAS/symbols.tex
 No file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIE
 D TO PARALLEL MECHANISMS".nls.
-) (./SECTIONS/ANDRE/2-3.tex
+) (./SECTIONS/TARCISIO/1.tex
+
+Package natbib Warning: Citation `1wijk' on page 1 undefined on input line 23.
+
+
+Package natbib Warning: Citation `2arakelian' on page 1 undefined on input line
+ 23.
+
+
+Package natbib Warning: Citation `3seo' on page 1 undefined on input line 23.
+
+
+Package natbib Warning: Citation `4wu' on page 1 undefined on input line 23.
+
+
+Package natbib Warning: Citation `6wang' on page 1 undefined on input line 23.
+
+
+Package natbib Warning: Citation `7wang' on page 1 undefined on input line 23.
+
+
+Package natbib Warning: Citation `12russo' on page 1 undefined on input line 23
+.
+
+
+Package natbib Warning: Citation `15coelho' on page 1 undefined on input line 2
+3.
+
+
+Package natbib Warning: Citation `16moradi' on page 1 undefined on input line 2
+3.
+
+
+Package natbib Warning: Citation `2arakelian' on page 1 undefined on input line
+ 24.
+
+
+Package natbib Warning: Citation `4wu' on page 1 undefined on input line 24.
+
+
+Package natbib Warning: Citation `15coelho' on page 1 undefined on input line 2
+4.
+
+
+Package natbib Warning: Citation `16moradi' on page 1 undefined on input line 2
+4.
+
+
+Package natbib Warning: Citation `8alici' on page 1 undefined on input line 25.
+
+
+
+Package natbib Warning: Citation `9alici' on page 1 undefined on input line 25.
+
+
+
+Package natbib Warning: Citation `5gosselin' on page 1 undefined on input line 
+27.
+
+
+Package natbib Warning: Citation `12russo' on page 1 undefined on input line 27
+.
+
+
+Package natbib Warning: Citation `13agrawal' on page 1 undefined on input line 
+27.
+
+
+Package natbib Warning: Citation `6wang' on page 1 undefined on input line 31.
+
+
+Package natbib Warning: Citation `7wang' on page 1 undefined on input line 31.
+
+
+Package natbib Warning: Citation `8alici' on page 1 undefined on input line 31.
+
+
+
+Package natbib Warning: Citation `9alici' on page 1 undefined on input line 31.
+
+
+
+Package natbib Warning: Citation `10dehkordi' on page 1 undefined on input line
+ 31.
+
+
+Package natbib Warning: Citation `13agrawal' on page 1 undefined on input line 
+31.
+
+
+Package natbib Warning: Citation `2arakelian' on page 1 undefined on input line
+ 34.
+
+
+Package natbib Warning: Citation `3seo' on page 1 undefined on input line 34.
+
+
+Package natbib Warning: Citation `11wang' on page 1 undefined on input line 34.
+
+
+
+Package natbib Warning: Citation `14briot' on page 1 undefined on input line 34
+.
+
+
+Package natbib Warning: Citation `15coelho' on page 1 undefined on input line 3
+4.
+
+
+Package natbib Warning: Citation `16moradi' on page 1 undefined on input line 3
+4.
+
+
+Package natbib Warning: Citation `2arakelian' on page 1 undefined on input line
+ 38.
+
+
+Package natbib Warning: Citation `15coelho' on page 1 undefined on input line 4
+0.
+
+
+Package natbib Warning: Citation `16moradi' on page 1 undefined on input line 4
+0.
+
+<FIGURES/model-1.png, id=52, 886.31125pt x 684.5575pt>
+File: FIGURES/model-1.png Graphic file (type png)
+
+<use FIGURES/model-1.png>
+Package pdftex.def Info: FIGURES/model-1.png used on input line 108.
+(pdftex.def)             Requested size: 354.51822pt x 273.81815pt.
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./SECTIONS/RENATO/2-1.tex
+LaTeX Font Info:    Try loading font information for U+BOONDOX-cal on input lin
+e 5.
+
+(/usr/share/texlive/texmf-dist/tex/latex/boondox/uboondox-cal.fd
+File: uboondox-cal.fd 2011/04/26 Fontinst v1.933 font definitions for U/BOONDOX
+-cal.
+) [2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.59 
+      <./FIGURES/model-1.png>]
+LaTeX Font Info:    Try loading font information for U+eus on input line 148.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 153.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 153.
+LaTeX Font Info:    Try loading font information for OML+cmbr on input line 154
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbr.fd
+File: omlcmbr.fd 2005/04/13 v8.1 (WaS)
+)
+LaTeX Font Info:    Try loading font information for OML+cmbrm on input line 15
+4.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
+File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
+)
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <10.95> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
+.
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <8> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
+.
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <6> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
+.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 160.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <8> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <6> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
+ [3] [4])
+(./SECTIONS/RENATO/2-2.tex [5] [6]) (./SECTIONS/ANDRE/2-3.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
@@ -622,27 +821,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
 
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
-(./SECTIONS/ANDRE/2-4.tex
-LaTeX Font Info:    Try loading font information for U+BOONDOX-cal on input lin
-e 5.
-
-(/usr/share/texlive/texmf-dist/tex/latex/boondox/uboondox-cal.fd
-File: uboondox-cal.fd 2011/04/26 Fontinst v1.933 font definitions for U/BOONDOX
--cal.
-)
-
-LaTeX Warning: Reference `eq:02-207A' on page 2 undefined on input line 6.
-
-
-LaTeX Warning: Reference `eq:02-207B' on page 2 undefined on input line 6.
-
-
-LaTeX Warning: Reference `eq:02-201A' on page 2 undefined on input line 24.
-
-[2]
+[7]) (./SECTIONS/ANDRE/2-4.tex [8]
 Underfull \hbox (badness 10000) in paragraph at lines 57--58
 
  []
@@ -657,62 +836,315 @@ Underfull \hbox (badness 10000) in paragraph at lines 91--93
 
  []
 
-
+[9]
 Underfull \hbox (badness 10000) in paragraph at lines 128--129
 
  []
 
-)
+) (./SECTIONS/RENATO/3-1.tex
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
+ [10]) (./SECTIONS/RENATO/3-2.tex [11])
+(./SECTIONS/RENATO/4-1.tex
+<FIGURES/RR_U.pdf, id=292, 308.82074pt x 201.17558pt>
+File: FIGURES/RR_U.pdf Graphic file (type pdf)
+ <use FIGURES/RR_U.pdf>
+Package pdftex.def Info: FIGURES/RR_U.pdf used on input line 38.
+(pdftex.def)             Requested size: 308.81998pt x 201.17508pt.
+
+[12] [13pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.120 \end{align}
+                  <./FIGURES/RR_U.pdf>]
+Overfull \hbox (21.9582pt too wide) in paragraph at lines 168--168
+[] 
+ []
+
+[14]) (./SECTIONS/RENATO/4-2.tex
+<FIGURES/RR_G.pdf, id=362, 380.50558pt x 213.88908pt>
+File: FIGURES/RR_G.pdf Graphic file (type pdf)
+ <use FIGURES/RR_G.pdf>
+Package pdftex.def Info: FIGURES/RR_G.pdf used on input line 12.
+(pdftex.def)             Requested size: 304.40488pt x 171.11148pt.
+
+[15] <FIGURES/model-RR_.pdf, id=383, 414.54875pt x 245.91875pt>
+File: FIGURES/model-RR_.pdf Graphic file (type pdf)
+
+<use FIGURES/model-RR_.pdf>
+Package pdftex.def Info: FIGURES/model-RR_.pdf used on input line 33.
+(pdftex.def)             Requested size: 476.72736pt x 282.80435pt.
+ [16pdfTeX warning (ext4): destination with the same identifier (name{figure.3}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.62 \end{align}
+                pdfTeX warning (ext4): destination with the same identifier (na
+me{figure.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.62 \end{align}
+                 <./FIGURES/RR_G.pdf> <./FIGURES/model-RR_.pdf>] [17] [18])
+(./SECTIONS/RENATO/4-3.tex <FIGURES/5R.pdf, id=434, 471.36092pt x 301.64093pt>
+File: FIGURES/5R.pdf Graphic file (type pdf)
+
+<use FIGURES/5R.pdf>
+Package pdftex.def Info: FIGURES/5R.pdf used on input line 13.
+(pdftex.def)             Requested size: 329.95038pt x 211.1472pt.
+ [19]
+<FIGURES/model-5R_.pdf, id=453, 232.87pt x 124.465pt>
+File: FIGURES/model-5R_.pdf Graphic file (type pdf)
+
+<use FIGURES/model-5R_.pdf>
+Package pdftex.def Info: FIGURES/model-5R_.pdf used on input line 38.
+(pdftex.def)             Requested size: 267.7984pt x 143.13362pt.
+ [20pdfTeX warning (ext4): destination with the same identifier (name{figure.5}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.88 \end{align}
+                pdfTeX warning (ext4): destination with the same identifier (na
+me{figure.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.88 \end{align}
+                 <./FIGURES/5R.pdf> <./FIGURES/model-5R_.pdf>]
+Overfull \hbox (5.05533pt too wide) in paragraph at lines 122--126
+[]\OT1/cmr/m/n/10.95 Again fol-low-ing the pro-ce-dure de-scribed in Sec-tion [
+][]1.2[][], a ma-trix $[]$ sat-is-fy-ing the con-di-tion $[] [] \OT1/cmss/m/n/1
+0.95 =
+ []
+
+[21])
 No file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIE
 D TO PARALLEL MECHANISMS".bbl.
+
+Package natbib Warning: There were undefined citations.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 129.
-[3]
+[22]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 129.
 
 (./[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIED TO P
 ARALLEL MECHANISMS.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
-Package rerunfilecheck Info: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE 
-BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has not changed.
-(rerunfilecheck)             Checksum: D7EC6387F722283C80685F7BA35E5762;158.
 
 
-LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATI
+VE BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `"[HESS-COELHO, ORSINO, COUTINHO] AD
+APTATIVE BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out':
+(rerunfilecheck)             Before: 21376D244517BE5ECA0E61D9C481F894;941
+(rerunfilecheck)             After:  F5C3B651F1A585B3D6A38703C5CA4221;1011.
+
+LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
  ) 
 Here is how much of TeX's memory you used:
- 8478 strings out of 493304
- 118492 string characters out of 6139872
- 220893 words of memory out of 5000000
- 11732 multiletter control sequences out of 15000+600000
- 17499 words of font info for 68 fonts, out of 8000000 for 9000
+ 8927 strings out of 493304
+ 124589 string characters out of 6139872
+ 238512 words of memory out of 5000000
+ 11949 multiletter control sequences out of 15000+600000
+ 21225 words of font info for 82 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 34i,13n,31p,414b,366s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/boondox/zxxrw8a.pfb>
+ 34i,24n,31p,401b,532s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{equation.3.78} has been referenced but does not e
+xist, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.3.66} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.3.75} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.3.72} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.3.71} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.3.68} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.13} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.12} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.2.3} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.2.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.2.60} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.2.1} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.2.56} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.53} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.46} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.48} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.47} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.44} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.34} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.33} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.40} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.41} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.38} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.35} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.31} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.29} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.28} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.27} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.25} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.24} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.22} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.23} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.21} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.20} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.19} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.18} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.17} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.14} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.15} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.7} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.11} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.8} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.6} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.5} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.2} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.1.1} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.3.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.1.4} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.1.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.1.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.1.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+t10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmb10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/boondox/zxxrw8a.pfb>
 Output written on "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQ
-UES APPLIED TO PARALLEL MECHANISMS.pdf" (3 pages, 175294 bytes).
+UES APPLIED TO PARALLEL MECHANISMS.pdf" (22 pages, 876757 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 118 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
- 17 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 624 PDF objects out of 1000 (max. 8388607)
+ 552 compressed objects within 6 object streams
+ 200 named destinations out of 1000 (max. 500000)
+ 127 words of extra memory for PDF output out of 10000 (max. 10000000)
 
