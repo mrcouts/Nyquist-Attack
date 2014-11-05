@@ -1,0 +1,77 @@
+\subsection{Controle por modos deslizantes}\label{S02-3}
+
+Nesta se\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. O tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas, para n\~ao fugir do escopo do cap\'itulo. \\
+
+Seja um sistema din\^amico dado pela seguinte equa\c{c}\~ao diferencial:
+\begin{equation} \label{eq:SimpleODE}
+\ddot{x} = u
+\end{equation}
+
+Definimos a seguinte superf\'icie, chamada de superf\'icie de escorregamento:
+\begin{equation} \label{eq:SlidingSurface}
+s(e, \dot{e}) = - (\dot{e} + \lambda e) = 0, \, \lambda > 0
+\end{equation}
+
+Sendo $e = x_d - x$ o erro de controle e $x_d$ o sinal de refer\^encia. Repare que se o sistema estiver na superf\'icie de escorregamento, temos:
+\begin{equation} \label{eq:SlidingError}
+\dot{e} + \lambda e = 0 \Rightarrow e(t) = C e^{- \lambda t}
+\end{equation}
+
+Sendo assim, o erro cai exponencialmente para zero, com constante de tempo $1/\lambda$.
+
+Para encontrar a lei de controle que leva o sistema \`a superf\'icie de escorregamento, parte-se da defini\c{c}\~ao de $s$:
+
+$ s = -(\dot{e} + \lambda e) $ \\
+
+Derivando no tempo:
+\begin{equation} \label{eq:dotS}
+\dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}_d - \lambda \dot{e} 
+\end{equation}
+
+Substituindo \eqref{eq:SimpleODE} em \eqref{eq:dotS}:
+\begin{equation} \label{dotS2}
+\dot{s} = u - \ddot{x}_d - \lambda \dot{e}
+\end{equation}
+
+Utizando a seguinte lei de controle:
+\begin{equation} \label{SMControlLaw1D}
+u = \ddot{x}_d + \lambda \dot{e} - k \sign (s), \, k>0
+\end{equation}
+
+Temos:
+\begin{equation} \label{CloserLoop1D}
+\dot{s} = -k \sign(s) 
+\end{equation}
+
+Supondo que o sistema come\c{c}a em $s(0) = s_0 >0$. Resolvendo a EDO para $s>0$:
+
+$$ \dot{s} = -k \Rightarrow s = -k t + c $$
+$$ s(0) = s_0 \Rightarrow c = s_0 $$
+$$ \therefore s = s_0 - k t, \, s>0 $$
+
+Em $t = t_s = \frac{|s_0|}{k}$, $s$ chega em zero. Resolvendo a EDO para $s(t_s) = 0$:
+
+$$ \dot{s} = 0 \Rightarrow s =  c $$
+$$ s(t_s) = 0 \Rightarrow c = 0 $$
+
+Portanto, para a solu\c{c}\~ao da EDO para $s(0) = s_0 > 0$ é
+\begin{equation} \label{eq:SM-ODE-Sol1}
+s(t) =
+\begin{cases}
+s_0 - k t, \, t < t_s \\
+0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
+\end{cases}
+\end{equation}
+
+Resolvendo para $s(0) = s_0 < 0$, temos um resultado an\'alogo:
+
+\begin{equation} \label{eq:SM-ODE-Sol2}
+s(t) =
+\begin{cases}
+s_0 + k t, \, t < t_s \\
+0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
+\end{cases}
+\end{equation}
+
+Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero.
+

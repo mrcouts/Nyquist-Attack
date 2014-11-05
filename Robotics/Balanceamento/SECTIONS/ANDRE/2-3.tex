@@ -1,150 +1,61 @@
-\subsection{Inverse Dynamics and Control}\label{S02-3}
+\subsection{Introduction to sliding modes control}\label{S02-3}
 
-\noindent {\bf Din\^amica Inversa}\\
+In this subsection, a brief introduction to the sliding modes control will be done. The theme will be explored only to perform second order systems control, without parametric uncertainties, to not escape the scope of the chapter. \\
 
-O problema da din\^amica inversa constitui-se basicamente em calcular os esfor\c{c}os ativos aplicados pelos atuadores necess\'arios para um mecanismo realizar uma dada trajet\'oria.
-
-\'E um procedimento importante para avaliar a efic\'acia do balanceamento realizado, pois torna poss\'ivel comparar os esfor\c{c}os dos atuadores em diferentes trajet\'orias para o mecanismo balanceado e desbalanceado, mostrando em quais casos o balanceamento \'e vantajoso. \\
-
-Primeiramente, devemos fazer algumas defini\c{c}\~oes:
-
-\begin{itemize}
-\item $\mq_n\ssh$: vetor de coordenadas generalizadas independentes. \'E um sub-vetor de $\mq_n$, contendo $\nu\ssh(\ssS_n)$ elementos de $\mq_n$ independentes;
-\item $\mu_n$: vetor de $\nu\ssh(\ssS_n)$ entradas de controle independentes. Cada elemento $u_{n,k}$ de $\mu_n$ atua na dire\c{c}\~ao da velocidade generalizada independente $\dot{q}_{n,k}\ssh$.
-\item $\mh_n$: vetor dos v\'inculos cinem\'aticos de posi\c{c}\~ao. Como $h_{n, r}$ foi definido anteriormente, podemos definir:
-\begin{align}
-&	\mh_n = \nvct{h_{n,r}}
-	\qquad \text{for} \qquad
-	r \in \{1, 2, \ldots, \nu_q(\ssS_n) - \nu\ssh(\ssS_n)\}
-	\label{eq:Teste2} %\\
-\end{align}
-\item $\mathbb{\psi}_n$: vetor dos v\'inculos cinem\'aticos de velocidades. Como $\psi_{n, r}$ foi definido anteriormente, podemos definir:
-
-\begin{align}
-&	\mathbb{\psi}_n = \nvct{\psi_{n,r}}
-	\qquad \text{for} \qquad
-	r \in \{1, 2, \ldots, \nu_p(\ssS_n) - \nu\ssh(\ssS_n)\}
-	\label{eq:Teste3} %\\
-\end{align}
-
-\end{itemize}
-
-Feitas as defini\c{c}\~oes acima, pode-se dizer o objetivo da din\^amica inversa \'e: para cada instante de tempo $t$, conhencendo-se $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$, determinar $\mu_n$.
-
-Como foi visto na se\c{c}\~ao 2-1, a equa\c{c}\~ao \eqref{eq:02-112B} nos mostra que: \\
-
-$ \mC_{n}^\msT \left( \mf_{n} + \mg_{n} - \mM_{n} \, \dot \mp_{n} \right) = \mzr $ \\
-
-Usualmente \'e poss\'ivel decompor os esfor\c{c}os ativos $\mf_{n}$ em duas parcelas: $\mf'_n$, os esfor\c{c}os ativos provenientes dos atuadores, e $-\mz_n$, os esfor\c{c}os ativos provevientes da for\c{c}a peso.
-\begin{equation} \label{eq:ActiveForces}
-\mf_n (\mq_n) = \mf'_n - \mz_n(\mq_n)
-\end{equation}
-
-Supondo que a decomposi\c{c}\~ao acima seja poss\'ivel e n\~ao haja atua\c{c}\~ao redundante, temos que $\mf'_n$ cont\'em apenas $ \nu\ssh(\ssS_n)$ elementos n\~ao nulos. Supondo tamb\'em $\mC_n^\msT \mf'_n$ contenha apenas os elemementos n\~ao nulos de $\mf'_n$, o que \'e muito comum, temos que:
-\begin{equation} \label{eq:ControlInputs}
-\mu_n = \mC_n^\msT \mf'_n
-\end{equation}
-
-Al\'em disso, definimos:
-\begin{equation} \label{eq:GiroscopycForces}
-\mw_n (\mq_n, \mp_n) = -\mg_n (\mq_n, \mp_n)
-\end{equation}
-
-Substituindo \eqref{eq:ActiveForces}, \eqref{eq:ControlInputs}, e \eqref{eq:GiroscopycForces} em \eqref{eq:02-112B}, \'e poss\'ivel calcular dos esfor\c{c}os dos atuadores pela seguinte express\~ao:
-\begin{equation} \label{eq:InverseDynamics}
-\mu_n = \mC_n^\msT(\mq_n) \Big( \mM_n(\mq_n) \dot{\mp}_n + \mw_n(\mq_n, \mp_n) + \mz_n(\mq_n) \Big)
-\end{equation}
-
-Por\'em, nesta express\~ao, $\mu_n$ depende de $\mq_n$, $\mp_n$ e $\dot{\mp}_n$. Sendo assim, para o problema da din\^amica inversa ser resolvido, \'e necess\'ario determinar $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ dados $\mq_n\ssh$, $\dot{\mq}_n\ssh$ e $\ddot{\mq}_n\ssh$. \\
-
-Para determinar $\mq_n$ dado $\mq_n\ssh$, basta resolver as equa\c{c}\~oes vinculares de posi\c{c}\~ao: 
-\begin{equation} \label{eq:PositionConstraints}
-\mh_n(t, \mq_n) = \mzr
-\end{equation}
-
-%Como $\mh_n$ \'e um vetor de tamanho $\nu_q - \nu\ssh$ e $\nu\ssh$ elementos de $\mq_n$ s\~ao conhecidos ($\mq_n\ssh$), temos $\nu_q - \nu\ssh$ equa\c{c}\~oes linearmente independentes e $\nu_q - \nu\ssh$ incognitas, o que garante que o sistema tenha um n\'umero finito de solu\c{c}\~oes.
-
-Como os v\'inculos de posi\c{c}\~ao normalmente s\~ao equa\c{c}\~oes n\~ao-lineares, para configura\c{c}\~oes poss\'iveis \'e comum encontrar duas ou mais solu\c{c}\~oes para dados $t$ e $\mq_n\ssh$. Para saber qual \'e a solu\c{c}\~ao representativa para o problema em quest\~ao, \'e necess\'ario verificar qual delas \'e condizente com as configura\c{c}\~oes de montagem do mecanismo. No caso de solu\c{c}\~oes anal\'iticas, basta identificar qual solu\c{c}\~ao representa a configura\c{c}\~ao de montagem e utiliza-la para todos os pontos da trajet\'oria. No caso de solu\c{c}\~oes num\'ericas, \'e necess\'ario uma estimativa da configura\c{c}\~ao desejada para determinar $\mq_n$ com uma dada precis\~ao. Normalmente estima-se uma solu\c{c}\~ao para $t=0$, e para os demais instantes de tempo utiliza-se como estimativa a configura\c{c}\~ao do \'ultimo instante de tempo calculado. \\
-
-Com $\mq_n$ j\'a definido e dado $\dot{\mq}_n\ssh = \mp_n\ssh$, $\mp_n$ pode ser determinado atrav\'es dos v\'inculos de velocidade:
-\begin{equation} \label{eq:VelocityConstraints}
-\mathbb{\psi}_n (t, \mq, \mp) = \mzr
-\end{equation}
-
-%Como $\mathbb{\psi}_n$ \'e um vetor de tamanho $\nu_p - \nu\ssh$ e $\nu\ssh$ elementos de $\mp_n$ s\~ao conhecidos ($\mp_n\ssh$), temos $\nu_p - \nu\ssh$ equa\c{c}\~oes linearmente independentes e $\nu_p - \nu\ssh$ incognitas, o que garante que o sistema tenha um n\'umero finito de solu\c{c}\~oes.
-
-Os v\'inculos de velocidades normalmente s\~ao equa\c{c}\~oes lineares em $\mp_n$, o que torna simples determinar $\mp_n$, dados $t$, $\mq_n$ e $\mp_n\ssh$. \\
-
-Com $\mq_n$ e $\mp_n$ j\'a definidos e dado $\ddot{\mq}_n\ssh = \dot{\mp}_n\ssh$, $\dot{\mp}_n$ pode ser determinado atrav\'es dos v\'inculos de acelera\c{c}\~ao:
-\begin{equation} \label{eq:AccelerationConstraints}
-\mc_n (t, \mq, \mp, \dot{\mp}) = \mzr
-\end{equation}
-
-%Como $\mc_n$ \'e um vetor de tamanho $\nu_p - \nu\ssh$ e $\nu\ssh$ elementos de $\dot{\mp}_n$ s\~ao conhecidos ($\dot{\mp}_n\ssh$), temos $\nu_p - \nu\ssh$ equa\c{c}\~oes linearmente independentes e $\nu_p - \nu\ssh$ incognitas, o que garante que o sistema tenha um n\'umero finito de solu\c{c}\~oes.
-
-Analogamente aos v\'inculos de velocidades, os v\'inculos de acelera\c{c}\~oes normalmente s\~ao equa\c{c}\~oes lineares em $\dot{\mp}_n$, o que torna simples determinar $\dot{\mp}_n$, dados $t$, $\mq_n$, $\mp_n$ e $\dot{\mp}\ssh$. \\
-
-Finalmente, com $\mq_n$, $\mp_n$ e $\dot{\mp}_n$ determinados, a express\~ao \eqref{eq:InverseDynamics} pode ser utilizada para o c\'alculo dos esfor\c{c}os nos atuadores. \\
-
-
- 
-\noindent {\bf Controle por modos deslizantes}\\
-
-Nesta se\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. O tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas, para n\~ao fugir do escopo do cap\'itulo. \\
-
-Seja um sistema din\^amico dado pela seguinte equa\c{c}\~ao diferencial:
+Consider a dynamical system given by the following differential equation:
 \begin{equation} \label{eq:SimpleODE}
 \ddot{x} = u
 \end{equation}
 
-Definimos a seguinte superf\'icie, chamada de superf\'icie de escorregamento:
+A curve in the error phase plan, called sliding surface, can be defined:
 \begin{equation} \label{eq:SlidingSurface}
 s(e, \dot{e}) = - (\dot{e} + \lambda e) = 0, \, \lambda > 0
 \end{equation}
 
-Sendo $e = x_d - x$ o erro de controle e $x_d$ o sinal de refer\^encia. Repare que se o sistema estiver na superf\'icie de escorregamento, temos:
+Being $e = x^\sdia - x$ the error signal and $x^\diamond$ reference signal. Note that if the system is on the sliding surface, we have:
 \begin{equation} \label{eq:SlidingError}
-\dot{e} + \lambda e = 0 \Rightarrow e(t) = C e^{- \lambda t}
+\dot{e} + \lambda e = 0 \Rightarrow e(t) = c \, \mathsf{e}^{- \lambda t}
 \end{equation}
 
-Sendo assim, o erro cai exponencialmente para zero, com constante de tempo $1/\lambda$.
+Thus, the error drops exponentially to zero, with time constant $1/\lambda$.
 
-Para encontrar a lei de controle que leva o sistema \`a superf\'icie de escorregamento, parte-se da defini\c{c}\~ao de $s$:
+To find a control law that brings the system to the sliding surface, we start from the definition of $s$: \\
 
 $ s = -(\dot{e} + \lambda e) $ \\
 
-Derivando no tempo:
+Differentiating with respect to time:
+
 \begin{equation} \label{eq:dotS}
-\dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}_d - \lambda \dot{e} 
+\dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}^\sdia - \lambda \dot{e} 
 \end{equation}
 
-Substituindo \eqref{eq:SimpleODE} em \eqref{eq:dotS}:
+Substituting \eqref{eq:SimpleODE} into \eqref{eq:dotS}:
 \begin{equation} \label{dotS2}
-\dot{s} = u - \ddot{x}_d - \lambda \dot{e}
+\dot{s} = u - \ddot{x}^\sdia - \lambda \dot{e}
 \end{equation}
 
-Utizando a seguinte lei de controle:
+Using the following control law:
 \begin{equation} \label{SMControlLaw1D}
-u = \ddot{x}_d + \lambda \dot{e} - k \sign (s), \, k>0
+u = \ddot{x}^\sdia + \lambda \dot{e} - k \sign (s), \, k>0
 \end{equation}
 
-Temos:
+He have:
 \begin{equation} \label{CloserLoop1D}
 \dot{s} = -k \sign(s) 
 \end{equation}
 
-Supondo que o sistema come\c{c}a em $s(0) = s_0 >0$. Resolvendo a EDO para $s>0$:
+Suppose that the system starts at $s(0) = s_0 >0$. Solving the ODE for $s>0$:
 
-$$ \dot{s} = -k \Rightarrow s = -k t + C $$
-$$ s(0) = s_0 \Rightarrow C = s_0 $$
+$$ \dot{s} = -k \Rightarrow s = -k t + c $$
+$$ s(0) = s_0 \Rightarrow c = s_0 $$
 $$ \therefore s = s_0 - k t, \, s>0 $$
 
-Em $t = t_s = \frac{|s_0|}{k}$, $s$ chega em zero. Resolvendo a EDO para $s(t_s) = 0$:
+According to the solution found, when $t \rightarrow t_s = \frac{|s_0|}{k}$, $s \rightarrow 0 $. Solving the ODE for $s(t_s) = 0$:
 
-$$ \dot{s} = 0 \Rightarrow s =  C $$
-$$ s(t_s) = 0 \Rightarrow C = 0 $$
+$$ \dot{s} = 0 \Rightarrow s =  c $$
+$$ s(t_s) = 0 \Rightarrow c = 0 $$
 
-Portanto, para a solu\c{c}\~ao da EDO para $s(0) = s_0 > 0$ é
+Therefore, the solution of the ODE for $s(0) = s_0 > 0$ is given by:
 \begin{equation} \label{eq:SM-ODE-Sol1}
 s(t) =
 \begin{cases}
@@ -153,7 +64,7 @@ s_0 - k t, \, t < t_s \\
 \end{cases}
 \end{equation}
 
-Resolvendo para $s(0) = s_0 < 0$, temos um resultado an\'alogo:
+An analogous result is found solving the ODE for $s(0) = s_0 < 0$:
 
 \begin{equation} \label{eq:SM-ODE-Sol2}
 s(t) =
@@ -163,209 +74,6 @@ s_0 + k t, \, t < t_s \\
 \end{cases}
 \end{equation}
 
-Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero. \\
+Thus, it can be concluded that the ODE \eqref{CloserLoop1D} converges to $s=0$, regardless of the initial condition.
+Therefore, we have that the control law \eqref{SMControlLaw1D} makes the system represented by \eqref{eq:SimpleODE} follow the reference signal, because the error signal converges to zero.
 
-\noindent {\bf Controle por modos deslizantes extendido}\\
-
-Nesta se\c{c}\~ao, para tornar o texto mais leg\'ivel, iremos omitir o \'indice $n$ referente ao sub-sistema mec\^anico. \\
-
-Como foi visto na se\c{c}\~ao de modelagem, \'e muito conveniente utilizar coordenadas redundantes para realizar a modelagem de mecanismos paralelos. Sendo assim, propomos nesta se\c{c}\~ao uma lei de controle para sistemas descritos por coordenadas redundantes. Por\'em, para o ponto de vista do controle, \'e conveniente utilizar $\dot{\mq}$ no lugar de $\mp$, pois muitas vezes as velocidades generalizadas $\mp$ s\~ao n\~ao integr\'aveis, o que impossibilita a realimenta\c{c}\~ao de posi\c{c}\~ao na dire\c{c}\~ao destas coordenadas, ent\~ao assim faremos. \\
-
-Baseado nas equa\c{c}\~oes \eqref{eq:InverseDynamics} e \eqref{eq:02-201A}, seja o modelo de um sistema mec\^anico multi-corpos descrito pelas seguintes equa\c{c}\~oes:
-\begin{equation} \label{eq:MechanicalSystem}
-\begin{cases}
-\mC^\msT (\mq) \Big( \mM (\mq) \ddot{\mq} + \mw (\mq, \dot{\mq}) + \mz (\mq) \Big) = \mu \\
-\mA (\mq) \ddot{\mq} + \mb (\mq, \dot{\mq}) = \mzr
-\end{cases}
-\end{equation}
-
-De maneira matricial compacta:
-\begin{equation} \label{eq:MechanicalSystemMatrix}
-\begin{bmatrix}
-\mC^\msT \mM \\
-\mA
-\end{bmatrix}
-\ddot{\mq}
-=
-\begin{bmatrix}
-\mu - \mC^\msT(\mw + \mz) \\
--\mb
-\end{bmatrix}
-\end{equation}
-
-Gostaria que $ \ddot{\mq} = \mv $, sendo $\mv$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
-\begin{equation} \label{eq:ControlLawV}
-\mu = \mC^\msT ( \mM \mv + \mw + \mz )
-\end{equation}
-
-Como queremos que $ \ddot{\mq} = \mv $ e $\ddot{\mq}$ tem restri\c{c}\~oes, $\mv$ deve respeitar as mesmas restri\c{c}\~oes, ou seja:
-\begin{equation} \label{eq:ControlLawVRestriction}
-\mA \mv + \mb = \mzr
-\end{equation}
-
-Aplicando a lei de controle \eqref{eq:ControlLawV} e a restri\c{c}\~ao \eqref{eq:ControlLawVRestriction} em \eqref{eq:MechanicalSystemMatrix}, temos: \\
-
-$ \begin{bmatrix}
-\mC^\msT \mM \\
-\mA
-\end{bmatrix}
-\ddot{\mq}
-=
-\begin{bmatrix}
-\mC^\msT ( \mM \mv + \mw + \mz ) - \mC^\msT(\mw + \mz) \\
-\mA \mv
-\end{bmatrix}
-=
-\begin{bmatrix}
-\mC^\msT  \mM \mv \\
-\mA \mv
-\end{bmatrix}
-=
-\begin{bmatrix}
-\mC^\msT \mM \\
-\mA
-\end{bmatrix}
-\mv $
-
-\begin{equation} \label{eq:ClosedLoopV}
-\therefore \ddot{\mq} = \mv
-\end{equation}
-
-Seja $\mv'$ dado pela lei de controle por modos deslizantes:
-\begin{equation} \label{eq:SMControlowLasV1'}
-\mv' = \ddot{\mq}_{n, d} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me)
-\end{equation}
-Sendo $ \me = \mq_{n,d} - \mq $ o erro de controle e $\mq_{n,d}$ o sinal de refer\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv = \mv' $ :
-$$ \ddot{\mq} = \mv \Rightarrow  \ddot{\me} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me) = \mzr \Leftrightarrow \dot{\ms} = - k \sign(\ms)$$
-Isso garantiria que $\me \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais, como visto na se\c{c}\~ao anterior. \\
-
-Como temos restri\c{c}\~oes em $\mv$, procuramos $\mv$ mais pr\'oximo poss\'ivel de $\mv'$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
-\begin{equation} \label{eq:Optimization}
-\begin{aligned}
-& \underset{\mv}{\text{Min}}
-& & (\mv - \mv')^\msT \mM (\mv - \mv') \\
-& \text{tal que}
-& & \mA \mv + \mb = \mzr
-\end{aligned}
-\end{equation}
-
-Como $\mM$ \'e n\~ao-negativa definida, temos que $(\mv - \mv')^\msT \mM (\mv - \mv') \geq 0 $ para qualquer valor de $\mv$.
-
-Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema \'e equivalente:
-\begin{equation}
-\begin{aligned}
-& \underset{\mv, \mlambda}{\text{Min}}
-& & L = (\mv - \mv')^\msT \mM (\mv - \mv') + (\mA \mv + \mb)^\msT \mlambda \\
-\end{aligned}
-\end{equation}
-
-
-Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
-
-$$ \dl L = 0 \Rightarrow \dl \mv^\msT \mM (\mv - \mv') + (\mv - \mv')^\msT \mM \dl \mv + (\mA \dl \mv)^\msT \mlambda + (\mA \mv + \mb)^\msT \dl \mlambda = 0 $$
-$$ \Rightarrow \dl \mv^\msT \Big( (\mM + \mM^\msT)(\mv - \mv') + \mA^\msT \mlambda \Big) + \dl \mlambda^\msT (\mA \mv + \mb) = 0 $$
-
-Como $\mM$ \'e sim\'etrica e $\dl \mv$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
-\begin{equation} \label{eq:OptimizationSol}
-\begin{cases}
-2 \mM (\mv - \mv') + \mA^\msT \mlambda = \mzr \\
-\mA \mv + \mb = \mzr
-\end{cases}
-\end{equation}
-
-Como $\mC$ \'e o complemento ortogonal de $\mA$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC^\msT$, temos: \\
-
-$ 2 \mC^\msT \mM (\mv - \mv') + \mC^\msT \mA^\msT \mlambda = \mzr $
-$ \Rightarrow  \mC^\msT \mM (\mv - \mv')  = \mzr $
-\begin{equation} \label{eq:OptimizationSol2}
-\therefore \mC^\msT \mM \mv  = \mC^\msT \mM  \mv'
-\end{equation}
-
-Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\ddot{\mq} = \mv'$, segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
-\begin{equation} \label{eq:ControlLawFinal}
-\mu = \mC^\msT ( \mM \mv' + \mw + \mz )
-\end{equation}
-
-\newpage
-
-\noindent {\bf Prova que o m\'etodo converge, n\~ao vai para o livro}\\
-
-$$
-\begin{bmatrix}
-\mC^T \mM \\
-\mA
-\end{bmatrix}
-\ddot{\mq}
-=
-\begin{bmatrix}
-\mathbb{\zeta} \mu \\
--\mb
-\end{bmatrix}
-$$
-
-
-
-$$ \mu = \mathbb{\zeta}^{-1} \mC^T \mM \mu' $$
-$$ \mu' = \ddot{\mq}_d + \lambda \dot{\me} - k  \sign (\ms) $$
-
-$$ \ms = - \dot{\me} - \lambda \me $$
-$$ \dot{\ms} = - \ddot{\me} - \lambda \dot{\me} = \ddot{\mq} - \ddot{\mq}_d  - \lambda \dot{\me} $$
-$$ \dot{\ms} =  \begin{bmatrix}
-\mC^T \mM \\
-\mA
-\end{bmatrix}^{-1}
-\begin{bmatrix}
-\mathbb{\zeta} \mu \\
--\mb
-\end{bmatrix}
- - \ddot{\mq}_d  - \lambda \dot{\me} $$
- 
-Aplicando a lei de controle:
-
-$$ \dot{\ms} =  \begin{bmatrix}
-\mC^T \mM \\
-\mA
-\end{bmatrix}^{-1}
-\begin{bmatrix}
- \mC^T \mM (\ddot{\mq}_d + \lambda \dot{\me} - k  \sign (\ms)) \\
--\mb
-\end{bmatrix}
- - \ddot{\mq}_d  - \lambda \dot{\me} $$
- 
- $$ \dot{\ms} =  \begin{bmatrix}
-\mC^T \mM \\
-\mA
-\end{bmatrix}^{-1}
-\begin{bmatrix}
- \mC^T \mM (\ddot{\mq}_d + \lambda \dot{\me} - k  \sign (\ms)) -  \mC^T \mM(\ddot{\mq}_d  + \lambda \dot{\me}) \\
--\mb - \mA(\ddot{\mq}_d  + \lambda \dot{\me})
-\end{bmatrix} $$
-
- $$ \dot{\ms} =  \begin{bmatrix}
-\mC^T \mM \\
-\mA
-\end{bmatrix}^{-1}
-\begin{bmatrix}
-- \mC^T \mM  k  \sign (\ms) \\
--\mb - \mA(\ddot{\mq}_d  + \lambda \dot{\me})
-\end{bmatrix} $$
-
-Definindo:
-$$\begin{bmatrix}
-\mC^T \mM \\
-\mA
-\end{bmatrix}^{-1}
-=
-\begin{bmatrix}
-(\mC^T \mM)^\dagger & \mA^\dagger
-\end{bmatrix} $$
-
-Temos:
-
-$$\dot{\ms} = 
-- (\mC^T \mM)^\dagger \mC^T \mM  k  \sign (\ms) - \mA^\dagger\mb - \mA^\dagger \mA(\ddot{\mq}_d  + \lambda \dot{\me}) $$
-
-Sendo assim, se a seguinte inequação for respeitada para pelo menos $\nu\ssh$ componentes de $\dot{\ms}$, o erro vai a zero:
-
-$$\dot{\ms} = 
-- (\mC^T \mM)^\dagger \mC^T \mM  k  \sign (\ms) - \mA^\dagger\mb - \mA^\dagger \mA(\ddot{\mq}_d  + \lambda \dot{\me}) \leq \mzr $$

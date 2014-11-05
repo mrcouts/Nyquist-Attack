@@ -1,0 +1,166 @@
+\subsection{Controle por modos deslizantes extendido}\label{S02-4}
+
+As seen in subsections 2.1 and 2.2, it's very convenient to use redundant coordinates to perform parallel mechanism dynamic modeling. Thus, we propose in this subsection a control law for systems described by redundant coordinates.
+
+Let $\ssM$ be a multibody mechanical system whose mathematical model is given 
+by equations~(\ref{eq:02-207A},~\ref{eq:02-207B}).
+Suppose that each $\mf_{n}$ is an affine function of the control inputs $u_{n,k}$
+in which the coefficients of the $u_{n,k}$ may depend on the instantaneous
+configuration of the system.
+Suppose additionally that that all the $\mA_{n}$ are independent
+of the quasi-velocities $p_{n,j}$ and all the $\mM_{n}$, $\mg_{n}$, $\mA_{n}$ and $\mb_{n}$ 
+are independent of the $u_{n,k}$.
+Under these conditions, matrices $\mC_{n}$ will not depend on 
+any quasi-velocity, $\md$ can be expressed as an affine function of the control inputs 
+and $\mc$ is independent of them.
+Considering that the number of control inputs in a mechanical system is
+exactly equal to the number of degrees of freedom of $\ssM$, 
+it may be possible to solve equations~(\ref{eq:02-207B}) in order to
+express each $u_{n,k}$ as an explicit function of state variables and
+physical parameters of $\ssM$.
+For the sake of brevity, omitting the indexes $n$ of the subsystems of $\ssM$,
+it can be stated that, in such cases, for $k \in \{ 1,\ldots,\nu\ssh(\ssM) \}$:
+\begin{align}
+&	u_{k} = \sum_{r} C_{kr} (t,\mq) \Big(  \sum_{j} M_{rj}(t,\mq) \, \dot p_j 
+		+ w_{r}(t, \mq, \mp)
+		+ z_{r}(t, \mq) \Big)
+	\label{eq:03-101Especial} 
+\end{align}
+That is equivalent to:
+\begin{align}
+&	u_{k} = \sum_{r} M'_{kr}(t,\mq) \, \dot p_r 
+		+ w'_{k}(t, \mq, \mp)
+		+ z'_{k}(t, \mq)
+	\label{eq:03-101A} 
+\end{align}
+It can be shown that each $w'_{k}(t, \mq, \mp)$ can be expressed as a sum of 
+a bilinear and a linear function on the quasi-velocities, i.e., there are functions
+$D'_{krs}(t,\mq)$ and $B'_{kr}(t,\mq)$ such that:
+\begin{align}	
+&	w'_{k}(t, \mq, \mp) = \sum_{r} \sum_{s} D'_{krs}(t,\mq) \, p_r \, p_s
+		+ \sum_{r} B'_{kr}(t,\mq) \, p_r
+	\label{eq:03-101B}	
+\end{align}
+Adaptive balancing types will be defined in the next section based on equation~(\ref{eq:03-101A}).
+
+For keeping the sake of brevity, the indexes $n$ of the subsystems of $\ssM$ will be omitted from this point in this subsection.
+
+From the control perspective, it's convenient to use $\dot{\mq}$ instead of $\mp$, because the quasi-velocities $\mp$ usually are not integrable, what prevents the position feedback in the direction of these coordinates, then we will do so.
+
+Based on equations \eqref{eq:03-101Especial} and \eqref{eq:02-201A}, consider the dynamic model of a multi-body mechanical system described by the following equations:
+
+\begin{equation} \label{eq:MechanicalSystem}
+\begin{cases}
+\mC^\msT (t, \mq) \Big( \mM (t, \mq) \ddot{\mq} + \mw (t, \mq, \dot{\mq}) + \mz (t, \mq) \Big) = \mu \\
+\mA (t, \mq) \ddot{\mq} + \mb (t, \mq, \dot{\mq}) = \mzr
+\end{cases}
+\end{equation}
+
+Rewriting in a compact matrix way:
+
+\begin{equation} \label{eq:MechanicalSystemMatrix}
+\begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\ddot{\mq}
+=
+\begin{bmatrix}
+\mu - \mC^\msT(\mw + \mz) \\
+-\mb
+\end{bmatrix}
+\end{equation}
+
+We want to find a control law such that, in closed loop, $ \ddot{\mq} = \mv $, being $\mv$ a control input matrix column. For this to happen, the following control law is used:
+\begin{equation} \label{eq:ControlLawV}
+\mu = \mC^\msT ( \mM \mv + \mw + \mz )
+\end{equation}
+
+As we want $ \ddot{\mq} = \mv $ and $\ddot{\mq}$ has restrictions, $\mv$ must respect the same restrictions, i.e.:
+\begin{equation} \label{eq:ControlLawVRestriction}
+\mA \mv + \mb = \mzr
+\end{equation}
+
+Applying the control law \eqref{eq:ControlLawV} and the rectritions \eqref{eq:ControlLawVRestriction} in \eqref{eq:MechanicalSystemMatrix}, we have: \\
+
+$ \begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\ddot{\mq}
+=
+\begin{bmatrix}
+\mC^\msT ( \mM \mv + \mw + \mz ) - \mC^\msT(\mw + \mz) \\
+\mA \mv
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mC^\msT  \mM \mv \\
+\mA \mv
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\mv $
+
+\begin{equation} \label{eq:ClosedLoopV}
+\therefore \ddot{\mq} = \mv
+\end{equation}
+
+Let $\mv'$ be given by the sliding modes control law:
+\begin{equation} \label{eq:SMControlowLasV1'}
+\mv' = \ddot{\mq}_{n}^\sdia + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me)
+\end{equation}
+Being $ \me = \mq_{n}^\sdia - \mq $ the error signal and $\mq_{n}^\sdia$ the reference signal. If there wasn't any retrictions, we could do $ \mv = \mv' $ :
+$$ \ddot{\mq} = \mv \Rightarrow  \ddot{\me} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me) = \mzr \Leftrightarrow \dot{\ms} = - k \sign(\ms)$$
+This would ensure that $\me \rightarrow 0$ when $t \rightarrow \infty$ for any initial condition, as seen in the last subsection. \\
+
+As we have resctriction on $\mv$, we look for the closest possible $\mv$ of $\mv'$ 
+by solving the following optimization problem:
+\begin{equation} \label{eq:Optimization}
+\begin{aligned}
+& \underset{\mv}{\min}
+& & (\mv - \mv')^\msT \mM (\mv - \mv') \\
+& \text{s.t.}
+& & \mA \mv + \mb = \mzr
+\end{aligned}
+\end{equation}
+
+As $\mM$ is positive-semidefinite, we have $(\mv - \mv')^\msT \mM (\mv - \mv') \geq 0 $ for any $\mv$.
+
+Applying the method of Lagrange multipliers, it can be said that the following problem is equivalent to:
+\begin{equation}
+\begin{aligned}
+& \underset{\mv, \mlambda}{\min}
+& & L = (\mv - \mv')^\msT \mM (\mv - \mv') + (\mA \mv + \mb)^\msT \mlambda \\
+\end{aligned}
+\end{equation}
+
+To solve the problem, the Lagrangian function must be stationary:
+
+$$ \dl L = 0 \Rightarrow \dl \mv^\msT \mM (\mv - \mv') + (\mv - \mv')^\msT \mM \dl \mv + (\mA \dl \mv)^\msT \mlambda + (\mA \mv + \mb)^\msT \dl \mlambda = 0 $$
+$$ \Rightarrow \dl \mv^\msT \Big( (\mM + \mM^\msT)(\mv - \mv') + \mA^\msT \mlambda \Big) + \dl \mlambda^\msT (\mA \mv + \mb) = 0 $$
+
+As $\mM$ is symmetric and $\dl \mv$ and $\dl \mlambda$ are arbitrary, we have:
+\begin{equation} \label{eq:OptimizationSol}
+\begin{cases}
+2 \mM (\mv - \mv') + \mA^\msT \mlambda = \mzr \\
+\mA \mv + \mb = \mzr
+\end{cases}
+\end{equation}
+
+As $\mC$ is the orthogonal complement of $\mA$, pre-multiplying the first equation of \eqref{eq:OptimizationSol} by $\mC^\msT$, we have: \\
+
+$ 2 \mC^\msT \mM (\mv - \mv') + \mC^\msT \mA^\msT \mlambda = \mzr $
+$ \Rightarrow  \mC^\msT \mM (\mv - \mv')  = \mzr $
+\begin{equation} \label{eq:OptimizationSol2}
+\therefore \mC^\msT \mM \mv  = \mC^\msT \mM  \mv'
+\end{equation}
+
+Thus, we have that the control law that makes the closed loop system as close as possible of $\ddot{\mq} = \mv'$, 
+according to the optimization criterion adopted, is:
+\begin{equation} \label{eq:ControlLawFinal}
+\mu = \mC^\msT ( \mM \mv' + \mw + \mz )
+\end{equation}

@@ -1,0 +1,163 @@
+\subsection{Controle por modos deslizantes extendido}\label{S02-4}
+
+Como foi visto na se\c{c}\~ao de modelagem, \'e muito conveniente utilizar coordenadas redundantes para realizar a modelagem de mecanismos paralelos. Sendo assim, propomos nesta se\c{c}\~ao uma lei de controle para sistemas descritos por coordenadas redundantes.
+
+Let $\ssM$ be a multibody mechanical system whose mathematical model is given 
+by equations~(\ref{eq:02-207A},~\ref{eq:02-207B}).
+Suppose that each $\mf_{n}$ is an affine function of the control inputs $u_{n,k}$
+in which the coefficients of the $u_{n,k}$ may depend on the instantaneous
+configuration of the system.
+Suppose additionally that that all the $\mA_{n}$ are independent
+of the quasi-velocities $p_{n,j}$ and all the $\mM_{n}$, $\mg_{n}$, $\mA_{n}$ and $\mb_{n}$ 
+are independent of the $u_{n,k}$.
+Under these conditions, matrices $\mC_{n}$ will not depend on 
+any quasi-velocity, $\md$ can be expressed as an affine function of the control inputs 
+and $\mc$ is independent of them.
+Considering that the number of control inputs in a mechanical system is
+exactly equal to the number of degrees of freedom of $\ssM$, 
+it may be possible to solve equations~(\ref{eq:02-207B}) in order to
+express each $u_{n,k}$ as an explicit function of state variables and
+physical parameters of $\ssM$.
+For the sake of brevity, omitting the indexes $n$ of the subsystems of $\ssM$,
+it can be stated that, in such cases, for $k \in \{ 1,\ldots,\nu\ssh(\ssM) \}$:
+\begin{align}
+&	u_{k} = \sum_{r} C_{kr} (t,\mq) \Big(  \sum_{i} M_{ri}(t,\mq) \, \dot p_i 
+		+ w_{i}(t, \mq, \mp)
+		+ z_{i}(t, \mq) \Big)
+	\label{eq:03-101Especial} 
+\end{align}
+That is equivalent to:
+\begin{align}
+&	u_{k} = \sum_{r} M'_{kr}(t,\mq) \, \dot p_r 
+		+ w'_{k}(t, \mq, \mp)
+		+ z'_{k}(t, \mq)
+	\label{eq:03-101A} 
+\end{align}
+It can be shown that each $w'_{k}(t, \mq, \mp)$ can be expressed as a sum of 
+a bilinear and a linear function on the quasi-velocities, i.e., there are functions
+$D'_{krs}(t,\mq)$ and $B'_{kr}(t,\mq)$ such that:
+\begin{align}	
+&	w'_{k}(t, \mq, \mp) = \sum_{r} \sum_{s} D'_{krs}(t,\mq) \, p_r \, p_s
+		+ \sum_{r} B'_{kr}(t,\mq) \, p_r
+	\label{eq:03-101B}	
+\end{align}
+Adaptive balancing types will be defined in the next section based on equation~(\ref{eq:03-101A}).
+
+For keeping the sake of brevity, the indexes $n$ of the subsystems of $\ssM$ will be omitted from this point in this sub-section.
+
+Para o ponto de vista do controle, \'e conveniente utilizar $\dot{\mq}$ no lugar de $\mp$, pois muitas vezes as velocidades generalizadas $\mp$ s\~ao n\~ao integr\'aveis, o que impossibilita a realimenta\c{c}\~ao de posi\c{c}\~ao na dire\c{c}\~ao destas coordenadas, ent\~ao assim faremos. \\
+
+Baseado nas equa\c{c}\~oes \eqref{eq:03-101Especial}  e \eqref{eq:02-201A}, seja o modelo de um sistema mec\^anico multi-corpos descrito pelas seguintes equa\c{c}\~oes:
+\begin{equation} \label{eq:MechanicalSystem}
+\begin{cases}
+\mC^\msT (\mq) \Big( \mM (\mq) \ddot{\mq} + \mw (\mq, \dot{\mq}) + \mz (\mq) \Big) = \mu \\
+\mA (\mq) \ddot{\mq} + \mb (\mq, \dot{\mq}) = \mzr
+\end{cases}
+\end{equation}
+
+De maneira matricial compacta:
+\begin{equation} \label{eq:MechanicalSystemMatrix}
+\begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\ddot{\mq}
+=
+\begin{bmatrix}
+\mu - \mC^\msT(\mw + \mz) \\
+-\mb
+\end{bmatrix}
+\end{equation}
+
+Gostaria que $ \ddot{\mq} = \mv $, sendo $\mv$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
+\begin{equation} \label{eq:ControlLawV}
+\mu = \mC^\msT ( \mM \mv + \mw + \mz )
+\end{equation}
+
+Como queremos que $ \ddot{\mq} = \mv $ e $\ddot{\mq}$ tem restri\c{c}\~oes, $\mv$ deve respeitar as mesmas restri\c{c}\~oes, ou seja:
+\begin{equation} \label{eq:ControlLawVRestriction}
+\mA \mv + \mb = \mzr
+\end{equation}
+
+Aplicando a lei de controle \eqref{eq:ControlLawV} e a restri\c{c}\~ao \eqref{eq:ControlLawVRestriction} em \eqref{eq:MechanicalSystemMatrix}, temos: \\
+
+$ \begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\ddot{\mq}
+=
+\begin{bmatrix}
+\mC^\msT ( \mM \mv + \mw + \mz ) - \mC^\msT(\mw + \mz) \\
+\mA \mv
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mC^\msT  \mM \mv \\
+\mA \mv
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\mv $
+
+\begin{equation} \label{eq:ClosedLoopV}
+\therefore \ddot{\mq} = \mv
+\end{equation}
+
+Seja $\mv'$ dado pela lei de controle por modos deslizantes:
+\begin{equation} \label{eq:SMControlowLasV1'}
+\mv' = \ddot{\mq}_{n, d} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me)
+\end{equation}
+Sendo $ \me = \mq_{n,d} - \mq $ o erro de controle e $\mq_{n,d}$ o sinal de refer\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv = \mv' $ :
+$$ \ddot{\mq} = \mv \Rightarrow  \ddot{\me} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me) = \mzr \Leftrightarrow \dot{\ms} = - k \sign(\ms)$$
+Isso garantiria que $\me \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais, como visto na se\c{c}\~ao anterior. \\
+
+Como temos restri\c{c}\~oes em $\mv$, procuramos $\mv$ mais pr\'oximo poss\'ivel de $\mv'$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
+\begin{equation} \label{eq:Optimization}
+\begin{aligned}
+& \underset{\mv}{\text{Min}}
+& & (\mv - \mv')^\msT \mM (\mv - \mv') \\
+& \text{tal que}
+& & \mA \mv + \mb = \mzr
+\end{aligned}
+\end{equation}
+
+Como $\mM$ \'e n\~ao-negativa definida, temos que $(\mv - \mv')^\msT \mM (\mv - \mv') \geq 0 $ para qualquer valor de $\mv$.
+
+Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema \'e equivalente:
+\begin{equation}
+\begin{aligned}
+& \underset{\mv, \mlambda}{\text{Min}}
+& & L = (\mv - \mv')^\msT \mM (\mv - \mv') + (\mA \mv + \mb)^\msT \mlambda \\
+\end{aligned}
+\end{equation}
+
+
+Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
+
+$$ \dl L = 0 \Rightarrow \dl \mv^\msT \mM (\mv - \mv') + (\mv - \mv')^\msT \mM \dl \mv + (\mA \dl \mv)^\msT \mlambda + (\mA \mv + \mb)^\msT \dl \mlambda = 0 $$
+$$ \Rightarrow \dl \mv^\msT \Big( (\mM + \mM^\msT)(\mv - \mv') + \mA^\msT \mlambda \Big) + \dl \mlambda^\msT (\mA \mv + \mb) = 0 $$
+
+Como $\mM$ \'e sim\'etrica e $\dl \mv$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
+\begin{equation} \label{eq:OptimizationSol}
+\begin{cases}
+2 \mM (\mv - \mv') + \mA^\msT \mlambda = \mzr \\
+\mA \mv + \mb = \mzr
+\end{cases}
+\end{equation}
+
+Como $\mC$ \'e o complemento ortogonal de $\mA$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC^\msT$, temos: \\
+
+$ 2 \mC^\msT \mM (\mv - \mv') + \mC^\msT \mA^\msT \mlambda = \mzr $
+$ \Rightarrow  \mC^\msT \mM (\mv - \mv')  = \mzr $
+\begin{equation} \label{eq:OptimizationSol2}
+\therefore \mC^\msT \mM \mv  = \mC^\msT \mM  \mv'
+\end{equation}
+
+Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\ddot{\mq} = \mv'$, segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
+\begin{equation} \label{eq:ControlLawFinal}
+\mu = \mC^\msT ( \mM \mv' + \mw + \mz )
+\end{equation}
