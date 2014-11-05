@@ -1,54 +1,27 @@
-\subsection{Controle por modos deslizantes extendido}\label{S02-4}
+\subsection{Extended sliding modes control techniques}\label{S02-4}
 
 As seen in subsections 2.1 and 2.2, it's very convenient to use redundant coordinates to perform parallel mechanism dynamic modeling. Thus, we propose in this subsection a control law for systems described by redundant coordinates.
 
-Let $\ssM$ be a multibody mechanical system whose mathematical model is given 
+For the sake of brevity, the indexes $n$ of the subsystems of $\ssM$ will be omitted in this subsection. Let $\ssM$ be a multibody mechanical system whose mathematical model is given 
 by equations~(\ref{eq:02-207A},~\ref{eq:02-207B}).
-Suppose that each $\mf_{n}$ is an affine function of the control inputs $u_{n,k}$
-in which the coefficients of the $u_{n,k}$ may depend on the instantaneous
+Suppose that each $\mf$ is an affine function of the control inputs $u_{k}$
+in which the coefficients of the $u_{k}$ may depend on the instantaneous
 configuration of the system.
-Suppose additionally that that all the $\mA_{n}$ are independent
-of the quasi-velocities $p_{n,j}$ and all the $\mM_{n}$, $\mg_{n}$, $\mA_{n}$ and $\mb_{n}$ 
-are independent of the $u_{n,k}$.
-Under these conditions, matrices $\mC_{n}$ will not depend on 
+Suppose additionally that that all the $\mA$ are independent
+of the quasi-velocities $p_{j}$ and all the $\mM$, $\mg$, $\mA$ and $\mb$ 
+are independent of the $u_{k}$.
+Under these conditions, matrices $\mC$ will not depend on 
 any quasi-velocity, $\md$ can be expressed as an affine function of the control inputs 
 and $\mc$ is independent of them.
 Considering that the number of control inputs in a mechanical system is
-exactly equal to the number of degrees of freedom of $\ssM$, 
-it may be possible to solve equations~(\ref{eq:02-207B}) in order to
-express each $u_{n,k}$ as an explicit function of state variables and
-physical parameters of $\ssM$.
-For the sake of brevity, omitting the indexes $n$ of the subsystems of $\ssM$,
-it can be stated that, in such cases, for $k \in \{ 1,\ldots,\nu\ssh(\ssM) \}$:
-\begin{align}
-&	u_{k} = \sum_{r} C_{kr} (t,\mq) \Big(  \sum_{j} M_{rj}(t,\mq) \, \dot p_j 
-		+ w_{r}(t, \mq, \mp)
-		+ z_{r}(t, \mq) \Big)
-	\label{eq:03-101Especial} 
-\end{align}
-That is equivalent to:
-\begin{align}
-&	u_{k} = \sum_{r} M'_{kr}(t,\mq) \, \dot p_r 
-		+ w'_{k}(t, \mq, \mp)
-		+ z'_{k}(t, \mq)
-	\label{eq:03-101A} 
-\end{align}
-It can be shown that each $w'_{k}(t, \mq, \mp)$ can be expressed as a sum of 
-a bilinear and a linear function on the quasi-velocities, i.e., there are functions
-$D'_{krs}(t,\mq)$ and $B'_{kr}(t,\mq)$ such that:
-\begin{align}	
-&	w'_{k}(t, \mq, \mp) = \sum_{r} \sum_{s} D'_{krs}(t,\mq) \, p_r \, p_s
-		+ \sum_{r} B'_{kr}(t,\mq) \, p_r
-	\label{eq:03-101B}	
-\end{align}
-Adaptive balancing types will be defined in the next section based on equation~(\ref{eq:03-101A}).
+exactly equal to the number of degrees of freedom of $\ssM$:
+\begin{equation} \label{eq:InverseDynamics}
+\mu = \mC^\msT(t,\mq) \Big( \mM (t, \mq) \dot{\mp} + \mw(t,\mq,\mp) + \mz(t,\mq) \Big)
+\end{equation}
 
-For keeping the sake of brevity, the indexes $n$ of the subsystems of $\ssM$ will be omitted from this point in this subsection.
+From the control perspective, it is convenient to define $\mp = \dot \mq$, in order to have a position feedback control.
 
-From the control perspective, it's convenient to use $\dot{\mq}$ instead of $\mp$, because the quasi-velocities $\mp$ usually are not integrable, what prevents the position feedback in the direction of these coordinates, then we will do so.
-
-Based on equations \eqref{eq:03-101Especial} and \eqref{eq:02-201A}, consider the dynamic model of a multi-body mechanical system described by the following equations:
-
+Based on equations \eqref{eq:InverseDynamics} and \eqref{eq:02-201A}, consider the dynamic model of a multi-body mechanical system described by the following equations:
 \begin{equation} \label{eq:MechanicalSystem}
 \begin{cases}
 \mC^\msT (t, \mq) \Big( \mM (t, \mq) \ddot{\mq} + \mw (t, \mq, \dot{\mq}) + \mz (t, \mq) \Big) = \mu \\
@@ -103,10 +76,11 @@ $ \begin{bmatrix}
 \mC^\msT \mM \\
 \mA
 \end{bmatrix}
-\mv $
+\mv $ \\
 
+Once the matrix $\begin{bmatrix} \mC^\msT \mM \\ \mA \end{bmatrix}$ is non-singular:
 \begin{equation} \label{eq:ClosedLoopV}
-\therefore \ddot{\mq} = \mv
+\ddot{\mq} = \mv
 \end{equation}
 
 Let $\mv'$ be given by the sliding modes control law:
