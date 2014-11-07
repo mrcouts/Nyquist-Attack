@@ -6,55 +6,48 @@ Consider a dynamical system given by the following differential equation:
 \begin{equation} \label{eq:SimpleODE}
 \ddot{x} = u
 \end{equation}
-
 A curve in the error phase plan, called sliding surface, can be defined:
 \begin{equation} \label{eq:SlidingSurface}
 s(e, \dot{e}) = - (\dot{e} + \lambda e) = 0, \, \lambda > 0
 \end{equation}
-
-Being $e = x^\sdia - x$ the error signal and $x^\sdia$ reference signal. Note that if the system is on the sliding surface, we have:
+Being $e = x^\sdia - x$ the error signal and $x^\sdia$ reference signal. 
+Note that if the system is on the sliding surface, then:
 \begin{equation} \label{eq:SlidingError}
 \dot{e} + \lambda e = 0 \Rightarrow e(t) = c \, \mathsf{e}^{- \lambda t}
 \end{equation}
-
 Thus, the error drops exponentially to zero, with time constant $1/\lambda$.
 
-To find a control law that brings the system to the sliding surface, we start from the definition of $s$: \\
-
-$ s = -(\dot{e} + \lambda e) $ \\
-
+To find a control law that brings the system to the sliding surface, define:
+\begin{align*} 
+s = -(\dot{e} + \lambda e) 
+\end{align*} 
 Differentiating with respect to time:
-
 \begin{equation} \label{eq:dotS}
 \dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}^\sdia - \lambda \dot{e} 
 \end{equation}
-
 Substituting \eqref{eq:SimpleODE} into \eqref{eq:dotS}:
 \begin{equation} \label{dotS2}
 \dot{s} = u - \ddot{x}^\sdia - \lambda \dot{e}
 \end{equation}
-
 Using the following control law:
 \begin{equation} \label{SMControlLaw1D}
 u = \ddot{x}^\sdia + \lambda \dot{e} - k \sign (s), \, k>0
 \end{equation}
-
-He have:
+it can be stated that:
 \begin{equation} \label{CloserLoop1D}
 \dot{s} = -k \sign(s) 
 \end{equation}
-
 Suppose that the system starts at $s(0) = s_0 >0$. Solving the ODE for $s>0$:
-
-$$ \dot{s} = -k \Rightarrow s = -k t + c $$
-$$ s(0) = s_0 \Rightarrow c = s_0 $$
-$$ \therefore s = s_0 - k t, \, s>0 $$
-
-According to the solution found, when $t \rightarrow t_s = \frac{|s_0|}{k}$, $s \rightarrow 0 $. Solving the ODE for $s(t_s) = 0$:
-
-$$ \dot{s} = 0 \Rightarrow s =  c $$
-$$ s(t_s) = 0 \Rightarrow c = 0 $$
-
+\begin{align*}
+& \dot{s} = -k \Rightarrow s = -k t + c \\
+& s(0) = s_0 \Rightarrow c = s_0 \\
+& \therefore s = s_0 - k t, \, s>0 
+\end{align*}
+According to the solution found, when $t \rightarrow t_s = {|s_0|}/{k}$, $s \rightarrow 0 $. Solving the ODE for $s(t_s) = 0$:
+\begin{align*}
+& \dot{s} = 0 \Rightarrow s =  c \\
+& s(t_s) = 0 \Rightarrow c = 0 
+\end{align*}
 Therefore, the solution of the ODE for $s(0) = s_0 > 0$ is given by:
 \begin{equation} \label{eq:SM-ODE-Sol1}
 s(t) =
@@ -63,9 +56,7 @@ s_0 - k t, \, t < t_s \\
 0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
 \end{cases}
 \end{equation}
-
 An analogous result is found solving the ODE for $s(0) = s_0 < 0$:
-
 \begin{equation} \label{eq:SM-ODE-Sol2}
 s(t) =
 \begin{cases}
@@ -75,5 +66,5 @@ s_0 + k t, \, t < t_s \\
 \end{equation}
 
 Thus, it can be concluded that the ODE \eqref{CloserLoop1D} converges to $s=0$, regardless of the initial condition.
-Therefore, we have that the control law \eqref{SMControlLaw1D} makes the system represented by \eqref{eq:SimpleODE} follow the reference signal, because the error signal converges to zero.
+Therefore, the control law \eqref{SMControlLaw1D} makes the system represented by \eqref{eq:SimpleODE} follow the reference signal, because the error signal converges to zero.
 

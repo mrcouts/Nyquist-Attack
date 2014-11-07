@@ -1,0 +1,155 @@
+%*******************************************************************************************%
+%            	DYNAMIC MODELLING AND CONTROL OF BALANCED PARALLEL MECHANISMS           	%
+% 																					   		%
+% July 11, 2014														 						%
+% Authors: Renato M. M. Orsino, Andre G. Coutinho, Tarcisio A. H. Coelho					%
+% bash adaptive.sh							 												%
+% 																							%
+%*******************************************************************************************%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt,brazil,fleqn]{article}
+\synctex=1
+%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage{natbib}
+\usepackage[english]{babel}
+% \usepackage{amsmath,amssymb,amsthm,amsfonts,textcomp}
+% \usepackage{eucal,eufrak,mathrsfs,bbm,stmaryrd}
+\usepackage{color}
+\usepackage{amsthm}
+\usepackage{array,hhline,supertabular}
+\usepackage[colorlinks,citecolor=black,urlcolor=black,linkcolor=black]{hyperref}
+\usepackage[pdftex]{graphicx}
+\usepackage{multicol}
+\usepackage[symbol]{footmisc}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{nomencl}
+\usepackage{EXTRAS/special-char}
+\usepackage{EXTRAS/special-conf}
+\usepackage{subfigure}
+
+\graphicspath{{FIGURES/}{../FIGURES/}}
+\makenomenclature
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+{\bf \huge Dynamic modelling and control of balanced parallel mechanisms}\\
+
+\noindent
+{\Large 	Renato Maia Matarazzo Orsino$\,{}^\text{a}$, 
+			Andr\'e Garnier Coutinho$\,{}^\text{b}$,
+			Tarcisio Antonio Hess Coelho$\,{}^\text{c}$
+}\\
+
+\noindent
+{${}^\text{a}$ \it Department of Mechanical Engineering, Escola Politecnica, University of Sao Paulo, Brazil.
+E-mail: renato.orsino@gmail.com}
+
+\noindent
+{${}^\text{b}$ \it Department of Mechatronics and Mechanical Systems Engineering, Escola Politecnica, 
+University of Sao Paulo, Brazil. E-mail: andre.garnier.coutinho@usp.br}
+
+\noindent
+{${}^\text{c}$ \it Department of Mechatronics and Mechanical Systems Engineering, Escola Politecnica, 
+University of Sao Paulo, Brazil. E-mail: tarchess@usp.br}
+
+\vspace{24pt}
+
+% \begin{multicols}{1}
+
+\begin{abstract}
+Balancing is an important issue related to the design of mechanical systems in general,
+and also parallel mechanisms, in particular. In fact, the performance of parallel mechanisms
+associated to specific applications depends on the choice of the balancing method, namely, 
+either static or dynamic, either passive or active, whether it is valid for a given trajectory
+or even for any motion.
+The main contribution of this work is to highlight the importance of the dynamic modelling 
+process in order to achieve the compensation conditions associated to the chosen 
+balancing technique. Due to the fact that parallel mechanisms have highly complex structures,
+the use of dynamic formalisms that employ redundant generalized coordinates,
+in association with the successive coupling of additional balancing elements 
+to the original system model, can bring remarkable benefits.
+Additionally, this book chapter also discusses the impact of
+the dynamic model, developed in accordance with the methodology shown here, for the 
+control strategy of parallel mechanisms.
+Finally, the simulation results demonstrates
+how effective is the presented methodology for the planar 5-bar with revolute joints (5R). 
+
+\vspace{10pt}
+
+\noindent
+KEYWORDS: {Dynamic modelling, balancing, parallel mechanisms, control}
+\end{abstract}
+
+
+
+\input{EXTRAS/symbols}
+
+
+%--------------------INTRODUCTION--------------------%
+
+\input{SECTIONS/TARCISIO/1}
+
+
+%--------------------MODELING--------------------%
+
+\input{SECTIONS/RENATO/2-1}
+
+\input{SECTIONS/RENATO/2-2}
+
+\input{SECTIONS/ANDRE/2-3}
+
+\input{SECTIONS/ANDRE/2-4}
+
+
+%--------------------BALANCING--------------------%
+
+\input{SECTIONS/RENATO/3-1}
+
+\input{SECTIONS/RENATO/3-2}
+
+
+%--------------------EXAMPLE---------------------%
+
+\input{SECTIONS/RENATO/4-1}
+
+\input{SECTIONS/RENATO/4-2}
+
+\input{SECTIONS/RENATO/4-3}
+
+\input{SECTIONS/ANDRE/4-4}
+
+
+%--------------------CONCLUSIONS--------------------%
+
+%\newpage
+
+\input{SECTIONS/TARCISIO/5}
+
+
+%--------------------ACKNOWLEDGMENTS--------------------%
+
+\section*{Acknowledgments}
+
+
+%--------------------BIBLIOGRAPHY--------------------%
+
+% \newpage
+\phantomsection 
+\input{EXTRAS/bibliography}
+
+
+% \end{multicols}
+
+
+\end{document}
+

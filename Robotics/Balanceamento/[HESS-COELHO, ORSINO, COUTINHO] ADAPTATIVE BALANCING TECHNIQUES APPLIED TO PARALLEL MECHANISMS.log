@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.4)  7 NOV 2014 11:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.4)  7 NOV 2014 12:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -645,326 +645,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--52
 (./EXTRAS/symbols.tex
 No file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIE
 D TO PARALLEL MECHANISMS".nls.
-) (./SECTIONS/TARCISIO/1.tex
-
-Package natbib Warning: Citation `1wijk' on page 1 undefined on input line 23.
-
-
-Package natbib Warning: Citation `2arakelian' on page 1 undefined on input line
- 23.
-
-
-Package natbib Warning: Citation `3seo' on page 1 undefined on input line 23.
-
-
-Package natbib Warning: Citation `4wu' on page 1 undefined on input line 23.
-
-
-Package natbib Warning: Citation `6wang' on page 1 undefined on input line 23.
-
-
-Package natbib Warning: Citation `7wang' on page 1 undefined on input line 23.
-
-
-Package natbib Warning: Citation `12russo' on page 1 undefined on input line 23
-.
-
-
-Package natbib Warning: Citation `15coelho' on page 1 undefined on input line 2
-3.
-
-
-Package natbib Warning: Citation `16moradi' on page 1 undefined on input line 2
-3.
-
-
-Package natbib Warning: Citation `2arakelian' on page 1 undefined on input line
- 24.
-
-
-Package natbib Warning: Citation `4wu' on page 1 undefined on input line 24.
-
-
-Package natbib Warning: Citation `15coelho' on page 1 undefined on input line 2
-4.
-
-
-Package natbib Warning: Citation `16moradi' on page 1 undefined on input line 2
-4.
-
-
-Package natbib Warning: Citation `8alici' on page 1 undefined on input line 25.
-
-
-
-Package natbib Warning: Citation `9alici' on page 1 undefined on input line 25.
-
-
-
-Package natbib Warning: Citation `5gosselin' on page 1 undefined on input line 
-27.
-
-
-Package natbib Warning: Citation `12russo' on page 1 undefined on input line 27
-.
-
-
-Package natbib Warning: Citation `13agrawal' on page 1 undefined on input line 
-27.
-
-
-Package natbib Warning: Citation `6wang' on page 1 undefined on input line 31.
-
-
-Package natbib Warning: Citation `7wang' on page 1 undefined on input line 31.
-
-
-Package natbib Warning: Citation `8alici' on page 1 undefined on input line 31.
-
-
-
-Package natbib Warning: Citation `9alici' on page 1 undefined on input line 31.
-
-
-
-Package natbib Warning: Citation `10dehkordi' on page 1 undefined on input line
- 31.
-
-
-Package natbib Warning: Citation `13agrawal' on page 1 undefined on input line 
-31.
-
-
-Package natbib Warning: Citation `2arakelian' on page 1 undefined on input line
- 34.
-
-
-Package natbib Warning: Citation `3seo' on page 1 undefined on input line 34.
-
-
-Package natbib Warning: Citation `11wang' on page 1 undefined on input line 34.
-
-
-
-Package natbib Warning: Citation `14briot' on page 1 undefined on input line 34
-.
-
-
-Package natbib Warning: Citation `15coelho' on page 1 undefined on input line 3
-4.
-
-
-Package natbib Warning: Citation `16moradi' on page 1 undefined on input line 3
-4.
-
-
-Package natbib Warning: Citation `2arakelian' on page 1 undefined on input line
- 38.
-
-
-Package natbib Warning: Citation `15coelho' on page 1 undefined on input line 4
-0.
-
-
-Package natbib Warning: Citation `16moradi' on page 1 undefined on input line 4
-0.
-
-<FIGURES/model-1.png, id=60, 886.31125pt x 684.5575pt>
-File: FIGURES/model-1.png Graphic file (type png)
-
-<use FIGURES/model-1.png>
-Package pdftex.def Info: FIGURES/model-1.png used on input line 108.
-(pdftex.def)             Requested size: 354.51822pt x 273.81815pt.
-) [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./SECTIONS/RENATO/2-1.tex
-LaTeX Font Info:    Try loading font information for U+BOONDOX-cal on input lin
-e 5.
-
-(/usr/share/texlive/texmf-dist/tex/latex/boondox/uboondox-cal.fd
-File: uboondox-cal.fd 2011/04/26 Fontinst v1.933 font definitions for U/BOONDOX
--cal.
-) [2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.59 
-      <./FIGURES/model-1.png>]
-LaTeX Font Info:    Try loading font information for U+eus on input line 148.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
-File: ueus.fd 2013/01/14 v3.01 Euler Script
-)
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 153.
-
+) (./SECTIONS/ANDRE/4-4.tex
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ³ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ª in font cmr10!
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 8.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 153.
-LaTeX Font Info:    Try loading font information for OML+cmbr on input line 154
-.
-
-(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbr.fd
-File: omlcmbr.fd 2005/04/13 v8.1 (WaS)
-)
-LaTeX Font Info:    Try loading font information for OML+cmbrm on input line 15
-4.
-
-(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
-File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
-)
-LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <10.95> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
-.
-LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <8> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
-.
-LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <6> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 154
-.
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 160.
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
-LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <8> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
-LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <6> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 160.
- [3] [4])
-(./SECTIONS/RENATO/2-2.tex [5] [6]) (./SECTIONS/ANDRE/2-3.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
-
- []
-
-[7]) (./SECTIONS/ANDRE/2-4.tex [8]
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 59--80
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--93
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
-
- []
-
-) (./SECTIONS/RENATO/3-1.tex
-
-LaTeX Warning: Reference `eq:03-101A' on page 10 undefined on input line 9.
-
-LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
-[10]) (./SECTIONS/RENATO/3-2.tex
-
-LaTeX Warning: Reference `eq:03-101A' on page 11 undefined on input line 52.
-
-) (./SECTIONS/RENATO/4-1.tex [11]
-<FIGURES/RR_U.pdf, id=256, 308.82074pt x 201.17558pt>
-File: FIGURES/RR_U.pdf Graphic file (type pdf)
- <use FIGURES/RR_U.pdf>
-Package pdftex.def Info: FIGURES/RR_U.pdf used on input line 38.
-(pdftex.def)             Requested size: 308.81998pt x 201.17508pt.
-
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
- has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.84 \end{align}
-                 <./FIGURES/RR_U.pdf>]
-Overfull \hbox (21.9582pt too wide) in paragraph at lines 168--168
-[] 
- []
-
-[13] [14]) (./SECTIONS/RENATO/4-2.tex
-<FIGURES/RR_G.pdf, id=323, 380.50558pt x 213.88908pt>
-File: FIGURES/RR_G.pdf Graphic file (type pdf)
- <use FIGURES/RR_G.pdf>
-Package pdftex.def Info: FIGURES/RR_G.pdf used on input line 12.
-(pdftex.def)             Requested size: 304.40488pt x 171.11148pt.
-
-<FIGURES/model-RR_.pdf, id=329, 414.54875pt x 245.91875pt>
-File: FIGURES/model-RR_.pdf Graphic file (type pdf)
-
-<use FIGURES/model-RR_.pdf>
-Package pdftex.def Info: FIGURES/model-RR_.pdf used on input line 33.
-(pdftex.def)             Requested size: 476.72736pt x 282.80435pt.
- [15pdfTeX warning (ext4): destination with the same identifier (name{figure.3}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.37 
-      <./FIGURES/RR_G.pdf>] [16pdfTeX warning (ext4): destination with the same
- identifier (name{figure.4}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.101 \end{align}
-                  <./FIGURES/model-RR_.pdf>] [17] [18])
-(./SECTIONS/RENATO/4-3.tex <FIGURES/5R.pdf, id=388, 471.36092pt x 301.64093pt>
-File: FIGURES/5R.pdf Graphic file (type pdf)
-
-<use FIGURES/5R.pdf>
-Package pdftex.def Info: FIGURES/5R.pdf used on input line 13.
-(pdftex.def)             Requested size: 329.95038pt x 211.1472pt.
- <FIGURES/model-5R_.pdf, id=390, 232.87pt x 124.465pt>
-File: FIGURES/model-5R_.pdf Graphic file (type pdf)
-
-<use FIGURES/model-5R_.pdf>
-Package pdftex.def Info: FIGURES/model-5R_.pdf used on input line 38.
-(pdftex.def)             Requested size: 267.7984pt x 143.13362pt.
- [19pdfTeX warning (ext4): destination with the same identifier (name{figure.5}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.42 
-      <./FIGURES/5R.pdf>]
-Overfull \hbox (5.05533pt too wide) in paragraph at lines 122--126
-[]\OT1/cmr/m/n/10.95 Again fol-low-ing the pro-ce-dure de-scribed in Sec-tion [
-][]2.2[][], a ma-trix $[]$ sat-is-fy-ing the con-di-tion $[] [] \OT1/cmss/m/n/1
-0.95 =
- []
-
-[20pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
- has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.126 \begin{align}
-                    <./FIGURES/model-5R_.pdf>] [21]) (./SECTIONS/ANDRE/4-4.tex
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no ³ in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no ª in font cmr10!
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 8.
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ­ in font cmr10!
+LaTeX Font Info:    Try loading font information for U+eus on input line 14.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ­ in font cmr10!
 Missing character: There is no Ã in font cmr10!
@@ -973,8 +672,10 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no ­ in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¡ in font cmr10!
+ [1
 
-[22] <FIGURES/Sat.pdf, id=447, 432.61626pt x 260.975pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<FIGURES/Sat.pdf, id=80, 432.61626pt x 260.975pt>
 File: FIGURES/Sat.pdf Graphic file (type pdf)
  <use FIGURES/Sat.pdf>
 Package pdftex.def Info: FIGURES/Sat.pdf used on input line 94.
@@ -984,21 +685,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 102--103
 
  []
 
-[23pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
- has been already used, duplicate ignored
+[2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.103 
-       <./FIGURES/Sat.pdf>]
-<FIGURES/AnglesA.pdf, id=473, 432.61626pt x 260.975pt>
+l.114 \end{cases}$$
+                    <./FIGURES/Sat.pdf>]
+<FIGURES/AnglesA.pdf, id=108, 432.61626pt x 260.975pt>
 File: FIGURES/AnglesA.pdf Graphic file (type pdf)
 
 <use FIGURES/AnglesA.pdf>
 Package pdftex.def Info: FIGURES/AnglesA.pdf used on input line 123.
 (pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
 
-<FIGURES/AnglesAsub.pdf, id=474, 432.61626pt x 27.10126pt>
+<FIGURES/AnglesAsub.pdf, id=109, 432.61626pt x 27.10126pt>
 File: FIGURES/AnglesAsub.pdf Graphic file (type pdf)
 
 <use FIGURES/AnglesAsub.pdf>
@@ -1009,13 +710,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 123--126
 [][]
  []
 
-<FIGURES/XA.pdf, id=475, 432.61626pt x 260.975pt>
+<FIGURES/XA.pdf, id=110, 432.61626pt x 260.975pt>
 File: FIGURES/XA.pdf Graphic file (type pdf)
  <use FIGURES/XA.pdf>
 Package pdftex.def Info: FIGURES/XA.pdf used on input line 129.
 (pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
 
-<FIGURES/XAsub.pdf, id=476, 432.61626pt x 27.10126pt>
+<FIGURES/XAsub.pdf, id=111, 432.61626pt x 27.10126pt>
 File: FIGURES/XAsub.pdf Graphic file (type pdf)
  <use FIGURES/XAsub.pdf>
 Package pdftex.def Info: FIGURES/XAsub.pdf used on input line 130.
@@ -1030,14 +731,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 137--138
 
  []
 
-<FIGURES/InverseDynamicsA1.pdf, id=477, 432.61626pt x 260.975pt>
+<FIGURES/InverseDynamicsA1.pdf, id=112, 432.61626pt x 260.975pt>
 File: FIGURES/InverseDynamicsA1.pdf Graphic file (type pdf)
 
 <use FIGURES/InverseDynamicsA1.pdf>
 Package pdftex.def Info: FIGURES/InverseDynamicsA1.pdf used on input line 144.
 (pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
 
-<FIGURES/InverseDynamicsA1sub.pdf, id=478, 432.61626pt x 27.10126pt>
+<FIGURES/InverseDynamicsA1sub.pdf, id=113, 432.61626pt x 27.10126pt>
 File: FIGURES/InverseDynamicsA1sub.pdf Graphic file (type pdf)
 
 <use FIGURES/InverseDynamicsA1sub.pdf>
@@ -1049,14 +750,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--147
 [][]
  []
 
-<FIGURES/ControlA1.pdf, id=479, 432.61626pt x 260.975pt>
+<FIGURES/ControlA1.pdf, id=114, 432.61626pt x 260.975pt>
 File: FIGURES/ControlA1.pdf Graphic file (type pdf)
 
 <use FIGURES/ControlA1.pdf>
 Package pdftex.def Info: FIGURES/ControlA1.pdf used on input line 151.
 (pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
 
-<FIGURES/ControlA1sub.pdf, id=480, 432.61626pt x 27.10126pt>
+<FIGURES/ControlA1sub.pdf, id=115, 432.61626pt x 27.10126pt>
 File: FIGURES/ControlA1sub.pdf Graphic file (type pdf)
 
 <use FIGURES/ControlA1sub.pdf>
@@ -1067,50 +768,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--154
 [][]
  []
 
-<FIGURES/PositionErrorA1.pdf, id=481, 432.61626pt x 260.975pt>
+<FIGURES/PositionErrorA1.pdf, id=116, 432.61626pt x 260.975pt>
 File: FIGURES/PositionErrorA1.pdf Graphic file (type pdf)
 
 <use FIGURES/PositionErrorA1.pdf>
 Package pdftex.def Info: FIGURES/PositionErrorA1.pdf used on input line 164.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-<FIGURES/VelocityErrorA1.pdf, id=482, 432.61626pt x 260.975pt>
+<FIGURES/VelocityErrorA1.pdf, id=117, 432.61626pt x 260.975pt>
 File: FIGURES/VelocityErrorA1.pdf Graphic file (type pdf)
 
 <use FIGURES/VelocityErrorA1.pdf>
 Package pdftex.def Info: FIGURES/VelocityErrorA1.pdf used on input line 168.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-<FIGURES/sA1.pdf, id=483, 432.61626pt x 260.975pt>
+<FIGURES/sA1.pdf, id=118, 432.61626pt x 260.975pt>
 File: FIGURES/sA1.pdf Graphic file (type pdf)
  <use FIGURES/sA1.pdf>
 Package pdftex.def Info: FIGURES/sA1.pdf used on input line 171.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
-LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <9> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 171.
-LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <5> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 171.
-LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <9> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 171
-.
-LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <5> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 171
-.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-[24pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
- has been already used, duplicate ignored
+[3pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.176 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-9}) has been already used, duplicate ignored
+3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.176 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-10}) has been already used, duplicate ignored
+4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -1148,7 +839,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 177--178
 
  []
 
-<FIGURES/InverseDynamicsA2.pdf, id=625, 432.61626pt x 260.975pt>
+<FIGURES/InverseDynamicsA2.pdf, id=260, 432.61626pt x 260.975pt>
 File: FIGURES/InverseDynamicsA2.pdf Graphic file (type pdf)
 
 <use FIGURES/InverseDynamicsA2.pdf>
@@ -1164,7 +855,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 184--187
 [][]
  []
 
-<FIGURES/ControlA2.pdf, id=626, 432.61626pt x 260.975pt>
+<FIGURES/ControlA2.pdf, id=261, 432.61626pt x 260.975pt>
 File: FIGURES/ControlA2.pdf Graphic file (type pdf)
 
 <use FIGURES/ControlA2.pdf>
@@ -1179,44 +870,89 @@ Underfull \hbox (badness 10000) in paragraph at lines 191--194
 [][]
  []
 
-<FIGURES/PositionErrorA2.pdf, id=627, 432.61626pt x 260.975pt>
+<FIGURES/PositionErrorA2.pdf, id=262, 432.61626pt x 260.975pt>
 File: FIGURES/PositionErrorA2.pdf Graphic file (type pdf)
 
 <use FIGURES/PositionErrorA2.pdf>
 Package pdftex.def Info: FIGURES/PositionErrorA2.pdf used on input line 204.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-<FIGURES/VelocityErrorA2.pdf, id=628, 432.61626pt x 260.975pt>
+<FIGURES/VelocityErrorA2.pdf, id=263, 432.61626pt x 260.975pt>
 File: FIGURES/VelocityErrorA2.pdf Graphic file (type pdf)
 
 <use FIGURES/VelocityErrorA2.pdf>
 Package pdftex.def Info: FIGURES/VelocityErrorA2.pdf used on input line 208.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-<FIGURES/sA2.pdf, id=629, 432.61626pt x 260.975pt>
+<FIGURES/sA2.pdf, id=264, 432.61626pt x 260.975pt>
 File: FIGURES/sA2.pdf Graphic file (type pdf)
  <use FIGURES/sA2.pdf>
 Package pdftex.def Info: FIGURES/sA2.pdf used on input line 211.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--224
+
+ []
+
+<FIGURES/AnglesB.pdf, id=265, 432.61626pt x 260.975pt>
+File: FIGURES/AnglesB.pdf Graphic file (type pdf)
+
+<use FIGURES/AnglesB.pdf>
+Package pdftex.def Info: FIGURES/AnglesB.pdf used on input line 232.
 (pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+File: FIGURES/AnglesAsub.pdf Graphic file (type pdf)
+ <use FIGURES/AnglesAsub.pdf>
+Package pdftex.def Info: FIGURES/AnglesAsub.pdf used on input line 233.
+(pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
 
-[25pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
-) has been already used, duplicate ignored
+Underfull \hbox (badness 10000) in paragraph at lines 232--235
+[][]
+ []
+
+<FIGURES/XB.pdf, id=266, 432.61626pt x 260.975pt>
+File: FIGURES/XB.pdf Graphic file (type pdf)
+ <use FIGURES/XB.pdf>
+Package pdftex.def Info: FIGURES/XB.pdf used on input line 238.
+(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+File: FIGURES/XAsub.pdf Graphic file (type pdf)
+
+<use FIGURES/XAsub.pdf>
+Package pdftex.def Info: FIGURES/XAsub.pdf used on input line 239.
+(pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--241
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+
+ []
+
+[4pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.216 
+l.247 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-12}) has been already used, duplicate ignored
+6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.216 
+l.247 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-13}) has been already used, duplicate ignored
+7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.216 
+l.247 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.247 
        <./FIGURES/PositionErrorA1.pdf> <./FIGURES/VelocityErrorA1.pdf
 
 pdfTeX warning: pdflatex (file ./FIGURES/VelocityErrorA1.pdf): PDF inclusion: m
@@ -1233,86 +969,11 @@ pdfTeX warning: pdflatex (file ./FIGURES/InverseDynamicsA2.pdf): PDF inclusion:
 
 pdfTeX warning: pdflatex (file ./FIGURES/ControlA2.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
->]
-Underfull \hbox (badness 10000) in paragraph at lines 221--222
+> <./FIGURES/PositionErrorA2.pdf
 
- []
-
-File: FIGURES/AnglesA.pdf Graphic file (type pdf)
-<use FIGURES/AnglesA.pdf>
-Package pdftex.def Info: FIGURES/AnglesA.pdf used on input line 230.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
-File: FIGURES/AnglesAsub.pdf Graphic file (type pdf)
- <use FIGURES/AnglesAsub.pdf>
-Package pdftex.def Info: FIGURES/AnglesAsub.pdf used on input line 231.
-(pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 230--233
-[][]
- []
-
-File: FIGURES/XA.pdf Graphic file (type pdf)
-<use FIGURES/XA.pdf>
-Package pdftex.def Info: FIGURES/XA.pdf used on input line 236.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
-File: FIGURES/XAsub.pdf Graphic file (type pdf)
- <use FIGURES/XAsub.pdf>
-Package pdftex.def Info: FIGURES/XAsub.pdf used on input line 237.
-(pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--239
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
-
- []
-
-<FIGURES/InverseDynamicsB1.pdf, id=734, 432.61626pt x 260.975pt>
-File: FIGURES/InverseDynamicsB1.pdf Graphic file (type pdf)
-
-<use FIGURES/InverseDynamicsB1.pdf>
-Package pdftex.def Info: FIGURES/InverseDynamicsB1.pdf used on input line 251.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
-File: FIGURES/InverseDynamicsA1sub.pdf Graphic file (type pdf)
- <use FIGURES/InverseDynamicsA1sub.pdf>
-Package pdftex.def Info: FIGURES/InverseDynamicsA1sub.pdf used on input line 25
-2.
-(pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 251--254
-[][]
- []
-
-<FIGURES/ControlB1.pdf, id=735, 432.61626pt x 260.975pt>
-File: FIGURES/ControlB1.pdf Graphic file (type pdf)
-
-<use FIGURES/ControlB1.pdf>
-Package pdftex.def Info: FIGURES/ControlB1.pdf used on input line 258.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
-File: FIGURES/ControlA1sub.pdf Graphic file (type pdf)
- <use FIGURES/ControlA1sub.pdf>
-Package pdftex.def Info: FIGURES/ControlA1sub.pdf used on input line 259.
-(pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 258--261
-[][]
- []
-
-[26pdfTeX warning (ext4): destination with the same identifier (name{figure.14}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.264 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-15}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.264 
-       <./FIGURES/PositionErrorA2.pdf> <./FIGURES/VelocityErrorA2.pdf
+pdfTeX warning: pdflatex (file ./FIGURES/PositionErrorA2.pdf): PDF inclusion: m
+ultiple pdfs with page group included in a single page
+> <./FIGURES/VelocityErrorA2.pdf
 
 pdfTeX warning: pdflatex (file ./FIGURES/VelocityErrorA2.pdf): PDF inclusion: m
 ultiple pdfs with page group included in a single page
@@ -1320,80 +981,125 @@ ultiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./FIGURES/sA2.pdf): PDF inclusion: multiple pdfs
  with page group included in a single page
->] <FIGURES/PositionErrorB1.pdf, id=806, 432.61626pt x 260.975pt>
+>] <FIGURES/InverseDynamicsB1.pdf, id=434, 432.61626pt x 260.975pt>
+File: FIGURES/InverseDynamicsB1.pdf Graphic file (type pdf)
+
+<use FIGURES/InverseDynamicsB1.pdf>
+Package pdftex.def Info: FIGURES/InverseDynamicsB1.pdf used on input line 253.
+(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+File: FIGURES/InverseDynamicsA1sub.pdf Graphic file (type pdf)
+ <use FIGURES/InverseDynamicsA1sub.pdf>
+Package pdftex.def Info: FIGURES/InverseDynamicsA1sub.pdf used on input line 25
+4.
+(pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--256
+[][]
+ []
+
+<FIGURES/ControlB1.pdf, id=435, 432.61626pt x 260.975pt>
+File: FIGURES/ControlB1.pdf Graphic file (type pdf)
+
+<use FIGURES/ControlB1.pdf>
+Package pdftex.def Info: FIGURES/ControlB1.pdf used on input line 260.
+(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+File: FIGURES/ControlA1sub.pdf Graphic file (type pdf)
+ <use FIGURES/ControlA1sub.pdf>
+Package pdftex.def Info: FIGURES/ControlA1sub.pdf used on input line 261.
+(pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--263
+[][]
+ []
+
+<FIGURES/PositionErrorB1.pdf, id=436, 432.61626pt x 260.975pt>
 File: FIGURES/PositionErrorB1.pdf Graphic file (type pdf)
 
 <use FIGURES/PositionErrorB1.pdf>
-Package pdftex.def Info: FIGURES/PositionErrorB1.pdf used on input line 271.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+Package pdftex.def Info: FIGURES/PositionErrorB1.pdf used on input line 273.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-<FIGURES/VelocityErrorB1.pdf, id=807, 432.61626pt x 260.975pt>
+<FIGURES/VelocityErrorB1.pdf, id=437, 432.61626pt x 260.975pt>
 File: FIGURES/VelocityErrorB1.pdf Graphic file (type pdf)
 
 <use FIGURES/VelocityErrorB1.pdf>
-Package pdftex.def Info: FIGURES/VelocityErrorB1.pdf used on input line 275.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+Package pdftex.def Info: FIGURES/VelocityErrorB1.pdf used on input line 277.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-<FIGURES/sB1.pdf, id=808, 432.61626pt x 260.975pt>
+<FIGURES/sB1.pdf, id=438, 432.61626pt x 260.975pt>
 File: FIGURES/sB1.pdf Graphic file (type pdf)
  <use FIGURES/sB1.pdf>
-Package pdftex.def Info: FIGURES/sB1.pdf used on input line 278.
-(pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
+Package pdftex.def Info: FIGURES/sB1.pdf used on input line 280.
+(pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 284--285
+Underfull \hbox (badness 10000) in paragraph at lines 286--287
 
  []
 
-<FIGURES/InverseDynamicsB2.pdf, id=809, 432.61626pt x 260.975pt>
+<FIGURES/InverseDynamicsB2.pdf, id=439, 432.61626pt x 260.975pt>
 File: FIGURES/InverseDynamicsB2.pdf Graphic file (type pdf)
 
 <use FIGURES/InverseDynamicsB2.pdf>
-Package pdftex.def Info: FIGURES/InverseDynamicsB2.pdf used on input line 291.
+Package pdftex.def Info: FIGURES/InverseDynamicsB2.pdf used on input line 293.
 (pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
 File: FIGURES/InverseDynamicsA1sub.pdf Graphic file (type pdf)
  <use FIGURES/InverseDynamicsA1sub.pdf>
 Package pdftex.def Info: FIGURES/InverseDynamicsA1sub.pdf used on input line 29
-2.
+4.
 (pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 291--294
+Underfull \hbox (badness 10000) in paragraph at lines 293--296
 [][]
  []
 
-<FIGURES/ControlB2.pdf, id=810, 432.61626pt x 260.975pt>
+<FIGURES/ControlB2.pdf, id=440, 432.61626pt x 260.975pt>
 File: FIGURES/ControlB2.pdf Graphic file (type pdf)
 
 <use FIGURES/ControlB2.pdf>
-Package pdftex.def Info: FIGURES/ControlB2.pdf used on input line 298.
+Package pdftex.def Info: FIGURES/ControlB2.pdf used on input line 300.
 (pdftex.def)             Requested size: 216.3076pt x 130.48718pt.
 File: FIGURES/ControlA1sub.pdf Graphic file (type pdf)
  <use FIGURES/ControlA1sub.pdf>
-Package pdftex.def Info: FIGURES/ControlA1sub.pdf used on input line 299.
+Package pdftex.def Info: FIGURES/ControlA1sub.pdf used on input line 301.
 (pdftex.def)             Requested size: 216.3076pt x 13.55058pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--301
+Underfull \hbox (badness 10000) in paragraph at lines 300--303
 [][]
  []
 
-[27pdfTeX warning (ext4): destination with the same identifier (name{figure.16}
-) has been already used, duplicate ignored
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.304 
+l.306 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-17}) has been already used, duplicate ignored
+10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.304 
+l.306 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-18}) has been already used, duplicate ignored
+11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.304 
-       <./FIGURES/InverseDynamicsB1.pdf> <./FIGURES/ControlB1.pdf
+l.306 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+12}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.306 
+       <./FIGURES/AnglesB.pdf> <./FIGURES/XB.pdf
+
+pdfTeX warning: pdflatex (file ./FIGURES/XB.pdf): PDF inclusion: multiple pdfs 
+with page group included in a single page
+> <./FIGURES/InverseDynamicsB1.pdf
+
+pdfTeX warning: pdflatex (file ./FIGURES/InverseDynamicsB1.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
+> <./FIGURES/ControlB1.pdf
 
 pdfTeX warning: pdflatex (file ./FIGURES/ControlB1.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
@@ -1409,47 +1115,44 @@ ultiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./FIGURES/sB1.pdf): PDF inclusion: multiple pdfs
  with page group included in a single page
->] <FIGURES/PositionErrorB2.pdf, id=909, 432.61626pt x 260.975pt>
+>] <FIGURES/PositionErrorB2.pdf, id=566, 432.61626pt x 260.975pt>
 File: FIGURES/PositionErrorB2.pdf Graphic file (type pdf)
 
 <use FIGURES/PositionErrorB2.pdf>
-Package pdftex.def Info: FIGURES/PositionErrorB2.pdf used on input line 311.
+Package pdftex.def Info: FIGURES/PositionErrorB2.pdf used on input line 313.
 (pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-<FIGURES/VelocityErrorB2.pdf, id=910, 432.61626pt x 260.975pt>
+<FIGURES/VelocityErrorB2.pdf, id=567, 432.61626pt x 260.975pt>
 File: FIGURES/VelocityErrorB2.pdf Graphic file (type pdf)
 
 <use FIGURES/VelocityErrorB2.pdf>
-Package pdftex.def Info: FIGURES/VelocityErrorB2.pdf used on input line 315.
+Package pdftex.def Info: FIGURES/VelocityErrorB2.pdf used on input line 317.
 (pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 
-<FIGURES/sB2.pdf, id=911, 432.61626pt x 260.975pt>
+<FIGURES/sB2.pdf, id=568, 432.61626pt x 260.975pt>
 File: FIGURES/sB2.pdf Graphic file (type pdf)
  <use FIGURES/sB2.pdf>
-Package pdftex.def Info: FIGURES/sB2.pdf used on input line 318.
+Package pdftex.def Info: FIGURES/sB2.pdf used on input line 320.
 (pdftex.def)             Requested size: 160.0655pt x 96.55923pt.
 )
 (./SECTIONS/TARCISIO/5.tex)
 No file "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQUES APPLIE
 D TO PARALLEL MECHANISMS".bbl.
-
-Package natbib Warning: There were undefined citations.
-
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 132.
-[28pdfTeX warning (ext4): destination with the same identifier (name{figure.19}
-) has been already used, duplicate ignored
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.13})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.132 \end{document}
                     pdfTeX warning (ext4): destination with the same identifier
- (name{figure.20}) has been already used, duplicate ignored
+ (name{figure.14}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.132 \end{document}
                     pdfTeX warning (ext4): destination with the same identifier
- (name{figure.21}) has been already used, duplicate ignored
+ (name{figure.15}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -1478,63 +1181,97 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 132.
 ARALLEL MECHANISMS.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 132.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 132.
-Package rerunfilecheck Info: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE 
-BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has not changed.
-(rerunfilecheck)             Checksum: DEA456C74194EF4542E527E1970A8E7E;1101.
 
 
-LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `"[HESS-COELHO, ORSINO, COUTINHO] ADAPTATI
+VE BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
 
+Package rerunfilecheck Info: Checksums for `"[HESS-COELHO, ORSINO, COUTINHO] AD
+APTATIVE BALANCING TECHNIQUES APPLIED TO PARALLEL MECHANISMS".out':
+(rerunfilecheck)             Before: DEA456C74194EF4542E527E1970A8E7E;1101
+(rerunfilecheck)             After:  1B3F3750C2E554D860A839AB9AE16119;80.
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 132.
  ) 
 Here is how much of TeX's memory you used:
- 9278 strings out of 493304
- 131004 string characters out of 6139872
- 247599 words of memory out of 5000000
- 12266 multiletter control sequences out of 15000+600000
- 27701 words of font info for 107 fonts, out of 8000000 for 9000
+ 8992 strings out of 493304
+ 126765 string characters out of 6139872
+ 233599 words of memory out of 5000000
+ 12171 multiletter control sequences out of 15000+600000
+ 22049 words of font info for 89 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 34i,24n,31p,625b,543s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/euler/eurm10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/euler/eusm10.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/hfbright/hfbrmb10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/boondox/zxxrw8a.pfb>
+ 34i,11n,31p,625b,534s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{subsection.4.4} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.4} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.3.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.3.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.3} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.2.4} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.2.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.2.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.2.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.2} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{section.1} has been referenced but does not exist, 
+replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/euler/eusm10.pfb>
 Output written on "[HESS-COELHO, ORSINO, COUTINHO] ADAPTATIVE BALANCING TECHNIQ
-UES APPLIED TO PARALLEL MECHANISMS.pdf" (28 pages, 1349643 bytes).
+UES APPLIED TO PARALLEL MECHANISMS.pdf" (6 pages, 677173 bytes).
 PDF statistics:
- 1144 PDF objects out of 1200 (max. 8388607)
- 890 compressed objects within 9 object streams
- 181 named destinations out of 1000 (max. 500000)
- 278 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 748 PDF objects out of 1000 (max. 8388607)
+ 534 compressed objects within 6 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 258 words of extra memory for PDF output out of 10000 (max. 10000000)
 

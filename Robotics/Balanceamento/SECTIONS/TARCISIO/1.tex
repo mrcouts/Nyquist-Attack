@@ -37,12 +37,14 @@ For instance, the counterweights position in the moving links might be altered
 according to the end-effector load or the given trajectory. Hence, 
 additional actuators/sensors and control are usually employed to reach satisfactory performance levels. Arakelian and Smith~\cite{2arakelian} employ a computer control of the motion of a inertia flywheel connected to the mechanism.
 
-Moreover, Coelho et al.~\cite{15coelho} and Moradi et al.~\cite{16moradi} use balancing to achieve the decoupling of dynamic equations. Consequently, this action simplifies the control of manipulators due to the fact that the 
+Moreover, Coelho et al.~\cite{15coelho} and Moradi et al.~\cite{16moradi} use the adaptive balancing to achieve the 
+decoupling of dynamic equations for open-loop kinematic chain mechanisms. 
+Consequently, this action simplifies the control of manipulators due to the fact that the 
 actuators can be controlled independently. 
 
 % esclarecer a contribuição
 The main contribution of this work is to highlight the importance of the dynamic modelling 
-process in order to achieve the compensation conditions associated to the chosen 
+process (see Figure~\ref{F01-101}) in order to achieve the compensation conditions associated to the chosen 
 balancing technique. Due to the fact that parallel mechanisms have highly complex structures,
 the use of dynamic formalisms that employ redundant generalized coordinates,
 in association with the successive coupling of additional balancing elements 
@@ -52,7 +54,7 @@ the dynamic model, developed in accordance with the methodology shown here, for 
 control strategy of parallel mechanisms.
 
 % seções
-This chapter is organized as follows. Section 2 treats of the proposed methodology, the dynamic modelling is described in section 3, section 4 presents the control, section 5 shows a numerical example and simulations. Finally, the conclusions are presented in section 6.
+This chapter is organized as follows. Section 2 treats of the theoretical background for the dynamic modelling and control, the adaptive balancing techniques are described in section 3, section 4 shows a case study for the planar 5-bar mechanism with revolute joints.  Finally, the conclusions are drawn in section 5.
 
 
 % shaking force and shaking to keep base vibrations low [1]
