@@ -1,17 +1,11 @@
 \subsection{Inverse Dynamics and Control Simulations}\label{S04-4}
 
-%Given the control law presented in 2.4 and the dynamic model presented in 4.3, in this subsection
+Dada a lei de controle apresentada na sub-se\c{c}\~ao 2.4 e o modelo din\^amico apresentado na sub-se\c{c}\~ao anterior, nesta sub-se\c{c}\~ao realizaremos simula\c{c}\~oes da din\^amica inversa e da aplica\c{c}\~ao da lei de controle nos modelos $\mathru{RR{\ud}G}$ e $\mathru{RR{\ud}U}$. Para tanto, \'e necess\'ario definir valores para os par\^ametros do mecanismos, as condi\c{c}\~oes iniciais do sistema, trajetórias de referência e os par\^ametros do controlador.
 
-In this subsection, given the control law presented in 2.4 and the dynamic model presented in 4.3, the inverse dynamics simulation and the closed loop control system simulation of the $\mathru{RR{\ud}G}$ and $\mathru{RR{\ud}U}$
-models will be done. To do so, it is necessary to define values for the parameters of the models, initial conditions of the systems, reference trajectories and the controller parameters.
-
-%Dada a lei de controle apresentada na sub-se\c{c}\~ao 2.4 e o modelo din\^amico apresentado na sub-se\c{c}\~ao anterior, nesta sub-se\c{c}\~ao realizaremos simula\c{c}\~oes da din\^amica inversa e da aplica\c{c}\~ao da lei de controle nos modelos $\mathru{RR{\ud}G}$ e $\mathru{RR{\ud}U}$. Para tanto, \'e necess\'ario definir valores para os par\^ametros do mecanismos, as condi\c{c}\~oes iniciais do sistema, trajetórias de referência e os par\^ametros do controlador.
-
-Thus, we define:
-%Assim, definimos:
+Assim, definimos:
 
 \begin{itemize}
-\item Physical fixed parameters of the RR\ud models used to obtain the 5R\ud model:
+\item Par\^ametros f\'isicos fixos dos modelos RR\ud utilizados para formar o modelo 5R\ud:
 
 \begin{itemize}
 \begin{multicols}{2}
@@ -26,7 +20,7 @@ Thus, we define:
 \end{multicols}
 \end{itemize}
 
-\item Physical adjustable parameters of the $\mathru{RR{\ud}G}$ model:
+\item Par\^ametros físicos ajustáveis do modelo $\mathru{RR{\ud}G}$:
 
 \begin{itemize}
 \begin{multicols}{2}
@@ -36,14 +30,14 @@ Thus, we define:
 \end{multicols}
 \end{itemize}
 
-\item Physical adjustable parameters of the $\mathru{RR{\ud}U}$ model:
+\item Par\^ametros físicos ajustáveis do modelo $\mathru{RR{\ud}U}$:
 
 \begin{itemize}
 \item[\bf \----] $m_{3, \llB_1} = m_{4, \llB_1} = 0$
 \end{itemize}
 
 
-\item Positioning of the bases of the RR\ud models to obtain the 5R\ud model:
+\item Posicionamento das bases dos modelos RR\ud para formar o modelo 5R\ud:
 
 \begin{itemize}
 \begin{multicols}{2}
@@ -54,7 +48,7 @@ Thus, we define:
 \end{multicols}
 \end{itemize}
 
-\item Controller parameters:
+\item Par\^ametros do controlador utilizado:
 
 \begin{itemize}
 \begin{multicols}{2}
@@ -63,7 +57,7 @@ Thus, we define:
 \end{multicols}
 \end{itemize}
 
-\item Position initial conditions of the 5R\ud model:
+\item Condi\c{c}\~oes iniciais de posi\c{c}\~ao para o modelo 5R\ud:
 
 $$\begin{cases}
 q_{1,\ttp_3,1}(0) = q_{2,\ttp_3,1}(0) = 0 \\
@@ -75,14 +69,14 @@ q_{2,\llR_1}(0) = 4.75078^\circ \\
 q_{2,\llR_2}(0) = 171.89^\circ \\
 \end{cases}$$
 
-\item Reference trajectory 1:
+\item Trajet\'oria de refer\^encia 1:
 
 $$ \begin{cases}
 q_{1,\ttp_3,1}^\sdia(t) = q_{2,\ttp_3,1}^\sdia(t) = 0 \\
 q_{1,\ttp_3,2}^\sdia(t) = q_{2,\ttp_3,2}^\sdia(t) = 0.02 + 0.22 \Big( \frac{t}{5} - \frac{1}{2\pi} \sin \big( \frac{2\pi t}{5} \big) \Big) \\
 \end{cases}$$
 
-\item Reference trajectory 2:
+\item Trajet\'oria de refer\^encia 2:
 
 $$ \begin{cases}
 q_{1,\ttp_3,1}^\sdia(t) = q_{2,\ttp_3,1}^\sdia(t) = 0.005 \sin(7t) \\
@@ -91,30 +85,23 @@ q_{1,\ttp_3,2}^\sdia(t) = q_{2,\ttp_3,2}^\sdia(t) = 0.14 - 0.12 \cos(7t) \\
 
 \end{itemize}
 
-Only some coordinates of the reference trajectory were made explicit, because, defining these, the other can be found numerically or analytically by the position constraints and the mounting condition of the mechanism.
+Foram explicitadas apenas algumas coordenadas das trajet\'orias de refer\^encia, pois, definindo estas, as outras podem ser encontradas num\'erica ou analiticamente utilizando os v\'inculos de posi\c{c}\~ao e a condi\c{c}\~ao de montagem do mecanismo.
 
-%Foram explicitadas apenas algumas coordenadas das trajet\'orias de refer\^encia, pois, definindo estas, as outras podem ser encontradas num\'erica ou analiticamente utilizando os v\'inculos de posi\c{c}\~ao e a condi\c{c}\~ao de montagem do mecanismo.
-
-For the closed loop system simulation, the function $y(x) = \sign(x)$ has been replaced by the function $y_{sat}(x) = \frac{2}{\pi}\arctan(159.1 x)$, which presents the following properties: $y_{sat}(0.2) = -y_{sat}(-0.2) = 0.98$ and $y_{sat}(\infty) = - y_{sat}(-\infty) = 1$. Its use makes the numerical simulation much more efficient, avoids control inputs chattering and ensures a negligible error in steady state for this application.
-
-%Para as simula\c{c}\~oes da lei de controle, a fun\c{c}\~ao $y(x) = \sign(x)$ foi substituida pela fun\c{c}\~ao $y_{sat}(x) = \frac{2}{\pi}\arctan(159.1 x)$, a qual apresenta as seguintes propriedades: $y_{sat}(0.2) = -y_{sat}(0.2) = 0.98$ e $y_{sat}(\infty) = - y_{sat}(-\infty) = 1$. Sua utiliza\c{c}\~ao torna muito mais eficiente as simula\c{c}\~oes num\'ericas, evita o chattering nos atuadores e ainda garante um erro em regime permanente desprez\'ivel para esta aplica\c{c}\~ao.
+Para as simula\c{c}\~oes da lei de controle, a fun\c{c}\~ao $y(x) = \sign(x)$ foi substituida pela fun\c{c}\~ao $y_{sat}(x) = \frac{2}{\pi}\arctan(159.1 x)$, a qual apresenta as seguintes propriedades: $y_{sat}(0.2) = -y_{sat}(0.2) = 0.98$ e $y_{sat}(\infty) = - y_{sat}(-\infty) = 1$. Sua utiliza\c{c}\~ao torna muito mais eficiente as simula\c{c}\~oes num\'ericas, evita o chattering nos atuadores e ainda garante um erro em regime permanente desprez\'ivel para esta aplica\c{c}\~ao.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{Sat.pdf}
-	\caption{Saturation function}
+	\caption{Fun\c{c}\~ao de satura\c{c}\~ao}
 	\label{Sat}
 \end{figure}
 
-In the inverse dynamics simulations, the actuators' efforts necessary for the mechanism to follow the reference trajectory are calculated, ignoring the velocity initial conditions that will be defined.
-
-%Nas simula\c{c}\~oes da din\^amica inversa, calculam-se os esfor\c{c}os dos atuadores necess\'arios para que o mecanismo siga exatamente a traje\'oria de refer\^encia, ignorando as condi\c{c}\~oes iniciais de velocidade que ser\~ao definidas.
+Na simula\c{c}\~oes da din\^amica inversa, calculam-se os esfor\c{c}os dos atuadores necess\'arios para que o mecanismo siga exatamente a traje\'oria de refer\^encia, ignorando as condi\c{c}\~oes iniciais de velocidade que ser\~ao definidas.
 
 \begin{itemize}
-\item[A)] Trajectory 1 simulations: \\
+\item[A)] Simula\c{c}\~ao da trajet\'oria 1: \\
 
-In the closed loop system simulation, the following velocity initial conditions are used:
-%Na simula\c{c}\~ao lei de controle sup\~oe-se as seguintes condi\c{c}\~oes iniciais de velocidades:
+Na simula\c{c}\~ao lei de controle sup\~oe-se as seguintes condi\c{c}\~oes iniciais de velocidades:
 
 $$\begin{cases}
 \dot{q}_{1,\ttp_3,1}(0) = \dot{q}_{2,\ttp_3,1}(0) = 0 \\
@@ -126,12 +113,9 @@ $$\begin{cases}
 \dot{q}_{2,\llR_2}(0) = -7.089 \, rad/s \\
 \end{cases}$$
 
+Isso faz com que haja um erro de velocidade n\~ao nulo para $t=0$ e torna mais interessante a anal\'ise da din\^amica dos erros de posi\c{c}\~ao e velocidade.
 
-This means that there is a non-zero velocity error for $t=0$ and makes the error dynamics analysis more interesting.
-
-
-Here are the graphs of the reference trajectory 1 for some coordinates:
-%Aqui seguem os gr\'aficos da trajet\'oria de refer\^encia 1 para algumas coordenadas:
+Aqui seguem os gr\'aficos da trajet\'oria de refer\^encia 1 para algumas coordenadas:
 
 \begin{figure}[H]
 \centering
@@ -146,14 +130,13 @@ Here are the graphs of the reference trajectory 1 for some coordinates:
 \includegraphics[scale=0.5]{XAsub.pdf}
 \label{fig:XA}
 \end{minipage}
-\caption{Reference trajectory 1}
+\caption{Trajet\'oria de refer\^encia 1}
 \end{figure}
 
 \begin{itemize}
-\item[A.1)] Balanced mechanism \\
+\item[A.1)] Mecanismo balanceado \\
 
-Simulation of the efforts applied by the actuators:
-%Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
+Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
 
 \begin{figure}[H]
 \centering
@@ -179,8 +162,7 @@ Simulation of the efforts applied by the actuators:
 \end{minipage}
 \end{figure}
 
-Error signal dynamics:
-%Din\^amica do erro de controle:
+Din\^amica do erro de controle:
 
 \begin{figure}[H]
 \centering
@@ -199,9 +181,9 @@ Error signal dynamics:
 \label{fig:figure}
 \end{figure}
 
-\item[A.2)] Unbalanced mechanism \\
+\item[A.2)] Mecanismo desbalanceado \\
 
-Simulation of the efforts applied by the actuators:
+Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
 
 \begin{figure}[H]
 \centering
@@ -220,8 +202,7 @@ Simulation of the efforts applied by the actuators:
 \end{minipage}
 \end{figure}
 
-Error signal dynamics:
-%Din\^amica do erro de controle:
+Din\^amica do erro de controle:
 
 \begin{figure}[H]
 \centering
@@ -243,17 +224,14 @@ Error signal dynamics:
 
 \end{itemize}
 
-It's possible to observe that, most of the time, the efforts made by the actuators are much bigger in the unbalanced mechanism than in the balanced one. This result is expected, because the reference trajectory 1 is a slow movement, in which the gravitational effects prevail over the inertial effects.
-%Pode-se observar que, na maior parte do tempo, os esfor\c{c}os realizados pelos atuadores no caso do mecanismo desbalanceado s\~ao bem maiores do que no caso do mecanismo balanceado. Esse resultado \'e esperado, pois a trajet\'oria de refer\^encia 1 \'e um movimento lento, no qual os efeitos gravitacionais predominam ante os inerciais.
+Pode-se observar que, na maior parte do tempo, os esfor\c{c}os realizados pelos atuadores no caso do mecanismo desbalanceado s\~ao bem maiores do que no caso do mecanismo balanceado. Esse resultado \'e esperado, pois a trajet\'oria de refer\^encia 1 \'e um movimento lento, no qual os efeitos gravitacionais predominam ante os inerciais.
 
 
-\item[B)] Trajectory 2 simulation: \\
+\item[B)] Simula\c{c}\~ao da trajet\'oria 2: \\
 
-In the closed loop system simulation, the velocity initial conditions are null.
-%Na simula\c{c}\~ao lei de controle sup\~oe-se condi\c{c}\~oes iniciais de velocidades nulas.
+Na simula\c{c}\~ao lei de controle sup\~oe-se condi\c{c}\~oes iniciais de velocidades nulas.
 
-Here are the graphs of the reference trajectory 2 for some coordinates:
-%Aqui seguem os gr\'aficos da trajet\'oria de refer\^encia 2 para algumas coordenadas:
+Aqui seguem os gr\'aficos da trajet\'oria de refer\^encia 2 para algumas coordenadas:
 
 \begin{figure}[ht]
 \centering
@@ -268,14 +246,13 @@ Here are the graphs of the reference trajectory 2 for some coordinates:
 \includegraphics[scale=0.5]{XAsub.pdf}
 \label{fig:XB}
 \end{minipage}
-\caption{Reference trajectory 2}
+\caption{Trajet\'oria de refer\^encia 1}
 \end{figure}
 
 \begin{itemize}
-\item[B.1)] Balanced mechanism \\
+\item[B.1)] Mecanismo balanceado \\
 
-Simulation of the efforts applied by the actuators:
-%Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
+Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
 
 \begin{figure}[H]
 \centering
@@ -294,8 +271,7 @@ Simulation of the efforts applied by the actuators:
 \end{minipage}
 \end{figure}
 
-Error signal dynamics:
-%Din\^amica do erro de controle:
+Din\^amica do erro de controle:
 
 \begin{figure}[H]
 \centering
@@ -314,10 +290,9 @@ Error signal dynamics:
 \label{fig:figure}
 \end{figure}
 
-\item[B.2)] Unbalanced mechanism \\
+\item[B.2)] Mecanismo desbalanceado \\
 
-Simulation of the efforts applied by the actuators:
-%Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
+Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
 
 \begin{figure}[H]
 \centering
@@ -336,8 +311,7 @@ Simulation of the efforts applied by the actuators:
 \end{minipage}
 \end{figure}
 
-Error signal dynamics:
-%Din\^amica do erro de controle:
+Din\^amica do erro de controle:
 
 \begin{figure}[H]
 \centering
@@ -358,7 +332,7 @@ Error signal dynamics:
 
 
 \end{itemize}
-It's possible to observe that, most of the time, the efforts made by the actuators are much bigger in the balanced mechanism than in the unbalanced one. This result is expected, because the reference trajectory is a reasonably fast movement, in which the inertial effects prevail over the gravitational effects.
-%Pode-se observar que, na maior parte do tempo, os esfor\c{c}os realizados pelos atuadores no caso do mecanismo desbalanceado s\~ao menores do que no caso do mecanismo balanceado. Esse resultado \'e esperado, pois a trajet\'oria de refer\^encia 2 \'e um movimento razoavelmente r\'apido, no qual os efeitos inerciais predominam ante os gravitacionais.
+
+Pode-se observar que, na maior parte do tempo, os esfor\c{c}os realizados pelos atuadores no caso do mecanismo desbalanceado s\~ao menores do que no caso do mecanismo balanceado. Esse resultado \'e esperado, pois a trajet\'oria de refer\^encia 2 \'e um movimento razoavelmente r\'apido, no qual os efeitos inerciais predominam ante os gravitacionais.
 
 \end{itemize}
