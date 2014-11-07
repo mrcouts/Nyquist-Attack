@@ -1,50 +1,50 @@
 \subsection{Inverse Dynamics and Control Simulations}\label{S04-4}
 
-Dada a lei de controle apresentada na sub-se\c{c}\~ao 2.4 e o modelo din\^amico apresentado na sub-se\c{c}\~ao anterior, nesta sub-se\c{c}\~ao realizaremos simula\c{c}\~oes da din\^amica inversa e da aplica\c{c}\~ao da lei de controle no mecanismo 5R balanceado e desbalancedo. Para tanto, \'e necess\'ario definir valores para os par\^ametros do mecanismos, as condi\c{c}\~oes iniciais do sistema, trajetórias de referência e os par\^ametros do controlador.
+Dada a lei de controle apresentada na sub-se\c{c}\~ao 2.4 e o modelo din\^amico apresentado na sub-se\c{c}\~ao anterior, nesta sub-se\c{c}\~ao realizaremos simula\c{c}\~oes da din\^amica inversa e da aplica\c{c}\~ao da lei de controle nos modelos $\mathru{RR{\ud}G}$ e $\mathru{RR{\ud}U}$. Para tanto, \'e necess\'ario definir valores para os par\^ametros do mecanismos, as condi\c{c}\~oes iniciais do sistema, trajetórias de referência e os par\^ametros do controlador.
 
 Assim, definimos:
 
 \begin{itemize}
-\item Par\^ametros físicos fixos dos mecanismos RR utilizados para formar o 5R:
+\item Par\^ametros f\'isicos fixos dos modelos RR\ud utilizados para formar o modelo 5R\ud:
 
 \begin{itemize}
 \begin{multicols}{2}
-\item $a_{1,1} = 0.1 \, m$
-\item $a_{1,2} = 0.2 \, m$
-\item $m_{1, \llB_1} = 0.2 \, kg$
-\item $m_{1, \llB_2} = 0.4 \, kg$
-\item $m_{2, \llB_1} = 1.5 \, kg$
-\item $I_{1, \llB_1} = 67 \cdot 10^{-5} \, kg \, m^2$
-\item $I_{1, \llB_2} = 134 \cdot 10^{-5} \, kg \, m^2$
-\item $\gamma_{1, \llB_1} = \gamma_{1, \llB_2} = 0.5$
+\item[\bf \----] $a_{1,1} = 0.1 \, m$
+\item[\bf \----] $a_{1,2} = 0.2 \, m$
+\item[\bf \----] $m_{1, \llB_1} = 0.2 \, kg$
+\item[\bf \----] $m_{1, \llB_2} = 0.4 \, kg$
+\item[\bf \----] $m_{2, \llB_1} = 1.5 \, kg$
+\item[\bf \----] $I_{1, \llB_1} = 67 \cdot 10^{-5} \, kg \, m^2$
+\item[\bf \----] $I_{1, \llB_2} = 134 \cdot 10^{-5} \, kg \, m^2$
+\item[\bf \----] $\gamma_{1, \llB_1} = \gamma_{1, \llB_2} = 0.5$
 \end{multicols}
 \end{itemize}
 
-\item Par\^ametros físicos ajustáveis dos RR balanceados:
+\item Par\^ametros físicos ajustáveis do modelo $\mathru{RR{\ud}G}$:
 
 \begin{itemize}
 \begin{multicols}{2}
-\item $\gamma_{3, \llB_1} = 3.0$
-\item $\gamma_{4, \llB_1} = 1.7$
-\item $m_{3, \llB_1} = m_{4, \llB_1} = 1.0 \, kg$ 
+\item[\bf \----] $\gamma_{3, \llB_1} = 3.0$
+\item[\bf \----] $\gamma_{4, \llB_1} = 1.7$
+\item[\bf \----] $m_{3, \llB_1} = m_{4, \llB_1} = 1.0 \, kg$ 
 \end{multicols}
 \end{itemize}
 
-\item Par\^ametros físicos ajustáveis dos RR desbalanceados:
+\item Par\^ametros físicos ajustáveis do modelo $\mathru{RR{\ud}U}$:
 
 \begin{itemize}
-\item $m_{3, \llB_1} = m_{4, \llB_1} = 0$
+\item[\bf \----] $m_{3, \llB_1} = m_{4, \llB_1} = 0$
 \end{itemize}
 
 
-\item Posicionamento das bases dos mecanismos RR para formar o 5R:
+\item Posicionamento das bases dos modelos RR\ud para formar o modelo 5R\ud:
 
 \begin{itemize}
 \begin{multicols}{2}
-\item $q_{1,\ttp_1,1} = -0.1 \, m$
-\item $q_{1,\ttp_1,2} = 0 $
-\item $q_{2,\ttp_1,1} = 0.1 \, m$
-\item $q_{2,\ttp_1,2} = 0 $
+\item[\bf \----] $q_{1,\ttp_1,1} = -0.1 \, m$
+\item[\bf \----] $q_{1,\ttp_1,2} = 0 $
+\item[\bf \----] $q_{2,\ttp_1,1} = 0.1 \, m$
+\item[\bf \----] $q_{2,\ttp_1,2} = 0 $
 \end{multicols}
 \end{itemize}
 
@@ -52,12 +52,12 @@ Assim, definimos:
 
 \begin{itemize}
 \begin{multicols}{2}
-\item $\lambda = 40$
-\item $k = 10$
+\item[\bf \----] $\lambda = 40$
+\item[\bf \----] $k = 10$
 \end{multicols}
 \end{itemize}
 
-\item Condi\c{c}\~oes iniciais de posi\c{c}\~ao para o mecanismo 5R:
+\item Condi\c{c}\~oes iniciais de posi\c{c}\~ao para o modelo 5R\ud:
 
 $$\begin{cases}
 q_{1,\ttp_3,1}(0) = q_{2,\ttp_3,1}(0) = 0 \\
@@ -106,18 +106,18 @@ Na simula\c{c}\~ao lei de controle sup\~oe-se as seguintes condi\c{c}\~oes inici
 $$\begin{cases}
 \dot{q}_{1,\ttp_3,1}(0) = \dot{q}_{2,\ttp_3,1}(0) = 0 \\
 \dot{q}_{1,\ttp_3,2}(0) = \dot{q}_{2,\ttp_3,2}(0) = 1 \,m/s \\
-\dot{q}_{3, \llR_3}(0) = -5.871 rad/s \\
-\dot{q}_{1,\llR_1}(0) = -4.153 rad/s \\
-\dot{q}_{1,\llR_2}(0) = 7.089 rad/s \\
-\dot{q}_{2,\llR_1}(0) = 4.153 rad/s \\
-\dot{q}_{2,\llR_2}(0) = -7.089 rad/s \\
+\dot{q}_{3, \llR_3}(0) = -5.871 \, rad/s \\
+\dot{q}_{1,\llR_1}(0) = -4.153 \, rad/s \\
+\dot{q}_{1,\llR_2}(0) = 7.089 \, rad/s \\
+\dot{q}_{2,\llR_1}(0) = 4.153 \, rad/s \\
+\dot{q}_{2,\llR_2}(0) = -7.089 \, rad/s \\
 \end{cases}$$
 
 Isso faz com que haja um erro de velocidade n\~ao nulo para $t=0$ e torna mais interessante a anal\'ise da din\^amica dos erros de posi\c{c}\~ao e velocidade.
 
 Aqui seguem os gr\'aficos da trajet\'oria de refer\^encia 1 para algumas coordenadas:
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
 \includegraphics[scale=0.5]{AnglesA.pdf}
@@ -153,6 +153,13 @@ Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
 \label{fig:ControlA1}
 \caption{Control inputs}
 \end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{ControlA1zoom.pdf}
+\includegraphics[scale=0.5]{ControlA1sub.pdf}
+\label{fig:ControlA1}
+\caption{Control inputs (zoom)}
+\end{minipage}
 \end{figure}
 
 Din\^amica do erro de controle:
@@ -166,7 +173,7 @@ Din\^amica do erro de controle:
 \subfigure[Velocity error norm]{%
 \includegraphics[scale=0.37]{VelocityErrorA1.pdf}
 \label{fig:VelocityErrorA1}}
-\subfigure[$||\ms|| = || \dot{\me} + \lambda \me ||$]{%
+\subfigure[$\|\ms\| = \| \dot{\me} + \lambda \me \|$]{%
 \includegraphics[scale=0.37]{sA1.pdf}
 \label{fig:sA1}}
 %
@@ -206,7 +213,7 @@ Din\^amica do erro de controle:
 \subfigure[Velocity error norm]{%
 \includegraphics[scale=0.37]{VelocityErrorA2.pdf}
 \label{fig:VelocityErrorA2}}
-\subfigure[$||\ms|| = || \dot{\me} + \lambda \me ||$]{%
+\subfigure[$\|\ms\| = \| \dot{\me} + \lambda \me \|$]{%
 \includegraphics[scale=0.37]{sA2.pdf}
 \label{fig:sA2}}
 %
@@ -217,7 +224,7 @@ Din\^amica do erro de controle:
 
 \end{itemize}
 
-Pode-se observar que, na maior parte do tempo, os esfor\c{c}os realizados pelos atuadores no caso do mecanismo desbalanceado s\~ao bem maiores do que no caso do mecanismo balanceado. Esse resultado \'e esperado, pois a trajet\'oria de refer\^encia 1 \'e um movimento lento, o que significa que a contrubui\c{c}\~ao do peso deve ser mais significativa do que a contribui\c{c}\~ao das for\c{c}as de in\'ercia nos esfor\c{c}os dos atuadores.
+Pode-se observar que, na maior parte do tempo, os esfor\c{c}os realizados pelos atuadores no caso do mecanismo desbalanceado s\~ao bem maiores do que no caso do mecanismo balanceado. Esse resultado \'e esperado, pois a trajet\'oria de refer\^encia 1 \'e um movimento lento, no qual os efeitos gravitacionais predominam ante os inerciais.
 
 
 \item[B)] Simula\c{c}\~ao da trajet\'oria 2: \\
@@ -275,7 +282,7 @@ Din\^amica do erro de controle:
 \subfigure[Velocity error norm]{%
 \includegraphics[scale=0.37]{VelocityErrorB1.pdf}
 \label{fig:VelocityErrorB1}}
-\subfigure[$||\ms|| = || \dot{\me} + \lambda \me ||$]{%
+\subfigure[$\|\ms\| = \| \dot{\me} + \lambda \me \|$]{%
 \includegraphics[scale=0.37]{sB1.pdf}
 \label{fig:sA1}}
 %
@@ -315,7 +322,7 @@ Din\^amica do erro de controle:
 \subfigure[Velocity error norm]{%
 \includegraphics[scale=0.37]{VelocityErrorB2.pdf}
 \label{fig:VelocityErrorB2}}
-\subfigure[$||\ms|| = || \dot{\me} + \lambda \me ||$]{%
+\subfigure[$\|\ms\| = \| \dot{\me} + \lambda \me \|$]{%
 \includegraphics[scale=0.37]{sB2.pdf}
 \label{fig:sB2}}
 %
@@ -326,6 +333,6 @@ Din\^amica do erro de controle:
 
 \end{itemize}
 
-Pode-se observar que, na maior parte do tempo, os esfor\c{c}os realizados pelos atuadores no caso do mecanismo desbalanceado s\~ao menores do que no caso do mecanismo balanceado. Esse resultado \'e esperado, pois a trajet\'oria de refer\^encia 2 \'e um movimento mais razoavelmente r\'apido, o que significa que a contrubui\c{c}\~ao do peso deve ser menos significativa do que a contribui\c{c}\~ao das for\c{c}as de in\'ercia nos esfor\c{c}os dos atuadores.
+Pode-se observar que, na maior parte do tempo, os esfor\c{c}os realizados pelos atuadores no caso do mecanismo desbalanceado s\~ao menores do que no caso do mecanismo balanceado. Esse resultado \'e esperado, pois a trajet\'oria de refer\^encia 2 \'e um movimento razoavelmente r\'apido, no qual os efeitos inerciais predominam ante os gravitacionais.
 
 \end{itemize}
