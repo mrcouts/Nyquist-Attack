@@ -96,7 +96,236 @@ Para as simula\c{c}\~oes da lei de controle, a fun\c{c}\~ao $y(x) = \sign(x)$ fo
 	\label{Sat}
 \end{figure}
 
-Vamos primeiro realizar as simula\c{c}\~oes para a trajet\'oria 1. 
+Na simula\c{c}\~oes da din\^amica inversa, calculam-se os esfor\c{c}os dos atuadores necess\'arios para que o mecanismo siga exatamente a traje\'oria de refer\^encia, ignorando as condi\c{c}\~oes iniciais de velocidade que ser\~ao definidas.
+
+\begin{itemize}
+\item[A)] Simula\c{c}\~ao da trajet\'oria 1: \\
+
+Na simula\c{c}\~ao lei de controle sup\~oe-se as seguintes condi\c{c}\~oes iniciais de velocidades:
+
+$$\begin{cases}
+\dot{q}_{1,\ttp_3,1}(0) = \dot{q}_{2,\ttp_3,1}(0) = 0 \\
+\dot{q}_{1,\ttp_3,2}(0) = \dot{q}_{2,\ttp_3,2}(0) = 1 \,m/s \\
+\dot{q}_{3, \llR_3}(0) = -5.871 rad/s \\
+\dot{q}_{1,\llR_1}(0) = -4.153 rad/s \\
+\dot{q}_{1,\llR_2}(0) = 7.089 rad/s \\
+\dot{q}_{2,\llR_1}(0) = 4.153 rad/s \\
+\dot{q}_{2,\llR_2}(0) = -7.089 rad/s \\
+\end{cases}$$
+
+Isso faz com que haja um erro de velocidade n\~ao nulo para $t=0$ e torna mais interessante a anal\'ise da din\^amica dos erros de posi\c{c}\~ao e velocidade.
+
+Aqui seguem os gr\'aficos da trajet\'oria de refer\^encia 1 para algumas coordenadas:
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{AnglesA.pdf}
+\includegraphics[scale=0.5]{AnglesAsub.pdf}
+\label{fig:AnglesA}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{XA.pdf}
+\includegraphics[scale=0.5]{XAsub.pdf}
+\label{fig:XA}
+\end{minipage}
+\caption{Trajet\'oria de refer\^encia 1}
+\end{figure}
+
+\begin{itemize}
+\item[A.1)] Mecanismo balanceado \\
+
+Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{InverseDynamicsA1.pdf}
+\includegraphics[scale=0.5]{InverseDynamicsA1sub.pdf}
+\label{fig:InverseDynamicsA1}
+\caption{Inverse dynamics simulation}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{ControlA1.pdf}
+\includegraphics[scale=0.5]{ControlA1sub.pdf}
+\label{fig:ControlA1}
+\caption{Control inputs}
+\end{minipage}
+\end{figure}
+
+Din\^amica do erro de controle:
+
+\begin{figure}[H]
+\centering
+\subfigure[Position error norm]{%
+\includegraphics[scale=0.5]{PositionErrorA1.pdf}
+\label{fig:PositionErrorA1}}
+\quad
+\subfigure[Velocity error norm]{%
+\includegraphics[scale=0.5]{VelocityErrorA1.pdf}
+\label{fig:VelocityErrorA1}}
+\subfigure[$||\ms|| = || \dot{\me} + \lambda \me ||$]{%
+\includegraphics[scale=0.5]{sA1.pdf}
+\label{fig:sA1}}
+%
+\caption{Error dynamics}
+\label{fig:figure}
+\end{figure}
+
+\item[A.2)] Mecanismo desbalanceado \\
+
+Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{InverseDynamicsA2.pdf}
+\includegraphics[scale=0.5]{InverseDynamicsA1sub.pdf}
+\label{fig:InverseDynamicsA2}
+\caption{Inverse dynamics simulation}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{ControlA2.pdf}
+\includegraphics[scale=0.5]{ControlA1sub.pdf}
+\label{fig:ControlA2}
+\caption{Control inputs}
+\end{minipage}
+\end{figure}
+
+Din\^amica do erro de controle:
+
+\begin{figure}[H]
+\centering
+\subfigure[Position error norm]{%
+\includegraphics[scale=0.5]{PositionErrorA2.pdf}
+\label{fig:PositionErrorA2}}
+\quad
+\subfigure[Velocity error norm]{%
+\includegraphics[scale=0.5]{VelocityErrorA2.pdf}
+\label{fig:VelocityErrorA2}}
+\subfigure[$||\ms|| = || \dot{\me} + \lambda \me ||$]{%
+\includegraphics[scale=0.5]{sA2.pdf}
+\label{fig:sA2}}
+%
+\caption{Error dynamics}
+\label{fig:figure}
+\end{figure}
+
+
+\end{itemize}
+
+
+\item[B)] Simula\c{c}\~ao da trajet\'oria 1: \\
+
+Na simula\c{c}\~ao lei de controle sup\~oe-se condi\c{c}\~oes iniciais de velocidades nulas.
+
+Aqui seguem os gr\'aficos da trajet\'oria de refer\^encia 2 para algumas coordenadas:
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{AnglesA.pdf}
+\includegraphics[scale=0.5]{AnglesAsub.pdf}
+\label{fig:AnglesB}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{XA.pdf}
+\includegraphics[scale=0.5]{XAsub.pdf}
+\label{fig:XB}
+\end{minipage}
+\caption{Trajet\'oria de refer\^encia 1}
+\end{figure}
+
+\begin{itemize}
+\item[B.1)] Mecanismo balanceado \\
+
+Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{InverseDynamicsB1.pdf}
+\includegraphics[scale=0.5]{InverseDynamicsA1sub.pdf}
+\label{fig:InverseDynamicsB1}
+\caption{Inverse dynamics simulation}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{ControlB1.pdf}
+\includegraphics[scale=0.5]{ControlA1sub.pdf}
+\label{fig:ControlB1}
+\caption{Control inputs}
+\end{minipage}
+\end{figure}
+
+Din\^amica do erro de controle:
+
+\begin{figure}[H]
+\centering
+\subfigure[Position error norm]{%
+\includegraphics[scale=0.5]{PositionErrorB1.pdf}
+\label{fig:PositionErrorB1}}
+\quad
+\subfigure[Velocity error norm]{%
+\includegraphics[scale=0.5]{VelocityErrorB1.pdf}
+\label{fig:VelocityErrorB1}}
+\subfigure[$||\ms|| = || \dot{\me} + \lambda \me ||$]{%
+\includegraphics[scale=0.5]{sB1.pdf}
+\label{fig:sA1}}
+%
+\caption{Error dynamics}
+\label{fig:figure}
+\end{figure}
+
+\item[B.2)] Mecanismo desbalanceado \\
+
+Simula\c{c}\~ao dos esfor\c{c}os aplicados pelos atuadores:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{InverseDynamicsB2.pdf}
+\includegraphics[scale=0.5]{InverseDynamicsA1sub.pdf}
+\label{fig:InverseDynamicsB2}
+\caption{Inverse dynamics simulation}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[scale=0.5]{ControlB2.pdf}
+\includegraphics[scale=0.5]{ControlA1sub.pdf}
+\label{fig:ControlB2}
+\caption{Control inputs}
+\end{minipage}
+\end{figure}
+
+Din\^amica do erro de controle:
+
+\begin{figure}[H]
+\centering
+\subfigure[Position error norm]{%
+\includegraphics[scale=0.37]{PositionErrorB2.pdf}
+\label{fig:PositionErrorB2}}
+\quad
+\subfigure[Velocity error norm]{%
+\includegraphics[scale=0.37]{VelocityErrorB2.pdf}
+\label{fig:VelocityErrorB2}}
+\subfigure[$||\ms|| = || \dot{\me} + \lambda \me ||$]{%
+\includegraphics[scale=0.37]{sB2.pdf}
+\label{fig:sB2}}
+%
+\caption{Error dynamics}
+\label{fig:figure}
+\end{figure}
+
+
+\end{itemize}
+
+
+\end{itemize}
 
 
 
