@@ -3,6 +3,7 @@
 #include <lv2.h>
 #include "FilterClass.h"
 #include <algorithm>
+#include "SomeUtilities.h"
 
 using namespace std;
 
@@ -104,37 +105,36 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
     float *in   = plugin->ports[IN];
     float *out  = plugin->ports[OUT];
     double f    = (double)(*(plugin->ports[FREQ]));
-    float Order = *(plugin->ports[ORDER]);
+    int Order   = (int)(*(plugin->ports[ORDER]));
 
-    if ( (plugin->lpf)->N != (int)n_samples )
+    FilterClass *lpf = plugin->lpf;
+
+    if ( lpf->SizeHasChanged(n_samples) )
     {
         plugin->Realloc(n_samples);
         return;
     }
 
-    float soma_abs = 0;
-    for (uint32_t i = 0; i < n_samples; i++) soma_abs += abs(in[i]);
-
-    if (soma_abs == 0)
+    if (VectorNorm1(in, n_samples) == 0)
     {
         fill_n(out, n_samples, 0);
         return;
     }
 
-    for (uint32_t i=0; i < n_samples;i++) (plugin->lpf)->u[i] = in[i];
-        switch ((int)round(Order)+1)
-        {
-            case 1:
-                (plugin->lpf)->LPF1_Bilinear(f);
-                break;
-            case 2:
-                (plugin->lpf)->LPF2_Bilinear(f);
-                break;
-            case 3:
-                (plugin->lpf)->LPF3_Bilinear(f);
-                break;
-        }
-    for (uint32_t i=0; i < n_samples;i++) out[i] = (plugin->lpf)->y[i];
+    lpf->SetInput(in);
+    switch (Order+1)
+    {
+        case 1:
+            lpf->LPF1_Bilinear(f);
+            break;
+        case 2:
+            lpf->LPF2_Bilinear(f);
+            break;
+        case 3:
+            lpf->LPF3_Bilinear(f);
+            break;
+    }
+    lpf->CopyOutput(out);
 }
 
 /**********************************************************************************************************************************************************/

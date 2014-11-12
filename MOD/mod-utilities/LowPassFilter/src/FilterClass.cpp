@@ -1,9 +1,4 @@
-#include <cmath>
 #include "FilterClass.h"
-#include "PreWarping.h"
-#include <iostream>
-
-using namespace std;
 
 FilterClass::FilterClass( double samplerate, int N ) //Construtor da classe pai
 {
@@ -33,6 +28,32 @@ FilterClass::~FilterClass()
 	delete[] u2;
 	delete[] y;
 }
+
+void FilterClass::SetInput(float *in)
+{
+    copy_n(in, N, u);
+}
+
+void FilterClass::SetInput(double *in)
+{
+    copy_n(in, N, u);
+}
+
+void FilterClass::CopyOutput(float *out)
+{
+    copy_n(y, N, out);
+}
+
+void FilterClass::CopyOutput(double *out)
+{
+    copy_n(y, N, out);
+}
+
+bool FilterClass::SizeHasChanged(int N)
+{
+	return this->N != N;
+}
+
 
 void FilterClass::LPF1_Bilinear(double f) //Método da classe pai
 {
