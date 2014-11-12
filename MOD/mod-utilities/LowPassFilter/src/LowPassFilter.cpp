@@ -1,10 +1,8 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <math.h>
+#include <cmath>
 #include <lv2.h>
 #include "FilterClass.h"
-#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,7 +10,7 @@ using namespace std;
 
 #define PLUGIN_URI "http://portalmod.com/plugins/mod-devel/LowPassFilter"
 #define N_SAMPLES_DEFAULT 64
-enum {IN, OUT_1, FREQ, ORDER, PLUGIN_PORT_COUNT};
+enum {IN, OUT, FREQ, ORDER, PLUGIN_PORT_COUNT};
 
 /**********************************************************************************************************************************************************/
 
@@ -43,10 +41,7 @@ public:
     static void run(LV2_Handle instance, uint32_t n_samples);
     static void cleanup(LV2_Handle instance);
     static const void* extension_data(const char* uri);
-    float *in;
-    float *out_1;
-    float *freq;
-    float *order;
+    float *ports[PLUGIN_PORT_COUNT];
 
     double SampleRate;
     FilterClass *lpf;
@@ -96,22 +91,7 @@ void LowPassFilter::connect_port(LV2_Handle instance, uint32_t port, void *data)
 {
     LowPassFilter *plugin;
     plugin = (LowPassFilter *) instance;
-
-    switch (port)
-    {
-        case IN:
-            plugin->in = (float*) data;
-            break;
-        case OUT_1:
-            plugin->out_1 = (float*) data;
-            break;
-        case FREQ:
-            plugin->freq = (float*) data;
-            break;
-        case ORDER:
-            plugin->order = (float*) data;
-            break;
-    }
+    plugin->ports[port] = (float*) data;
 }
 
 /**********************************************************************************************************************************************************/
@@ -121,37 +101,40 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
     LowPassFilter *plugin;
     plugin = (LowPassFilter *) instance;
 
+    float *in   = plugin->ports[IN];
+    float *out  = plugin->ports[OUT];
+    double f    = (double)(*(plugin->ports[FREQ]));
+    float Order = *(plugin->ports[ORDER]);
+
+    if ( (plugin->lpf)->N != (int)n_samples )
+    {
+        plugin->Realloc(n_samples);
+        return;
+    }
+
     float soma_abs = 0;
-    for (uint32_t i = 0; i < n_samples; i++) soma_abs += abs(plugin->in[i]);
+    for (uint32_t i = 0; i < n_samples; i++) soma_abs += abs(in[i]);
 
     if (soma_abs == 0)
-        fill_n(plugin->out_1, n_samples, 0);
-    else
     {
-        double f = (double)(*(plugin->freq));
-        float Order = (float)(*(plugin->order));
-        Order = round(Order)+1;
-
-        if ( (plugin->lpf)->N != (int)n_samples )
-            plugin->Realloc(n_samples);
-        
-        for (uint32_t i=0; i < n_samples;i++) (plugin->lpf)->u[i] = plugin->in[i];
-
-            switch ((int)Order)
-            {
-                case 1:
-                    (plugin->lpf)->LPF1_Bilinear(f);
-                    break;
-                case 2:
-                    (plugin->lpf)->LPF2_Bilinear(f);
-                    break;
-                case 3:
-                    (plugin->lpf)->LPF3_Bilinear(f);
-                    break;
-            }
-
-        for (uint32_t i=0; i < n_samples;i++) plugin->out_1[i] = (plugin->lpf)->y[i];
+        fill_n(out, n_samples, 0);
+        return;
     }
+
+    for (uint32_t i=0; i < n_samples;i++) (plugin->lpf)->u[i] = in[i];
+        switch ((int)round(Order)+1)
+        {
+            case 1:
+                (plugin->lpf)->LPF1_Bilinear(f);
+                break;
+            case 2:
+                (plugin->lpf)->LPF2_Bilinear(f);
+                break;
+            case 3:
+                (plugin->lpf)->LPF3_Bilinear(f);
+                break;
+        }
+    for (uint32_t i=0; i < n_samples;i++) out[i] = (plugin->lpf)->y[i];
 }
 
 /**********************************************************************************************************************************************************/
