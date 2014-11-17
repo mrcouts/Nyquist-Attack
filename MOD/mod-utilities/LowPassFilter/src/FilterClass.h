@@ -9,10 +9,6 @@ class FilterClass
 public:
     FilterClass( double samplerate, int N );
     ~FilterClass();
-    void SetInput(float *in);
-    void SetInput(double *in);
-    void CopyOutput(float *out);
-    void CopyOutput(double *out);
     bool SizeHasChanged(int N);
     void LPF1_Bilinear(double f);
     void LPF2_Bilinear(double f);

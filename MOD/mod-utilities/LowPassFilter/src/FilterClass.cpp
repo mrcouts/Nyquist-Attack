@@ -29,26 +29,6 @@ FilterClass::~FilterClass()
 	delete[] y;
 }
 
-void FilterClass::SetInput(float *in)
-{
-    copy_n(in, N, u);
-}
-
-void FilterClass::SetInput(double *in)
-{
-    copy_n(in, N, u);
-}
-
-void FilterClass::CopyOutput(float *out)
-{
-    copy_n(y, N, out);
-}
-
-void FilterClass::CopyOutput(double *out)
-{
-    copy_n(y, N, out);
-}
-
 bool FilterClass::SizeHasChanged(int N)
 {
 	return this->N != N;

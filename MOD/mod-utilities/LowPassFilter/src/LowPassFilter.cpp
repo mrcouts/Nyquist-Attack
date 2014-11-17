@@ -121,7 +121,7 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
         return;
     }
 
-    lpf->SetInput(in);
+    copy_n(in, n_samples, lpf->u);
     switch (Order+1)
     {
         case 1:
@@ -134,7 +134,7 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
             lpf->LPF3_Bilinear(f);
             break;
     }
-    lpf->CopyOutput(out);
+    copy_n(lpf->y, n_samples, out);
 }
 
 /**********************************************************************************************************************************************************/
