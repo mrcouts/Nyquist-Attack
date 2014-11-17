@@ -22,6 +22,7 @@ public:
     ~LowPassFilter(){Destruct();}
     void Construct(double samplerate, uint32_t n_samples)
     {
+    	this->n_samples = n_samples;
         SampleRate = samplerate;
         lpf = new FilterClass(samplerate, n_samples);
     }
@@ -44,6 +45,7 @@ public:
     static const void* extension_data(const char* uri);
     float *ports[PLUGIN_PORT_COUNT];
 
+    uint32_t n_samples;
     double SampleRate;
     FilterClass *lpf;
 };
@@ -109,7 +111,7 @@ void LowPassFilter::run(LV2_Handle instance, uint32_t n_samples)
 
     FilterClass *lpf = plugin->lpf;
 
-    if ( lpf->SizeHasChanged(n_samples) )
+    if ( plugin->n_samples != n_samples )
     {
         plugin->Realloc(n_samples);
         return;

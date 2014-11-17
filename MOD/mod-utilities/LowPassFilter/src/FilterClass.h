@@ -9,19 +9,21 @@ class FilterClass
 public:
     FilterClass( double samplerate, int N );
     ~FilterClass();
-    bool SizeHasChanged(int N);
     void LPF1_Bilinear(double f);
     void LPF2_Bilinear(double f);
     void LPF3_Bilinear(double f);
 
-    //Variáveis:
+    double *u; //Sinal de entrada
+    double *y; //Sinal de saída
+
+private:
+
+    //Vetores auxiliares:
+    double *u2; // u-->| |-->u2-->| |-->y
+
+    int N; // Tamanho dos vetores
     double SampleRate; //Frequência de amostragem em Hz
     double T; //Periodo de amostragem em segundos
-
-    double *u; //Sinal de entrada
-    double *u2; // u-->| |-->u2-->| |-->y
-    double *y; //Sinal de saída
-    int N; // Tamanho dos vetores
 
     //Condições iniciais:
 

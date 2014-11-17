@@ -29,12 +29,6 @@ FilterClass::~FilterClass()
 	delete[] y;
 }
 
-bool FilterClass::SizeHasChanged(int N)
-{
-	return this->N != N;
-}
-
-
 void FilterClass::LPF1_Bilinear(double f) //Método da classe pai
 {
 	/*        wc
