@@ -1,0 +1,339 @@
+% definicoes auxiliares
+
+\newcommand{\del}{\partial}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\dl}{\delta}
+\newcommand{\idd}{\:\mathrm{d}}
+\newcommand{\lagr}{\mathcal{L}}
+
+\newcommand{\suphash}{{\scriptscriptstyle \#}}
+\newcommand{\ssh}{^{\scriptscriptstyle \#}}
+\newcommand{\ush}{_{\scriptscriptstyle \#}}
+\newcommand{\ptil}{\sptilde}
+
+\newcommand{\req}[1]{equação~(\ref{#1})}
+\newcommand{\rfig}[1]{figura~\ref{#1}}
+
+\newcommand{\llb}{\left\llbracket}
+\newcommand{\rrb}{\right\rrbracket}
+\newcommand{\ssx}[1]{^{\scriptstyle \left\{ #1 \right\}}}
+\newcommand{\ssxx}[2]{^{\scriptstyle \left\{ #1 \right\}\left\{ #2 \right\}}}
+\newcommand{\ssy}[1]{^{\scriptstyle \llb #1 \rrb}}
+\newcommand{\ssyy}[2]{^{\scriptstyle \llb #1 \rrb \llb #2 \rrb}}
+\newcommand{\usx}[1]{_{\scriptstyle \left\{ #1 \right\}}}
+\newcommand{\usxx}[2]{_{\scriptstyle \left\{ #1 \right\}\left\{ #2 \right\}}}
+\newcommand{\usy}[1]{_{\scriptstyle \llb #1 \rrb}}
+\newcommand{\usyy}[2]{_{\scriptstyle \llb #1 \rrb \llb #2 \rrb}}
+\newcommand{\ssr}[1]{^{\scriptstyle \left\langle #1 \right\rangle}}
+\newcommand{\usr}[1]{_{\scriptstyle \left\langle #1 \right\rangle}}
+\newcommand{\sss}[1]{^{\scriptscriptstyle \left\langle #1 \right\rangle}}
+\newcommand{\noo}[1]{\nu_{\scriptstyle{#1}}}
+
+\newcommand{\vct}[1]{\left[ #1 \right]}
+\newcommand{\tvct}[1]{\left[ #1 \right]^\mathsf{T}}
+\newcommand{\hvct}[1]{\left[ #1 \right]^\mathsf{H}}
+\newcommand{\nvct}[1]{\big[ #1 \big]}
+\newcommand{\ntvct}[1]{\big[ #1 \big]^\mathsf{T}}
+\newcommand{\nhvct}[1]{\big[ #1 \big]^\mathsf{H}}
+
+\newcommand{\mat}[1]{\left[ #1 \right]}
+\newcommand{\imat}[1]{\left[ #1 \right]^{-1}}
+\newcommand{\tmat}[1]{\left[ #1 \right]^\mathsf{T}}
+\newcommand{\dmat}[1]{\left[ #1 \right]^\mathsf{D}}
+\newcommand{\smat}[1]{\left[ #1 \right]^\mathsf{S}}
+\newcommand{\hmat}[1]{\left[ #1 \right]^\mathsf{H}}
+\newcommand{\nmat}[1]{\big[ #1 \big]}
+\newcommand{\nimat}[1]{\big[ #1 \big]^{-1}}
+\newcommand{\ntmat}[1]{\big[ #1 \big]^\mathsf{T}}
+\newcommand{\ndmat}[1]{\big[ #1 \big]^\mathsf{D}}
+\newcommand{\nsmat}[1]{\big[ #1 \big]^\mathsf{S}}
+\newcommand{\nhmat}[1]{\big[ #1 \big]^\mathsf{H}}
+
+
+
+% caracteres matematicos especiais para seno e cosseno
+
+\def\ssin{\mbox{$\mathrm{s}$}}
+\def\ccos{\mbox{$\mathrm{c}$}}
+
+
+% caracteres matematicos maiusculos em negrito
+
+\def\bfA{\mathbf{A}}
+\def\bfB{\mathbf{B}}
+\def\bfC{\mathbf{C}}
+\def\bfD{\mathbf{D}}
+\def\bfE{\mathbf{E}}
+\def\bfF{\mathbf{F}}
+\def\bfG{\mathbf{G}}
+\def\bfH{\mathbf{H}}
+\def\bfI{\mathbf{I}}
+\def\bfJ{\mathbf{J}}
+\def\bfK{\mathbf{K}}
+\def\bfL{\mathbf{L}}
+\def\bfM{\mathbf{M}}
+\def\bfN{\mathbf{N}}
+\def\bfO{\mathbf{O}}
+\def\bfP{\mathbf{P}}
+\def\bfQ{\mathbf{Q}}
+\def\bfR{\mathbf{R}}
+\def\bfS{\mathbf{S}}
+\def\bfT{\mathbf{T}}
+\def\bfU{\mathbf{U}}
+\def\bfV{\mathbf{V}}
+\def\bfW{\mathbf{W}}
+\def\bfX{\mathbf{X}}
+\def\bfY{\mathbf{Y}}
+\def\bfZ{\mathbf{Z}}
+
+\def\bbA{\mathbold{A}}
+\def\bbB{\mathbold{B}}
+\def\bbC{\mathbold{C}}
+\def\bbD{\mathbold{D}}
+\def\bbE{\mathbold{E}}
+\def\bbF{\mathbold{F}}
+\def\bbG{\mathbold{G}}
+\def\bbH{\mathbold{H}}
+\def\bbI{\mathbold{I}}
+\def\bbJ{\mathbold{J}}
+\def\bbK{\mathbold{K}}
+\def\bbL{\mathbold{L}}
+\def\bbM{\mathbold{M}}
+\def\bbN{\mathbold{N}}
+\def\bbO{\mathbold{O}}
+\def\bbP{\mathbold{P}}
+\def\bbQ{\mathbold{Q}}
+\def\bbR{\mathbold{R}}
+\def\bbS{\mathbold{S}}
+\def\bbT{\mathbold{T}}
+\def\bbU{\mathbold{U}}
+\def\bbV{\mathbold{V}}
+\def\bbW{\mathbold{W}}
+\def\bbX{\mathbold{X}}
+\def\bbY{\mathbold{Y}}
+\def\bbZ{\mathbold{Z}}
+
+
+% caracteres matematicos minusculos em negrito
+
+
+\def\aa{\mathbf{a}}
+\def\bb{\mathbf{b}}
+\def\ee{\mathbf{e}}
+\def\ii{\mathbf{i}}
+\def\jj{\mathbf{j}}
+\def\kk{\mathbf{k}}
+\def\nn{\mathbf{n}}
+\def\rr{\mathbf{r}}
+\def\vv{\mathbf{v}}
+\def\ss{\underline{\mathbf{s}}}
+\def\ww{\underline{\mathbf{w}}}
+
+\def\bfa{\mathbf{a}}
+\def\bfb{\mathbf{b}}
+\def\bfc{\mathbf{c}}
+\def\bfd{\mathbf{d}}
+\def\bfe{\mathbf{e}}
+\def\bff{\mathbf{f}}
+\def\bfg{\mathbf{g}}
+\def\bfh{\mathbf{h}}
+\def\bfi{\mathbf{i}}
+\def\bfj{\mathbf{j}}
+\def\bfk{\mathbf{k}}
+\def\bfl{\mathbf{l}}
+\def\bfm{\mathbf{m}}
+\def\bfn{\mathbf{n}}
+\def\bfo{\mathbf{o}}
+\def\bfp{\mathbf{p}}
+\def\bfq{\mathbf{q}}
+\def\bfr{\mathbf{r}}
+\def\bfs{\mathbf{s}}
+\def\bft{\mathbf{t}}
+\def\bfu{\mathbf{u}}
+\def\bfv{\mathbf{v}}
+\def\bfw{\mathbf{w}}
+\def\bfx{\mathbf{x}}
+\def\bfy{\mathbf{y}}
+\def\bfz{\mathbf{z}}
+
+\def\bba{\mathbold{a}}
+\def\bbb{\mathbold{b}}
+\def\bbc{\mathbold{c}}
+\def\bbd{\mathbold{d}}
+\def\bbe{\mathbold{e}}
+\def\bbf{\mathbold{f}}
+\def\bbg{\mathbold{g}}
+\def\bbh{\mathbold{h}}
+\def\bbi{\mathbold{i}}
+\def\bbj{\mathbold{j}}
+\def\bbk{\mathbold{k}}
+\def\bbl{\mathbold{l}}
+\def\bbm{\mathbold{m}}
+\def\bbn{\mathbold{n}}
+\def\bbo{\mathbold{o}}
+\def\bbp{\mathbold{p}}
+\def\bbq{\mathbold{q}}
+\def\bbr{\mathbold{r}}
+\def\bbs{\mathbold{s}}
+\def\bbt{\mathbold{t}}
+\def\bbu{\mathbold{u}}
+\def\bbv{\mathbold{v}}
+\def\bbw{\mathbold{w}}
+\def\bbx{\mathbold{x}}
+\def\bby{\mathbold{y}}
+\def\bbz{\mathbold{z}}
+
+
+% caracteres gregos em negrito
+
+
+\def\balpha{\mathbold{\alpha}}
+\def\bbeta{\mathbold{\beta}}
+\def\bgamma{\mathbold{\gamma}}
+\def\btheta{\mathbold{\theta}}
+\def\bphi{\mathbold{\phi}}
+\def\bpi{\mathbold{\pi}}
+\def\bpsi{\mathbold{\psi}}
+\def\bxi{\mathbold{\xi}}
+\def\bsigma{\mathbold{\sigma}}
+\def\bomega{\mathbold{\omega}}
+
+
+% caracteres matematicos sans-serif maiusculos
+
+\def\sfA{\mathsf{A}}
+\def\sfB{\mathsf{B}}
+\def\sfC{\mathsf{C}}
+\def\sfD{\mathsf{D}}
+\def\sfE{\mathsf{E}}
+\def\sfF{\mathsf{F}}
+\def\sfG{\mathsf{G}}
+\def\sfH{\mathsf{H}}
+\def\sfI{\mathsf{I}}
+\def\sfJ{\mathsf{J}}
+\def\sfK{\mathsf{K}}
+\def\sfL{\mathsf{L}}
+\def\sfM{\mathsf{M}}
+\def\sfN{\mathsf{N}}
+\def\sfO{\mathsf{O}}
+\def\sfP{\mathsf{P}}
+\def\sfQ{\mathsf{Q}}
+\def\sfR{\mathsf{R}}
+\def\sfS{\mathsf{S}}
+\def\sfT{\mathsf{T}}
+\def\sfU{\mathsf{U}}
+\def\sfV{\mathsf{V}}
+\def\sfW{\mathsf{W}}
+\def\sfX{\mathsf{X}}
+\def\sfY{\mathsf{Y}}
+\def\sfZ{\mathsf{Z}}
+
+
+% caracteres matematicos sans-serif minusculos
+
+\def\sfa{\mathsf{a}}
+\def\sfb{\mathsf{b}}
+\def\sfc{\mathsf{c}}
+\def\sfd{\mathsf{d}}
+\def\sfe{\mathsf{e}}
+\def\sff{\mathsf{f}}
+\def\sfg{\mathsf{g}}
+\def\sfh{\mathsf{h}}
+\def\sfi{\mathsf{i}}
+\def\sfj{\mathsf{j}}
+\def\sfk{\mathsf{k}}
+\def\sfl{\mathsf{l}}
+\def\sfm{\mathsf{m}}
+\def\sfn{\mathsf{n}}
+\def\sfo{\mathsf{o}}
+\def\sfp{\mathsf{p}}
+\def\sfq{\mathsf{q}}
+\def\sfr{\mathsf{r}}
+\def\sfs{\mathsf{s}}
+\def\sft{\mathsf{t}}
+\def\sfu{\mathsf{u}}
+\def\sfv{\mathsf{v}}
+\def\sfw{\mathsf{w}}
+\def\sfx{\mathsf{x}}
+\def\sfy{\mathsf{y}}
+\def\sfz{\mathsf{z}}
+
+
+% caracteres matematicos typewrite maiusculos
+
+\def\ttA{\mathtt{A}}
+\def\ttB{\mathtt{B}}
+\def\ttC{\mathtt{C}}
+\def\ttD{\mathtt{D}}
+\def\ttE{\mathtt{E}}
+\def\ttF{\mathtt{F}}
+\def\ttG{\mathtt{G}}
+\def\ttH{\mathtt{H}}
+\def\ttI{\mathtt{I}}
+\def\ttJ{\mathtt{J}}
+\def\ttK{\mathtt{K}}
+\def\ttL{\mathtt{L}}
+\def\ttM{\mathtt{M}}
+\def\ttN{\mathtt{N}}
+\def\ttO{\mathtt{O}}
+\def\ttP{\mathtt{P}}
+\def\ttQ{\mathtt{Q}}
+\def\ttR{\mathtt{R}}
+\def\ttS{\mathtt{S}}
+\def\ttT{\mathtt{T}}
+\def\ttU{\mathtt{U}}
+\def\ttV{\mathtt{V}}
+\def\ttW{\mathtt{W}}
+\def\ttX{\mathtt{X}}
+\def\ttY{\mathtt{Y}}
+\def\ttZ{\mathtt{Z}}
+
+
+% caracteres matematicos typewrite minusculos
+
+\def\tta{\mathtt{a}}
+\def\ttb{\mathtt{b}}
+\def\ttc{\mathtt{c}}
+\def\ttd{\mathtt{d}}
+\def\tte{\mathtt{e}}
+\def\ttf{\mathtt{f}}
+\def\ttg{\mathtt{g}}
+\def\tth{\mathtt{h}}
+\def\tti{\mathtt{i}}
+\def\ttj{\mathtt{j}}
+\def\ttk{\mathtt{k}}
+\def\ttl{\mathtt{l}}
+\def\ttm{\mathtt{m}}
+\def\ttn{\mathtt{n}}
+\def\tto{\mathtt{o}}
+\def\ttp{\mathtt{p}}
+\def\ttq{\mathtt{q}}
+\def\ttr{\mathtt{r}}
+\def\tts{\mathtt{s}}
+\def\ttt{\mathtt{t}}
+\def\ttu{\mathtt{u}}
+\def\ttv{\mathtt{v}}
+\def\ttw{\mathtt{w}}
+\def\ttx{\mathtt{x}}
+\def\tty{\mathtt{y}}
+\def\ttz{\mathtt{z}}
+
+% operadores matematicos especiais
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\tr}{tr}
+
+
+% mais caracteres especiais
+
+\def\wb{\overline}
+\def\wc{\widecheck}
+\def\wh{\widehat}
+\def\wt{\widetilde}
+\def\wu{\underline}
+
+\def\tc#1{\textcolor{red}{\bf #1}}
+

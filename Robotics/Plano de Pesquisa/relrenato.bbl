@@ -1,0 +1,62 @@
+\begin{thebibliography}{10}
+
+\bibitem{Rynaldo}
+Rynaldo Z. H. de Almeida.
+\newblock Modelagem din\~amica e controle e rob\^o manipulador
+de arquitetura paralela assim\'etrica de tr\^es graus de liberdade.
+\newblock {\em Tese (Doutorado) - Escola Polit\'ecnica da Universidade de
+S\~ao Paulo. Departamento de Engenharia Mecatr\^onica e de
+Sistemas Mec\^anicos},
+  2013.
+  
+\bibitem{Andre}
+Andr\'e G. Coutinho and Guilherme M. Dobriankyj.
+\newblock Plataforma rob\'otica para reabilita\c{c}\~ao do membro superior humano.
+\newblock {\em Tese (Trabalho de Conclus\~ao de Curso) - Escola Polit\'ecnica da Universidade de
+S\~ao Paulo. Departamento de Engenharia Mecatr\^onica e de
+Sistemas Mec\^anicos}, 2013.
+
+
+\bibitem{Apostila}
+Renato M. M. Orsino and Tarcisio A. Hess Coelho.
+\newblock Metodologia para An\'alise e S\'intese de Mecanismos.
+\newblock {\em Material de apoio para as disciplinas PMR2430 e PMR2331 - Escola Polit\'ecnica da Universidade de
+S\~ao Paulo}, 2013.
+
+\bibitem{Craig}
+J.J. Craig.
+\newblock {\em {Introduction to robotics: mechanics and control}}.
+\newblock Addison-Wesley series in electrical and computer engineering: control
+  engineering. Pearson/Prentice Hall, 2005.
+  
+\bibitem{Jarzebowska2009}
+Elzbieta Jarzebowska.
+\newblock Quasi-coordinates based dynamics modeling and control design for
+  nonholonomic systems.
+\newblock {\em Nonlinear Analysis: Theory, Methods and Applications},
+  71(12):e118 -- e131, 2009.
+
+\bibitem{Merlet2002}
+J.P. Merlet.
+\newblock {Still a long way to go on the road for parallel mechanisms}.
+\newblock In {\em ASME DETC Conference, {Montreal, 2002}}, 2002.
+
+\bibitem{Orsino2013}
+Renato M.~M. Orsino and Tarcisio A.~Hess Coelho.
+\newblock A contribution for developing more efficient dynamic modelling
+  algorithms of parallel robots.
+\newblock {\em International Journal of Mechanisms and Robotic Systems},
+  1(1):15 -- 34, 2013.
+
+\bibitem{Zubizarreta}
+Zubizarreta, A. and Cabanes, I. and Marcos, M. and Pinto, C. and Portillo, E.
+\newblock Extended CTC control for parallel robots.
+\newblock {\em Emerging Technologies and Factory Automation (ETFA), 2010 IEEE Conference on}, 2010.
+
+\bibitem{Bloch}
+Bloch, A.M. and Reyhanoglu, M. and McClamroch, N.H.
+\newblock Control and stabilization of nonholonomic dynamic systems.
+\newblock {\em Automatic Control, IEEE Transactions on}, 1992.
+
+
+\end{thebibliography}

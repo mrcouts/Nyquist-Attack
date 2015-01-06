@@ -1,0 +1,905 @@
+\documentclass[a4paper,12pt,brazil]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+
+\flushbottom
+
+\setlength\textwidth{160mm}
+\setlength\textheight{247mm}
+\setlength\hoffset{-13.4mm}
+\setlength\voffset{-20mm}
+\setlength\parindent{0.75cm}
+\setlength\parskip{0mm}
+\setlength\topsep{12pt}
+
+\usepackage{paralist}
+\usepackage{subfigure}
+\usepackage{amsmath,amssymb,amsfonts,textcomp}
+\usepackage{rawfonts}
+\usepackage{graphics,psfrag}
+\usepackage{latexsym}
+\usepackage{varioref}
+\usepackage{subfigmat}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[colorlinks,citecolor=Fuchsia,urlcolor=blue,linkcolor=Cerulean]{hyperref}
+\usepackage{color}
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{setspace}
+\usepackage[pdftex]{graphicx}
+\usepackage{special-char}
+
+\graphicspath{{figuras/}{../figuras/}}
+
+
+\begin{document}
+
+\onehalfspacing 
+
+\begin{titlepage}
+\begin{center}
+{\phantom{a}}
+\vspace{1.0cm}
+\textsc{\Large{{ André Garnier Coutinho}}}\\
+\vspace{5.0cm}
+ {\huge\bfseries Aplicação de novas metodologias à modelagem e controle de mecanismos de arquitetura paralela\\}
+\vfill
+\hspace{.50\textwidth}
+\begin{minipage}{.45\textwidth}
+{
+Relatório anual de atividades apresentado à Comissão de Atividade Discente (CADIS) 
+do Programa de Pós Graduação em Engenharia Mecânica (PPGEM) da Escola Politécnica 
+da Universidade de São Paulo (EPUSP)}\\[25pt]
+{Área de concentração:}\\[2pt]
+{Engenharia Mecânica}\\[25pt]
+{Orientador:}\\[2pt]
+Prof. Dr. Tarcísio A. Hess Coelho
+\end{minipage}
+
+\vfill
+{São Paulo \\ 15 de Janeiro de 2015}
+\end{center}
+\end{titlepage}
+
+
+
+
+\vspace{-0.3cm}
+
+\noindent
+{\bf Nome: }{André Garnier Coutinho}\\[8pt]
+{\bf NUSP: }{6846085}\\[8pt]
+{\bf Curso: }{Mestrado}\\[8pt]
+{\bf Área de concentração: }{Engenharia Mecânica de Projeto de Fabricação (3151)}\\[8pt]
+{\bf Orientador: }{Professor Doutor Tarcísio Antônio Hess Coelho}\\[8pt]
+{\bf Ano de ingresso no PPGEM: }{2014}\\[8pt]
+{\bf Bolsista: }{Sim}\\[8pt]
+{\bf Agência de fomento: }{CAPES}\\[8pt]
+{\bf Processo: }{?}\\[8pt]
+{\bf Edital/Chamada: }{Cota Institucional (Demanda Social)}\\[8pt]
+
+\vspace{2cm}
+\noindent
+
+
+
+%RESUMO--------------------------------------------------------   
+\newpage
+\section*{Resumo}
+
+Para realizar o projeto de um sistema de controle, é necessário primeiramente de um modelo da planta a ser controlada. O grau de fidelidade do modelo da planta, dentro das condições de operação desejadas do sistema, influi diretamente na performance do sistema em malha fechada que o projeto do controlador pode oferecer. Quanto mais rico for o modelo, mais fácil de atingir requisitos de performance mais elevados (menor tempo de resposta e menor sobressinal, por exemplo) garantindo a estabilidade do sistema.
+
+Utilizando os métodos tradicionais de modelagem de Sistemas Mecânicos Multicorpos, é difícil e trabalhoso de se obter modelos de sistemas complexos, como mecanismos paralelos. Para contornar esse problema, é comum desprezar alguns efeitos de acoplamentos inerciais, simplificando o processo de modelagem. Porém, essa estratégia gera modelos mais pobres, o que irá limitar a perfomance que o sistema poderá atingir quando for feito o projeto do sistema de controle.
+
+A solução proposta para ser possível aumentar a performance, garantindo a robustez, de um sistema de controle de mecanismos paralelos é a utilização dos novos métodos de modelagem dinâmica desenvolvidos pelo grupo de pesquisa do Prof. Doutor Tarcisio Antonio Hess Coelho, os quais são adequados para incluir todos os efeitos de dinâmica de corpos rígidos, independentemente da complexidade do sistema.
+
+O presente projeto visa desenvolver um algoritmo simples que inclua todos os efeitos da dinâmica de corpos rígidos para realizar a modelagem dinâmica de mecanismos paralelos (baseado no Método Orsino), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atuação redundante, e desenvolver leis de controle adequadas para sistemas discritos por coordenadas redundantes.
+
+
+
+%INTRODUÇÃO----------------------------------------------------
+\newpage
+\section{Introdução}\label{intro}
+
+Há uma série de vantagens em utilizar mecanismos de cadeia cinemática paralela no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precisão de posicionamento do efetuador e uma redução significativa na inércia. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}. 
+
+	Devido à grande dificuldade de se obter o modelo dinâmico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande domínio sobre a dinâmica dos sistema, como plataformas robóticas voltadas a reabilitação, pois é necessário um conhecimento detalhado do comportamento dinâmico do mecanismo utilizado para poder controlar as forças de interação entre o mecanismo e o paciente \cite{Andre}.
+	
+	Atualmente novas metodologias para modelagem de dinâmica multicorpos que se mostram muito mais adequadas para aplicações em qualquer tipo de mecanismo estão sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando também orientado pelo professor Dr. Tarcísio Coelho \cite{Orsino2013, Apostila}.
+	
+	Outro assunto relevante ainda pouco estudado por pesquisadores é o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como já foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os métodos tradicionais, ainda são poucos os estudos de implementação de técnicas de controle em mecanismos de cadeia fechada. Sendo assim, é possível aliar as novas metodologias de modelagem desenvolvidas à implementação, adaptação e aprimoramentos de algoritmos de controle não-linear voltados a mecanismos paralelos \cite{Craig}. Além disso é possível aproveitar os novos métodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementação de leis de controle utilizando variáveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
+
+
+
+%OBJETIVOS E JUSTIFICATIVAS--------------------------------------------
+\newpage
+\section{Objetivos e Justificativas}\label{objetivos}
+
+Conforme discutido na Seção~\ref{intro}, 
+% se por um lado a recente criação de novas ferramentas
+% computacionais para a análise de sistemas mecânicos multicorpos permitiu a transposição de muitas
+% barreiras anteriormente existentes no projeto de sistemas de maior complexidade do ponto de vista 
+% mecânico, por outro,  
+grande parte dos avanços apresentados nos estudos da dinâmica de sistemas mecânicos multicorpos 
+ainda se encontra bastante vinculada ao uso de
+softwares proprietários de código fechado, que limitam a participação do usuário no processo de 
+modelagem, o que é inadequado em termos da versatilidade que se poderia desejar para estes 
+procedimentos.
+A ocorrência disto se dá em grande parte pelo fato de não existir uma abordagem metódica que seja 
+suficientemente adequada para a modelagem geral de sistemas de elevada complexidade, em particular 
+no que se refere à  questões de topologia. 
+A necessidade pela busca por novas abordagens para o estudo de sistemas multicorpos é tal que 
+não é raro encontrar atualmente obras na literatura acerca de novas metodologias de ensino desta área
+em cursos de graduação em engenharia mecânica \cite{Jalon2011, Sutherland2009}.   
+
+Contudo, ainda que algumas áreas da engenharia mecânica recorram à particularidades de seus 
+sistemas para o desenvolvimento de modelos matemáticos dos mesmos, a área de mecanismos e sistemas robóticos 
+se viu diante do desafio de conceber uma série de ferramentas de análise cinemática e dinâmica que
+se mostram extremamente adequadas para a modelagem de sistemas bastante complexos, em particular 
+os tradicionais mecanismos de um grau de liberdade, os de arquitetura serial e alguns mais comuns
+de arquitetura paralela. 
+Mesmo assim, conforme discutido, ainda há uma carência de generalidade em alguns desses métodos, 
+o que em alguns casos pode dificultar a integração entre eles e ainda torná-los pouco eficientes 
+para a modelagem de sistemas de complexidade ainda mais elevada do que suas aplicações tradicionais.  
+Porém, tal carência pode ser suprida por meio de pequenas adaptações que proporcionem
+a tais métodos a generalidade e a versatilidade de aplicações desejadas.
+Dessa forma, extensões desses métodos podem conduzir a metodologias aplicáveis a uma gama ainda 
+maior de sistemas mecânicos, levando a todos eles as vantagens das ferramentas usadas na teoria 
+de análise de mecanismos e sistemas robóticos. 
+Com isso pode-se obter uma metodologia que, aplicada por projetistas de diversas áreas da
+engenharia mecânica, conduza a modelos matemáticos elaborados pelo próprio usuário que poderá 
+ter o auxílio de ferramentas computacionais, mas sem a necessidade de ficar atrelado a um 
+software específico. 
+Tais modelos podem ser adequados às necessidades das mais diversas áreas e aplicáveis aos problemas
+mais típicos, além de livremente modificados pelo projetista e simulados da forma que o 
+mesmo achar mais adequado.
+
+Feitas estas considerações, podem-se estabelecer os objetivos centrais do projeto apresentado neste 
+plano como sendo os seguintes:
+\begin{itemize}
+\item	Fazer uma revisão da literatura das técnicas e métodos comumente utilizados para a modelagem
+	de sistemas mecânicos multicorpos, com enfoque nas técnicas vindas de teorias de análise de 
+	mecanismos e sistemas robóticos.
+\item	Aprimorar as técnicas existentes, tornando-as mais genéricas e aplicáveis a sistemas
+	mecânicos de maior complexidade e de diversas naturezas.
+\item 	Integrar as técnicas aprimoradas formando metodologias que permitam a completa dedução
+	de um modelo cinemático e dinâmico dos sistemas estudados, convertendo parte das
+	etapas em algoritmos que possam ser realizados com o auxílio de ferramentas computacionais
+ 	da preferência do projetista.
+\item 	Desenvolver metodologias modulares que permitam o desenvolvimento de modelos de sistemas
+	por meio da integração de modelos de subsistemas e explorar a construção de modelos por 
+	``blocos'' (representantes de subsistemas) cujo equacionamento já seja conhecido (disponível
+	na literatura).
+\item 	Estudar formas de aplicar as metodologias desenvolvidas a áreas de conhecimento
+	relacionadas ao estudo da cinemática e dinâmica de sistemas mecânicos multicorpos, tais como
+	projetos de sistemas de controle de máquinas e robôs baseados em modelos matemáticos,
+	modelagem de sistemas constituídos por corpos sólidos deformáveis utilizando o método 
+	dos elementos finitos, etc. 
+\item	Desenvolver algoritmos numéricos para a simulação dos modelos passíveis de serem deduzidos
+	a partir das metodologias propostas para a obtenção de resultados
+	significativos para os procedimentos de análise a serem realizados com esses sistemas 
+	(tais como simulações cinemáticas e dinâmicas diretas e inversas).
+\item	Disponibilizar livremente algoritmos de modelagem e simulação para que os mesmos possam
+	ser aplicados ao ensino de técnicas de dinâmica multicorpos para estudantes de Engenharia
+	Mecânica e áreas correlatas. 
+\item	Exemplificar a aplicação das metodologias de modelagem e dos algoritmos de simulação, 
+	empregando-as em projetos reais de Engenharia Mecânica que apresentem complexidade suficiente 
+	para demonstrar as vantagens da abordagem proposta.
+\end{itemize}   
+
+
+%RESULTADOS--------------------------------------------------------------------
+\newpage
+\section{Metodologia do projeto}\label{method}
+
+O estágio atual de desenvolvimento do presente projeto ocorre basicamente em duas áreas:
+a primeira é uma consolidação teórica para a elaboração da metodologia de modelagem
+para sistemas multicorpos e a segunda é o desenvolvimento de algoritmos computacionais 
+para auxiliar nos procedimentos de modelagem e simulação segundo a metodologia desenvolvida.
+
+Os trabalhos no âmbito teórico do projeto estão sendo desenvolvidos a partir do estudo de obras 
+de referência em dinâmica de sistemas multicorpos, teorias de mecanismos e sistemas robóticos,
+incluindo desde textos clássicos até artigos científicos recentes nestas áreas.
+
+Os trabalhos na área de desenvolvimento de algoritmos computacionais (em versões primárias,
+dado que o objetivo é apenas utilizá-los para ilustrar a aplicação da metodologia de
+modelagem) estão sendo desenvolvidos em softwares matemáticos de uso genérico tais como 
+Wolfram Mathematica, GNU Octave e MATLAB, podendo envolver eventualmente alguns programas
+elaborados em linguagens de programação como C e FORTRAN.
+
+
+
+%RESULTADOS--------------------------------------------------------------------
+\newpage
+\section{Síntese de resultados}\label{result}
+
+Esta seção pretende apresentar uma síntese dos principais resultados teóricos obtidos até o momento 
+no desenvolvimento da metodologia de modelagem proposta.
+
+
+%---ESTRUTURA DE UM MODELO MATEMÁTICO------------------------------------------
+\subsection{Estrutura geral de um modelo matemático de um sistema mecânico multicorpos}\label{struct}
+
+Baiscamente, um modelo matemático de um sistema mecânico multicorpos envolve  
+variáveis que podem ser classificadas nos seguintes grupos:
+\begin{itemize}
+	\item Variáveis independentes: tempo $t$ ou variáveis $z_s$ que descrevem localizações em um espaço  
+	de referência são consideradas independentes, uma vez que o objetivo de qualquer simulação
+	do modelo é a obtenção (ainda que numericamente apenas) de todas as demais variáveis do modelo
+	como funções destas variáveis (de tal forma que estas funções sejam soluções, ainda que aproximadas,
+	das equações deste modelo).
+	\item Parâmetros físicos: variáveis $a_n$ que são utilizadas para a descrição propriedades físicas 
+	genéricas do sistema modelado e dos esforços aplicados sobre o mesmo 
+	(propriedades geométricas, inerciais, de materiais, de superfícies, etc.) 
+	\item Coordenadas generalizadas: variáveis $q_i$ que descrevem a posição e as configurações de
+	componentes do sistema.
+	\item Variáveis cinemáticas generalizadas (ou velocidades generalizadas): variáveis $p_j$ 
+	que descrevem variações nas configurações de componentes do sistema.
+	\item Forças generalizadas: variáveis $f_j$ que descrevem os esforços ativos (que sejam 
+	responsáveis por variações na configuração em algum componente) aplicados ao
+	sistema; a cada $p_j$ está associado um $f_j$. 
+	\item Entradas de controle: variáveis $u_k$ que descrevem as possíveis atuações sobre o 
+	sistema que podem ser devidamente controladas.
+	\item Entradas de perturbação: variáveis $w_\ell$ que descrevem perturbações genéricas
+	(incontroláveis) às quais o sistema pode ser submetido. 
+\end{itemize}
+
+Um modelo completo de um sistema mecânico multicorpos, em geral, é constituído por equações de
+três tipos envolvendo as variáveis anteriormente mencionadas: equações cinemáticas (ou vinculares
+generalizadas), equações dinâmicas e equações constitutivas.
+
+Equações cinemáticas são as que envolvem além de variáveis independentes e parâmetros físicos,
+apenas coordenadas generalizadas, suas derivadas temporais, suas derivadas parciais (até uma dada
+ordem $\noo{\del}$) com relação aos $z_s$, variáveis cinemáticas generalizadas 
+e enventualmente, entradas de controle ou perturbação.
+Uma típica equação cinemática tem a seguinte forma:
+\begin{align}
+\gamma_r \left(t,z_s,a_n,q_i,\dot q_i,\del^{m}_{(z_{s_1},\ldots,z_{s_m})}{q_i},p_j,u_k,w_\ell\right)=0
+\label{eq:pp-03-03-01}
+\end{align}
+
+Basicamente, equações cinemáticas servem para definir relações fundamentais existentes entre as variáveis
+definidas para a descrição das configurações e movimentos efetuados pelo sistema. 
+Diversos exemplos na literatura exibem a vantagem de se fazer o uso de variáveis redundantes na
+modelagem cinemática e dinâmica de diversos sistemas físicos, em particular
+sistemas mecânicos de topologias mais complexas \cite{Merlet, Tsai}.
+Na eventualidade de o modelo depender explicitamente das derivadas parciais até uma
+certa ordem $\noo{\del}$ das coordendas generalizadas com relação aos $z_s$, pode-se adotar a estratégia
+de se definir novas coordenadas generalizadas que sejam idênticas a tais derivadas
+parciais. 
+Tal estratégia evita que as demais equações do modelo sejam diferenciais parciais. 
+Estas definições produzem um primeiro tipo de equações cinemáticas, que adquirem 
+genericamente a seguinte forma:
+\begin{align}
+\alpha_r \left(t,z_s,a_n,q_i,\del^{m}_{(z_{s_1},\ldots,z_{s_m})}{q_i}\right)=0
+\label{eq:pp-03-03-01a}
+\end{align}
+
+Além disso, pode haver vantagens em se definir um conjunto de variáveis cinemáticas
+generalizadas que são um conjunto de variáveis $p_i$ que podem ser utilizadas no
+lugar das derivadas temporais das coordenadas generalizadas, os $\dot q_j$,
+no equacionamento do sistema \cite{Kane, Mitiguy1996}.
+Em geral, a definição de tais variáveis é condicionada à definição de equações algébricas
+que relacionam as variáveis cinemáticas generalizadas às coordenadas generalizadas e suas
+primeiras derivadas temporais, das quais se tenha os $p_i$ plenamente definidos dados
+os valores de $q_j$ e $\dot q_j$ para um dado instante de tempo $t$.
+Tal subgrupo constitui um segundo tipo de equação cinemática, que adquirem a forma:
+\begin{align}
+\beta_r \left(t,z_s,a_n,q_i,\dot q_i, p_j\right)=0
+\label{eq:pp-03-03-01b}
+\end{align}
+
+Um terceiro tipo de equações cinemáticas, envolve as equações vinculares propriamente ditas, 
+que descrevem vínculos físicos existentes no sistema (que impedem que os valores das variáveis de
+movimento sejam arbitrários, sob o risco da obtenção de configurações e movimentos
+incompatíveis com a natureza física de tais vínculos).  
+Vínculos físicos podem ser classificados em dois grupos:
+\begin{itemize}
+\item	Vínculos holônomos são aqueles que estão relacionados apenas às configurações assumidas
+		por um determinado sistema mecânico, relacionando apenas as posições e orientações dos
+		corpos do sistema, sendo as restrições de movimento apenas decorrentes destas \cite{Lanczos, Leech}.
+		Portanto, vínculos holônomos são aqueles que podem ser descritos por equações envolvendo
+		apenas as coordenadas generalizadas de um sistema mecânico e eventualmente variáveis independentes
+		ou entradas de controle e perturbação, podendo ser postos como equações algébricas da forma 
+		(em representação como matriz coluna):
+		\begin{equation}
+		\eta_r(t, z_s, a_n, q_i, u_k, w_\ell)=0
+		\label{eq:pp-03-01-02a}
+		\end{equation} 
+\item	Vínculos não-holônomos são todos aqueles que não satisfazem as condições anteriores, 
+		seja por não serem passíveis de serem descritos por equações (fato que foge do escopo 
+		deste trabalho) ou por não ser possível expressar as relações entre variáveis 
+		por meio de equações envolvendo somente coordenadas generalizadas, variáveis independentes 
+		e entradas de controle e perturbação.
+		\cite{Lanczos, Leech}.
+		A forma geral de um vínculo não-holônomo passível de ser descrito por equação pode ser dada
+		por:
+		\begin{equation}
+		\psi_r(t, z_s, a_n, q_i, p_j, u_k, w_\ell)=0
+		\label{eq:pp-03-01-02b}
+		\end{equation} 
+		Em particular, no caso de estas equações serem funções afim com relação às variáveis $p_i$
+		(ou seja, os termos em que aparecem $p_i$ são polinomiais do primeiro grau com relação aos mesmos),
+		tais vínculos são denominados não-holônomos simples \cite{Kane}.
+		Em geral, estes últimos são o tipo mais comum de vínculo não-holônomo presente em um sistema mecânico.
+\end{itemize}
+
+
+Equações dinâmicas são as que relacionam variáveis de descrição de movimento e suas derivadas temporais
+às forças generalizadas. Geralmente também ocorre uma dependência com relação a variáveis independentes
+e a parâmetros físicos do sistema.
+Uma típica equação dinâmica tem a seguinte forma:
+\begin{align}
+\zeta_r(t,z_s,a_n,q_i,p_j,\dot p_j, f_j)=0
+\label{eq:pp-03-03-02}
+\end{align}
+Tipicamente, equações dinâmicas são afins com relação aos $\dot p_j$. 
+Em muitos casos, é comum que a dependência com relação aos $f_j$ 
+também seja afim.
+
+Equações constitutivas, por sua vez, são equações que relacionam as forças generalizadas
+de um sistema às variáveis de movimento e às entradas de controle e perturbação que afetam
+este sistema. 
+Uma típica equação constitutiva tem a seguinte forma:
+\begin{align}
+\chi_r(t,z_s,a_n,q_i,p_j,f_j,u_k,w_\ell)=0
+\label{eq:pp-03-03-03}
+\end{align}
+A obtenção das equações constitutivas depende basicamente da descrição que se faz dos
+esforços atuantes sobre o sistema. 
+Questões envolvidas nestas descrições fogem do escopo deste trabalho,
+que focará primordialmente em metodologias para a obtenção de equações cinemáticas
+e dinâmicas para a modelagem matemática de sistemas mecânicos multicorpos. 
+Ressalta-se, no entanto, que as metodologias apresentadas neste trabalho 
+pretendem o desenvolvimento de modelos que comportem equações constitutivas de quaisquer
+natureza. 
+
+
+%---PROBLEMAS TÍPICOS----------------------------------------------------------
+\subsection{Classificação dos problemas de dinâmica de sistemas multicorpos}\label{class}
+
+Os problemas de dinâmica de sistemas multicorpos que podem ser abordados por meio
+da elaboração de modelos matemáticos, podem basicamente ser classificados em 
+quatro grupos:
+\begin{description}
+	\item[Problemas de dinâmica direta.] O objetivo de um problema de dinâmica direta
+	consiste em determinar a descrição do movimento de um sistema mecânico multicorpos
+	a partir de seu modelo matemático para um dado conjunto suposto conhecido de entradas
+	de controle e perturbação, e para um dado conjunto de condições iniciais deste movimento.
+	\begin{align*}
+	\begin{array}{rl}
+	\text{\bf Dados \quad}  & u_k=u_k^*(t) \\
+	\qquad & w_\ell=w_\ell^*(t,z_s) \\
+	\qquad & a_n=a_n^*(t,z_s) \\
+	\qquad & q_i=q_i^*(0,z_s) \\
+	\qquad & p_j=p_j^*(0,z_s) \\
+	\text{\bf Determinar \quad} & q_i=q_i^*(t,z_s) \\
+	\qquad & p_j=p_j^*(t,z_s) \\
+	\end{array}
+	\end{align*}
+	
+	\item[Problemas de dinâmica inversa.] Um problema de dinâmica inversa basicamente
+	consiste em tentar encontrar entradas de controle que sejam compatíveis com os
+	movimentos realizados por um dado sistema mecânico. Considera-se idealmente que os
+	históricos temporais de todas as coordenadas generalizadas e de todas as variáveis
+	cinemáticas generalizadas são plenamente conhecidos, bem como todos os parâmetros 
+	físicos e todas as entradas de perturbação.
+	\begin{align*}
+	\begin{array}{rl}
+	\text{\bf Dados \quad}  & q_i=q_i^*(t,z_s) \\
+	\qquad & p_j=p_j^*(t,z_s) \\
+	\qquad & w_\ell=w_\ell^*(t,z_s) \\
+	\qquad & a_n=a_n^*(t,z_s) \\
+	\text{\bf Determinar \quad} & u_k=u_k^*(t) \\
+	\end{array}
+	\end{align*}
+	
+	\item[Problemas de controle.] Problemas de controle consistem de formas não idealizadas 
+	dos problemas de dinâmica inversa. Nestes problemas há um novo tipo de variáveis 
+	envolvidas que são as medições efetuadas por instrumentos acoplados ao sistema.
+	Tais variáveis serão denotadas por $y_h$.
+	Além disso, devem existir equações relacionando tais variáveis de medição às variáveis
+	$q_i$ e $p_j$ que descrevem configurações e movimentos do sistema (na nomenclatura da
+	teoria de controle estas são denominadas variáveis de estado \cite{Friedland}), 
+	aos parâmetros físicos do sistema e às entradas de controle e perturbação. 
+	Tais equações representam o modelo de medição do sistema e têm tipicamente a seguinte forma:
+	\begin{align}
+	\varsigma_r(t,z_s,a_n,q_i,p_j,u_k,w_\ell,y_h)=0
+	\label{eq:pp-03-04-01}
+	\end{align}
+	Em problemas de controle os dados são as medidas efetuadas $y_h$, os parâmetros físicos do 
+	sistema, e eventualmente um histórico temporal desejado para algumas das coordenadas 
+	generalizadas específicas $q\ssh_i$ e para algumas velocidades generalizadas $p\ssh_j$.
+	O objetivo do controlador deve ser basicamente a elaboração de leis para as entradas de controle
+	$u_k$ que venham a garantir a realização do movimento idealizado 
+	para o sistema, minimizando o erro entre os estados real e ideal, preservando sua estabilidade 
+	e rejeitando perturbações externas.  
+	\begin{align*}
+	\begin{array}{rl}
+	\text{\bf Dados \quad}  & y_h=y_h^*(t) \\
+	\qquad & q\ssh_i={q\ssh_i}^*(t,z_s) \\
+	\qquad & p\ssh_j={p\ssh_j}^*(t,z_s) \\
+	\qquad & a_n=a_n^*(t,z_s) \\
+	\text{\bf Determinar \quad} & u_k=u_k^*(t) \\
+	\end{array}
+	\end{align*}
+	Obviamente, devido à natureza semelhante dos problemas, muitos dos algoritmos utilizados 
+	para problemas de dinâmica inversa podem ser devidamente adaptados para a construção de
+	algoritmos aplicáveis a problemas de controle \cite{Jarzebowska2009}.
+
+	\item[Problemas de otimização paramétrica.] A otimização paramétrica consiste em encontrar
+	valores para os parâmetros físicos de um sistema de forma a garantir que o mesmo tenha 
+	o melhor desempenho possível para um dado conjunto de operações. 
+	Os exemplos mais clássicos de otimização paramétrica ocorrem em problemas de balanceamento.
+	Modelos matemáticos de sistemas dinâmicos podem ser utilizados na construção
+	de algoritmos para a otimização paramétrica destes sistemas \cite{Coelho2004}.
+\end{description}
+
+
+
+
+%---ANÁLISE CINEMÁTICA---------------------------------------------------------
+\subsection{Métodos de análise cinemática para sistemas multicorpos discretos}\label{kin}
+
+Pode-se, em princípio, concentrar-se no estudo apenas de sistemas multicorpos discretos,
+que são aqueles em que a única variável independente presente em seu modelo matemático
+é o tempo $t$.
+Nestes problemas, as equações cinemáticas adquirem a seguinte forma particular:
+\begin{align}
+\gamma_r \left(t,a_n,q_i,\dot q_i,p_j,u_k,w_\ell\right)=0
+\label{eq:pp-03-01-01}
+\end{align}
+Adotando daqui adiante a notação $\sfx$ para representar a matriz coluna formada
+por elementos da forma $x_i$ (com $x_i$ ocupando a $i$-ésima linha desta matriz) 
+e $\sfX$ para representar a matriz formada pelos elementos da forma $X_{ij}$
+(com $X_{ij}$ ocupando a $i$-ésima linha e $j$-ésima coluna dessa matriz),
+pode-se demonstrar que para sistemas multicorpos discretos as equações cinemáticas,
+após diferenciações temporais, podem ser postas na seguinte forma matricial:
+\begin{equation}
+\sfA(t,\sfq,\sfp) \dot \sfp=\sfb(t,\sfq,\sfp)
+\label{eq:pp-03-01-03a}
+\end{equation}
+% Em particular, no caso de os vínculos do sistema serem todos de natureza holônoma ou não-holônoma
+% simples, pode-se afirmar que as equações vinculares adquirem a seguinte forma geral:
+% \begin{equation}
+% \bar K(q, t) p=\bar b(q, t)
+% \qquad \Rightarrow \qquad
+% \bar K(q, t) \dot p=b(p, q, t)
+% \label{eq:pp-03-01-03b}
+% \end{equation}
+% Ainda, caso não se deseje utilizar variáveis cinemáticas generalizadas para a modelagem sistemas
+% de vínculos de natureza holônoma ou não-holônoma simples, é possível colocar a Eq.~(\ref{eq:pp-03-01-03b})
+% como função apenas dos $q$, $\dot q$ e $t$, recordando as relações expressas pela Eq.~(\ref{eq:pp-03-01-01}):
+% \begin{equation}
+% J(q, t) \dot q=\bar b(q, t)
+% \qquad \Rightarrow \qquad
+% J(q, t) \ddot q=\hat b(q, \dot q, t)
+% \label{eq:pp-03-01-03c}
+% \end{equation}
+
+Pode-se tratar a análise cinemática de um dado sistema mecânico em um contexto mais amplo e genérico que
+abranja os conceitos de cinemática direta e inversa apresentados pela teoria dos mecanismos e sistemas
+robóticos \cite{Merlet, Tsai}.
+Neste sentido, pode-se afirmar que se deseja um conjunto de procedimentos para
+a determinação de todas as variáveis de movimento de um sistema dado um
+subconjunto independente de variáveis (coordenadas e variáveis cinemáticas generalizadas).
+Os estados assim obtidos devem ser coerentes com as definições das variáveis cinemáticas generalizadas 
+e com os vínculos físicos existentes no sistema, no sentido de que todas as variáveis satisfaçam simultaneamente 
+a todas as Eqs.~(\ref{eq:pp-03-01-01}).
+O conceito de conjunto independente de variáveis deve ser formalmente estabelecido, devendo ser 
+análogo a e coerente com os conceitos de mobilidade e de conectividade apresentados 
+pela teoria de mecanismos e sistemas robóticos~\cite{Merlet, Tsai}.
+A finalidade de tal analogia é que em alguns casos ainda seja possível adaptar critérios como o 
+método dos grupos de deslocamentos de Lie~\cite{Herve1999} para a determinação do máximo número 
+de variáveis independentes ($\nu\ssh$).
+Tal número será uma caracterísitca topológica fundamental do sistema, uma vez que definirá o mínimo 
+número de variáveis necessárias para que se restrinja a um número finito de possibilidades os estados de 
+um sistema que sejam coerentes com tais variáveis descritivas.
+A redundância na definição de variáveis ocorrerá quando o número de variáveis cinemáticas 
+ou o número de coordenadas generalizadas definidas exceder $\nu\ssh$.
+Neste caso, deve haver tantas equações vinculares quanto for o número excedente de variáveis
+definidas para o modelo, se, efetivamente, todos os vínculos considerados forem passíveis
+de ser descritos por meio de equações como as Eqs.~(\ref{eq:pp-03-01-02a},~\ref{eq:pp-03-01-02b}).
+
+O método dos grupos de deslocamentos de Lie, originário da teoria de mecanismos, permite a 
+determinação dos movimentos de um determinado corpo em relação a outro analisando as restrições 
+impostas por cada uma das cadeias cinemáticas que os conectam, promovendo uma análise de natureza
+topológica no sistema modelado.
+Tal método pode servir como orientação para a escolha de coordenadas e variáveis cinemáticas generalizadas
+que representem os movimentos dos corpos de um sistema mecânico multicorpos, que são variáveis candidatas 
+à descrição da cinemática e da dinâmica desse sistema.
+
+Em geral, a escolha de variáveis pode ser feita seguindo diversas possibilidades bastante conhecidas
+na literatura, mesclando diversas metodologias.
+Um caso clássico é a escolha de variáveis de movimento ``absoluto'' para a descrição dos movimentos gerais
+de um corpo rígido, que são provenientes da abordagem de Newton-Euler e que podem ser facilmente
+utilizadas por meio de métodos como o das matrizes de transformação homogênea \cite{Craig}. 
+Tal método aparece como uma variante de metodologias amplamente utilizadas na abordagem de sistemas mecânicos 
+com múltiplos referencias envolvidos \cite{Roth, Selig} e por meio dele, viabiliza-se a definição de um 
+sistema de coordenadas solidário a cada corpo que constitui o sistema, sendo a conversão de 
+coordenadas de pontos descritas em diferentes sistemas feita por meio de matrizes de 
+transformação homogênea (o que inclusive pode ser de grande valor na obtenção de equações
+vinculares associadas a vínculos de natureza holônoma). 
+Tal método também pode ser empregado em descrições de movimento que se utilizam de variáveis
+de movimento relativo, bastante comuns para a modelagem de cadeias cinemáticas abertas
+\cite{Nikravesh2005, Tsai}, dado que tais variáveis surgem naturalmente da descrição das 
+juntas cinemáticas entre os corpos do sistema.
+Uma variante bastante utilizada no estudo de mecanismos seriais são as variáveis de 
+Denavit-Hartenberg que consistem em uma forma metódica e com regras bem definidas para
+a seleção de variáveis relativas em cadeias cinemáticas, tendo em vista a natureza das 
+juntas utilizadas \cite{Tsai}.
+A definição de variáveis indiretas, que mesclam variáveis de movimento ``absoluto'' com variáveis
+de movimento relativo e por vezes variáveis que tratam o movimento de uma parte do sistema
+com relação a outra não consecutiva em sua cadeia cinemática \cite{Fayet1994, McPhee2006}, são 
+uma tentativa de otimizar a escolha de variáveis obtendo a máxima vantagem no sentido de promover
+a simplificação das equações do modelo.
+Há ainda autores que defendem o uso preferencial de coordenadas cartesianas, se possível inserindo
+apenas as mesmas no modelo a fim de evitar a presença de funções transcendentais nas equações dinâmicas;
+é o caso por exemplo das ditas ``coordenadas naturais'' \cite{Jalon}.
+
+Feita a escolha do conjunto de variáveis a ser utilizado no modelo, obtidas as devidas equações vinculares
+e realizados os procedimentos de análise cinemática necessários, finalmente é necessário aplicar 
+as variáveis na descrição do movimento do sistema, obtendo-se as correspondentes expressões de 
+velocidade, aceleração, velocidade angular e aceleração angular de partes de interesse.
+Este é um passo fundamental para a posterior modelagem dinâmica do sistema, em particular no tocante
+à obtenção das forças de inércia generalizadas associadas a cada parte deste sistema \cite{Kane, Tsai}.
+
+
+
+%---ANÁLISE DINÂMICA-------------------------------------------------------
+\subsection{Métodos de análise dinâmica de sistemas multicorpos}\label{dyn} 
+
+Este projeto tem por objetivo o desenvolvimento uma metodologia genérica que seja prática e 
+eficiente para a modelagem de sistemas mecânicos multicorpos de diversas naturezas,
+e ainda com grande potencial para automação de procedimentos de modelagem por meio de
+rotinas computacionais e para a exploração de modularidade nos modelos. 
+% Tendo isto em vista, pode-se identificar que a análise dinâmica de um dado sistema apresenta
+% basicamente três etapas gerais:
+% \begin{itemize}
+% \item[i.]	Encontrar expressões para as forças ativas generalizadas em função de variáveis 
+% 			que representem esforços externos, coordenadas generalizadas e variáveis cinemáticas
+% 			generalizadas e parâmetros físicos gerais do sistema.
+% \item[ii.]	Encontrar expressões para as forças de inércia generalizadas a partir da descrição
+% 			do movimento do sistema (expressões de velocidade, aceleração, velocidade angular
+% 			e aceleração angular) como função das coordenadas generalizadas, variáveis cinemáticas
+% 			generalizadas e parâmetros de inércia do sistema.
+% \item[iii.]	Garantir uma relação utilizando as expressões das forças ativas e forças de inércia
+% 			generalizadas que seja capaz de descrever a dinâmica do sistema garantindo a satisfação
+% 			de todos os vínculos físicos expressos por meio de equações vinculares. 
+% \end{itemize}
+Uma especificação detalhada das etapas do procedimento de modelagem matemática de
+um sistema mecânico multicorpos é apresentada no fluxograma da Fig.~\ref{fig:pp-03-02-01}.
+
+
+\begin{figure}[!h]
+
+\centering
+%\includegraphics[scale=0.50]{fig-00-fluxograma-1.pdf}
+
+{
+\centering
+\begin{tabular}{cclcl}
+\hline 
+{\bf Etapa} & {} & {\bf Descrição} & {} & {\bf Grupo} \\ 
+\hline
+1 	& & Identificação de corpos e cadeias 				& &  \\
+2 	& & Determinação do número mínimo de variáveis independentes	& & Topologia \\
+3 	& & Definição das variáveis (coordenadas e variáveis cinemáticas)					& &  \\
+\hline
+4 	& & Equações cinemáticas		& &  \\
+5 	& & Velocidades, velocidades angulares e suas derivadas		& & Cinemática \\
+6 	& & Deslocamentos ou velocidades parciais & &  \\
+\hline
+7 	& & Forças e torques de inércia ou energia cinética					& &  \\
+8 	& & Forças de inércia generalizadas				& &  \\
+9	& & Esforços de atuadores, atrito, elasticidade, gravidade, etc.	& & Dinâmica \\
+10	& & Forças ativas generalizadas	e equações constitutivas				& &  \\
+11	& & Equações dinâmicas do movimento				& &  \\
+\hline
+\end{tabular}
+}
+\vskip 8pt
+\caption{Fluxograma mostrando os estágios de modelagem de um sistema mecânico multicorpos
+agregando análises topológica, cinemática e dinâmica \cite{Orsino2013}. \label{fig:pp-03-02-01}} 
+
+\end{figure}
+
+Basicamente, a grande contribuição no que concerne a dinâmica de sistemas consiste no 
+fato de a presente análise tratar separadamente os elementos das equações dinâmicas
+devidos aos vínculos do sistema, sendo os mesmos previamente tratados na 
+análise cinemática e devidamente convertidos em uma matriz que pré-multiplica as equações 
+dinâmicas.
+Tal tratamento diferenciado para os vínculos do sistema permite explorar a modularidade
+na elabroação dos modelos matemáticos. 
+Cada subsistema pode ser modelado da forma que for mais conveniente 
+(eventualmente, pode-se até mesmo utilizar modelos já verificados da literatura)
+para ser posteriormente intetegrado às equações dinâmicas finais por meio 
+desta metodologia.
+
+Uma primeira alternativa consiste em utilizar o Princípio dos Trabalhos Virtuais na
+ótica dos trabalhos de Gibbs \cite{Gibbs1879}, Appell \cite{Appell1900} e 
+Kane \cite{Kane}.
+Neste caso, aplicando o PTV a um instante imediatamente seguinte a um no qual o estado 
+encontra-se plenamente definido, tal que, nem coordenadas (que se referem à posição) 
+nem variáveis cinemáticas generalizadas (que se referem a velocidades) admitam variações,
+tem-se que os deslocamentos virtuais neste instante infinitesimalmente posterior
+dependerão exclusivamente das variações das acelerações (e portanto, das derivadas temporais
+das variáveis cinemáticas) no instante cujo estado encontra-se plenamente definido, 
+de tal forma que após simplificações obtém-se:
+\begin{align}
+\dl \dot \sfp^{\top} \big(\sff+\tilde\sff\big) \leq \mathsf{0}
+\label{eq:pp-03-02-01}
+\end{align}
+onde $\sff$ representa a matriz coluna cujas componentes são as forças ativas generalizadas 
+(calculadas pelo produto escalar das forças ou torques ativos com as correspondentes 
+velocidades parciais ou velocidades angulares parciais, que são as derivadas parciais 
+das velocidades ou velocidades angulares com relação a cada uma das
+variáveis cinemáticas generalizadas) e $\tilde\sff$ representa a matriz coluna cujas componentes 
+são as forças de inércia generalizadas (somatória dos produtos escalares das forças e torques de 
+inércia pelas velocidades parciais e velocidades angulares parciais referidas às respectivas variáveis 
+cinemáticas generalizadas).
+Para um estado plenamente definido (ou seja, variações das coordenadas e variáveis cinemáticas
+generalizadas são nulas), calculando as variações da Eq.~(\ref{eq:pp-03-01-03a}), obtém-se
+\begin{equation}
+\sfA(t,\sfq,\sfp) \dl \dot \sfp=0
+\label{eq:pp-03-02-02}
+\end{equation}
+Tais equações devem admitir uma solução da forma $\dl \dot \sfp=\sfC(t,\sfq,\sfp) \dl \dot \sfp\ssh$,
+onde $\sfp\ssh$ é uma matriz coluna que representa um conjunto mínimo de variáveis cinemáticas
+(portanto, variáveis independentes entre si). 
+Aplicando esta substituição à Eq.~(\ref{eq:pp-03-02-01}), e supondo que se trabalha apenas
+com deslocamentos reversíveis (quando a desigualdade do PTV se torna uma igualdade),
+obtém-se finalmente:
+\begin{align}
+\sfC^{\top} \big(\sff+\tilde\sff\big) = \mathsf{0}
+\label{eq:pp-03-02-03}
+\end{align}
+Estas são as equações de Gibbs-Appell-Kane a serem utilizadas na metodologia aqui abordada.
+Conforme comentado, a principal vantagem de seu uso consiste no fato de que
+as expressões de $\sff$ e $\tilde\sff$ são calculadas independentemente dos vínculos
+do sistema (ou seja, supondo a independência entre as variáveis cinemáticas
+generalizadas do modelo, o que ocorreria somente na inexistência de vínculos
+no sistema), sendo a satisfação dos vínculos físicos do sistema garantida pela
+pré-multiplicação pela matriz $\sfC$, proveniente da análise cinemática.
+
+Cabe citar aqui os trabalhos de Udwadia et. al. 
+\cite{UdwadiaJBSMSE2006, Udwadia1992, Udwadia2002, UdwadiaPRSA2006a}
+para a obtenção das chamadas equações explícitas de movimento.
+Eles também permitem o cálculo das forças ativas e forças de inércia
+sem considerar dependências entre as variáveis cinemáticas, garantindo a satisfação dos vínculos 
+do sistema pela posterior adição às equações dinâmicas de termos de forças de vínculo generalizadas, 
+obtidas diretamente a partir das expressões das equações vinculares.
+Considerando que pode-se escrever $\tilde\sff=-\sfM(t,\sfq)\dot \sfp+\sfg(t,\sfq,\sfp)$ e definindo
+$\check\sff=\sfg+\sff$, tem-se que as equações explícitas de movimento de Udwadia et. al. adquirem 
+a seguinte forma, com $(\cdot)^+$ denotando a matriz pseudo-inversa de Moore-Penrose:
+\begin{equation}
+\dot \sfp= \sfM^{-1} \check\sff +\sfM^{-1/2}(\sfA \sfM^{-1/2})^+(\sfb-\sfA \sfM^{-1} \check\sff)
+\label{eq:pp-03-02-04}
+\end{equation}
+Tais equações permitem trabalhar com sistemas cujos vínculos não são contemplados pela abordagem de
+D'Alembert, e portanto, pelas metodologias de Lagrange e de Kane, como forças vinculares
+que realizam trabalho em deslocamentos reversíveis, bastando para isso que se conheça uma
+função capaz de descrever o trabalho destas forças.
+
+A abordagem de Lagrange é capaz de produzir equações análogas, de mesma generalidade e
+com as mesmas vantagens da abordagem de Kane, com a vantagem de que é baseada em um princípio 
+variacional, de tal sorte que incorpora em sua formulação uma série de ferramentas do Cálculo 
+Variacional \cite{Gelfand, Lanczos}.
+Com tais ferramentas, pode-se facilmente ampliar as equações dinâmicas a sistemas 
+contínuos, por exemplo.
+
+Em geral, as seguintes conclusões foram tiradas quanto à vantagem comparativa entre os usos
+das metodologias baseadas nas abordagens de Lagrange e Kane:
+\begin{itemize}
+\item	Caso o único parâmetro independente do sistema seja o tempo de tal forma que as equações dinâmicas do sistema
+		sejam equações diferenciais ordinárias, é possível que a utilização da metodologia de Kane seja vantajosa.
+		Contudo, havendo mais de um parâmetro independente (sendo assim o modelo produzido constituído por equações
+		diferenciais parciais) a metodologia de Lagrange é claramente mais vantajosa, pelo fato de estar relacionada
+		a um princípio variacional e de dispor de todas as ferramentas do Cálculo Variacional para a obtenção
+		de equações dinâmicas.
+\item	A metodologia de Kane apenas pode ter vantagens claras quando o uso de um número significativo de variáveis 
+		cinemáticas distintas das derivadas temporais das coordenadas generalizadas for vantajoso para a descrição do 
+		movimento e/ou quando o sistema apresentar vínculos não-holônomos que não sejam simples.
+		Contudo, deve-se ter em mente que na metodologia de Kane, a obtenção das expressões das forças de inércia 
+		generalizadas pode ser relativamente mais complexa com relação à metodologia de Lagrange.
+		Quando as derivadas temporais das coordenadas generalizadas forem satisfatórias para a descrição do movimento 
+		do sistema (sem torná-la excessivamente complexa), quando o número de eventuais variáveis cinemáticas distintas
+		dessas for pequeno e quando todos os vínculos do sistema puderem ser classificados ou como holônomos ou como
+		não holônomos simples, a metodologia de Lagrange é claramente vantajosa pela maior simplicidade na obtenção 
+		das expressões das forças de inércia generalizadas quando comparada à metodologia de Kane.
+\end{itemize}
+
+
+%---ELEMENTOS FINITOS-------------------------------------------------------
+\subsection{Aplicações a problemas que utilizam o método de elementos finitos}\label{fem}
+
+A capacidade de explorar a modularidade no desenvolvimento de modelos matemáticos
+conduz à possibilidade de se aplicar a metodologia apresentada neste trabalho
+a problemas que utilizam o método de elementos finitos (MEF).
+Basicamente, muitos sistemas modelados pelo MEF podem ser decompostos em subsistemas (módulos),
+cujo equacionamento pode ser estabelecido diretamente a partir de exemplos encontrados
+na literatura.
+A propriedade de construir modelos através da integração de subsistemas, torna
+a metologia desenvolvida neste trabalho igualmente apropriada para a 
+aplicação a prolemas que utilizam o MEF em sua modelagem.
+
+Uma experiência bem sucedida neste sentido, foi o trabalho 
+``Aplicação do método de elementos finitos para o estudo da dinâmica de mecanismos robóticos''
+apresentado à disciplina de Fundamentos da Mecânica Computacional (PEF5711),
+cursada pelo aluno em 2013.
+Há a intenção de expandir as linhas de pesquisa neste tema, conduzindo à elaboração de
+mais um artigo.
+
+
+%---PUBLICAÇÕES---------------------------------------------------------
+\newpage 
+\section{Publicações decorrentes do trabalho}\label{publ}
+
+A partir dos resultados obtidos até o presente momento foram escritos dois 
+artigos que apresentam casos de aplicações da teoria desenvolvida. 
+O primeiro, denominado ``A contribution for developing more efficient dynamic 
+modelling algorithms of parallel robots''~\cite{Orsino2013} foi escrito pelo aluno em coautoria
+com seu orientador, Prof. Dr. Tarcísio Antônio Hess Coelho, tendo sido aceito 
+pelo International Journal of Mechanisms and Robotic Systems (IJMRS) em 13 de
+Abril de 2012. 
+Este artigo foi publicado em 07 de Janeiro de 2013 no endereço 
+\url{http://inderscience.metapress.com/content/BK1W7X4314177834}, podendo 
+também ser acessado por \url{http://dx.doi.org/10.1504/IJMRS.2013.051287}.
+Uma cópia do mesmo encontra-se anexa a este relatório.
+
+O segundo artigo, denominado ``Comparison among analytical mechanics approaches''
+apresenta um estudo de caso da aplicação de diversos formalismos de mecânica 
+analítica na obtenção de um modelo simbólico do mecanismo Delta, tendo
+sido originado a partir de um projeto da disciplina de Mecânica Analítica (PME5010)
+cursada pelo aluno no primeiro período do ano de 2012.
+Este artigo foi escrito pelo aluno em coautoria com seu orientador, Prof. Dr. Tarcísio 
+Antônio Hess Coelho, e com o ministrante da disciplina de Mecânica Analítica,
+Prof. Dr. Celso Pupo Pesce, e foi aceito para a publicação no periódico 
+Robotica de Cambridge em 8 de Janeiro de 2014.
+
+Um terceiro artigo, denominado ``Generalized matrix form of Gibbs-Appell and Kane 
+equations with applications to inverse dynamics'' começou a ser redigido no 
+ano de 2013 e há projetos para que seu texto esteja finalizado em meados de 2014.
+Há ainda a intenção de escrever um quarto artigo abordando possíveis aplicações
+da metodologia desenvolvida à modelagem de sistemas para os quais se optou
+pela utilização do Método dos Elementos Finitos, conforme citado na seção~\ref{fem}. 
+
+
+%---DISCIPLINAS CURSADAS---------------------------------------------------------
+\newpage
+\section{Disciplinas de pós-graduação cursadas}\label{disci}
+
+Ao longo do programa o aluno já cumpriu 80 créditos, tendo cursado nove disciplinas 
+de pós-graduação\footnote{Oito créditos foram atribuídos pela publicação do trabalho 
+``A Contribuition for Developing More Efficient Dynamic Modelling Algorithms of Parallel Robots'', 
+no International Journal of Mechanisms and Robotic Systems,
+de acordo com o Artigo 65 do Regimento de Pós-Graduação 
+e aprovados pela Comissão de Pós-Graduação, em sessão de 14/10/2013.}:
+\begin{itemize}
+\item PME--5009 --- Fundamentos da Teoria da Estimação
+\item PME--5225 --- Dinâmica de Sistemas Multicorpos
+\item PMR--5238 --- Análise e Síntese de Mecanismos Planos e Tridimensionais
+\item PME--5004 --- Complementos de Matemática para Engenharia Mecânica I 
+\item PME--5010 --- Mecânica Analítica
+\item PTC--5719 --- Identificação de Sistemas
+\item MAP--5725 --- Tratamento Numérico de Equações Diferenciais (IME - USP)
+\item PEF--5711 --- Fundamentos da Mecânica Computacional
+\item MAP--5711 --- Equações Diferenciais Ordinárias (IME - USP)
+\end{itemize}
+Ressalta-se que em todas o aluno obteve conceito A, demonstrando bom aproveitamento.
+Estas disciplinas representam a base para o desenvolvimento teórico completo do
+projeto aqui apresentado.
+
+
+
+
+%ETAPAS E ATIVIDADES DO PROJETO----------------------------------------
+\newpage
+\section{Cronograma de Atividades do Projeto}\label{atividades}
+
+São considerados treze quadrimestres para o desenvolvimento completo do projeto proposto juntamente
+com o curso de pós-graduação. Deve-se ressaltar que três das disciplinas de pós-graduação foram
+cursadas pelo candidato em regime Especial (terceiro quadrimestre de 2011), contando este período
+como parte do projeto.
+
+Um resumo das atividades do projeto é listado abaixo e um cronograma estimado
+para elas é apresentado na Tabela~\ref{crono}:
+\begin{itemize}
+\item[(1)] 	Cumprimento dos créditos da pós-graduação.
+\item[(2)] 	Pesquisa bibliográfica e revisão de literatura para o desenvolvimento dos aspectos
+		   	teóricos
+\item[(3)] 	Desenvolvimento de contribuições para metodologias genéricas de modelagem cinemática e dinâmica
+	   		adequando-as à utilização em sistemas mecânicos de diversas naturezas.
+\item[(4)] 	Preparo de um artigo apresentando uma contribuição para a modelagem dinâmica de mecanismos paralelos
+			para publicação no International Journal of Mechanisms and Robotic Systems, IJMRS (Indescience Publishers).	
+\item[(5)] 	Preparo de um artigo apresentando uma comparação entre metodologias de mecânica analítica na
+			modelagem de um mecanismo paralelo Delta para submissão ao periódico Robotica (Cambridge University Press).
+\item[(6)] 	Preparo de um artigo formalizando matematicamente a metodologia de modelagem
+			desenvolvida neste projeto, ressaltando as vantagens de sua utilização.
+\item[(7)]  Preparo de um artigo acerca da aplicação da metodologia de modelagem desenvolvida a problemas
+			que utilizam o método dos elementos finitos.
+\item[(8)] 	Realização de um projeto em intercâmbio em universidade norte-americana (EUA ou Canadá).
+\item[(9)] 	Avaliação geral de resultados.
+\item[(10)] Preparo da dissertação. 
+\end{itemize}
+
+Destaca-se que este cronograma trata apenas de uma previsão da distribuição temporal das tarefas 
+do projeto, estando sujeito a alterações conforme eventuais circunstâncias futuras possam
+vir a exigir.
+
+\begin{table}[!ht]
+\begin{center}
+\caption[Cronograma]{Cronograma -- Planejamento de Atividades por quadrimestre}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|} 
+	\hline
+	\rule[-2mm]{0mm}{6mm}
+	Ativ./Quad. & $3^o/11$ & $1^o/12$ & $2^o/12$ & $3^o/12$ & $1^o/13$ & $2^o/13$ & $3^o/13$ \\
+	\hline
+	\rule[-2mm]{0mm}{6mm}
+	(1) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  & \rule[0mm]{10mm}{2mm} &  &   \\
+	\rule[-1mm]{0mm}{5mm}
+	(2) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm}
+	 & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &   \\
+	\rule[-1mm]{0mm}{5mm}
+	(3) &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} 
+	 & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} \\
+	\rule[-1mm]{0mm}{5mm}
+	(4) &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &  &  \\
+	\rule[-1mm]{0mm}{5mm}
+	(5) &  &  & \rule[0mm]{10mm}{2mm} &  &  &  \rule[0mm]{10mm}{2mm} &  \\
+	\rule[-1mm]{0mm}{5mm}
+	(6) &  &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} \\
+	\rule[-1mm]{0mm}{5mm}
+	(7) &  &  &  &  & \rule[0mm]{10mm}{2mm}  &  & \\ 
+	\rule[-1mm]{0mm}{5mm}
+	(8) &  &  &  &  &  &  & \\
+	\rule[-1mm]{0mm}{5mm}
+	(9) &  &  &  &  &  &  & \\
+	\rule[-1mm]{0mm}{5mm}
+	(10) &  &  &  & \rule[0mm]{10mm}{2mm} &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} \\
+	\hline
+	\rule[-2mm]{0mm}{6mm}
+	Ativ./Quad. & $1^o/14$ & $2^o/14$ & $3^o/14$ & $1^o/15$ & $2^o/15$ & $3^o/15$ & \\
+	\hline
+	\rule[-2mm]{0mm}{6mm}
+	(1) &  &  &  &  &  &  &   \\
+	\rule[-1mm]{0mm}{5mm}
+	(2) &  &  &  &  &  &  &   \\
+	\rule[-1mm]{0mm}{5mm}
+	(3) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  
+	&  &  \\
+	\rule[-1mm]{0mm}{5mm}
+	(4) &  &  &  &  &  &  &  \\
+	\rule[-1mm]{0mm}{5mm}
+	(5) & \rule[0mm]{10mm}{2mm} &  &  &  &  &  &  \\
+	\rule[-1mm]{0mm}{5mm}
+	(6) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &  &  &  \\
+	\rule[-1mm]{0mm}{5mm}
+	(7) &  &  \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &  & \\ 
+	\rule[-1mm]{0mm}{5mm}
+	(8) &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  & \\
+	\rule[-1mm]{0mm}{5mm}
+	(9) &  &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \\
+	\rule[-1mm]{0mm}{5mm}
+	(10) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & 
+	\rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  \\
+	\hline
+\end{tabular} 
+\label{crono}
+\end{center}
+\end{table}
+
+\newpage
+\phantom{a}
+\newpage
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+
+\end{document}
+
+
+
