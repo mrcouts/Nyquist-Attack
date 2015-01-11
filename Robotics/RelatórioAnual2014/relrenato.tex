@@ -134,24 +134,13 @@ Os principais objetivos do projeto são:
 \newpage
 \section{Metodologia do projeto}\label{method}
 
-Serão realizados os seguintes passos para a realização da proposta:
+O desenvolvimento do projeto consiste basicamente em três frentes: o desenvolvimento e aprimoramento do algoritmo utilizado para modelagem dinâmica das plataformas robóticas, o desenvolvimento de uma metologia de projeto de sistema de controle não linear robusto para plataformas robóticas com incertezas paramétricas, e a elaboração de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
 
-\begin{itemize}
-\item[(1)] 	Cumprimentos dos créditos de pós-graduação.
-\item[(2)] 	Pesquisa e revisão bibliográfica da literatura para o desenvolvimento teórico.
-\item[(3)] 	Estudo dos aprimoramentos dos métodos de Lagrange, Kane e Gibbs-Appell, desenvolvidos no grupo de pesquisa do professor Dr. Tarcísio Coelho.
-\item[(4)]  Elaboração de algoritmo de modelagem dinâmica multicorpos baseados nos aprimoramentos dos métodos estudados.
-\item[(5)] 	Aplicação do algoritmo desenvolvido em diferentes mecanismos.
-\item[(6)] 	Simulação da dinâmica inversa para os mecanismos escolhidos.
-\item[(7)]  Estudo de técnicas de controle não-linear.
-\item[(8)]  Desenvolvimento de metodologia de projeto de controlador não linear robusto, voltada à mecanismos paralelos com incertezas paramétricas.
-\item[(9)] 	Simulação da dinâmica direta utilizando as técnicas de controle estudadas.
-\item[(10)] 	Desenvolvimento de leis de controle que permitam  o controle de mecanismos descritos por modelos  com coordenadas redundantes.
-\item[(11)] Simulação da dinâmica direita utilizando as técnicas de controle com variáveis redundantes.
-\item[(12)] 	Comparação e análise dos resultados obtidos utilizando as leis de controles implementadas em simulação.
-\item[(13)] 	Avaliação geral dos resultados.
-\item[(14)] Preparo da dissertação.
-\end{itemize}
+O desenvolvimento do algoritmo de modelagem é feito começando pelo estudo dos métodos tracionais e do método Orsino de modelagem de sistemas mecânicos multicorpos, seguido pela concepção da primeira verão do algoritmo, aplicação da versão atual do algoritmo em diversas plataformas robóticas utilizando softwares de manipulação simbólicas, automatização e adição de aprimoramentos ao algoritmo, voltando às etapas de aplicação, automatização e adição de aprimoramentos iterativamente.
+
+O desenvolvimento da metodologia de projeto de sistema de controle não linear robusto para plataformas robótica com incertezas paramétricas inicia-se no estudo de técnicas de controle que seguem esta linha e aplicação em sistemas de menor complexidade. Depois de adquirir o domínio das leis de controle estudadas, aplicar as tércnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao máximo a metodologia de projeto desenvolvida.
+
+O desenvolvimento de leis de controle adaquadas a sistemas descritos por coordenadas redundantes é feito baseado nas leis de controle não linear robusto estudas, com o objetivo de realizar o controle de plataformas robóticas cuja orientação é descrita por quaternions unitários. Essa etapa do projeto exige a integração dos conhecimentos adquiridos nas áreas de modelagem e controle de plataformas robóticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
 
 %---DISCIPLINAS CURSADAS---------------------------------------------------------
 \newpage
@@ -177,7 +166,26 @@ Além disso, pretende-se cursar a seguinte disciplina no primeiro quadrimestre de
 \newpage
 \section{Cronograma de Atividades do Projeto}\label{atividades}
 
-Aqui segue um cronograma estimado para realização das atividades propostas no tópicos de Metologias:
+Serão realizados os seguintes passos para a realização da proposta:
+
+\begin{itemize}
+\item[(1)] 	Cumprimentos dos créditos de pós-graduação.
+\item[(2)] 	Pesquisa e revisão bibliográfica da literatura para o desenvolvimento teórico.
+\item[(3)] 	Estudo dos aprimoramentos dos métodos de Lagrange, Kane e Gibbs-Appell, desenvolvidos no grupo de pesquisa do professor Dr. Tarcísio Coelho.
+\item[(4)]  Elaboração de algoritmo de modelagem dinâmica multicorpos baseados nos aprimoramentos dos métodos estudados.
+\item[(5)] 	Aplicação do algoritmo desenvolvido em diferentes mecanismos.
+\item[(6)] 	Simulação da dinâmica inversa para os mecanismos escolhidos.
+\item[(7)]  Estudo de técnicas de controle não-linear.
+\item[(8)]  Desenvolvimento de metodologia de projeto de controlador não linear robusto, voltada à mecanismos paralelos com incertezas paramétricas.
+\item[(9)] 	Simulação da dinâmica direta utilizando as técnicas de controle estudadas.
+\item[(10)] 	Desenvolvimento de leis de controle que permitam  o controle de mecanismos descritos por modelos  com coordenadas redundantes.
+\item[(11)] Simulação da dinâmica direita utilizando as técnicas de controle com variáveis redundantes.
+\item[(12)] 	Comparação e análise dos resultados obtidos utilizando as leis de controles implementadas em simulação.
+\item[(13)] 	Avaliação geral dos resultados.
+\item[(14)] Preparo da dissertação.
+\end{itemize}
+
+Aqui segue um cronograma estimado para realização das atividades propostas:
 
 \begin{table}[!ht]
 \begin{center}
