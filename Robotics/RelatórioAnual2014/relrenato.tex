@@ -1,0 +1,231 @@
+\documentclass[a4paper,12pt,brazil]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+
+\flushbottom
+
+\setlength\textwidth{160mm}
+\setlength\textheight{247mm}
+\setlength\hoffset{-13.4mm}
+\setlength\voffset{-20mm}
+\setlength\parindent{0.75cm}
+\setlength\parskip{0mm}
+\setlength\topsep{12pt}
+
+\usepackage{paralist}
+\usepackage{subfigure}
+\usepackage{amsmath,amssymb,amsfonts,textcomp}
+\usepackage{rawfonts}
+\usepackage{graphics,psfrag}
+\usepackage{latexsym}
+\usepackage{varioref}
+\usepackage{subfigmat}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[colorlinks,citecolor=Fuchsia,urlcolor=blue,linkcolor=Cerulean]{hyperref}
+\usepackage{color}
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{setspace}
+\usepackage[pdftex]{graphicx}
+\usepackage{special-char}
+
+\graphicspath{{figuras/}{../figuras/}}
+
+
+\begin{document}
+
+\onehalfspacing 
+
+\begin{titlepage}
+\begin{center}
+{\phantom{a}}
+\vspace{1.0cm}
+\textsc{\Large{{ André Garnier Coutinho}}}\\
+\vspace{5.0cm}
+ {\huge\bfseries Aplicação de novas metodologias à modelagem e controle de mecanismos de arquitetura paralela\\}
+\vfill
+\hspace{.50\textwidth}
+\begin{minipage}{.45\textwidth}
+{
+Relatório anual de atividades apresentado à Comissão de Atividade Discente (CADIS) 
+do Programa de Pós Graduação em Engenharia Mecânica (PPGEM) da Escola Politécnica 
+da Universidade de São Paulo (EPUSP)}\\[25pt]
+{Área de concentração:}\\[2pt]
+{Engenharia Mecânica}\\[25pt]
+{Orientador:}\\[2pt]
+Prof. Dr. Tarcísio A. Hess Coelho
+\end{minipage}
+
+\vfill
+{São Paulo \\ 15 de Janeiro de 2015}
+\end{center}
+\end{titlepage}
+
+
+
+
+\vspace{-0.3cm}
+
+\noindent
+{\bf Nome: }{André Garnier Coutinho}\\[8pt]
+{\bf NUSP: }{6846085}\\[8pt]
+{\bf Curso: }{Mestrado}\\[8pt]
+{\bf Área de concentração: }{Engenharia Controle e Automação Mecânica (3152)}\\[8pt]
+{\bf Orientador: }{Professor Doutor Tarcísio Antônio Hess Coelho}\\[8pt]
+{\bf Ano de ingresso no PPGEM: }{2014}\\[8pt]
+{\bf Bolsista: }{Sim}\\[8pt]
+{\bf Agência de fomento: }{CAPES}\\[8pt]
+%{\bf Processo: }{?}\\[8pt]
+{\bf Edital/Chamada: }{Cota Institucional (Demanda Social)}\\[8pt]
+
+\vspace{2cm}
+\noindent
+
+%RESUMO--------------------------------------------------------   
+\newpage
+\section*{Resumo}
+
+Para realizar o projeto de um sistema de controle, é necessário primeiramente de um modelo da planta a ser controlada. O grau de fidelidade do modelo da planta, dentro das condições de operação desejadas do sistema, influi diretamente na performance do sistema em malha fechada que o projeto do controlador pode oferecer. Quanto mais rico for o modelo, mais fácil de atingir requisitos de performance mais elevados (menor tempo de resposta e menor sobressinal, por exemplo) garantindo a estabilidade do sistema.
+
+Utilizando os métodos tradicionais de modelagem de Sistemas Mecânicos Multicorpos, é difícil e trabalhoso de se obter modelos de sistemas complexos, como mecanismos paralelos. Para contornar esse problema, é comum desprezar alguns efeitos de acoplamentos inerciais, simplificando o processo de modelagem. Porém, essa estratégia gera modelos mais pobres, o que irá limitar a perfomance que o sistema poderá atingir quando for feito o projeto do sistema de controle.
+
+A solução proposta para ser possível aumentar a performance, garantindo a robustez, de um sistema de controle de mecanismos paralelos é a utilização dos novos métodos de modelagem dinâmica desenvolvidos pelo grupo de pesquisa do Prof. Doutor Tarcisio Antonio Hess Coelho, os quais são adequados para incluir todos os efeitos de dinâmica de corpos rígidos, independentemente da complexidade do sistema.
+
+O presente projeto visa desenvolver um algoritmo simples que inclua todos os efeitos da dinâmica de corpos rígidos para realizar a modelagem dinâmica de mecanismos paralelos (baseado no Método Orsino), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atuação redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
+
+
+%INTRODUÇÃO----------------------------------------------------
+\newpage
+\section{Introdução}\label{intro}
+
+	Há uma série de vantagens em utilizar mecanismos de cadeia cinemática paralela no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precisão de posicionamento do efetuador e uma redução significativa na inércia. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}. 
+
+	Devido à grande dificuldade de se obter o modelo dinâmico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande domínio sobre a dinâmica dos sistema, como plataformas robóticas voltadas a reabilitação, pois é necessário um conhecimento detalhado do comportamento dinâmico do mecanismo utilizado para poder controlar as forças de interação entre o mecanismo e o paciente \cite{Andre}.
+	
+	Atualmente novas metodologias para modelagem de dinâmica multicorpos que se mostram muito mais adequadas para aplicações em qualquer tipo de mecanismo estão sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando também orientado pelo professor Dr. Tarcísio Coelho \cite{Orsino2013, Apostila}.
+	
+	Outro assunto relevante ainda pouco estudado por pesquisadores é o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como já foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os métodos tradicionais, ainda são poucos os estudos de implementação de técnicas de controle em mecanismos de cadeia fechada. Sendo assim, é possível aliar as novas metodologias de modelagem desenvolvidas à implementação, adaptação e aprimoramentos de algoritmos de controle não-linear voltados a mecanismos paralelos \cite{Craig}. Além disso é possível aproveitar os novos métodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementação de leis de controle utilizando variáveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
+
+
+%OBJETIVOS E JUSTIFICATIVAS--------------------------------------------
+\newpage
+\section{Objetivos}\label{objetivos}
+
+A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorpos para implementar, adaptar e aprimorar algoritmos de controle não-linear para mecanismos paralelos. Possui diferenciação em relação a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda são pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda não são tão explorados, e estuda técnicas de controle não-linear, inclusive a utilização de variáveis redundantes em sistemas de controle, fato não muito comum na literatura.
+
+Os principais objetivos do projeto são:
+\begin{itemize}
+\item Desenvolvimento de um algoritmo para dedução das equações diferenciais de movimento de mecanismos de arquiteturas serial e paralela com vínculos de natureza holônoma (baseado no Método Orsino) que possua as seguintes características:
+\begin{itemize}
+\item Considere todos os efeitos da dinâmica de corpos rígidos.
+\item Aplicação simples, mesmo para sistemas de alta complexidade.
+\item Alto grau de automatização, de modo que possa ser facilmente implementado em softwares de manipulação simbólica.
+\end{itemize}
+\item Desenvolvimento de metodologia de projeto de controle não linear robusto, baseado na técnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atuação redundante, com incertezas paramétricas.
+\item Desenvolvimento de lei de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orientação é descrita por quaternions unitários.
+\end{itemize}
+
+
+%RESULTADOS--------------------------------------------------------------------
+\newpage
+\section{Metodologia do projeto}\label{method}
+
+Serão realizados os seguintes passos para a realização da proposta:
+
+\begin{itemize}
+\item[(1)] 	Cumprimentos dos créditos de pós-graduação.
+\item[(2)] 	Pesquisa e revisão bibliográfica da literatura para o desenvolvimento teórico.
+\item[(3)] 	Estudo dos aprimoramentos dos métodos de Lagrange, Kane e Gibbs-Appell, desenvolvidos no grupo de pesquisa do professor Dr. Tarcísio Coelho.
+\item[(4)]  Elaboração de algoritmo de modelagem dinâmica multicorpos baseados nos aprimoramentos dos métodos estudados.
+\item[(5)] 	Aplicação do algoritmo desenvolvido em diferentes mecanismos.
+\item[(6)] 	Simulação da dinâmica inversa para os mecanismos escolhidos.
+\item[(7)]  Estudo de técnicas de controle não-linear.
+\item[(8)]  Desenvolvimento de metodologia de projeto de controlador não linear robusto, voltada à mecanismos paralelos com incertezas paramétricas.
+\item[(9)] 	Simulação da dinâmica direta utilizando as técnicas de controle estudadas.
+\item[(10)] 	Desenvolvimento de leis de controle que permitam  o controle de mecanismos descritos por modelos  com coordenadas redundantes.
+\item[(11)] Simulação da dinâmica direita utilizando as técnicas de controle com variáveis redundantes.
+\item[(12)] 	Comparação e análise dos resultados obtidos utilizando as leis de controles implementadas em simulação.
+\item[(13)] 	Avaliação geral dos resultados.
+\item[(14)] Preparo da dissertação.
+\end{itemize}
+
+%---DISCIPLINAS CURSADAS---------------------------------------------------------
+\newpage
+\section{Disciplinas de pós-graduação}\label{disci}
+
+Como durante a graduação já foram cursadas 5 matérias de pós-graduação, espera-se que seja possível fazer o aproveitamento de créditos. As matérias de pós-graduação já cursadas anteriormente são as seguintes:
+\begin{itemize}
+\item PMR--5010 --- Elementos Finitos em Sistemas Multifísicos: Fundamentos
+\item PMR--5215 --- Otimização Aplicada ao Projeto de Sistemas Mecânicos
+\item PMR--5234 --- Técnicas de Ultra-Som e suas aplicações na Indústria e na Medicina
+\item PMR--5238 --- Análise e Síntese de Mecanismo Planos e Tridimensionais
+\item PMR--5211 --- Mecânica dos Sólidos Experimental
+\end{itemize}
+Além disso, pretende-se cursar a seguinte disciplina no primeiro quadrimestre de 2014:
+\begin{itemize}
+\item PME--5004 --- Complementos de Matemática I
+\end{itemize}
+
+
+
+
+%ETAPAS E ATIVIDADES DO PROJETO----------------------------------------
+\newpage
+\section{Cronograma de Atividades do Projeto}\label{atividades}
+
+Aqui segue um cronograma estimado para realização das atividades propostas no tópicos de Metologias:
+
+\begin{table}[!ht]
+\begin{center}
+\caption[Cronograma]{Cronograma -- Planejamento de Atividades por quadrimestre}
+\begin{tabular}{|c|c|c|c|c|c|c|c|} 
+	\hline
+	\rule[-2mm]{0mm}{6mm}
+	Ativ./Quad. & $1^o/14$ & $2^o/14$ & $3^o/14$ & $1^o/15$ & $2^o/15$ & $3^o/15$ \\
+	\hline
+	\rule[-2mm]{0mm}{6mm}
+	(1) & \rule[0mm]{10mm}{2mm} &  &  &  &  &   \\
+	\rule[-1mm]{0mm}{5mm}
+	(2) & \rule[0mm]{10mm}{2mm} &  &  &  &  &   \\
+	\rule[-1mm]{0mm}{5mm}
+	(3) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &  
+	&  \\
+	\rule[-1mm]{0mm}{5mm}
+	(4) &  & \rule[0mm]{10mm}{2mm}  &   &  &  & \\
+	\rule[-1mm]{0mm}{5mm}
+	(5) &   & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  & \\
+	\rule[-1mm]{0mm}{5mm}
+	(6) &   &  & \rule[0mm]{10mm}{2mm} &  &  &  \\
+	\rule[-1mm]{0mm}{5mm}
+	(7) &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  & \\ 
+	\rule[-1mm]{0mm}{5mm}
+	(8) &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \\
+	\rule[-1mm]{0mm}{5mm}
+	(9) &  &  &  & \rule[0mm]{10mm}{2mm} &  & \\
+	\rule[-1mm]{0mm}{5mm}
+	(10) &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \  \\
+	\rule[-2mm]{0mm}{6mm}
+	(11) &  &  &  &  & \rule[0mm]{10mm}{2mm} &   \\
+	\rule[-2mm]{0mm}{6mm}
+	(12) &  &  &  &  &  & \rule[0mm]{10mm}{2mm}  \\
+	\rule[-2mm]{0mm}{6mm}
+	(13) &  &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm}  \\
+	\hline
+\end{tabular} 
+\label{crono}
+\end{center}
+\end{table}
+
+\phantom{a}
+\newpage
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+
+\end{document}
+
+
+
