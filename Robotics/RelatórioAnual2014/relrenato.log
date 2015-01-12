@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.2)  11 JAN 2015 16:36
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.2)  12 JAN 2015 20:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -463,7 +463,86 @@ Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 \Gin@req@height=\dimen132
 \Gin@req@width=\dimen133
 )
-(./special-char.sty) (./relrenato.aux)
+(./special-char.sty (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/eucal.sty
+Package: eucal 2009/06/22 v3.00 Euler Script fonts
+LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
+(Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/eufrak.sty
+
+Package eufrak Warning: The eufrak package is redundant if the amsfonts package
+ is used on input line 36.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/was/upgreek.sty
+Package: upgreek 2003/02/12 v2.0 (WaS)
+Package upgreek Info: Using Euler Roman for upright Greek on input line 31.
+\symugrf@m=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `ugrf@m' in version `bold'
+(Font)                  U/eur/m/n --> U/eur/b/n on input line 38.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/isomath/isomath.sty
+Package: isomath 2012/09/04 v0.6.1 ISO math style
+
+(/usr/share/texlive/texmf-dist/tex/latex/was/fixmath.sty
+Package: fixmath 2000/04/11 v0.9 (WaS)
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 27.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 28.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 30.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 32.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 33.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 34.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 35.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 36.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 37.
+LaTeX Font Info:    Redeclaring math symbol \alpha on input line 38.
+LaTeX Font Info:    Redeclaring math symbol \beta on input line 39.
+LaTeX Font Info:    Redeclaring math symbol \gamma on input line 40.
+LaTeX Font Info:    Redeclaring math symbol \delta on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \epsilon on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \zeta on input line 43.
+LaTeX Font Info:    Redeclaring math symbol \eta on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \theta on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \iota on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \kappa on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \lambda on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \mu on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \nu on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \xi on input line 51.
+LaTeX Font Info:    Redeclaring math symbol \pi on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \rho on input line 53.
+LaTeX Font Info:    Redeclaring math symbol \sigma on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \tau on input line 55.
+LaTeX Font Info:    Redeclaring math symbol \upsilon on input line 56.
+LaTeX Font Info:    Redeclaring math symbol \phi on input line 57.
+LaTeX Font Info:    Redeclaring math symbol \chi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \psi on input line 59.
+LaTeX Font Info:    Redeclaring math symbol \omega on input line 60.
+LaTeX Font Info:    Redeclaring math symbol \varepsilon on input line 61.
+LaTeX Font Info:    Redeclaring math symbol \vartheta on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \varpi on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \varphi on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \varrho on input line 65.
+LaTeX Font Info:    Redeclaring math symbol \varsigma on input line 66.
+)
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmr/m/n --> OML/cmr/m/n on input line 229.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OML/cmr/bx/n on input line 230.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OML/cmr/bx/n on input line 233.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathbbol.sty
+Package: mathbbol 1995/01/01
+\symbbold=\mathgroup8
+)
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 10.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 10.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/m/n on input line 10.
+)
+(./relrenato.aux)
 \openout1 = `relrenato.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
@@ -480,8 +559,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 39.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 39.
@@ -547,6 +625,9 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 61.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Try loading font information for U+bbold on input line 61.
+
+(/usr/share/texlive/texmf-dist/tex/latex/bbold/Ubbold.fd)
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 66.
 Package babel Info: Redefining portuges shorthand "|
@@ -598,62 +679,147 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 147.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
- [6]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 167.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 232.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 232.
- [7] (./relrenato.bbl
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
- [8])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 236.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 236.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 236.
- [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 236.
+(babel)             in language  on input line 153.
 
-(./relrenato.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 236.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 236.
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
+
+ []
+
+LaTeX Font Info:    Try loading font information for U+BOONDOX-cal on input lin
+e 157.
+(/usr/share/texlive/texmf-dist/tex/latex/boondox/uboondox-cal.fd
+File: uboondox-cal.fd 2011/04/26 Fontinst v1.933 font definitions for U/BOONDOX
+-cal.
+)
+LaTeX Font Info:    Try loading font information for U+eus on input line 160.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 166.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <12> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 166.
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <8> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 166.
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <6> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 166.
+LaTeX Font Info:    Try loading font information for OML+cmbr on input line 167
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbr.fd
+File: omlcmbr.fd 2005/04/13 v8.1 (WaS)
+)
+LaTeX Font Info:    Try loading font information for OML+cmbrm on input line 16
+7.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
+File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
+)
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <12> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 167
+.
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <8> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 167
+.
+LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <6> not available
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 167
+.
+
+Overfull \hbox (7.74754pt too wide) in paragraph at lines 174--175
+[]$\U/bbold/m/n/12 q$\T1/cmr/m/n/12 : ve-tor con-tendo to-das as co-or-de-na-da
+s ge-ne-ra-li-za-das. É de-fi-nido por $\U/bbold/m/n/12 q \OT1/cmss/m/n/12 = []
+[]$ 
+ []
+
+
+Overfull \hbox (8.53206pt too wide) in paragraph at lines 177--178
+[]$\U/bbold/m/n/12 p$\T1/cmr/m/n/12 : ve-tor con-tendo to-das as ve-lo-ci-da-de
+s ge-ne-ra-li-za-das. É de-fi-nido por $\U/bbold/m/n/12 p \OT1/cmss/m/n/12 = []
+[]$ 
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 178.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 178.
+[6]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 228.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 228.
+ [7]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 229.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 248.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 248.
+ [8]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 249.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 314.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 314.
+ [9] (./relrenato.bbl
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+ [10])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 318.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 318.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 318.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 318.
+ (./relrenato.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 318.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 318.
 Package rerunfilecheck Info: File `relrenato.out' has not changed.
-(rerunfilecheck)             Checksum: DAA983ADA410AB122F3CE1549724825E;294.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 236.
+(rerunfilecheck)             Checksum: 60F789CEF13274EE25A97D566D4DB27F;454.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 318.
  ) 
 Here is how much of TeX's memory you used:
- 8651 strings out of 493304
- 117625 string characters out of 6139872
- 218504 words of memory out of 5000000
- 11906 multiletter control sequences out of 15000+600000
- 27897 words of font info for 91 fonts, out of 8000000 for 9000
+ 9037 strings out of 493304
+ 123408 string characters out of 6139872
+ 220856 words of memory out of 5000000
+ 12220 multiletter control sequences out of 15000+600000
+ 35859 words of font info for 117 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,9n,35p,836b,456s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,11n,35p,836b,456s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
 fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pf
-b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfcc1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on relrenato.pdf (10 pages, 152251 bytes).
+type1/public/bbold-type1/bbold10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/bbold-type1/bbold7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/euler/eusm10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/hfbright/hfbrmb10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
+x1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc
+1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/boondox/zxxrw8a.pfb>
+Output written on relrenato.pdf (12 pages, 244872 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
- 27 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 223 PDF objects out of 1000 (max. 8388607)
+ 184 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

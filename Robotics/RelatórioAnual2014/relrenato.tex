@@ -95,7 +95,7 @@ Utilizando os métodos tradicionais de modelagem de Sistemas Mecânicos Multicorpo
 
 A solução proposta para ser possível aumentar a performance, garantindo a robustez, de um sistema de controle de mecanismos paralelos é a utilização dos novos métodos de modelagem dinâmica desenvolvidos pelo grupo de pesquisa do Prof. Doutor Tarcisio Antonio Hess Coelho, os quais são adequados para incluir todos os efeitos de dinâmica de corpos rígidos, independentemente da complexidade do sistema.
 
-O presente projeto visa desenvolver um algoritmo simples que inclua todos os efeitos da dinâmica de corpos rígidos para realizar a modelagem dinâmica de mecanismos paralelos (baseado no Método Orsino), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atuação redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
+O presente projeto visa desenvolver um algoritmo simples que inclua todos os efeitos da dinâmica de corpos rígidos para realizar a modelagem dinâmica de mecanismos paralelos (baseado na metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atuação redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
 
 
 %INTRODUÇÃO----------------------------------------------------
@@ -119,7 +119,7 @@ A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorp
 
 Os principais objetivos do projeto são:
 \begin{itemize}
-\item Desenvolvimento de um algoritmo para dedução das equações diferenciais de movimento de mecanismos de arquiteturas serial e paralela com vínculos de natureza holônoma (baseado no Método Orsino) que possua as seguintes características:
+\item Desenvolvimento de um algoritmo para dedução das equações diferenciais de movimento de mecanismos de arquiteturas serial e paralela com vínculos de natureza holônoma (baseado na metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi) que possua as seguintes características:
 \begin{itemize}
 \item Considere todos os efeitos da dinâmica de corpos rígidos.
 \item Aplicação simples, mesmo para sistemas de alta complexidade.
@@ -130,17 +130,99 @@ Os principais objetivos do projeto são:
 \end{itemize}
 
 
-%RESULTADOS--------------------------------------------------------------------
+%METODOLOGIA--------------------------------------------------------------------
 \newpage
 \section{Metodologia do projeto}\label{method}
 
 O desenvolvimento do projeto consiste basicamente em três frentes: o desenvolvimento e aprimoramento do algoritmo utilizado para modelagem dinâmica das plataformas robóticas, o desenvolvimento de uma metologia de projeto de sistema de controle não linear robusto para plataformas robóticas com incertezas paramétricas, e a elaboração de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
 
-O desenvolvimento do algoritmo de modelagem é feito começando pelo estudo dos métodos tracionais e do método Orsino de modelagem de sistemas mecânicos multicorpos, seguido pela concepção da primeira verão do algoritmo, aplicação da versão atual do algoritmo em diversas plataformas robóticas utilizando softwares de manipulação simbólicas, automatização e adição de aprimoramentos ao algoritmo, voltando às etapas de aplicação, automatização e adição de aprimoramentos iterativamente.
+O desenvolvimento do algoritmo de modelagem é feito começando pelo estudo dos métodos tracionais e da metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi de modelagem de sistemas mecânicos multicorpos, seguido pela concepção da primeira verão do algoritmo, aplicação da versão atual do algoritmo em diversas plataformas robóticas utilizando softwares de manipulação simbólicas, automatização e adição de aprimoramentos ao algoritmo, voltando às etapas de aplicação, automatização e adição de aprimoramentos iterativamente.
 
 O desenvolvimento da metodologia de projeto de sistema de controle não linear robusto para plataformas robótica com incertezas paramétricas inicia-se no estudo de técnicas de controle que seguem esta linha e aplicação em sistemas de menor complexidade. Depois de adquirir o domínio das leis de controle estudadas, aplicar as tércnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao máximo a metodologia de projeto desenvolvida.
 
 O desenvolvimento de leis de controle adaquadas a sistemas descritos por coordenadas redundantes é feito baseado nas leis de controle não linear robusto estudas, com o objetivo de realizar o controle de plataformas robóticas cuja orientação é descrita por quaternions unitários. Essa etapa do projeto exige a integração dos conhecimentos adquiridos nas áreas de modelagem e controle de plataformas robóticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
+
+%RESULTADOS--------------------------------------------------------------------
+\newpage
+\section{Síntese de Resultados}\label{results}
+
+Esta seção pretende apresentar uma síntese dos principais resultados teóricos obtidos até o momento 
+no desenvolvimento da metodologia de modelagem proposta.
+
+%---ALGORITMO PARA MODELAGEM DE PLATAFORMAS ROBÓTICAS------------------------------------------
+\subsection{Algoritmo para modelagem de plataformas robóticas}\label{struct}
+
+Para explicar o algoritmo desenvolvido é necessário primeiro definir uma série de conceitos: \\
+
+Seja $\ssB$ um sistema mecânico serial de $\nu\ssh$ graus de liberdade. Definimos:
+
+\begin{itemize}
+\item $\llN$: referencial inercial.
+\item $\ttN$: sistema de coordenadas fixo a $\llN$.
+\item $\ssB_i, i=1,...,\nu\ssh$: i-ésima barra do mecanismo serial.
+\item $\ttg_i, i=1,...,\nu\ssh$: centro de massa da i-ésima barra.
+\item $\ttB_i, i=1,...,\nu\ssh$: sistema de coordenadas solidário a $\ssB_i$ com origem em $\ttg_i$ e eixos paralelos às direções principais de inércia de $\ssB_i$.
+\item $m_i$: massa da barra $\ssB_i$.
+\item $\vI_i$: tensor de inércia da barra $\ssB_i$.
+\item $\vomega_i$: vetor velocidade angular absoluta da barra $\ssB_i$.
+\item $\vv_i$: vetor velocidade linear absoluta do centro de massa $\ttg_i$.
+\item $\va_i$: vetor aceleração linear absoluta do centro de massa $\ttg_i$.
+\item $\momega$: vetor contendo as compontentes de $[\vomega_i]_{\ttB_i}$, com $i=1,...,\nu\ssh$.
+\item $\mathbb{\nu}$: vetor contendo as compontentes de $[\vv_i]_{\ttN}$, com $i=1,...,\nu\ssh$.
+\item  $\mq\ssh$: vetor de $\nu\ssh$ coordenadas generalizadas independentes. Contém os deslocamentos angulares relativos das juntas rotativas e os deslocamentos lineares relativos das juntas prismáticas.
+\item $\mq\cir$: vetor de $\nu_{\mq\cir}$ coordenadas generalizadas redundantes. Contém as coordenadas dos centros de massa das barras do mecanismo escritas no sistema $\ttN$.
+\item $\mq$: vetor contendo todas as coordenadas generalizadas. É definido por $\mq = \begin{bmatrix} {\mq\ssh}^\msT & {\mq\cir}^\msT \end{bmatrix}^\msT $
+\item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes. É dado por $\mp\ssh = \dot{\mq}\ssh$.
+\item $\mp\cir$: vetor de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. É definido por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
+\item $\mp$: vetor contendo todas as velocidades generalizadas. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
+\item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em função de $\mq\ssh$ e $\mp\ssh$.
+\item $\mu$: esforços ativos externos aplicados na direção de $\mq\ssh$.
+\item $\mf(\mq\ssh)$: esforços de atrito aplicados na direção oposta a $\mp$.
+\item $\mg$: esforços gravitacionais aplicados na direção oposta a $\mp$.
+\end{itemize}
+
+O algoritmo é baseado na metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi para modelagem dos subsistemas seriais. O modelo para simulação dinâmica direta é dado pelo seguinte equacionamento:
+
+\begin{equation} \label{eq:DinamicaDireta}
+\begin{cases}
+\mC^\mathsf{T}(\mq\ssh) \Big( \mM \dot{\mp} + \mv(\mp\ssh) + \mf(\mp\ssh) + \mg \Big) = \mu \\
+\mA(\mq\ssh) \dot{\mp} = \mb(\mq\ssh,\mp\ssh)
+\end{cases}
+\end{equation}
+
+Sendo:
+
+\begin{equation} \label{eq:MatrizC}
+\mC = \begin{bmatrix}
+\mone \\
+\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation} \label{MatrizA}
+\mA = \begin{bmatrix}
+\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh} & -\mone 
+\end{bmatrix}
+\end{equation}
+
+\begin{equation} \label{eq:Matrizb}
+\mb = - \dot{\mA}(\mq\ssh,\mp\ssh) \mp
+\end{equation}
+
+\begin{equation} \label{eq:EnergiaDeAceleracoes}
+S = \frac{1}{2} \sum_{i=1}^{\nu\ssh} \Big( m_i \va_i \cdot \va_i + \dot{\vomega}_i \cdot \vI_i \dot{\vomega}_i + 2 \dot{\vomega}_i \cdot ( \vomega_i \wedge \vI_i \vomega_i ) \Big)
+\end{equation}
+
+\begin{equation} \label{eq:MatrizM}
+\mM = \frac{\partial^2 S}{\partial \dot{\mp}^2}
+\end{equation}
+
+\begin{equation} \label{eq:Matrizv}
+\mv = \frac{\partial S}{\partial \dot{\mp}} - \frac{\partial^2 S}{\partial \dot{\mp}^2} \dot{\mp}
+\end{equation}
+
+
+
 
 %---DISCIPLINAS CURSADAS---------------------------------------------------------
 \newpage
