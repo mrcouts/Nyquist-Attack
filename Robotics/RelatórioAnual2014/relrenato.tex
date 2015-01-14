@@ -160,10 +160,10 @@ Seja $\ssB$ um sistema mecânico serial de $\nu\ssh$ graus de liberdade. Definimo
 \begin{itemize}
 \item $\llN$: referencial inercial.
 \item $\ttN$: sistema de coordenadas fixo a $\llN$.
-\item $\ssB_i, i=1,...,\nu\ssh$: i-ésima barra do mecanismo serial.
-\item $\ttg_i, i=1,...,\nu\ssh$: centro de massa da i-ésima barra.
+\item $\ssB_i, \,i=1,...,\nu\ssh$: i-ésima barra do mecanismo serial.
+\item $\ttg_i, \,i=1,...,\nu\ssh$: centro de massa da i-ésima barra.
 \item $\ttx$: ponto no espaço fixo ao efetuador.
-\item $\ttB_i, i=1,...,\nu\ssh$: sistema de coordenadas solidário a $\ssB_i$ com origem no centro da i-ésima junta e eixos paralelos às direções principais de inércia de $\ssB_i$.
+\item $\ttB_i, \,i=1,...,\nu\ssh$: sistema de coordenadas solidário a $\ssB_i$ com origem no centro da i-ésima junta e eixos paralelos às direções principais de inércia de $\ssB_i$.
 \item $m_i$: massa da barra $\ssB_i$.
 \item $\vI_i$: tensor de inércia da barra $\ssB_i$.
 \item $\vomega_i$: vetor velocidade angular absoluta da barra $\ssB_i$.
@@ -178,9 +178,14 @@ Seja $\ssB$ um sistema mecânico serial de $\nu\ssh$ graus de liberdade. Definimo
 \item $\mp\cir$: vetor de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. É definido por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
 \item $\mp$: vetor contendo todas as velocidades generalizadas. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
 \item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em função de $\mq\ssh$ e $\mp\ssh$.
+\item $\mA(\mq\ssh)$: Jacobiano dos vínculos de velocidades.
+\item $\mC(\mq\ssh)$: complemento ortogonal do Jacobiano dos vínculos de velocidades.
+\item $\mM$: matriz de inércia desacoplada.
+\item $\mv(\mp\ssh)$: vetor dos termos giroscópicos desacoplados.
+\item $\mf(\mq\ssh)$: vetor dos esforços de atrito aplicados na direção oposta a $\mp$.
+\item $\mg$: vetor dos esforços gravitacionais aplicados na direção oposta a $\mp$.
 \item $\mu$: esforços ativos externos aplicados na direção de $\mp\ssh$.
-\item $\mf(\mq\ssh)$: esforços de atrito aplicados na direção oposta a $\mp$.
-\item $\mg$: esforços gravitacionais aplicados na direção oposta a $\mp$.
+
 \end{itemize}
 
 O algoritmo é baseado na metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi para modelagem dos subsistemas seriais. O modelo para simulação dinâmica direta é dado pelo seguinte equacionamento:
@@ -584,16 +589,104 @@ l_{g1} \ssin_1 \dot{\theta}_1^2 \\
 \end{cases}
 \end{equation}
 
-Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriais já deduzidos, é necessário introduzir mais alguns conceitos:
+Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriais já deduzidos, é necessário introduzir mais alguns conceitos: \\
 
 Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n-1}$ $n$ subsistemas mecânicos e $\ssM$ um sistema mecânico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
 
 \begin{itemize}
-\item $\mq_0$: coordenadas generalizas da plataforma/efetuador de $\ssB_n$.
-\item $\mq_j\ssh, j=1, ..., n-1$: coordenadas generalizadas independentes do subsistema  $\ssB_j$.
-\item $\mq$: coordenadas generalizadas do sistema $\ssM$. Definido como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq_1\ssh}^\msT & ... & {\mq_{n-1}\ssh}^\msT \end{bmatrix}^\msT $.
-\item $\overline{\mq}(\mq)$: vetor dos vínculos de posição. As equações vínculares são dadas por $\overline{\mq}(\mq) = \mzr $.
+\item $\mq_0$: vetor de coordenadas generalizas da plataforma/efetuador de $\ssM$.
+\item $\mq_j\ssh, \,j=1, ..., n-1$: vetor de coordenadas generalizadas independentes do subsistema  $\ssB_j$.
+\item $\mq\hcir$: vetor de coordenadas generalizadas redundantes não pertencentes à plataforma/efetuador. Definido como $\mq\hcir = \begin{bmatrix}  {\mq_1\ssh}^\msT & ... & {\mq_{n-1}\ssh}^\msT \end{bmatrix}^\msT $.
+\item $\mq$: vetor contendo todas as coordenadas generalizadas do sistema $\ssM$. Definido como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq\hcir}^\msT \end{bmatrix}^\msT $.
+\item $\overline{\mq}(\mq)$: vetor dos vínculos de posição entre subsistemas. As equações vínculares são dadas por $\overline{\mq}(\mq) = \mzr $.
+\item $\mp\ssh_0$: vetor de velocidades generalizadas independentes da plataforma/efetuador de $\ssM$. É definido por $\mp\ssh_0 = \mD(\mq_0)\dot{\mq}_0$, sendo $\mD(\mq_0)$ tal que $\dot{\mq}_0  = \mD^+(\mq_0) \mp\ssh_0$.
+\item $\mp_j\ssh, \,j=1, ..., n-1$: vetor de velocidades generalizadas independentes do subsistema  $\ssB_j$. É dado por $\mp_j\ssh = \dot{\mq}_j\ssh$.
+\item $\mp_j, \,j=1, ..., n-1$: vetor de velocidades generalizadas do subsistema  $\ssB_j$.
+\item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. É dado por $\mp\ssh = \mp_0\ssh$.
+\item $\mp\cir$: vetor de $\nu\ssh$ velocidades generalizadas redundantes de $\ssM$. É definido por $\mp\cir = \begin{bmatrix} \mp_1^\msT & \mp_2^\msT & ... & \mp_{n-1}^\msT \end{bmatrix}^\msT $.
+\item $\mp$: vetor contendo todas as velocidades generalizadas de $\ssM$. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
+\item $\mrho$: vetor definido como $\mrho = \begin{bmatrix} {\mrho\ssh}^\msT & {\mrho\cir}^\msT \end{bmatrix}^\msT $, sendo $\mrho\ssh = \mp_0\ssh$ e $\mrho\cir = \dot{\mq}\hcir $.
+\item $\overline{\mrho}(\mrho)$: vetor dos vínculos de velocidades entre subsistemas. As equações vínculares são dadas por $\overline{\mrho}(\mrho) = \mzr $.
+\item $\mA_j(\mq_j\ssh), \,j=0, ..., n-1$: Jacobiano dos vínculos de velocidades do subsistema $\ssB_j$.
+\item $\mC_j(\mq_j\ssh), \,j=0, ..., n-1$: complemento ortogonal do Jacobiano dos vínculos de velocidades do subsistema $\ssB_j$.
+\item $\mM_j, \,j=0, ..., n-1$: matriz de inércia desacoplada do subsistema $\ssB_j$.
+\item $\mv_j(\mp_j\ssh), \,j=0, ..., n-1 $: vetor dos termos giroscópicos desacoplados do subsistema $\ssB_j$.
+\item $\mf_j(\mq_j\ssh), \,j=0, ..., n-1$: vetor dos esforços de atrito do subsistema $\ssB_j$.
+\item $\mg_j, \,j=0, ..., n-1$: vetor dos esforços gravitacionais do subsistema $\ssB_j$.
+\item $\mu_j, \,j=0, ..., n-1$: vetor dos esforços ativos externos do subsistema $\ssB_j$.
 \end{itemize}
+
+O modelo para simulação dinâmica direta é dado pelo seguinte equacionamento:
+
+\begin{equation} \label{eq:DinamicaDireta2}
+\begin{cases}
+\dot{\mq}_0 = \mD^+ (\mq_0) \mp\ssh \\
+\mC^\mathsf{T}(\mq) \Big( \mM \dot{\mp} + \mv(\mp) + \mf(\mp) + \mg \Big) = \mu \\
+\mA(\mq) \dot{\mp} = \mb(\mq,\mp)
+\end{cases}
+\end{equation}
+
+Sendo:
+
+\begin{equation} \label{eq:MatrizC2}
+\mC = 
+\begin{bmatrix}
+\mC_0 &  \mzr  & \ldots & \mzr\\
+\mzr  &  \mC_1 & \ldots & \mzr\\
+\vdots & \vdots & \ddots & \vdots\\
+\mzr  &   \mzr       &\ldots & \mC_{n-1}
+\end{bmatrix}
+\begin{bmatrix}
+\mone \\
+- \displaystyle\frac{\partial \overline{\mq}}{\partial \mq\hcir}^\msI  \frac{\partial \overline{\mq}}{\partial \mq_0 }\cdot\mD^+
+\end{bmatrix}
+\end{equation}
+
+\begin{equation} \label{eq:MatrizA2}
+\mA = 
+\begin{bmatrix}
+\begin{bmatrix}
+\mzr &  \mA_1  & \mzr & \ldots & \mzr\\
+\mzr  &  \mzr & \mA_2 & \ldots & \mzr\\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+\mzr  &   \mzr  & \mzr     &\ldots & \mA_{n-1}
+\end{bmatrix} \\
+\displaystyle\frac{\partial \overline{\mrho}}{\partial \mp}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation} \label{eq:Matrizb2}
+\mb = - \dot{\mA}(\mq,\mp) \mp
+\end{equation}
+
+\begin{equation} \label{eq:MatrizM2}
+\mM =
+\begin{bmatrix}
+\mM_0 &  \mzr  & \ldots & \mzr\\
+\mzr  &  \mM_1 & \ldots & \mzr\\
+\vdots & \vdots & \ddots & \vdots\\
+\mzr  &   \mzr       &\ldots & \mM_{n-1}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation} \label{eq:Matrizv2}
+\mv = \begin{bmatrix}
+\mv_0^\msT & \mv_1^\msT & ... & \mv_{n-1}^\msT
+\end{bmatrix}^\msT
+\end{equation}
+
+\begin{equation} \label{eq:Matrizf2}
+\mf = \begin{bmatrix}
+\mf_0^\msT & \mf_1^\msT & ... & \mf_{n-1}^\msT
+\end{bmatrix}^\msT
+\end{equation}
+
+\begin{equation} \label{eq:Matrizg2}
+\mg = \begin{bmatrix}
+\mg_0^\msT & \mg_1^\msT & ... & \mg_{n-1}^\msT
+\end{bmatrix}^\msT
+\end{equation}
+
 
 
 
