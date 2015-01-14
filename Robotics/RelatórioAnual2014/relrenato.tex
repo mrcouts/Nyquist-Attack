@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
 \usepackage[brazil]{babel}
+\usepackage{float}
 
 \flushbottom
 
@@ -161,7 +162,8 @@ Seja $\ssB$ um sistema mecânico serial de $\nu\ssh$ graus de liberdade. Definimo
 \item $\ttN$: sistema de coordenadas fixo a $\llN$.
 \item $\ssB_i, i=1,...,\nu\ssh$: i-ésima barra do mecanismo serial.
 \item $\ttg_i, i=1,...,\nu\ssh$: centro de massa da i-ésima barra.
-\item $\ttB_i, i=1,...,\nu\ssh$: sistema de coordenadas solidário a $\ssB_i$ com origem em $\ttg_i$ e eixos paralelos às direções principais de inércia de $\ssB_i$.
+\item $\ttx$: ponto no espaço fixo ao efetuador.
+\item $\ttB_i, i=1,...,\nu\ssh$: sistema de coordenadas solidário a $\ssB_i$ com origem no centro da i-ésima junta e eixos paralelos às direções principais de inércia de $\ssB_i$.
 \item $m_i$: massa da barra $\ssB_i$.
 \item $\vI_i$: tensor de inércia da barra $\ssB_i$.
 \item $\vomega_i$: vetor velocidade angular absoluta da barra $\ssB_i$.
@@ -176,7 +178,7 @@ Seja $\ssB$ um sistema mecânico serial de $\nu\ssh$ graus de liberdade. Definimo
 \item $\mp\cir$: vetor de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. É definido por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
 \item $\mp$: vetor contendo todas as velocidades generalizadas. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
 \item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em função de $\mq\ssh$ e $\mp\ssh$.
-\item $\mu$: esforços ativos externos aplicados na direção de $\mq\ssh$.
+\item $\mu$: esforços ativos externos aplicados na direção de $\mp\ssh$.
 \item $\mf(\mq\ssh)$: esforços de atrito aplicados na direção oposta a $\mp$.
 \item $\mg$: esforços gravitacionais aplicados na direção oposta a $\mp$.
 \end{itemize}
@@ -195,13 +197,13 @@ Sendo:
 \begin{equation} \label{eq:MatrizC}
 \mC = \begin{bmatrix}
 \mone \\
-\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
+\displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
 \end{bmatrix}
 \end{equation}
 
-\begin{equation} \label{MatrizA}
+\begin{equation} \label{eq:MatrizA}
 \mA = \begin{bmatrix}
-\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh} & -\mone 
+\displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh} & -\mone 
 \end{bmatrix}
 \end{equation}
 
@@ -221,6 +223,377 @@ S = \frac{1}{2} \sum_{i=1}^{\nu\ssh} \Big( m_i \va_i \cdot \va_i + \dot{\vomega}
 \mv = \frac{\partial S}{\partial \dot{\mp}} - \frac{\partial^2 S}{\partial \dot{\mp}^2} \dot{\mp}
 \end{equation}
 
+Aqui seguem as etapas do algoritmo para dedução do modelo dinâmico de um subsistema serial acompanhado de um exemplo de aplicação no mecanismo \underline{R}\underline{R}:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1.5]{RR.jpg}  
+	\caption{Mecanismo \underline{R}\underline{R}}
+	\label{fig:RR}
+\end{figure}
+
+\begin{itemize}
+\item[1)] Definição das coordenadas generalizadas:
+
+\begin{equation}
+\mq\ssh = \begin{bmatrix}
+\theta_1 & \theta_2
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mq\cir = \begin{bmatrix}
+x_1 & y_1 & x_2 & y_2
+\end{bmatrix}
+\end{equation}
+
+\item[2)] Definição das velocidades generalizadas:
+
+\begin{equation}
+\mp\ssh = \begin{bmatrix}
+\dot{\theta}_1 & \dot{\theta}_2
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mp\cir = \begin{bmatrix}
+\omega_{z1} & \omega_{z2} & v_{x1} & v_{y1} & v_{x2} & v_{y2}
+\end{bmatrix}
+\end{equation}
+
+\item[3)] Cinemática de posição dos centros de massa e do efetuador utilizando matrizes de transformação homogênea:
+
+\begin{equation}
+\hvct{\ttg_1}_{\ttB_1}  =
+\begin{bmatrix} 
+l_{g1} & 0 & 1
+\end{bmatrix}^\msT
+\end{equation}
+
+\begin{equation}
+\hvct{\ttg_2}_{\ttB_2}  =
+\begin{bmatrix} 
+l_{g2} & 0 & 1
+\end{bmatrix}^\msT
+\end{equation}
+
+\begin{equation}
+\hvct{\ttx}_{\ttB_2}  =
+\begin{bmatrix} 
+l_2 & 0 & 1
+\end{bmatrix}^\msT
+\end{equation}
+
+\begin{equation}
+\hvct{\mone}_{\ttN \rl \ttB_1} =
+\begin{bmatrix}
+\ccos_1 & -\ssin_1 & 0 \\
+\ssin_1 & \ccos_1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\hvct{\mone}_{\ttB_1 \rl \ttB_2} =
+\begin{bmatrix}
+\ccos_2 & -\ssin_2 & l_1 \\
+\ssin_2 & \ccos_2 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\hvct{\mone}_{\ttN \rl \ttB_2} = \hvct{\mone}_{\ttN \rl \ttB_1} \hvct{\mone}_{\ttB_1 \rl \ttB_2} =
+\begin{bmatrix}
+\ccos_{1+2} & -\ssin_{1+2} & l_1 \ccos_1\\
+\ssin_{1+2} & \ccos_{1+2} & l_1 \ssin_1 \\
+0 & 0 & 1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\hvct{\ttg_1}_{\ttN}  = \hvct{\mone}_{\ttN \rl \ttB_1} \hvct{\ttg_1}_{\ttB_1} =
+\begin{bmatrix}
+l_{g1} \ccos_1 \\
+l_{g1} \ssin_1 \\
+1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\hvct{\ttg_2}_{\ttN}  = \hvct{\mone}_{\ttN \rl \ttB_2} \hvct{\ttg_2}_{\ttB_2} =
+\begin{bmatrix}
+l_1 \ccos_1 + l_{g2} \ccos_{1+2} \\
+l_1 \ssin_1 + l_{g2} \ssin_{1+2} \\
+1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\hvct{\ttx}_{\ttN}  = \hvct{\mone}_{\ttN \rl \ttB_2} \hvct{\ttx}_{\ttB_2} =
+\begin{bmatrix}
+l_1 \ccos_1 + l_2 \ccos_{1+2} \\
+l_1 \ssin_1 + l_2 \ssin_{1+2} \\
+1
+\end{bmatrix}
+\end{equation}
+
+\item[4)] Cinemática de velocidades dos centros de massa:
+
+\begin{equation}
+[\underline{\vv}_1]_{\ttN} = \frac{\dd}{\dd t} [\ttg_1]_\ttN =
+\begin{bmatrix}
+-l_{g1} \ssin_1 \dot{\theta}_1 \\
+ l_{g1} \ccos_1 \dot{\theta}_1 \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+[\underline{\vv}_2]_{\ttN} = \frac{\dd}{\dd t} [\ttg_2]_\ttN =
+\begin{bmatrix}
+-l_{1} \ssin_1 \dot{\theta}_1 - l_{g2} \ssin_{1+2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+ l_{1} \ccos_1 \dot{\theta}_1 + l_{g2} \ccos_{1+2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+\end{bmatrix}
+\end{equation}
+
+\item[5)] Cinemática de velocidades angulares das barras:
+
+\begin{equation}
+\smat{\underline{\vomega}_1}_{\ttB_1 \rl \ttB_1} = \tvct{\mone}_{\ttN \rl \ttB_1} \frac{\dd}{\dd t} \vct{\mone}_{\ttN \rl \ttB_1} = 
+\begin{bmatrix}
+0 & \dot{\theta}_1 \\
+-\dot{\theta}_1 & 0
+\end{bmatrix}
+\Rightarrow
+\underline{\vomega}_1 = \dot{\theta}_1 \hat{\vk}
+\end{equation}
+
+\begin{equation}
+\smat{\underline{\vomega}_2}_{\ttB_2 \rl \ttB_2} = \tvct{\mone}_{\ttN \rl \ttB_2} \frac{\dd}{\dd t} \vct{\mone}_{\ttN \rl \ttB_2} = 
+\begin{bmatrix}
+0 & \dot{\theta}_1 + \dot{\theta}_2 \\
+-\dot{\theta}_1 - \dot{\theta}_2 & 0
+\end{bmatrix}
+\Rightarrow
+\underline{\vomega}_2 = (\dot{\theta}_1 + \dot{\theta}_2) \hat{\vk}
+\end{equation}
+
+\item[6)] Montar o vetor $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$ e calcular $\mC$, $\mA$ e $\mb$ através das equações \eqref{eq:MatrizC}, \eqref{eq:MatrizA} e \eqref{eq:Matrizb}:
+
+\begin{equation}
+\underline{\mp}\cir(\mq\ssh,\mp\ssh) =
+\begin{bmatrix}
+\dot{\theta}_1 \\
+\dot{\theta}_1 + \dot{\theta}_2 \\
+-l_{g1} \ssin_1 \dot{\theta}_1 \\
+ l_{g1} \ccos_1 \dot{\theta}_1 \\
+ -l_{1} \ssin_1 \dot{\theta}_1 - l_{g2} \ssin_{1+2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+ l_{1} \ccos_1 \dot{\theta}_1 + l_{g2} \ccos_{1+2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\frac{\partial \underline{\mp}\cir}{\partial \mp\ssh} =
+\begin{bmatrix}
+1 & 0 \\
+1 & 1 \\
+-l_{g1} \ssin_1 & 0 \\
+ l_{g1} \ccos_1 & 0 \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} \\
+ l_{1} \ssin_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mC =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 0 \\
+1 & 1 \\
+-l_{g1} \ssin_1 & 0 \\
+ l_{g1} \ccos_1 & 0 \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} \\
+ l_{1} \ssin_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mA =
+\begin{bmatrix}
+1 & 0 & -1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & -1 & 0 & 0 & 0 & 0 \\
+-l_{g1} \ssin_1 & 0 & 0 & 0 & -1 & 0 & 0 & 0 \\
+ l_{g1} \ccos_1 & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} & 0 & 0 & 0 & 0 & -1 & 0 \\
+ l_{1} \ccos_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} & 0 & 0 & 0 & 0 & 0 & -1 \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mb =
+\begin{bmatrix}
+0 \\
+0 \\
+l_{g1} \ccos_1 \dot{\theta}_1^2 \\
+l_{g1} \ssin_1 \dot{\theta}_1^2 \\
+(l_{1} \ccos_1 + l_{g2} \ccos_{1+2}) \dot{\theta}_1^2  + 2 l_{g2} \ccos_{1+2}  \dot{\theta}_1 \dot{\theta}_2 + l_{g2} \ccos_{1+2}   \dot{\theta}_2^2 \\
+(l_{1} \ssin_1 + l_{g2} \ssin_{1+2}) \dot{\theta}_1^2  + 2 l_{g2} \ssin_{1+2}  \dot{\theta}_1 \dot{\theta}_2 + l_{g2} \ssin_{1+2}   \dot{\theta}_2^2 \\
+\end{bmatrix}
+\end{equation}
+
+\item[7)] Calcular a energia de acelerações $S$:
+
+\begin{equation}
+S = \frac{1}{2} \Big( m_1 (\dot{v}_{x1}^2 + \dot{v}_{y1}^2) + m_2 (\dot{v}_{x2}^2 + \dot{v}_{y2}^2) + J_{z1} \dot{\omega}_{z1}^2 + + J_{z2} \dot{\omega}_{z2}^2 \Big)
+\end{equation}
+
+\item[8)] Obter $\mM$ e $\mv$ utilizando as equações \eqref{eq:MatrizM} e \eqref{eq:Matrizv}:
+
+\begin{equation}
+\mM = \begin{bmatrix}
+0 & 0 & J_{z1} & J_{z2} & m_1 & m_1 & m_2 & m_2
+\end{bmatrix}^\msD
+\end{equation}
+
+\begin{equation}
+\mv = \mzr
+\end{equation}
+
+\item[9)] Montar os vetores $\mf$, $\mg$ e $\mu$:
+
+\begin{equation}
+\mf =
+\begin{bmatrix}
+c_1 \dot{\theta}_1 + \gamma_1 \sign (\dot{\theta}_1) \\
+c_2 \dot{\theta}_2 + \gamma_2 \sign (\dot{\theta}_2) \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mg =
+\begin{bmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+m_1 g \\
+0 \\
+m_2 g
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mu =
+\begin{bmatrix}
+\tau_1 \\
+\tau_2
+\end{bmatrix}
+\end{equation}
+
+\end{itemize}
+
+Sendo assim, a partir da equação \eqref{eq:DinamicaDireta}, temos que o modelo para simulação dinâmica direta do mecanismo \underline{R}\underline{R} é dado por:
+
+\begin{equation}
+\begin{cases}
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 0 \\
+1 & 1 \\
+-l_{g1} \ssin_1 & 0 \\
+ l_{g1} \ccos_1 & 0 \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} \\
+ l_{1} \ssin_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} \\
+\end{bmatrix}^\msT
+\begin{Bmatrix}
+\begin{bmatrix}
+0 \\ 0 \\ J_{z1} \\ J_{z2} \\ m_1 \\ m_1 \\ m_2 \\ m_2
+\end{bmatrix}^\msD
+\begin{bmatrix}
+\ddot{\theta}_1 \\
+\ddot{\theta}_2 \\
+\dot{\omega}_{z1} \\
+\dot{\omega}_{z2} \\
+\dot{v}_{x1} \\
+\dot{v}_{y1} \\
+\dot{v}_{x2} \\
+\dot{v}_{y2} \\
+\end{bmatrix}
++
+\begin{bmatrix}
+c_1 \dot{\theta}_1 + \gamma_1 \sign (\dot{\theta}_1) \\
+c_2 \dot{\theta}_2 + \gamma_2 \sign (\dot{\theta}_2) \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+m_1 g \\
+0 \\
+m_2 g
+\end{bmatrix}
+\end{Bmatrix}
+=
+\begin{bmatrix}
+\tau_1 \\ \tau_2
+\end{bmatrix} \\
+\begin{bmatrix}
+1 & 0 & -1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & -1 & 0 & 0 & 0 & 0 \\
+-l_{g1} \ssin_1 & 0 & 0 & 0 & -1 & 0 & 0 & 0 \\
+ l_{g1} \ccos_1 & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} & 0 & 0 & 0 & 0 & -1 & 0 \\
+ l_{1} \ccos_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} & 0 & 0 & 0 & 0 & 0 & -1 \\
+\end{bmatrix}
+\begin{bmatrix}
+\ddot{\theta}_1 \\
+\ddot{\theta}_2 \\
+\dot{\omega}_{z1} \\
+\dot{\omega}_{z2} \\
+\dot{v}_{x1} \\
+\dot{v}_{y1} \\
+\dot{v}_{x2} \\
+\dot{v}_{y2} \\
+\end{bmatrix} = \\
+\begin{bmatrix}
+0 \\
+0 \\
+l_{g1} \ccos_1 \dot{\theta}_1^2 \\
+l_{g1} \ssin_1 \dot{\theta}_1^2 \\
+(l_{1} \ccos_1 + l_{g2} \ccos_{1+2}) \dot{\theta}_1^2  + 2 l_{g2} \ccos_{1+2}  \dot{\theta}_1 \dot{\theta}_2 + l_{g2} \ccos_{1+2}   \dot{\theta}_2^2 \\
+(l_{1} \ssin_1 + l_{g2} \ssin_{1+2}) \dot{\theta}_1^2  + 2 l_{g2} \ssin_{1+2}  \dot{\theta}_1 \dot{\theta}_2 + l_{g2} \ssin_{1+2}   \dot{\theta}_2^2 \\
+\end{bmatrix}
+\end{cases}
+\end{equation}
+
+Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriais já deduzidos, é necessário introduzir mais alguns conceitos:
+
+Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n-1}$ $n$ subsistemas mecânicos e $\ssM$ um sistema mecânico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
+
+\begin{itemize}
+\item $\mq_0$: coordenadas generalizas da plataforma/efetuador de $\ssB_n$.
+\item $\mq_j\ssh, j=1, ..., n-1$: coordenadas generalizadas independentes do subsistema  $\ssB_j$.
+\item $\mq$: coordenadas generalizadas do sistema $\ssM$. Definido como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq_1\ssh}^\msT & ... & {\mq_{n-1}\ssh}^\msT \end{bmatrix}^\msT $.
+\item $\overline{\mq}(\mq)$: vetor dos vínculos de posição. As equações vínculares são dadas por $\overline{\mq}(\mq) = \mzr $.
+\end{itemize}
 
 
 
