@@ -696,7 +696,7 @@ Aqui seguem as etapas do algoritmo para dedução do modelo dinâmico de um subsist
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{5Rscan.jpg}  
+	\includegraphics[scale=0.4]{5Rscan.jpg}
 	\caption{Mecanismo 5R}
 	\label{fig:RR}
 \end{figure}
@@ -842,6 +842,65 @@ y = l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2} \\
 x = -l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1+2} \\
 y = l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2} \\
 \end{cases}
+\end{equation}
+
+\begin{equation}
+\therefore \overline{\mq}(\mq) = 
+\begin{bmatrix}
+x - l_0 - l_1 \ccos_{1,1} - l_2 \ccos_{1,1+2} \\
+y - l_1 \ssin_{1,1} - l_2 \ssin_{1,1+2} \\
+x + l_0 + l_1 \ccos_{2,1} + l_2 \ccos_{2,1+2} \\
+y - l_1 \ssin_{2,1} - l_2 \ssin_{2,1+2} \\
+\end{bmatrix}
+= \mzr
+\end{equation}
+
+\item[4)] Cálculo dos Jacobianos dos vínculos de posição e definição dos vínculos de velocidades:
+
+\begin{equation}
+\frac{\partial \overline{\mq}}{\partial \mq_0} = 
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 0 \\
+0 & 1 \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\frac{\partial \overline{\mq}}{\partial \mq\hcir} = 
+\begin{bmatrix}
+ l_1 \ssin_{1,1} + l_2 \ssin_{1+2} &  l_2 \ssin_{1+2} & 0 & 0 \\
+-l_1 \ccos_{1,1} - l_2 \ccos_{1+2} & -l_2 \ccos_{1+2} & 0 & 0  \\
+0 & 0 & -l_1 \ssin_{2,1} - l_2 \ssin_{2+2} & -l_2 \ssin_{2+2}  \\
+0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2+2} & -l_2 \ccos_{2+2}   \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mC =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+\displaystyle\frac{\ccos_{1,1+2}}{l_1 s_{1,2}} & \displaystyle\frac{\ssin_{1,1+2}}{l_1 s_{1,2}} \\
+-\displaystyle\frac{l_1 \ccos_{1,1} + l_2 \ccos_{1,1+2}}{l_1 l_2 \ssin_{1,2}} & -\displaystyle\frac{l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2}}{l_1 l_2 \ssin_{1,2}} \\
+\displaystyle\frac{\ccos_{1,1+2}}{l_1 s_{1,2}} & \displaystyle\frac{\ssin_{1,1+2}}{l_1 s_{1,2}} \\
+-\displaystyle\frac{\ccos_{\theta_{1,1}}}{l_2 s_{1,2}} & -\displaystyle\frac{\ssin_{\theta_{1,1}}}{l_2 s_{1,2}} \\
+-\displaystyle\frac{l_{g1} \ssin_{1,1} \ccos_{1,1+2}}{l_1 \ssin_{1,2}} & -\displaystyle\frac{l_{g1} \ssin_{1,1} \ssin_{1,1+2}}{l_1 \ssin_{1,2}} \\
+\displaystyle\frac{l_{g1} \ccos_{1,1} \ccos_{1,1+2}}{l_1 \ssin_{1,2}} & \displaystyle\frac{l_{g1} \ccos_{1,1} \ssin_{1,1+2}}{l_1 \ssin_{1,2}} \\
+-\displaystyle\frac{l_2 \ssin_{1,1}\ccos_{1,1+2} - l_{g2} \ccos_{1,1} \ssin_{1,1+2} }{l_2 \ssin_{1,2}} & -\displaystyle\frac{(l_2 - l_{g2}) \ssin_{1,1}\ssin_{1,1+2} }{l_2 \ssin_{1,2}} \\
+\displaystyle\frac{(l_2 - l_{g2}) \ccos_{1,1}\ccos_{1,1+2} }{l_2 \ssin_{1,2}} & -\displaystyle\frac{l_2 \ccos_{1,1}\ssin_{1,1+2} - l_{g2} \ssin_{1,1} \ccos_{1,1+2} }{l_2 \ssin_{1,2}} \\
+-\displaystyle\frac{\ccos_{2,1+2}}{l_1 s_{2,2}} & \displaystyle\frac{\ssin_{2,1+2}}{l_1 s_{2,2}} \\
+\displaystyle\frac{l_1 \ccos_{2,1} + l_2 \ccos_{2,1+2}}{l_1 l_2 \ssin_{2,2}} & -\displaystyle\frac{l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2}}{l_1 l_2 \ssin_{2,2}} \\
+-\displaystyle\frac{\ccos_{2,1+2}}{l_1 s_{2,2}} & \displaystyle\frac{\ssin_{2,1+2}}{l_1 s_{2,2}} \\
+\displaystyle\frac{\ccos_{2,1}}{l_2 s_{2,2}} & -\displaystyle\frac{\ssin_{2,1}}{l_2 s_{2,2}} \\
+\displaystyle\frac{l_{g1} \ssin_{2,1} \ccos_{2,1+2}}{l_1 \ssin_{2,2}} & -\displaystyle\frac{l_{g1} \ssin_{2,1} \ssin_{2,1+2}}{l_1 \ssin_{2,2}} \\
+-\displaystyle\frac{l_{g1} \ccos_{2,1} \ccos_{2,1+2}}{l_1 \ssin_{2,2}} & \displaystyle\frac{l_{g1} \ccos_{2,1} \ssin_{2,1+2}}{l_1 \ssin_{2,2}} \\
+\displaystyle\frac{l_2 \ssin_{2,1}\ccos_{2,1+2} - l_{g2} \ccos_{2,1} \ssin_{2,1+2} }{l_2 \ssin_{2,2}} & -\displaystyle\frac{(l_2 - l_{g2}) \ssin_{2,1}\ssin_{2,1+2} }{l_2 \ssin_{2,2}} \\
+\displaystyle\frac{(l_2 - l_{g2}) \ccos_{2,1}\ccos_{2,1+2} }{l_2 \ssin_{2,2}} & -\displaystyle\frac{l_2 \ccos_{2,1}\ssin_{2,1+2} - l_{g2} \ssin_{2,1} \ccos_{2,1+2} }{l_2 \ssin_{2,2}} \\
+
+
+\end{bmatrix}
 \end{equation}
 
 \end{itemize}
