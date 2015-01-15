@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.4)  15 JAN 2015 18:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.31)  15 JAN 2015 20:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -769,27 +769,32 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 233.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 233.
-[7] <RR.jpg, id=127, 144.54pt x 105.0324pt>
+[7] <RR.jpg, id=129, 548.0475pt x 963.6pt>
 File: RR.jpg Graphic file (type jpg)
  <use RR.jpg>
 Package pdftex.def Info: RR.jpg used on input line 236.
-(pdftex.def)             Requested size: 216.80943pt x 157.5482pt.
+(pdftex.def)             Requested size: 164.41551pt x 289.08223pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 300.
+(babel)             in language  on input line 277.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 300.
+(babel)             in language  on input line 277.
  [8 <./RR.jpg>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 399.
+(babel)             in language  on input line 367.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 399.
+(babel)             in language  on input line 367.
+ [9]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 449.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 449.
 
-[9]
+[10]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 455.
+(babel)             in language  on input line 507.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 455.
- [10]
+(babel)             in language  on input line 507.
+ [11]
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <10.95> not available
 (Font)              Font shape `OML/cmm/b/it' tried instead on input line 511.
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <10.95> not available
@@ -801,13 +806,6 @@ Overfull \hbox (25.64462pt too wide) detected at line 591
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 591.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 591.
- [11]
 Underfull \hbox (badness 10000) in paragraph at lines 593--594
 
  []
@@ -819,15 +817,15 @@ a-das re-dun-dan-tes não per-ten-cen-tes à pla-ta-forma/efetuador.
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 605.
+(babel)             in language  on input line 604.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 605.
+(babel)             in language  on input line 604.
 [12]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 642.
+(babel)             in language  on input line 635.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 642.
- [13] <5Rscan.jpg, id=196, 889.3225pt x 963.6pt>
+(babel)             in language  on input line 635.
+ [13] <5Rscan.jpg, id=198, 889.3225pt x 963.6pt>
 File: 5Rscan.jpg Graphic file (type jpg)
  <use 5Rscan.jpg>
 Package pdftex.def Info: 5Rscan.jpg used on input line 711.
@@ -961,40 +959,44 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 1264
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1268.
+(babel)             in language  on input line 1277.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1268.
+(babel)             in language  on input line 1277.
  [24]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1269.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1292.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1292.
- [25]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1293.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1360.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1360.
+(babel)             in language  on input line 1278.
 
-[26] (./relrenato.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 1290--1291
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1301.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1301.
+[25]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1302.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1369.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1369.
+ [26] (./relrenato.bbl
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 44.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 44.
  [27])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1364.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1373.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1364.
+(babel)             in language  on input line 1373.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1364.
+(babel)             in language  on input line 1373.
  [28]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1364.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1373.
  (./relrenato.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1364.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1364.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1373.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1373.
 
 Package rerunfilecheck Info: File `relrenato.out' has not changed.
 (rerunfilecheck)             Checksum: A6809E4D57BBCDD06F14E1A2A54E4250;675.
@@ -1002,16 +1004,16 @@ Package rerunfilecheck Info: File `relrenato.out' has not changed.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1364.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1373.
  ) 
 Here is how much of TeX's memory you used:
- 9347 strings out of 493304
- 127723 string characters out of 6139872
- 251913 words of memory out of 5000000
- 12396 multiletter control sequences out of 15000+600000
+ 9350 strings out of 493304
+ 127762 string characters out of 6139870
+ 251942 words of memory out of 5000000
+ 12398 multiletter control sequences out of 15000+600000
  49208 words of font info for 161 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,20n,35p,836b,450s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,20n,35p,836b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
 fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/
 type1/public/bbold-type1/bbold10.pfb></usr/share/texlive/texmf-dist/fonts/type1
@@ -1044,10 +1046,10 @@ public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
 /texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/p
 ublic/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/b
 oondox/zxxrw8a.pfb>
-Output written on relrenato.pdf (29 pages, 471278 bytes).
+Output written on relrenato.pdf (29 pages, 469453 bytes).
 PDF statistics:
- 495 PDF objects out of 1000 (max. 8388607)
- 423 compressed objects within 5 object streams
- 148 named destinations out of 1000 (max. 500000)
+ 498 PDF objects out of 1000 (max. 8388607)
+ 426 compressed objects within 5 object streams
+ 149 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
