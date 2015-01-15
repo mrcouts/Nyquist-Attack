@@ -507,7 +507,7 @@ m_2 g
 
 Sendo assim, a partir da equação \eqref{eq:DinamicaDireta}, temos que o modelo para simulação dinâmica direta do mecanismo \underline{R}\underline{R} é dado por:
 
-\begin{equation}
+\begin{equation} \label{eq:RR}
 \begin{cases}
 \begin{bmatrix}
 1 & 0 \\
@@ -600,8 +600,9 @@ Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n-1}$ $n$ subsistemas mecânicos e $\ssM$ u
 \item $\mq$: vetor contendo todas as coordenadas generalizadas do sistema $\ssM$. Definido como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq\hcir}^\msT \end{bmatrix}^\msT $.
 \item $\overline{\mq}(\mq)$: vetor dos vínculos de posição entre subsistemas. As equações vínculares são dadas por $\overline{\mq}(\mq) = \mzr $.
 \item $\mp\ssh_0$: vetor de velocidades generalizadas independentes da plataforma/efetuador de $\ssM$. É definido por $\mp\ssh_0 = \mD(\mq_0)\dot{\mq}_0$, sendo $\mD(\mq_0)$ tal que $\dot{\mq}_0  = \mD^+(\mq_0) \mp\ssh_0$.
-\item $\mp_j\ssh, \,j=1, ..., n-1$: vetor de velocidades generalizadas independentes do subsistema  $\ssB_j$. É dado por $\mp_j\ssh = \dot{\mq}_j\ssh$.
-\item $\mp_j, \,j=1, ..., n-1$: vetor de velocidades generalizadas do subsistema  $\ssB_j$.
+\item $\mp_j\ssh, \,j=1, ..., n-1$: vetor de velocidades generalizadas independentes do subsistema  $\ssB_j$. É definido por $\mp_j\ssh = \dot{\mq}_j\ssh$.
+\item $\mp_j\cir, \,j=1, ..., n-1$: vetor de velocidades generalizadas redundantes do subsistema  $\ssB_j$.
+\item $\mp_j, \,j=1, ..., n-1$: vetor de velocidades generalizadas do subsistema  $\ssB_j$. É definido por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
 \item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. É dado por $\mp\ssh = \mp_0\ssh$.
 \item $\mp\cir$: vetor de $\nu\ssh$ velocidades generalizadas redundantes de $\ssM$. É definido por $\mp\cir = \begin{bmatrix} \mp_1^\msT & \mp_2^\msT & ... & \mp_{n-1}^\msT \end{bmatrix}^\msT $.
 \item $\mp$: vetor contendo todas as velocidades generalizadas de $\ssM$. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
@@ -627,6 +628,10 @@ O modelo para simulação dinâmica direta é dado pelo seguinte equacionamento:
 \end{equation}
 
 Sendo:
+
+\begin{equation} \label{eq:VinculosVelocidades}
+\overline{\mrho} = \frac{\partial \overline{\mq}}{\partial \mq_0} \mD^+ \mrho\ssh + \frac{\partial \overline{\mq}}{\partial \mq\hcir}  \mrho\cir
+\end{equation}
 
 \begin{equation} \label{eq:MatrizC2}
 \mC = 
@@ -686,6 +691,160 @@ Sendo:
 \mg_0^\msT & \mg_1^\msT & ... & \mg_{n-1}^\msT
 \end{bmatrix}^\msT
 \end{equation}
+
+Aqui seguem as etapas do algoritmo para dedução do modelo dinâmico de um subsistema serial acompanhado de um exemplo de aplicação para dedução do modelo dinâmico do mecanismo 5R (pentágono articulado) a partir do acoplamento dos modelos de 2 mecanismos \underline{R}\underline{R} e uma massa pontual (efetuador).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{5Rscan.jpg}  
+	\caption{Mecanismo 5R}
+	\label{fig:RR}
+\end{figure}
+
+O modelo do mecanismo \underline{R}\underline{R} é dado pela equação \eqref{eq:RR}. O modelo da massa pontual é dado pela seguinte expressão:
+
+\begin{equation} \label{eq:MassaPontual}
+\begin{bmatrix}
+m_0 \\
+m_0 \\
+\end{bmatrix}^\msD
+\begin{bmatrix}
+\ddot{x} \\
+\ddot{y}
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\
+m_0 g
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\
+0
+\end{bmatrix}
+\end{equation}
+
+Etapas do algoritmo:
+
+\begin{itemize}
+\item[1)] Definição das coordenadas generalizadas:
+
+\begin{equation}
+\mq_0 = \begin{bmatrix}
+x & y
+\end{bmatrix}^\msT
+\end{equation}
+\begin{equation}
+\mq_1\ssh = \begin{bmatrix}
+\theta_{1,1} &
+\theta_{1,2} 
+\end{bmatrix}^\msT
+\end{equation}
+\begin{equation}
+\mq_2\ssh = \begin{bmatrix}
+\theta_{2,1} &
+\theta_{2,2}
+\end{bmatrix}^\msT
+\end{equation}
+
+\item[2)] Definição das velocidades generalizadas:
+
+\begin{equation}
+\mp_0\ssh = \begin{bmatrix}
+\dot{x} & \dot{y} \\
+\end{bmatrix}^\msT
+\Rightarrow \mD = \mone
+\end{equation}
+\begin{equation}
+\mp_1\cir = \begin{bmatrix}
+\omega_{1,z1} & \omega_{1,z2} & v_{1,x1} & v_{1,y1} & v_{1,x2} & v_{1,y2}
+\end{bmatrix}^\msT
+\end{equation}
+\begin{equation}
+\mp_2\cir = \begin{bmatrix}
+\omega_{2,z1} & \omega_{2,z2} & v_{2,x1} & v_{2,y1} & v_{2,x2} & v_{2,y2}
+\end{bmatrix}^\msT
+\end{equation}
+
+\item[3)] Definição dos vínculos de posição utilizando matrizes de transformação homogênea:
+
+\begin{equation}
+\hvct{\mone}_{\ttN \rl \ttN_1} =
+\begin{bmatrix}
+1 & 0 & l_0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\hvct{\mone}_{\ttN \rl \ttN_2} =
+\begin{bmatrix}
+-1 & 0 & -l_0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\vct{\ttx_0}_{\ttN} =
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\vct{\ttx_1}_{\ttN_1} =
+\begin{bmatrix}
+l_1 \ccos_{1,1} + l_2 \ccos_{1,1+2} \\
+l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2} \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\vct{\ttx_2}_{\ttN_2} =
+\begin{bmatrix}
+l_1 \ccos_{2,1} + l_2 \ccos_{2,1+2} \\
+l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2} \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\hvct{\ttx_1}_{\ttN} = \hvct{\mone}_{\ttN \rl \ttN_1} \hvct{\ttx_1}_{\ttN_1} =
+\begin{bmatrix}
+l_0 + l_1 \ccos_{1,1} + l_2 \ccos_{1,1+2} \\
+l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2} \\
+1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\hvct{\ttx_2}_{\ttN} = \hvct{\mone}_{\ttN \rl \ttN_2} \hvct{\ttx_2}_{\ttN_2} =
+\begin{bmatrix}
+-l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1+2} \\
+l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2} \\
+1
+\end{bmatrix}
+\end{equation}
+
+Vínculos de posição:
+
+\begin{equation}
+\begin{cases}
+\vct{\ttx_0}_{\ttN} = \vct{\ttx_1}_{\ttN} \\
+\vct{\ttx_0}_{\ttN} = \vct{\ttx_2}_{\ttN} \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+x = l_0 + l_1 \ccos_{1,1} + l_2 \ccos_{1,1+2} \\
+y = l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2} \\ 
+x = -l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1+2} \\
+y = l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2} \\
+\end{cases}
+\end{equation}
+
+\end{itemize}
 
 
 

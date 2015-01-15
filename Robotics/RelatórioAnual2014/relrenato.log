@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.4)  14 JAN 2015 19:50
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.14)  14 JAN 2015 22:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -550,7 +550,11 @@ LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> OT1/cmss/m/n on input line 10.
 )
-(./relrenato.aux)
+(./relrenato.aux
+
+LaTeX Warning: Label `fig:RR' multiply defined.
+
+)
 \openout1 = `relrenato.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
@@ -808,57 +812,73 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 600.
 [12]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 627.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 627.
- [13]
+(babel)             in language  on input line 622.
+ [13] <5Rscan.jpg, id=180, 934.49126pt x 828.09375pt>
+File: 5Rscan.jpg Graphic file (type jpg)
+ <use 5Rscan.jpg>
+Package pdftex.def Info: 5Rscan.jpg used on input line 699.
+(pdftex.def)             Requested size: 280.34953pt x 248.43004pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 694.
+(babel)             in language  on input line 702.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 694.
- [14]
+(babel)             in language  on input line 702.
+
+[14]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 695.
+(babel)             in language  on input line 771.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 714.
+(babel)             in language  on input line 771.
+ [15 <./5Rscan.jpg>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 714.
- [15]
+(babel)             in language  on input line 853.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 715.
+(babel)             in language  on input line 853.
+ [16]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 780.
+(babel)             in language  on input line 854.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 780.
- [16] (./relrenato.bbl
+(babel)             in language  on input line 873.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 873.
+ [17]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 874.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 939.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 939.
+ [18] (./relrenato.bbl
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
- [17])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 784.
+ [19])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 943.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 784.
+(babel)             in language  on input line 943.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 784.
- [18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 784.
- (./relrenato.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 784.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 784.
+(babel)             in language  on input line 943.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 943.
+
+(./relrenato.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 943.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 943.
 Package rerunfilecheck Info: File `relrenato.out' has not changed.
 (rerunfilecheck)             Checksum: 60F789CEF13274EE25A97D566D4DB27F;454.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 784.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 943.
  ) 
 Here is how much of TeX's memory you used:
- 9156 strings out of 493304
- 124870 string characters out of 6139872
- 234732 words of memory out of 5000000
- 12288 multiletter control sequences out of 15000+600000
+ 9183 strings out of 493304
+ 125217 string characters out of 6139871
+ 235156 words of memory out of 5000000
+ 12295 multiletter control sequences out of 15000+600000
  35859 words of font info for 117 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  29i,20n,35p,836b,456s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -885,10 +905,10 @@ blic/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc17
 28.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/t
 exmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/boondox/zxxrw8a.pfb>
-Output written on relrenato.pdf (19 pages, 310049 bytes).
+Output written on relrenato.pdf (21 pages, 483369 bytes).
 PDF statistics:
- 311 PDF objects out of 1000 (max. 8388607)
- 262 compressed objects within 3 object streams
- 83 named destinations out of 1000 (max. 500000)
- 62 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 341 PDF objects out of 1000 (max. 8388607)
+ 289 compressed objects within 3 object streams
+ 102 named destinations out of 1000 (max. 500000)
+ 67 words of extra memory for PDF output out of 10000 (max. 10000000)
 
