@@ -39,6 +39,8 @@
 
 \begin{document}
 
+\setcounter{MaxMatrixCols}{50}
+
 \onehalfspacing 
 
 \begin{titlepage}
@@ -310,8 +312,8 @@ l_2 & 0 & 1
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttB_2} = \hvct{\mone}_{\ttN \rl \ttB_1} \hvct{\mone}_{\ttB_1 \rl \ttB_2} =
 \begin{bmatrix}
-\ccos_{1+2} & -\ssin_{1+2} & l_1 \ccos_1\\
-\ssin_{1+2} & \ccos_{1+2} & l_1 \ssin_1 \\
+\ccos_{1\plus 2} & -\ssin_{1\plus 2} & l_1 \ccos_1\\
+\ssin_{1\plus 2} & \ccos_{1\plus 2} & l_1 \ssin_1 \\
 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
@@ -328,8 +330,8 @@ l_{g1} \ssin_1 \\
 \begin{equation}
 \hvct{\ttg_2}_{\ttN}  = \hvct{\mone}_{\ttN \rl \ttB_2} \hvct{\ttg_2}_{\ttB_2} =
 \begin{bmatrix}
-l_1 \ccos_1 + l_{g2} \ccos_{1+2} \\
-l_1 \ssin_1 + l_{g2} \ssin_{1+2} \\
+l_1 \ccos_1 + l_{g2} \ccos_{1\plus 2} \\
+l_1 \ssin_1 + l_{g2} \ssin_{1\plus 2} \\
 1
 \end{bmatrix}
 \end{equation}
@@ -337,8 +339,8 @@ l_1 \ssin_1 + l_{g2} \ssin_{1+2} \\
 \begin{equation}
 \hvct{\ttx}_{\ttN}  = \hvct{\mone}_{\ttN \rl \ttB_2} \hvct{\ttx}_{\ttB_2} =
 \begin{bmatrix}
-l_1 \ccos_1 + l_2 \ccos_{1+2} \\
-l_1 \ssin_1 + l_2 \ssin_{1+2} \\
+l_1 \ccos_1 + l_2 \ccos_{1\plus 2} \\
+l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
 1
 \end{bmatrix}
 \end{equation}
@@ -356,8 +358,8 @@ l_1 \ssin_1 + l_2 \ssin_{1+2} \\
 \begin{equation}
 [\underline{\vv}_2]_{\ttN} = \frac{\dd}{\dd t} [\ttg_2]_\ttN =
 \begin{bmatrix}
--l_{1} \ssin_1 \dot{\theta}_1 - l_{g2} \ssin_{1+2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
- l_{1} \ccos_1 \dot{\theta}_1 + l_{g2} \ccos_{1+2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+-l_{1} \ssin_1 \dot{\theta}_1 - l_{g2} \ssin_{1\plus 2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+ l_{1} \ccos_1 \dot{\theta}_1 + l_{g2} \ccos_{1\plus 2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
 \end{bmatrix}
 \end{equation}
 
@@ -392,8 +394,8 @@ l_1 \ssin_1 + l_2 \ssin_{1+2} \\
 \dot{\theta}_1 + \dot{\theta}_2 \\
 -l_{g1} \ssin_1 \dot{\theta}_1 \\
  l_{g1} \ccos_1 \dot{\theta}_1 \\
- -l_{1} \ssin_1 \dot{\theta}_1 - l_{g2} \ssin_{1+2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
- l_{1} \ccos_1 \dot{\theta}_1 + l_{g2} \ccos_{1+2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+ -l_{1} \ssin_1 \dot{\theta}_1 - l_{g2} \ssin_{1\plus 2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+ l_{1} \ccos_1 \dot{\theta}_1 + l_{g2} \ccos_{1\plus 2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
 \end{bmatrix}
 \end{equation}
 
@@ -404,8 +406,8 @@ l_1 \ssin_1 + l_2 \ssin_{1+2} \\
 1 & 1 \\
 -l_{g1} \ssin_1 & 0 \\
  l_{g1} \ccos_1 & 0 \\
--l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} \\
- l_{1} \ssin_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1\plus 2} & - l_{g2} \ssin_{1\plus 2} \\
+ l_{1} \ssin_1  + l_{g2} \ccos_{1\plus 2} &   l_{g2} \ccos_{1\plus 2} \\
 \end{bmatrix}
 \end{equation}
 
@@ -418,8 +420,8 @@ l_1 \ssin_1 + l_2 \ssin_{1+2} \\
 1 & 1 \\
 -l_{g1} \ssin_1 & 0 \\
  l_{g1} \ccos_1 & 0 \\
--l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} \\
- l_{1} \ssin_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1\plus 2} & - l_{g2} \ssin_{1\plus 2} \\
+ l_{1} \ssin_1  + l_{g2} \ccos_{1\plus 2} &   l_{g2} \ccos_{1\plus 2} \\
 \end{bmatrix}
 \end{equation}
 
@@ -430,8 +432,8 @@ l_1 \ssin_1 + l_2 \ssin_{1+2} \\
 1 & 1 & 0 & -1 & 0 & 0 & 0 & 0 \\
 -l_{g1} \ssin_1 & 0 & 0 & 0 & -1 & 0 & 0 & 0 \\
  l_{g1} \ccos_1 & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\
--l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} & 0 & 0 & 0 & 0 & -1 & 0 \\
- l_{1} \ccos_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} & 0 & 0 & 0 & 0 & 0 & -1 \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1\plus 2} & - l_{g2} \ssin_{1\plus 2} & 0 & 0 & 0 & 0 & -1 & 0 \\
+ l_{1} \ccos_1  + l_{g2} \ccos_{1\plus 2} &   l_{g2} \ccos_{1\plus 2} & 0 & 0 & 0 & 0 & 0 & -1 \\
 \end{bmatrix}
 \end{equation}
 
@@ -442,8 +444,8 @@ l_1 \ssin_1 + l_2 \ssin_{1+2} \\
 0 \\
 l_{g1} \ccos_1 \dot{\theta}_1^2 \\
 l_{g1} \ssin_1 \dot{\theta}_1^2 \\
-(l_{1} \ccos_1 + l_{g2} \ccos_{1+2}) \dot{\theta}_1^2  + 2 l_{g2} \ccos_{1+2}  \dot{\theta}_1 \dot{\theta}_2 + l_{g2} \ccos_{1+2}   \dot{\theta}_2^2 \\
-(l_{1} \ssin_1 + l_{g2} \ssin_{1+2}) \dot{\theta}_1^2  + 2 l_{g2} \ssin_{1+2}  \dot{\theta}_1 \dot{\theta}_2 + l_{g2} \ssin_{1+2}   \dot{\theta}_2^2 \\
+l_{1} \ccos_1 \dot{\theta}_1^2  + l_{g2} \ccos_{1\plus 2}  (\dot{\theta}_1+\dot{\theta}_2)^2 \\
+l_{1} \ssin_1  \dot{\theta}_1^2 + l_{g2} \ssin_{1\plus 2}   (\dot{\theta}_1+\dot{\theta}_2)^2 \\
 \end{bmatrix}
 \end{equation}
 
@@ -507,7 +509,7 @@ m_2 g
 
 Sendo assim, a partir da equação \eqref{eq:DinamicaDireta}, temos que o modelo para simulação dinâmica direta do mecanismo \underline{R}\underline{R} é dado por:
 
-\begin{equation} \label{eq:RR}
+\small\begin{equation} \label{eq:RR}
 \begin{cases}
 \begin{bmatrix}
 1 & 0 \\
@@ -516,8 +518,8 @@ Sendo assim, a partir da equação \eqref{eq:DinamicaDireta}, temos que o modelo p
 1 & 1 \\
 -l_{g1} \ssin_1 & 0 \\
  l_{g1} \ccos_1 & 0 \\
--l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} \\
- l_{1} \ssin_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1\plus 2} & - l_{g2} \ssin_{1\plus 2} \\
+ l_{1} \ssin_1  + l_{g2} \ccos_{1\plus 2} &   l_{g2} \ccos_{1\plus 2} \\
 \end{bmatrix}^\msT
 \begin{Bmatrix}
 \begin{bmatrix}
@@ -565,8 +567,8 @@ m_2 g
 1 & 1 & 0 & -1 & 0 & 0 & 0 & 0 \\
 -l_{g1} \ssin_1 & 0 & 0 & 0 & -1 & 0 & 0 & 0 \\
  l_{g1} \ccos_1 & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\
--l_{1} \ssin_1  - l_{g2} \ssin_{1+2} & - l_{g2} \ssin_{1+2} & 0 & 0 & 0 & 0 & -1 & 0 \\
- l_{1} \ccos_1  + l_{g2} \ccos_{1+2} &   l_{g2} \ccos_{1+2} & 0 & 0 & 0 & 0 & 0 & -1 \\
+-l_{1} \ssin_1  - l_{g2} \ssin_{1\plus 2} & - l_{g2} \ssin_{1\plus 2} & 0 & 0 & 0 & 0 & -1 & 0 \\
+ l_{1} \ccos_1  + l_{g2} \ccos_{1\plus 2} &   l_{g2} \ccos_{1\plus 2} & 0 & 0 & 0 & 0 & 0 & -1 \\
 \end{bmatrix}
 \begin{bmatrix}
 \ddot{\theta}_1 \\
@@ -577,17 +579,17 @@ m_2 g
 \dot{v}_{y1} \\
 \dot{v}_{x2} \\
 \dot{v}_{y2} \\
-\end{bmatrix} = \\
+\end{bmatrix} = 
 \begin{bmatrix}
 0 \\
 0 \\
 l_{g1} \ccos_1 \dot{\theta}_1^2 \\
 l_{g1} \ssin_1 \dot{\theta}_1^2 \\
-(l_{1} \ccos_1 + l_{g2} \ccos_{1+2}) \dot{\theta}_1^2  + 2 l_{g2} \ccos_{1+2}  \dot{\theta}_1 \dot{\theta}_2 + l_{g2} \ccos_{1+2}   \dot{\theta}_2^2 \\
-(l_{1} \ssin_1 + l_{g2} \ssin_{1+2}) \dot{\theta}_1^2  + 2 l_{g2} \ssin_{1+2}  \dot{\theta}_1 \dot{\theta}_2 + l_{g2} \ssin_{1+2}   \dot{\theta}_2^2 \\
+l_{1} \ccos_1 \dot{\theta}_1^2  + l_{g2} \ccos_{1\plus 2}  (\dot{\theta}_1+\dot{\theta}_2)^2 \\
+l_{1} \ssin_1  \dot{\theta}_1^2 + l_{g2} \ssin_{1\plus 2}   (\dot{\theta}_1+\dot{\theta}_2)^2 \\
 \end{bmatrix}
 \end{cases}
-\end{equation}
+\end{equation}\normalsize
 
 Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriais já deduzidos, é necessário introduzir mais alguns conceitos: \\
 
@@ -797,24 +799,24 @@ y
 \begin{equation}
 \vct{\ttx_1}_{\ttN_1} =
 \begin{bmatrix}
-l_1 \ccos_{1,1} + l_2 \ccos_{1,1+2} \\
-l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2} \\
+l_1 \ccos_{1,1} + l_2 \ccos_{1,1\plus 2} \\
+l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\
 \end{bmatrix}
 \end{equation}
 
 \begin{equation}
 \vct{\ttx_2}_{\ttN_2} =
 \begin{bmatrix}
-l_1 \ccos_{2,1} + l_2 \ccos_{2,1+2} \\
-l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2} \\
+l_1 \ccos_{2,1} + l_2 \ccos_{2,1\plus 2} \\
+l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
 \end{bmatrix}
 \end{equation}
 
 \begin{equation}
 \hvct{\ttx_1}_{\ttN} = \hvct{\mone}_{\ttN \rl \ttN_1} \hvct{\ttx_1}_{\ttN_1} =
 \begin{bmatrix}
-l_0 + l_1 \ccos_{1,1} + l_2 \ccos_{1,1+2} \\
-l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2} \\
+l_0 + l_1 \ccos_{1,1} + l_2 \ccos_{1,1\plus 2} \\
+l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\
 1
 \end{bmatrix}
 \end{equation}
@@ -822,8 +824,8 @@ l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2} \\
 \begin{equation}
 \hvct{\ttx_2}_{\ttN} = \hvct{\mone}_{\ttN \rl \ttN_2} \hvct{\ttx_2}_{\ttN_2} =
 \begin{bmatrix}
--l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1+2} \\
-l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2} \\
+-l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1\plus 2} \\
+l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
 1
 \end{bmatrix}
 \end{equation}
@@ -837,20 +839,20 @@ Vínculos de posição:
 \end{cases}
 \Rightarrow
 \begin{cases}
-x = l_0 + l_1 \ccos_{1,1} + l_2 \ccos_{1,1+2} \\
-y = l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2} \\ 
-x = -l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1+2} \\
-y = l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2} \\
+x = l_0 + l_1 \ccos_{1,1} + l_2 \ccos_{1,1\plus 2} \\
+y = l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\ 
+x = -l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1\plus 2} \\
+y = l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
 \end{cases}
 \end{equation}
 
 \begin{equation}
 \therefore \overline{\mq}(\mq) = 
 \begin{bmatrix}
-x - l_0 - l_1 \ccos_{1,1} - l_2 \ccos_{1,1+2} \\
-y - l_1 \ssin_{1,1} - l_2 \ssin_{1,1+2} \\
-x + l_0 + l_1 \ccos_{2,1} + l_2 \ccos_{2,1+2} \\
-y - l_1 \ssin_{2,1} - l_2 \ssin_{2,1+2} \\
+x - l_0 - l_1 \ccos_{1,1} - l_2 \ccos_{1,1\plus 2} \\
+y - l_1 \ssin_{1,1} - l_2 \ssin_{1,1\plus 2} \\
+x + l_0 + l_1 \ccos_{2,1} + l_2 \ccos_{2,1\plus 2} \\
+y - l_1 \ssin_{2,1} - l_2 \ssin_{2,1\plus 2} \\
 \end{bmatrix}
 = \mzr
 \end{equation}
@@ -870,41 +872,115 @@ y - l_1 \ssin_{2,1} - l_2 \ssin_{2,1+2} \\
 \begin{equation}
 \frac{\partial \overline{\mq}}{\partial \mq\hcir} = 
 \begin{bmatrix}
- l_1 \ssin_{1,1} + l_2 \ssin_{1+2} &  l_2 \ssin_{1+2} & 0 & 0 \\
--l_1 \ccos_{1,1} - l_2 \ccos_{1+2} & -l_2 \ccos_{1+2} & 0 & 0  \\
-0 & 0 & -l_1 \ssin_{2,1} - l_2 \ssin_{2+2} & -l_2 \ssin_{2+2}  \\
-0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2+2} & -l_2 \ccos_{2+2}   \\
+ l_1 \ssin_{1,1} + l_2 \ssin_{1\plus 2} &  l_2 \ssin_{1\plus 2} & 0 & 0 \\
+-l_1 \ccos_{1,1} - l_2 \ccos_{1\plus 2} & -l_2 \ccos_{1\plus 2} & 0 & 0  \\
+0 & 0 & -l_1 \ssin_{2,1} - l_2 \ssin_{2\plus 2} & -l_2 \ssin_{2\plus 2}  \\
+0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2\plus 2} & -l_2 \ccos_{2\plus 2}   \\
 \end{bmatrix}
 \end{equation}
 
 \begin{equation}
+\overline{\mrho} =  
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 0 \\
+0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+\dot{x} \\
+\dot{y} \\
+\end{bmatrix}
++ 
+ \begin{bmatrix}
+ l_1 \ssin_{1,1} + l_2 \ssin_{1\plus 2} &  l_2 \ssin_{1\plus 2} & 0 & 0 \\
+-l_1 \ccos_{1,1} - l_2 \ccos_{1\plus 2} & -l_2 \ccos_{1\plus 2} & 0 & 0  \\
+0 & 0 & -l_1 \ssin_{2,1} - l_2 \ssin_{2\plus 2} & -l_2 \ssin_{2\plus 2}  \\
+0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2\plus 2} & -l_2 \ccos_{2\plus 2}   \\
+\end{bmatrix}
+\begin{bmatrix}
+\dot{\theta}_{1,1} \\
+\dot{\theta}_{1,2} \\
+\dot{\theta}_{2,1} \\
+\dot{\theta}_{2,2} \\
+\end{bmatrix}
+\end{equation}
+
+\item[5)] Cálculo $\mC$, $\mA$ e $\mb$ através de \eqref{eq:MatrizC2}, \eqref{eq:MatrizA2} e \eqref{eq:Matrizb2}:
+
+\footnotesize\begin{equation}
 \mC =
 \begin{bmatrix}
 1 & 0 \\
 0 & 1 \\
-\displaystyle\frac{\ccos_{1,1+2}}{l_1 s_{1,2}} & \displaystyle\frac{\ssin_{1,1+2}}{l_1 s_{1,2}} \\
--\displaystyle\frac{l_1 \ccos_{1,1} + l_2 \ccos_{1,1+2}}{l_1 l_2 \ssin_{1,2}} & -\displaystyle\frac{l_1 \ssin_{1,1} + l_2 \ssin_{1,1+2}}{l_1 l_2 \ssin_{1,2}} \\
-\displaystyle\frac{\ccos_{1,1+2}}{l_1 s_{1,2}} & \displaystyle\frac{\ssin_{1,1+2}}{l_1 s_{1,2}} \\
+\displaystyle\frac{\ccos_{1,1\plus 2}}{l_1 s_{1,2}} & \displaystyle\frac{\ssin_{1,1\plus 2}}{l_1 s_{1,2}} \\
+-\displaystyle\frac{l_1 \ccos_{1,1} + l_2 \ccos_{1,1\plus 2}}{l_1 l_2 \ssin_{1,2}} & -\displaystyle\frac{l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2}}{l_1 l_2 \ssin_{1,2}} \\
+\displaystyle\frac{\ccos_{1,1\plus 2}}{l_1 s_{1,2}} & \displaystyle\frac{\ssin_{1,1\plus 2}}{l_1 s_{1,2}} \\
 -\displaystyle\frac{\ccos_{\theta_{1,1}}}{l_2 s_{1,2}} & -\displaystyle\frac{\ssin_{\theta_{1,1}}}{l_2 s_{1,2}} \\
--\displaystyle\frac{l_{g1} \ssin_{1,1} \ccos_{1,1+2}}{l_1 \ssin_{1,2}} & -\displaystyle\frac{l_{g1} \ssin_{1,1} \ssin_{1,1+2}}{l_1 \ssin_{1,2}} \\
-\displaystyle\frac{l_{g1} \ccos_{1,1} \ccos_{1,1+2}}{l_1 \ssin_{1,2}} & \displaystyle\frac{l_{g1} \ccos_{1,1} \ssin_{1,1+2}}{l_1 \ssin_{1,2}} \\
--\displaystyle\frac{l_2 \ssin_{1,1}\ccos_{1,1+2} - l_{g2} \ccos_{1,1} \ssin_{1,1+2} }{l_2 \ssin_{1,2}} & -\displaystyle\frac{(l_2 - l_{g2}) \ssin_{1,1}\ssin_{1,1+2} }{l_2 \ssin_{1,2}} \\
-\displaystyle\frac{(l_2 - l_{g2}) \ccos_{1,1}\ccos_{1,1+2} }{l_2 \ssin_{1,2}} & -\displaystyle\frac{l_2 \ccos_{1,1}\ssin_{1,1+2} - l_{g2} \ssin_{1,1} \ccos_{1,1+2} }{l_2 \ssin_{1,2}} \\
--\displaystyle\frac{\ccos_{2,1+2}}{l_1 s_{2,2}} & \displaystyle\frac{\ssin_{2,1+2}}{l_1 s_{2,2}} \\
-\displaystyle\frac{l_1 \ccos_{2,1} + l_2 \ccos_{2,1+2}}{l_1 l_2 \ssin_{2,2}} & -\displaystyle\frac{l_1 \ssin_{2,1} + l_2 \ssin_{2,1+2}}{l_1 l_2 \ssin_{2,2}} \\
--\displaystyle\frac{\ccos_{2,1+2}}{l_1 s_{2,2}} & \displaystyle\frac{\ssin_{2,1+2}}{l_1 s_{2,2}} \\
+-\displaystyle\frac{l_{g1} \ssin_{1,1} \ccos_{1,1\plus 2}}{l_1 \ssin_{1,2}} & -\displaystyle\frac{l_{g1} \ssin_{1,1} \ssin_{1,1\plus 2}}{l_1 \ssin_{1,2}} \\
+\displaystyle\frac{l_{g1} \ccos_{1,1} \ccos_{1,1\plus 2}}{l_1 \ssin_{1,2}} & \displaystyle\frac{l_{g1} \ccos_{1,1} \ssin_{1,1\plus 2}}{l_1 \ssin_{1,2}} \\
+-\displaystyle\frac{l_2 \ssin_{1,1}\ccos_{1,1\plus 2} - l_{g2} \ccos_{1,1} \ssin_{1,1\plus 2} }{l_2 \ssin_{1,2}} & -\displaystyle\frac{(l_2 - l_{g2}) \ssin_{1,1}\ssin_{1,1\plus 2} }{l_2 \ssin_{1,2}} \\
+\displaystyle\frac{(l_2 - l_{g2}) \ccos_{1,1}\ccos_{1,1\plus 2} }{l_2 \ssin_{1,2}} & -\displaystyle\frac{l_2 \ccos_{1,1}\ssin_{1,1\plus 2} - l_{g2} \ssin_{1,1} \ccos_{1,1\plus 2} }{l_2 \ssin_{1,2}} \\
+-\displaystyle\frac{\ccos_{2,1\plus 2}}{l_1 s_{2,2}} & \displaystyle\frac{\ssin_{2,1\plus 2}}{l_1 s_{2,2}} \\
+\displaystyle\frac{l_1 \ccos_{2,1} + l_2 \ccos_{2,1\plus 2}}{l_1 l_2 \ssin_{2,2}} & -\displaystyle\frac{l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2}}{l_1 l_2 \ssin_{2,2}} \\
+-\displaystyle\frac{\ccos_{2,1\plus 2}}{l_1 s_{2,2}} & \displaystyle\frac{\ssin_{2,1\plus 2}}{l_1 s_{2,2}} \\
 \displaystyle\frac{\ccos_{2,1}}{l_2 s_{2,2}} & -\displaystyle\frac{\ssin_{2,1}}{l_2 s_{2,2}} \\
-\displaystyle\frac{l_{g1} \ssin_{2,1} \ccos_{2,1+2}}{l_1 \ssin_{2,2}} & -\displaystyle\frac{l_{g1} \ssin_{2,1} \ssin_{2,1+2}}{l_1 \ssin_{2,2}} \\
--\displaystyle\frac{l_{g1} \ccos_{2,1} \ccos_{2,1+2}}{l_1 \ssin_{2,2}} & \displaystyle\frac{l_{g1} \ccos_{2,1} \ssin_{2,1+2}}{l_1 \ssin_{2,2}} \\
-\displaystyle\frac{l_2 \ssin_{2,1}\ccos_{2,1+2} - l_{g2} \ccos_{2,1} \ssin_{2,1+2} }{l_2 \ssin_{2,2}} & -\displaystyle\frac{(l_2 - l_{g2}) \ssin_{2,1}\ssin_{2,1+2} }{l_2 \ssin_{2,2}} \\
-\displaystyle\frac{(l_2 - l_{g2}) \ccos_{2,1}\ccos_{2,1+2} }{l_2 \ssin_{2,2}} & -\displaystyle\frac{l_2 \ccos_{2,1}\ssin_{2,1+2} - l_{g2} \ssin_{2,1} \ccos_{2,1+2} }{l_2 \ssin_{2,2}} \\
-
-
+\displaystyle\frac{l_{g1} \ssin_{2,1} \ccos_{2,1\plus 2}}{l_1 \ssin_{2,2}} & -\displaystyle\frac{l_{g1} \ssin_{2,1} \ssin_{2,1\plus 2}}{l_1 \ssin_{2,2}} \\
+-\displaystyle\frac{l_{g1} \ccos_{2,1} \ccos_{2,1\plus 2}}{l_1 \ssin_{2,2}} & \displaystyle\frac{l_{g1} \ccos_{2,1} \ssin_{2,1\plus 2}}{l_1 \ssin_{2,2}} \\
+\displaystyle\frac{l_2 \ssin_{2,1}\ccos_{2,1\plus 2} - l_{g2} \ccos_{2,1} \ssin_{2,1\plus 2} }{l_2 \ssin_{2,2}} & -\displaystyle\frac{(l_2 - l_{g2}) \ssin_{2,1}\ssin_{2,1\plus 2} }{l_2 \ssin_{2,2}} \\
+\displaystyle\frac{(l_2 - l_{g2}) \ccos_{2,1}\ccos_{2,1\plus 2} }{l_2 \ssin_{2,2}} & -\displaystyle\frac{l_2 \ccos_{2,1}\ssin_{2,1\plus 2} - l_{g2} \ssin_{2,1} \ccos_{2,1\plus 2} }{l_2 \ssin_{2,2}} \\
 \end{bmatrix}
-\end{equation}
+\end{equation}\normalsize
 
 \end{itemize}
 
+\footnotesize\begin{equation}
+\mA =\begin{bmatrix}
+0 & 0 &1 & 0 & \mminus 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 &1 & 1 & 0 & \mminus 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 &\mminus l_{g1} \ssin_1 & 0 & 0 & 0 & \mminus 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & l_{g1} \ccos_1 & 0 & 0 & 0 & 0 & \mminus 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 &\mminus l_{1} \ssin_1  \mminus  l_{g2} \ssin_{1\plus 2} & \mminus  l_{g2} \ssin_{1\plus 2} & 0 & 0 & 0 & 0 & \mminus 1 & 0  & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & l_{1} \ccos_1  \pplus l_{g2} \ccos_{1\plus 2} &   l_{g2} \ccos_{1\plus 2} & 0 & 0 & 0 & 0 & 0 & \mminus 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & \mminus 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & \mminus 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \mminus l_{g1} \ssin_1 & 0 & 0 & 0 & \mminus 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &  l_{g1} \ccos_1 & 0 & 0 & 0 & 0 & \mminus 1 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \mminus l_{1} \ssin_1  \mminus  l_{g2} \ssin_{1\plus 2} & \mminus  l_{g2} \ssin_{1\plus 2} & 0 & 0 & 0 & 0 & \mminus 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & l_{1} \ccos_1  \pplus l_{g2} \ccos_{1 \plus 2} &   l_{g2} \ccos_{1 \plus 2} & 0 & 0 & 0 & 0 & 0 & \mminus 1 \\
+1 & 0 & l_1 \ssin_{1,1} \pplus l_2 \ssin_{1\plus 2} &  l_2 \ssin_{1\plus 2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0  \\
+0 & 1 & \mminus l_1 \ccos_{1,1} \mminus l_2 \ccos_{1\plus 2} & \mminus l_2 \ccos_{1\plus 2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0  \\
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \mminus l_1 \ssin_{2,1} \mminus l_2 \ssin_{2\plus 2} & \mminus l_2 \ssin_{2\plus 2} & 0 & 0 & 0 & 0 & 0 & 0  \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \mminus l_1 \ccos_{2,1} \mminus  l_2 \ccos_{2\plus 2} & \mminus l_2 \ccos_{2\plus 2} & 0 & 0 & 0 & 0 & 0 & 0  \\
+\end{bmatrix}
+\end{equation}\normalsize
+
+\begin{equation}
+\mb =
+\begin{bmatrix}
+0 \\
+0 \\
+l_{g1} \ccos_{1,1} \dot{\theta}_{1,1}^2 \\
+l_{g1} \ssin_{1,1} \dot{\theta}_{1,1}^2 \\
+l_{1} \ccos_{1,1} \dot{\theta}_{1,1}^2  + l_{g2} \ccos_{1, 1\plus 2}  (\dot{\theta}_{1,1}+\dot{\theta}_{1,2})^2 \\
+l_{1} \ssin_{1,1}  \dot{\theta}_{1,1}^2 + l_{g2} \ssin_{1, 1\plus 2}   (\dot{\theta}_{1,1}+\dot{\theta}_{1,2})^2 \\
+0 \\
+0 \\
+l_{g1} \ccos_{2,1} \dot{\theta}_{2,1}^2 \\
+l_{g1} \ssin_{2,1} \dot{\theta}_{2,1}^2 \\
+l_{2} \ccos_{2,1} \dot{\theta}_{2,1}^2  + l_{g2} \ccos_{2, 1\plus 2}  (\dot{\theta}_{2,1}+\dot{\theta}_{2,2})^2 \\
+l_{2} \ssin_{2,1}  \dot{\theta}_{2,1}^2 + l_{g2} \ssin_{2, 1\plus 2}   (\dot{\theta}_{2,1}+\dot{\theta}_{2,2})^2 \\
+-l_1 \ccos_{1,1} \dot{\theta}_{1,1}^2 - l_2 \ccos_{1,1\plus 2} (\dot{\theta}_{1,1} + \dot{\theta}_{1,2})^2 \\
+-l_1 \ssin_{1,1} \dot{\theta}_{1,1}^2 - l_2 \ssin_{1,1\plus 2} (\dot{\theta}_{1,1} + \dot{\theta}_{1,2})^2 \\
+ l_1 \ccos_{2,1} \dot{\theta}_{2,1}^2 + l_2 \ccos_{2,1\plus 2} (\dot{\theta}_{2,1} + \dot{\theta}_{1,2})^2 \\
+-l_1 \ssin_{2,1} \dot{\theta}_{2,1}^2 - l_2 \ssin_{2,1\plus 2} (\dot{\theta}_{2,1} + \dot{\theta}_{1,2})^2 \\
+\end{bmatrix}
+\end{equation}
+
+\begin{itemize}
+\item[6)] Obter $\mM$, $\mv$, $\mf$ e $\mg$ através de \eqref{eq:MatrizM2}, \eqref{eq:Matrizv2}, \eqref{eq:Matrizf2} e \eqref{eq:Matrizg2}:
+
+\end{itemize}
 
 
 
@@ -1000,6 +1076,3 @@ Aqui segue um cronograma estimado para realização das atividades propostas:
 \bibliography{bibliografia}
 
 \end{document}
-
-
-
