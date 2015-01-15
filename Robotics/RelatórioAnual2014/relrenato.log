@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.31)  15 JAN 2015 03:49
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.4)  15 JAN 2015 16:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -554,6 +554,12 @@ LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 
 LaTeX Warning: Label `fig:RR' multiply defined.
 
+
+LaTeX Warning: Label `struct' multiply defined.
+
+
+LaTeX Warning: Label `struct' multiply defined.
+
 )
 \openout1 = `relrenato.aux'.
 
@@ -691,106 +697,106 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 150.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 156.
+(babel)             in language  on input line 155.
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
  []
 
 LaTeX Font Info:    Try loading font information for U+BOONDOX-cal on input lin
-e 160.
+e 159.
 (/usr/share/texlive/texmf-dist/tex/latex/boondox/uboondox-cal.fd
 File: uboondox-cal.fd 2011/04/26 Fontinst v1.933 font definitions for U/BOONDOX
 -cal.
 )
-LaTeX Font Info:    Try loading font information for U+eus on input line 163.
+LaTeX Font Info:    Try loading font information for U+eus on input line 162.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 )
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 170.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 169.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <12> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 170.
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 169.
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <8> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 170.
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 169.
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <6> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 170.
-LaTeX Font Info:    Try loading font information for OML+cmbr on input line 171
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 169.
+LaTeX Font Info:    Try loading font information for OML+cmbr on input line 170
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbr.fd
 File: omlcmbr.fd 2005/04/13 v8.1 (WaS)
 )
 LaTeX Font Info:    Try loading font information for OML+cmbrm on input line 17
-1.
+0.
 
 (/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
 File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
 )
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <12> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 171
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 170
 .
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <8> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 171
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 170
 .
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <6> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 171
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 170
 .
 
-Overfull \hbox (8.16429pt too wide) in paragraph at lines 178--179
+Overfull \hbox (8.16429pt too wide) in paragraph at lines 177--178
 []$\U/bbold/m/n/12 q$\T1/cmr/m/n/12 : ve-tor con-tendo to-das as co-or-de-na-da
 s ge-ne-ra-li-za-das. É de-fi-nido por $\U/bbold/m/n/12 q \OT1/cmss/m/n/12 = []
 []$ 
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 181.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 181.
+(babel)             in language  on input line 180.
 [6]
-Overfull \hbox (8.9488pt too wide) in paragraph at lines 181--182
+Overfull \hbox (8.9488pt too wide) in paragraph at lines 180--181
 []$\U/bbold/m/n/12 p$\T1/cmr/m/n/12 : ve-tor con-tendo to-das as ve-lo-ci-da-de
 s ge-ne-ra-li-za-das. É de-fi-nido por $\U/bbold/m/n/12 p \OT1/cmss/m/n/12 = []
 []$ 
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 234.
+(babel)             in language  on input line 233.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 234.
-[7] <RR.jpg, id=115, 144.54pt x 105.0324pt>
+(babel)             in language  on input line 233.
+[7] <RR.jpg, id=123, 144.54pt x 105.0324pt>
 File: RR.jpg Graphic file (type jpg)
  <use RR.jpg>
-Package pdftex.def Info: RR.jpg used on input line 237.
+Package pdftex.def Info: RR.jpg used on input line 236.
 (pdftex.def)             Requested size: 216.80943pt x 157.5482pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 301.
+(babel)             in language  on input line 300.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 301.
+(babel)             in language  on input line 300.
  [8 <./RR.jpg>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 400.
+(babel)             in language  on input line 399.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 400.
+(babel)             in language  on input line 399.
 
 [9]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 456.
+(babel)             in language  on input line 455.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 456.
+(babel)             in language  on input line 455.
  [10]
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 512.
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 511.
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <10.95> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 512
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 511
 .
 
-Overfull \hbox (25.64462pt too wide) detected at line 592
+Overfull \hbox (25.64462pt too wide) detected at line 591
 [] []
  []
 
@@ -798,77 +804,77 @@ Overfull \hbox (25.64462pt too wide) detected at line 592
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 592.
+(babel)             in language  on input line 591.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 592.
+(babel)             in language  on input line 591.
  [11]
-Underfull \hbox (badness 10000) in paragraph at lines 594--595
+Underfull \hbox (badness 10000) in paragraph at lines 593--594
 
  []
 
 
-Overfull \hbox (46.87245pt too wide) in paragraph at lines 601--602
+Overfull \hbox (46.87245pt too wide) in paragraph at lines 600--601
 []$\U/bbold/m/n/12 q[]$\T1/cmr/m/n/12 : ve-tor de co-or-de-na-das ge-ne-ra-li-z
 a-das re-dun-dan-tes não per-ten-cen-tes à pla-ta-forma/efetuador.
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 606.
+(babel)             in language  on input line 605.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 606.
+(babel)             in language  on input line 605.
 [12]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 650.
+(babel)             in language  on input line 642.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 650.
- [13] <5Rscan.jpg, id=184, 889.3225pt x 963.6pt>
+(babel)             in language  on input line 642.
+ [13] <5Rscan.jpg, id=192, 889.3225pt x 963.6pt>
 File: 5Rscan.jpg Graphic file (type jpg)
  <use 5Rscan.jpg>
-Package pdftex.def Info: 5Rscan.jpg used on input line 701.
+Package pdftex.def Info: 5Rscan.jpg used on input line 711.
 (pdftex.def)             Requested size: 355.72269pt x 385.43317pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 705.
+(babel)             in language  on input line 715.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 705.
+(babel)             in language  on input line 715.
  [14]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 759.
+(babel)             in language  on input line 769.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 759.
+(babel)             in language  on input line 769.
 
 [15 <./5Rscan.jpg>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 858.
+(babel)             in language  on input line 868.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 858.
+(babel)             in language  on input line 868.
  [16]
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <10> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 911.
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 933.
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <7> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 911.
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 933.
 LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <5> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 911.
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 933.
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <10> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 911
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 933
 .
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <7> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 911
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 933
 .
 LaTeX Font Info:    Font shape `OML/cmbr/bx/it' in size <5> not available
-(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 911
+(Font)              Font shape `OML/cmbrm/b/it' tried instead on input line 933
 .
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 933.
+(babel)             in language  on input line 955.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 933.
+(babel)             in language  on input line 955.
  [17]
-Overfull \hbox (75.90259pt too wide) detected at line 956
+Overfull \hbox (75.90259pt too wide) detected at line 978
 []\U/bbold/m/n/10 A \OT1/cmss/m/n/10 = []
  []
 
@@ -876,60 +882,121 @@ Overfull \hbox (75.90259pt too wide) detected at line 956
 Underfull \vbox (badness 5696) has occurred while \output is active []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 978.
+(babel)             in language  on input line 1000.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 978.
+(babel)             in language  on input line 1000.
  [18]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 988.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 988.
+Overfull \hbox (22.31613pt too wide) detected at line 1010
+[]\U/bbold/m/n/12 M \OT1/cmss/m/n/12 = [][]
+ []
 
-[19]
+
+Underfull \vbox (badness 5022) has occurred while \output is active []
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 989.
+(babel)             in language  on input line 1057.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1008.
+(babel)             in language  on input line 1057.
+ [19]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1008.
- [20]
+(babel)             in language  on input line 1061.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1063--1064
+
+ []
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1009.
+(babel)             in language  on input line 1082.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1074.
+(babel)             in language  on input line 1082.
+[20]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1074.
- [21] (./relrenato.bbl
+(babel)             in language  on input line 1138.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1138.
+ [21]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1138.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1140--1141
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1174--1175
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1176--1197
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1209--1211
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1211.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1211.
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 1246--1247
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1261.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1261.
+[23]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1262.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1281.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1281.
+ [24]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1282.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1347.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1347.
+ [25] (./relrenato.bbl
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
- [22])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1078.
+ [26])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1351.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1078.
+(babel)             in language  on input line 1351.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1078.
- [23]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1078.
+(babel)             in language  on input line 1351.
+ [27]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1351.
  (./relrenato.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1078.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1078.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1351.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1351.
 
 Package rerunfilecheck Info: File `relrenato.out' has not changed.
-(rerunfilecheck)             Checksum: 60F789CEF13274EE25A97D566D4DB27F;454.
+(rerunfilecheck)             Checksum: FEE6448189CCCF178B3F699175E76188;622.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1078.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1351.
  ) 
 Here is how much of TeX's memory you used:
- 9256 strings out of 493304
- 126136 string characters out of 6139870
- 250558 words of memory out of 5000000
- 12347 multiletter control sequences out of 15000+600000
- 47365 words of font info for 158 fonts, out of 8000000 for 9000
+ 9317 strings out of 493304
+ 126993 string characters out of 6139872
+ 251878 words of memory out of 5000000
+ 12372 multiletter control sequences out of 15000+600000
+ 48895 words of font info for 160 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  29i,20n,35p,836b,456s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
@@ -950,22 +1017,23 @@ pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
-t8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmb10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/
-share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/ty
-pe1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/
-sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/s
-hare/texmf/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/typ
-e1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
-frm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/boondox/zxxrw8a.pfb>
-Output written on relrenato.pdf (24 pages, 421805 bytes).
+t8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmb10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
+x1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
+1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/boondox/zxxrw8a.pfb>
+Output written on relrenato.pdf (28 pages, 441771 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 341 compressed objects within 4 object streams
- 112 named destinations out of 1000 (max. 500000)
- 67 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 481 PDF objects out of 1000 (max. 8388607)
+ 411 compressed objects within 5 object streams
+ 146 named destinations out of 1000 (max. 500000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

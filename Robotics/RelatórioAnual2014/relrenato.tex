@@ -149,8 +149,7 @@ O desenvolvimento de leis de controle adaquadas a sistemas descritos por coorden
 \newpage
 \section{Síntese de Resultados}\label{results}
 
-Esta seção pretende apresentar uma síntese dos principais resultados teóricos obtidos até o momento 
-no desenvolvimento da metodologia de modelagem proposta.
+Esta seção pretende apresentar uma síntese dos principais resultados teóricos obtidos até o momento.
 
 %---ALGORITMO PARA MODELAGEM DE PLATAFORMAS ROBÓTICAS------------------------------------------
 \subsection{Algoritmo para modelagem de plataformas robóticas}\label{struct}
@@ -624,7 +623,7 @@ O modelo para simulação dinâmica direta é dado pelo seguinte equacionamento:
 \begin{equation} \label{eq:DinamicaDireta2}
 \begin{cases}
 \dot{\mq}_0 = \mD^+ (\mq_0) \mp\ssh \\
-\mC^\mathsf{T}(\mq) \Big( \mM \dot{\mp} + \mv(\mp) + \mf(\mp) + \mg \Big) = \mu \\
+\mC^\msT(\mq) \Big( \mM \dot{\mp} + \mv(\mp) + \mf(\mp) + \mg \Big) = \hat{\mC}^\msT(\mq) \mu \\
 \mA(\mq) \dot{\mp} = \mb(\mq,\mp)
 \end{cases}
 \end{equation}
@@ -635,6 +634,13 @@ Sendo:
 \overline{\mrho} = \frac{\partial \overline{\mq}}{\partial \mq_0} \mD^+ \mrho\ssh + \frac{\partial \overline{\mq}}{\partial \mq\hcir}  \mrho\cir
 \end{equation}
 
+\begin{equation} \label{eq:MatrizCchapeu}
+\hat{\mC} = \begin{bmatrix}
+\mone \\
+- \displaystyle\frac{\partial \overline{\mq}}{\partial \mq\hcir}^\msI  \frac{\partial \overline{\mq}}{\partial \mq_0 }\cdot\mD^+
+\end{bmatrix}
+\end{equation}
+
 \begin{equation} \label{eq:MatrizC2}
 \mC = 
 \begin{bmatrix}
@@ -643,10 +649,7 @@ Sendo:
 \vdots & \vdots & \ddots & \vdots\\
 \mzr  &   \mzr       &\ldots & \mC_{n-1}
 \end{bmatrix}
-\begin{bmatrix}
-\mone \\
-- \displaystyle\frac{\partial \overline{\mq}}{\partial \mq\hcir}^\msI  \frac{\partial \overline{\mq}}{\partial \mq_0 }\cdot\mD^+
-\end{bmatrix}
+\hat{\mC}
 \end{equation}
 
 \begin{equation} \label{eq:MatrizA2}
@@ -691,6 +694,13 @@ Sendo:
 \begin{equation} \label{eq:Matrizg2}
 \mg = \begin{bmatrix}
 \mg_0^\msT & \mg_1^\msT & ... & \mg_{n-1}^\msT
+\end{bmatrix}^\msT
+\end{equation}
+
+\begin{equation}
+\mu =
+\begin{bmatrix} \label{eq:Matrizu}
+\mu_0^\msT & \mu_1^\msT & ... & \mu_{n-1}^\msT
 \end{bmatrix}^\msT
 \end{equation}
 
@@ -903,10 +913,22 @@ y - l_1 \ssin_{2,1} - l_2 \ssin_{2,1\plus 2} \\
 \dot{\theta}_{1,2} \\
 \dot{\theta}_{2,1} \\
 \dot{\theta}_{2,2} \\
-\end{bmatrix}
+\end{bmatrix} = \mzr
 \end{equation}
 
-\item[5)] Cálculo $\mC$, $\mA$ e $\mb$ através de \eqref{eq:MatrizC2}, \eqref{eq:MatrizA2} e \eqref{eq:Matrizb2}:
+\item[5)] Cálculo de $\hat{\mC}$, $\mC$, $\mA$ e $\mb$ através de \eqref{eq:MatrizCchapeu}, \eqref{eq:MatrizC2}, \eqref{eq:MatrizA2} e \eqref{eq:Matrizb2}:
+
+\begin{equation}
+\hat{\mC} =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+\displaystyle\frac{\ccos_{1,1\plus 2}}{l_1 \ssin_{1,2}} & \displaystyle\frac{\ssin_{1,1\plus 2}}{l_1 \ssin_{1,2}} \\
+-\displaystyle\frac{l_1\ccos_{1,1} + l_2\ccos_{1,1\plus 2}}{l_1 l_2 \ssin_{1,2}} & -\displaystyle\frac{l_1\ssin_{1,1} + l_2\ssin_{1,1\plus 2}}{l_1 l_2 \ssin_{1,2}} \\
+-\displaystyle\frac{\ccos_{2,1\plus 2}}{l_1 \ssin_{2,2}} & \displaystyle\frac{\ssin_{2,1\plus 2}}{l_1 \ssin_{2,2}} \\
+\displaystyle\frac{l_1\ccos_{2,1} + l_2\ccos_{2,1\plus 2}}{l_1 l_2 \ssin_{2,2}} & -\displaystyle\frac{l_1\ssin_{2,1} + l_2\ssin_{2,1\plus 2}}{l_1 l_2 \ssin_{2,2}} \\
+\end{bmatrix}
+\end{equation}
 
 \footnotesize\begin{equation}
 \mC =
@@ -978,10 +1000,261 @@ l_{2} \ssin_{2,1}  \dot{\theta}_{2,1}^2 + l_{g2} \ssin_{2, 1\plus 2}   (\dot{\th
 \end{equation}
 
 \begin{itemize}
-\item[6)] Obter $\mM$, $\mv$, $\mf$ e $\mg$ através de \eqref{eq:MatrizM2}, \eqref{eq:Matrizv2}, \eqref{eq:Matrizf2} e \eqref{eq:Matrizg2}:
+\item[6)] Obter $\mM$, $\mv$, $\mf$, $\mg$ e $\mu$ através de \eqref{eq:MatrizM2}, \eqref{eq:Matrizv2}, \eqref{eq:Matrizf2}, \eqref{eq:Matrizg2} e \eqref{eq:Matrizu}:
+
+\begin{equation}
+\mM =
+\begin{bmatrix}
+m_0 & m_0 & 0 & 0 & J_{z1} & J_{z2} & m_1 & m_1 & m_2 & m_2 & 0 & 0 & J_{z1} & J_{z2} & m_1 & m_1 & m_2 & m_2
+\end{bmatrix}^\msD
+\end{equation}
+
+\begin{equation}
+\mv = \mzr
+\end{equation}
+
+\begin{equation}
+\mg =
+\begin{bmatrix}
+0 & m_0 g & 0 & 0 & 0 & 0 & 0 & m_1 g & 0 & m_2 g & 0 & 0 & 0 & 0 & 0 & m_1 g & 0 & m_2 g
+\end{bmatrix}^\msT
+\end{equation}
+
+\begin{equation}
+\mu =
+\begin{bmatrix}
+0 \\
+0 \\
+\tau_{1,1} \\
+\tau_{1,2} \\
+\tau_{2,1} \\
+\tau_{2,2} \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mf =
+\begin{bmatrix}
+0 \\
+0 \\
+c_1 \dot{\theta}_{1,1} + \gamma_1 \sign(\dot{\theta}_{1,1}) \\
+c_2 \dot{\theta}_{1,2} + \gamma_2 \sign(\dot{\theta}_{1,2}) \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+c_1 \dot{\theta}_{2,1} + \gamma_1 \sign(\dot{\theta}_{2,1}) \\
+c_2 \dot{\theta}_{2,2} + \gamma_2 \sign(\dot{\theta}_{2,2}) \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+\end{bmatrix}
+\end{equation}
 
 \end{itemize}
 
+\subsection{Controle por modos deslizantes}\label{struct}
+
+Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta técnica de controle não linear robusto é a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdução, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
+
+Seja um sistema din\^amico dado pela seguinte equa\c{c}\~ao diferencial:
+\begin{equation} \label{eq:SimpleODE}
+\ddot{x} = u
+\end{equation}
+
+Definimos a seguinte superf\'icie, chamada de superf\'icie de escorregamento:
+\begin{equation} \label{eq:SlidingSurface}
+s(e, \dot{e}) = - (\dot{e} + \lambda e) = 0, \, \lambda > 0
+\end{equation}
+
+Sendo $e = x_d - x$ o erro de controle e $x_d$ o sinal de refer\^encia. Repare que se o sistema estiver na superf\'icie de escorregamento, temos:
+\begin{equation} \label{eq:SlidingError}
+\dot{e} + \lambda e = 0 \Rightarrow e(t) = C e^{- \lambda t}
+\end{equation}
+
+Sendo assim, o erro cai exponencialmente para zero, com constante de tempo $1/\lambda$.
+
+Para encontrar a lei de controle que leva o sistema \`a superf\'icie de escorregamento, parte-se da defini\c{c}\~ao de $s$:
+
+$$ s = -(\dot{e} + \lambda e) $$
+
+Derivando no tempo:
+\begin{equation} \label{eq:dotS}
+\dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}_d - \lambda \dot{e} 
+\end{equation}
+
+Substituindo \eqref{eq:SimpleODE} em \eqref{eq:dotS}:
+\begin{equation} \label{dotS2}
+\dot{s} = u - \ddot{x}_d - \lambda \dot{e}
+\end{equation}
+
+Utizando a seguinte lei de controle:
+\begin{equation} \label{SMControlLaw1D}
+u = \ddot{x}_d + \lambda \dot{e} - k \sign (s), \, k>0
+\end{equation}
+
+Temos:
+\begin{equation} \label{CloserLoop1D}
+\dot{s} = -k \sign(s) 
+\end{equation}
+
+Supondo que o sistema come\c{c}a em $s(0) = s_0 >0$. Resolvendo a EDO para $s>0$:
+
+$$ \dot{s} = -k \Rightarrow s = -k t + c $$
+$$ s(0) = s_0 \Rightarrow c = s_0 $$
+$$ \therefore s = s_0 - k t, \, s>0 $$
+
+Em $t = t_s = \frac{|s_0|}{k}$, $s$ chega em zero. Resolvendo a EDO para $s(t_s) = 0$:
+
+$$ \dot{s} = 0 \Rightarrow s =  c $$
+$$ s(t_s) = 0 \Rightarrow c = 0 $$
+
+Portanto, para a solu\c{c}\~ao da EDO para $s(0) = s_0 > 0$ é
+\begin{equation} \label{eq:SM-ODE-Sol1}
+s(t) =
+\begin{cases}
+s_0 - k t, \, t < t_s \\
+0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
+\end{cases}
+\end{equation}
+
+Resolvendo para $s(0) = s_0 < 0$, temos um resultado an\'alogo:
+
+\begin{equation} \label{eq:SM-ODE-Sol2}
+s(t) =
+\begin{cases}
+s_0 + k t, \, t < t_s \\
+0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
+\end{cases}
+\end{equation}
+
+Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero.
+
+\subsection{Controle por modos deslizantes extendido}\label{struct}
+
+Esta subseção tem o intuido de apresentar o desenvolvimento da lei de controle adequada para sistemas descritos por coordenadas redundantes desenvolvida. \\
+
+Seja o modelo de um sistema mec\^anico multi-corpos descrito pelas seguintes equa\c{c}\~oes:
+\begin{equation} \label{eq:MechanicalSystem}
+\begin{cases}
+\mC^\msT (\mq) \Big( \mM (\mq) \ddot{\mq} + \mw (\mq, \dot{\mq}) + \mz (\mq) \Big) = \mu \\
+\mA (\mq) \ddot{\mq} + \mb (\mq, \dot{\mq}) = \mzr
+\end{cases}
+\end{equation}
+
+De maneira matricial compacta:
+\begin{equation} \label{eq:MechanicalSystemMatrix}
+\begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\ddot{\mq}
+=
+\begin{bmatrix}
+\mu - \mC^\msT(\mw + \mz) \\
+-\mb
+\end{bmatrix}
+\end{equation}
+
+Gostaria que $ \ddot{\mq} = \mv $, sendo $\mv$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
+\begin{equation} \label{eq:ControlLawV}
+\mu = \mC^\msT ( \mM \mv + \mw + \mz )
+\end{equation}
+
+Como queremos que $ \ddot{\mq} = \mv $ e $\ddot{\mq}$ tem restri\c{c}\~oes, $\mv$ deve respeitar as mesmas restri\c{c}\~oes, ou seja:
+\begin{equation} \label{eq:ControlLawVRestriction}
+\mA \mv + \mb = \mzr
+\end{equation}
+
+Aplicando a lei de controle \eqref{eq:ControlLawV} e a restri\c{c}\~ao \eqref{eq:ControlLawVRestriction} em \eqref{eq:MechanicalSystemMatrix}, temos: \\
+
+$ \begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\ddot{\mq}
+=
+\begin{bmatrix}
+\mC^\msT ( \mM \mv + \mw + \mz ) - \mC^\msT(\mw + \mz) \\
+\mA \mv
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mC^\msT  \mM \mv \\
+\mA \mv
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mC^\msT \mM \\
+\mA
+\end{bmatrix}
+\mv $ \\
+
+Como $\begin{bmatrix} \mC^\msT \, \mM \\ \mA \end{bmatrix}$ é não singular:
+
+\begin{equation} \label{eq:ClosedLoopV}
+\ddot{\mq} = \mv
+\end{equation}
+
+Seja $\mv'$ dado pela lei de controle por modos deslizantes:
+\begin{equation} \label{eq:SMControlowLasV1'}
+\mv' = \ddot{\mq}_{n, d} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me)
+\end{equation}
+Sendo $ \me = \mq_{n,d} - \mq $ o erro de controle e $\mq_{n,d}$ o sinal de refer\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv = \mv' $ :
+$$ \ddot{\mq} = \mv \Rightarrow  \ddot{\me} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me) = \mzr \Leftrightarrow \dot{\ms} = - k \sign(\ms)$$
+Isso garantiria que $\me \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais, como visto na se\c{c}\~ao anterior. \\
+
+Como temos restri\c{c}\~oes em $\mv$, procuramos $\mv$ mais pr\'oximo poss\'ivel de $\mv'$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
+\begin{equation} \label{eq:Optimization}
+\begin{aligned}
+& \underset{\mv}{\text{Min}}
+& & (\mv - \mv')^\msT \mM (\mv - \mv') \\
+& \text{tal que}
+& & \mA \mv + \mb = \mzr
+\end{aligned}
+\end{equation}
+
+Como $\mM$ \'e n\~ao-negativa definida, temos que $(\mv - \mv')^\msT \mM (\mv - \mv') \geq 0 $ para qualquer valor de $\mv$.
+
+Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema \'e equivalente:
+\begin{equation}
+\begin{aligned}
+& \underset{\mv, \mlambda}{\text{Min}}
+& & L = (\mv - \mv')^\msT \mM (\mv - \mv') + (\mA \mv + \mb)^\msT \mlambda \\
+\end{aligned}
+\end{equation}
+
+
+Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
+
+$$ \dl L = 0 \Rightarrow \dl \mv^\msT \mM (\mv - \mv') + (\mv - \mv')^\msT \mM \dl \mv + (\mA \dl \mv)^\msT \mlambda + (\mA \mv + \mb)^\msT \dl \mlambda = 0 $$
+$$ \Rightarrow \dl \mv^\msT \Big( (\mM + \mM^\msT)(\mv - \mv') + \mA^\msT \mlambda \Big) + \dl \mlambda^\msT (\mA \mv + \mb) = 0 $$
+
+Como $\mM$ \'e sim\'etrica e $\dl \mv$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
+\begin{equation} \label{eq:OptimizationSol}
+\begin{cases}
+2 \mM (\mv - \mv') + \mA^\msT \mlambda = \mzr \\
+\mA \mv + \mb = \mzr
+\end{cases}
+\end{equation}
+
+Como $\mC$ \'e o complemento ortogonal de $\mA$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC^\msT$, temos: \\
+
+$ 2 \mC^\msT \mM (\mv - \mv') + \mC^\msT \mA^\msT \mlambda = \mzr $
+$ \Rightarrow  \mC^\msT \mM (\mv - \mv')  = \mzr $
+\begin{equation} \label{eq:OptimizationSol2}
+\therefore \mC^\msT \mM \mv  = \mC^\msT \mM  \mv'
+\end{equation}
+
+Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\ddot{\mq} = \mv'$, segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
+\begin{equation} \label{eq:ControlLawFinal}
+\mu = \mC^\msT ( \mM \mv' + \mw + \mz )
+\end{equation}
 
 
 %---DISCIPLINAS CURSADAS---------------------------------------------------------
