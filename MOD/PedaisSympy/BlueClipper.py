@@ -46,7 +46,7 @@ G1 = V1.subs(
     )
 ).diff(Vi)
 
-pprint(G1.subs(SDATA_1) )
+pprint( apart( G1.subs(SDATA_1) ) )
 
 #Stage 2 ----------------------------------------------------------------------
 
@@ -104,7 +104,13 @@ G2 =  V3.subs(
     )
 ).diff(V1)
 
-pprint(simplify(G2.subs(SDATA_2)))
+G2_ = simplify( 1.0*nsimplify( G2.subs(SDATA_2), tolerance=10**-8 ) )
+
+#G2__ = (apart( 1.0*(7057050.0*s + 10000000.0)/(0.0112316439005525*s**2 + 7050.72162049431*s + 10000001.0) ,s, full=True )).doit() 
+G2__ = (apart( G2_ ,s, full=True )).doit() 
+
+
+pprint( G2__ )
 
 #Stage 3 ---------------------------------------------------------------------
 
@@ -142,7 +148,8 @@ SDATA_3 = [
     (R6, 10e3),
     (R7, 50e3),
     (T, 1/48000.0),
-    (Is, 2.52e-9)
+    (Is, 2.52e-9),
+    (Vt, 45.3e-3)
 ]
     
 # 0: Diferencial
@@ -150,7 +157,7 @@ SDATA_3 = [
 # 2: Diferencial
 # 3: Algebrica linear -> Vo, V6    
     
-#Eliminando a equação algébrica linear:
+#Eliminando a equacao algebrica linear:
 VoSol = solve(
         (CURRENTS_3.subs(OHM_3))[3,:],
         Vo(t)
@@ -161,10 +168,10 @@ pprint(VoSol)
 DiffEq = simplify((CURRENTS_3.subs(OHM_3))[0:3,:].subs(VoSol)) #Non-Linear Algebric-Differencial Equation System
 
 #Separando as derivadas no lado direito
-X = Matrix([V3(t),V4(t),V6(t)]) #Nós que "encostam" em capacitores
+X = Matrix([V3(t),V4(t),V6(t)]) #Nos que "encostam" em capacitores
 dX = Matrix([dV3(t),dV4(t),dV6(t)])
 J = DiffEq.jacobian(dX)
-DiffEqR = -J*X #Na verdade essa é a integral do lado direito da equação
+DiffEqR = -J*X #Na verdade essa eh a integral do lado direito da equacao
 DiffEqL = simplify(DiffEq - J*dX)
 
 DefferentialEqR = DiffEqR[(0,2),:]
@@ -226,6 +233,156 @@ pprint(E)
 
 #------------------------------------------------------------------------------
 
+def NA(x):
+    return (A.subs(SDATA_3).subs(V5(k),x)).evalf()
+    
+def NB(x):
+    return (B.subs(SDATA_3).subs(V5(k),x)).evalf()
+    
+def NC(x):
+    return (C.subs(SDATA_3).subs(V5(k),x)).evalf()
+    
+def ND(x):
+    return (D.subs(SDATA_3).subs(V5(k),x)).evalf()
+    
+def NE(x):
+    return (E.subs(SDATA_3).subs(V5(k),x)).evalf()
+
+def NAB(x):
+    return NA(x)**-1 * NB(x)
+    
+def NAC(x):
+    return NA(x)**-1 * NC(x)
+    
+def NAD(x):
+    return NA(x)**-1 * ND(x)
+    
+def NAE(x):
+    return NA(x)**-1 * NE(x)
+    
+pprint(NAB(-1))
+pprint(NAC(-1))
+pprint(NAD(-1))
+pprint(NAE(-1))
+
+#-----------------------------Table generation---------------------------------
+
+import sys
+from mpmath import mp
+mp.dps = 50
+
+N = 101
+inicio = -2.0
+fim = 2.0
+dx = mp.mpf((fim-inicio)/(N-1))
+Idx = mp.mpf(1/dx)
+print(Idx)
+
+with open('MatrixAB.h', 'w') as f:
+
+    f.write("\n".join([
+        '#include <armadillo>',
+        '',
+        'using namespace arma;',
+        '',
+        '#define MatrixAB_N {N}',
+        '#define MatrixAB_Idx {Idx}',
+        '#define MatrixAB_inicio {inicio}',
+        '#define MatrixAB_fim {fim}',
+        '',
+        '',
+    ]).format(**locals()))
+
+    f.write('const mat Matrix[] = { \n')
+
+    for i in range(N):
+        Matrix = NAB(i*dx + inicio)
+        f.write(
+        ' mat(" ' + str(Matrix[0,0]) + ' ' + str(Matrix[0,1]) + ' ' + str(Matrix[0,2]) + '; '
+                  + str(Matrix[1,0]) + ' ' + str(Matrix[1,1]) + ' ' + str(Matrix[1,2]) + '; '
+                  + str(Matrix[2,0]) + ' ' + str(Matrix[2,1]) + ' ' + str(Matrix[2,2]) + ' ") ,\n')
+
+    f.write('};')
+    
+with open('MatrixAC.h', 'w') as f:
+
+    f.write("\n".join([
+        '#include <armadillo>',
+        '',
+        'using namespace arma;',
+        '',
+        '#define MatrixAC_N {N}',
+        '#define MatrixAC_Idx {Idx}',
+        '#define MatrixAC_inicio {inicio}',
+        '#define MatrixAC_fim {fim}',
+        '',
+        '',
+    ]).format(**locals()))
+
+    f.write('const mat Matrix[] = { \n')
+
+    for i in range(N):
+        Matrix = NAC(i*dx + inicio)
+        f.write(
+        ' mat(" ' + str(Matrix[0,0]) + '; '
+                  + str(Matrix[1,0]) + '; '
+                  + str(Matrix[2,0]) + ' ") ,\n')
+
+    f.write('};')
+    
+with open('MatrixAD.h', 'w') as f:
+
+    f.write("\n".join([
+        '#include <armadillo>',
+        '',
+        'using namespace arma;',
+        '',
+        '#define MatrixAD_N {N}',
+        '#define MatrixAD_Idx {Idx}',
+        '#define MatrixAD_inicio {inicio}',
+        '#define MatrixAD_fim {fim}',
+        '',
+        '',
+    ]).format(**locals()))
+
+    f.write('const mat Matrix[] = { \n')
+
+    for i in range(N):
+        Matrix = NAD(i*dx + inicio)
+        f.write(
+        ' mat(" ' + str(Matrix[0,0]) + '; '
+                  + str(Matrix[1,0]) + '; '
+                  + str(Matrix[2,0]) + ' ") ,\n')
+
+    f.write('};')
+    
+with open('MatrixAE.h', 'w') as f:
+
+    f.write("\n".join([
+        '#include <armadillo>',
+        '',
+        'using namespace arma;',
+        '',
+        '#define MatrixAE_N {N}',
+        '#define MatrixAE_Idx {Idx}',
+        '#define MatrixAE_inicio {inicio}',
+        '#define MatrixAE_fim {fim}',
+        '',
+        '',
+    ]).format(**locals()))
+
+    f.write('const mat Matrix[] = { \n')
+
+    for i in range(N):
+        Matrix = NAE(i*dx + inicio)
+        f.write(
+        ' mat(" ' + str(Matrix[0,0]) + '; '
+                  + str(Matrix[1,0]) + '; '
+                  + str(Matrix[2,0]) + ' ") ,\n')
+
+    f.write('};')
+    
+#------------------------------------------------------------------------------
 
 
 def G2abs(f):
