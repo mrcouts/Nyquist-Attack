@@ -5,12 +5,14 @@
 #include "SomeUtilities.h"
 #include "DistortionClass.h"
 #include "GainClass.h"
+#include "Oversample8xClass.h"
+#include "Downsample8xClass.h"
 
 /**********************************************************************************************************************************************************/
 
 #define PLUGIN_URI "http://portalmod.com/plugins/mod-devel/Distortion"
 #define N_SAMPLES_DEFAULT 64
-enum {IN, OUT, PLUGIN_PORT_COUNT};
+enum {IN, OUT, PRE, POST, PLUGIN_PORT_COUNT};
 
 /**********************************************************************************************************************************************************/
 
@@ -23,16 +25,29 @@ public:
     {
     	this->n_samples = n_samples;
         SampleRate = samplerate;
-        dist = new DistortionClass(samplerate, n_samples);
+        u.zeros(n_samples);
+        //dist = new DistortionClass(samplerate, n_samples);
+        Pre = new GainClass(n_samples);
+        Post = new GainClass(n_samples);
+        Over = new Oversample8xClass(n_samples);
+        Down = new Downsample8xClass(n_samples);
     }
     void Destruct()
     {
-        delete dist;
+        u.clear();
+        delete Pre;
+        delete Post;
+        delete Over;
+        delete Down;
     }
     void Realloc(uint32_t n_samples)
     {
         Destruct();
         Construct(SampleRate, n_samples);
+    }
+    void SetInput(float *in)
+    {
+        for(uint32_t i = 0; i < n_samples; i++) u(i) = in[i];
     }
 
     static LV2_Handle instantiate(const LV2_Descriptor* descriptor, double samplerate, const char* bundle_path, const LV2_Feature* const* features);
@@ -43,10 +58,15 @@ public:
     static void cleanup(LV2_Handle instance);
     static const void* extension_data(const char* uri);
     float *ports[PLUGIN_PORT_COUNT];
+    vec u;
 
     uint32_t n_samples;
     double SampleRate;
-    DistortionClass *dist;
+    //DistortionClass *dist;
+    GainClass *Pre;
+    GainClass *Post;
+    Oversample8xClass *Over;
+    Downsample8xClass *Down;
 };
 
 /**********************************************************************************************************************************************************/
@@ -105,10 +125,15 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
 
     float *in   = plugin->ports[IN];
     float *out  = plugin->ports[OUT];
-    //double f    = (double)(*(plugin->ports[FREQ]));
-    //int Order   = (int)(*(plugin->ports[ORDER]));
+    float pre = *(plugin->ports[PRE]);
+    float post = *(plugin->ports[POST]);
 
-    DistortionClass *dist = plugin->dist;
+    vec u = plugin->u;
+    //DistortionClass *dist = plugin->dist;
+    GainClass *Pre = plugin->Pre;
+    GainClass *Post = plugin->Post;
+    Oversample8xClass *Over = plugin->Over;
+    Downsample8xClass *Down = plugin->Down;
 
     if ( plugin->n_samples != n_samples )
     {
@@ -123,11 +148,13 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     }
 
     //Algoritmo
-    dist->SetInput(in);
-    dist->Oversample8x();
-    dist->OverWire();
-    dist->Downsample8x();
-    dist->CopyOutput(out);
+    plugin->SetInput(in);
+    Pre->Gain(pre, &u);
+    vec Aux = tanh(Pre->y);
+    Over->Oversample8x(&Aux);
+    Down->Downsample8x(&Over->y);
+    Post->Gain(post, &Down->y);
+    for (uint32_t i = 0; i < n_samples; i++) out[i] = Post->y(i);
 }
 
 /**********************************************************************************************************************************************************/

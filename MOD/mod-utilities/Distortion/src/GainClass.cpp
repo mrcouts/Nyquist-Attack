@@ -3,6 +3,7 @@
 GainClass::GainClass(int N) //Construtor da classe pai
 {
 	this->N = N;
+	y.zeros(N);
 	g.zeros(N);
 
 	g0 = 0;
@@ -25,7 +26,13 @@ void GainClass::ComputeGain(float gaindB)
 	g0 = g(N-1);
 }
 
-void GainClass::ApplyGain(vec *signal)
+void GainClass::ApplyGain(vec *u)
 {
-	signal[0] = g % signal[0];
+	y = g % u[0];
+}
+
+void GainClass::Gain(float gaindB, vec *u)
+{
+	ComputeGain(gaindB);
+	ApplyGain(u);
 }
