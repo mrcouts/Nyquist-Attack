@@ -7,7 +7,7 @@ GainClass::GainClass(int N) //Construtor da classe pai
 	g.zeros(N);
 
 	g0 = 0;
-	wc = 6.0/N; //Frequencia de corte em rad/amostra
+	wc = 4.0/(N*M_PI); //Frequencia de corte em rad/amostra
 
 	a1 = -2 + cos(wc) + 0.5*sqrt(-4 +  pow(4-2*cos(wc),2) );
 	b0 = 1 + a1;

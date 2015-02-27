@@ -26,7 +26,7 @@ public:
     	this->n_samples = n_samples;
         SampleRate = samplerate;
         u.zeros(n_samples);
-        //dist = new DistortionClass(samplerate, n_samples);
+        Dist = new DistortionClass(n_samples);
         Pre = new GainClass(n_samples);
         Post = new GainClass(n_samples);
         Over = new Oversample8xClass(n_samples);
@@ -35,6 +35,7 @@ public:
     void Destruct()
     {
         u.clear();
+        delete Dist;
         delete Pre;
         delete Post;
         delete Over;
@@ -62,7 +63,7 @@ public:
 
     uint32_t n_samples;
     double SampleRate;
-    //DistortionClass *dist;
+    DistortionClass *Dist;
     GainClass *Pre;
     GainClass *Post;
     Oversample8xClass *Over;
@@ -129,7 +130,7 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     float post = *(plugin->ports[POST]);
 
     vec u = plugin->u;
-    //DistortionClass *dist = plugin->dist;
+    DistortionClass *Dist = plugin->Dist;
     GainClass *Pre = plugin->Pre;
     GainClass *Post = plugin->Post;
     Oversample8xClass *Over = plugin->Over;
@@ -150,8 +151,8 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     //Algoritmo
     plugin->SetInput(in);
     Pre->Gain(pre, &u);
-    vec Aux = tanh(Pre->y);
-    Over->Oversample8x(&Aux);
+    Dist->TgH(&Pre->y);
+    Over->Oversample8x(&Dist->y);
     Down->Downsample8x(&Over->y);
     Post->Gain(post, &Down->y);
     for (uint32_t i = 0; i < n_samples; i++) out[i] = Post->y(i);
