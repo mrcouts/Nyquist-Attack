@@ -13,7 +13,7 @@
 
 #define PLUGIN_URI "http://portalmod.com/plugins/mod-devel/Distortion"
 #define N_SAMPLES_DEFAULT 64
-enum {IN, OUT, PRE, POST, FC, PLUGIN_PORT_COUNT};
+enum {IN, OUT, PRE, POST, FC1, FC2, PLUGIN_PORT_COUNT};
 
 /**********************************************************************************************************************************************************/
 
@@ -32,6 +32,7 @@ public:
         Post = new GainClass(n_samples);
         Over = new Oversample8xClass(n_samples);
         Down = new Downsample8xClass(n_samples);
+        Hpf = new FilterClass(samplerate, n_samples);
         Lpf = new FilterClass(samplerate, n_samples);
     }
     void Destruct()
@@ -42,6 +43,7 @@ public:
         delete Post;
         delete Over;
         delete Down;
+        delete Hpf;
         delete Lpf;
     }
     void Realloc(uint32_t n_samples)
@@ -71,6 +73,7 @@ public:
     GainClass *Post;
     Oversample8xClass *Over;
     Downsample8xClass *Down;
+    FilterClass *Hpf;
     FilterClass *Lpf;
 };
 
@@ -132,7 +135,8 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     float *out  = plugin->ports[OUT];
     float pre = *(plugin->ports[PRE]);
     float post = *(plugin->ports[POST]);
-    float fc = *(plugin->ports[FC]);
+    float fc1 = *(plugin->ports[FC1]);
+    float fc2 = *(plugin->ports[FC2]);
 
     vec u = plugin->u;
     DistortionClass *Dist = plugin->Dist;
@@ -140,6 +144,7 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     GainClass *Post = plugin->Post;
     Oversample8xClass *Over = plugin->Over;
     Downsample8xClass *Down = plugin->Down;
+    FilterClass *Hpf = plugin->Hpf;
     FilterClass *Lpf = plugin->Lpf;
 
     if ( plugin->n_samples != n_samples )
@@ -156,12 +161,13 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
 
     //Algoritmo
     plugin->SetInput(in);
-    Pre->Gain(pre, &u);
+    Hpf->HPF1(fc1,&u);
+    Pre->Gain(pre, &Hpf->y);
     Over->Oversample8x(&Pre->y);
     Dist->TgH(&Over->y);
     Down->Downsample8x(&Dist->y);
     Post->Gain(post, &Down->y);
-    Lpf->LPF1(fc, &Post->y);
+    Lpf->LPF1(fc2, &Post->y);
     for (uint32_t i = 0; i < n_samples; i++) out[i] = Lpf->y(i);
 }
 

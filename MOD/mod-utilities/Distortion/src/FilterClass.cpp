@@ -47,29 +47,53 @@ FilterClass::~FilterClass()
 	A1.clear();
 }
 
-void FilterClass::ComputeCoef(float f)
+double FilterClass::BilinearConstant(float wc, double T)
+{
+	return wc/tan(wc*T/2);
+}
+
+void FilterClass::SoftInput(float f)
+{
+	wc = 2*M_PI*f;
+
+	vwc(0) = -_a1_*wc_1 + _b0_*wc;
+	c(0) = BilinearConstant(vwc(0), T);
+	for(int i = 1; i < N; i++)
+	{
+		vwc(i) = -_a1_*vwc(i-1) + _b0_*wc;
+		c(i) = BilinearConstant(vwc(i), T);
+	}
+	wc_1 = wc;
+}
+
+void FilterClass::LPcoef()
 {
 	/*        wc
 	G(s) = --------
 	        s + wc
 	*/
 
-	wc = 2*M_PI*f;
-
-	vwc(0) = -_a1_*wc_1 + _b0_*wc;
-	c(0) = vwc(0)/tan(vwc(0)*T/2);
-	for(int i = 1; i < N; i++)
-	{
-		vwc(i) = -_a1_*vwc(i-1) + _b0_*wc;
-		c(i) = vwc(i)/tan(vwc(i)*T/2);
-	}
-	wc_1 = wc;
-
 	b1.zeros();
 	b0 = vwc;
 	a1.ones();
 	a0 = vwc;
+}
 
+void FilterClass::HPcoef()
+{
+	/*        s
+	G(s) = --------
+	        s + wc
+	*/
+
+	b1.ones();
+	b0.zeros();
+	a1.ones();
+	a0 = vwc;
+}
+
+void FilterClass::Bilinear1()
+{
 	B0 = b0 + b1 % c;
 	B1 = b0 - b1 % c;
 	A0 = a0 + a1 % c;
@@ -80,11 +104,46 @@ void FilterClass::ComputeCoef(float f)
 	A1 = A1/A0;
 }
 
+
+void FilterClass::LPComputeCoef(float f)
+{
+	SoftInput(f);
+	LPcoef();
+	Bilinear1();
+}
+
+void FilterClass::HPComputeCoef(float f)
+{
+	SoftInput(f);
+	HPcoef();
+	Bilinear1();
+}
+
 void FilterClass::LPF1(double f, vec *u)
 {
 	if(f != f_1)
 	{
-		ComputeCoef(f);
+		LPComputeCoef(f);
+		y(0) = -A1(0)*y_1 + B0(0)*u[0](0) + B1(0)*u_1;
+		for (int i=1; i < N; i++) y(i) = -A1(i)*y(i-1) + B0(i)*u[0](i) + B1(i)*u[0](i-1);
+		y_1 = y(N-1);
+		u_1 = u[0](N-1);
+	}
+	else
+	{
+		y(0) = -A1(N-1)*y_1 + B0(N-1)*u[0](0) + B1(N-1)*u_1;
+		for (int i=1; i < N; i++) y(i) = -A1(N-1)*y(i-1) + B0(N-1)*u[0](i) + B1(N-1)*u[0](i-1);
+		y_1 = y(N-1);
+		u_1 = u[0](N-1);
+	}
+	f_1 = f;
+}
+
+void FilterClass::HPF1(double f, vec *u)
+{
+	if(f != f_1)
+	{
+		HPComputeCoef(f);
 		y(0) = -A1(0)*y_1 + B0(0)*u[0](0) + B1(0)*u_1;
 		for (int i=1; i < N; i++) y(i) = -A1(i)*y(i-1) + B0(i)*u[0](i) + B1(i)*u[0](i-1);
 		y_1 = y(N-1);

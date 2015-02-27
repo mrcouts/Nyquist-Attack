@@ -10,8 +10,15 @@ class FilterClass
 public:
     FilterClass( double samplerate, int N );
     ~FilterClass();
-    void ComputeCoef(float f);
+    double BilinearConstant(float wc, double T);
+    void SoftInput(float f);
+    void LPcoef();
+    void HPcoef();
+    void Bilinear1();
+    void LPComputeCoef(float f);
+    void HPComputeCoef(float f);
     void LPF1(double f, vec *u);
+    void HPF1(double f, vec *u);
 
     vec y; //Sinal de saída
 
