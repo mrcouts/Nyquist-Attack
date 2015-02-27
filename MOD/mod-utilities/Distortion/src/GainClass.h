@@ -10,8 +10,8 @@ class GainClass
 public:
     GainClass(int N);
     ~GainClass();
-    void ComputeGain(float gaindB);
-    void ApplyGain(vec *u);
+    void dBconv(float gaindB);
+    void ComputeGain();
     void Gain(float gaindB, vec *u);
 
     vec y; //Sinal de saída
@@ -21,6 +21,8 @@ private:
 
     vec g; //Vetor de ganho
     float g0; //Condição inicial
+    float gaindB0; //Entrada anterior
+    float gain; // 10^(gaindB/20)
 
     //Variáveis auxiliares
     double a1;

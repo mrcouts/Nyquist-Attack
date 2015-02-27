@@ -6,8 +6,9 @@ GainClass::GainClass(int N) //Construtor da classe pai
 	y.zeros(N);
 	g.zeros(N);
 
-	g0 = 0;
-	wc = 4.0/(N*M_PI); //Frequencia de corte em rad/amostra
+	g0 = 1;
+	gaindB0 = 0;
+	wc = 6.0/N; //Frequencia de corte em rad/amostra
 
 	a1 = -2 + cos(wc) + 0.5*sqrt(-4 +  pow(4-2*cos(wc),2) );
 	b0 = 1 + a1;
@@ -15,24 +16,34 @@ GainClass::GainClass(int N) //Construtor da classe pai
 
 GainClass::~GainClass()
 {
+	y.clear();
 	g.clear();
 }
 
-void GainClass::ComputeGain(float gaindB)
+void GainClass::dBconv(float gaindB)
 {
-	double gain = pow(10.0,gaindB/20.0);
-	g(0) = -a1*g0 + b0*gain;
-	for(int i = 1;i<N;i++) g(i) = -a1*g(i-1) + b0*gain;
-	g0 = g(N-1);
+	gain = pow(10.0,gaindB/20.0);
 }
 
-void GainClass::ApplyGain(vec *u)
+void GainClass::ComputeGain()
 {
-	y = g % u[0];
+	g(0) = -a1*g0 + b0*gain;
+	for(int i = 1; i < N; i++) g(i) = -a1*g(i-1) + b0*gain;
+	g0 = g(N-1);
 }
 
 void GainClass::Gain(float gaindB, vec *u)
 {
-	ComputeGain(gaindB);
-	ApplyGain(u);
+	dBconv(gaindB);
+	if(gaindB != gaindB0)
+	{
+		ComputeGain();
+		y = g % u[0];
+	}
+	else
+	{
+		g0 = gain;
+		y = gain * u[0];
+	}
+	gaindB0 = gaindB;
 }

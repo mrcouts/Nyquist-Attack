@@ -151,9 +151,9 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     //Algoritmo
     plugin->SetInput(in);
     Pre->Gain(pre, &u);
-    Dist->TgH(&Pre->y);
-    Over->Oversample8x(&Dist->y);
-    Down->Downsample8x(&Over->y);
+    Over->Oversample8x(&Pre->y);
+    Dist->TgH(&Over->y);
+    Down->Downsample8x(&Dist->y);
     Post->Gain(post, &Down->y);
     for (uint32_t i = 0; i < n_samples; i++) out[i] = Post->y(i);
 }

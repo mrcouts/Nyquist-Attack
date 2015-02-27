@@ -3,7 +3,7 @@
 DistortionClass::DistortionClass(int N) //Construtor da classe pai
 {
 	this->N = N;
-	y.zeros(N);
+	y.zeros(8*N);
 }
 
 DistortionClass::~DistortionClass()
