@@ -7,12 +7,13 @@
 #include "GainClass.h"
 #include "Oversample8xClass.h"
 #include "Downsample8xClass.h"
+#include "FilterClass.h"
 
 /**********************************************************************************************************************************************************/
 
 #define PLUGIN_URI "http://portalmod.com/plugins/mod-devel/Distortion"
 #define N_SAMPLES_DEFAULT 64
-enum {IN, OUT, PRE, POST, PLUGIN_PORT_COUNT};
+enum {IN, OUT, PRE, POST, FC, PLUGIN_PORT_COUNT};
 
 /**********************************************************************************************************************************************************/
 
@@ -31,6 +32,7 @@ public:
         Post = new GainClass(n_samples);
         Over = new Oversample8xClass(n_samples);
         Down = new Downsample8xClass(n_samples);
+        Lpf = new FilterClass(samplerate, n_samples);
     }
     void Destruct()
     {
@@ -40,6 +42,7 @@ public:
         delete Post;
         delete Over;
         delete Down;
+        delete Lpf;
     }
     void Realloc(uint32_t n_samples)
     {
@@ -68,6 +71,7 @@ public:
     GainClass *Post;
     Oversample8xClass *Over;
     Downsample8xClass *Down;
+    FilterClass *Lpf;
 };
 
 /**********************************************************************************************************************************************************/
@@ -128,6 +132,7 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     float *out  = plugin->ports[OUT];
     float pre = *(plugin->ports[PRE]);
     float post = *(plugin->ports[POST]);
+    float fc = *(plugin->ports[FC]);
 
     vec u = plugin->u;
     DistortionClass *Dist = plugin->Dist;
@@ -135,6 +140,7 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     GainClass *Post = plugin->Post;
     Oversample8xClass *Over = plugin->Over;
     Downsample8xClass *Down = plugin->Down;
+    FilterClass *Lpf = plugin->Lpf;
 
     if ( plugin->n_samples != n_samples )
     {
@@ -155,7 +161,8 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     Dist->TgH(&Over->y);
     Down->Downsample8x(&Dist->y);
     Post->Gain(post, &Down->y);
-    for (uint32_t i = 0; i < n_samples; i++) out[i] = Post->y(i);
+    Lpf->LPF1(fc, &Post->y);
+    for (uint32_t i = 0; i < n_samples; i++) out[i] = Lpf->y(i);
 }
 
 /**********************************************************************************************************************************************************/

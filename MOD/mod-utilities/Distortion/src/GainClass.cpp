@@ -42,7 +42,6 @@ void GainClass::Gain(float gaindB, vec *u)
 	}
 	else
 	{
-		g0 = gain;
 		y = gain * u[0];
 	}
 	gaindB0 = gaindB;
