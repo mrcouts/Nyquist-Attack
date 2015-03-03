@@ -32,8 +32,8 @@ public:
         Post = new GainClass(n_samples);
         Over = new Oversample8xClass(n_samples);
         Down = new Downsample8xClass(n_samples);
-        Hpf = new FilterClass(samplerate, n_samples);
-        Lpf = new FilterClass(samplerate, n_samples);
+        Hpf = new FilterClass2(samplerate, n_samples);
+        Lpf = new FilterClass2(samplerate, n_samples);
     }
     void Destruct()
     {
@@ -73,8 +73,8 @@ public:
     GainClass *Post;
     Oversample8xClass *Over;
     Downsample8xClass *Down;
-    FilterClass *Hpf;
-    FilterClass *Lpf;
+    FilterClass2 *Hpf;
+    FilterClass2 *Lpf;
 };
 
 /**********************************************************************************************************************************************************/
@@ -144,8 +144,8 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     GainClass *Post = plugin->Post;
     Oversample8xClass *Over = plugin->Over;
     Downsample8xClass *Down = plugin->Down;
-    FilterClass *Hpf = plugin->Hpf;
-    FilterClass *Lpf = plugin->Lpf;
+    FilterClass2 *Hpf = plugin->Hpf;
+    FilterClass2 *Lpf = plugin->Lpf;
 
     if ( plugin->n_samples != n_samples )
     {
@@ -161,13 +161,13 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
 
     //Algoritmo
     plugin->SetInput(in);
-    Hpf->HPF1(fc1,&u);
+    Hpf->HPF2(fc1,&u);
     Pre->Gain(pre, &Hpf->y);
     Over->Oversample8x(&Pre->y);
     Dist->TgH(&Over->y);
     Down->Downsample8x(&Dist->y);
     Post->Gain(post, &Down->y);
-    Lpf->LPF1(fc2, &Post->y);
+    Lpf->LPF2(fc2, &Post->y);
     for (uint32_t i = 0; i < n_samples; i++) out[i] = Lpf->y(i);
 }
 

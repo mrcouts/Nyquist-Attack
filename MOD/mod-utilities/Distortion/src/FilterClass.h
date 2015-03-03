@@ -22,7 +22,7 @@ public:
 
     vec y; //Sinal de saída
 
-private:
+protected:
 
     int N; // Tamanho dos vetores
     double SampleRate; //Frequência de amostragem em Hz
@@ -71,4 +71,32 @@ private:
     double _a1_;
     double _b0_;
     double _wc_;
+};
+
+class FilterClass2:public FilterClass
+{
+public:
+    FilterClass2(double samplerate, int N);
+    ~FilterClass2();
+    void LP2coef();
+    void HP2coef();
+    void Bilinear2();
+    void LP2ComputeCoef(float f);
+    void HP2ComputeCoef(float f);
+    void LPF2(double f, vec *u);
+    void HPF2(double f, vec *u);
+
+protected:
+
+    //Condições iniciais:
+    double u_2;
+    double y_2;
+
+    //Coeficientes de Laplace:
+    vec b2;
+    vec a2;
+
+    //Coeficientes em Z:
+    vec B2;
+    vec A2;
 };
