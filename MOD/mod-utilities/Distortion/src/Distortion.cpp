@@ -33,7 +33,7 @@ public:
         Over = new Oversample8xClass(n_samples);
         Down = new Downsample8xClass(n_samples);
         Hpf = new FilterClass2(samplerate, n_samples);
-        Lpf = new FilterClass2(samplerate, n_samples);
+        Lpf = new FilterClass3(samplerate, n_samples);
     }
     void Destruct()
     {
@@ -74,7 +74,7 @@ public:
     Oversample8xClass *Over;
     Downsample8xClass *Down;
     FilterClass2 *Hpf;
-    FilterClass2 *Lpf;
+    FilterClass3 *Lpf;
 };
 
 /**********************************************************************************************************************************************************/
@@ -145,7 +145,7 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     Oversample8xClass *Over = plugin->Over;
     Downsample8xClass *Down = plugin->Down;
     FilterClass2 *Hpf = plugin->Hpf;
-    FilterClass2 *Lpf = plugin->Lpf;
+    FilterClass3 *Lpf = plugin->Lpf;
 
     if ( plugin->n_samples != n_samples )
     {
@@ -167,7 +167,7 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     Dist->TgH(&Over->y);
     Down->Downsample8x(&Dist->y);
     Post->Gain(post, &Down->y);
-    Lpf->LPF2(fc2, &Post->y);
+    Lpf->LPF3(fc2, &Post->y);
     for (uint32_t i = 0; i < n_samples; i++) out[i] = Lpf->y(i);
 }
 

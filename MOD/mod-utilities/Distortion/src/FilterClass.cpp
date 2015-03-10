@@ -208,6 +208,21 @@ void FilterClass2::HP2coef()
 	a0 = vwc % vwc;
 }
 
+void FilterClass2::F3coef()
+{
+	/*           wc s
+	G(s) = -----------------
+	        s² + wc s + wc²
+	*/
+
+	b2.zeros();
+	b1 = vwc;
+	b0.zeros();
+	a2.ones();
+	a1 = vwc;
+	a0 = vwc%vwc;
+}
+
 void FilterClass2::Bilinear2()
 {
 	B0 =   b0 + b1%c +   b2%c%c;
@@ -235,6 +250,13 @@ void FilterClass2::HP2ComputeCoef(float f)
 {
 	SoftInput(f);
 	HP2coef();
+	Bilinear2();
+}
+
+void FilterClass2::F3ComputeCoef(float f)
+{
+	SoftInput(f);
+	F3coef();
 	Bilinear2();
 }
 
@@ -288,6 +310,82 @@ void FilterClass2::HPF2(double f, vec *u)
 		y(i) = -A1(N-1)*y(i-1) - A2(N-1)*y(i-2) + B0(N-1)*u[0](i) + B1(N-1)*u[0](i-1) + B2(N-1)*u[0](i-2);
 		y_1 = y(N-1);
 		y_2 = y(N-2);
+		u_1 = u[0](N-1);
+		u_2 = u[0](N-2);
+	}
+	f_1 = f;
+}
+
+FilterClass3::FilterClass3( double samplerate, int N ) //Construtor da classe pai
+{
+	this->N = N;
+	y.zeros(N);
+	
+	filter1 = new FilterClass(samplerate, N);
+	filter2 = new FilterClass2(samplerate, N);
+
+	A1.zeros(2,N);
+	A2.zeros(2,N);
+	B0.zeros(2,N);
+	B1.zeros(2,N);
+	B2.zeros(2,N);
+
+	Y.zeros(2,N);
+	Y_1.zeros(2);
+	Y_2.zeros(2);
+
+	u_1 = 0;
+	u_2 = 0;
+
+	f_1 = 1;
+}
+
+FilterClass3::~FilterClass3()
+{
+	y.clear();
+	delete filter1;
+	delete filter2;
+}
+
+void FilterClass3::LP3ComputeCoef(float f)
+{
+	filter1->LPComputeCoef(f);
+	filter2->F3ComputeCoef(f);
+
+	A1.row(0) = filter1->A1.t();
+	A1.row(1) = filter2->A1.t();
+	A2.row(1) = filter2->A2.t();
+	B0.row(0) = filter1->B0.t();
+	B0.row(1) = filter2->B0.t();
+	B1.row(0) = filter1->B1.t();
+	B1.row(1) = filter2->B1.t();
+	B2.row(1) = filter2->B2.t();
+}
+
+void FilterClass3::LPF3(double f, vec *u)
+{
+	if(f != f_1)
+	{
+		LP3ComputeCoef(f);
+		Y.col(0) = -A1.col(0)%Y_1        - A2.col(0)%Y_2        + B0.col(0)*u[0](0) + B1.col(0)*u_1       + B2.col(0)*u_2;
+		Y.col(1) = -A1.col(1)%Y.col(0)   - A2.col(1)%Y_1        + B0.col(1)*u[0](1) + B1.col(1)*u[0](0)   + B2.col(1)*u_1;
+		for (int i=2; i < N; i++)
+		Y.col(i) = -A1.col(i)%Y.col(i-1) - A2.col(i)%Y.col(i-2) + B0.col(i)*u[0](i) + B1.col(i)*u[0](i-1) + B2.col(i)*u[0](i-2);
+		y = Y.row(0).t() - Y.row(1).t();
+		Y_1 = Y.col(N-1);
+		Y_2 = Y.col(N-2);
+		u_1 = u[0](N-1);
+		u_2 = u[0](N-2);
+	}
+	else
+	{
+		Y.col(0) = -A1.col(N-1)%Y_1        - A2.col(N-1)%Y_2        + B0.col(N-1)*u[0](0) + B1.col(N-1)*u_1       + B2.col(N-1)*u_2;
+		Y.col(1) = -A1.col(N-1)%Y.col(0)   - A2.col(N-1)%Y_1        + B0.col(N-1)*u[0](1) + B1.col(N-1)*u[0](0)   + B2.col(N-1)*u_1;
+		for (int i=2; i < N; i++)
+		Y.col(i) = -A1.col(N-1)%Y.col(i-1) - A2.col(N-1)%Y.col(i-2) + B0.col(N-1)*u[0](i) + B1.col(N-1)*u[0](i-1) + B2.col(N-1)*u[0](i-2);
+		y = Y.row(0).t() - Y.row(1).t();
+		Y_1 = Y.col(N-1);
+		Y_2 = Y.col(N-2);
 		u_1 = u[0](N-1);
 		u_2 = u[0](N-2);
 	}
