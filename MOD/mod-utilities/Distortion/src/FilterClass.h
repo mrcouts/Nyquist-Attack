@@ -109,7 +109,9 @@ public:
     FilterClass3(double samplerate, int N);
     ~FilterClass3();
     void LP3ComputeCoef(float f);
+    void HP3ComputeCoef(float f);
     void LPF3(double f, vec *u);
+    void HPF3(double f, vec *u);
 
     vec y; //Sinal de saída
 
