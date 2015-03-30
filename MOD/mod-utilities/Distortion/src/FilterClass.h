@@ -17,6 +17,7 @@ public:
     void Bilinear1();
     void LPComputeCoef(float f);
     void HPComputeCoef(float f);
+    void F1(double f, vec *u, bool lp);
     void LPF1(double f, vec *u);
     void HPF1(double f, vec *u);
 
@@ -85,6 +86,7 @@ public:
     void LP2ComputeCoef(float f);
     void HP2ComputeCoef(float f);
     void F3ComputeCoef(float f);
+    void F2(double f, vec *u, bool lp);
     void LPF2(double f, vec *u);
     void HPF2(double f, vec *u);
 
@@ -108,8 +110,8 @@ class FilterClass3
 public:
     FilterClass3(double samplerate, int N);
     ~FilterClass3();
-    void LP3ComputeCoef(float f);
-    void HP3ComputeCoef(float f);
+    void _P3ComputeCoef(float f, bool lp);
+    void F3(double f, vec *u, bool lp);
     void LPF3(double f, vec *u);
     void HPF3(double f, vec *u);
 
