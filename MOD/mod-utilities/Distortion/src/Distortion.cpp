@@ -13,7 +13,7 @@
 
 #define PLUGIN_URI "http://portalmod.com/plugins/mod-devel/Distortion"
 #define N_SAMPLES_DEFAULT 64
-enum {IN, OUT, PRE, POST, FC1, FC2, PLUGIN_PORT_COUNT};
+enum {IN, OUT, PRE, DIST, POST, FC1, FC2, PLUGIN_PORT_COUNT};
 
 /**********************************************************************************************************************************************************/
 
@@ -134,6 +134,7 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     float *in   = plugin->ports[IN];
     float *out  = plugin->ports[OUT];
     float pre = *(plugin->ports[PRE]);
+    int dist_curve = (int)*(plugin->ports[DIST]);
     float post = *(plugin->ports[POST]);
     float fc1 = *(plugin->ports[FC1]);
     float fc2 = *(plugin->ports[FC2]);
@@ -164,7 +165,24 @@ void Plugin::run(LV2_Handle instance, uint32_t n_samples)
     Hpf->HPF3(fc1,&u);
     Pre->Gain(pre, &Hpf->y);
     Over->Oversample8x(&Pre->y);
-    Dist->TgH(&Over->y);
+    switch(dist_curve)
+    {
+        case 0:
+            Dist->SoftClip(&Over->y);
+            break;
+        case 1:
+            Dist->ArcTg(&Over->y);
+            break;
+        case 2:
+            Dist->TgH(&Over->y);
+            break;
+        case 3:
+            Dist->HardClip(&Over->y);
+            break;
+        default:
+            Dist->SoftClip(&Over->y);
+            break;
+    }
     Down->Downsample8x(&Dist->y);
     Post->Gain(post, &Down->y);
     Lpf->LPF3(fc2, &Post->y);

@@ -10,7 +10,10 @@ class DistortionClass
 public:
     DistortionClass(int N);
     ~DistortionClass();
+    void SoftClip(vec *u);
+    void ArcTg(vec *u);
     void TgH(vec *u);
+    void HardClip(vec *u);
 
     vec y; //Sinal de saída
 
