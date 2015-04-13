@@ -210,6 +210,7 @@ class Serial(object):
         for i in range(self.dof):
             self.ep += symbols('m_' + str(i+1))*symbols('g')*self.qo_[3*i+2]
     
+        #Matrizes da dinamica
         self.M_ = (Matrix([self.s]).jacobian(self.p_.diff(t))).jacobian(self.p_.diff(t))
         self.v_ = ( (Matrix([self.s]).jacobian(self.p_.diff(t))).T - (self.M_)*self.p_.diff(t) ).jacobian(self.p_)*self.p_ / 2
         g_ = Matrix([self.ph_,pv_]).jacobian(p_).T * Matrix([self.ep]).jacobian(self.q_).T
@@ -222,11 +223,27 @@ class Serial(object):
         self.g_ = zeros(len(self.nonzerolist2),1)
         for i in range(len(self.nonzerolist2)):
             self.g_[i] = g_[self.nonzerolist2[i]]
+        
+        #Matrizes da dinamica hashtag
+        self.Mh_ = simplify(self.C_.T * self.M_ * self.C_)
+        self.vh_ = simplify(self.C_.T * (self.v_ + self.M_ * self.C_.diff(t) * self.ph_ ) )
+        self.gh_ = simplify(self.C_.T * self.g_)
+        
+        #Balanceamento estatico
+        lgx = []
+        for i in range(self.dof):
+            lgx.append(symbols('lg_'+str(i+1)))
+        self.StaticBal = solve(self.gh_, lgx)
+        
+        self.gh_sb_ = simplify(self.gh_.subs(self.StaticBal))
+        self.Mh_sb_ = simplify(self.Mh_.subs(self.StaticBal))
+        self.vh_sb_ = simplify(self.vh_.subs(self.StaticBal))
     
     def description(self):
         print "Sou um robo %s, de %d graus de liberdade, com id = %d." % (self.name, self.dof, self.id)
+        
 
-RR = Serial("RR", 0, Matrix([['z','x','x'],['z','y','y']]).T)
+RR = Serial("RR", 0, Matrix([['x','x','z'],['y','y','y']]).T)
 pprint(RR.q_)
 pprint(RR.p_)
 
@@ -242,6 +259,16 @@ pprint(RR.v_)
 pprint(RR.g_)
 print(RR.nonzerolist)
 print(RR.nonzerolist2)
+pprint(RR.Mh_)
+pprint(RR.vh_)
+pprint(RR.gh_)
+
+#pprint(solve(RR.gh_, [symbols('lg_1'),symbols('lg_2')] ) )
+pprint(RR.StaticBal)
+
+pprint(RR.gh_sb_)
+pprint(RR.vh_sb_)
+pprint(RR.Mh_sb_)
     
 T = symbols('T', cls=Function)
 t = symbols('t')
