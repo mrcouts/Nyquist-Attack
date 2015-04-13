@@ -110,6 +110,7 @@ class Serial(object):
             pv_[3*i+2] = Function('vz_' + str(i+1) )(t)
             
         po_ = Matrix([pw_,pv_])
+        p_ = Matrix([self.ph_, po_])
         
         #Matrizes de transformacao homogenea relativas  
         vH_ = []
@@ -211,11 +212,21 @@ class Serial(object):
     
         self.M_ = (Matrix([self.s]).jacobian(self.p_.diff(t))).jacobian(self.p_.diff(t))
         self.v_ = ( (Matrix([self.s]).jacobian(self.p_.diff(t))).T - (self.M_)*self.p_.diff(t) ).jacobian(self.p_)*self.p_ / 2
+        g_ = Matrix([self.ph_,pv_]).jacobian(p_).T * Matrix([self.ep]).jacobian(self.q_).T
+        
+        self.nonzerolist2 = range(self.dof)
+        for i in range(len(self.nonzerolist)):
+            self.nonzerolist2.append(0)
+            self.nonzerolist2[i+self.dof] = self.nonzerolist[i] + self.dof
+        
+        self.g_ = zeros(len(self.nonzerolist2),1)
+        for i in range(len(self.nonzerolist2)):
+            self.g_[i] = g_[self.nonzerolist2[i]]
     
     def description(self):
         print "Sou um robo %s, de %d graus de liberdade, com id = %d." % (self.name, self.dof, self.id)
 
-RR = Serial("RR", 0, Matrix([['x','0'],['y','y']]).T)
+RR = Serial("RR", 0, Matrix([['z','x','x'],['z','y','y']]).T)
 pprint(RR.q_)
 pprint(RR.p_)
 
@@ -225,12 +236,12 @@ pprint(RR.C_)
 pprint(RR.A_)
 pprint(RR.b_)
 #pprint(RR.s)
+pprint(RR.p_)
 pprint(RR.M_)
 pprint(RR.v_)
-pprint(RR.ep)
-
+pprint(RR.g_)
 print(RR.nonzerolist)
-pprint(RR.p_)
+print(RR.nonzerolist2)
     
 T = symbols('T', cls=Function)
 t = symbols('t')
