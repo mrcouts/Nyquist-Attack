@@ -61,7 +61,7 @@ def h2vec(hv):
     return hv[0:3,:]
     
 def h2rot(M):
-    return M[range(3),range(3)]
+    return M[0:3,0:3]
     
 def nrows(M):
     return M.shape[0]
@@ -165,14 +165,20 @@ class Serial(object):
         	v_ = Matrix([v_,vv_[i]])
             
         _Po_ = Matrix([w_,v_])
-        
-        self.nonzerolist = []
+
+        #Indices dos elementos de _Po_ nao nulos      
+        nonzerolist = []
         for i in range(6*self.dof):
             if _Po_[i] != 0:
-                self.nonzerolist.append(i)
+                nonzerolist.append(i)
+        
+        #Indices dos elementos de _p_ nao nulos   
+        nonzerolist2 = range(self.dof)
+        for i in nonzerolist:
+            nonzerolist2.append(i + self.dof)
                 
-        _po_ = _Po_[self.nonzerolist, :]
-        self.po_ = po_[self.nonzerolist, :]
+        _po_ = _Po_[nonzerolist, :]
+        self.po_ = po_[nonzerolist, :]
         self.p_ = Matrix([self.ph_,self.po_])
                 
         #Matriz C:
@@ -185,9 +191,9 @@ class Serial(object):
         self.b_ = simplify(-self.A_.diff(t)*self.p_)
         
         #energia de aceleracoes:
-        self.s = 0
+        s = 0
         for i in range(self.dof):
-            self.s += ( 
+            s += ( 
             	symbols('m_' + str(i+1))*( pv_[3*i].diff(t)**2 + pv_[3*i+1].diff(t)**2 + pv_[3*i+2].diff(t)**2 ) + 
             	symbols('Jx'+str(i+1))*pw_[3*i+0].diff(t)**2 + 
             	symbols('Jy'+str(i+1))*pw_[3*i+1].diff(t)**2 + 
@@ -197,21 +203,15 @@ class Serial(object):
             	2*pw_[3*i+2].diff(t)*(symbols('Jy'+str(i+1))-symbols('Jx'+str(i+1)))*pw_[3*i+1]*pw_[3*i+0] )/2
             
         #energia potencial
-        self.ep = 0
+        ep = 0
         for i in range(self.dof):
-            self.ep += symbols('m_' + str(i+1))*symbols('g')*self.qo_[3*i+2]
+            ep += symbols('m_' + str(i+1))*symbols('g')*self.qo_[3*i+2]
     
         #Matrizes da dinamica
-        self.M_ = (Matrix([self.s]).jacobian(self.p_.diff(t))).jacobian(self.p_.diff(t))
-        self.v_ = ( (Matrix([self.s]).jacobian(self.p_.diff(t))).T - (self.M_)*self.p_.diff(t) ).jacobian(self.p_)*self.p_ / 2
-        g_ = Matrix([self.ph_,pv_]).jacobian(p_).T * Matrix([self.ep]).jacobian(self.q_).T
-        
-        self.nonzerolist2 = range(self.dof)
-        for i in range(len(self.nonzerolist)):
-            self.nonzerolist2.append(0)
-            self.nonzerolist2[i+self.dof] = self.nonzerolist[i] + self.dof
-        
-        self.g_ = g_[self.nonzerolist2, :]
+        self.M_ = (Matrix([s]).jacobian(self.p_.diff(t))).jacobian(self.p_.diff(t))
+        self.v_ = ( (Matrix([s]).jacobian(self.p_.diff(t))).T - (self.M_)*self.p_.diff(t) ).jacobian(self.p_)*self.p_ / 2
+        g_ = Matrix([self.ph_,pv_]).jacobian(p_).T * Matrix([ep]).jacobian(self.q_).T
+        self.g_ = g_[nonzerolist2, :]
         
         #Matrizes da dinamica hashtag
         self.Mh_ = simplify(self.C_.T * self.M_ * self.C_)
@@ -230,38 +230,52 @@ class Serial(object):
     
     def description(self):
         print "Sou um robo %s, de %d graus de liberdade, com id = %d." % (self.name, self.dof, self.id)
-        
+        print "qh_ = "
+        pprint(self.qh_)
+        print " "
+        print "p_ = "
+        pprint(self.p_)
+        print " "
+        print "C_ = "
+        pprint(self.C_)
+        print " "
+        print "A_ = "
+        pprint(self.A_)
+        print " "
+        print "b_ = "
+        pprint(self.b_)
+        print " "
+        print "M_ = "
+        pprint(self.M_)
+        print " "
+        print "v_ = "
+        pprint(self.v_)
+        print " "
+        print "g_ = "
+        pprint(self.g_)
+        print " "
+        print "Mh_ = "
+        pprint(self.Mh_)
+        print " "
+        print "vh_ = "
+        pprint(self.vh_)
+        print " "
+        print "gh_ = "
+        pprint(self.gh_)
+        print " "
+        print "Solucao do Balanceamento Estatico:"
+        pprint(self.StaticBal)
+        print " "
+        print "Mh_sb_ = "
+        pprint(self.Mh_sb_)
+        print " "
+        print "vh_sb_ = "
+        pprint(self.vh_sb_)
+        print " "
+        print "gh_sb_ = "
+        pprint(self.gh_sb_)
+        print " "
+       
 
 RR = Serial("RR", 0, Matrix([['x','x'],['y','y']]).T)
-pprint(RR.q_)
-pprint(RR.p_)
-
 RR.description()
- 
-pprint(RR.C_)
-pprint(RR.A_)
-pprint(RR.b_)
-#pprint(RR.s)
-pprint(RR.p_)
-pprint(RR.M_)
-pprint(RR.v_)
-pprint(RR.g_)
-print(RR.nonzerolist)
-print(RR.nonzerolist2)
-pprint(RR.Mh_)
-pprint(RR.vh_)
-pprint(RR.gh_)
-
-#pprint(solve(RR.gh_, [symbols('lg_1'),symbols('lg_2')] ) )
-pprint(RR.StaticBal)
-
-pprint(RR.gh_sb_)
-pprint(RR.vh_sb_)
-pprint(RR.Mh_sb_)
-    
-T = symbols('T', cls=Function)
-t = symbols('t')
-theta = symbols('theta', cls=Function)
-x = symbols('x', cls=Function)
-y = symbols('y', cls=Function)
-z = symbols('z', cls=Function)
