@@ -8,10 +8,10 @@ def Rotx(T):
     return Matrix([[1, 0, 0],[0, cos(T),-sin(T)],[0, sin(T), cos(T)]])
 
 def Roty(T):
-    return Matrix([[ cos(T), 0, sin(T)],[0, 1, 0],[-sin(T), 0, cos(T)]])
+    return Matrix([[cos(T), 0, sin(T)],[0, 1, 0],[-sin(T), 0, cos(T)]])
 
 def Rotz(T):
-    return Matrix([[cos(T),-sin(T),0],[sin(T), cos(T),0], [0, 0, 1]])
+    return Matrix([[cos(T), -sin(T), 0],[sin(T), cos(T), 0], [0, 0, 1]])
 
 def Hx(T,dx,dy,dz):
     return Rotx(T).col_insert(3,Matrix([[dx,dy,dz]]).T).row_insert(3,Matrix([[0,0,0,1]]))
@@ -55,10 +55,10 @@ def MassCenter(axis, l):
         print("Tah bem loko?")        
     
 def vec2h(v):
-    return v.row_insert(3,Matrix([[1]]))
+    return Matrix([v,Matrix([1])])
     
 def h2vec(hv):
-    return hv[range(3),0]
+    return hv[0:3,:]
     
 def h2rot(M):
     return M[range(3),range(3)]
@@ -133,45 +133,36 @@ class Serial(object):
         vI_ = []
         vI_.append(vH_[0])
         for i in range(1,self.dof):
-            vI_.append(0)
-            vI_[i] = simplify(vI_[i-1]*vH_[i])
+            vI_.append(simplify(vI_[i-1]*vH_[i]))
             
         #Centros de massa no S.C. N:
         vgn_ = []
         for i in range(self.dof):
-            vgn_.append(0)
-            vgn_[i] = h2vec(simplify(vI_[i]*vec2h(vgb_[i])))
+            vgn_.append(h2vec(simplify(vI_[i]*vec2h(vgb_[i]))))
             
         #Velocidades dos centros de massa:
         vv_ = []
         for i in range(self.dof):
-            vv_.append(0)
-            vv_[i] = simplify(vgn_[i].diff(t))
+            vv_.append(simplify(vgn_[i].diff(t)))
             
         #Matriz S:
         vS_ = []
         for i in range(self.dof):
-            vS_.append(0)
-            vS_[i] = simplify(h2rot(vI_[i]).T * h2rot(vI_[i]).diff(t))
+            vS_.append(simplify(h2rot(vI_[i]).T * h2rot(vI_[i]).diff(t)))
             
         #Velocidades angulares das barras:
         vw_ = []
         for i in range(self.dof):
-            vw_.append(0)
-            vw_[i] = Matrix([vS_[i][2,1],vS_[i][0,2],vS_[i][1,0]])
+            vw_.append(Matrix([vS_[i][2,1],vS_[i][0,2],vS_[i][1,0]]))
             
         #Vetor po_ em funcao de ph_:
-        w_ = zeros(3*self.dof,1)
-        for i in range(self.dof):
-            w_[3*i+0] = vw_[i][0]
-            w_[3*i+1] = vw_[i][1]
-            w_[3*i+2] = vw_[i][2]
-            
-        v_ = zeros(3*self.dof,1)
-        for i in range(self.dof):
-            v_[3*i+0] = vv_[i][0]
-            v_[3*i+1] = vv_[i][1]
-            v_[3*i+2] = vv_[i][2]
+        w_ = vw_[0]
+        for i in range(1,self.dof):
+        	w_ = Matrix([w_,vw_[i]])
+
+        v_ = vv_[0]
+        for i in range(1,self.dof):
+        	v_ = Matrix([v_,vv_[i]])
             
         _Po_ = Matrix([w_,v_])
         
@@ -180,17 +171,10 @@ class Serial(object):
             if _Po_[i] != 0:
                 self.nonzerolist.append(i)
                 
-        _po_ = zeros(len(self.nonzerolist),1)
-        for i in range(len(self.nonzerolist)):
-            _po_[i] = _Po_[self.nonzerolist[i]]
-                
-        self.po_ = zeros(len(self.nonzerolist),1)
-        for i in range(len(self.nonzerolist)):
-            self.po_[i] = po_[self.nonzerolist[i]]
-            
+        _po_ = _Po_[self.nonzerolist, :]
+        self.po_ = po_[self.nonzerolist, :]
         self.p_ = Matrix([self.ph_,self.po_])
                 
-        
         #Matriz C:
         self.C_ = Matrix([eye(self.dof),_po_.jacobian(self.ph_)])
         
@@ -203,7 +187,14 @@ class Serial(object):
         #energia de aceleracoes:
         self.s = 0
         for i in range(self.dof):
-            self.s += ( symbols('m_' + str(i+1))*( pv_[3*i].diff(t)**2 + pv_[3*i+1].diff(t)**2 + pv_[3*i+2].diff(t)**2 ) + symbols('Jx'+str(i+1))*pw_[3*i].diff(t)**2 + symbols('Jy'+str(i+1))*pw_[3*i+1].diff(t)**2 + symbols('Jz'+str(i+1))*pw_[3*i+2].diff(t)**2 + 2*pw_[3*i].diff(t)*(symbols('Jz'+str(i+1))-symbols('Jy'+str(i+1)))*pw_[3*i+2]*pw_[3*i+1] + 2*pw_[3*i+1].diff(t)*(symbols('Jx'+str(i+1))-symbols('Jz'+str(i+1)))*pw_[3*i]*pw_[3*i+2] + + 2*pw_[3*i+2].diff(t)*(symbols('Jy'+str(i+1))-symbols('Jx'+str(i+1)))*pw_[3*i+1]*pw_[3*i]  )/2
+            self.s += ( 
+            	symbols('m_' + str(i+1))*( pv_[3*i].diff(t)**2 + pv_[3*i+1].diff(t)**2 + pv_[3*i+2].diff(t)**2 ) + 
+            	symbols('Jx'+str(i+1))*pw_[3*i+0].diff(t)**2 + 
+            	symbols('Jy'+str(i+1))*pw_[3*i+1].diff(t)**2 + 
+            	symbols('Jz'+str(i+1))*pw_[3*i+2].diff(t)**2 + 
+            	2*pw_[3*i+0].diff(t)*(symbols('Jz'+str(i+1))-symbols('Jy'+str(i+1)))*pw_[3*i+2]*pw_[3*i+1] + 
+            	2*pw_[3*i+1].diff(t)*(symbols('Jx'+str(i+1))-symbols('Jz'+str(i+1)))*pw_[3*i+0]*pw_[3*i+2] + 
+            	2*pw_[3*i+2].diff(t)*(symbols('Jy'+str(i+1))-symbols('Jx'+str(i+1)))*pw_[3*i+1]*pw_[3*i+0] )/2
             
         #energia potencial
         self.ep = 0
@@ -220,9 +211,7 @@ class Serial(object):
             self.nonzerolist2.append(0)
             self.nonzerolist2[i+self.dof] = self.nonzerolist[i] + self.dof
         
-        self.g_ = zeros(len(self.nonzerolist2),1)
-        for i in range(len(self.nonzerolist2)):
-            self.g_[i] = g_[self.nonzerolist2[i]]
+        self.g_ = g_[self.nonzerolist2, :]
         
         #Matrizes da dinamica hashtag
         self.Mh_ = simplify(self.C_.T * self.M_ * self.C_)
@@ -243,7 +232,7 @@ class Serial(object):
         print "Sou um robo %s, de %d graus de liberdade, com id = %d." % (self.name, self.dof, self.id)
         
 
-RR = Serial("RR", 0, Matrix([['x','x','z'],['y','y','y']]).T)
+RR = Serial("RR", 0, Matrix([['x','x'],['y','y']]).T)
 pprint(RR.q_)
 pprint(RR.p_)
 
