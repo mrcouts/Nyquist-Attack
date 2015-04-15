@@ -264,6 +264,39 @@ class Serial(object):
         print " "
         print "gh_sb_ = "
         pprint(self.gh_sb_)
+        #for i in range(self.dof):
+        #    pprint(self.vv_[i])
+        #for i in range(self.dof):
+        #    pprint(self.vw_[i])
+        
+class Motor(object):
+    """Motor dynamics."""
+    dof = 6 
+    def __init__(self, name, ID):
+        self.name = name
+        self.ID = ID
+        Id = '' if ID == '' else '_' + str(ID)
+        m = symbols('m'+Id)        
+        Jx = symbols('Jx'+Id)
+        Jy = symbols('Jy'+Id)
+        Jz = symbols('Jz'+Id)
+        g = symbols('g')
+        vx = Function('vx'+Id)(t)
+        vy = Function('vy'+Id)(t)
+        vz = Function('vz'+Id)(t)
+        wx = Function('wx'+Id)(t)
+        wy = Function('wy'+Id)(t)
+        wz = Function('wz'+Id)(t)
+        theta = Function('wz'+Id)(t)
+        self.qh_ = Matrix([theta])
+        self.ph_ = self.qh_.diff(t)
+        self.po_ = Matrix([vx,vy,vz,wx,wy,wz])
+        self.p_  = Matrix([self.ph_,self.po_])
+        self.Mh_ = Matrix([[m,0,0,0,0,0],[0,m,0,0,0,0],[0,0,m,0,0,0],[0,0,0,Jx,0,0],[0,0,0,0,Jy,0],[0,0,0,0,0,Jz]])
+        self.vh_ = Matrix([0,0,0,0,0,0])
+        self.gh_ = Matrix([0,0,m*g,0,0,0])
+        self.C_ = eye(self.dof)
+        
     
-RR = Serial("RR", '', Matrix([['x','x'],['y','y']]).T)
+RR = Serial("RR", '0', Matrix([['x','x'],['y','y']]).T)
 RR.description()
