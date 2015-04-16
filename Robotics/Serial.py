@@ -69,7 +69,19 @@ def nrows(M):
     
 def ncols(M):
     return M.shape[1]
-         
+
+def Jacobian(M,v):
+    n = nrows(v)
+    J = [M.diff(v[i]) for i in range(n)]
+    return J
+
+def JacDotVec(J, v):
+    n = nrows(J[0])
+    m = ncols(J[0])
+    Sum = zeros(n,m)
+    for i in range(len(J)):
+        Sum += J[i]*v[i]
+    return Sum         
     
 class Serial(object):
     """Serial robots dynamics."""
@@ -198,10 +210,12 @@ class Serial(object):
         self.v_ = ( (Matrix([s]).jacobian(self.p_.diff(t))).T - (self.M_)*self.p_.diff(t) ).jacobian(self.p_)*self.p_ / 2
         g_ = Matrix([self.ph_,pv_]).jacobian(p_).T * Matrix([ep]).jacobian(self.q_).T
         self.g_ = g_[nonzerolist2, :]
+
+        v_aux_ = simplify(JacDotVec(Jacobian(self.v_.jacobian(self.p_),self.p_),self.C_*self.ph_)*(self.C_*self.ph_)/2)
         
         #Matrizes da dinamica hashtag
         self.Mh_ = simplify(self.C_.T * self.M_ * self.C_)
-        self.vh_ = simplify(self.C_.T * (self.v_ + self.M_ * self.C_.diff(t) * self.ph_ ) )
+        self.vh_ = simplify(self.C_.T * (v_aux_ + self.M_ * self.C_.diff(t) * self.ph_ ) )
         self.gh_ = simplify(self.C_.T * self.g_)
         
         #Balanceamento estatico
@@ -337,6 +351,8 @@ pprint(Ah_)
 pprint(Ao_)
 pprint(C_)
 pprint(Mh_)
+pprint(vh_)
+pprint(gh_)
 pprint(simplify(Mh_[1,0].subs(symbols('Jy'+str(2+1) + '_' + str(0)), symbols('Jx'+str(2+1) + '_' + str(0))) ) )
 pprint(Sol)
 pprint(Mh_db_)
