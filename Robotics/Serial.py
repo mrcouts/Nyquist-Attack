@@ -112,9 +112,9 @@ class Serial(object):
         p_ = Matrix([self.ph_, po_])
         
         #Matrizes de transformacao homogenea relativas  
-        vH_ = [H2(str(code[0,0]),str(code[0,1]),self.qh_[0],0)] + [
-               H2(str(code[i,0]),str(code[i,1]),self.qh_[i],symbols('l_'+str(i) + Id)) if str(code[i-1,0]) != '0' else 
-               H2(str(code[i,0]),str(code[i,1]),self.qh_[i],self.qh_[i-1]) for i in range(1,self.dof)]
+        vH_ = ([H2(str(code[0,0]),str(code[0,1]),self.qh_[0],0)] + 
+               [H2(str(code[i,0]),str(code[i,1]),self.qh_[i],symbols('l_'+str(i) + Id)) if str(code[i-1,0]) != '0' else 
+                H2(str(code[i,0]),str(code[i,1]),self.qh_[i],self.qh_[i-1]) for i in range(1,self.dof)])
                 
         #Centros de massa nos S.C. das barras:
         vgb_ = [MassCenter(str(code[i,1]),symbols('lg_'+str(i+1) + Id)) if str(code[i,0]) != '0' else 
@@ -276,27 +276,68 @@ class Motor(object):
         self.name = name
         self.ID = ID
         Id = '' if ID == '' else '_' + str(ID)
-        m = symbols('m'+Id)        
-        Jx = symbols('Jx'+Id)
-        Jy = symbols('Jy'+Id)
-        Jz = symbols('Jz'+Id)
-        g = symbols('g')
-        vx = Function('vx'+Id)(t)
-        vy = Function('vy'+Id)(t)
-        vz = Function('vz'+Id)(t)
-        wx = Function('wx'+Id)(t)
-        wy = Function('wy'+Id)(t)
-        wz = Function('wz'+Id)(t)
-        theta = Function('wz'+Id)(t)
-        self.qh_ = Matrix([theta])
+        self.qh_ = Matrix([Function('theta'+Id)(t)])
         self.ph_ = self.qh_.diff(t)
-        self.po_ = Matrix([vx,vy,vz,wx,wy,wz])
+        self.po_ = Matrix([Function('wx'+Id)(t),Function('wy'+Id)(t),Function('wz'+Id)(t),Function('vx'+Id)(t),Function('vy'+Id)(t),Function('vz'+Id)(t)])
         self.p_  = Matrix([self.ph_,self.po_])
-        self.Mh_ = Matrix([[m,0,0,0,0,0],[0,m,0,0,0,0],[0,0,m,0,0,0],[0,0,0,Jx,0,0],[0,0,0,0,Jy,0],[0,0,0,0,0,Jz]])
-        self.vh_ = Matrix([0,0,0,0,0,0])
-        self.gh_ = Matrix([0,0,m*g,0,0,0])
-        self.C_ = eye(self.dof)
+        self.M_ = diag(0,symbols('Jx'+Id),symbols('Jy'+Id),symbols('Jz'+Id),0,0,0)
+        self.v_ = zeros(7,1)
+        self.g_ = zeros(7,1)
+    def description(self):
+        print "Sou um motor chamado %s, com ID = %s." % (self.name, str(self.ID))
+        print "qh_ = "
+        pprint(self.qh_)
+        print " "
+        print "p_ = "
+        pprint(self.p_)
+        print " "
+        print "M_ = "
+        pprint(self.M_)
+        print " "
+        print "v_ = "
+        pprint(self.v_)
+        print " "
+        print "g_ = "
+        pprint(self.g_)
+        print " "
+
         
     
-RR = Serial("RR", '0', Matrix([['x','x'],['y','y']]).T)
+RR = Serial("RR", '0', Matrix([['x','x','x'],['y','y','y']]).T)
 RR.description()
+mot = Motor("mot1",'1')
+mot2 = Motor("mot2",'2')
+mot.description()
+
+ph_ = RR.ph_
+po_ = Matrix([mot.p_,mot2.p_]) 
+p_ = Matrix([ph_,po_])
+M_ = diag(RR.Mh_sb_, mot.M_,mot2.M_)
+v_ = Matrix([RR.vh_sb_, mot.v_,mot2.v_])
+g_ = Matrix([RR.gh_sb_, mot.g_,mot2.g_])
+phi_ = po_ - Matrix([symbols('beta')*ph_[1], RR.vw_[0][0]+mot.ph_[0],RR.vw_[0][1],RR.vw_[0][2],RR.vv_[0][0],RR.vv_[0][1],RR.vv_[0][2],symbols('gamma')*ph_[2], RR.vw_[1][0]+mot2.ph_[0],RR.vw_[1][1],RR.vw_[1][2],RR.vv_[1][0],RR.vv_[1][1],RR.vv_[1][2]]).subs(RR.StaticBal)
+Ah_ = phi_.jacobian(ph_)
+Ao_ = phi_.jacobian(po_)
+C_ = Matrix([eye(3),simplify(-Ao_**-1 * Ah_)])
+Mh_ = simplify(C_.T * M_ * C_)
+vh_ = simplify(C_.T * ( M_ * C_.diff(t)*ph_ + v_ ) )
+gh_ = simplify(C_.T *g_)
+Sol = solve( Mh_[1:3,0] , [symbols('beta'),symbols('gamma')] )
+Mh_db_ = simplify(Mh_.subs(Sol))
+vh_db_ = simplify(vh_.subs(Sol))
+gh_db_ = simplify(gh_.subs(Sol))
+
+
+pprint(p_)
+pprint(M_)
+pprint(v_)
+pprint(g_)
+pprint(phi_)
+pprint(Ah_)
+pprint(Ao_)
+pprint(C_)
+pprint(Mh_)
+pprint(Sol)
+pprint(Mh_db_)
+pprint(vh_db_)
+pprint(gh_db_)
