@@ -91,50 +91,58 @@ class Serial(object):
         self.dof = nrows(code)
         self.code = code
 
+        Id = '' if ID == '' else '_' + str(ID)
+
+        self.m  = [symbols('m_' + str(i+1) + Id) for i in range(self.dof)]
+        self.Jx = [symbols('Jx' + str(i+1) + Id) for i in range(self.dof)]
+        self.Jy = [symbols('Jy' + str(i+1) + Id) for i in range(self.dof)]
+        self.Jz = [symbols('Jz' + str(i+1) + Id) for i in range(self.dof)]
+        self.Jx = [symbols('Jx' + str(i+1) + Id) for i in range(self.dof)]
+        self.l  = [symbols('l_' + str(i+1) + Id) for i in range(self.dof)]
+        self.lg = [symbols('lg_'+ str(i+1) + Id) for i in range(self.dof)]
+
+        self.x  = [Function('x_' + str(i+1) + Id )(t) for i in range(self.dof)]
+        self.y  = [Function('y_' + str(i+1) + Id )(t) for i in range(self.dof)]
+        self.z  = [Function('z_' + str(i+1) + Id )(t) for i in range(self.dof)]
+
+        self.wx = [Function('wx_' + str(i+1) + Id )(t) for i in range(self.dof)]
+        self.wy = [Function('wy_' + str(i+1) + Id )(t) for i in range(self.dof)]
+        self.wz = [Function('wz_' + str(i+1) + Id )(t) for i in range(self.dof)]
+
+        self.vx = [Function('vx_' + str(i+1) + Id )(t) for i in range(self.dof)]
+        self.vy = [Function('vy_' + str(i+1) + Id )(t) for i in range(self.dof)]
+        self.vz = [Function('vz_' + str(i+1) + Id )(t) for i in range(self.dof)]
+
         #Verificando se o mecanismo tem juntas prismaticas
         self.pflag = any(str(code[i,0]) == "0" for i in range(self.dof))
-
-        Id = '' if ID == '' else '_' + str(ID)
         
         #Coordenadas Generalizadas
         self.qh_ = Matrix([Function('theta_'+str(i+1)+Id)(t) if str(code[i,0]) != '0' else 
         	               Function('d_'    +str(i+1)+Id)(t) for i in range(self.dof) ])
                 
-        self.qo_ = Matrix(reduce(concat, [ [
-        	Function('x_' + str(i+1) + Id )(t), 
-        	Function('y_' + str(i+1) + Id )(t), 
-        	Function('z_' + str(i+1) + Id )(t)] for i in range(self.dof) ]) )
-            
+        self.qo_ = Matrix(reduce(concat, [ [self.x[i], self.y[i], self.z[i]] for i in range(self.dof) ]) )
         self.q_ = Matrix([self.qh_,self.qo_])
                 
         #VelocIDades Generalizadas
         self.ph_ = self.qh_.diff(t)
         
-        pw_ = Matrix(reduce(concat, [ [
-        	Function('wx_' + str(i+1) + Id )(t), 
-        	Function('wy_' + str(i+1) + Id )(t), 
-        	Function('wz_' + str(i+1) + Id )(t)] for i in range(self.dof) ]) )
-            
-        pv_ = Matrix(reduce(concat, [ [
-        	Function('vx_' + str(i+1) + Id )(t), 
-        	Function('vy_' + str(i+1) + Id )(t), 
-        	Function('vz_' + str(i+1) + Id )(t)] for i in range(self.dof) ]) )
-            
+        pw_ = Matrix(reduce(concat, [ [self.wx[i], self.wy[i], self.wz[i]] for i in range(self.dof) ]) )
+        pv_ = Matrix(reduce(concat, [ [self.vx[i], self.vy[i], self.vz[i]] for i in range(self.dof) ]) )
         po_ = Matrix([pw_,pv_])
         p_ = Matrix([self.ph_, po_])
         
         #Matrizes de transformacao homogenea relativas  
         vH_ = ([H2(str(code[0,0]),str(code[0,1]),self.qh_[0],0)] + 
-               [H2(str(code[i,0]),str(code[i,1]),self.qh_[i],symbols('l_'+str(i) + Id)) if str(code[i-1,0]) != '0' else 
+               [H2(str(code[i,0]),str(code[i,1]),self.qh_[i],self.l[i-1]) if str(code[i-1,0]) != '0' else 
                 H2(str(code[i,0]),str(code[i,1]),self.qh_[i],self.qh_[i-1]) for i in range(1,self.dof)])
                 
         #Centros de massa nos S.C. das barras:
-        vgb_ = [MassCenter(str(code[i,1]),symbols('lg_'+str(i+1) + Id)) if str(code[i,0]) != '0' else 
-                MassCenter(str(code[i,1]),self.qh_[i] - symbols('l_'+str(i+1) + Id) +  symbols('lg_'+str(i+1) + Id)) 
+        vgb_ = [MassCenter(str(code[i,1]),self.lg[i]) if str(code[i,0]) != '0' else 
+                MassCenter(str(code[i,1]),self.qh_[i] - self.l[i] +  self.lg[i]) 
                 for i in range(self.dof)]
 
         #Posicao do efetuador no S.C. da ultima barra:
-        self.xb_ = (MassCenter(str(code[self.dof-1,1]),symbols('l_' + str(self.dof) + Id)) if str(code[self.dof-1,0]) != '0' else 
+        self.xb_ = (MassCenter(str(code[self.dof-1,1]),self.l[self.dof-1]) if str(code[self.dof-1,0]) != '0' else 
         	        MassCenter(str(code[i,1]),self.qh_[i]))
             
         #Matrizes de transformacao homogenea absolutas
@@ -193,17 +201,25 @@ class Serial(object):
         
         #energia de aceleracoes:
         s = sum([
-           	(symbols('m_' + str(i+1) + Id)*( pv_[3*i].diff(t)**2 + pv_[3*i+1].diff(t)**2 + pv_[3*i+2].diff(t)**2 ) + 
-           	 symbols('Jx'+str(i+1) + Id)*pw_[3*i+0].diff(t)**2 + 
-           	 symbols('Jy'+str(i+1) + Id)*pw_[3*i+1].diff(t)**2 + 
-           	 symbols('Jz'+str(i+1) + Id)*pw_[3*i+2].diff(t)**2 + 
-           	 2*pw_[3*i+0].diff(t)*(symbols('Jz'+str(i+1) + Id)-symbols('Jy'+str(i+1) + Id))*pw_[3*i+2]*pw_[3*i+1] + 
-           	 2*pw_[3*i+1].diff(t)*(symbols('Jx'+str(i+1) + Id)-symbols('Jz'+str(i+1) + Id))*pw_[3*i+0]*pw_[3*i+2] + 
-           	 2*pw_[3*i+2].diff(t)*(symbols('Jy'+str(i+1) + Id)-symbols('Jx'+str(i+1) + Id))*pw_[3*i+1]*pw_[3*i+0] )/2 
+           	(self.m[i]*( self.vx[i].diff(t)**2 + self.vy[i].diff(t)**2 + self.vz[i].diff(t)**2 ) + 
+           	 self.Jx[i]*self.wx[i].diff(t)**2 + 
+           	 self.Jy[i]*self.wy[i].diff(t)**2 + 
+           	 self.Jz[i]*self.wz[i].diff(t)**2 + 
+           	 2*self.wx[i].diff(t)*(self.Jz[i]-self.Jy[i])*self.wz[i]*self.wy[i] + 
+           	 2*self.wy[i].diff(t)*(self.Jx[i]-self.Jz[i])*self.wx[i]*self.wz[i] + 
+           	 2*self.wz[i].diff(t)*(self.Jy[i]-self.Jx[i])*self.wy[i]*self.wx[i] )/2 
            	 for i in range(self.dof) ])
             
         #energia potencial
-        ep = sum([symbols('m_' + str(i+1) + Id)*symbols('g')*self.qo_[3*i+2] for i in range(self.dof)])
+        ep = sum([self.m[i]*symbols('g')*self.z[i] for i in range(self.dof)])
+
+        #energia cinetica
+        self.ec = sum([
+           	(self.m[i]*( self.vv_[i][0]**2 + self.vv_[i][1]**2 + self.vv_[i][2]**2 ) + 
+           	 self.Jx[i]*self.vw_[i][0]**2 + 
+           	 self.Jy[i]*self.vw_[i][1]**2 + 
+           	 self.Jz[i]*self.vw_[i][2]**2 )/2 
+           	 for i in range(self.dof) ])
     
         #Matrizes da dinamica
         self.M_ = (Matrix([s]).jacobian(self.p_.diff(t))).jacobian(self.p_.diff(t))
@@ -217,15 +233,19 @@ class Serial(object):
         self.Mh_ = simplify(self.C_.T * self.M_ * self.C_)
         self.vh_ = simplify(self.C_.T * (v_aux_ + self.M_ * self.C_.diff(t) * self.ph_ ) )
         self.gh_ = simplify(self.C_.T * self.g_)
+
+        self.Mh2_ = simplify( (Matrix([self.ec]).jacobian(self.ph_).T).jacobian(self.ph_) )
+        self.vh2_ = simplify( (Matrix([self.ec]).jacobian(self.ph_).T).diff(t) - (Matrix([self.ec]).jacobian(self.qh_).T) -  self.Mh2_*self.ph_.diff(t)  )
+
         
         #Balanceamento estatico
         if self.pflag == False:
-            lgx = [symbols('lg_'+str(i+1) + Id) for i in range(self.dof)]
-            self.StaticBal = solve(self.gh_, lgx)
+            self.StaticBal = solve(self.gh_, self.lg)
             
             self.gh_sb_ = simplify(self.gh_.subs(self.StaticBal))
             self.Mh_sb_ = simplify(self.Mh_.subs(self.StaticBal))
             self.vh_sb_ = simplify(self.vh_.subs(self.StaticBal))
+            self.ec_sb  = simplify(self.ec.subs(self.StaticBal))
         else:
             self.StaticBal = None
             self.gh_sb_ = None
@@ -290,11 +310,25 @@ class Motor(object):
         self.name = name
         self.ID = ID
         Id = '' if ID == '' else '_' + str(ID)
-        self.qh_ = Matrix([Function('theta'+Id)(t)])
+
+        self.Jx = symbols('Jx'+Id)
+        self.Jy = symbols('Jy'+Id)
+        self.Jz = symbols('Jz'+Id)
+
+        self.wx = Function('wx'+Id)(t)
+        self.wy = Function('wy'+Id)(t)
+        self.wz = Function('wz'+Id)(t)
+        self.vx = Function('vx'+Id)(t)
+        self.vy = Function('vy'+Id)(t)
+        self.vz = Function('vz'+Id)(t)
+
+        self.theta = Function('theta'+Id)(t)
+
+        self.qh_ = Matrix([self.theta])
         self.ph_ = self.qh_.diff(t)
-        self.po_ = Matrix([Function('wx'+Id)(t),Function('wy'+Id)(t),Function('wz'+Id)(t),Function('vx'+Id)(t),Function('vy'+Id)(t),Function('vz'+Id)(t)])
+        self.po_ = Matrix([self.wx , self.wy, self.wz, self.vx, self.vy, self.vz])
         self.p_  = Matrix([self.ph_,self.po_])
-        self.M_ = diag(0,symbols('Jx'+Id),symbols('Jy'+Id),symbols('Jz'+Id),0,0,0)
+        self.M_ = diag(0, self.Jx, self.Jy, self.Jz, 0, 0, 0)
         self.v_ = zeros(7,1)
         self.g_ = zeros(7,1)
     def description(self):

@@ -1,16 +1,15 @@
 from Serial import *
 
 RR = Serial("RR", '0', Matrix([['z','x','x'],['z','y','y']]).T)
-mot = Motor("mot1",'1')
-mot2 = Motor("mot2",'2')
+mot = Motor("mot",'1')
 
 ph_ = RR.ph_
-po_ = Matrix([mot.p_,mot2.p_])
+po_ = mot.p_
 p_ = Matrix([ph_,po_])
-M_ = diag(RR.Mh_sb_, mot.M_,mot2.M_)
-v_ = Matrix([RR.vh_sb_, mot.v_,mot2.v_])
-g_ = Matrix([RR.gh_sb_, mot.g_,mot2.g_])
-phi_ = po_ - Matrix([0*(symbols('beta_1')*ph_[0]+symbols('beta_2')*ph_[1]+symbols('beta_3')*ph_[2]), RR.vw_[0][0],RR.vw_[0][1],RR.vw_[0][2]+mot.ph_[0],RR.vv_[0][0],RR.vv_[0][1],RR.vv_[0][2],symbols('gamma')*ph_[2], RR.vw_[1][0]+mot2.ph_[0],RR.vw_[1][1],RR.vw_[1][2],RR.vv_[1][0],RR.vv_[1][1],RR.vv_[1][2]]).subs(RR.StaticBal)
+M_ = diag(RR.Mh_sb_, mot.M_)
+v_ = Matrix([RR.vh_sb_, mot.v_])
+g_ = Matrix([RR.gh_sb_, mot.g_])
+phi_ = po_ - Matrix([symbols('gamma')*ph_[2], RR.vw_[1][0]+mot.ph_[0],RR.vw_[1][1],RR.vw_[1][2],RR.vv_[1][0],RR.vv_[1][1],RR.vv_[1][2]]).subs(RR.StaticBal)
 Ah_ = phi_.jacobian(ph_)
 Ao_ = phi_.jacobian(po_)
 C_ = Matrix([eye(3),simplify(-Ao_**-1 * Ah_)])
@@ -18,8 +17,8 @@ Mh_ = simplify( (C_.T * M_ * C_) )
 vh_ = simplify(  (C_.T * ( M_ * C_.diff(t)*ph_ + v_ ) ) )
 gh_ = simplify(C_.T *g_)
 Sol = solve( Matrix([Mh_[2,1]]) , symbols('gamma') )
-Mh_db_ = simplify(	Mh_.subs(Sol).subs([(symbols('Jy'+str(2) + '_' + str(0)), symbols('Jz'+str(2) + '_' + str(0))),(symbols('Jy'+str(3) + '_' + str(0)), symbols('Jz'+str(3) + '_' + str(0)))]).subs(symbols('Jy'+'_' + str(2)),symbols('Jz'+'_' + str(2))+symbols('m_'+str(3) + '_' + str(0))*symbols('l_'+str(2) + '_' + str(0))**2+symbols('m_'+str(3) + '_' + str(0))**2 * symbols('l_'+str(2) + '_' + str(0))**2 / symbols('m_'+str(2) + '_' + str(0))))
-vh_db_ = simplify(vh_.subs(Sol).subs([(symbols('Jy'+str(2) + '_' + str(0)), symbols('Jz'+str(2) + '_' + str(0))),(symbols('Jy'+str(3) + '_' + str(0)), symbols('Jz'+str(3) + '_' + str(0)))]).subs(symbols('Jy'+'_' + str(2)),symbols('Jz'+'_' + str(2))+symbols('m_'+str(3) + '_' + str(0))*symbols('l_'+str(2) + '_' + str(0))**2+symbols('m_'+str(3) + '_' + str(0))**2 * symbols('l_'+str(2) + '_' + str(0))**2 / symbols('m_'+str(2) + '_' + str(0))))
+Mh_db_ = simplify( Mh_.subs(Sol).subs([(RR.Jy[1], RR.Jz[1]), (RR.Jy[2], RR.Jz[2])]).subs(mot.Jy, mot.Jz +RR.m[2]*RR.l[1]**2 + RR.m[2]**2 * RR.l[1]**2 / RR.m[1]).subs(mot.Jz,0))
+vh_db_ = simplify( vh_.subs(Sol).subs([(RR.Jy[1], RR.Jz[1]), (RR.Jy[2], RR.Jz[2])]).subs(mot.Jy, mot.Jz +RR.m[2]*RR.l[1]**2 + RR.m[2]**2 * RR.l[1]**2 / RR.m[1]).subs(mot.Jz,0))
 gh_db_ = simplify(gh_.subs(Sol))
 J__ = Jacobian(vh_db_.jacobian(ph_),ph_)
 
