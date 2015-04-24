@@ -1,16 +1,18 @@
 from Serial import *
 
-RR = Serial("RR", '0', Matrix([['x','x','x'],['y','y','y']]).T)
-mot = Motor("mot1",'1')
-mot2 = Motor("mot2",'2')
+R = Serial("RxRxRx", '', Matrix([['x','x','x'],['y','y','y']]).T)
+mot  = Motor("mot1",'4')
+mot2 = Motor("mot2",'5')
+mot3 = Motor("mot3",'6')
+mot4 = Motor("mot4",'7')
 
-ph_ = RR.ph_
-po_ = Matrix([mot.p_,mot2.p_])
+ph_ = R.ph_
+po_ = Matrix([mot.p_,mot2.p_,mot3.p_,mot4.p_])
 p_ = Matrix([ph_,po_])
-M_ = diag(RR.Mh_sb_, mot.M_,mot2.M_)
-v_ = Matrix([RR.vh_sb_, mot.v_,mot2.v_])
-g_ = Matrix([RR.gh_sb_, mot.g_,mot2.g_])
-phi_ = po_ - Matrix([RR.vw_[0][0]+symbols('beta')*ph_[1],RR.vw_[0][1],RR.vw_[0][2],RR.vv_[0][0],RR.vv_[0][1],RR.vv_[0][2], RR.vw_[1][0]+symbols('gamma')*ph_[2],RR.vw_[1][1],RR.vw_[1][2],RR.vv_[1][0],RR.vv_[1][1],RR.vv_[1][2]]).subs(RR.StaticBal)
+M_ =    diag(R.Mh_sb_, mot.M_,mot2.M_,mot3.M_,mot4.M_)
+v_ = Matrix([R.vh_sb_, mot.v_,mot2.v_,mot3.v_,mot4.v_])
+g_ = Matrix([R.gh_sb_, mot.g_,mot2.g_,mot3.g_,mot4.g_])
+phi_ = po_ - Matrix([R.vw_[0][0]+ph_[1],0,0,R.vw_[0][0]+symbols('beta')*ph_[1],0,0, R.vw_[1][0]+ph_[2],0,0, R.vw_[1][0]+symbols('gamma')*ph_[2],0,0]).subs(R.StaticBal)
 Ah_ = phi_.jacobian(ph_)
 Ao_ = phi_.jacobian(po_)
 C_ = Matrix([eye(3),simplify(-Ao_**-1 * Ah_)])

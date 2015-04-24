@@ -1,20 +1,22 @@
 from Serial import *
 
-RR = Serial("RR", '0', Matrix([['x','x','z'],['y','y','y']]).T)
-mot = Motor("mot1",'1')
+R = Serial("RxRxRz", '', Matrix([['x','x','z'],['y','y','y']]).T)
+mot  = Motor("mot1",'4')
+mot2 = Motor("mot2",'5')
 
-ph_ = RR.ph_
-po_ = mot.p_
+
+ph_ = R.ph_
+po_ = Matrix([mot.p_,mot2.p_])
 p_ = Matrix([ph_,po_])
-M_ = diag(RR.Mh_sb_, mot.M_)
-v_ = Matrix([RR.vh_sb_, mot.v_])
-g_ = Matrix([RR.gh_sb_, mot.g_])
-phi_ = po_ - Matrix([RR.vw_[0][0]+symbols('beta')*ph_[1],RR.vw_[0][1],RR.vw_[0][2],RR.vv_[0][0],RR.vv_[0][1],RR.vv_[0][2]]).subs(RR.StaticBal)
+M_ =    diag(R.Mh_sb_, mot.M_, mot2.M_)
+v_ = Matrix([R.vh_sb_, mot.v_, mot2.v_])
+g_ = Matrix([R.gh_sb_, mot.g_, mot2.g_])
+phi_ = po_ - Matrix([R.vw_[0][0]+ph_[1],0,0, R.vw_[0][0]+symbols('beta')*ph_[1],0,0]).subs(R.StaticBal)
 Ah_ = phi_.jacobian(ph_)
 Ao_ = phi_.jacobian(po_)
 C_ = Matrix([eye(3),simplify(-Ao_**-1 * Ah_)])
-Mh_ = simplify( (C_.T * M_ * C_).subs(RR.Jy[2], RR.Jx[2]) )
-vh_ = simplify(  (C_.T * ( M_ * C_.diff(t)*ph_ + v_ ) ).subs(RR.Jy[2], RR.Jx[2]))
+Mh_ = simplify( (C_.T * M_ * C_).subs(R.Jy[2], R.Jx[2]) )
+vh_ = simplify(  (C_.T * ( M_ * C_.diff(t)*ph_ + v_ ) ).subs(R.Jy[2], R.Jx[2]))
 gh_ = simplify(C_.T *g_)
 Sol = solve( Matrix([Mh_[1,0]]) , [symbols('beta')] )
 Mh_db_ = simplify(Mh_.subs(Sol))

@@ -1,16 +1,18 @@
 from Serial import *
 
-RR = Serial("RR", '', Matrix([['z','x','x'],['z','y','y']]).T)
-mot = Motor("mot",'4')
+R = Serial("RzRxRx", '', Matrix([['z','x','x'],['z','y','y']]).T)
+mot  = Motor("mot",'4')
+mot2 = Motor("mot2",'5')
 
-qh_ = RR.qh_
-ph_ = RR.ph_
-po_ = mot.p_
+
+qh_ = R.qh_
+ph_ = R.ph_
+po_ = Matrix([mot.p_,mot2.p_])
 p_ = Matrix([ph_,po_])
-M_ = diag(RR.Mh_sb_, mot.M_)
-v_ = Matrix([RR.vh_sb_, mot.v_])
-g_ = Matrix([RR.gh_sb_, mot.g_])
-phi_ = po_ - Matrix([RR.vw_[1][0]+symbols('gamma')*ph_[2],RR.vw_[1][1]*cos(symbols('gamma')*qh_[2])+RR.vw_[1][2]*sin(symbols('gamma')*qh_[2]),-RR.vw_[1][1]*sin(symbols('gamma')*qh_[2])+RR.vw_[1][2]*cos(symbols('gamma')*qh_[2]),RR.vv_[1][0],RR.vv_[1][1],RR.vv_[1][2]]).subs(RR.StaticBal)
+M_ =    diag(R.Mh_sb_, mot.M_, mot2.M_)
+v_ = Matrix([R.vh_sb_, mot.v_, mot2.v_])
+g_ = Matrix([R.gh_sb_, mot.g_, mot2.g_])
+phi_ = po_ - Matrix([R.vw_[1][0]+ph_[2],R.vw_[1][1]*cos(qh_[2])+R.vw_[1][2]*sin(qh_[2]),-R.vw_[1][1]*sin(qh_[2])+R.vw_[1][2]*cos(qh_[2]),R.vw_[1][0]+symbols('gamma')*ph_[2],R.vw_[1][1]*cos(symbols('gamma')*qh_[2])+R.vw_[1][2]*sin(symbols('gamma')*qh_[2]),-R.vw_[1][1]*sin(symbols('gamma')*qh_[2])+R.vw_[1][2]*cos(symbols('gamma')*qh_[2])]).subs(R.StaticBal)
 Ah_ = phi_.jacobian(ph_)
 Ao_ = phi_.jacobian(po_)
 C_ = Matrix([eye(3),simplify(-Ao_**-1 * Ah_)])
@@ -18,8 +20,8 @@ Mh_ = simplify( (C_.T * M_ * C_) )
 vh_ = simplify(  (C_.T * ( M_ * C_.diff(t)*ph_ + v_ ) ) )
 gh_ = simplify(C_.T *g_)
 Sol = solve( Matrix([Mh_[2,1]]) , symbols('gamma') )
-Mh_db_ = simplify( Mh_.subs(Sol).subs([(RR.Jy[1], RR.Jz[1]+ (1 + RR.m[2]/RR.m[1])*RR.m[2]*RR.l[1]**2), (RR.Jy[2], RR.Jz[2]),(mot.Jy, mot.Jz)]))
-vh_db_ = simplify( vh_.subs(Sol).subs([(RR.Jy[1], RR.Jz[1]+ (1 + RR.m[2]/RR.m[1])*RR.m[2]*RR.l[1]**2), (RR.Jy[2], RR.Jz[2]),(mot.Jy, mot.Jz)]))
+Mh_db_ = simplify( Mh_.subs(Sol).subs([(R.Jy[1], R.Jz[1]+ (1 + R.m[2]/R.m[1])*R.m[2]*R.l[1]**2), (R.Jy[2], R.Jz[2]),(mot.Jy, mot.Jz),(mot2.Jy, mot2.Jz)]))
+vh_db_ = simplify( vh_.subs(Sol).subs([(R.Jy[1], R.Jz[1]+ (1 + R.m[2]/R.m[1])*R.m[2]*R.l[1]**2), (R.Jy[2], R.Jz[2]),(mot.Jy, mot.Jz),(mot2.Jy, mot2.Jz)]))
 gh_db_ = simplify(gh_.subs(Sol))
 J__ = Jacobian(vh_db_.jacobian(ph_),ph_)
 

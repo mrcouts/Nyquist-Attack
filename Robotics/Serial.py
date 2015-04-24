@@ -318,21 +318,12 @@ class Motor(object):
         self.wx = Function('wx'+Id)(t)
         self.wy = Function('wy'+Id)(t)
         self.wz = Function('wz'+Id)(t)
-        self.vx = Function('vx'+Id)(t)
-        self.vy = Function('vy'+Id)(t)
-        self.vz = Function('vz'+Id)(t)
 
-        self.theta = Function('theta'+Id)(t)
+        self.p_ = Matrix([self.wx , self.wy, self.wz])
 
-        #self.qh_ = Matrix([self.theta])
-        #self.ph_ = self.qh_.diff(t)
-        #self.po_ = Matrix([self.wx , self.wy, self.wz, self.vx, self.vy, self.vz])
-        #self.p_  = Matrix([self.ph_,self.po_])
-        self.p_ = Matrix([self.wx , self.wy, self.wz, self.vx, self.vy, self.vz])
-
-        self.M_ = diag(self.Jx, self.Jy, self.Jz, 0, 0, 0)
-        self.v_ = zeros(6,1)
-        self.g_ = zeros(6,1)
+        self.M_ = diag(self.Jx, self.Jy, self.Jz)
+        self.v_ = zeros(3,1)
+        self.g_ = zeros(3,1)
     def description(self):
         print "Sou um motor chamado %s, com ID = %s." % (self.name, str(self.ID))
         #print "qh_ = "
