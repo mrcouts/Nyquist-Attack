@@ -1,8 +1,8 @@
 from Serial import *
 
 R = Serial("RxRxPx", '', Matrix([['x','x','0'],['y','y','x']]).T)
-mot  = Motor("mot",'4')
-mot2 = Motor("mot2",'5')
+n_mot = 2
+mot = [Motor("mot"+str(i+1),str(R.dof+i+1)) for i in range(n_mot)]
 
 R.StaticBal = solve(R.gh_, R.lg)
 
@@ -11,19 +11,25 @@ R.vh_sb_ = simplify(R.vh_.subs(R.StaticBal))
 R.gh_sb_ = simplify(R.gh_.subs(R.StaticBal))
 
 ph_ = R.ph_
-po_ = Matrix([mot.p_,mot2.p_])
+po_ = Matrix([mot[i].p_ for i in range(n_mot)])
 p_ = Matrix([ph_,po_])
-M_ =    diag(R.Mh_sb_, mot.M_, mot2.M_)
-v_ = Matrix([R.vh_sb_, mot.v_, mot2.v_])
-g_ = Matrix([R.gh_sb_, mot.g_, mot2.g_])
+
+M_ = R.Mh_sb_
+for i in range(n_mot):
+	M_ = diag(M_, mot[i].M_)
+v_ = Matrix([R.vh_sb_] + [mot[i].v_ for i in range(n_mot)])
+g_ = Matrix([R.gh_sb_] + [mot[i].g_ for i in range(n_mot)])
+
 phi_ = po_ - Matrix([R.vw_[0][0]+ph_[1],0,0,R.vw_[0][0]+symbols('beta')*ph_[1],0,0]).subs(R.StaticBal)
+
 Ah_ = phi_.jacobian(ph_)
 Ao_ = phi_.jacobian(po_)
-C_ = Matrix([eye(3),simplify(-Ao_**-1 * Ah_)])
-Mh_ = simplify( (C_.T * M_ * C_).subs(R.Jy[2], R.Jx[2]) )
-vh_ = simplify(  (C_.T * ( M_ * C_.diff(t)*ph_ + v_ ) ).subs(R.Jy[2], R.Jx[2]))
+C_ = Matrix([eye(R.dof),simplify(-Ao_**-1 * Ah_)])
+Mh_ = simplify( (C_.T * M_ * C_) )
+vh_ = simplify(  (C_.T * ( M_ * C_.diff(t)*ph_ + v_ ) ))
 gh_ = simplify(C_.T *g_)
-Sol = solve( Matrix([Mh_[1,0]]) , [symbols('beta')] )
+
+Sol = solve( Matrix([Mh_[i,j] for i in range(1,R.dof) for j in range(i)]) , [symbols('beta')] )
 Mh_db_ = simplify(Mh_.subs(Sol))
 vh_db_ = simplify(vh_.subs(Sol))
 gh_db_ = simplify(gh_.subs(Sol))
