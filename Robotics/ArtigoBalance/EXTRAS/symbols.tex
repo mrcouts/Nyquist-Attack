@@ -1,0 +1,123 @@
+\printnomenclature[5em]
+
+% basic mathematical alphabets
+
+\nomenclature[A001]{$a,b, \ldots$}{Scalars, components of column-matrices or indexes}
+\nomenclature[A002]{$A,B, \ldots$}{Scalars or components of matrices}
+
+\nomenclature[A012]{$\ma, \mb, \ldots$}{Column-matrices}
+\nomenclature[A013]{$\mA, \mB, \ldots$}{Matrices}
+
+\nomenclature[A021]{$\va, \vb, \ldots$}{Vectors}
+\nomenclature[A022]{$\vA, \vB, \ldots$}{Tensors}
+
+\nomenclature[A031]{$\tta, \ttb, \ldots$}{Points}
+\nomenclature[A032]{$\ttA, \ttB, \ldots$}{Coordinate systems}
+
+\nomenclature[A041]{$\llA, \llB, \ldots$}{Rigid bodies or reference frames}
+
+\nomenclature[A051]{$\ssA, \ssB, \ldots$}{Sets or multibody mechanical systems\footnote{
+	A multibody mechanical system will be conceived as a set whose elements are 
+	material bodies, joints, actuators, energy storage, dissipation and transformation elements
+	and a mathematical model (which includes physical parameters, model variables and 
+	constitutive, constraint and dynamic equations).
+	}}
+
+
+% special char
+
+\nomenclature[CAA01]{$a_{n,l}$}{Arbitrary physical parameter}
+% \nomenclature[CAA02]{$\nb a_{n,l}$}{Fixed physical parameter}
+\nomenclature[CAA11]{$\mA_{n}$}{Jacobian matrix of kinematic invariants ($\mc_n$) with respect to 
+	quasi-accelerations ($\dot\mp_n$)}
+\nomenclature[CAA21]{$\va_{\ttp \rl \llE}$}{Acceleration of point $\ttp$ measured relatively to reference frame $\llE$}
+
+\nomenclature[CAC11]{$\mc_{n}$}{Kinematic invariants (constraints) column-matrix}
+\nomenclature[CAC51]{$\ssC^s$}{Differentiability class}
+% \nomenclature[CAC91]{$\ccos_{n,i}$}{Shorthand notation for $\cos(q_{n,i})$}
+
+\nomenclature[CAD11]{$\md_{n}$}{Dynamic invariants column-matrix}
+\nomenclature[CAD91]{$\dd$}{Differential operator}
+\nomenclature[CGD91]{$\dl$}{Variation operator}
+
+\nomenclature[CAF01]{$f_{n,j}$}{Generalized force}
+\nomenclature[CAF11]{$\mf_{n}$}{Generalized forces column-matrix}
+\nomenclature[CAF21]{$\vf_{\llB}$}{Resultant force acting on body $\llB$ (excluding constraint forces)}
+
+\nomenclature[CAG01]{$g_{n,j}$}{Generalized gyroscopic inertia force}
+\nomenclature[CAG11]{$\mg_{n}$}{Generalized gyroscopic inertia forces column-matrix}
+
+\nomenclature[CAI01]{$I_s$}{Arbitrary moment of inertia}
+\nomenclature[CAI21]{$\vI_{\llB \rl \ttp}$}{Inertia tensor of rigid body $\llB$ relative to point $\ttp$}
+\nomenclature[CAI51]{$\ssI_{x}(\ssS_{n})$}{Set of indexes of variables $x_{n,r}$ defined in the model 
+	of system $\ssS_{n}$, i.e., $\ssI_{x}(\ssS_{n}) = \{ r \,\vert\, x_{n,r} \in \ssS_{n} \}$ }
+
+\nomenclature[CAM01]{$m_{s}$}{Arbitrary mass}
+\nomenclature[CAM21]{$\vm_{\llB \rl \ttp}$}{Resultant moment (torque) acting on body $\llB$ 
+	measured relatively to pole $\ttp$ (excluding constraint moments)}
+\nomenclature[CAM11]{$\mM_{n}$}{Generalized inertia matrix}
+
+\nomenclature[CAN41]{$\llN$}{Inertial reference frame}
+\nomenclature[CGN01]{$\nu_{x}(\ssS_{n})$}{Number of elements of the set $\ssI_{x}(\ssS_{n})$}
+\nomenclature[CGN02]{$\nu\ssh(\ssS_{n})$}{Number of degrees of freedom of the mechanical system $\ssS_{n}$}
+
+\nomenclature[CAP01]{$p_{n,j}$}{Quasi-velocity}
+\nomenclature[CAP02]{$\dot p_{n,j}$}{Quasi-acceleration}
+\nomenclature[CAP11]{$\mp_{n}$}{Quasi-velocities column-matrix}
+\nomenclature[CAP12]{$\dot\mp_{n}$}{Quasi-accelerations column-matrix}
+
+\nomenclature[CAQ01]{$q_{n,i}$}{Generalized coordinate}
+\nomenclature[CAQ11]{$\mq_{n}$}{Generalized coordinates column-matrix}
+
+\nomenclature[CAR21]{$\vr_{\ttp_2 \rl \ttp_1}$}{Position of point $\ttp_2$ relative to point $\ttp_1$}
+% \nomenclature[CAR51]{$\ssR^s$}{Set of $s$-tuples of real numbers}
+
+% \nomenclature[CAS91]{$\ssin_{n,i}$}{Shorthand notation for $\sin(q_{n,i})$}
+
+\nomenclature[CAT01]{$t$}{Time}
+
+\nomenclature[CAU01]{$u_{n,k}$}{Control input}
+
+\nomenclature[CAV21]{$\vv_{\ttp \rl \llE}$}{Velocity of point $\ttp$ measured relatively to reference frame $\llE$}
+
+
+\nomenclature[CAW01]{$w_{n,j}$}{Arbitrary term of generalized force or generalized gyroscopic inertia
+	force linear or bilinear with respect to quasi-velocities}
+\nomenclature[CAW11]{$\mw_{n}$}{Column-matrix whose entries are $w_{n,j}$}	
+\nomenclature[CGW21]{$\vomega_{\llB \rl \llE}$}{Angular velocity of rigid body or reference frame $\llB$ 
+	measured relatively to reference frame $\llE$}
+
+\nomenclature[CAZ01]{$z_{n,j}$}{Arbitrary term of generalized force or generalized gyroscopic inertia
+	force independent of quasi-velocities}
+\nomenclature[CAZ11]{$\mz_{n}$}{Column-matrix whose entries are $z_{n,j}$}	
+
+\nomenclature[CN011]{$\mzr$}{Null column-matrix or null matrix}
+\nomenclature[CN021]{$\vzr$}{Null vector or null tensor}
+
+\nomenclature[CN111]{$\mone$}{Identity matrix}
+\nomenclature[CN121]{$\vone$}{Identity tensor}
+
+
+% matrix/vector notations
+
+% \nomenclature[SM001]{$\nvct{x_{r}}$}{Column-matrix defined by the entries $x_{r}$}
+% \nomenclature[SM011]{$\nmat{X_{rs}}$}{Matrix defined by the entries $X_{rs}$}
+% \nomenclature[SM012]{$\ndmat{x_{r}}$}{Diagonal-matrix representation of $x_{r}$}
+
+% \nomenclature[SM021]{$\nvct{\vw}_{\ttE}$}{Coordinate column-matrix of vector $\vw$
+ 	% in coordinate system $\ttE$}
+% \nomenclature[SM022]{$\nvct{\ttp}_{\ttE}$}{Coordinate column-matrix of point $\ttp$
+ 	% in coordinate system $\ttE$}
+% \nomenclature[SM023]{$\nhvct{\ttp}_{\ttE}$}{Homogeneous coordinates column-matrix of point $\ttp$
+ 	% in coordinate system $\ttE$} 
+
+% \nomenclature[SM031]{$\nmat{\vZ}_{\ttE' \rl \ttE}$}{Matrix representing tensor $\vZ$
+ 	% in terms of coordinate systems $\ttE$ and $\ttE'$ (if $\vw'=\vZ \cdot \vw$, then 
+ 	% $\nvct{\vw'}_{\ttE'}= \nmat{\vZ}_{\ttE' \rl \ttE} \, \nvct{\vw}_{\ttE}$)}
+% \nomenclature[SM032]{$\nsmat{\vw}_{\ttE \rl \ttE}$}{Skew-symmetric matrix representation
+	% of $\nvct{\vw}_{\ttE}$} 	
+
+\nomenclature[SM101]{$\ntmat{\cdot}$}{Matrix transposition}
+\nomenclature[SM102]{$\nimat{\cdot}$}{Matrix inversion}
+\nomenclature[SM103]{$\nomat{\cdot}$}{Matrix infinity norm}	
+

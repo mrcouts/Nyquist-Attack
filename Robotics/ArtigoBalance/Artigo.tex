@@ -1,0 +1,434 @@
+%*******************************************************************************************%
+%            	DYNAMIC MODELLING AND CONTROL OF BALANCED PARALLEL MECHANISMS           	%
+% 																					   		%
+% April 26, 2015														 						%
+% Authors: Andre G. Coutinho, Tarcisio A. H. Coelho					%
+% bash adaptive.sh							 												%
+% 																							%
+%*******************************************************************************************%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt,brazil,fleqn]{article}
+\synctex=1
+%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage{natbib}
+\usepackage[english]{babel}
+% \usepackage{amsmath,amssymb,amsthm,amsfonts,textcomp}
+% \usepackage{eucal,eufrak,mathrsfs,bbm,stmaryrd}
+\usepackage{color}
+\usepackage{amsthm}
+\usepackage{array,hhline,supertabular}
+\usepackage[colorlinks,citecolor=black,urlcolor=black,linkcolor=black]{hyperref}
+\usepackage[pdftex]{graphicx}
+\usepackage{multicol}
+\usepackage[symbol]{footmisc}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{nomencl}
+\usepackage{EXTRAS/special-char}
+\usepackage{EXTRAS/special-conf}
+\usepackage{subfigure}
+
+\graphicspath{{FIGURES/}{../FIGURES/}}
+\makenomenclature
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+{\bf \huge A new approach for designing dynamic balanced serial mechanisms}\\
+
+\noindent
+{\Large 		Andr\'e Garnier Coutinho$\,{}^\text{a}$,
+			Tarcisio Antonio Hess Coelho$\,{}^\text{b}$
+}\\
+
+\noindent
+{${}^\text{a}$ \it Department of Mechatronics and Mechanical Systems Engineering, Escola Politecnica, 
+University of Sao Paulo, Brazil. E-mail: andre.garnier.coutinho@usp.br}
+
+\noindent
+{${}^\text{b}$ \it Department of Mechatronics and Mechanical Systems Engineering, Escola Politecnica, 
+University of Sao Paulo, Brazil. E-mail: tarchess@usp.br}
+
+\vspace{24pt}
+
+% \begin{multicols}{1}
+
+\begin{abstract}
+Balancing is an important issue related to the design of mechanical systems in general,
+and also parallel mechanisms, in particular. In fact, the performance of parallel mechanisms
+associated to specific applications depends on the choice of the balancing method, namely, 
+either static or dynamic, either passive or active, whether it is valid for a given trajectory
+or even for any motion.
+The main contribution of this work is to highlight the importance of the dynamic modelling 
+process in order to achieve the compensation conditions associated to the chosen 
+balancing technique. Due to the fact that parallel mechanisms have highly complex structures,
+the use of dynamic formalisms that employ redundant generalized coordinates,
+in association with the successive coupling of additional balancing elements 
+to the original system model, can bring remarkable benefits.
+Additionally, this book chapter also discusses the impact of
+the dynamic model, developed in accordance with the methodology shown here, for the 
+control strategy of parallel mechanisms.
+Finally, the simulation results demonstrates
+how effective is the presented methodology for the planar 5-bar with revolute joints (5R). 
+
+\vspace{10pt}
+
+\noindent
+KEYWORDS: {Dynamic balancing, serial mechanisms}
+\end{abstract}
+
+
+
+\input{EXTRAS/symbols}
+
+
+%--------------------INTRODUCTION--------------------%
+
+\section{Introduction and literature review}\label{S01}
+
+
+%--------------------METHODOLOGY--------------------%
+
+\section{Mothodology}\label{S02}
+
+\subsection{Static Balancing}\label{S02-1}
+
+\subsection{Dynamic Balancing}\label{S02-2}
+
+
+%--------------------EXAMPLE---------------------%
+
+\section{Applying the technique}\label{S03}
+
+\begin{equation}
+\mM (\mq) \ddot{\mq} + \mv(\mq,\dot{\mq}) + \mg (\mq) = \mu
+\end{equation}
+
+For a 3-DOF serial mechanism:
+\begin{equation}
+\mM = 
+\begin{bmatrix}
+D_{11} & D_{12} & D_{13} \\
+D_{21} & D_{22} & D_{23} \\
+D_{31} & D_{32} & D_{33} \\
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\mv = 
+\begin{bmatrix}
+D_{111} & D_{122} & D_{132} \\
+D_{211} & D_{222} & D_{233} \\
+D_{311} & D_{322} & D_{333} \\
+\end{bmatrix}
+\begin{bmatrix}
+\dot{q}_1^2 \\
+\dot{q}_2^2 \\
+\dot{q}_3^2 \\
+\end{bmatrix}
++
+2\begin{bmatrix}
+D_{112} & D_{112} & D_{123} \\
+D_{212} & D_{213} & D_{223} \\
+D_{312} & D_{313} & D_{323} \\
+\end{bmatrix}
+\begin{bmatrix}
+\dot{q}_1 \dot{q}_2 \\
+\dot{q}_1 \dot{q}_3 \\
+\dot{q}_2 \dot{q}_3 \\
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\mg =
+\begin{bmatrix}
+D_1 &
+D_2 &
+D_3
+\end{bmatrix}^\top
+\end{equation}
+\begin{equation}
+\mq =
+\begin{bmatrix}
+q_1 &
+q_2 &
+q_3
+\end{bmatrix}^\top
+\end{equation}
+\begin{equation}
+\mu =
+\begin{bmatrix}
+u_1 &
+u_2 &
+u_3
+\end{bmatrix}^\top
+\end{equation}
+
+For a rotational joint we call $q_i = \theta_i$ and $u_i = \tau_i$, and for a prismatic joint we call $q_i = d_i$ and $u_i = f_i$.
+
+\subsection{3-DOF RRR planar serial mechanism}\label{S03-1}
+
+\begin{equation}
+\begin{cases}
+D_1 = g[ (m_1 l_{g1} + m_2 l_1 + m_3 l_1 ) \ccos_1 + (m_2 l_{g2} + m_3 l_2) \ccos_{1+2} + m_3 l_{g3} \ccos_{1+2+3} ] \\
+D_2 = g[  (m_2 l_{g2} + m_3 l_2) \ccos_{1+2} + m_3 l_{g3} \ccos_{1+2+3} ] \\
+D_3 = g[   m_3 l_{g3} \ccos_{1+2+3} ] \\
+\end{cases}
+\end{equation} 
+
+Static balancing:
+\begin{equation}
+\begin{cases}
+D_1 = 0 \\
+D_2 = 0 \\
+D_3 = 0 \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+l_{g1} = -\frac{l_1(m_2 + m_3)}{m_1} \\
+l_{g2} = -\frac{l_2 m_3}{m_2} \\
+l_{g3} = 0 \\
+\end{cases}
+\end{equation}
+
+Static balanced mechanism:
+\begin{equation}
+\begin{cases}
+D_{11} = J_{x_1} + J_{x_2} + J_{x_3} + m_2 l_1^2 + m_3 (l_1^2 + l_2^2) + \frac{l_1^2 (m_2 + m_3)^2}{m_1} + \frac{l_2^2 m_3^2}{m_2} \\
+D_{22} = J_{x_2} + J_{x_3} + m_3 l_2^2 + \frac{l_2^2 m_3^2}{m_2} \\
+D_{33} = J_{x_3} \\
+D_{12} =  D_{21} = D_{22} \\
+D_{13} = D_{31} = D_{23} = D_{32} = D_{33} \\
+\mv = \mzr \\
+\mg = \mzr
+\end{cases}
+\end{equation}
+
+Coupling 4 discs:
+\begin{equation}
+\begin{cases}
+D'_{11} = D_{11} + J_{x_4} + J_{x_5} + J_{x_6} + J_{x_7} \\
+D'_{22} = D_{22} + J_{x_4} + J_{x_5} \beta^2 + J_{x_6} + J_{x_7} \\
+D'_{33} = D_{33} + J_{x_6} + J_{x_7} \gamma^2 \\
+D'_{12} = D_{12} + J_{x_4} + J_{x_5} \beta + J_{x_6} + J_{x_7} \\
+D'_{13} = D_{13} + J_{x_6} + J_{x_7} \gamma  \\
+D'_{21} = D'_{12} \\
+D'_{23} = D'_{32} = D'_{31} = D'_{13}\\
+\end{cases}
+\end{equation}
+
+Dynamic balancing:
+\begin{equation}
+\begin{cases}
+D'_{12} = 0 \\
+D'_{13} = 0 \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+\beta = -\frac{J_{x_2} + J_{x_3} + J_{x_4} + J_{x_6} + J_{x_7} + m_3 l_2^2 + \frac{m_3^2 l_2^2}{m_2}}{J_{x_5}} \\
+\gamma = -\frac{J_{x_3} + J_{x_6}}{J_{x_7}} \\
+\end{cases}
+\end{equation}
+
+Dynamic balanced mechanism:
+\begin{equation}
+\begin{cases}
+\tau_1 = k_1 \ddot{\theta}_1 \\
+\tau_2 = k_2 \ddot{\theta}_2 \\
+\tau_3 = k_3 \ddot{\theta}_3 \\
+\end{cases}
+\end{equation}
+
+Being:
+\begin{equation}
+\begin{cases}
+k_1 = J_{x_1} + J_{x_2} + J_{x_3} + J_{x_4} + J_{x_5} + J_{x_6} + J_{x_7} + m_2 l_1^2 + m_3 (l_1^2 + l_2^2) + \frac{l_1^2 (m_2 + m_3)^2}{m_1} + \frac{l_2^2 m_3^2}{m_2} \\
+k_2 = J_{x_2} + J_{x_3} + J_{x_4} + J_{x_6} + J_{x_7} + m_3 l_2^2 + \frac{l_2^2 m_3^2}{m_2} + \frac{\big(J_{x_2} + J_{x_3} + J_{x_4} + J_{x_6} + J_{x_7} + m_3 l_2^2 + \frac{m_3^2 l_2^2}{m_2}\big)^2}{J_{x_5}} \\
+k_3 = \frac{(J_{x_3}+J_{x_6})(J_{x_3}+J_{x_6}+J_{x_7})}{J_{x_7}} \\
+\end{cases}
+\end{equation}
+
+\subsection{3-DOF RRR spatial serial mechanism} \label{S03-2}
+
+\begin{equation}
+\begin{cases}
+D_1 = 0 \\
+D_2 = g[ (m_2 l_{g2} + m_3 l_2  ) \ccos_2 + m_3 l_{g3} \ccos_{2+3} ]  \\
+D_3 = g[ m_3 l_{g3} \ccos_{2+3}  ] \\
+\end{cases}
+\end{equation} 
+
+Static balancing:
+\begin{equation}
+\begin{cases}
+D_1 = 0 \\
+D_2 = 0 \\
+D_3 = 0 \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+l_{g2} = -\frac{l_2 m_3}{m_2} \\
+l_{g3} = 0 \\
+\end{cases}
+\end{equation}
+
+Static balanced mechanism:
+\begin{equation}
+\begin{cases}
+D_{11} = J_{y_2}\ssin_2^2 + J_{y_3}\ssin_{2+3}^2 + J_{z_1} + J_{z_2}\ccos_2^2 + J_{z_3}\ccos_{2+3}^3 + m_3 (l_1 + l_2 \ccos_2)^2 + \frac{(m_2 l_1 - m_3 l_2 \ccos_2)^2}{m_2} \\
+D_{22} = J_{x_2} + J_{x_3} + m_2 l_2^2 + \frac{l_2^2 m_3^2}{m_2} \\
+D_{33} = J_{x_3} \\
+D_{12} =  D_{21} = D_{13} = D_{31} = 0 \\
+D_{23} = D_{32} = D_{33} \\
+\mv \neq \mzr \\
+\mg = \mzr
+\end{cases}
+\end{equation}
+
+Coupling 2 discs:
+\begin{equation}
+\begin{cases}
+D'_{11} = D_{11} + J_{x_4} + J_{x_5} \\
+D'_{22} = D_{22} + J_{x_4} + J_{x_5} \beta^2 \\
+D'_{33} = D_{33} \\
+D'_{12} = D_{12} + J_{x_4} + J_{x_5} \beta \\
+D'_{13} = D_{13} \\
+D'_{21} = D'_{12} \\
+D'_{23} = D'_{32} = D'_{31} = D'_{13}\\
+\end{cases}
+\end{equation}
+
+Dynamic balancing:
+\begin{equation}
+\begin{cases}
+D'_{12} = 0 \\
+D'_{13} = 0 \\
+\end{cases}
+\Rightarrow \beta = -\frac{J_{x_2}+J_{x_3}+J_{x_4}}{J_{x_5}}
+\end{equation}
+
+Dynamic balanced mechanism:
+\begin{equation}
+\begin{cases}
+\tau_1 = k_1 \ddot{\theta}_1 \\
+\tau_2 = k_2 \ddot{\theta}_2 \\
+f_3 = k_3 \ddot{d}_3 \\
+\end{cases}
+\end{equation}
+
+Being:
+\begin{equation}
+\begin{cases}
+k_1 = J_{x_1} + J_{x_2} + J_{x_3} + J_{x_4} + J_{x_5} + m_2 l_1^2 + m_3 l_1^2 + \frac{l_1^2 (m_2 + m_3)^2}{m_1} \\
+k_2 = \frac{(J_{x_2}+J_{x_3}+J_{x_4})(J_{x_2}+J_{x_3}+J_{x_4}+J_{x_5})}{J_{x_5}} \\
+k_3 = m_3 \\
+\end{cases}
+\end{equation}
+
+\subsection{3-DOF RRP spatial serial mechanism (SCARA)} \label{S03-2}
+
+\begin{equation}
+\begin{cases}
+D_1 = g[ (m_1 l_{g1} + m_2 l_1 + m_3 l_1 ) \ccos_1 + m_2 l_{g2} \ccos_{1+2} ] \\
+D_2 = g[ m_2 l_{g2} \ccos_{1+2}  ] \\
+D_3 = 0 \\
+\end{cases}
+\end{equation} 
+
+Static balancing:
+\begin{equation}
+\begin{cases}
+D_1 = 0 \\
+D_2 = 0 \\
+D_3 = 0 \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+l_{g1} = -\frac{l_1 (m_2+m_3)}{m_1} \\
+l_{g2} = 0 \\
+\end{cases}
+\end{equation}
+
+Static balanced mechanism:
+\begin{equation}
+\begin{cases}
+D_{11} = J_{x_1} + J_{x_2} + J_{x_3} + m_2 l_1^2 + m_3 l_1^2 + \frac{l_1^2 (m_2 + m_3)^2}{m_1} \\
+D_{22} = J_{x_2} + J_{x_3} \\
+D_{33} = m_3 \\
+D_{12} =  D_{21} = D_{22} \\
+D_{13} = D_{31} = D_{23} = D_{32} = 0 \\
+\mv = \mzr \\
+\mg = \mzr
+\end{cases}
+\end{equation}
+
+Coupling 2 discs:
+\begin{equation}
+\begin{cases}
+D'_{11} = D_{11} + J_{x_4} + J_{x_5} \\
+D'_{22} = D_{22} + J_{x_4} + J_{x_5} \beta^2 \\
+D'_{33} = D_{33} \\
+D'_{12} = D_{12} + J_{x_4} + J_{x_5} \beta \\
+D'_{13} = D_{13} \\
+D'_{21} = D'_{12} \\
+D'_{23} = D'_{32} = D'_{31} = D'_{13}\\
+\end{cases}
+\end{equation}
+
+Dynamic balancing:
+\begin{equation}
+\begin{cases}
+D'_{12} = 0 \\
+D'_{13} = 0 \\
+\end{cases}
+\Rightarrow \beta = -\frac{J_{x_2}+J_{x_3}+J_{x_4}}{J_{x_5}}
+\end{equation}
+
+Dynamic balanced mechanism:
+\begin{equation}
+\begin{cases}
+\tau_1 = k_1 \ddot{\theta}_1 \\
+\tau_2 = k_2 \ddot{\theta}_2 \\
+f_3 = k_3 \ddot{d}_3 \\
+\end{cases}
+\end{equation}
+
+Being:
+\begin{equation}
+\begin{cases}
+k_1 = J_{x_1} + J_{x_2} + J_{x_3} + J_{x_4} + J_{x_5} + m_2 l_1^2 + m_3 l_1^2 + \frac{l_1^2 (m_2 + m_3)^2}{m_1} \\
+k_2 = \frac{(J_{x_2}+J_{x_3}+J_{x_4})(J_{x_2}+J_{x_3}+J_{x_4}+J_{x_5})}{J_{x_5}} \\
+k_3 = m_3 \\
+\end{cases}
+\end{equation}
+
+%--------------------CONCLUSIONS--------------------%
+
+%\newpage
+
+\section{Conclusions}\label{S04}
+
+
+%--------------------ACKNOWLEDGMENTS--------------------%
+
+%\section*{Acknowledgments}
+
+
+%--------------------BIBLIOGRAPHY--------------------%
+
+% \newpage
+\phantomsection 
+\input{EXTRAS/bibliography}
+
+
+% \end{multicols}
+
+
+\end{document}
+
