@@ -109,12 +109,12 @@ KEYWORDS: {Dynamic balancing, serial mechanisms}
 \section{Applying the technique}\label{S03}
 
 \begin{equation}
-\mM (\mq) \ddot{\mq} + \mv(\mq,\dot{\mq}) + \mg (\mq) = \mu
+\mM\ssh (\mq\ssh) \ddot{\mq}\ssh + \mv\ssh(\mq\ssh,\dot{\mq}\ssh) + \mg\ssh (\mq\ssh) = \mu
 \end{equation}
 
 For a 3-DOF serial mechanism:
 \begin{equation}
-\mM = 
+\mM\ssh = 
 \begin{bmatrix}
 D_{11} & D_{12} & D_{13} \\
 D_{12} & D_{22} & D_{23} \\
@@ -122,7 +122,7 @@ D_{13} & D_{23} & D_{33} \\
 \end{bmatrix}
 \end{equation}
 \begin{equation}
-\mv = 
+\mv\ssh = 
 \begin{bmatrix}
 D_{111} & D_{122} & D_{133} \\
 D_{211} & D_{222} & D_{233} \\
@@ -146,7 +146,7 @@ D_{312} & D_{313} & D_{323} \\
 \end{bmatrix}
 \end{equation}
 \begin{equation}
-\mg =
+\mg\ssh =
 \begin{bmatrix}
 D_1 &
 D_2 &
@@ -154,7 +154,7 @@ D_3
 \end{bmatrix}^\top
 \end{equation}
 \begin{equation}
-\mq =
+\mq\ssh =
 \begin{bmatrix}
 q_1 &
 q_2 &
@@ -176,9 +176,9 @@ For a rotational joint we call $q_i = \theta_i$ and $u_i = \tau_i$, and for a pr
 
 \begin{equation}
 \begin{cases}
-D_1 = g[ (m_1 l_{g1} + m_2 l_1 + m_3 l_1 ) \ccos(\theta_1) + (m_2 l_{g2} + m_3 l_2) \ccos(\theta_1 + \theta_2) + m_3 l_{g3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
-D_2 = g[  (m_2 l_{g2} + m_3 l_2) \ccos(\theta_1 + \theta_2) + m_3 l_{g3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
-D_3 = g[   m_3 l_{g3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
+D_1 = g[ (m_1 l_{g_1} + m_2 l_1 + m_3 l_1 ) \ccos(\theta_1) + (m_2 l_{g_2} + m_3 l_2) \ccos(\theta_1 + \theta_2) + m_3 l_{g_3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
+D_2 = g[  (m_2 l_{g_2} + m_3 l_2) \ccos(\theta_1 + \theta_2) + m_3 l_{g_3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
+D_3 = g[   m_3 l_{g_3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
 \end{cases}
 \end{equation} 
 
@@ -191,9 +191,9 @@ D_3 = 0 \\
 \end{cases}
 \Rightarrow
 \begin{cases}
-l_{g1} = -\frac{l_1(m_2 + m_3)}{m_1} \\
-l_{g2} = -\frac{l_2 m_3}{m_2} \\
-l_{g3} = 0 \\
+l_{g_1} = -\frac{l_1(m_2 + m_3)}{m_1} \\
+l_{g_2} = -\frac{l_2 m_3}{m_2} \\
+l_{g_3} = 0 \\
 \end{cases}
 \end{equation}
 
@@ -205,12 +205,70 @@ D_{22} = J_{x_2} + J_{x_3} + m_3 l_2^2 + \frac{l_2^2 m_3^2}{m_2} \\
 D_{33} = J_{x_3} \\
 D_{12} = D_{22} \\
 D_{13} = D_{23} = D_{33} \\
-\mv = \mzr \\
-\mg = \mzr
+\mv\ssh = \mzr \\
+\mg\ssh = \mzr
 \end{cases}
 \end{equation}
 
-Coupling 4 discs:
+Coupling 4 discs: \\
+
+Planar disc models: 
+\begin{equation}
+\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} \end{bmatrix}; \; \mv\ssh_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mg\ssh_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mu_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \end{bmatrix}, \; i = 1, 2, 3, 4
+\end{equation}
+
+Quasi-velocities constraints:
+
+\begin{equation}
+\begin{cases}
+\omega_{x_4} = \omega_{x_1} + \dot{\theta}_2 \\
+\omega_{x_5} = \omega_{x_1} + \beta\dot{\theta}_2 \\
+\omega_{x_6} = \omega_{x_2} + \dot{\theta}_3 \\
+\omega_{x_7} = \omega_{x_2} + \gamma\dot{\theta}_3 \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+\omega_{x_4} = \dot{\theta}_1 + \dot{\theta}_2 \\
+\omega_{x_5} = \dot{\theta}_1 + \beta\dot{\theta}_2 \\
+\omega_{x_6} = \dot{\theta}_1 + \dot{\theta}_2 + \dot{\theta}_3 \\
+\omega_{x_7} = \dot{\theta}_1 + \dot{\theta}_2 + \gamma\dot{\theta}_3 \\
+\end{cases}
+\therefore
+\overline{\mp} = 
+\begin{bmatrix}
+\omega_{x_4} - \dot{\theta}_1 - \dot{\theta}_2 \\
+\omega_{x_5} - \dot{\theta}_1 - \beta\dot{\theta}_2 \\
+\omega_{x_6} - \dot{\theta}_1 - \dot{\theta}_2 - \dot{\theta}_3 \\
+\omega_{x_7} - \dot{\theta}_1 - \dot{\theta}_2 - \gamma\dot{\theta}_3 \\
+\end{bmatrix}
+=\mzr
+\end{equation}
+
+\begin{equation}
+\mA\ssh = \frac{\partial \overline{\mp}}{\partial \mp\ssh} = -
+\begin{bmatrix}
+1 & 1     & 0 \\
+1 & \beta & 0 \\
+1 & 1     & 1 \\
+1 & 1     & \gamma \\
+\end{bmatrix}; \;
+\mA^\circ = \frac{\partial \overline{\mp}}{\partial \mp^\circ} = \mone; \;
+\mC =
+\begin{bmatrix}
+\mone \\
+-(\mA^\circ)^{-1} \mA\ssh
+\end{bmatrix}  =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 1     & 0 \\
+1 & \beta & 0 \\
+1 & 1     & 1 \\
+1 & 1     & \gamma \\
+\end{bmatrix} 
+\end{equation}
+
 \begin{equation}
 \begin{cases}
 D'_{11} = D_{11} + J_{x_4} + J_{x_5} + J_{x_6} + J_{x_7} \\
@@ -219,7 +277,7 @@ D'_{33} = D_{33} + J_{x_6} + J_{x_7} \gamma^2 \\
 D'_{12} = D_{12} + J_{x_4} + J_{x_5} \beta + J_{x_6} + J_{x_7} \\
 D'_{13} = D_{13} + J_{x_6} + J_{x_7} \gamma  \\
 D'_{23} = D'_{13}\\
-\mv' = \mzr \\
+{\mv'}\ssh = \mzr \\
 \end{cases}
 \end{equation}
 
@@ -228,7 +286,6 @@ Dynamic balancing:
 \begin{cases}
 D'_{12} = 0 \\
 D'_{13} = 0 \\
-D'_{23} = 0 \\
 \end{cases}
 \Rightarrow
 \begin{cases}
@@ -260,22 +317,21 @@ k_3 = \frac{(J_{x_3}+J_{x_6})(J_{x_3}+J_{x_6}+J_{x_7})}{J_{x_7}} \\
 \begin{equation}
 \begin{cases}
 D_1 = 0 \\
-D_2 = g[ (m_2 l_{g2} + m_3 l_2  ) \ccos(\theta_2) + m_3 l_{g3} \ccos(\theta_2 + \theta_3) ]  \\
-D_3 = g[ m_3 l_{g3} \ccos(\theta_2 + \theta_3)  ] \\
+D_2 = g[ (m_2 l_{g_2} + m_3 l_2  ) \ccos(\theta_2) + m_3 l_{g_3} \ccos(\theta_2 + \theta_3) ]  \\
+D_3 = g[ m_3 l_{g_3} \ccos(\theta_2 + \theta_3)  ] \\
 \end{cases}
 \end{equation} 
 
 Static balancing:
 \begin{equation}
 \begin{cases}
-D_1 = 0 \\
 D_2 = 0 \\
 D_3 = 0 \\
 \end{cases}
 \Rightarrow
 \begin{cases}
-l_{g2} = -\frac{l_2 m_3}{m_2} \\
-l_{g3} = 0 \\
+l_{g_2} = -\frac{l_2 m_3}{m_2} \\
+l_{g_3} = 0 \\
 \end{cases}
 \end{equation}
 
@@ -297,7 +353,74 @@ D_{123} = D_{212} = D_{213} = D_{223} = D_{312} = D_{313} = D_{323} = 0 \\
 \end{cases}
 \end{equation}
 
-Coupling 2 discs:
+Coupling 2 discs: \\
+
+Spatial disc models: 
+\begin{equation}
+\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} & 0 & 0 \\ 0 & J_{y_{i+3}} & 0 \\ 0 & 0 & J_{z_{i+3}} \end{bmatrix}; \; \mv\ssh_i = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}; \; \mg\ssh_i = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}; \; \mu_i = \begin{bmatrix} 0 \\ 0 \\ 0  \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \\ \omega_{y_{i+3}} \\ \omega_{z_{i+3}} \end{bmatrix}, \; i = 1, 2
+\end{equation}
+
+Quasi-velocities constraints:
+
+\begin{equation}
+\begin{cases}
+\nvct{\vomega_{\scriptscriptstyle 4}}_{\ttB_4} = \nvct{\mone}_{\ttB_4 \rl \ttB_2} \nvct{\vomega_{\scriptscriptstyle 2}}_{\ttB_2} + \begin{bmatrix} \dot{\theta}_3 \\ 0 \\0 \end{bmatrix} \\
+\nvct{\vomega_{\scriptscriptstyle 5}}_{\ttB_5} = \nvct{\mone}_{\ttB_5 \rl \ttB_2} \nvct{\vomega_{\scriptscriptstyle 2}}_{\ttB_2} + \begin{bmatrix} \beta\dot{\theta}_3 \\ 0 \\0 \end{bmatrix} \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+\omega_{x_4} = \dot{\theta}_2 + \dot{\theta}_3 \\
+\omega_{y_4} = (\dot{\theta}_1 \ssin(\theta_2))\ccos(\theta_3) + (\dot{\theta}_1 \ccos(\theta_2))\ssin(\theta_3) \\
+\omega_{z_4} = -(\dot{\theta}_1 \ssin(\theta_2))\ssin(\theta_3) + (\dot{\theta}_1 \ccos(\theta_2))\ccos(\theta_3) \\
+\omega_{x_5} = \dot{\theta}_2 + \beta\dot{\theta}_3 \\
+\omega_{y_5} = (\dot{\theta}_1 \ssin(\theta_2))\ccos(\beta\theta_3) + (\dot{\theta}_1 \ccos(\theta_2))\ssin(\beta\theta_3) \\
+\omega_{z_5} = -(\dot{\theta}_1 \ssin(\theta_2))\ssin(\beta\theta_3) + (\dot{\theta}_1 \ccos(\theta_2))\ccos(\beta\theta_3) \\
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\therefore
+\overline{\mp} = 
+\begin{bmatrix}
+\omega_{x_4} - \dot{\theta}_2 - \dot{\theta}_3 \\
+\omega_{y_4} - \dot{\theta}_1 \ssin(\theta_2+\theta_3) \\
+\omega_{z_4} - \dot{\theta}_1 \ccos(\theta_2+\theta_3) \\
+\omega_{x_5} - \dot{\theta}_2 - \beta\dot{\theta}_3 \\
+\omega_{y_5} - \dot{\theta}_1 \ssin(\theta_2+\beta\theta_3) \\
+\omega_{z_5} - \dot{\theta}_1 \ccos(\theta_2+\beta\theta_3) \\
+\end{bmatrix}
+=\mzr
+\end{equation}
+
+\begin{equation}
+\mA\ssh = \frac{\partial \overline{\mp}}{\partial \mp\ssh} = -
+\begin{bmatrix}
+0 & 1 & 1 \\
+\ssin(\theta_2+\theta_3) & 0 & 0 \\
+\ccos(\theta_2+\theta_3) & 0 & 0 \\
+0 & 1 & \beta \\
+\ssin(\theta_2+\beta\theta_3) & 0 & 0 \\
+\ccos(\theta_2+\beta\theta_3) & 0 & 0 \\
+\end{bmatrix}; \;
+\mA^\circ = \frac{\partial \overline{\mp}}{\partial \mp^\circ} = \mone; \;
+\mC =
+\begin{bmatrix}
+\mone \\
+-(\mA^\circ)^{-1} \mA\ssh
+\end{bmatrix}  =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+0 & 1 & 1 \\
+\ssin(\theta_2+\theta_3) & 0 & 0 \\
+\ccos(\theta_2+\theta_3) & 0 & 0 \\
+0 & 1 & \beta \\
+\ssin(\theta_2+\beta\theta_3) & 0 & 0 \\
+\ccos(\theta_2+\beta\theta_3) & 0 & 0 \\
+\end{bmatrix} 
+\end{equation}
+
 \begin{equation}
 \begin{cases}
 D'_{11} = D_{11} + J_{y_4}\ssin^2(\theta_2+\theta_2) + J_{y_5}\ssin^2(\beta\theta_2+\theta_2) + J_{z_4}\ccos^2(\theta_2+\theta_2) + J_{z_5}\ccos^2(\beta\theta_2+\theta_2) \\
@@ -355,8 +478,8 @@ k_3 = \frac{(J_{x_3}+J_{x_4})(J_{x_3}+J_{x_4}+J_{x_5})}{J_{x_5}} \\
 
 \begin{equation}
 \begin{cases}
-D_1 = g[ (m_1 l_{g1} + m_2 l_1 + m_3 l_1 ) \ccos_1 + m_2 l_{g2} \ccos_{1+2} ] \\
-D_2 = g[ m_2 l_{g2} \ccos_{1+2}  ] \\
+D_1 = g[ (m_1 l_{g_1} + m_2 l_1 + m_3 l_1 ) \ccos(\theta_1) + m_2 l_{g_2} \ccos(\theta_1+\theta_2) ] \\
+D_2 = g[ m_2 l_{g_2} \ccos(\theta_1+\theta_2)  ] \\
 D_3 = 0 \\
 \end{cases}
 \end{equation} 
@@ -366,12 +489,11 @@ Static balancing:
 \begin{cases}
 D_1 = 0 \\
 D_2 = 0 \\
-D_3 = 0 \\
 \end{cases}
 \Rightarrow
 \begin{cases}
-l_{g1} = -\frac{l_1 (m_2+m_3)}{m_1} \\
-l_{g2} = 0 \\
+l_{g_1} = -\frac{l_1 (m_2+m_3)}{m_1} \\
+l_{g_2} = 0 \\
 \end{cases}
 \end{equation}
 
@@ -388,7 +510,55 @@ D_{13} = D_{23} = 0 \\
 \end{cases}
 \end{equation}
 
-Coupling 2 discs:
+Coupling 2 discs: \\
+
+Planar disc models: 
+\begin{equation}
+\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} \end{bmatrix}; \; \mv\ssh_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mg\ssh_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mu_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \end{bmatrix}, \; i = 1, 2
+\end{equation}
+
+Quasi-velocities constraints:
+
+\begin{equation}
+\begin{cases}
+\omega_{x_4} = \omega_{x_1} + \dot{\theta}_2 \\
+\omega_{x_5} = \omega_{x_1} + \beta\dot{\theta}_2 \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+\omega_{x_4} = \dot{\theta}_1 + \dot{\theta}_2 \\
+\omega_{x_5} = \dot{\theta}_1 + \beta\dot{\theta}_2 \\
+\end{cases}
+\therefore
+\overline{\mp} = 
+\begin{bmatrix}
+\omega_{x_4} - \dot{\theta}_1 - \dot{\theta}_2 \\
+\omega_{x_5} - \dot{\theta}_1 - \beta\dot{\theta}_2 \\
+\end{bmatrix}
+=\mzr
+\end{equation}
+
+\begin{equation}
+\mA\ssh = \frac{\partial \overline{\mp}}{\partial \mp\ssh} = -
+\begin{bmatrix}
+1 & 1     & 0 \\
+1 & \beta & 0 \\
+\end{bmatrix}; \;
+\mA^\circ = \frac{\partial \overline{\mp}}{\partial \mp^\circ} = \mone; \;
+\mC =
+\begin{bmatrix}
+\mone \\
+-(\mA^\circ)^{-1} \mA\ssh
+\end{bmatrix}  =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 1     & 0 \\
+1 & \beta & 0 \\
+\end{bmatrix} 
+\end{equation}
+
 \begin{equation}
 \begin{cases}
 D'_{11} = D_{11} + J_{x_4} + J_{x_5} \\
