@@ -99,19 +99,25 @@ KEYWORDS: {Dynamic balancing, serial mechanisms}
 
 \section{Mothodology}\label{S02}
 
-\subsection{Static Balancing}\label{S02-1}
+\subsection{Dynamic Model}\label{S02-1}
 
-O modelo dinâmico de um mecanismo serial pode ser escrito da seguinte maneira:
-
+O modelo din\^{a}mico de um mecanismo serial pode ser escrito da seguinte maneira:
 \begin{equation}
 \mM\ssh (\mq\ssh) \ddot{\mq}\ssh + \mv\ssh(\mq\ssh,\dot{\mq}\ssh) + \mg\ssh (\mq\ssh) = \mu
 \end{equation}
 
-Sendo $\mq\ssh$ um conjunto de coordenadas generalizadas independentes, cujos elementos s\~{a}o os deslocamentos relativos das juntas (lineares para as prism\'{a}ticas e angulares para as rotativas) e $\mu$ os esfor\c{c}os generalizados nas dire\c{c}\~oes das quasi-velocidades independentes $\mp\ssh = \dot{\mq}\ssh$.
+Sendo $\mq\ssh$ um conjunto de coordenadas generalizadas independentes, cujos elementos s\~{a}o os deslocamentos relativos das juntas e $\mu$ os esfor\c{c}os generalizados nas dire\c{c}\~oes das quasi-velocidades independentes $\mp\ssh = \dot{\mq}\ssh$.
 
-O modelo din\^{a}mico completo de um mecanismo serial, apesar de muitas vezes ser de alta complexidade, n\~{a}o \'{e} algo muito dif\'{i}cil de se obter,  pois, al\'{e}m de ser poss\'{i}vel de espressar todas as velocidades lineares absolutas dos centros de massa das barras e todas as velocidades angulares absolutas em fun\c{c}\~ao de $\mq\ssh$ e  $\dot{\mq}\ssh$, o que possibilita a obten\c{c}\~{a}o dos modelos por Kane ou Lagrange, atualmente existem v\'{a}rios programas e bibliotecas de linguagens de programa\c{c}\~{a}o que s\~{a}o capazes de utilizar manipula\c{c}\~{a}o simb\'{o}lica, como o Mathematica e SymPy.
+Para realizar o balanceamento din\^{a}mico de um mecanismo serial, utilizando abordagem proposta, \'{e} necess\'{a}rio primeiro obter o modelo do mecanismo desbalanceado. Como em um mecanismo serial \'{e} poss\'{i}vel de expressar todas as velocidades lineares absolutas dos centros de massa das barras e todas as velocidades angulares absolutas das barras em fun\c{c}\~ao de $\mq\ssh$ e  $\dot{\mq}\ssh$, o modelo din\^{a}mico pode ser obtido sem grandes dificuldades utilizando m\'{e}todos de mec\'{a}nica anal\'{i}tica, como Lagrange, Kane e Orsino, aliados a programas ou bibliotecas de linguagens de programa\c{c}\~{a}o que s\~{a}o capazes de utilizar manipula\c{c}\~{a}o simb\'{o}lica, como o Mathematica e o SymPy.
 
-\subsection{Dynamic Balancing}\label{S02-2}
+
+\subsection{Static Balancing}\label{S02-2}
+
+Depois de obtido o modelo din\^{a}mico, realiza-se o balanceamento est\'{a}tico encontrando as posi\c{c}\~{o}es dos centros de massa das barras que fazem com que $\mg\ssh = \mzr$. Isso \'{e} poss\'{i}vel para mecanismos com juntas apenas rotativas e mecanismos com juntas prism\'{a}ticas cuja dire\c{c}\~{o}es s\~{a}o ortogonais \`{a} gravidade. O posicionamento dos centros de massa \'e realizado mecanicamente com o prologamento das barras do mecanismo e adi\c{c}\~ao de contra-pesos.
+
+\subsection{Dynamic Balancing}\label{S02-3}
+
+O balanceamento din\^{a}mico \'{e} obtido acoplando discos girantes ao modelo do mecanismo est\'{a}ticamente balanceado. Isso \'{e} feito utilizando a t\'{e}cnica de acoplamento de subsistemas do M\'{e}todo Orsino.
 
 
 %--------------------EXAMPLE---------------------%
