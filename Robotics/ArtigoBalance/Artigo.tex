@@ -101,6 +101,16 @@ KEYWORDS: {Dynamic balancing, serial mechanisms}
 
 \subsection{Static Balancing}\label{S02-1}
 
+O modelo dinâmico de um mecanismo serial pode ser escrito da seguinte maneira:
+
+\begin{equation}
+\mM\ssh (\mq\ssh) \ddot{\mq}\ssh + \mv\ssh(\mq\ssh,\dot{\mq}\ssh) + \mg\ssh (\mq\ssh) = \mu
+\end{equation}
+
+Sendo $\mq\ssh$ um conjunto de coordenadas generalizadas independentes, cujos elementos s\~{a}o os deslocamentos relativos das juntas (lineares para as prism\'{a}ticas e angulares para as rotativas) e $\mu$ os esfor\c{c}os generalizados nas dire\c{c}\~oes das quasi-velocidades independentes $\mp\ssh = \dot{\mq}\ssh$.
+
+O modelo din\^{a}mico completo de um mecanismo serial, apesar de muitas vezes ser de alta complexidade, n\~{a}o \'{e} algo muito dif\'{i}cil de se obter,  pois, al\'{e}m de ser poss\'{i}vel de espressar todas as velocidades lineares absolutas dos centros de massa das barras e todas as velocidades angulares absolutas em fun\c{c}\~ao de $\mq\ssh$ e  $\dot{\mq}\ssh$, o que possibilita a obten\c{c}\~{a}o dos modelos por Kane ou Lagrange, atualmente existem v\'{a}rios programas e bibliotecas de linguagens de programa\c{c}\~{a}o que s\~{a}o capazes de utilizar manipula\c{c}\~{a}o simb\'{o}lica, como o Mathematica e SymPy.
+
 \subsection{Dynamic Balancing}\label{S02-2}
 
 
