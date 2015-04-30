@@ -119,14 +119,83 @@ Depois de obtido o modelo din\^{a}mico, realiza-se o balanceamento est\'{a}tico 
 
 O balanceamento din\^{a}mico \'{e} obtido acoplando discos girantes ao modelo do mecanismo est\'{a}ticamente balanceado. Isso \'{e} feito utilizando a t\'{e}cnica de acoplamento de subsistemas do M\'{e}todo Orsino.
 
+Seja $\ssM_0$ um subsistema mec\^anico constituido por um mecanismo serial estaticamente balanceado, cuja equa\c{c}\~{a}o de movimento \'e dada pela equa\c{c}\~{a}o (1), com $\mg\ssh = \mzr$. Seja $\ssM_i$ um subsistema mec\^anico constituido de um disco girante que ser\'a acoplado ao mecanismo, cuja equa\c{c}\~{a}o de movimento \'e dada por:
+\begin{equation}
+\mM\ssh_i \dot{\mp}\ssh + \mv\ssh_i + \mg\ssh_i = \mu_i
+\end{equation}
+Sendo $\mp\ssh$ um conjunto de quasi-velocidades independentes, cujos elementos s\~{a}o as componentes n\~{a}o nulas do vetor velocidade angular absoluta do disco, escrito em uma base solid\'{a}ria ao disco, e $\mv\ssh_i = \mg\ssh_i = \mu_i = \mzr$. Nesse modelo, s\~ao considerados apenas os efeitos das in\'{e}rcias rotativas, sendo os efeitos da massa do disco considerados na massa e nos momentos de in\'{e}rcia da barra em que o disco for acoplado, efetando tamb\'{e}m no c\'{a}lculo do posicionamento dos contra-pesos, de modo que o mecanismo continue est\'{a}ticamente balanceado.
 
+Supondo que ir\~{a}o ser acoplados $n$ discos ao mecanismo, s\~ao feitas as seguintes defini\c{c}\~oes:
+
+\begin{equation}
+\mM' =
+\begin{bmatrix}
+\mM\ssh &  \mzr  & \ldots & \mzr\\
+\mzr  &  \mM\ssh_1 & \ldots & \mzr\\
+\vdots & \vdots & \ddots & \vdots\\
+\mzr  &   \mzr       &\ldots & \mM\ssh_{n}
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\mv' = \begin{bmatrix}
+{\mv\ssh}^\msT & {\mv\ssh_1}^\msT & ... & {\mv\ssh_{n}}^\msT
+\end{bmatrix}^\msT
+\end{equation}
+\begin{equation}
+\mg' = \begin{bmatrix}
+{\mg\ssh}^\msT & {\mg\ssh_1}^\msT & ... & {\mg\ssh_{n}}^\msT
+\end{bmatrix}^\msT
+\end{equation}
+\begin{equation}
+\mp^\circ = \begin{bmatrix}
+{\mp\ssh_1}^\msT & ... & {\mp\ssh_{n}}^\msT
+\end{bmatrix}^\msT
+\end{equation}
+\begin{equation}
+\mp = \begin{bmatrix}
+{\mp\ssh}^\msT & {\mp^\circ}^\msT
+\end{bmatrix}^\msT
+\end{equation}
+
+Seja $\underline{\mp}^\circ$ o vetor $\mp^\circ$ escrito em fun\c{c}\~{a}o de $\mq\ssh$ e $\mp\ssh$, ou seja:
+
+\begin{equation}
+\mp^\circ = \underline{\mp}^\circ(\mq\ssh, \mp\ssh) 
+\end{equation}
+
+Definimos a seguinte matriz das restri\c{c}\~{o}es cinem\'{a}ticas:
+
+\begin{equation}
+\mC =
+\begin{bmatrix}
+\mone \\
+\displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
+\end{bmatrix}
+\end{equation}
+
+O modelo din\^{a}mico do mecanismo serial com os discos acoplados, \'{e} dado por:
+\begin{equation}
+{\mM'}\ssh (\mq\ssh) \ddot{\mq}\ssh + {\mv'}\ssh(\mq\ssh,\dot{\mq}\ssh) + {\mg'}\ssh (\mq\ssh) = \mu
+\end{equation}
+
+Sendo:
+\begin{equation}
+{\mM'}\ssh = \mC^\msT \mM' \mC
+\end{equation}
+\begin{equation}
+{\mv'}\ssh = \mC^\msT ( \mM' \dot{\mC} \dot{\mq}\ssh + \mv')
+\end{equation}
+\begin{equation}
+{\mg'}\ssh = \mC^\msT \mg'
+\end{equation}
+
+O balanceamento din\^{a}mico \'{e} obtido encontrando as rela\c{c}\~{o}es entre os par\^{a}metros do sistema que tornam a matriz ${\mM'}\ssh$ diagonal e o vetor ${\mv'}\ssh$ nulo.
+
+
+ 
 %--------------------EXAMPLE---------------------%
 
 \section{Applying the technique}\label{S03}
-
-\begin{equation}
-\mM\ssh (\mq\ssh) \ddot{\mq}\ssh + \mv\ssh(\mq\ssh,\dot{\mq}\ssh) + \mg\ssh (\mq\ssh) = \mu
-\end{equation}
 
 For a 3-DOF serial mechanism:
 \begin{equation}
@@ -230,7 +299,7 @@ Coupling 4 discs: \\
 
 Planar disc models: 
 \begin{equation}
-\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} \end{bmatrix}; \; \mv\ssh_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mg\ssh_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mu_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \end{bmatrix}, \; i = 1, 2, 3, 4
+\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \end{bmatrix}, \; i = 1, 2, 3, 4
 \end{equation}
 
 Quasi-velocities constraints:
@@ -249,30 +318,21 @@ Quasi-velocities constraints:
 \omega_{x_6} = \dot{\theta}_1 + \dot{\theta}_2 + \dot{\theta}_3 \\
 \omega_{x_7} = \dot{\theta}_1 + \dot{\theta}_2 + \gamma\dot{\theta}_3 \\
 \end{cases}
-\therefore
-\overline{\mp} = 
+\Rightarrow
+\underline{\mp}^\circ = 
 \begin{bmatrix}
-\omega_{x_4} - \dot{\theta}_1 - \dot{\theta}_2 \\
-\omega_{x_5} - \dot{\theta}_1 - \beta\dot{\theta}_2 \\
-\omega_{x_6} - \dot{\theta}_1 - \dot{\theta}_2 - \dot{\theta}_3 \\
-\omega_{x_7} - \dot{\theta}_1 - \dot{\theta}_2 - \gamma\dot{\theta}_3 \\
+\dot{\theta}_1 + \dot{\theta}_2 \\
+\dot{\theta}_1 + \beta\dot{\theta}_2 \\
+\dot{\theta}_1 + \dot{\theta}_2 + \dot{\theta}_3 \\
+\dot{\theta}_1 + \dot{\theta}_2 + \gamma\dot{\theta}_3 \\
 \end{bmatrix}
-=\mzr
 \end{equation}
 
 \begin{equation}
-\mA\ssh = \frac{\partial \overline{\mp}}{\partial \mp\ssh} = -
-\begin{bmatrix}
-1 & 1     & 0 \\
-1 & \beta & 0 \\
-1 & 1     & 1 \\
-1 & 1     & \gamma \\
-\end{bmatrix}; \;
-\mA^\circ = \frac{\partial \overline{\mp}}{\partial \mp^\circ} = \mone; \;
 \mC =
 \begin{bmatrix}
 \mone \\
--(\mA^\circ)^{-1} \mA\ssh
+\displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
 \end{bmatrix}  =
 \begin{bmatrix}
 1 & 0 & 0 \\
@@ -373,7 +433,7 @@ Coupling 2 discs: \\
 
 Spatial disc models: 
 \begin{equation}
-\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} & 0 & 0 \\ 0 & J_{y_{i+3}} & 0 \\ 0 & 0 & J_{z_{i+3}} \end{bmatrix}; \; \mv\ssh_i = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}; \; \mg\ssh_i = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}; \; \mu_i = \begin{bmatrix} 0 \\ 0 \\ 0  \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \\ \omega_{y_{i+3}} \\ \omega_{z_{i+3}} \end{bmatrix}, \; i = 1, 2
+\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} & 0 & 0 \\ 0 & J_{y_{i+3}} & 0 \\ 0 & 0 & J_{z_{i+3}} \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \\ \omega_{y_{i+3}} \\ \omega_{z_{i+3}} \end{bmatrix}, \; i = 1, 2
 \end{equation}
 
 Quasi-velocities constraints:
@@ -395,34 +455,23 @@ Quasi-velocities constraints:
 \end{equation}
 
 \begin{equation}
-\therefore
-\overline{\mp} = 
+\Rightarrow
+\underline{\mp}^\circ = 
 \begin{bmatrix}
-\omega_{x_4} - \dot{\theta}_2 - \dot{\theta}_3 \\
-\omega_{y_4} - \dot{\theta}_1 \ssin(\theta_2+\theta_3) \\
-\omega_{z_4} - \dot{\theta}_1 \ccos(\theta_2+\theta_3) \\
-\omega_{x_5} - \dot{\theta}_2 - \beta\dot{\theta}_3 \\
-\omega_{y_5} - \dot{\theta}_1 \ssin(\theta_2+\beta\theta_3) \\
-\omega_{z_5} - \dot{\theta}_1 \ccos(\theta_2+\beta\theta_3) \\
+\dot{\theta}_2 + \dot{\theta}_3 \\
+\dot{\theta}_1 \ssin(\theta_2+\theta_3) \\
+\dot{\theta}_1 \ccos(\theta_2+\theta_3) \\
+\dot{\theta}_2 + \beta\dot{\theta}_3 \\
+\dot{\theta}_1 \ssin(\theta_2+\beta\theta_3) \\
+\dot{\theta}_1 \ccos(\theta_2+\beta\theta_3) \\
 \end{bmatrix}
-=\mzr
 \end{equation}
 
 \begin{equation}
-\mA\ssh = \frac{\partial \overline{\mp}}{\partial \mp\ssh} = -
-\begin{bmatrix}
-0 & 1 & 1 \\
-\ssin(\theta_2+\theta_3) & 0 & 0 \\
-\ccos(\theta_2+\theta_3) & 0 & 0 \\
-0 & 1 & \beta \\
-\ssin(\theta_2+\beta\theta_3) & 0 & 0 \\
-\ccos(\theta_2+\beta\theta_3) & 0 & 0 \\
-\end{bmatrix}; \;
-\mA^\circ = \frac{\partial \overline{\mp}}{\partial \mp^\circ} = \mone; \;
 \mC =
 \begin{bmatrix}
 \mone \\
--(\mA^\circ)^{-1} \mA\ssh
+\displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
 \end{bmatrix}  =
 \begin{bmatrix}
 1 & 0 & 0 \\
@@ -521,8 +570,8 @@ D_{22} = J_{x_2} + J_{x_3} \\
 D_{33} = m_3 \\
 D_{12} = D_{22} \\
 D_{13} = D_{23} = 0 \\
-\mv = \mzr \\
-\mg = \mzr
+\mv\ssh = \mzr \\
+\mg\ssh = \mzr
 \end{cases}
 \end{equation}
 
@@ -530,7 +579,7 @@ Coupling 2 discs: \\
 
 Planar disc models: 
 \begin{equation}
-\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} \end{bmatrix}; \; \mv\ssh_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mg\ssh_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mu_i = \begin{bmatrix} 0 \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \end{bmatrix}, \; i = 1, 2
+\mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \end{bmatrix}, \; i = 1, 2
 \end{equation}
 
 Quasi-velocities constraints:
@@ -545,26 +594,19 @@ Quasi-velocities constraints:
 \omega_{x_4} = \dot{\theta}_1 + \dot{\theta}_2 \\
 \omega_{x_5} = \dot{\theta}_1 + \beta\dot{\theta}_2 \\
 \end{cases}
-\therefore
+\Rightarrow
 \overline{\mp} = 
 \begin{bmatrix}
-\omega_{x_4} - \dot{\theta}_1 - \dot{\theta}_2 \\
-\omega_{x_5} - \dot{\theta}_1 - \beta\dot{\theta}_2 \\
+\dot{\theta}_1 + \dot{\theta}_2 \\
+\dot{\theta}_1 + \beta\dot{\theta}_2 \\
 \end{bmatrix}
-=\mzr
 \end{equation}
 
 \begin{equation}
-\mA\ssh = \frac{\partial \overline{\mp}}{\partial \mp\ssh} = -
-\begin{bmatrix}
-1 & 1     & 0 \\
-1 & \beta & 0 \\
-\end{bmatrix}; \;
-\mA^\circ = \frac{\partial \overline{\mp}}{\partial \mp^\circ} = \mone; \;
 \mC =
 \begin{bmatrix}
 \mone \\
--(\mA^\circ)^{-1} \mA\ssh
+\displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
 \end{bmatrix}  =
 \begin{bmatrix}
 1 & 0 & 0 \\
@@ -583,7 +625,7 @@ D'_{33} = D_{33} \\
 D'_{12} = D_{12} + J_{x_4} + J_{x_5} \beta \\
 D'_{13} = 0 \\
 D'_{23} = 0\\
-\mv' = \mzr \\
+{\mv'}\ssh = \mzr \\
 \end{cases}
 \end{equation}
 
