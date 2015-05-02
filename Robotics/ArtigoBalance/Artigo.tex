@@ -44,6 +44,8 @@
 \noindent
 {\bf \huge A new approach for designing dynamic balanced serial mechanisms}\\
 
+%Conditions for the decopling of dynamic equations in serial manipulators by applying the adaptive balancing
+
 \noindent
 {\Large 		Andr\'e Garnier Coutinho$\,{}^\text{a}$,
 			Tarcisio Antonio Hess Coelho$\,{}^\text{b}$
@@ -107,7 +109,7 @@ Para realizar o balanceamento din\^{a}mico de um mecanismo serial, utilizando ab
 
 \subsection{Static Balancing}\label{S02-2}
 
-Depois de obtido o modelo din\^{a}mico, realiza-se o balanceamento est\'{a}tico encontrando as posi\c{c}\~{o}es dos centros de massa das barras que fazem com que $\mg\ssh = \mzr$. Isso \'{e} poss\'{i}vel para mecanismos com juntas apenas rotativas e mecanismos com juntas prism\'{a}ticas cuja dire\c{c}\~{o}es s\~{a}o ortogonais \`{a} gravidade. O posicionamento dos centros de massa \'e realizado mecanicamente com o prologamento das barras do mecanismo e adi\c{c}\~ao de contra-pesos.
+Depois de obtido o modelo din\^{a}mico, realiza-se o balanceamento est\'{a}tico encontrando as posi\c{c}\~{o}es dos centros de massa das barras que fazem com que $\mg\ssh = \mzr$. Isso \'{e} poss\'{i}vel para mecanismos com juntas apenas rotativas e mecanismos com juntas prism\'{a}ticas cujas dire\c{c}\~{o}es s\~{a}o ortogonais \`{a} gravidade. O posicionamento dos centros de massa \'e realizado mecanicamente com o prologamento das barras do mecanismo e adi\c{c}\~ao de contra-pesos.
 
 \subsection{Dynamic Balancing}\label{S02-3}
 
@@ -191,7 +193,8 @@ O balanceamento din\^{a}mico \'{e} obtido encontrando as rela\c{c}\~{o}es entre 
 
 \section{Applying the technique}\label{S03}
 
-For a 3-DOF serial mechanism:
+Nesta se\c{c}\~{a}o, a metodologia proposta ser\'{a} aplicada em tr\^{e}s diferentes mecanismos seriais de 3 graus de liberdade, um plano e dois espaciais. Para isso, primeiramente faremos algumas defini\c{c}\~{o}es v\'{a}lidas para os mecanismos em quest\~{a}o:
+
 \begin{equation}
 \mM\ssh = 
 \begin{bmatrix}
@@ -249,10 +252,18 @@ u_3
 \end{bmatrix}^\top
 \end{equation}
 
-For a rotational joint we call $q_i = \theta_i$ and $u_i = \tau_i$, and for a prismatic joint we call $q_i = d_i$ and $u_i = f_i$.
+Para juntas rotativas definimos $q_i = \theta_i$ e $u_i = \tau_i$, e para juntas prism\'{a}ticas definimos $q_i = d_i$ and $u_i = f_i$, para ficar de acordo com as nota\c{c}\~{o}es mais tradicionais dessa \'{a}rea.
 
 \subsection{3-DOF RRR planar serial mechanism}\label{S03-1}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.11]{RRR2D.jpg}  
+	\caption{Mecanismo RRR plano}
+	\label{fig:RRR2D}
+\end{figure}
+
+As componentes de $\mg\ssh$ para o mecanismo em quest\~{a}o desbalanceado s\~{a}o dadas por:
 \begin{equation}
 \begin{cases}
 D_1 = g[ (m_1 l_{g_1} + m_2 l_1 + m_3 l_1 ) \ccos(\theta_1) + (m_2 l_{g_2} + m_3 l_2) \ccos(\theta_1 + \theta_2) + m_3 l_{g_3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
@@ -260,8 +271,7 @@ D_2 = g[  (m_2 l_{g_2} + m_3 l_2) \ccos(\theta_1 + \theta_2) + m_3 l_{g_3} \ccos
 D_3 = g[   m_3 l_{g_3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
 \end{cases}
 \end{equation} 
-
-Static balancing:
+Realizando o balanceamento est\'{a}tico, temos:
 \begin{equation}
 \begin{cases}
 D_1 = 0 \\
@@ -275,8 +285,7 @@ l_{g_2} = -\frac{l_2 m_3}{m_2} \\
 l_{g_3} = 0 \\
 \end{cases}
 \end{equation}
-
-Static balanced mechanism:
+Substituindo (20) no modelo do mecanismo, obtemos o modelo din\^{a}mico do mecanismo estaticamente balanceado:
 \begin{equation}
 \begin{cases}
 D_{11} = J_{x_1} + J_{x_2} + J_{x_3} + m_2 l_1^2 + m_3 (l_1^2 + l_2^2) + \frac{l_1^2 (m_2 + m_3)^2}{m_1} + \frac{l_2^2 m_3^2}{m_2} \\
@@ -288,16 +297,15 @@ D_{13} = D_{23} = D_{33} \\
 \mg\ssh = \mzr
 \end{cases}
 \end{equation}
-
-Coupling 4 discs: \\
-
-Planar disc models: 
+Para realizar o balanceamento din\^{a}mico, acoplamos 4 discos ao mecanismo, assim como \'{e} mostrado na figura 1. Como os discos giram em apenas um plano, utilizamos os seguintes modelos din\^{a}micos para eles:
 \begin{equation}
 \mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \end{bmatrix}, \; i = 1, 2, 3, 4
 \end{equation}
+Os discos 1 e 2 est\~{a}o acoplados \`{a} barra 1, sendo que o disco 1 apresenta um giro de $\theta_2$ relativo \`{a} barra 1, devido \`{a} transmiss\~{a}o por correia do giro do motor 2, enquanto o disco 2 apresenta um giro de $\beta\theta_2$, com $\beta < 0$, relativo \'{a} barra 1, devido \'{a} transmiss\~{a}o por engrenagem do giro do disco 1.
 
-Quasi-velocities constraints:
+Os discos 3 e 4 est\~{a}o acoplados \`{a} barra 2, sendo que o disco 3 apresenta um giro de $\theta_3$ relativo \`{a} barra 2, devido \`{a} transmiss\~{a}o por correia do giro do motor 3, enquanto o disco 4 apresenta um giro de $\gamma\theta_3$, com $\gamma < 0$, relativo \'{a} barra 2, devido \'{a} transmiss\~{a}o por engrenagem do giro do disco 3.
 
+Sendo assim, obtemos os seguintes v\'{i}nculos de quasi-velocidades:
 \begin{equation}
 \begin{cases}
 \omega_{x_4} = \omega_{x_1} + \dot{\theta}_2 \\
@@ -321,9 +329,8 @@ Quasi-velocities constraints:
 \dot{\theta}_1 + \dot{\theta}_2 + \gamma\dot{\theta}_3 \\
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
-\mC =
+\therefore\mC =
 \begin{bmatrix}
 \mone \\
 \displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
@@ -338,7 +345,7 @@ Quasi-velocities constraints:
 1 & 1     & \gamma \\
 \end{bmatrix} 
 \end{equation}
-
+Aplicando as equa\c{c}\~{o}es (?), (?) e (?), obtemos o modelo do mecanismo estaticamente balanceado com os discos acoplados:
 \begin{equation}
 \begin{cases}
 D'_{11} = D_{11} + J_{x_4} + J_{x_5} + J_{x_6} + J_{x_7} \\
@@ -350,8 +357,7 @@ D'_{23} = D'_{13}\\
 {\mv'}\ssh = \mzr \\
 \end{cases}
 \end{equation}
-
-Dynamic balancing:
+Para realizar o balanceamento din\^{a}mico, encontramos os valores de $\beta$ e $\gamma$ em fun\c{c}\~{a}o dos par\^ametros do mecanismo que tornam a matriz ${\mM'}\ssh$ diagonal. Assim, temos:
 \begin{equation}
 \begin{cases}
 D'_{12} = 0 \\
@@ -363,8 +369,7 @@ D'_{13} = 0 \\
 \gamma = -\frac{J_{x_3} + J_{x_6}}{J_{x_7}} \\
 \end{cases}
 \end{equation}
-
-Dynamic balanced mechanism:
+Substituindo (26) em (25), obtemos o modelo do mecanismo din\^{a}micamente balanceado:
 \begin{equation}
 \begin{cases}
 \tau_1 = k_1 \ddot{\theta}_1 \\
@@ -372,8 +377,7 @@ Dynamic balanced mechanism:
 \tau_3 = k_3 \ddot{\theta}_3 \\
 \end{cases}
 \end{equation}
-
-Being:
+Sendo:
 \begin{equation}
 \begin{cases}
 k_1 = J_{x_1} + J_{x_2} + J_{x_3} + J_{x_4} + J_{x_5} + J_{x_6} + J_{x_7} + m_2 l_1^2 + m_3 (l_1^2 + l_2^2) + \frac{l_1^2 (m_2 + m_3)^2}{m_1} + \frac{l_2^2 m_3^2}{m_2} \\
@@ -383,6 +387,14 @@ k_3 = \frac{(J_{x_3}+J_{x_6})(J_{x_3}+J_{x_6}+J_{x_7})}{J_{x_7}} \\
 \end{equation}
 
 \subsection{3-DOF RRR spatial serial mechanism} \label{S03-2}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.11]{RRR3D.jpg}  
+	\caption{Mecanismo RRR espacial}
+	\label{fig:RRR3D}
+\end{figure}
+
 
 \begin{equation}
 \begin{cases}
@@ -534,6 +546,14 @@ k_3 = \frac{(J_{x_3}+J_{x_4})(J_{x_3}+J_{x_4}+J_{x_5})}{J_{x_5}} \\
 \end{equation}
 
 \subsection{3-DOF RRP spatial serial mechanism (SCARA)} \label{S03-2}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.11]{RRP.jpg}  
+	\caption{Mecanismo RRP}
+	\label{fig:RRP}
+\end{figure}
+
 
 \begin{equation}
 \begin{cases}
