@@ -1,8 +1,8 @@
 %*******************************************************************************************%
-%            	DYNAMIC MODELLING AND CONTROL OF BALANCED PARALLEL MECHANISMS           	%
+%            	A new approach for designing dynamic balanced serial mechanisms           	%
 % 																					   		%
 % April 26, 2015														 						%
-% Authors: Andre G. Coutinho, Tarcisio A. H. Coelho					%
+% Authors: Andre G. Coutinho, Tarcisio A. H. Coelho			                         		% 
 % bash adaptive.sh							 												%
 % 																							%
 %*******************************************************************************************%
@@ -121,19 +121,23 @@ This work is organized as follows. Section 2 describes the proposed methodology,
 
 \subsection{Dynamic Model}\label{S02-1}
 
-O modelo din\^{a}mico de um mecanismo serial pode ser escrito da seguinte maneira:
+The dynamic model of a serial mechanism can be written in this way:
+%O modelo din\^{a}mico de um mecanismo serial pode ser escrito da seguinte maneira:
 \begin{equation}\label{eq:SerialDynamics}
 \mM\ssh (\mq\ssh) \ddot{\mq}\ssh + \mv\ssh(\mq\ssh,\dot{\mq}\ssh) + \mg\ssh (\mq\ssh) = \mu
 \end{equation}
 
-Sendo $\mq\ssh$ um conjunto de coordenadas generalizadas independentes, cujos elementos s\~{a}o os deslocamentos relativos das juntas e $\mu$ os esfor\c{c}os generalizados nas dire\c{c}\~oes das quasi-velocidades independentes $\mp\ssh = \dot{\mq}\ssh$.
+Being $\mq\ssh$ a set of independent generalized coordinates, whose elements are relative displacements of the joints, and $\mu$ the generalized actuators' efforts in the directions of the independent quasi-velocities $\mp\ssh = \dot{\mq}\ssh$.
+%Sendo $\mq\ssh$ um conjunto de coordenadas generalizadas independentes, cujos elementos s\~{a}o os deslocamentos relativos das juntas e $\mu$ os esfor\c{c}os generalizados nas dire\c{c}\~oes das quasi-velocidades independentes $\mp\ssh = \dot{\mq}\ssh$.
 
-Para realizar o balanceamento din\^{a}mico de um mecanismo serial, utilizando abordagem proposta, \'{e} necess\'{a}rio primeiro obter o modelo do mecanismo desbalanceado. Como em um mecanismo serial \'{e} poss\'{i}vel de expressar todas as velocidades lineares absolutas dos centros de massa das barras e todas as velocidades angulares absolutas das barras em fun\c{c}\~ao de $\mq\ssh$ e  $\dot{\mq}\ssh$, o modelo din\^{a}mico pode ser obtido sem grandes dificuldades utilizando m\'{e}todos de mec\'{a}nica anal\'{i}tica, como Lagrange, Kane e Orsino, aliados a programas ou bibliotecas de linguagens de programa\c{c}\~{a}o que s\~{a}o capazes de utilizar manipula\c{c}\~{a}o simb\'{o}lica, como o Mathematica e o SymPy.
+To perform the dynamic balancing of a serial mechanism, using the proposed approach, it is necessary to first obtain the dynamic model of the unbalanced mechanism. As in a serial mechanism it is possible to express all the absolute velocities of the links' centers of mass and all the absolute angular velocities of the links in function of $\mq\ssh$ and $\dot{\mq}\ssh$, the dynamic model can be obtained without major difficulties using analytical mechanics techniques, like Lagrange and Kane formalisms and Orsino's method, allied to programs or libraries of programming languages that are capable of using symbolic manipulation, such as Mathematica and SymPy.
+%Para realizar o balanceamento din\^{a}mico de um mecanismo serial, utilizando abordagem proposta, \'{e} necess\'{a}rio primeiro obter o modelo do mecanismo desbalanceado. Como em um mecanismo serial \'{e} poss\'{i}vel de expressar todas as velocidades lineares absolutas dos centros de massa das barras e todas as velocidades angulares absolutas das barras em fun\c{c}\~ao de $\mq\ssh$ e  $\dot{\mq}\ssh$, o modelo din\^{a}mico pode ser obtido sem grandes dificuldades utilizando m\'{e}todos de mec\'{a}nica anal\'{i}tica, como Lagrange, Kane e Orsino, aliados a programas ou bibliotecas de linguagens de programa\c{c}\~{a}o que s\~{a}o capazes de utilizar manipula\c{c}\~{a}o simb\'{o}lica, como o Mathematica e o SymPy.
 
 
 \subsection{Static Balancing}\label{S02-2}
 
-Depois de obtido o modelo din\^{a}mico, realiza-se o balanceamento est\'{a}tico encontrando as posi\c{c}\~{o}es dos centros de massa das barras que fazem com que $\mg\ssh = \mzr$. Isso \'{e} poss\'{i}vel para mecanismos com juntas apenas rotativas e mecanismos com juntas prism\'{a}ticas cujas dire\c{c}\~{o}es s\~{a}o ortogonais \`{a} gravidade. O posicionamento dos centros de massa \'e realizado mecanicamente com o prologamento das barras do mecanismo e adi\c{c}\~ao de contra-pesos.
+After obtaining the dynamic model, the static balancing is performed finding the links' centers of mass positions that make $\mg\ssh = \mzr$. Is is possible for mechanisms with only rotative joints and mechanisms with prismatic joints whose directions are orthogonal to the gravity. The positioning of the centers of mass is done mechanically extending the mechanism's bars and adding counterweights.
+%Depois de obtido o modelo din\^{a}mico, realiza-se o balanceamento est\'{a}tico encontrando as posi\c{c}\~{o}es dos centros de massa das barras que fazem com que $\mg\ssh = \mzr$. Isso \'{e} poss\'{i}vel para mecanismos com juntas apenas rotativas e mecanismos com juntas prism\'{a}ticas cujas dire\c{c}\~{o}es s\~{a}o ortogonais \`{a} gravidade. O posicionamento dos centros de massa \'e realizado mecanicamente com o prologamento das barras do mecanismo e adi\c{c}\~ao de contra-pesos.
 
 \subsection{Dynamic Balancing}\label{S02-3}
 
