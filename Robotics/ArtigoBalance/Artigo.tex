@@ -141,16 +141,19 @@ After obtaining the dynamic model, the static balancing is performed finding the
 
 \subsection{Dynamic Balancing}\label{S02-3}
 
-O balanceamento din\^{a}mico \'{e} obtido acoplando discos girantes ao modelo do mecanismo est\'{a}ticamente balanceado. Isso \'{e} feito utilizando a t\'{e}cnica de acoplamento de subsistemas do M\'{e}todo Orsino.
+The dynamic balancing is performed coupling counter-rotating disks to the statically balanced mechanism model. This is done using the coupling subsystems technique of Orsino's method.
+%O balanceamento din\^{a}mico \'{e} obtido acoplando discos girantes ao modelo do mecanismo est\'{a}ticamente balanceado. Isso \'{e} feito utilizando a t\'{e}cnica de acoplamento de subsistemas do M\'{e}todo Orsino.
 
-Seja $\ssM_0$ um subsistema mec\^anico constituido por um mecanismo serial estaticamente balanceado, cuja equa\c{c}\~{a}o de movimento \'e dada pela equa\c{c}\~{a}o \eqref{eq:SerialDynamics}, com $\mg\ssh = \mzr$. Seja $\ssM_i$ um subsistema mec\^anico constituido de um disco girante que ser\'a acoplado ao mecanismo, cuja equa\c{c}\~{a}o de movimento \'e dada por:
+Let $\ssM_0$ be a mechanical subsystem composed by a statically balanced serial mechanism, whose equation of motion is given by \eqref{eq:SerialDynamics}, with $\mg\ssh = \mzr$. Let $\ssM_i$ be a mechanical subsystem composed by a counter-rotating disk that will be coupled to the mechanism, whose equation of motion is given by:
+%Seja $\ssM_0$ um subsistema mec\^anico constituido por um mecanismo serial estaticamente balanceado, cuja equa\c{c}\~{a}o de movimento \'e dada pela equa\c{c}\~{a}o \eqref{eq:SerialDynamics}, com $\mg\ssh = \mzr$. Seja $\ssM_i$ um subsistema mec\^anico constituido de um disco girante que ser\'a acoplado ao mecanismo, cuja equa\c{c}\~{a}o de movimento \'e dada por:
 \begin{equation}\label{eq:DiscDynamics}
 \mM\ssh_i \dot{\mp}\ssh + \mv\ssh_i + \mg\ssh_i = \mu_i
 \end{equation}
-Sendo $\mp\ssh$ um conjunto de quasi-velocidades independentes, cujos elementos s\~{a}o as componentes n\~{a}o nulas do vetor velocidade angular absoluta do disco, escrito em uma base solid\'{a}ria ao disco, e $\mv\ssh_i = \mg\ssh_i = \mu_i = \mzr$. Nesse modelo, s\~ao considerados apenas os efeitos das in\'{e}rcias rotativas, sendo os efeitos da massa do disco considerados na massa e nos momentos de in\'{e}rcia da barra em que o disco for acoplado, efetando tamb\'{e}m no c\'{a}lculo do posicionamento dos contra-pesos, de modo que o mecanismo continue est\'{a}ticamente balanceado.
+Being $\mp\ssh$ a set of independent quasi-velocities, whose elements are non-null components of the absolute angular velocity vector of the disk, written in a basis fixed to the disk, and $\mv\ssh_i = \mg\ssh_i = \mu_i = \mzr$. In this model, only the rotative inertias are considered, as the effects of the disk's mass are considered in the mass and the inertia moments of the bar that the disk is coupled, also affecting the counterweights positioning calculus, so that the mechanism continues statically balanced.
+%Sendo $\mp\ssh$ um conjunto de quasi-velocidades independentes, cujos elementos s\~{a}o as componentes n\~{a}o nulas do vetor velocidade angular absoluta do disco, escrito em uma base solid\'{a}ria ao disco, e $\mv\ssh_i = \mg\ssh_i = \mu_i = \mzr$. Nesse modelo, s\~ao considerados apenas os efeitos das in\'{e}rcias rotativas, sendo os efeitos da massa do disco considerados na massa e nos momentos de in\'{e}rcia da barra em que o disco for acoplado, efetando tamb\'{e}m no c\'{a}lculo do posicionamento dos contra-pesos, de modo que o mecanismo continue est\'{a}ticamente balanceado.
 
-Supondo que ir\~{a}o ser acoplados $n$ discos ao mecanismo, s\~ao feitas as seguintes defini\c{c}\~oes:
-
+Assuming that $n$ counter-rotating disks will be coupled to the mechanism, the following definitions are made:
+%Supondo que ir\~{a}o ser acoplados $n$ discos ao mecanismo, s\~ao feitas as seguintes defini\c{c}\~oes:
 \begin{equation}\label{eq:M'}
 \mM' =
 \begin{bmatrix}
@@ -180,15 +183,13 @@ Supondo que ir\~{a}o ser acoplados $n$ discos ao mecanismo, s\~ao feitas as segu
 {\mp\ssh}^\msT & {\mp^\circ}^\msT
 \end{bmatrix}^\msT
 \end{equation}
-
-Seja $\underline{\mp}^\circ$ o vetor $\mp^\circ$ escrito em fun\c{c}\~{a}o de $\mq\ssh$ e $\mp\ssh$, ou seja:
-
+Let $\underline{\mp}^\circ$ be the vector $\mp^\circ$ written in function of $\mq\ssh$ e $\mp\ssh$, i.e.:
+%Seja $\underline{\mp}^\circ$ o vetor $\mp^\circ$ escrito em fun\c{c}\~{a}o de $\mq\ssh$ e $\mp\ssh$, ou seja:
 \begin{equation}\label{eq:pº_}
 \mp^\circ = \underline{\mp}^\circ(\mq\ssh, \mp\ssh) 
 \end{equation}
-
-Definimos a seguinte matriz das restri\c{c}\~{o}es cinem\'{a}ticas:
-
+The kinematic constraints matrix is defined:
+%Definimos a seguinte matriz das restri\c{c}\~{o}es cinem\'{a}ticas:
 \begin{equation}\label{eq:C}
 \mC =
 \begin{bmatrix}
@@ -196,13 +197,12 @@ Definimos a seguinte matriz das restri\c{c}\~{o}es cinem\'{a}ticas:
 \displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
 \end{bmatrix}
 \end{equation}
-
-O modelo din\^{a}mico do mecanismo serial com os discos acoplados, \'{e} dado por:
+The dynamic model of the serial mechanism coupled with counter-rotating disk is given by:
+%O modelo din\^{a}mico do mecanismo serial com os discos acoplados, \'{e} dado por:
 \begin{equation}\label{eq:CoupledDynamics}
 {\mM'}\ssh (\mq\ssh) \ddot{\mq}\ssh + {\mv'}\ssh(\mq\ssh,\dot{\mq}\ssh) + {\mg'}\ssh (\mq\ssh) = \mu
 \end{equation}
-
-Sendo:
+Being:
 \begin{equation}\label{eq:Mh'}
 {\mM'}\ssh = \mC^\msT \mM' \mC
 \end{equation}
@@ -212,8 +212,8 @@ Sendo:
 \begin{equation}\label{eq:gh'}
 {\mg'}\ssh = \mC^\msT \mg'
 \end{equation}
-
-O balanceamento din\^{a}mico \'{e} obtido encontrando as rela\c{c}\~{o}es entre os par\^{a}metros do sistema que tornam a matriz ${\mM'}\ssh$ diagonal e o vetor ${\mv'}\ssh$ nulo.
+The dynamic balancing is achieved by finding the relationships between system parameters that make diagonal ${\mM'}\ssh$ diagonal and ${\mv'}\ssh$ null.
+%O balanceamento din\^{a}mico \'{e} obtido encontrando as rela\c{c}\~{o}es entre os par\^{a}metros do sistema que tornam a matriz ${\mM'}\ssh$ diagonal e o vetor ${\mv'}\ssh$ nulo.
 
 
  
