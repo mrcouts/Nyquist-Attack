@@ -86,6 +86,30 @@ Balancing is an important issue related to the design of mechanical systems in g
 
 Adaptive balancing means that the mechanical structure of the manipulator is modified in order to achieve the decoupling of dynamic equations. The modifications comprise the addition of either counterweights, or counter-rotating disks or even both to the original kinematic chain of the manipulator. Consequently, the terms associated to gravitational, centripetal and Coriolis efforts are completely eliminated from the dynamic equations. As a matter of fact, the effective inertias for all the actuator axes are constant and the mathematical expressions of the driving torques/forces become rather simple. One of the main advantages of this approach concerns the reduction of computing time for a closed-loop control of manipulators. Such reduction is really significant and it constitutes in a great benefit for real-time applications.
 
+In a statically balanced mechanism, the potential energy is invariant. Hence,
+the actuator torques/forces are null at any configuration \cite{6wang}.
+
+On the other hand, in a dynamically balanced mechanism, the shaking forces and
+shaking moments at its frame are reduced or even eliminated. As a consequence, 
+the mechanism components are less susceptible to vibration, wear and fatigue \cite{4wu}, improving its life.
+
+Passive balancing means that the original mechanism architecture is modified by using some techniques. The most common techniques are
+the addition of counterweights \cite{1wijk,2arakelian,3seo,4wu,6wang,7wang,12russo,15coelho,16moradi}, 
+the use of counter-rotating inertias \cite{2arakelian,4wu,15coelho,16moradi} 
+and the redistribution of masses \cite{8alici,9alici}. Alternatively, other works propose the addition of extra links \cite{5gosselin,12russo,13agrawal}.
+However, for high speed manipulators, these techniques might cause the increase of the actuator torques and the size of links and joints.
+
+Hence, in order to avoid such undesirable effects, some 
+authors \cite{6wang,7wang,8alici,9alici,10dehkordi,13agrawal} recommend the use of  elastic springs attached to the mechanism.
+
+For the active balancing \cite{2arakelian,3seo,11wang,14briot,15coelho,16moradi}, 
+more complex modifications are needed to implement it. For instance, the counterweights position in the moving links might be altered
+according to the end-effector load or the given trajectory. Hence, 
+additional actuators/sensors and control are usually employed to reach satisfactory performance levels. Arakelian and Smith \cite{2arakelian} employ a computer control of the motion of a inertia flywheel connected to the mechanism.
+Moreover, Coelho et al. \cite{15coelho}, Moradi et al. \cite{16moradi} and \cite{17arakelian} use the adaptive balancing to achieve the 
+decoupling of dynamic equations for open-loop kinematic chain mechanisms. 
+Consequently, this action simplifies the control of manipulators due to the fact that the actuators can be controlled independently. 
+
 The contributions of this work are the following: to present a systematic methodology for the adaptive balancing, to discuss the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators, not only in terms of the possibility to achieve such balancing but also in terms of the increase in the complexity level of the modified mechanical structure. The analysed manipulators correspond to 3-dof spatial and planar open loop-kinematic chain, whose topologies are composed of revolute and prismatic joints.
 
 This work is organized as follows. Section 2 describes the proposed methodology, while section 3 deals with the application of the methodology to 3 types of serial manipulators. Finally, the conclusions are drawn in section 4.
