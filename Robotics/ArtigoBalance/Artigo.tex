@@ -292,16 +292,17 @@ For revolute joints is defined $q_i = \theta_i$ and $u_i = \tau_i$, and for pris
 	\caption{Mecanismo RRR plano balanceado dinamicamente}
 	\label{fig:RRR2D}
 \end{figure}
-
-As componentes de $\mg\ssh$ para o mecanismo em quest\~{a}o desbalanceado s\~{a}o dadas por:
+The $\mg\ssh$ components for the unbalanced mechanism are given by:
+%As componentes de $\mg\ssh$ para o mecanismo em quest\~{a}o desbalanceado s\~{a}o dadas por:
 \begin{equation}\label{eq:gh1}
 \begin{cases}
 D_1 = g[ (m_1 l_{g_1} + m_2 l_1 + m_3 l_1 ) \ccos(\theta_1) + (m_2 l_{g_2} + m_3 l_2) \ccos(\theta_1 + \theta_2) + m_3 l_{g_3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
 D_2 = g[  (m_2 l_{g_2} + m_3 l_2) \ccos(\theta_1 + \theta_2) + m_3 l_{g_3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
 D_3 = g[   m_3 l_{g_3} \ccos(\theta_1 + \theta_2 + \theta_3) ] \\
 \end{cases}
-\end{equation} 
-Realizando o balanceamento est\'{a}tico, temos:
+\end{equation}
+Performing the static balancing:
+%Realizando o balanceamento est\'{a}tico, temos:
 \begin{equation}\label{eq:StaticBalancing1}
 \begin{cases}
 D_1 = 0 \\
@@ -315,7 +316,8 @@ l_{g_2} = -\frac{l_2 m_3}{m_2} \\
 l_{g_3} = 0 \\
 \end{cases}
 \end{equation}
-Substituindo \eqref{eq:StaticBalancing1} no modelo do mecanismo, obtemos o modelo din\^{a}mico do mecanismo estaticamente balanceado:
+Substituting \eqref{eq:StaticBalancing1} in the mechanism model, the dynamic model of the statically balanced mechanism is obtained:
+%Substituindo \eqref{eq:StaticBalancing1} no modelo do mecanismo, obtemos o modelo din\^{a}mico do mecanismo estaticamente balanceado:
 \begin{equation}\label{eq:StaticBalanced1}
 \begin{cases}
 D_{11} = J_{z_1} + J_{z_2} + J_{z_3} + m_2 l_1^2 + m_3 (l_1^2 + l_2^2) + \frac{l_1^2 (m_2 + m_3)^2}{m_1} + \frac{l_2^2 m_3^2}{m_2} \\
@@ -327,7 +329,8 @@ D_{13} = D_{23} = D_{33} \\
 \mg\ssh = \mzr
 \end{cases}
 \end{equation}
-Para realizar o balanceamento din\^{a}mico, acoplamos 4 discos ao mecanismo, assim como \'{e} mostrado na figura 1. Como os discos giram em apenas um plano, utilizamos os seguintes modelos din\^{a}micos para eles:
+To perform the dynamic balancing, 4 counter-rotating disks are coupled to the mechanism, as shown in figure 1. As the disks rotate in only one plane, the following dynamic models are used for them:
+%Para realizar o balanceamento din\^{a}mico, acoplamos 4 discos ao mecanismo, assim como \'{e} mostrado na figura 1. Como os discos giram em apenas um plano, utilizamos os seguintes modelos din\^{a}micos para eles:
 \begin{equation}\label{eq:DiscsModel1}
 \mM\ssh_i = \begin{bmatrix} J_{z_{i+3}} \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{z_{i+3}} \end{bmatrix}, \; i = 1, 2, 3, 4
 \end{equation}
