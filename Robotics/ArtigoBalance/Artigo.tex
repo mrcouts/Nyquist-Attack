@@ -130,7 +130,7 @@ The dynamic model of a serial mechanism can be written in this way:
 Being $\mq\ssh$ a column-matrix of independent generalized coordinates, whose entries are relative displacements of the joints, and $\mu$ the generalized actuators' efforts in the directions of the independent quasi-velocities $\mp\ssh = \dot{\mq}\ssh$.
 %Sendo $\mq\ssh$ um conjunto de coordenadas generalizadas independentes, cujos elementos s\~{a}o os deslocamentos relativos das juntas e $\mu$ os esfor\c{c}os generalizados nas dire\c{c}\~oes das quasi-velocidades independentes $\mp\ssh = \dot{\mq}\ssh$.
 
-To perform the dynamic balancing of a serial mechanism, using the proposed approach, it is necessary to first obtain the dynamic model of the unbalanced mechanism. As in a serial mechanism it is possible to express all the absolute velocities of the links' centers of mass and all the absolute angular velocities of the links in function of $\mq\ssh$ and $\dot{\mq}\ssh$, the dynamic model can be obtained without major difficulties using analytical mechanics techniques, like Lagrange and Kane formalisms and Orsino's method \cite{19orsino}, allied to programs or libraries of programming languages that are capable of using symbolic manipulation, such as Mathematica and SymPy.
+To perform the dynamic balancing of a serial mechanism, using the proposed approach, it is necessary to first obtain the dynamic model of the unbalanced mechanism. As in a serial mechanism it is possible to express all the absolute velocities of the links' centers of mass and all the absolute angular velocities of the links in function of $\mq\ssh$ and $\dot{\mq}\ssh$, the dynamic model can be obtained without major difficulties using analytical mechanics techniques, like Lagrange \cite{18tsai} and Kane \cite{19kane} formalisms and Orsino's method \cite{21orsino}, allied to programs or libraries of programming languages that are capable of using symbolic manipulation, such as Mathematica and SymPy.
 %Para realizar o balanceamento din\^{a}mico de um mecanismo serial, utilizando abordagem proposta, \'{e} necess\'{a}rio primeiro obter o modelo do mecanismo desbalanceado. Como em um mecanismo serial \'{e} poss\'{i}vel de expressar todas as velocidades lineares absolutas dos centros de massa das barras e todas as velocidades angulares absolutas das barras em fun\c{c}\~ao de $\mq\ssh$ e  $\dot{\mq}\ssh$, o modelo din\^{a}mico pode ser obtido sem grandes dificuldades utilizando m\'{e}todos de mec\'{a}nica anal\'{i}tica, como Lagrange, Kane e Orsino, aliados a programas ou bibliotecas de linguagens de programa\c{c}\~{a}o que s\~{a}o capazes de utilizar manipula\c{c}\~{a}o simb\'{o}lica, como o Mathematica e o SymPy.
 
 
@@ -141,7 +141,7 @@ After obtaining the dynamic model, the static balancing is performed finding the
 
 \subsection{Dynamic Balancing}\label{S02-3}
 
-The dynamic balancing is performed coupling counter-rotating disks to the statically balanced mechanism model. This is done using the coupling subsystems technique of Orsino's method \cite{19orsino}.
+The dynamic balancing is performed coupling counter-rotating disks to the statically balanced mechanism model. This is done using the coupling subsystems technique of Orsino's method \cite{21orsino}.
 %O balanceamento din\^{a}mico \'{e} obtido acoplando discos girantes ao modelo do mecanismo est\'{a}ticamente balanceado. Isso \'{e} feito utilizando a t\'{e}cnica de acoplamento de subsistemas do M\'{e}todo Orsino.
 
 Let $\ssM_0$ be a mechanical subsystem composed by a statically balanced serial mechanism, whose equation of motion is given by \eqref{eq:SerialDynamics}, with $\mg\ssh = \mzr$. Let $\ssM_i$ be a mechanical subsystem composed by a counter-rotating disk that will be coupled to the mechanism, whose equation of motion is given by:
@@ -284,7 +284,8 @@ u_3
 For revolute joints is defined $q_i = \theta_i$ and $u_i = \tau_i$, and for prismatic joints is defined $q_i = d_i$ and $u_i = f_i$, to conform with the more traditional notations of this area.
 %Para juntas rotativas definimos $q_i = \theta_i$ e $u_i = \tau_i$, e para juntas prism\'{a}ticas definimos $q_i = d_i$ and $u_i = f_i$, para ficar de acordo com as nota\c{c}\~{o}es mais tradicionais dessa \'{a}rea.
 
-Se\'{a} utilizada a conven\c{c}\~{a}o de Denavit–Hartenberg para a defini\c{a}\~{a}o dos sistemas de coordenadas solid\'{a}rios \`{a}s barras do mecanismo e para enumera\c{a}o das juntas e barras do mecanismo.
+Denavit-Hartenberg convention will be used for defining the coordinate system fixed to the links of the mechanism and to enumerate the links and joints of the mechanism.
+%Ser\'{a} utilizada a conven\c{c}\~{a}o de Denavit–Hartenberg para a defini\c{a}\~{a}o dos sistemas de coordenadas solid\'{a}rios \`{a}s barras do mecanismo e para enumera\c{a}o das juntas e barras do mecanismo.
 
 \subsection{3-DOF RRR planar serial mechanism}\label{S03-1}
 
@@ -432,7 +433,7 @@ k_3 = \frac{(J_{z_3}+J_{z_6})(J_{z_3}+J_{z_6}+J_{z_7})}{J_{z_7}} \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.11]{RRR3D.jpg}  
-	\caption{Dynamically Balanced RRR spatial serial mechanism}
+	\caption{Dynamically balanced RRR spatial serial mechanism}
 	\label{fig:RRR3D}
 \end{figure}
 
@@ -586,14 +587,16 @@ k_3 = \frac{(J_{z_3}+J_{z_4})(J_{z_3}+J_{z_4}+J_{z_5})}{J_{z_5}} \\
 \end{cases}
 \end{equation}
 
-Repare que as condi\c{c}\~oes necess\'{a}rias para o balanceamento din\^{a}mico deste mecanismo requerem momentos de in\'{e}rcia transversais muito elevados para as barras 2 e 3, o que n\~{a}o \'{e} nada conveniente para um manipulador industrial. O pr\'{o}ximo exemplo de aplica\c{c}\~{a}o ser\'{a} em outro mecanismo serial espacial de 3 graus de liberdade, em que esse tipo de inconveniente n\~{a}o acontece.
+
+Note that the necessary conditions for the dynamic balancing of this mechanism require very high transversal moments of inertia for the bars 2 and 3, which is not convenient for an industrial manipulator. The next example of application will be in another 3-dof spatial serial mechanism, in which such inconvenience does not occur.
+%Repare que as condi\c{c}\~oes necess\'{a}rias para o balanceamento din\^{a}mico deste mecanismo requerem momentos de in\'{e}rcia transversais muito elevados para as barras 2 e 3, o que n\~{a}o \'{e} nada conveniente para um manipulador industrial. O pr\'{o}ximo exemplo de aplica\c{c}\~{a}o ser\'{a} em outro mecanismo serial espacial de 3 graus de liberdade, em que esse tipo de inconveniente n\~{a}o acontece.
 
 \subsection{3-DOF RRP spatial serial mechanism (SCARA)} \label{S03-2}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.11]{RRP.jpg}  
-	\caption{Statically Balanced RRP spatial serial mechanism}
+	\caption{Statically balanced RRP spatial serial mechanism}
 	\label{fig:RRP}
 \end{figure}
 
@@ -710,7 +713,8 @@ k_3 = m_3 \\
 \end{cases}
 \end{equation}
 
-Repare que as condi\c{c}\~oes necess\'{a}rias para o balanceamento din\^{a}mico deste mecanismo n\~{a}o requerem restri\c{c}\~{o}es nos par\^{a}metros de in\'{e}rcia do mecanismo, como acontece no exemplo anterior. Sendo assim, como o mecanismo do exemplo anterior e o do exemplo em quest\~{a}o s\~{a}o ambos mecanismos seriais espaciais que realizam transla\c{c}\~{o}es do efetuador em 3 eixos, pode-se dizer que o mecanismo em quest\~{a}o \'{e} uma boa alternativa ao mecanismo da se\c{c}\~{a}o 3.2 em aplica\c{c}\~{o}es em que o balanceamento din\^{a}mico \'{e} vantajoso ao sistema.
+Note that the necessary conditions for the dynamic balancing of this mechanism does not require restrictions on the mechanism inertia parameters, as in the previous example. Thus, as the mechanism in the previous example and the mechanism of this example are both spatial serial mechanisms that perform effector translations in 3 axes, it can be said that the mechanism in question is a good alternative to section 3.2 mechanism in applications in which the dynamic balancing is advantageous to the system.
+%Repare que as condi\c{c}\~oes necess\'{a}rias para o balanceamento din\^{a}mico deste mecanismo n\~{a}o requerem restri\c{c}\~{o}es nos par\^{a}metros de in\'{e}rcia do mecanismo, como acontece no exemplo anterior. Sendo assim, como o mecanismo do exemplo anterior e o do exemplo em quest\~{a}o s\~{a}o ambos mecanismos seriais espaciais que realizam transla\c{c}\~{o}es do efetuador em 3 eixos, pode-se dizer que o mecanismo em quest\~{a}o \'{e} uma boa alternativa ao mecanismo da se\c{c}\~{a}o 3.2 em aplica\c{c}\~{o}es em que o balanceamento din\^{a}mico \'{e} vantajoso ao sistema.
 
 %--------------------CONCLUSIONS--------------------%
 
