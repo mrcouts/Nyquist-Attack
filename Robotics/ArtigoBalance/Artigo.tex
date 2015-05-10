@@ -1,10 +1,10 @@
 %*******************************************************************************************%
 %            	A new approach for designing dynamic balanced serial mechanisms           	%
-% 																					   		%
+% 																					   		    %
 % April 26, 2015														 						%
 % Authors: Andre G. Coutinho, Tarcisio A. H. Coelho			                         		% 
-% bash adaptive.sh							 												%
-% 																							%
+% bash adaptive.sh							 												    %
+% 																							    %
 %*******************************************************************************************%
 
 
@@ -65,7 +65,7 @@ University of Sao Paulo, Brazil. E-mail: tarchess@usp.br}
 
 \begin{abstract}
 
-Adaptive balancing means that the mechanical structure of the manipulator is modified in order to achieve the decoupling of dynamic equations. This work deals with a systematic methodology for the adaptive balancing. Basically, two balancing techniques are employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators is discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions are developed for 3-dof spatial and planar open loop-kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints.
+Adaptive balancing means that the mechanical structure of the manipulator is modified in order to achieve the decoupling of dynamic equations. This work deals with a systematic methodology for the adaptive balancing. Basically, two balancing techniques are employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators is discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions are developed here for 3-dof spatial and planar open-loop kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints.
 
 \vspace{10pt}
 
@@ -82,38 +82,13 @@ KEYWORDS: {Dynamic balancing, serial mechanisms}
 
 \section{Introduction and literature review}\label{S01}
 
-Balancing is an important issue related to the design of mechanical systems in general, and also serial manipulators, in particular. In fact, the performance of serial mechanisms associated to specific applications depends on the choice of the balancing method, namely, either static or dynamic, either passive or active, whether it is valid for a given trajectory or even for any motion.
+Balancing can be considered as an important issue related to the design of any kind of mechanical system in general, and also serial manipulators, in particular. As a matter of fact, the performance of open-loop kinematic chain mechanisms associated to specific applications depends on the choice of the balancing method, namely, either static \cite{6wang} or dynamic \cite{4wu}, either passive \cite{1wijk,4wu,5gosselin,6wang,7wang,8alici,9alici,10dehkordi,12russo,13agrawal} or active \cite{2arakelian,3seo,11wang,14briot,15coelho,16moradi}, whether it is valid for a given trajectory or even for any motion.
 
-Adaptive balancing means that the mechanical structure of the manipulator is modified in order to achieve the decoupling of dynamic equations. The modifications comprise the addition of either counterweights, or counter-rotating disks or even both to the original kinematic chain of the manipulator. Consequently, the terms associated to gravitational, centripetal and Coriolis efforts are completely eliminated from the dynamic equations. As a matter of fact, the effective inertias for all the actuator axes are constant and the mathematical expressions of the driving torques/forces become rather simple. One of the main advantages of this approach concerns the reduction of computing time for a closed-loop control of manipulators. Such reduction is really significant and it constitutes in a great benefit for real-time applications.
+Moreover, Coelho et al. \cite{15coelho}, Moradi et al. \cite{16moradi} and Arakelian and Sargsyan \cite{17arakelian} use the adaptive balancing to achieve the decoupling of dynamic equations for open-loop kinematic chain mechanisms. Consequently, this action simplifies the control of manipulators due to the fact that the actuators can be controlled independently. The necessary modifications comprise the addition of either counterweights, or counter-rotating disks or even both to the original kinematic chain of the manipulator. Consequently, the terms associated to gravitational, centripetal and Coriolis efforts are completely eliminated from the dynamic equations. As a matter of fact, the effective inertias for all the actuator axes are constant and the mathematical expressions of the driving torques/forces become rather simple. One of the main advantages of this approach concerns the reduction of computing time for a closed-loop control of manipulators. Such reduction is really significant and it constitutes in a great benefit for real-time applications.
 
-In a statically balanced mechanism, the potential energy is invariant. Hence,
-the actuator torques/forces are null to keep the mechanism at any configuration \cite{6wang}.
-
-On the other hand, in a dynamically balanced mechanism, the shaking forces and
-shaking moments at its frame are reduced or even eliminated. As a consequence, 
-the mechanism components are less susceptible to vibration, wear and fatigue \cite{4wu}, improving its life.
-
-Passive balancing means that the original mechanism architecture is modified by using some techniques. The most common techniques are
-the addition of counterweights \cite{1wijk,2arakelian,3seo,4wu,6wang,7wang,12russo,15coelho,16moradi}, 
-the use of counter-rotating inertias \cite{2arakelian,4wu,15coelho,16moradi} 
-and the redistribution of masses \cite{8alici,9alici}. Alternatively, other works propose the addition of extra links \cite{5gosselin,12russo,13agrawal}.
-However, for high speed manipulators, these techniques might cause the increase of the actuator torques and the size of links and joints.
-
-Hence, in order to avoid such undesirable effects, some 
-authors \cite{6wang,7wang,8alici,9alici,10dehkordi,13agrawal} recommend the use of  elastic springs attached to the mechanism.
-
-For the active balancing \cite{2arakelian,3seo,11wang,14briot,15coelho,16moradi}, 
-more complex modifications are needed to implement it. For instance, the counterweights position in the moving links might be altered
-according to the end-effector load or the given trajectory. Hence, 
-additional actuators/sensors and control are usually employed to reach satisfactory performance levels. Arakelian and Smith \cite{2arakelian} employ a computer control of the motion of a inertia flywheel connected to the mechanism.
-Moreover, Coelho et al. \cite{15coelho}, Moradi et al. \cite{16moradi} and \cite{17arakelian} use the adaptive balancing to achieve the 
-decoupling of dynamic equations for open-loop kinematic chain mechanisms. 
-Consequently, this action simplifies the control of manipulators due to the fact that the actuators can be controlled independently. 
-
-The contributions of this work are the following: to present a systematic methodology for the adaptive balancing, to discuss the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators, not only in terms of the possibility to achieve such balancing but also in terms of the increase in the complexity level of the modified mechanical structure. The analysed manipulators correspond to 3-dof spatial and planar open loop-kinematic chain, whose topologies are composed of revolute and prismatic joints.
+The contributions of this work are the following: to present a systematic methodology for the adaptive balancing, to discuss the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators, not only in terms of the possibility to achieve such balancing but also in terms of the increase in the complexity level of the modified mechanical structure. The analysed manipulators correspond to 3-dof spatial and planar open loop-kinematic chain, whose topologies are composed of revolute and prismatic joints. 
 
 This work is organized as follows. Section 2 describes the proposed methodology, while section 3 deals with the application of the methodology to 3 types of serial manipulators. Finally, the conclusions are drawn in section 4.
-
 
 %--------------------METHODOLOGY--------------------%
 
@@ -287,12 +262,12 @@ For revolute joints is defined $q_i = \theta_i$ and $u_i = \tau_i$, and for pris
 Denavit-Hartenberg convention will be used for defining the coordinate system fixed to the links of the mechanism and to enumerate the links and joints of the mechanism.
 %Ser\'{a} utilizada a conven\c{c}\~{a}o de Denavit–Hartenberg para a defini\c{a}\~{a}o dos sistemas de coordenadas solid\'{a}rios \`{a}s barras do mecanismo e para enumera\c{a}o das juntas e barras do mecanismo.
 
-\subsection{3-DOF RRR planar serial mechanism}\label{S03-1}
+\subsection{3-dof \underline{RRR} planar serial mechanism}\label{S03-1}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.11]{RRR2D.jpg}  
-	\caption{Dynamically balanced RRR planar serial mechanism}
+	\caption{Dynamically balanced \underline{RRR} planar serial mechanism}
 	\label{fig:RRR2D}
 \end{figure}
 The entries of $\mg\ssh$ for the unbalanced mechanism are given by:
@@ -428,12 +403,12 @@ k_3 = \frac{(J_{z_3}+J_{z_6})(J_{z_3}+J_{z_6}+J_{z_7})}{J_{z_7}} \\
 \end{cases}
 \end{equation}
 
-\subsection{3-DOF RRR spatial serial mechanism} \label{S03-2}
+\subsection{3-dof \underline{RRR} spatial serial mechanism} \label{S03-2}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.11]{RRR3D.jpg}  
-	\caption{Dynamically balanced RRR spatial serial mechanism}
+	\caption{Dynamically balanced \underline{RRR} spatial serial mechanism}
 	\label{fig:RRR3D}
 \end{figure}
 
@@ -591,12 +566,12 @@ k_3 = \frac{(J_{z_3}+J_{z_4})(J_{z_3}+J_{z_4}+J_{z_5})}{J_{z_5}} \\
 Note that the necessary conditions for the dynamic balancing of this mechanism require very high transversal moments of inertia for the bars 2 and 3, which is not convenient for an industrial manipulator. The next example of application will be in another 3-dof spatial serial mechanism, in which such inconvenience does not occur.
 %Repare que as condi\c{c}\~oes necess\'{a}rias para o balanceamento din\^{a}mico deste mecanismo requerem momentos de in\'{e}rcia transversais muito elevados para as barras 2 e 3, o que n\~{a}o \'{e} nada conveniente para um manipulador industrial. O pr\'{o}ximo exemplo de aplica\c{c}\~{a}o ser\'{a} em outro mecanismo serial espacial de 3 graus de liberdade, em que esse tipo de inconveniente n\~{a}o acontece.
 
-\subsection{3-DOF RRP spatial serial mechanism (SCARA)} \label{S03-2}
+\subsection{3-dof \underline{RRP} spatial serial mechanism (SCARA)} \label{S03-2}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.11]{RRP.jpg}  
-	\caption{Statically balanced RRP spatial serial mechanism}
+	\caption{Statically balanced \underline{RRP} spatial serial mechanism}
 	\label{fig:RRP}
 \end{figure}
 
@@ -722,7 +697,7 @@ Note that the necessary conditions for the dynamic balancing of this mechanism d
 
 \section{Conclusions}\label{S04}
 
-This work dealt with a systematic methodology for the adaptive balancing. Two balancing techniques were employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators was discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions were developed for 3-dof spatial and planar open loop-kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints. By analysing the necessary conditions, one can notice that the adaptive balancing  brings great benefits for the planar RRR and the spatial RRP. However, for the spatial RRR, in spite of the achievement of the adaptive balancing, the modifications in the mechanical structure cause the increase of the link inertias and the actuator torques, accordingly. Consequently, the authors believe that the discussion provided here might help the designer to choose an adequate topology for a specific application taking advantage of the adaptive balancing whenever it brings no further consequences in terms of the added inertias.
+This work dealt with a systematic methodology for the adaptive balancing. Two balancing techniques were employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators was discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions were developed for 3-dof spatial and planar open loop-kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints. By analysing the necessary conditions, one can notice that the adaptive balancing  brings great benefits for the planar \underline{RRR} and the spatial \underline{RRP}. However, for the spatial \underline{RRR}, in spite of the achievement of the adaptive balancing, the modifications in the mechanical structure cause the increase of the link inertias and the actuator torques, accordingly. Consequently, the authors believe that the discussion provided here might help the designer to choose an adequate topology for a specific application taking advantage of the adaptive balancing whenever it brings no further consequences in terms of the added inertias.
 
 %--------------------ACKNOWLEDGMENTS--------------------%
 
