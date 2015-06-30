@@ -46,14 +46,14 @@ def gnewton(f,df,d2f,x0,tol=1e-5):
     n = 0
     fg = False
     fn = False
-    while abs(x-x0)>tol and n < 100 and fx < f0: 
+    while abs(x-x0)>tol and fx > 1e-20 and n < 100 and fx < f0: 
         n = n+1
         x0 = x
         f0 = fx
         x = x0 - df(x0)/d2f(x0)
         fx = f(x)
         fn = True 
-    if fx >= f0:
+    if fx >= f0 and fx > 1e-20:
         if df(x0)*(x-x0) < 0:
             sol = gss(f,min(x0,x),max(x0,x),tol)
             x = sol[0]
@@ -64,11 +64,10 @@ def gnewton(f,df,d2f,x0,tol=1e-5):
             k = 0
             x = x0 - (2**k)*d
             fx = f(x)
-            while fx < f0 and k < 10:
+            while df(x)*df(x0) > 0 and k < 10:
                 k = k+1
                 x = x0 - (2**k)*d
-                fx = f(x)
-            if fx < f0:
+            if df(x)*df(x0) > 0:
                 return "Fudeu"
             else:
                 sol = gss(f,min(x0,x),max(x0,x),tol)
@@ -76,7 +75,13 @@ def gnewton(f,df,d2f,x0,tol=1e-5):
                 n = n + sol[1]
                 fg = True
     return [x,n, fn, fg]
-    
+
+#ds/dt = - k*sign(s)
+#Trapezios: s_(k+1) + 0.5*T*k*sign(s_(k+1)) = s_(k) - 0.5*T*k*sign(s_(k))
+#Cade passo de integracao pede a resolucao de um sistema nao linear
+#Transformamos o problema em um equivalente de minimizacao,
+#substituinfo sign(s) por tanh(n*s)
+  
 X = symbols('x')
 k = 100
 s0 = 0.1
@@ -95,7 +100,7 @@ g  =lambda x:F.subs(X,x).evalf()
 dg =lambda x:dF.subs(X,x).evalf()
 d2g=lambda x:d2F.subs(X,x).evalf()
     
-x=gnewton(g,dg,d2g,s0)
+x=gnewton(g,dg,d2g,s0,1e-10)
 print(x)
 print(g(x[0]))
 print(sqrt(2*g(x[0])))
