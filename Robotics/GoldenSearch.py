@@ -41,10 +41,147 @@ def newton(f,x0,tol=1e-5):
     else:
         for n in range(1,101):
             k1 = F(x0,x0)
+            x = x0 + 1.0*k1
+            if abs(x-x0)<tol:
+                break
+            else:
+                x0 = x
+    return [x,f(x), n]
+    
+def heunnewton(f,x0,tol=1e-5):
+    X = symbols('x')
+    df = lambda x: f(X).diff(X).subs(X,x).evalf()
+    d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
+    F = lambda x,x0: -df(x0)/d2f(x)
+    if df(x0) == 0:
+        return [x0,f(x0), 0]
+    else:
+        for n in range(1,101):
+            k1 = F(x0,x0)
+            k2 = F(x0 + 1.0*k1,x0)
+            x = x0 + 1.0*(1.0*k1 +1.0*k2)/2.0
+            if abs(x-x0)<tol:
+                break
+            else:
+                x0 = x
+    return [x,f(x), n]
+    
+def midnewton(f,x0,tol=1e-5):
+    X = symbols('x')
+    df = lambda x: f(X).diff(X).subs(X,x).evalf()
+    d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
+    F = lambda x,x0: -df(x0)/d2f(x)
+    if df(x0) == 0:
+        return [x0,f(x0), 0]
+    else:
+        for n in range(1,101):
+            k1 = F(x0,x0)
+            k2 = F(x0 + 1.0*k1,x0)
+            x = x0 + 1.0*k2
+            if abs(x-x0)<tol:
+                break
+            else:
+                x0 = x
+    return [x,f(x), n]
+    
+def ralstonnewton(f,x0,tol=1e-5):
+    X = symbols('x')
+    df = lambda x: f(X).diff(X).subs(X,x).evalf()
+    d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
+    F = lambda x,x0: -df(x0)/d2f(x)
+    if df(x0) == 0:
+        return [x0,f(x0), 0]
+    else:
+        for n in range(1,101):
+            k1 = F(x0,x0)
+            k2 = F(x0 + (2.0/3.0)*k1,x0)
+            x = x0 + 1.0*(1.0*k1 +3.0*k2)/4.0
+            if abs(x-x0)<tol:
+                break
+            else:
+                x0 = x
+    return [x,f(x), n]
+    
+def rk3newton(f,x0,tol=1e-5):
+    X = symbols('x')
+    df = lambda x: f(X).diff(X).subs(X,x).evalf()
+    d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
+    F = lambda x,x0: -df(x0)/d2f(x)
+    if df(x0) == 0:
+        return [x0,f(x0), 0]
+    else:
+        for n in range(1,101):
+            k1 = F(x0,x0)
+            k2 = F(x0 + 0.5*k1,x0)
+            k3 = F(x0 - 1.0*k1 + 2.0*k2,x0)
+            x = x0 + 1.0*(1.0*k1 + 4.0*k2+ 1.0*k3)/6.0
+            if abs(x-x0)<tol:
+                break
+            else:
+                x0 = x
+    return [x,f(x), n]
+    
+def rk4newton(f,x0,tol=1e-5):
+    X = symbols('x')
+    df = lambda x: f(X).diff(X).subs(X,x).evalf()
+    d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
+    F = lambda x,x0: -df(x0)/d2f(x)
+    if df(x0) == 0:
+        return [x0,f(x0), 0]
+    else:
+        for n in range(1,101):
+            k1 = F(x0,x0)
             k2 = F(x0 + 0.5*k1,x0)
             k3 = F(x0 + 0.5*k2,x0)
             k4 = F(x0 + 1.0*k3,x0)
-            x = x0 + 1.0*(k1+2*k2+2*k3+k4)/6
+            x = x0 + 1.0*(1.0*k1 + 2.0*k2+ 2.0*k3 + 1.0*k4)/6.0
+            if abs(x-x0)<tol:
+                break
+            else:
+                x0 = x
+    return [x,f(x), n]
+    
+def rk438newton(f,x0,tol=1e-5):
+    X = symbols('x')
+    df = lambda x: f(X).diff(X).subs(X,x).evalf()
+    d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
+    F = lambda x,x0: -df(x0)/d2f(x)
+    if df(x0) == 0:
+        return [x0,f(x0), 0]
+    else:
+        for n in range(1,101):
+            k1 = F(x0,x0)
+            k2 = F(x0 + (1.0/3.0)*k1,x0)
+            k3 = F(x0 - (1.0/3.0)*k1 + 1.0*k2,x0)
+            k4 = F(x0 + 1.0*k1 - 1.0*k2 + 1.0*k3,x0)
+            x = x0 + 1.0*(1.0*k1 + 3.0*k2+ 3.0*k3 + 1.0*k4)/8.0
+            if abs(x-x0)<tol:
+                break
+            else:
+                x0 = x
+    return [x,f(x), n]
+    
+def rk4newton2(f,x0, N=2,tol=1e-5):
+    h = 1.0/N
+    X = symbols('x')
+    df = lambda x: f(X).diff(X).subs(X,x).evalf()
+    d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
+    F = lambda x,x0: -df(x0)/d2f(x)
+    if df(x0) == 0:
+        return [x0,f(x0), 0]
+    else:
+        for n in range(1,101):
+            k1 = F(x0,x0)
+            k2 = F(x0 + 0.5*h*k1,x0)
+            k3 = F(x0 + 0.5*h*k2,x0)
+            k4 = F(x0 + 1.0*h*k3,x0)
+            x = x0 + h*(k1+2*k2+2*k3+k4)/6
+            for j in range(N-1):
+                k1 = F(x,x0)
+                k2 = F(x + 0.5*h*k1,x0)
+                k3 = F(x + 0.5*h*k2,x0)
+                k4 = F(x + 1.0*h*k3,x0)
+                x = x + h*(k1+2*k2+2*k3+k4)/6
             if abs(x-x0)<tol:
                 break
             else:
@@ -113,8 +250,8 @@ T = 0.1*rand()
 f0 = s0 - 0.5*T*k*tanh(n*s0)
 F = 0.5*(X+0.5*T*k*tanh(n*X)-f0)**2
 
-f=lambda x:(x-2)**4
+f=lambda x:(x-2)**8
 g=lambda x:F.subs(X,x).evalf()
     
-x=gnewton(g,s0,1e-5)
+x=midnewton(f,4)
 print(x)
