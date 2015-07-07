@@ -36,16 +36,19 @@ def newton(f,x0,tol=1e-5):
     df = lambda x: f(X).diff(X).subs(X,x).evalf()
     d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
     F = lambda x,x0: -df(x0)/d2f(x)
-    for n in range(1,101):
-        k1 = F(x0,x0)
-        k2 = F(x0 + 0.5*k1,x0)
-        k3 = F(x0 + 0.5*k2,x0)
-        k4 = F(x0 + 1.0*k3,x0)
-        x = x0 + 1.0*(k1+2*k2+2*k3+k4)/6
-        if abs(x-x0)<tol:
-            break
-        else:
-            x0 = x
+    if df(x0) == 0:
+        return [x0,f(x0), 0]
+    else:
+        for n in range(1,101):
+            k1 = F(x0,x0)
+            k2 = F(x0 + 0.5*k1,x0)
+            k3 = F(x0 + 0.5*k2,x0)
+            k4 = F(x0 + 1.0*k3,x0)
+            x = x0 + 1.0*(k1+2*k2+2*k3+k4)/6
+            if abs(x-x0)<tol:
+                break
+            else:
+                x0 = x
     return [x,f(x), n]
     
 def gnewton(f,x0,tol=1e-5):
@@ -53,7 +56,8 @@ def gnewton(f,x0,tol=1e-5):
     df = lambda x: f(X).diff(X).subs(X,x).evalf()
     d2f= lambda x: df(X).diff(X).subs(X,x).evalf()
     F = lambda x,x0: -df(x0)/d2f(x)
-    
+    if df(x0) == 0 or f(x0) == 0:
+        return [x0,f(x0), 0, False, False]
     f0 = f(x0)
     k1 = F(x0,x0)
     x = x0 + 1.0*k1
@@ -61,7 +65,7 @@ def gnewton(f,x0,tol=1e-5):
     n = 0
     fg = False
     fn = False
-    while abs(x-x0)>tol and fx > 1e-40 and n < 100 and fx < f0:
+    while abs(x-x0)>tol and fx != 0 and n < 100 and fx < f0:
         n = n+1
         x0 = x
         f0 = fx
@@ -72,7 +76,7 @@ def gnewton(f,x0,tol=1e-5):
         x = x0 + 1.0*(k1+2*k2+2*k3+k4)/6
         fx = f(x)
         fn = True 
-    if fx >= f0 and fx > 1e-40:
+    if fx >= f0 and abs(x-x0)>tol and fx != 0:
         if df(x0)*(x-x0) < 0:
             sol = gss(f,min(x0,x),max(x0,x),tol)
             x = sol[0]
@@ -83,11 +87,11 @@ def gnewton(f,x0,tol=1e-5):
             k = 0
             x = x0 - (2**k)*d
             fx = f(x)
-            while df(x)*df(x0) > 0 and k < 10:
+            while df(x)*df(x0) > 0 and k < 100:
                 k = k+1
                 x = x0 - (2**k)*d
             if df(x)*df(x0) > 0:
-                return "Fudeu"
+                return "Fudeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeu"
             else:
                 sol = gss(f,min(x0,x),max(x0,x),tol)
                 x = sol[0]
@@ -102,15 +106,15 @@ def gnewton(f,x0,tol=1e-5):
 #substituinfo sign(s) por tanh(n*s)
   
 
-k = 100
-s0 = 0.1
-n = 100
-T = 0.001
+k = 1000*rand()
+s0 = rand() - 0.5
+n = 10000*rand()
+T = 0.1*rand()
 f0 = s0 - 0.5*T*k*tanh(n*s0)
 F = 0.5*(X+0.5*T*k*tanh(n*X)-f0)**2
 
-f=lambda x:abs(x-2)
+f=lambda x:(x-2)**4
 g=lambda x:F.subs(X,x).evalf()
     
-x=gnewton(f,2,1e-5)
+x=gnewton(g,s0,1e-5)
 print(x)
