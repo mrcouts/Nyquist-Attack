@@ -161,7 +161,7 @@ def rk438newton(f,x0,tol=1e-5):
                 x0 = x
     return [x,f(x), n]
     
-def rk4newton2(f,x0, N=2,tol=1e-5):
+def rk4newton2(f,x0, N=1,tol=1e-5):
     h = 1.0/N
     X = symbols('x')
     df = lambda x: f(X).diff(X).subs(X,x).evalf()
@@ -244,14 +244,25 @@ def gnewton(f,x0,tol=1e-5):
   
 
 k = 1000*rand()
-s0 = rand() - 0.5
+s0 = 5*(2*rand() - 1.0) 
+#s0 = 1.3931307521180922
+#s0 = 2.7375755775399417
 n = 10000*rand()
 T = 0.1*rand()
 f0 = s0 - 0.5*T*k*tanh(n*s0)
 F = 0.5*(X+0.5*T*k*tanh(n*X)-f0)**2
 
-f=lambda x:(x-2)**8
+#f=lambda x:(x-2)**8
+#f=lambda x:0.5*(exp(1.0*x) - 10*x)**2
+f=lambda x:0.5*x**2 + 1.0*cos(1.0*x) -1.0
 g=lambda x:F.subs(X,x).evalf()
     
-x=midnewton(f,4)
-print(x)
+print(newton(f,s0))
+print(ralstonnewton(f,s0))
+print(heunnewton(f,s0))
+print(midnewton(f,s0))
+print(rk3newton(f,s0))
+print(rk4newton(f,s0))
+print(rk438newton(f,s0))
+print(gnewton(f,s0))
+
