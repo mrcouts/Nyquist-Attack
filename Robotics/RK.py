@@ -1,4 +1,9 @@
 from sympy import *
+import math
+from numpy import dot
+from numpy.linalg.linalg import norm
+from numpy.linalg.linalg import inv
+
 init_printing(use_unicode=True)
 
 class RK(object):
@@ -137,7 +142,7 @@ def rk4newton(f,x0,tol=1e-5):
     X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
     J = lambda x: f(X).jacobian(X).subs([(X[i],x[i]) for i in range(len(x0))]).evalf()
     F = lambda x,x0: -inv(J(x))*f(x0)
-    if norm(f(x0),inf) == 0:
+    if norm(f(x0),1) == 0:
         return [x0,f(x0), 0]
     else:
         for n in range(1,11):
