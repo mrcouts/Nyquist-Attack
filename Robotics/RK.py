@@ -115,7 +115,8 @@ def gnewton(f,x0=0,tol=1e-3):
             print(n)
     return [x, f(x), n]
         
-def rk4newton(f,x0,tol=1e-5):
+def rknewton(f,x0,tol=1e-5,method='RK3'):
+    rk = RK(method)
     X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
     J = lambda x: f(X).jacobian(X).subs([(X[i],x[i]) for i in range(len(x0))]).evalf()
     F = lambda x,x0: -inv(J(x))*f(x0)
@@ -123,11 +124,7 @@ def rk4newton(f,x0,tol=1e-5):
         return [x0,f(x0), 0]
     else:
         for n in range(1,11):
-            k1 = F(x0,x0)
-            k2 = F(x0 + 0.5*k1,x0)
-            k3 = F(x0 + 0.5*k2,x0)
-            k4 = F(x0 + 1.0*k3,x0)
-            x = x0 + 1.0*(1.0*k1 + 2.0*k2+ 2.0*k3 + 1.0*k4)/6.0
+            x = rk.RKX(lambda t,Y:F(Y,x0), 0, x0,1,1)[:,1]
             if norm(f(x),2) > norm(f(x0),2):
                 s = x - x0
                 f2 = lambda Y: (f(Y).T*f(Y))[0]
@@ -157,13 +154,12 @@ class TR(object):
             Yrk[:,i+1] = self.RK.RKX(f, t, Yrk[:,i],1,t+h)[:,1]
             F0 = Y[:,i] + 0.5*h*f(t,Y[:,i])
             F = lambda Y: Y - 0.5*h*f(t+h, Y) - F0
-            #Y[:,i+1] = rk4newton(F, Yrk[:,i+1])[0]
             if( norm(F(Yrk[:,i+1]),1) < norm(F(Y[:,i]),1) ):
-                sol = rk4newton(F, Yrk[:,i+1])
+                sol = rknewton(F, Yrk[:,i+1])
             else:
-                sol = rk4newton(F, Y[:,i])
+                sol = rknewton(F, Y[:,i])
             Y[:,i+1] = sol[0]
-            #print(sol[2])
+            print(sol[2])
             Yrk[:,i+1] = Y[:,i+1]
             t += h
         return Y
@@ -175,7 +171,7 @@ Y[1],
 
 t0 = 0
 tf = 20
-n = 400  
+n = 200  
 Y = TR('RK5').TRX(f, t0, Matrix([1,1]), n, tf )
 
 import matplotlib.pyplot as plt
