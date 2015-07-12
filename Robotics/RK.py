@@ -102,7 +102,6 @@ def gnewton(f,x0=0,tol=1e-5,nmax=100):
         d = 1 - x0
         k = 0
         x = x0 - (2**k)*d
-        fx = f(x)
         while df(x)*df(x0) > 0 and k < 100:
             k = k+1
             x = x0 - (2**k)*1
