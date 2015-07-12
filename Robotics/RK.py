@@ -8,7 +8,7 @@ init_printing(use_unicode=True)
 
 class RK(object):
     """Runge-Kutta Methods."""
-    def __init__(self, method='RK4'):
+    def __init__(self, method):
         if method == 'Euler':
             self.N = 1
             self.c = [1]
@@ -63,7 +63,7 @@ class RK(object):
         return Y
         
 gr=(math.sqrt(5)-1)/2
-def gss(f,a,b,tol=1e-5):
+def gss(f,a,b,tol):
     '''golden section search
 to find the minimum of f on [a,b]
 f: a strictly unimodal function on [a,b]
@@ -90,14 +90,14 @@ example:
             d=a+gr*(b-a)
     return [(b+a)/2, n]
     
-def gnewton(f,x0=0,tol=1e-3):
+def gnewton(f,x0,tol):
     X = symbols('x')
     df = lambda x: f(X).diff(X).subs(X,x).evalf()
     if df(x0) < 0:
         sol = gss(f,min(x0,1),max(x0,1),tol)
         x = sol[0]
         n = sol[1]
-        print(n)
+        print('N = '+str(n))
     else:
         d = 1 - x0
         k = 0
@@ -120,20 +120,20 @@ class GNR(object):
     def __init__(self, method='RK4'):
         self.RK = RK(method)
                 
-    def rknewton(self,f,x0,tol=1e-5,method='RK3'):
+    def rknewton(self,f,x0,tol):
         X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
         J = lambda x: f(X).jacobian(X).subs([(X[i],x[i]) for i in range(len(x0))]).evalf()
         F = lambda x,x0: -inv(J(x))*f(x0)
         if norm(f(x0),1) == 0:
             return [x0,f(x0), 0]
         else:
-            for n in range(1,11):
+            for n in range(1,31):
                 x = self.RK.RKX(lambda t,Y:F(Y,x0), 0, x0,1,1)[:,1]
                 if norm(f(x),2) > norm(f(x0),2):
                     s = x - x0
                     f2 = lambda Y: (f(Y).T*f(Y))[0]
                     f2_= lambda alpha:f2(x0 + alpha*s)
-                    alpha = gnewton(f2_,0,tol=min(1.0*tol/norm(s,2),1e-1))[0]
+                    alpha = gnewton(f2_,0,tol=min(1.0*tol/norm(s,2),1e-2))[0]
                     x = x0 + alpha*s
                 if norm(x-x0, 1)<tol:
                     break
@@ -144,11 +144,11 @@ class GNR(object):
 class TR(object):
     x = symbols('x')
     """Trapezoidal Rule Method."""
-    def __init__(self, method='RK5'):
-        self.RK = RK(method)
-        self.GNR = GNR()
+    def __init__(self, method_rk, method_gnr):
+        self.RK = RK(method_rk)
+        self.GNR = GNR(method_gnr)
         
-    def TRX(self, f, t0, Y0, n, tf, tol=1e-5, method='RK5'):
+    def TRX(self, f, t0, Y0, n, tf, tol):
         h = (tf-t0)/(1.0*n)
         Yrk = zeros(len(Y0),n+1)
         Y = zeros(len(Y0),n+1)
@@ -160,9 +160,9 @@ class TR(object):
             F0 = Y[:,i] + 0.5*h*f(t,Y[:,i])
             F = lambda Y: Y - 0.5*h*f(t+h, Y) - F0
             if( norm(F(Yrk[:,i+1]),1) < norm(F(Y[:,i]),1) ):
-                sol = self.GNR.rknewton(F, Yrk[:,i+1], tol, method)
+                sol = self.GNR.rknewton(F, Yrk[:,i+1], tol)
             else:
-                sol = self.GNR.rknewton(F, Y[:,i], tol, method)
+                sol = self.GNR.rknewton(F, Y[:,i], tol)
             Y[:,i+1] = sol[0]
             print(sol[2])
             Yrk[:,i+1] = Y[:,i+1]
@@ -171,13 +171,13 @@ class TR(object):
     
 f = lambda t,Y: Matrix([
 Y[1],
--20*Y[1] - 80.0*tanh(100.0*Y[1]) - 100*Y[0]+100*sin(t)
+-20*Y[1] - 80.0*tanh(100.0*Y[1]) - 100*Y[0]+100*sin(8*t)
 ])
 
 t0 = 0
-tf = 20
+tf = 3.25
 n = 200  
-Y = TR('RK5').TRX(f, t0, Matrix([1,1]), n, tf, tol=1e-10, method='Euler')
+Y = TR('RK3','Euler').TRX(f, t0, Matrix([1,1]), n, tf, tol=1e-3)
 
 import matplotlib.pyplot as plt
 import numpy as np
