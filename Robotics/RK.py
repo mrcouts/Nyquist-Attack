@@ -167,29 +167,30 @@ class TR(object):
             Yrk[:,i+1] = Y[:,i+1]
             t += h
         return Y
-    
-f = lambda t,Y: Matrix([
-Y[1],
--20*Y[1] - 80.0*tanh(100.0*Y[1]) - 100*Y[0]+100*sin(8*t)
-])
 
-t0 = 0
-tf = 3.25
-n = 200
-Y = TR('RK5','Euler').TRX(f, t0, Matrix([0,0]), n, tf, tol=1e-5, nmax_gnr=50,nmax_gss=100)
+if(False):        
+    f = lambda t,Y: Matrix([
+    Y[1],
+    -20*Y[1] - 80.0*tanh(100.0*Y[1]) - 100*Y[0]+100*sin(8*t)
+    ])
 
-import matplotlib.pyplot as plt
-import numpy as np
+    t0 = 0
+    tf = 3.25
+    n = 200
+    Y = TR('RK5','Euler').TRX(f, t0, Matrix([0,0]), n, tf, tol=1e-5, nmax_gnr=50,nmax_gss=100)
 
-x = np.linspace(t0, tf, n)
-y = x.copy()
+    import matplotlib.pyplot as plt
+    import numpy as np
 
-for i in np.arange(np.size(x)):
-    y[i] = Y[0,i]
+    x = np.linspace(t0, tf, n)
+    y = x.copy()
 
-plt.figure()
-plt.plot(x, y, 'r')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('title')
-plt.show()
+    for i in np.arange(np.size(x)):
+        y[i] = Y[0,i]
+
+    plt.figure()
+    plt.plot(x, y, 'r')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('title')
+    plt.show()
