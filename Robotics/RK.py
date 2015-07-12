@@ -1,6 +1,6 @@
 from sympy import *
 import math
-from numpy import dot
+from numpy.linalg.linalg import dot
 from numpy.linalg.linalg import norm
 from numpy.linalg.linalg import inv
 
@@ -63,7 +63,7 @@ class RK(object):
         return Y
         
 gr=(math.sqrt(5)-1)/2
-def gss(f,a,b,tol):
+def gss(f,a,b,tol=1e-5, nmax=100):
     '''golden section search
 to find the minimum of f on [a,b]
 f: a strictly unimodal function on [a,b]
@@ -77,7 +77,7 @@ example:
     c=b-gr*(b-a)
     d=a+gr*(b-a)
     n = 0
-    while abs(c-d)>tol and n < 100: 
+    while abs(c-d)>tol and n < nmax: 
         n = n+1
         fc=f(c);fd=f(d)
         if fc<fd:
@@ -90,11 +90,11 @@ example:
             d=a+gr*(b-a)
     return [(b+a)/2, n]
     
-def gnewton(f,x0,tol):
+def gnewton(f,x0=0,tol=1e-5,nmax=100):
     X = symbols('x')
     df = lambda x: f(X).diff(X).subs(X,x).evalf()
     if df(x0) < 0:
-        sol = gss(f,min(x0,1),max(x0,1),tol)
+        sol = gss(f,min(x0,1),max(x0,1),tol,nmax)
         x = sol[0]
         n = sol[1]
         print('N = '+str(n))
@@ -109,18 +109,18 @@ def gnewton(f,x0,tol):
         if df(x)*df(x0) > 0:
             return "Fudeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeu"
         else:
-            sol = gss(f,min(x0,x),max(x0,x),tol)
+            sol = gss(f,min(x0,x),max(x0,x),tol,nmax)
             x = sol[0]
             n = sol[1]
-            print(n)
+            print('N = '+str(n))
     return [x, f(x), n]
 
 class GNR(object):
     """Generalized Newton-Raphson method."""
-    def __init__(self, method='RK4'):
+    def __init__(self, method):
         self.RK = RK(method)
                 
-    def rknewton(self,f,x0,tol, nmax=50):
+    def rknewton(self,f,x0,tol=1e-5, nmax=50, nmax_gss=100):
         X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
         J = lambda x: f(X).jacobian(X).subs([(X[i],x[i]) for i in range(len(x0))]).evalf()
         F = lambda x,x0: -inv(J(x))*f(x0)
@@ -133,7 +133,7 @@ class GNR(object):
                     s = x - x0
                     f2 = lambda Y: (f(Y).T*f(Y))[0]
                     f2_= lambda alpha:f2(x0 + alpha*s)
-                    alpha = gnewton(f2_,0,tol=min(1.0*tol/norm(s,2),1e-2))[0]
+                    alpha = gnewton(f2_,0,min(1.0*tol/norm(s,2),1e-2),nmax_gss)[0]
                     x = x0 + alpha*s
                 if norm(x-x0, 1)<tol:
                     break
@@ -148,7 +148,7 @@ class TR(object):
         self.RK = RK(method_rk)
         self.GNR = GNR(method_gnr)
         
-    def TRX(self, f, t0, Y0, n, tf, tol):
+    def TRX(self, f, t0, Y0, n, tf, tol=1e-5, nmax_gnr=50, nmax_gss=100):
         h = (tf-t0)/(1.0*n)
         Yrk = zeros(len(Y0),n+1)
         Y = zeros(len(Y0),n+1)
@@ -160,9 +160,9 @@ class TR(object):
             F0 = Y[:,i] + 0.5*h*f(t,Y[:,i])
             F = lambda Y: Y - 0.5*h*f(t+h, Y) - F0
             if( norm(F(Yrk[:,i+1]),1) < norm(F(Y[:,i]),1) ):
-                sol = self.GNR.rknewton(F, Yrk[:,i+1], tol)
+                sol = self.GNR.rknewton(F, Yrk[:,i+1], tol, nmax_gnr, nmax_gss)
             else:
-                sol = self.GNR.rknewton(F, Y[:,i], tol)
+                sol = self.GNR.rknewton(F, Y[:,i], tol, nmax_gnr, nmax_gss)
             Y[:,i+1] = sol[0]
             print(sol[2])
             Yrk[:,i+1] = Y[:,i+1]
@@ -176,8 +176,8 @@ Y[1],
 
 t0 = 0
 tf = 3.25
-n = 200  
-Y = TR('RK3','Euler').TRX(f, t0, Matrix([0,0]), n, tf, tol=1e-5)
+n = 200
+Y = TR('RK5','Euler').TRX(f, t0, Matrix([0,0]), n, tf, tol=1e-5, nmax_gnr=50,nmax_gss=100)
 
 import matplotlib.pyplot as plt
 import numpy as np
