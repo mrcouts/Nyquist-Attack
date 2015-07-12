@@ -120,14 +120,14 @@ class GNR(object):
     def __init__(self, method='RK4'):
         self.RK = RK(method)
                 
-    def rknewton(self,f,x0,tol):
+    def rknewton(self,f,x0,tol, nmax=50):
         X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
         J = lambda x: f(X).jacobian(X).subs([(X[i],x[i]) for i in range(len(x0))]).evalf()
         F = lambda x,x0: -inv(J(x))*f(x0)
         if norm(f(x0),1) == 0:
             return [x0,f(x0), 0]
         else:
-            for n in range(1,31):
+            for n in range(1,nmax+1):
                 x = self.RK.RKX(lambda t,Y:F(Y,x0), 0, x0,1,1)[:,1]
                 if norm(f(x),2) > norm(f(x0),2):
                     s = x - x0
@@ -177,7 +177,7 @@ Y[1],
 t0 = 0
 tf = 3.25
 n = 200  
-Y = TR('RK3','Euler').TRX(f, t0, Matrix([1,1]), n, tf, tol=1e-3)
+Y = TR('RK3','Euler').TRX(f, t0, Matrix([0,0]), n, tf, tol=1e-5)
 
 import matplotlib.pyplot as plt
 import numpy as np
