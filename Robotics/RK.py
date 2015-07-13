@@ -3,6 +3,7 @@ import math
 from numpy.linalg.linalg import dot
 from numpy.linalg.linalg import norm
 from numpy.linalg.linalg import inv
+from numpy.linalg.linalg import solve as lsolve
 
 init_printing(use_unicode=True)
 
@@ -122,7 +123,8 @@ class GNR(object):
     def rknewton(self,f,x0,tol=1e-5, nmax=50, nmax_gss=100):
         X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
         J = lambda x: f(X).jacobian(X).subs([(X[i],x[i]) for i in range(len(x0))]).evalf()
-        F = lambda x,x0: -inv(J(x))*f(x0)
+        F = lambda x,x0:  Matrix(lsolve(-J(x),f(x0)))
+        #F = lambda x,x0: -inv(J(x))*f(x0)
         if norm(f(x0),1) == 0:
             return [x0,f(x0), 0]
         else:
@@ -163,7 +165,7 @@ class TR(object):
             else:
                 sol = self.GNR.rknewton(F, Y[:,i], tol, nmax_gnr, nmax_gss)
             Y[:,i+1] = sol[0]
-            print(sol[2])
+            #print(sol[2])
             Yrk[:,i+1] = Y[:,i+1]
             t += h
         return Y
