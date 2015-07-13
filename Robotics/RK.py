@@ -41,6 +41,10 @@ class RK(object):
             self.N = 6
             self.a = [[0.5],[3.0/16, 1.0/16],[0, 0, 0.5],[0, -3.0/16, 6.0/16, 9.0/16],[1.0/7, 4.0/7, 6.0/7, -12.0/7, 8.0/7 ]]
             self.c = [7.0/90, 0, 32.0/90, 12.0/90, 32.0/90, 7.0/90]
+        elif method == 'RK6':
+            self.N = 7
+            self.a = [[0.5],[2.0/9, 4.0/9],[7.0/36, 2.0/9, -1.0/12],[-35.0/144, -55.0/36, 35.0/48, 15.0/8],[-1.0/360, -11.0/36, -1.0/8, 0.5, 1.0/10 ],[-41.0/260, 22.0/13, 43.0/156, -118.0/39, 32.0/195, 80.0/39]]
+            self.c = [13.0/200, 0, 11.0/40, 11.0/40, 4.0/25, 4.0/25, 13.0/200]
         else:
             self.N = 4
             self.a = [[0.5],[0, 0.5],[0, 0, 1.0]]
@@ -179,7 +183,11 @@ if(False):
     t0 = 0
     tf = 3.25
     n = 200
-    Y = TR('RK5','Euler').TRX(f, t0, Matrix([0,0]), n, tf, tol=1e-5, nmax_gnr=50,nmax_gss=100)
+    import time
+    start_time = time.time()
+    Y = TR('RK6','Euler').TRX(f, t0, Matrix([0,0]), n, tf, tol=1e-5, nmax_gnr=50,nmax_gss=100)
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)
 
     import matplotlib.pyplot as plt
     import numpy as np
