@@ -121,13 +121,15 @@ def gnewton(f,x0=0,tol=1e-5,nmax=100):
 
 class GNR(object):
     """Generalized Newton-Raphson method."""
-    def __init__(self, method):
+    def __init__(self, method, f, x0):
         self.RK = RK(method)
+        X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
+        J = f(X).jacobian(X)
+        self.J = lambda x:J.subs([(X[i],x[i]) for i in range(len(x0))]).evalf()        
                 
     def rknewton(self,f,x0,tol=1e-5, nmax=50, nmax_gss=100):
-        X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
-        J = lambda x: f(X).jacobian(X).subs([(X[i],x[i]) for i in range(len(x0))]).evalf()
-        F = lambda x,x0:  Matrix(lsolve(-J(x),f(x0)))
+        F = lambda x,x0:  Matrix(lsolve(-self.J(x),f(x0)))
+        #F = lambda x,x0:  Matrix(lsolve(-J(x),f(x0)))
         #F = lambda x,x0: -inv(J(x))*f(x0)
         if norm(f(x0),1) == 0:
             return [x0,f(x0), 0]
@@ -151,7 +153,7 @@ class TR(object):
     """Trapezoidal Rule Method."""
     def __init__(self, method_rk, method_gnr):
         self.RK = RK(method_rk)
-        self.GNR = GNR(method_gnr)
+        self.method_gnr = method_gnr
         
     def TRX(self, f, t0, Y0, n, tf, tol=1e-5, nmax_gnr=50, nmax_gss=100):
         h = (tf-t0)/(1.0*n)
@@ -160,6 +162,8 @@ class TR(object):
         Yrk[:,0] = Y0
         Y[:,0] = Y0
         t = t0
+        F = lambda Y: Y - 0.5*h*f(0, Y)
+        self.GNR = GNR(self.method_gnr, F ,Y0)
         for i in range(n):
             Yrk[:,i+1] = self.RK.RKX(f, t, Yrk[:,i],1,t+h)[:,1]
             F0 = Y[:,i] + 0.5*h*f(t,Y[:,i])

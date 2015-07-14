@@ -1,6 +1,4 @@
 from Serial import *
-from RK import *
-import time
 
 R = Serial("Rx", '', Matrix([['x','x'],['y','y']]).T)
 
@@ -27,7 +25,9 @@ f2 = simplify(f.subs(PIrep).evalf())
 f3 = Matrix([f2[i] for i in range(len(f2))])
 fn = lambda t,X:f3.subs([(x_[i],X[i]) for i in range(len(x_)-1,-1,-1)]).subs(symbols('t'),t).evalf()
 
-if(True):        
+if(True):   
+    from RK import *
+    import time     
     t0 = 0
     tf = 10
     n = 100

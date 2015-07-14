@@ -1,6 +1,4 @@
 from Serial import *
-from RK import *
-import time
 
 R = Serial("Rx", '', Matrix([['x'],['y']]).T)
 
@@ -26,28 +24,27 @@ f = simplify(Matrix([R.ph_, R.Mh_**-1 * (u - R.vh_ - R.gh_ )]))
 f2 = simplify(f.subs(PIrep).evalf())
 f3 = Matrix([f2[i] for i in range(len(f2))])
 fn = lambda t,X:f3.subs([(x_[i],X[i]) for i in range(len(x_)-1,-1,-1)]).subs(symbols('t'),t).evalf()
-      
-t0 = 0
-tf = 10.0
-n = 1000
-start_time = time.time()
-Y = TR('Euler','Euler').TRX(fn, t0, Matrix([0,0]), n, tf, tol=1e-5, nmax_gnr=50,nmax_gss=100)
-elapsed_time = time.time() - start_time
-print(elapsed_time)
 
-
-import matplotlib.pyplot as plt
-import numpy as np
-
-x = np.linspace(t0, tf, n)
-y = x.copy()
-
-for i in np.arange(np.size(x)):
-    y[i] = Y[0,i]
-
-plt.figure()
-plt.plot(x, y, 'r')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('title')
-plt.show()
+if(True):   
+    from RK2 import *
+    import time     
+    t0 = 0
+    tf = 10
+    n = 1000
+    start_time = time.time()
+    Y = TR('Euler','Euler').TRX(fn, t0, Matrix([0,0]), n, tf, tol=1e-5, nmax_gnr=50,nmax_gss=100)
+    #Y = RK('RK5').RKX(fn, t0, Matrix([0,0,0,0]), n, tf)
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)
+    import matplotlib.pyplot as plt
+    import numpy as np
+    x = np.linspace(t0, tf, n)
+    y = x.copy()
+    for i in np.arange(np.size(x)):
+        y[i] = Y[0,i]
+    plt.figure()
+    plt.plot(x, y, 'r')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('title')
+    plt.show()
