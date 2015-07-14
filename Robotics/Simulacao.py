@@ -26,7 +26,7 @@ f3 = Matrix([f2[i] for i in range(len(f2))])
 fn = lambda t,X:f3.subs([(x_[i],X[i]) for i in range(len(x_)-1,-1,-1)]).subs(symbols('t'),t).evalf()
 
 if(True):   
-    from RK2 import *
+    from RK import *
     import time     
     t0 = 0
     tf = 10
