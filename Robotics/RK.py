@@ -124,11 +124,11 @@ class GNR(object):
     def __init__(self, method, f, x0):
         self.RK = RK(method)
         X = Matrix([ symbols('x_'+str(i+1)) for i in range(len(x0)) ])
-        J = f(X).jacobian(X)
-        self.J = lambda x:J.subs([(X[i],x[i]) for i in range(len(x0))]).evalf()        
+        J = f(symbols('t'),X).jacobian(X)
+        self.J = lambda t,x:J.subs([(X[i],x[i]) for i in range(len(x0))]).subs(symbols('t'),t).evalf()        
                 
-    def rknewton(self,f,x0,tol=1e-5, nmax=50, nmax_gss=100):
-        F = lambda x,x0:  Matrix(lsolve(-self.J(x),f(x0)))
+    def rknewton(self,f,t,x0,tol=1e-5, nmax=50, nmax_gss=100):
+        F = lambda x,x0:  Matrix(lsolve(-self.J(t,x),f(x0)))
         #F = lambda x,x0:  Matrix(lsolve(-J(x),f(x0)))
         #F = lambda x,x0: -inv(J(x))*f(x0)
         if norm(f(x0),1) == 0:
@@ -162,16 +162,17 @@ class TR(object):
         Yrk[:,0] = Y0
         Y[:,0] = Y0
         t = t0
-        F = lambda Y: Y - 0.5*h*f(0, Y)
+        F = lambda t,Y: Y - 0.5*h*f(t, Y)
         self.GNR = GNR(self.method_gnr, F ,Y0)
         for i in range(n):
+            #print i
             Yrk[:,i+1] = self.RK.RKX(f, t, Yrk[:,i],1,t+h)[:,1]
             F0 = Y[:,i] + 0.5*h*f(t,Y[:,i])
             F = lambda Y: Y - 0.5*h*f(t+h, Y) - F0
             if( norm(F(Yrk[:,i+1]),1) < norm(F(Y[:,i]),1) ):
-                sol = self.GNR.rknewton(F, Yrk[:,i+1], tol, nmax_gnr, nmax_gss)
+                sol = self.GNR.rknewton(F,t+h, Yrk[:,i+1], tol, nmax_gnr, nmax_gss)
             else:
-                sol = self.GNR.rknewton(F, Y[:,i], tol, nmax_gnr, nmax_gss)
+                sol = self.GNR.rknewton(F,t+h, Y[:,i], tol, nmax_gnr, nmax_gss)
             Y[:,i+1] = sol[0]
             #print(sol[2])
             Yrk[:,i+1] = Y[:,i+1]
