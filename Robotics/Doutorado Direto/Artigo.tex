@@ -139,23 +139,23 @@ Seja $\ssB$ um sistema mec\^anico serial de $\nu\ssh$ graus de liberdade. Defini
 \begin{itemize}
 \item $\llN$: referencial inercial.
 \item $\ttN$: sistema de coordenadas fixo a $\llN$.
-\item $\ssB_i, \,i=1,...,\nu\ssh$: i-\'esima barra do mecanismo serial.
+\item $\llB_i, \,i=1,...,\nu\ssh$: i-\'esima barra do mecanismo serial.
 \item $\ttg_i, \,i=1,...,\nu\ssh$: centro de massa da i-\'esima barra.
 \item $\ttx$: ponto no espa\c{c}o fixo ao efetuador.
-\item $\ttB_i, \,i=1,...,\nu\ssh$: sistema de coordenadas solid\'ario a $\ssB_i$ com origem no centro da i-\'esima junta e eixos paralelos \`as dire\c{c}\~oes principais de in\'ercia de $\ssB_i$.
-\item $m_i$: massa da barra $\ssB_i$.
-\item $\vI_i$: tensor de in\'ercia da barra $\ssB_i$.
-\item $\vomega_i$: vetor velocidade angular absoluta da barra $\ssB_i$.
+\item $\ttB_i, \,i=1,...,\nu\ssh$: sistema de coordenadas solid\'ario a $\llB_i$ com origem no centro da i-\'esima junta e eixos paralelos \`as dire\c{c}\~oes principais de in\'ercia de $\llB_i$.
+\item $m_i$: massa da barra $\llB_i$.
+\item $\vI_i$: tensor de in\'ercia da barra $\llB_i$.
+\item $\vomega_i$: vetor velocidade angular absoluta da barra $\llB_i$.
 \item $\vv_i$: vetor velocidade linear absoluta do centro de massa $\ttg_i$.
 \item $\va_i$: vetor acelera\c{c}\~ao linear absoluta do centro de massa $\ttg_i$.
-\item $\momega$: vetor contendo as compontentes n\~ao nulas de $[\vomega_i]_{\ttB_i}$, com $i=1,...,\nu\ssh$.
-\item $\mathbb{\nu}$: vetor contendo as compontentes n\~ao nulas de $[\vv_i]_{\ttN}$, com $i=1,...,\nu\ssh$.
-\item  $\mq\ssh$: vetor de $\nu\ssh$ coordenadas generalizadas independentes. Cont\'em os deslocamentos angulares relativos das juntas rotativas e os deslocamentos lineares relativos das juntas prism\'aticas.
-\item $\mq\cir$: vetor de $\nu_{\mq\cir}$ coordenadas generalizadas redundantes. Cont\'em as coordenadas dos centros de massa das barras do mecanismo escritas no sistema $\ttN$.
-\item $\mq$: vetor contendo todas as coordenadas generalizadas. É definido por $\mq = \begin{bmatrix} {\mq\ssh}^\msT & {\mq\cir}^\msT \end{bmatrix}^\msT $
-\item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes. É dado por $\mp\ssh = \dot{\mq}\ssh$.
-\item $\mp\cir$: vetor de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. É definido por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
-\item $\mp$: vetor contendo todas as velocidades generalizadas. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
+\item $\momega$: matriz coluna contendo as compontentes n\~ao nulas de $[\vomega_i]_{\ttB_i}$, com $i=1,...,\nu\ssh$.
+\item $\mathbb{\nu}$: matriz coluna contendo as compontentes n\~ao nulas de $[\vv_i]_{\ttN}$, com $i=1,...,\nu\ssh$.
+\item  $\mq\ssh$: matriz coluna de $\nu\ssh$ coordenadas generalizadas independentes. Cont\'em os deslocamentos angulares relativos das juntas rotativas e os deslocamentos lineares relativos das juntas prism\'aticas.
+\item $\mq\cir$: matriz coluna  de $\nu_{\mq\cir}$ coordenadas generalizadas redundantes. Cont\'em as coordenadas dos centros de massa das barras do mecanismo escritas no sistema $\ttN$.
+\item $\mq$: matriz coluna contendo todas as coordenadas generalizadas. \'E definida por $\mq = \begin{bmatrix} {\mq\ssh}^\msT & {\mq\cir}^\msT \end{bmatrix}^\msT $
+\item $\mp\ssh$: matriz coluna de $\nu\ssh$ velocidades generalizadas independentes. \'E dada por $\mp\ssh = \dot{\mq}\ssh$.
+\item $\mp\cir$: matriz coluna de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. \'E definida por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
+\item $\mp$: matriz coluna contendo todas as velocidades generalizadas. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
 \item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em fun\c{c}\~ao de $\mq\ssh$ e $\mp\ssh$.
 \item $\mA(\mq\ssh)$: Jacobiano dos v\'inculos de velocidades.
 \item $\mC(\mq\ssh)$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades.
@@ -590,52 +590,89 @@ l_{1} \ssin_1  \dot{\theta}_1^2 + l_{g2} \ssin_{1\plus 2}   (\dot{\theta}_1+\dot
 
 Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriais j\'a deduzidos, \'e necess\'ario introduzir mais alguns conceitos: \\
 
-Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n-1}$ $n$ subsistemas mec\^anicos e $\ssM$ um sistema mec\^anico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
+Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n} \,$ $n+1$ subsistemas mec\^anicos e $\ssM$ um sistema mec\^anico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
 
 \begin{itemize}
-\item $\mq_0$: vetor de coordenadas generalizas da plataforma/efetuador de $\ssM$.
-\item $\mq_j\ssh, \,j=1, ..., n-1$: vetor de coordenadas generalizadas independentes do subsistema  $\ssB_j$.
-\item $\mq\hcir$: vetor de coordenadas generalizadas redundantes n\~ao pertencentes \`a plataforma/efetuador. Definido como $\mq\hcir = \begin{bmatrix}  {\mq_1\ssh}^\msT & ... & {\mq_{n-1}\ssh}^\msT \end{bmatrix}^\msT $.
-\item $\mq$: vetor contendo todas as coordenadas generalizadas do sistema $\ssM$. Definido como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq\hcir}^\msT \end{bmatrix}^\msT $.
-\item $\overline{\mq}(\mq)$: vetor dos v\'inculos de posi\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mq}(\mq) = \mzr $.
-\item $\mp\ssh_0$: vetor de velocidades generalizadas independentes da plataforma/efetuador de $\ssM$. É definido por $\mp\ssh_0 = \mD(\mq_0)\dot{\mq}_0$, sendo $\mD(\mq_0)$ tal que $\dot{\mq}_0  = \mD^+(\mq_0) \mp\ssh_0$.
-\item $\mp_j\ssh, \,j=1, ..., n-1$: vetor de velocidades generalizadas independentes do subsistema  $\ssB_j$. É definido por $\mp_j\ssh = \dot{\mq}_j\ssh$.
-\item $\mp_j\cir, \,j=1, ..., n-1$: vetor de velocidades generalizadas redundantes do subsistema  $\ssB_j$.
-\item $\mp_j, \,j=1, ..., n-1$: vetor de velocidades generalizadas do subsistema  $\ssB_j$. É definido por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
-\item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. É dado por $\mp\ssh = \mp_0\ssh$.
-\item $\mp\cir$: vetor de $\nu\ssh$ velocidades generalizadas redundantes de $\ssM$. É definido por $\mp\cir = \begin{bmatrix} \mp_1^\msT & \mp_2^\msT & ... & \mp_{n-1}^\msT \end{bmatrix}^\msT $.
-\item $\mp$: vetor contendo todas as velocidades generalizadas de $\ssM$. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
-\item $\mrho$: vetor definido como $\mrho = \begin{bmatrix} {\mrho\ssh}^\msT & {\mrho\cir}^\msT \end{bmatrix}^\msT $, sendo $\mrho\ssh = \mp_0\ssh$ e $\mrho\cir = \dot{\mq}\hcir $.
-\item $\overline{\mrho}(\mrho)$: vetor dos v\'inculos de velocidades entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mrho}(\mrho) = \mzr $.
-\item $\mA_j(\mq_j\ssh), \,j=0, ..., n-1$: Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
-\item $\mC_j(\mq_j\ssh), \,j=0, ..., n-1$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
-\item $\mM_j, \,j=0, ..., n-1$: matriz de in\'ercia desacoplada do subsistema $\ssB_j$.
-\item $\mv_j(\mp_j\ssh), \,j=0, ..., n-1 $: vetor dos termos girosc\'opicos desacoplados do subsistema $\ssB_j$.
-\item $\mf_j(\mq_j\ssh), \,j=0, ..., n-1$: vetor dos esfor\c{c}os de atrito do subsistema $\ssB_j$.
-\item $\mg_j, \,j=0, ..., n-1$: vetor dos esfor\c{c}os gravitacionais do subsistema $\ssB_j$.
-\item $\mu_j, \,j=0, ..., n-1$: vetor dos esfor\c{c}os ativos externos do subsistema $\ssB_j$.
+\item $\mq_r$: matriz coluna de coordenadas generalizadas que descrevem a orienta\c{c}\~ao da plataforma/efetuador $\ssB_0$. \'E dada pelas componentes um quaternion unit\'ario, i.e. $\mq_r = \begin{bmatrix} q_i & q_j & q_k & q_r \end{bmatrix}^\msT $ com $ \mq_r^\msT \cdot \mq_r = \vct{1}$.
+\item $\mq_t$: matriz coluna de coordenadas generalizadas que descrevem a posi\c{c}\~ao da plataforma/efetuador $\ssB_0$.
+\item $\mq_0$: matriz coluna de todas as coordenadas generalizadas da plataforma/efetuador $\ssB_0$. \'E definida como $\mq_0 = \begin{bmatrix} \mq_r^\msT & \mq_t^\msT \end{bmatrix}^\msT$.
+\item $\mq_j\ssh, \,j=1, ..., n$: matriz coluna de coordenadas generalizadas independentes do subsistema  $\ssB_j$.
+\item $\mq\hcir$: matriz coluna de coordenadas generalizadas redundantes n\~ao pertencentes \`a plataforma/efetuador. Definida como $\mq\hcir = \begin{bmatrix}  {\mq_1\ssh}^\msT & ... & {\mq_{n}\ssh}^\msT \end{bmatrix}^\msT $.
+\item $\mq$: matriz coluna contendo todas as coordenadas generalizadas do sistema $\ssM$. Definida como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq\hcir}^\msT \end{bmatrix}^\msT $.
+\item $\overline{\mq}(\mq)$: matriz coluna dos v\'inculos de posi\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mq}(\mq) = \mzr $.
+\item $\mp\ssh_0$: matriz coluna de velocidades generalizadas independentes da plataforma/efetuador $\ssB_0$. Respeita $\mp\ssh_0 = \mD(\mq_0)\dot{\mq}_0$, sendo $\mD(\mq_0)$ uma matriz de posto cheio com n\'umero de colunas maior ou igual ou n\'umero de linhas tal que $\dot{\mq}_0  = \mD^\msP(\mq_0) \mp\ssh_0$.
+\item $\mp_j\ssh, \,j=1, ..., n$: matriz coluna de velocidades generalizadas independentes do subsistema  $\ssB_j$. \'E definida por $\mp_j\ssh = \dot{\mq}_j\ssh$.
+\item $\mp_j\cir, \,j=1, ..., n$: matriz coluna de velocidades generalizadas redundantes do subsistema  $\ssB_j$.
+\item $\mp_j, \,j=1, ..., n$: matriz coluna de velocidades generalizadas do subsistema  $\ssB_j$. \'E definida por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
+\item $\mp\ssh$: matriz coluna de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. \'E dada por $\mp\ssh = \mp_0\ssh$.
+\item $\mp\cir$: matriz coluna de velocidades generalizadas redundantes de $\ssM$. \'E definida por $\mp\cir = \begin{bmatrix} \mp_1^\msT & \mp_2^\msT & ... & \mp_{n}^\msT \end{bmatrix}^\msT $.
+\item $\mp$: matriz coluna contendo todas as velocidades generalizadas de $\ssM$. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
+\item $\mrho$: matriz coluna definida como $\mrho = \begin{bmatrix} {\mrho\ssh}^\msT & {\mrho\cir}^\msT \end{bmatrix}^\msT $, sendo $\mrho\ssh = \mp_0\ssh$ e $\mrho\cir = \dot{\mq}\hcir $.
+\item $\underline{\dot{\mq}}(\mq,\mrho)$: $\dot{\mq}$ escrita em fun\c{c}\~ao de $\mq$ e $\mrho$.
+\item $\overline{\momega}(\mq,\mrho)$: matriz coluna dos v\'inculos de orienta\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\momega}(\mq,\mrho) = \mzr $.
+\item $\overline{\mrho}(\mq,\mrho)$: matriz coluna dos v\'inculos de velocidades entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mrho}(\mq,\mrho) = \mzr $.
+\item $\mA_j(\mq_j\ssh), \,j=0, ..., n$: Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
+\item $\mC_j(\mq_j\ssh), \,j=0, ..., n$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
+\item $\mM_j, \,j=0, ..., n$: matriz de in\'ercia desacoplada do subsistema $\ssB_j$.
+\item $\mv_j(\mp_j\ssh), \,j=0, ..., n$: matriz coluna dos termos girosc\'opicos desacoplados do subsistema $\ssB_j$.
+\item $\mf_j(\mq_j\ssh), \,j=0, ..., n$: matriz coluna dos esfor\c{c}os de atrito do subsistema $\ssB_j$.
+\item $\mg_j, \,j=0, ..., n$: matriz coluna dos esfor\c{c}os gravitacionais do subsistema $\ssB_j$.
+\item $\mu_j, \,j=0, ..., n$: matriz coluna dos esfor\c{c}os ativos externos do subsistema $\ssB_j$.
 \end{itemize}
 
 O modelo para simula\c{c}\~ao din\^amica direta \'e dado pelo seguinte equacionamento:
 
 \begin{equation} \label{eq:DinamicaDireta2}
 \begin{cases}
-\dot{\mq}_0 = \mD^+ (\mq_0) \mp\ssh \\
-\mC^\msT(\mq) \Big( \mM \dot{\mp} + \mv(\mp) + \mf(\mp) + \mg \Big) = \hat{\mC}^\msT(\mq) \mu \\
+\dot{\mq}_0 = \mD^\msP (\mq_0) \mp\ssh \\
+\mC^\msT(\mq) \Big( \mM \dot{\mp} + \mv(\mp) + \mf(\mp) + \mg \Big) = \breve{\mC}^\msT(\mq) \mu \\
 \mA(\mq) \dot{\mp} = \mb(\mq,\mp)
 \end{cases}
 \end{equation}
 
 Sendo:
 
+\begin{equation} \label{eq:dq}
+\underline{\dot{\mq}}(\mq,\mrho) = \begin{bmatrix}
+\mD^\msP \mp\ssh_0 \\
+\mp\ssh_1 \\
+\vdots \\
+\mp\ssh_n \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mD^\msP  & \mzr & \ldots & \mzr\\
+ \mzr & \mone & \ldots & \mzr\\
+\vdots & \vdots & \ddots & \vdots\\
+\mzr  & \mzr     &\ldots & \mone
+\end{bmatrix}
+\begin{bmatrix}
+\mp\ssh_0 \\
+\mp\ssh_1 \\
+\vdots \\
+\mp\ssh_n \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mD^\msP  & \mzr & \ldots & \mzr\\
+ \mzr & \mone & \ldots & \mzr\\
+\vdots & \vdots & \ddots & \vdots\\
+\mzr  & \mzr     &\ldots & \mone
+\end{bmatrix}
+\mrho
+\end{equation}
+
 \begin{equation} \label{eq:VinculosVelocidades}
-\overline{\mrho} = \frac{\partial \overline{\mq}}{\partial \mq_0} \mD^+ \mrho\ssh + \frac{\partial \overline{\mq}}{\partial \mq\hcir}  \mrho\cir
+\overline{\mrho} = \begin{bmatrix}
+\displaystyle\frac{\partial \overline{\mq}}{\partial \mq} \cdot \underline{\dot{\mq}} \\
+\overline{\momega}
+\end{bmatrix}
 \end{equation}
 
 \begin{equation} \label{eq:MatrizCchapeu}
-\hat{\mC} = \begin{bmatrix}
+\breve{\mC} = \begin{bmatrix}
 \mone \\
-- \displaystyle\frac{\partial \overline{\mq}}{\partial \mq\hcir}^\msI  \frac{\partial \overline{\mq}}{\partial \mq_0 }\cdot\mD^+
+- \displaystyle\frac{\partial \overline{\mrho}}{\partial \mrho\cir}^\msI \cdot  \frac{\partial \overline{\mrho}}{\partial \mrho\ssh }
 \end{bmatrix}
 \end{equation}
 
@@ -645,9 +682,9 @@ Sendo:
 \mC_0 &  \mzr  & \ldots & \mzr\\
 \mzr  &  \mC_1 & \ldots & \mzr\\
 \vdots & \vdots & \ddots & \vdots\\
-\mzr  &   \mzr       &\ldots & \mC_{n-1}
+\mzr  &   \mzr       &\ldots & \mC_{n}
 \end{bmatrix}
-\hat{\mC}
+\breve{\mC}
 \end{equation}
 
 \begin{equation} \label{eq:MatrizA2}
@@ -657,7 +694,7 @@ Sendo:
 \mzr &  \mA_1  & \mzr & \ldots & \mzr\\
 \mzr  &  \mzr & \mA_2 & \ldots & \mzr\\
 \vdots & \vdots & \vdots & \ddots & \vdots\\
-\mzr  &   \mzr  & \mzr     &\ldots & \mA_{n-1}
+\mzr  &   \mzr  & \mzr     &\ldots & \mA_{n}
 \end{bmatrix} \\
 \displaystyle\frac{\partial \overline{\mrho}}{\partial \mp}
 \end{bmatrix}
@@ -673,32 +710,32 @@ Sendo:
 \mM_0 &  \mzr  & \ldots & \mzr\\
 \mzr  &  \mM_1 & \ldots & \mzr\\
 \vdots & \vdots & \ddots & \vdots\\
-\mzr  &   \mzr       &\ldots & \mM_{n-1}
+\mzr  &   \mzr       &\ldots & \mM_{n}
 \end{bmatrix}
 \end{equation}
 
 \begin{equation} \label{eq:Matrizv2}
 \mv = \begin{bmatrix}
-\mv_0^\msT & \mv_1^\msT & ... & \mv_{n-1}^\msT
+\mv_0^\msT & \mv_1^\msT & ... & \mv_{n}^\msT
 \end{bmatrix}^\msT
 \end{equation}
 
 \begin{equation} \label{eq:Matrizf2}
 \mf = \begin{bmatrix}
-\mf_0^\msT & \mf_1^\msT & ... & \mf_{n-1}^\msT
+\mf_0^\msT & \mf_1^\msT & ... & \mf_{n}^\msT
 \end{bmatrix}^\msT
 \end{equation}
 
 \begin{equation} \label{eq:Matrizg2}
 \mg = \begin{bmatrix}
-\mg_0^\msT & \mg_1^\msT & ... & \mg_{n-1}^\msT
+\mg_0^\msT & \mg_1^\msT & ... & \mg_{n}^\msT
 \end{bmatrix}^\msT
 \end{equation}
 
 \begin{equation}
 \mu =
 \begin{bmatrix} \label{eq:Matrizu}
-\mu_0^\msT & \mu_1^\msT & ... & \mu_{n-1}^\msT
+\mu_0^\msT & \mu_1^\msT & ... & \mu_{n}^\msT
 \end{bmatrix}^\msT
 \end{equation}
 
