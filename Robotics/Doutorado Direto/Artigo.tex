@@ -1,195 +1,173 @@
-\documentclass[a4paper,12pt,brazil]{article}
+%*******************************************************************************************%
+%            	A new approach for designing dynamic balanced serial mechanisms           	%
+% 																					   		    %
+% April 26, 2015														 						%
+% Authors: Andre G. Coutinho, Tarcisio A. H. Coelho			                         		% 
+% bash adaptive.sh							 												    %
+% 																							    %
+%*******************************************************************************************%
 
-\usepackage[T1]{fontenc}
-\usepackage[latin1]{inputenc}
-\usepackage[brazil]{babel}
-\usepackage{float}
 
-\flushbottom
 
-\setlength\textwidth{160mm}
-\setlength\textheight{247mm}
-\setlength\hoffset{-13.4mm}
-\setlength\voffset{-20mm}
-\setlength\parindent{0.75cm}
-\setlength\parskip{0mm}
-\setlength\topsep{12pt}
+%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt,brazil,fleqn]{article}
+\synctex=1
+%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{paralist}
-\usepackage{subfigure}
-\usepackage{amsmath,amssymb,amsfonts,textcomp}
-\usepackage{rawfonts}
-\usepackage{graphics,psfrag}
-\usepackage{latexsym}
-\usepackage{varioref}
-\usepackage{subfigmat}
-\usepackage[usenames,dvipsnames]{xcolor}
-\usepackage[colorlinks,citecolor=Fuchsia,urlcolor=blue,linkcolor=Cerulean]{hyperref}
+% \usepackage{natbib}
+\usepackage[english]{babel}
+% \usepackage{amsmath,amssymb,amsthm,amsfonts,textcomp}
+% \usepackage{eucal,eufrak,mathrsfs,bbm,stmaryrd}
 \usepackage{color}
-\usepackage{array}
-\usepackage{hhline}
-\usepackage{array}
-\usepackage{supertabular}
-\usepackage{setspace}
+\usepackage{amsthm}
+\usepackage{array,hhline,supertabular}
+\usepackage[colorlinks,citecolor=black,urlcolor=black,linkcolor=black]{hyperref}
 \usepackage[pdftex]{graphicx}
-\usepackage{special-char}
+\usepackage{multicol}
+\usepackage[symbol]{footmisc}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{nomencl}
+\usepackage{EXTRAS/special-char}
+\usepackage{EXTRAS/special-conf}
+\usepackage{subfigure}
 
-\graphicspath{{figuras/}{../figuras/}}
+\graphicspath{{FIGURES/}{../FIGURES/}}
+\makenomenclature
 
 
+%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%
 
 \setcounter{MaxMatrixCols}{50}
 
-\onehalfspacing 
+\noindent
+{\bf \huge Aplica\c{c}\~ao de novas metodologias \`a modelagem e controle de mecanismos de arquitetura paralela}\\
 
-\begin{titlepage}
+\noindent
+{\Large 		Andr\'e Garnier Coutinho$\,{}^\text{a}$
+}\\
+
+\noindent
+{${}^\text{a}$ \it Department of Mechatronics and Mechanical Systems Engineering, Escola Politecnica, 
+University of Sao Paulo, Brazil. E-mail: andre.garnier.coutinho@usp.br}
+
+\vspace{24pt}
+%
+% \begin{multicols}{1}
+
 \begin{center}
-{\phantom{a}}
-\vspace{1.0cm}
-\textsc{\Large{{ André Garnier Coutinho}}}\\
-\vspace{5.0cm}
- {\huge\bfseries Aplicação de novas metodologias à modelagem e controle de mecanismos de arquitetura paralela\\}
-\vfill
-\hspace{.50\textwidth}
-\begin{minipage}{.45\textwidth}
-{
-Relatório anual de atividades apresentado à Comissão de Atividade Discente (CADIS) 
-do Programa de Pós Graduação em Engenharia Mecânica (PPGEM) da Escola Politécnica 
-da Universidade de São Paulo (EPUSP)}\\[25pt]
-{Área de concentração:}\\[2pt]
-{Engenharia Mecânica}\\[25pt]
-{Orientador:}\\[2pt]
-Prof. Dr. Tarcísio A. Hess Coelho
-\end{minipage}
-
-\vfill
-{São Paulo \\ 15 de Janeiro de 2015}
+\textbf{Resumo}
 \end{center}
-\end{titlepage}
 
+Para realizar o projeto de um sistema de controle, \'e necess\'ario primeiramente de um modelo da planta a ser controlada. O grau de fidelidade do modelo da planta, dentro das condi\c{c}\~oes de opera\c{c}\~ao desejadas do sistema, influi diretamente na performance do sistema em malha fechada que o projeto do controlador pode oferecer. Quanto mais rico for o modelo, mais f\'acil de atingir requisitos de performance mais elevados (menor tempo de resposta e menor sobressinal, por exemplo) garantindo a estabilidade do sistema.
 
+Utilizando os m\'etodos tradicionais de modelagem de Sistemas Mec\^anicos Multicorpos, \'e dif\'icil e trabalhoso de se obter modelos de sistemas complexos, como mecanismos paralelos. Para contornar esse problema, \'e comum desprezar alguns efeitos de acoplamentos inerciais, simplificando o processo de modelagem. Por\'em, essa estrat\'egia gera modelos mais pobres, o que ir\'a limitar a perfomance que o sistema poder\'a atingir quando for feito o projeto do sistema de controle.
 
+A solu\c{c}\~ao proposta para ser poss\'ivel aumentar a performance, garantindo a robustez, de um sistema de controle de mecanismos paralelos \'e a utiliza\c{c}\~ao dos novos m\'etodos de modelagem din\^amica desenvolvidos pelo grupo de pesquisa do Prof. Doutor Tarcisio Antonio Hess Coelho, os quais s\~ao adequados para incluir todos os efeitos de din\^amica de corpos r\'igidos, independentemente da complexidade do sistema.
 
-\vspace{-0.3cm}
+O presente projeto visa desenvolver um algoritmo simples que inclua todos os efeitos da din\^amica de corpos r\'igidos para realizar a modelagem din\^amica de mecanismos paralelos (baseado na metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atua\c{c}\~ao redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
+
+\vspace{10pt}
 
 \noindent
-{\bf Nome: }{André Garnier Coutinho}\\[8pt]
-{\bf NUSP: }{6846085}\\[8pt]
-{\bf Curso: }{Mestrado}\\[8pt]
-{\bf Área de concentração: }{Engenharia Controle e Automação Mecânica (3152)}\\[8pt]
-{\bf Orientador: }{Professor Doutor Tarcísio Antônio Hess Coelho}\\[8pt]
-{\bf Ano de ingresso no PPGEM: }{2014}\\[8pt]
-{\bf Bolsista: }{Sim}\\[8pt]
-{\bf Agência de fomento: }{CAPES}\\[8pt]
-{\bf Edital/Chamada: }{Cota Institucional (Demanda Social)}\\[8pt]
-{\bf Data do Exame de Qualificação: }{18/08/2015}\\[8pt]
+KEYWORDS: {Dynamic balancing, serial mechanisms}
 
-\vspace{2cm}
-\noindent
 
-%RESUMO--------------------------------------------------------   
+
+\input{EXTRAS/symbols}
+
+
+%--------------------INTRODUCTION--------------------%
 \newpage
-\section*{Resumo}
+\section{Introdu\c{c}\~ao}\label{S01}
 
-Para realizar o projeto de um sistema de controle, é necessário primeiramente de um modelo da planta a ser controlada. O grau de fidelidade do modelo da planta, dentro das condições de operação desejadas do sistema, influi diretamente na performance do sistema em malha fechada que o projeto do controlador pode oferecer. Quanto mais rico for o modelo, mais fácil de atingir requisitos de performance mais elevados (menor tempo de resposta e menor sobressinal, por exemplo) garantindo a estabilidade do sistema.
+H\'a uma s\'erie de vantagens em utilizar mecanismos de cadeia cinem\'atica paralela no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precis\~ao de posicionamento do efetuador e uma redu\c{c}\~ao significativa na in\'ercia. Outra caracter\'istica marcante desse tipo de arquitetura s\~ao as altas velocidades e acelera\c{c}\~oes atingidas, as quais superam muito os valores m\'aximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem Ã  possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espa\c{c}o de trabalho e modelo din\^amico muito mais complexo e dif\'icil de se obter \cite{Merlet2002, Rynaldo}. 
 
-Utilizando os métodos tradicionais de modelagem de Sistemas Mecânicos Multicorpos, é difícil e trabalhoso de se obter modelos de sistemas complexos, como mecanismos paralelos. Para contornar esse problema, é comum desprezar alguns efeitos de acoplamentos inerciais, simplificando o processo de modelagem. Porém, essa estratégia gera modelos mais pobres, o que irá limitar a perfomance que o sistema poderá atingir quando for feito o projeto do sistema de controle.
-
-A solução proposta para ser possível aumentar a performance, garantindo a robustez, de um sistema de controle de mecanismos paralelos é a utilização dos novos métodos de modelagem dinâmica desenvolvidos pelo grupo de pesquisa do Prof. Doutor Tarcisio Antonio Hess Coelho, os quais são adequados para incluir todos os efeitos de dinâmica de corpos rígidos, independentemente da complexidade do sistema.
-
-O presente projeto visa desenvolver um algoritmo simples que inclua todos os efeitos da dinâmica de corpos rígidos para realizar a modelagem dinâmica de mecanismos paralelos (baseado na metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atuação redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
-
-
-%INTRODUÇÃO----------------------------------------------------
-\newpage
-\section{Introdução}\label{intro}
-
-	Há uma série de vantagens em utilizar mecanismos de cadeia cinemática paralela no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precisão de posicionamento do efetuador e uma redução significativa na inércia. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}. 
-
-	Devido à grande dificuldade de se obter o modelo dinâmico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande domínio sobre a dinâmica dos sistema, como plataformas robóticas voltadas a reabilitação, pois é necessário um conhecimento detalhado do comportamento dinâmico do mecanismo utilizado para poder controlar as forças de interação entre o mecanismo e o paciente \cite{Andre, Andre2}.
+	Devido Ã  grande dificuldade de se obter o modelo din\^amico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande dom\'inio sobre a din\^amica dos sistema, como plataformas rob\'oticas voltadas a reabilita\c{c}\~ao, pois \'e necess\'ario um conhecimento detalhado do comportamento din\^amico do mecanismo utilizado para poder controlar as for\c{c}as de intera\c{c}\~ao entre o mecanismo e o paciente \cite{Andre, Andre2}.
 	
-	Atualmente novas metodologias para modelagem de dinâmica multicorpos que se mostram muito mais adequadas para aplicações em qualquer tipo de mecanismo estão sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando também orientado pelo professor Dr. Tarcísio Coelho \cite{Orsino2013, Apostila}.
+	Atualmente novas metodologias para modelagem de din\^amica multicorpos que se mostram muito mais adequadas para aplica\c{c}\~oes em qualquer tipo de mecanismo est\~ao sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando tamb\'em orientado pelo professor Dr. Tarc\'isio Coelho \cite{Orsino2013, Apostila}.
 	
-	Outro assunto relevante ainda pouco estudado por pesquisadores é o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como já foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os métodos tradicionais, ainda são poucos os estudos de implementação de técnicas de controle em mecanismos de cadeia fechada. Sendo assim, é possível aliar as novas metodologias de modelagem desenvolvidas à implementação, adaptação e aprimoramentos de algoritmos de controle não-linear voltados a mecanismos paralelos \cite{Craig}. Além disso é possível aproveitar os novos métodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementação de leis de controle utilizando variáveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
+	Outro assunto relevante ainda pouco estudado por pesquisadores \'e o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como j\'a foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os m\'etodos tradicionais, ainda s\~ao poucos os estudos de implementa\c{c}\~ao de t\'ecnicas de controle em mecanismos de cadeia fechada. Sendo assim, \'e poss\'ivel aliar as novas metodologias de modelagem desenvolvidas Ã  implementa\c{c}\~ao, adapta\c{c}\~ao e aprimoramentos de algoritmos de controle n\~ao-linear voltados a mecanismos paralelos \cite{Craig}. Al\'em disso \'e poss\'ivel aproveitar os novos m\'etodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementa\c{c}\~ao de leis de controle utilizando vari\'aveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
 
+%--------------------METHODOLOGY--------------------%
 
-%OBJETIVOS E JUSTIFICATIVAS--------------------------------------------
-\newpage
-\section{Objetivos}\label{objetivos}
+\section{Objetivos}\label{S02}
 
-A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorpos para implementar, adaptar e aprimorar algoritmos de controle não-linear para mecanismos paralelos. Possui diferenciação em relação a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda são pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda não são tão explorados, e estuda técnicas de controle não-linear, inclusive a utilização de variáveis redundantes em sistemas de controle, fato não muito comum na literatura.
+A proposta atual \'e a utiliza\c{c}\~ao de novos m\'etodos de modelagem din\^amica multicorpos para implementar, adaptar e aprimorar algoritmos de controle n\~ao-linear para mecanismos paralelos. Possui diferencia\c{c}\~ao em rela\c{c}\~ao a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda s\~ao pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda n\~ao s\~ao t\~ao explorados, e estuda t\'ecnicas de controle n\~ao-linear, inclusive a utiliza\c{c}\~ao de vari\'aveis redundantes em sistemas de controle, fato n\~ao muito comum na literatura.
 
-Os principais objetivos do projeto são:
+Os principais objetivos do projeto s\~ao:
 \begin{itemize}
-\item Desenvolvimento de um algoritmo para dedução das equações diferenciais de movimento de mecanismos de arquiteturas serial e paralela com vínculos de natureza holônoma (baseado na metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi) que possua as seguintes características:
+\item Desenvolvimento de um algoritmo para dedu\c{c}\~ao das equa\c{c}\~oes diferenciais de movimento de mecanismos de arquiteturas serial e paralela com v\'inculos de natureza hol\^onoma (baseado na metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi) que possua as seguintes caracter\'isticas:
 \begin{itemize}
-\item Considere todos os efeitos da dinâmica de corpos rígidos.
-\item Aplicação simples, mesmo para sistemas de alta complexidade.
-\item Alto grau de automatização, de modo que possa ser facilmente implementado em softwares de manipulação simbólica.
+\item Considere todos os efeitos da din\^amica de corpos r\'igidos.
+\item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
+\item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
 \end{itemize}
-\item Desenvolvimento de metodologia de projeto de controle não linear robusto, baseado na técnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atuação redundante, com incertezas paramétricas.
-\item Desenvolvimento de lei de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orientação é descrita por quaternions unitários.
+\item Desenvolvimento de metodologia de projeto de controle n\~ao linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
+\item Desenvolvimento de lei de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.
 \end{itemize}
 
+ 
+%--------------------EXAMPLE---------------------%
 
-%METODOLOGIA--------------------------------------------------------------------
-\newpage
-\section{Metodologia do projeto}\label{method}
+\section{Metodologia do projeto}\label{S03}
 
-O desenvolvimento do projeto consiste basicamente em três frentes: o desenvolvimento e aprimoramento do algoritmo utilizado para modelagem dinâmica das plataformas robóticas, o desenvolvimento de uma metologia de projeto de sistema de controle não linear robusto para plataformas robóticas com incertezas paramétricas, e a elaboração de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
+O desenvolvimento do projeto consiste basicamente em tr\^es frentes: o desenvolvimento e aprimoramento do algoritmo utilizado para modelagem din\^amica das plataformas rob\'oticas, o desenvolvimento de uma metologia de projeto de sistema de controle n\~ao linear robusto para plataformas rob\'oticas com incertezas param\'etricas, e a elabora\c{c}\~ao de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
 
-O desenvolvimento do algoritmo de modelagem é feito começando pelo estudo dos métodos tracionais e da metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi de modelagem de sistemas mecânicos multicorpos, seguido pela concepção da primeira verão do algoritmo, aplicação da versão atual do algoritmo em diversas plataformas robóticas utilizando softwares de manipulação simbólicas, automatização e adição de aprimoramentos ao algoritmo, voltando às etapas de aplicação, automatização e adição de aprimoramentos iterativamente.
+O desenvolvimento do algoritmo de modelagem \'e feito come\c{c}ando pelo estudo dos m\'etodos tracionais e da metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi de modelagem de sistemas mec\^anicos multicorpos, seguido pela concep\c{c}\~ao da primeira ver\~ao do algoritmo, aplica\c{c}\~ao da vers\~ao atual do algoritmo em diversas plataformas rob\'oticas utilizando softwares de manipula\c{c}\~ao simb\'olicas, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos ao algoritmo, voltando \`as etapas de aplica\c{c}\~ao, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos iterativamente.
 
-O desenvolvimento da metodologia de projeto de sistema de controle não linear robusto para plataformas robótica com incertezas paramétricas inicia-se no estudo de técnicas de controle que seguem esta linha e aplicação em sistemas de menor complexidade. Depois de adquirir o domínio das leis de controle estudadas, aplicar as tércnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao máximo a metodologia de projeto desenvolvida.
+O desenvolvimento da metodologia de projeto de sistema de controle n\~ao linear robusto para plataformas rob\'otica com incertezas param\'etricas inicia-se no estudo de t\'ecnicas de controle que seguem esta linha e aplica\c{c}\~ao em sistemas de menor complexidade. Depois de adquirir o dom\'inio das leis de controle estudadas, aplicar as t\'ercnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao m\'aximo a metodologia de projeto desenvolvida.
 
-O desenvolvimento de leis de controle adaquadas a sistemas descritos por coordenadas redundantes é feito baseado nas leis de controle não linear robusto estudas, com o objetivo de realizar o controle de plataformas robóticas cuja orientação é descrita por quaternions unitários. Essa etapa do projeto exige a integração dos conhecimentos adquiridos nas áreas de modelagem e controle de plataformas robóticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
+O desenvolvimento de leis de controle adaquadas a sistemas descritos por coordenadas redundantes \'e feito baseado nas leis de controle n\~ao linear robusto estudas, com o objetivo de realizar o controle de plataformas rob\'oticas cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios. Essa etapa do projeto exige a integra\c{c}\~ao dos conhecimentos adquiridos nas \'areas de modelagem e controle de plataformas rob\'oticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
 
-%RESULTADOS--------------------------------------------------------------------
-\newpage
-\section{Síntese de Resultados}\label{results}
+%\newpage
 
-Esta seção pretende apresentar uma síntese dos principais resultados teóricos obtidos até o momento.
+\section{Resultados}\label{S04}
 
-%---ALGORITMO PARA MODELAGEM DE PLATAFORMAS ROBÓTICAS------------------------------------------
-\subsection{Algoritmo para modelagem de plataformas robóticas}\label{struct}
+Esta se\c{c}\~ao pretende apresentar uma s\'intese dos principais resultados te\'oricos obtidos at\'e o momento.
 
-Para explicar o algoritmo desenvolvido é necessário primeiro definir uma série de conceitos: \\
+%---ALGORITMO PARA MODELAGEM DE PLATAFORMAS ROBÃ“TICAS------------------------------------------------------------------------------------------
+\subsection{Algoritmo para modelagem de plataformas rob\'oticas}\label{S04-1}
 
-Seja $\ssB$ um sistema mecânico serial de $\nu\ssh$ graus de liberdade. Definimos:
+Para explicar o algoritmo desenvolvido \'e necess\'ario primeiro definir uma s\'erie de conceitos: \\
+
+Seja $\ssB$ um sistema mec\^anico serial de $\nu\ssh$ graus de liberdade. Definimos:
 
 \begin{itemize}
 \item $\llN$: referencial inercial.
 \item $\ttN$: sistema de coordenadas fixo a $\llN$.
-\item $\ssB_i, \,i=1,...,\nu\ssh$: i-ésima barra do mecanismo serial.
-\item $\ttg_i, \,i=1,...,\nu\ssh$: centro de massa da i-ésima barra.
-\item $\ttx$: ponto no espaço fixo ao efetuador.
-\item $\ttB_i, \,i=1,...,\nu\ssh$: sistema de coordenadas solidário a $\ssB_i$ com origem no centro da i-ésima junta e eixos paralelos às direções principais de inércia de $\ssB_i$.
+\item $\ssB_i, \,i=1,...,\nu\ssh$: i-\'esima barra do mecanismo serial.
+\item $\ttg_i, \,i=1,...,\nu\ssh$: centro de massa da i-\'esima barra.
+\item $\ttx$: ponto no espa\c{c}o fixo ao efetuador.
+\item $\ttB_i, \,i=1,...,\nu\ssh$: sistema de coordenadas solid\'ario a $\ssB_i$ com origem no centro da i-\'esima junta e eixos paralelos \`as dire\c{c}\~oes principais de in\'ercia de $\ssB_i$.
 \item $m_i$: massa da barra $\ssB_i$.
-\item $\vI_i$: tensor de inércia da barra $\ssB_i$.
+\item $\vI_i$: tensor de in\'ercia da barra $\ssB_i$.
 \item $\vomega_i$: vetor velocidade angular absoluta da barra $\ssB_i$.
 \item $\vv_i$: vetor velocidade linear absoluta do centro de massa $\ttg_i$.
-\item $\va_i$: vetor aceleração linear absoluta do centro de massa $\ttg_i$.
-\item $\momega$: vetor contendo as compontentes não nulas de $[\vomega_i]_{\ttB_i}$, com $i=1,...,\nu\ssh$.
-\item $\mathbb{\nu}$: vetor contendo as compontentes não nulas de $[\vv_i]_{\ttN}$, com $i=1,...,\nu\ssh$.
-\item  $\mq\ssh$: vetor de $\nu\ssh$ coordenadas generalizadas independentes. Contém os deslocamentos angulares relativos das juntas rotativas e os deslocamentos lineares relativos das juntas prismáticas.
-\item $\mq\cir$: vetor de $\nu_{\mq\cir}$ coordenadas generalizadas redundantes. Contém as coordenadas dos centros de massa das barras do mecanismo escritas no sistema $\ttN$.
-\item $\mq$: vetor contendo todas as coordenadas generalizadas. É definido por $\mq = \begin{bmatrix} {\mq\ssh}^\msT & {\mq\cir}^\msT \end{bmatrix}^\msT $
-\item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes. É dado por $\mp\ssh = \dot{\mq}\ssh$.
-\item $\mp\cir$: vetor de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. É definido por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
-\item $\mp$: vetor contendo todas as velocidades generalizadas. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
-\item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em função de $\mq\ssh$ e $\mp\ssh$.
-\item $\mA(\mq\ssh)$: Jacobiano dos vínculos de velocidades.
-\item $\mC(\mq\ssh)$: complemento ortogonal do Jacobiano dos vínculos de velocidades.
-\item $\mM$: matriz de inércia desacoplada.
-\item $\mv(\mp\ssh)$: vetor dos termos giroscópicos desacoplados.
-\item $\mf(\mq\ssh)$: vetor dos esforços de atrito aplicados na direção oposta a $\mp$.
-\item $\mg$: vetor dos esforços gravitacionais aplicados na direção oposta a $\mp$.
-\item $\mu $: esforços ativos externos aplicados na direção de $\mp\ssh$.
+\item $\va_i$: vetor acelera\c{c}\~ao linear absoluta do centro de massa $\ttg_i$.
+\item $\momega$: vetor contendo as compontentes n\~ao nulas de $[\vomega_i]_{\ttB_i}$, com $i=1,...,\nu\ssh$.
+\item $\mathbb{\nu}$: vetor contendo as compontentes n\~ao nulas de $[\vv_i]_{\ttN}$, com $i=1,...,\nu\ssh$.
+\item  $\mq\ssh$: vetor de $\nu\ssh$ coordenadas generalizadas independentes. Cont\'em os deslocamentos angulares relativos das juntas rotativas e os deslocamentos lineares relativos das juntas prism\'aticas.
+\item $\mq\cir$: vetor de $\nu_{\mq\cir}$ coordenadas generalizadas redundantes. Cont\'em as coordenadas dos centros de massa das barras do mecanismo escritas no sistema $\ttN$.
+\item $\mq$: vetor contendo todas as coordenadas generalizadas. Ã‰ definido por $\mq = \begin{bmatrix} {\mq\ssh}^\msT & {\mq\cir}^\msT \end{bmatrix}^\msT $
+\item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes. Ã‰ dado por $\mp\ssh = \dot{\mq}\ssh$.
+\item $\mp\cir$: vetor de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. Ã‰ definido por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
+\item $\mp$: vetor contendo todas as velocidades generalizadas. Ã‰ definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
+\item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em fun\c{c}\~ao de $\mq\ssh$ e $\mp\ssh$.
+\item $\mA(\mq\ssh)$: Jacobiano dos v\'inculos de velocidades.
+\item $\mC(\mq\ssh)$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades.
+\item $\mM$: matriz de in\'ercia desacoplada.
+\item $\mv(\mp\ssh)$: vetor dos termos girosc\'opicos desacoplados.
+\item $\mf(\mq\ssh)$: vetor dos esfor\c{c}os de atrito aplicados na dire\c{c}\~ao oposta a $\mp$.
+\item $\mg$: vetor dos esfor\c{c}os gravitacionais aplicados na dire\c{c}\~ao oposta a $\mp$.
+\item $\mu $: esfor\c{c}os ativos externos aplicados na dire\c{c}\~ao de $\mp\ssh$.
 
 \end{itemize}
 
-O algoritmo é baseado na metodologia de Orsino baseada nas equações de Gibbs-Appell e Maggi para modelagem dos subsistemas seriais. O modelo para simulação dinâmica direta é dado pelo seguinte equacionamento:
+O algoritmo \'e baseado na metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi para modelagem dos subsistemas seriais. O modelo para simula\c{c}\~ao din\^amica direta \'e dado pelo seguinte equacionamento:
 
 \begin{equation} \label{eq:DinamicaDireta}
 \begin{cases}
@@ -229,7 +207,7 @@ S = \frac{1}{2} \sum_{i=1}^{\nu\ssh} \Big( m_i \va_i \cdot \va_i + \dot{\vomega}
 \mv = \frac{\partial S}{\partial \dot{\mp}} - \frac{\partial^2 S}{\partial \dot{\mp}^2} \dot{\mp}
 \end{equation}
 
-Aqui seguem as etapas do algoritmo para dedução do modelo dinâmico de um subsistema serial acompanhado de um exemplo de aplicação no mecanismo \underline{R}\underline{R}:
+Aqui seguem as etapas do algoritmo para dedu\c{c}\~ao do modelo din\^amico de um subsistema serial acompanhado de um exemplo de aplica\c{c}\~ao no mecanismo \underline{R}\underline{R}:
 
 \begin{figure}[H]
 	\centering
@@ -239,7 +217,7 @@ Aqui seguem as etapas do algoritmo para dedução do modelo dinâmico de um subsist
 \end{figure}
 
 \begin{itemize}
-\item[1)] Definição das coordenadas generalizadas:
+\item[1)] Defini\c{c}\~ao das coordenadas generalizadas:
 
 \begin{equation}
 \mq\ssh = \begin{bmatrix}
@@ -253,7 +231,7 @@ x_1 & y_1 & x_2 & y_2
 \end{bmatrix}
 \end{equation}
 
-\item[2)] Definição das velocidades generalizadas:
+\item[2)] Defini\c{c}\~ao das velocidades generalizadas:
 
 \begin{equation}
 \mp\ssh = \begin{bmatrix}
@@ -267,7 +245,7 @@ x_1 & y_1 & x_2 & y_2
 \end{bmatrix}
 \end{equation}
 
-\item[3)] Cinemática de posição dos centros de massa e do efetuador utilizando matrizes de transformação homogênea:
+\item[3)] Cinem\'atica de posi\c{c}\~ao dos centros de massa e do efetuador utilizando matrizes de transforma\c{c}\~ao homog\^enea:
 
 \begin{equation}
 \hvct{\ttg_1}_{\ttB_1}  =
@@ -344,7 +322,7 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
 \end{bmatrix}
 \end{equation}
 
-\item[4)] Cinemática de velocidades dos centros de massa:
+\item[4)] Cinem\'atica de velocidades dos centros de massa:
 
 \begin{equation}
 [\underline{\vv}_1]_{\ttN} = \frac{\dd}{\dd t} [\ttg_1]_\ttN =
@@ -362,7 +340,7 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
 \end{bmatrix}
 \end{equation}
 
-\item[5)] Cinemática de velocidades angulares das barras:
+\item[5)] Cinem\'atica de velocidades angulares das barras:
 
 \begin{equation}
 \smat{\underline{\vomega}_1}_{\ttB_1 \rl \ttB_1} = \tvct{\mone}_{\ttN \rl \ttB_1} \frac{\dd}{\dd t} \vct{\mone}_{\ttN \rl \ttB_1} = 
@@ -384,7 +362,7 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
 \underline{\vomega}_2 = (\dot{\theta}_1 + \dot{\theta}_2) \hat{\vk}
 \end{equation}
 
-\item[6)] Montar o vetor $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$ e calcular $\mC$, $\mA$ e $\mb$ através das equações \eqref{eq:MatrizC}, \eqref{eq:MatrizA} e \eqref{eq:Matrizb}:
+\item[6)] Montar o vetor $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$ e calcular $\mC$, $\mA$ e $\mb$ atrav\'es das equa\c{c}\~oes \eqref{eq:MatrizC}, \eqref{eq:MatrizA} e \eqref{eq:Matrizb}:
 
 \begin{equation}
 \underline{\mp}\cir(\mq\ssh,\mp\ssh) =
@@ -448,13 +426,13 @@ l_{1} \ssin_1  \dot{\theta}_1^2 + l_{g2} \ssin_{1\plus 2}   (\dot{\theta}_1+\dot
 \end{bmatrix}
 \end{equation}
 
-\item[7)] Calcular a energia de acelerações $S$:
+\item[7)] Calcular a energia de acelera\c{c}\~oes $S$:
 
 \begin{equation}
 S = \frac{1}{2} \Big( m_1 (\dot{v}_{x1}^2 + \dot{v}_{y1}^2) + m_2 (\dot{v}_{x2}^2 + \dot{v}_{y2}^2) + J_{z1} \dot{\omega}_{z1}^2 + + J_{z2} \dot{\omega}_{z2}^2 \Big)
 \end{equation}
 
-\item[8)] Obter $\mM$ e $\mv$ utilizando as equações \eqref{eq:MatrizM} e \eqref{eq:Matrizv}:
+\item[8)] Obter $\mM$ e $\mv$ utilizando as equa\c{c}\~oes \eqref{eq:MatrizM} e \eqref{eq:Matrizv}:
 
 \begin{equation}
 \mM = \begin{bmatrix}
@@ -506,7 +484,7 @@ m_2 g
 
 \end{itemize}
 
-Sendo assim, a partir da equação \eqref{eq:DinamicaDireta}, temos que o modelo para simulação dinâmica direta do mecanismo \underline{R}\underline{R} é dado por:
+Sendo assim, a partir da equa\c{c}\~ao \eqref{eq:DinamicaDireta}, temos que o modelo para simula\c{c}\~ao din\^amica direta do mecanismo \underline{R}\underline{R} \'e dado por:
 
 \small\begin{equation} \label{eq:RR}
 \begin{cases}
@@ -590,35 +568,35 @@ l_{1} \ssin_1  \dot{\theta}_1^2 + l_{g2} \ssin_{1\plus 2}   (\dot{\theta}_1+\dot
 \end{cases}
 \end{equation}\normalsize
 
-Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriais já deduzidos, é necessário introduzir mais alguns conceitos: \\
+Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriais j\'a deduzidos, \'e necess\'ario introduzir mais alguns conceitos: \\
 
-Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n-1}$ $n$ subsistemas mecânicos e $\ssM$ um sistema mecânico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
+Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n-1}$ $n$ subsistemas mec\^anicos e $\ssM$ um sistema mec\^anico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
 
 \begin{itemize}
 \item $\mq_0$: vetor de coordenadas generalizas da plataforma/efetuador de $\ssM$.
 \item $\mq_j\ssh, \,j=1, ..., n-1$: vetor de coordenadas generalizadas independentes do subsistema  $\ssB_j$.
-\item $\mq\hcir$: vetor de coordenadas generalizadas redundantes não pertencentes à plataforma/efetuador. Definido como $\mq\hcir = \begin{bmatrix}  {\mq_1\ssh}^\msT & ... & {\mq_{n-1}\ssh}^\msT \end{bmatrix}^\msT $.
+\item $\mq\hcir$: vetor de coordenadas generalizadas redundantes n\~ao pertencentes \`a plataforma/efetuador. Definido como $\mq\hcir = \begin{bmatrix}  {\mq_1\ssh}^\msT & ... & {\mq_{n-1}\ssh}^\msT \end{bmatrix}^\msT $.
 \item $\mq$: vetor contendo todas as coordenadas generalizadas do sistema $\ssM$. Definido como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq\hcir}^\msT \end{bmatrix}^\msT $.
-\item $\overline{\mq}(\mq)$: vetor dos vínculos de posição entre subsistemas. As equações vínculares são dadas por $\overline{\mq}(\mq) = \mzr $.
-\item $\mp\ssh_0$: vetor de velocidades generalizadas independentes da plataforma/efetuador de $\ssM$. É definido por $\mp\ssh_0 = \mD(\mq_0)\dot{\mq}_0$, sendo $\mD(\mq_0)$ tal que $\dot{\mq}_0  = \mD^+(\mq_0) \mp\ssh_0$.
-\item $\mp_j\ssh, \,j=1, ..., n-1$: vetor de velocidades generalizadas independentes do subsistema  $\ssB_j$. É definido por $\mp_j\ssh = \dot{\mq}_j\ssh$.
+\item $\overline{\mq}(\mq)$: vetor dos v\'inculos de posi\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mq}(\mq) = \mzr $.
+\item $\mp\ssh_0$: vetor de velocidades generalizadas independentes da plataforma/efetuador de $\ssM$. Ã‰ definido por $\mp\ssh_0 = \mD(\mq_0)\dot{\mq}_0$, sendo $\mD(\mq_0)$ tal que $\dot{\mq}_0  = \mD^+(\mq_0) \mp\ssh_0$.
+\item $\mp_j\ssh, \,j=1, ..., n-1$: vetor de velocidades generalizadas independentes do subsistema  $\ssB_j$. Ã‰ definido por $\mp_j\ssh = \dot{\mq}_j\ssh$.
 \item $\mp_j\cir, \,j=1, ..., n-1$: vetor de velocidades generalizadas redundantes do subsistema  $\ssB_j$.
-\item $\mp_j, \,j=1, ..., n-1$: vetor de velocidades generalizadas do subsistema  $\ssB_j$. É definido por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
-\item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. É dado por $\mp\ssh = \mp_0\ssh$.
-\item $\mp\cir$: vetor de $\nu\ssh$ velocidades generalizadas redundantes de $\ssM$. É definido por $\mp\cir = \begin{bmatrix} \mp_1^\msT & \mp_2^\msT & ... & \mp_{n-1}^\msT \end{bmatrix}^\msT $.
-\item $\mp$: vetor contendo todas as velocidades generalizadas de $\ssM$. É definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
+\item $\mp_j, \,j=1, ..., n-1$: vetor de velocidades generalizadas do subsistema  $\ssB_j$. Ã‰ definido por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
+\item $\mp\ssh$: vetor de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. Ã‰ dado por $\mp\ssh = \mp_0\ssh$.
+\item $\mp\cir$: vetor de $\nu\ssh$ velocidades generalizadas redundantes de $\ssM$. Ã‰ definido por $\mp\cir = \begin{bmatrix} \mp_1^\msT & \mp_2^\msT & ... & \mp_{n-1}^\msT \end{bmatrix}^\msT $.
+\item $\mp$: vetor contendo todas as velocidades generalizadas de $\ssM$. Ã‰ definido por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
 \item $\mrho$: vetor definido como $\mrho = \begin{bmatrix} {\mrho\ssh}^\msT & {\mrho\cir}^\msT \end{bmatrix}^\msT $, sendo $\mrho\ssh = \mp_0\ssh$ e $\mrho\cir = \dot{\mq}\hcir $.
-\item $\overline{\mrho}(\mrho)$: vetor dos vínculos de velocidades entre subsistemas. As equações vínculares são dadas por $\overline{\mrho}(\mrho) = \mzr $.
-\item $\mA_j(\mq_j\ssh), \,j=0, ..., n-1$: Jacobiano dos vínculos de velocidades do subsistema $\ssB_j$.
-\item $\mC_j(\mq_j\ssh), \,j=0, ..., n-1$: complemento ortogonal do Jacobiano dos vínculos de velocidades do subsistema $\ssB_j$.
-\item $\mM_j, \,j=0, ..., n-1$: matriz de inércia desacoplada do subsistema $\ssB_j$.
-\item $\mv_j(\mp_j\ssh), \,j=0, ..., n-1 $: vetor dos termos giroscópicos desacoplados do subsistema $\ssB_j$.
-\item $\mf_j(\mq_j\ssh), \,j=0, ..., n-1$: vetor dos esforços de atrito do subsistema $\ssB_j$.
-\item $\mg_j, \,j=0, ..., n-1$: vetor dos esforços gravitacionais do subsistema $\ssB_j$.
-\item $\mu_j, \,j=0, ..., n-1$: vetor dos esforços ativos externos do subsistema $\ssB_j$.
+\item $\overline{\mrho}(\mrho)$: vetor dos v\'inculos de velocidades entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mrho}(\mrho) = \mzr $.
+\item $\mA_j(\mq_j\ssh), \,j=0, ..., n-1$: Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
+\item $\mC_j(\mq_j\ssh), \,j=0, ..., n-1$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
+\item $\mM_j, \,j=0, ..., n-1$: matriz de in\'ercia desacoplada do subsistema $\ssB_j$.
+\item $\mv_j(\mp_j\ssh), \,j=0, ..., n-1 $: vetor dos termos girosc\'opicos desacoplados do subsistema $\ssB_j$.
+\item $\mf_j(\mq_j\ssh), \,j=0, ..., n-1$: vetor dos esfor\c{c}os de atrito do subsistema $\ssB_j$.
+\item $\mg_j, \,j=0, ..., n-1$: vetor dos esfor\c{c}os gravitacionais do subsistema $\ssB_j$.
+\item $\mu_j, \,j=0, ..., n-1$: vetor dos esfor\c{c}os ativos externos do subsistema $\ssB_j$.
 \end{itemize}
 
-O modelo para simulação dinâmica direta é dado pelo seguinte equacionamento:
+O modelo para simula\c{c}\~ao din\^amica direta \'e dado pelo seguinte equacionamento:
 
 \begin{equation} \label{eq:DinamicaDireta2}
 \begin{cases}
@@ -704,7 +682,7 @@ Sendo:
 \end{bmatrix}^\msT
 \end{equation}
 
-Aqui seguem as etapas do algoritmo para dedução do modelo dinâmico de um subsistema serial acompanhado de um exemplo de aplicação para dedução do modelo dinâmico do mecanismo 5R (pentágono articulado) a partir do acoplamento dos modelos de 2 mecanismos \underline{R}\underline{R} e uma massa pontual (efetuador).
+Aqui seguem as etapas do algoritmo para dedu\c{c}\~ao do modelo din\^amico de um subsistema serial acompanhado de um exemplo de aplica\c{c}\~ao para dedu\c{c}\~ao do modelo din\^amico do mecanismo 5R (pent\'agono articulado) a partir do acoplamento dos modelos de 2 mecanismos \underline{R}\underline{R} e uma massa pontual (efetuador).
 
 \begin{figure}[H]
 	\centering
@@ -713,7 +691,7 @@ Aqui seguem as etapas do algoritmo para dedução do modelo dinâmico de um subsist
 	\label{fig:RR}
 \end{figure}
 
-O modelo do mecanismo \underline{R}\underline{R} é dado pela equação \eqref{eq:RR}. O modelo da massa pontual é dado pela seguinte expressão:
+O modelo do mecanismo \underline{R}\underline{R} \'e dado pela equa\c{c}\~ao \eqref{eq:RR}. O modelo da massa pontual \'e dado pela seguinte express\~ao:
 
 \begin{equation} \label{eq:MassaPontual}
 \begin{bmatrix}
@@ -739,7 +717,7 @@ m_0 g
 Etapas do algoritmo:
 
 \begin{itemize}
-\item[1)] Definição das coordenadas generalizadas:
+\item[1)] Defini\c{c}\~ao das coordenadas generalizadas:
 
 \begin{equation}
 \mq_0 = \begin{bmatrix}
@@ -759,7 +737,7 @@ x & y
 \end{bmatrix}^\msT
 \end{equation}
 
-\item[2)] Definição das velocidades generalizadas:
+\item[2)] Defini\c{c}\~ao das velocidades generalizadas:
 
 \begin{equation}
 \mp_0\ssh = \begin{bmatrix}
@@ -778,7 +756,7 @@ x & y
 \end{bmatrix}^\msT
 \end{equation}
 
-\item[3)] Definição dos vínculos de posição utilizando matrizes de transformação homogênea:
+\item[3)] Defini\c{c}\~ao dos v\'inculos de posi\c{c}\~ao utilizando matrizes de transforma\c{c}\~ao homog\^enea:
 
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttN_1} =
@@ -840,7 +818,7 @@ l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
 \end{bmatrix}
 \end{equation}
 
-Vínculos de posição:
+V\'inculos de posi\c{c}\~ao:
 
 \begin{equation}
 \begin{cases}
@@ -867,7 +845,7 @@ y - l_1 \ssin_{2,1} - l_2 \ssin_{2,1\plus 2} \\
 = \mzr
 \end{equation}
 
-\item[4)] Cálculo dos Jacobianos dos vínculos de posição e definição dos vínculos de velocidades:
+\item[4)] C\'alculo dos Jacobianos dos v\'inculos de posi\c{c}\~ao e defini\c{c}\~ao dos v\'inculos de velocidades:
 
 \begin{equation}
 \frac{\partial \overline{\mq}}{\partial \mq_0} = 
@@ -916,7 +894,7 @@ y - l_1 \ssin_{2,1} - l_2 \ssin_{2,1\plus 2} \\
 \end{bmatrix} = \mzr
 \end{equation}
 
-\item[5)] Cálculo de $\hat{\mC}$, $\mC$, $\mA$ e $\mb$ através de \eqref{eq:MatrizCchapeu}, \eqref{eq:MatrizC2}, \eqref{eq:MatrizA2} e \eqref{eq:Matrizb2}:
+\item[5)] C\'alculo de $\hat{\mC}$, $\mC$, $\mA$ e $\mb$ atrav\'es de \eqref{eq:MatrizCchapeu}, \eqref{eq:MatrizC2}, \eqref{eq:MatrizA2} e \eqref{eq:Matrizb2}:
 
 \begin{equation}
 \hat{\mC} =
@@ -1000,7 +978,7 @@ l_{2} \ssin_{2,1}  \dot{\theta}_{2,1}^2 + l_{g2} \ssin_{2, 1\plus 2}   (\dot{\th
 \end{equation}
 
 \begin{itemize}
-\item[6)] Obter $\mM$, $\mv$, $\mf$, $\mg$ e $\mu$ através de \eqref{eq:MatrizM2}, \eqref{eq:Matrizv2}, \eqref{eq:Matrizf2}, \eqref{eq:Matrizg2} e \eqref{eq:Matrizu}:
+\item[6)] Obter $\mM$, $\mv$, $\mf$, $\mg$ e $\mu$ atrav\'es de \eqref{eq:MatrizM2}, \eqref{eq:Matrizv2}, \eqref{eq:Matrizf2}, \eqref{eq:Matrizg2} e \eqref{eq:Matrizu}:
 
 \begin{equation}
 \mM =
@@ -1058,9 +1036,9 @@ c_2 \dot{\theta}_{2,2} + \gamma_2 \sign(\dot{\theta}_{2,2}) \\
 
 \end{itemize}
 
-\subsection{Controle por modos deslizantes}\label{struct}
+\subsection{Controle por modos deslizantes}\label{S04-2}
 
-Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta técnica de controle não linear robusto é a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdução, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
+Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta t\'ecnica de controle n\~ao linear robusto \'e a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdu\c{c}\~ao, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
 
 Seja um sistema din\^amico dado pela seguinte equa\c{c}\~ao diferencial:
 \begin{equation} \label{eq:SimpleODE}
@@ -1114,7 +1092,7 @@ Em $t = t_s = \frac{|s_0|}{k}$, $s$ chega em zero. Resolvendo a EDO para $s(t_s)
 $$ \dot{s} = 0 \Rightarrow s =  c $$
 $$ s(t_s) = 0 \Rightarrow c = 0 $$
 
-Portanto, para a solu\c{c}\~ao da EDO para $s(0) = s_0 > 0$ é
+Portanto, para a solu\c{c}\~ao da EDO para $s(0) = s_0 > 0$ \'e
 \begin{equation} \label{eq:SM-ODE-Sol1}
 s(t) =
 \begin{cases}
@@ -1135,9 +1113,9 @@ s_0 + k t, \, t < t_s \\
 
 Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero.
 
-\subsection{Controle por modos deslizantes extendido}\label{struct}
+\subsection{Controle por modos deslizantes extendido}\label{S04-3}
 
-Esta subseção tem o intuido de apresentar o desenvolvimento da lei de controle adequada para sistemas descritos por coordenadas redundantes desenvolvida. \\
+Esta subse\c{c}\~ao tem o intuido de apresentar o desenvolvimento da lei de controle adequada para sistemas descritos por coordenadas redundantes desenvolvida. \\
 
 Seja o modelo de um sistema mec\^anico multi-corpos descrito pelas seguintes equa\c{c}\~oes:
 \begin{equation} \label{eq:MechanicalSystem}
@@ -1195,7 +1173,7 @@ $ \begin{bmatrix}
 \end{bmatrix}
 \mv $ \\
 
-Como $\begin{bmatrix} \mC^\msT \, \mM \\ \mA \end{bmatrix}$ é não singular:
+Como $\begin{bmatrix} \mC^\msT \, \mM \\ \mA \end{bmatrix}$ \'e n\~ao singular:
 
 \begin{equation} \label{eq:ClosedLoopV}
 \ddot{\mq} = \mv
@@ -1256,71 +1234,61 @@ Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o 
 \mu = \mC^\msT ( \mM \mv' + \mw + \mz )
 \end{equation}
 
-%---PUBLICAÇÕES---------------------------------------------------------
-\newpage 
-\section{Publicações}\label{publ}
+\section{Publica\c{c}\~oes}\label{S05}
 
-A partir dos resultados obtidos no trabalho de formatura realizado na graduação, foi escrito um artigo denominado
-"Development of a controller for a 3-DOF robotic platform for user interaction in rehabilitation therapies" \cite{Andre2}, o qual foi escrito pelo aluno em coautoria com Eng. Guilherme Martinho Dobrianskyj e seu orientador, Prof. Dr. Tarcísio Antônio Hess Coelho. Foi aceito e apresentado no BioRob 2014 (IEEE International Conference on Biomedical Robotics and Biomechatronics) na seção de posters, no dia 15 de agosto de 2014. O artigo pode ser acessado por \url{http://dx.doi.org/10.1109/BIOROB.2014.6913880}.
+A partir dos resultados obtidos no trabalho de formatura realizado na gradua\c{c}\~ao, foi escrito um artigo denominado
+"Development of a controller for a 3-DOF robotic platform for user interaction in rehabilitation therapies" \cite{Andre2}, o qual foi escrito pelo aluno em coautoria com Eng. Guilherme Martinho Dobrianskyj e seu orientador, Prof. Dr. Tarc\'isio Ant\^onio Hess Coelho. Foi aceito e apresentado no BioRob 2014 (IEEE International Conference on Biomedical Robotics and Biomechatronics) na se\c{c}\~ao de posters, no dia 15 de agosto de 2014. O artigo pode ser acessado por \url{http://dx.doi.org/10.1109/BIOROB.2014.6913880}.
 
 Um capitulo do livro {\em Dynamic balancing of mechanisms and synthesizing of parallel
 robots}  (editado pelo Prof. Dr. Dan Zhang da Universidade do Instituto de Tecnologia
 de Ontario e a ser publicado pela editora Springer), denominado "Dynamic modelling
 and control of balanced parallel mechanisms" foi escrito em coautoria com o aluno de
-doutorado direto Renato M. M. Orsino e com o Prof. Dr. Tarcísio Antonio Hess Coelho.
-Este capítulo de livro trata do uso de uma metodologia de modelagem modular para o
+doutorado direto Renato M. M. Orsino e com o Prof. Dr. Tarc\'isio Antonio Hess Coelho.
+Este cap\'itulo de livro trata do uso de uma metodologia de modelagem modular para o
 balanceamento adaptativo e desenvolvimento de algoritmos de controle para mecanismos
-robóticos paralelos. Encontra-se, atualmente, em fase de revisão pelos editores.
+rob\'oticos paralelos. Encontra-se, atualmente, em fase de revis\~ao pelos editores.
 
+\section{Disciplinas de p\'os-gradua\c{c}\~ao}\label{S06}
 
-%---DISCIPLINAS CURSADAS---------------------------------------------------------
-\newpage
-\section{Disciplinas de pós-graduação}\label{disci}
-
-Ao longo do programa o aluno já cumpriu 40 créditos, tendo cursado 5 disciplinas 
-de pós-graduação:
+Ao longo do programa o aluno j\'a cumpriu 40 cr\'editos, tendo cursado 5 disciplinas 
+de p\'os-gradua\c{c}\~ao:
 \begin{itemize}
-\item PME--5004 --- Complementos de Matemática I
-\item PMR--5010 --- Elementos Finitos em Sistemas Multifísicos: Fundamentos
-\item PMR--5215 --- Otimização Aplicada ao Projeto de Sistemas Mecânicos
-\item PMR--5238 --- Análise e Síntese de Mecanismo Planos e Tridimensionais
-\item PMR--5211 --- Mecânica dos Sólidos Experimental
+\item PME--5004 --- Complementos de Matem\'atica I
+\item PMR--5010 --- Elementos Finitos em Sistemas Multif\'isicos: Fundamentos
+\item PMR--5215 --- Otimiza\c{c}\~ao Aplicada ao Projeto de Sistemas Mec\^anicos
+\item PMR--5238 --- An\'alise e S\'intese de Mecanismo Planos e Tridimensionais
+\item PMR--5211 --- Mec\^anica dos S\'olidos Experimental
 \end{itemize}
 
 Ressalta-se que em todas o aluno obteve conceito A, demonstrando bom aproveitamento. \\
 
-Além disso, pretende-se cursar a seguinte disciplina no primeiro quadrimestre de 2015:
+Al\'em disso, pretende-se cursar a seguinte disciplina no primeiro quadrimestre de 2015:
 \begin{itemize}
-\item PMR--5234 --- Técnicas de Ultra-Som e suas aplicações na Indústria e na Medicina
+\item PMR--5234 --- T\'ecnicas de Ultra-Som e suas aplica\c{c}\~oes na Ind\'ustria e na Medicina
 \end{itemize}
 
+\section{Cronograma de Atividades do Projeto}\label{S07}
 
-
-
-%ETAPAS E ATIVIDADES DO PROJETO----------------------------------------
-\newpage
-\section{Cronograma de Atividades do Projeto}\label{atividades}
-
-Serão realizados os seguintes passos para a realização da proposta:
+Ser\~ao realizados os seguintes passos para a realiza\c{c}\~ao da proposta:
 
 \begin{itemize}
-\item[(1)] 	Cumprimentos dos créditos de pós-graduação.
-\item[(2)] 	Pesquisa e revisão bibliográfica da literatura para o desenvolvimento teórico.
-\item[(3)] 	Estudo dos aprimoramentos dos métodos de Lagrange, Kane e Gibbs-Appell, desenvolvidos no grupo de pesquisa do professor Dr. Tarcísio Coelho.
-\item[(4)]  Elaboração de algoritmo de modelagem dinâmica multicorpos baseados nos aprimoramentos dos métodos estudados.
-\item[(5)] 	Aplicação do algoritmo desenvolvido em diferentes mecanismos.
-\item[(6)] 	Simulação da dinâmica inversa para os mecanismos escolhidos.
-\item[(7)]  Estudo de técnicas de controle não-linear.
-\item[(8)]  Desenvolvimento de metodologia de projeto de controlador não linear robusto, voltada à mecanismos paralelos com incertezas paramétricas.
-\item[(9)] 	Simulação da dinâmica direta utilizando as técnicas de controle estudadas.
+\item[(1)] 	Cumprimentos dos cr\'editos de p\'os-gradua\c{c}\~ao.
+\item[(2)] 	Pesquisa e revis\~ao bibliogr\'afica da literatura para o desenvolvimento te\'orico.
+\item[(3)] 	Estudo dos aprimoramentos dos m\'etodos de Lagrange, Kane e Gibbs-Appell, desenvolvidos no grupo de pesquisa do professor Dr. Tarc\'isio Coelho.
+\item[(4)]  Elabora\c{c}\~ao de algoritmo de modelagem din\^amica multicorpos baseados nos aprimoramentos dos m\'etodos estudados.
+\item[(5)] 	Aplica\c{c}\~ao do algoritmo desenvolvido em diferentes mecanismos.
+\item[(6)] 	Simula\c{c}\~ao da din\^amica inversa para os mecanismos escolhidos.
+\item[(7)]  Estudo de t\'ecnicas de controle n\~ao-linear.
+\item[(8)]  Desenvolvimento de metodologia de projeto de controlador n\~ao linear robusto, voltada \`a mecanismos paralelos com incertezas param\'etricas.
+\item[(9)] 	Simula\c{c}\~ao da din\^amica direta utilizando as t\'ecnicas de controle estudadas.
 \item[(10)] 	Desenvolvimento de leis de controle que permitam  o controle de mecanismos descritos por modelos  com coordenadas redundantes.
-\item[(11)] Simulação da dinâmica direita utilizando as técnicas de controle com variáveis redundantes.
-\item[(12)] 	Comparação e análise dos resultados obtidos utilizando as leis de controles implementadas em simulação.
-\item[(13)] 	Avaliação geral dos resultados.
-\item[(14)] Preparo da dissertação.
+\item[(11)] Simula\c{c}\~ao da din\^amica direita utilizando as t\'ecnicas de controle com vari\'aveis redundantes.
+\item[(12)] 	Compara\c{c}\~ao e an\'alise dos resultados obtidos utilizando as leis de controles implementadas em simula\c{c}\~ao.
+\item[(13)] 	Avalia\c{c}\~ao geral dos resultados.
+\item[(14)] Preparo da disserta\c{c}\~ao.
 \end{itemize}
 
-Aqui segue um cronograma estimado para realização das atividades propostas:
+Aqui segue um cronograma estimado para realiza\c{c}\~ao das atividades propostas:
 
 \begin{table}[!ht]
 \begin{center}
@@ -1365,9 +1333,20 @@ Aqui segue um cronograma estimado para realização das atividades propostas:
 \end{center}
 \end{table}
 
-\phantom{a}
-\newpage
-\bibliographystyle{plain}
-\bibliography{bibliografia}
+%--------------------ACKNOWLEDGMENTS--------------------%
+
+%\section*{Acknowledgments}
+
+
+%--------------------BIBLIOGRAPHY--------------------%
+
+% \newpage
+\phantomsection 
+\input{EXTRAS/bibliography}
+
+
+% \end{multicols}
+
 
 \end{document}
+
