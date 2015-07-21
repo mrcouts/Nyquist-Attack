@@ -250,48 +250,51 @@ x_1 & y_1 & x_2 & y_2
 \begin{equation}
 \hvct{\ttg_1}_{\ttB_1}  =
 \begin{bmatrix} 
-l_{g1} & 0 & 1
+l_{g1} & 0 & 0 & 1
 \end{bmatrix}^\msT
 \end{equation}
 
 \begin{equation}
 \hvct{\ttg_2}_{\ttB_2}  =
 \begin{bmatrix} 
-l_{g2} & 0 & 1
+l_{g2} & 0 & 0 & 1
 \end{bmatrix}^\msT
 \end{equation}
 
 \begin{equation}
 \hvct{\ttx}_{\ttB_2}  =
 \begin{bmatrix} 
-l_2 & 0 & 1
+l_2 & 0 & 0 & 1
 \end{bmatrix}^\msT
 \end{equation}
 
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttB_1} =
 \begin{bmatrix}
-\ccos_1 & -\ssin_1 & 0 \\
-\ssin_1 & \ccos_1 & 0 \\
-0 & 0 & 1
+\ccos_1 & -\ssin_1 & 0 & 0 \\
+\ssin_1 & \ccos_1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
 
 \begin{equation}
 \hvct{\mone}_{\ttB_1 \rl \ttB_2} =
 \begin{bmatrix}
-\ccos_2 & -\ssin_2 & l_1 \\
-\ssin_2 & \ccos_2 & 0 \\
-0 & 0 & 1
+\ccos_2 & -\ssin_2 & 0 & l_1 \\
+\ssin_2 & \ccos_2 & 0 &  0 \\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
 
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttB_2} = \hvct{\mone}_{\ttN \rl \ttB_1} \hvct{\mone}_{\ttB_1 \rl \ttB_2} =
 \begin{bmatrix}
-\ccos_{1\plus 2} & -\ssin_{1\plus 2} & l_1 \ccos_1\\
-\ssin_{1\plus 2} & \ccos_{1\plus 2} & l_1 \ssin_1 \\
-0 & 0 & 1
+\ccos_{1\plus 2} & -\ssin_{1\plus 2} & 0 & l_1 \ccos_1\\
+\ssin_{1\plus 2} & \ccos_{1\plus 2} & 0 & l_1 \ssin_1 \\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
 
@@ -300,6 +303,7 @@ l_2 & 0 & 1
 \begin{bmatrix}
 l_{g1} \ccos_1 \\
 l_{g1} \ssin_1 \\
+0 \\
 1
 \end{bmatrix}
 \end{equation}
@@ -309,6 +313,7 @@ l_{g1} \ssin_1 \\
 \begin{bmatrix}
 l_1 \ccos_1 + l_{g2} \ccos_{1\plus 2} \\
 l_1 \ssin_1 + l_{g2} \ssin_{1\plus 2} \\
+0 \\
 1
 \end{bmatrix}
 \end{equation}
@@ -318,6 +323,7 @@ l_1 \ssin_1 + l_{g2} \ssin_{1\plus 2} \\
 \begin{bmatrix}
 l_1 \ccos_1 + l_2 \ccos_{1\plus 2} \\
 l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
+0 \\
 1
 \end{bmatrix}
 \end{equation}
@@ -329,6 +335,7 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
 \begin{bmatrix}
 -l_{g1} \ssin_1 \dot{\theta}_1 \\
  l_{g1} \ccos_1 \dot{\theta}_1 \\
+ 0 \\
 \end{bmatrix}
 \end{equation}
 
@@ -337,6 +344,7 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
 \begin{bmatrix}
 -l_{1} \ssin_1 \dot{\theta}_1 - l_{g2} \ssin_{1\plus 2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
  l_{1} \ccos_1 \dot{\theta}_1 + l_{g2} \ccos_{1\plus 2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
+ 0 \\
 \end{bmatrix}
 \end{equation}
 
@@ -345,21 +353,33 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
 \begin{equation}
 \smat{\underline{\vomega}_1}_{\ttB_1 \rl \ttB_1} = \tvct{\mone}_{\ttN \rl \ttB_1} \frac{\dd}{\dd t} \vct{\mone}_{\ttN \rl \ttB_1} = 
 \begin{bmatrix}
-0 & \dot{\theta}_1 \\
--\dot{\theta}_1 & 0
+0 & -\dot{\theta}_1 & 0 \\
+\dot{\theta}_1 & 0 & 0 \\
+0 & 0 & 0
 \end{bmatrix}
 \Rightarrow
-\underline{\vomega}_1 = \dot{\theta}_1 \hat{\vk}
+\vct{\underline{\vomega}_1}_{\ttB_1} = 
+\begin{bmatrix}
+0 \\
+0 \\
+\dot{\theta}_1
+\end{bmatrix}
 \end{equation}
 
 \begin{equation}
 \smat{\underline{\vomega}_2}_{\ttB_2 \rl \ttB_2} = \tvct{\mone}_{\ttN \rl \ttB_2} \frac{\dd}{\dd t} \vct{\mone}_{\ttN \rl \ttB_2} = 
 \begin{bmatrix}
-0 & \dot{\theta}_1 + \dot{\theta}_2 \\
--\dot{\theta}_1 - \dot{\theta}_2 & 0
+0 & -\dot{\theta}_1 -\dot{\theta}_2 & 0 \\
+\dot{\theta}_1 + \dot{\theta}_2 & 0 & 0 \\
+0 & 0 & 0
 \end{bmatrix}
 \Rightarrow
-\underline{\vomega}_2 = (\dot{\theta}_1 + \dot{\theta}_2) \hat{\vk}
+\vct{\underline{\vomega}_2}_{\ttB_2} = 
+\begin{bmatrix}
+0 \\
+0 \\
+\dot{\theta}_1 + \dot{\theta}_2
+\end{bmatrix}
 \end{equation}
 
 \item[6)] Montar o vetor $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$ e calcular $\mC$, $\mA$ e $\mb$ atrav\'es das equa\c{c}\~oes \eqref{eq:MatrizC}, \eqref{eq:MatrizA} e \eqref{eq:Matrizb}:
@@ -694,13 +714,28 @@ Aqui seguem as etapas do algoritmo para dedu\c{c}\~ao do modelo din\^amico de um
 O modelo do mecanismo \underline{R}\underline{R} \'e dado pela equa\c{c}\~ao \eqref{eq:RR}. O modelo da massa pontual \'e dado pela seguinte express\~ao:
 
 \begin{equation} \label{eq:MassaPontual}
+\begin{cases}
+\begin{bmatrix}
+\dot{x} \\
+\dot{y}
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+v_{x} \\
+v_{y}
+\end{bmatrix}
+\\
 \begin{bmatrix}
 m_0 \\
 m_0 \\
 \end{bmatrix}^\msD
 \begin{bmatrix}
-\ddot{x} \\
-\ddot{y}
+\dot{v}_{x} \\
+\dot{v}_{y}
 \end{bmatrix}
 +
 \begin{bmatrix}
@@ -712,6 +747,7 @@ m_0 g
 0 \\
 0
 \end{bmatrix}
+\end{cases}
 \end{equation}
 
 Etapas do algoritmo:
@@ -761,18 +797,20 @@ x & y
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttN_1} =
 \begin{bmatrix}
-1 & 0 & l_0 \\
-0 & 1 & 0 \\
-0 & 0 & 1
+1 & 0 & 0 & l_0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
 
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttN_2} =
 \begin{bmatrix}
--1 & 0 & -l_0 \\
-0 & 1 & 0 \\
-0 & 0 & 1
+-1 & 0 & 0 & -l_0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & -1 & 0\\
+0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
 
@@ -780,7 +818,8 @@ x & y
 \vct{\ttx_0}_{\ttN} =
 \begin{bmatrix}
 x \\
-y
+y \\
+0 \\
 \end{bmatrix}
 \end{equation}
 
@@ -789,6 +828,7 @@ y
 \begin{bmatrix}
 l_1 \ccos_{1,1} + l_2 \ccos_{1,1\plus 2} \\
 l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\
+0
 \end{bmatrix}
 \end{equation}
 
@@ -797,6 +837,7 @@ l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\
 \begin{bmatrix}
 l_1 \ccos_{2,1} + l_2 \ccos_{2,1\plus 2} \\
 l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
+0
 \end{bmatrix}
 \end{equation}
 
@@ -805,6 +846,7 @@ l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
 \begin{bmatrix}
 l_0 + l_1 \ccos_{1,1} + l_2 \ccos_{1,1\plus 2} \\
 l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\
+0 \\
 1
 \end{bmatrix}
 \end{equation}
@@ -814,6 +856,7 @@ l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\
 \begin{bmatrix}
 -l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1\plus 2} \\
 l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
+0 \\
 1
 \end{bmatrix}
 \end{equation}
