@@ -51,8 +51,8 @@
 }\\
 
 \noindent
-{${}^\text{a}$ \it Department of Mechatronics and Mechanical Systems Engineering, Escola Politecnica, 
-University of Sao Paulo, Brazil. E-mail: andre.garnier.coutinho@usp.br}
+{${}^\text{a}$ \it Departamento de Engenharia Mecatr\^onica e Sistemas Mec\^anicos, Escola Politecnica, 
+Universidade de S\~ao Paulo, Brasil. E-mail: andre.garnier.coutinho@usp.br}
 
 \vspace{24pt}
 %
@@ -68,12 +68,12 @@ Utilizando os m\'etodos tradicionais de modelagem de Sistemas Mec\^anicos Multic
 
 A solu\c{c}\~ao proposta para ser poss\'ivel aumentar a performance, garantindo a robustez, de um sistema de controle de mecanismos paralelos \'e a utiliza\c{c}\~ao dos novos m\'etodos de modelagem din\^amica desenvolvidos pelo grupo de pesquisa do Prof. Doutor Tarcisio Antonio Hess Coelho, os quais s\~ao adequados para incluir todos os efeitos de din\^amica de corpos r\'igidos, independentemente da complexidade do sistema.
 
-O presente projeto visa desenvolver um algoritmo simples que inclua todos os efeitos da din\^amica de corpos r\'igidos para realizar a modelagem din\^amica de mecanismos paralelos (baseado na metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atua\c{c}\~ao redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
+O presente projeto visa desenvolver um algoritmo que inclua todos os efeitos da din\^amica de corpos r\'igidos para realizar a modelagem din\^amica de mecanismos paralelos (baseado na metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atua\c{c}\~ao redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
 
 \vspace{10pt}
 
 \noindent
-KEYWORDS: {Dynamic balancing, serial mechanisms}
+PALAVRAS-CHAVE: {Sistemas mec\^anicos multicorpos, mecanismos paralelos, controle n\~ao-linear}
 
 
 
@@ -86,11 +86,11 @@ KEYWORDS: {Dynamic balancing, serial mechanisms}
 
 H\'a uma s\'erie de vantagens em utilizar mecanismos de cadeia cinem\'atica paralela no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precis\~ao de posicionamento do efetuador e uma redu\c{c}\~ao significativa na in\'ercia. Outra caracter\'istica marcante desse tipo de arquitetura s\~ao as altas velocidades e acelera\c{c}\~oes atingidas, as quais superam muito os valores m\'aximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espa\c{c}o de trabalho e modelo din\^amico muito mais complexo e dif\'icil de se obter \cite{Merlet2002, Rynaldo}. 
 
-	Devido à grande dificuldade de se obter o modelo din\^amico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande dom\'inio sobre a din\^amica dos sistema, como plataformas rob\'oticas voltadas a reabilita\c{c}\~ao, pois \'e necess\'ario um conhecimento detalhado do comportamento din\^amico do mecanismo utilizado para poder controlar as for\c{c}as de intera\c{c}\~ao entre o mecanismo e o paciente \cite{Andre, Andre2}.
+	Devido à grande dificuldade de se obter o modelo din\^amico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande dom\'inio sobre a din\^amica do sistema, como plataformas rob\'oticas voltadas \`a reabilita\c{c}\~ao, pois \'e necess\'ario um conhecimento detalhado do comportamento din\^amico do mecanismo utilizado para poder controlar as for\c{c}as de intera\c{c}\~ao entre o mecanismo e o paciente \cite{Andre, Andre2}.
 	
 	Atualmente novas metodologias para modelagem de din\^amica multicorpos que se mostram muito mais adequadas para aplica\c{c}\~oes em qualquer tipo de mecanismo est\~ao sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando tamb\'em orientado pelo professor Dr. Tarc\'isio Coelho \cite{Orsino2013, Apostila}.
 	
-	Outro assunto relevante ainda pouco estudado por pesquisadores \'e o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como j\'a foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os m\'etodos tradicionais, ainda s\~ao poucos os estudos de implementa\c{c}\~ao de t\'ecnicas de controle em mecanismos de cadeia fechada. Sendo assim, \'e poss\'ivel aliar as novas metodologias de modelagem desenvolvidas à implementa\c{c}\~ao, adapta\c{c}\~ao e aprimoramentos de algoritmos de controle n\~ao-linear voltados a mecanismos paralelos \cite{Craig}. Al\'em disso \'e poss\'ivel aproveitar os novos m\'etodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementa\c{c}\~ao de leis de controle utilizando vari\'aveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
+	Outro assunto relevante ainda pouco estudado por pesquisadores \'e o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como j\'a foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os m\'etodos tradicionais, ainda s\~ao poucos os estudos de implementa\c{c}\~ao de t\'ecnicas de controle em mecanismos de cadeia fechada. Sendo assim, \'e poss\'ivel aliar as novas metodologias de modelagem desenvolvidas \`a implementa\c{c}\~ao, adapta\c{c}\~ao e aprimoramentos de algoritmos de controle n\~ao-linear voltados a mecanismos paralelos \cite{Craig}. Al\'em disso \'e poss\'ivel aproveitar os novos m\'etodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementa\c{c}\~ao de leis de controle utilizando vari\'aveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
 
 %--------------------METHODOLOGY--------------------%
 
@@ -106,7 +106,7 @@ Os principais objetivos do projeto s\~ao:
 \item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
 \item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
 \end{itemize}
-\item Desenvolvimento de metodologia de projeto de controle n\~ao linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
+\item Desenvolvimento de metodologia de projeto de controle n\~ao-linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
 \item Desenvolvimento de lei de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.
 \end{itemize}
 
@@ -115,13 +115,13 @@ Os principais objetivos do projeto s\~ao:
 
 \section{Metodologia do projeto}\label{S03}
 
-O desenvolvimento do projeto consiste basicamente em tr\^es frentes: o desenvolvimento e aprimoramento do algoritmo utilizado para modelagem din\^amica das plataformas rob\'oticas, o desenvolvimento de uma metologia de projeto de sistema de controle n\~ao linear robusto para plataformas rob\'oticas com incertezas param\'etricas, e a elabora\c{c}\~ao de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
+O desenvolvimento do projeto consiste basicamente em tr\^es frentes: o desenvolvimento e aprimoramento do algoritmo utilizado para modelagem din\^amica das plataformas rob\'oticas, o desenvolvimento de uma metologia de projeto de sistema de controle n\~ao-linear robusto para plataformas rob\'oticas com incertezas param\'etricas, e a elabora\c{c}\~ao de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
 
-O desenvolvimento do algoritmo de modelagem \'e feito come\c{c}ando pelo estudo dos m\'etodos tracionais e da metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi de modelagem de sistemas mec\^anicos multicorpos, seguido pela concep\c{c}\~ao da primeira ver\~ao do algoritmo, aplica\c{c}\~ao da vers\~ao atual do algoritmo em diversas plataformas rob\'oticas utilizando softwares de manipula\c{c}\~ao simb\'olicas, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos ao algoritmo, voltando \`as etapas de aplica\c{c}\~ao, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos iterativamente.
+O desenvolvimento do algoritmo de modelagem \'e feito come\c{c}ando pelo estudo dos m\'etodos tracionais e da metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi de modelagem de sistemas mec\^anicos multicorpos, seguido pela concep\c{c}\~ao da primeira vers\~ao do algoritmo, aplica\c{c}\~ao da vers\~ao atual do algoritmo em diversas plataformas rob\'oticas utilizando softwares de manipula\c{c}\~ao simb\'olicas, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos ao algoritmo, voltando \`as etapas de aplica\c{c}\~ao, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos iterativamente.
 
-O desenvolvimento da metodologia de projeto de sistema de controle n\~ao linear robusto para plataformas rob\'otica com incertezas param\'etricas inicia-se no estudo de t\'ecnicas de controle que seguem esta linha e aplica\c{c}\~ao em sistemas de menor complexidade. Depois de adquirir o dom\'inio das leis de controle estudadas, aplicar as t\'ercnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao m\'aximo a metodologia de projeto desenvolvida.
+O desenvolvimento da metodologia de projeto de sistema de controle n\~ao-linear robusto para plataformas rob\'otica com incertezas param\'etricas inicia-se no estudo de t\'ecnicas de controle que seguem esta linha e aplica\c{c}\~ao em sistemas de menor complexidade. Depois de adquirir o dom\'inio das leis de controle estudadas, aplicar as t\'ercnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao m\'aximo a metodologia de projeto desenvolvida.
 
-O desenvolvimento de leis de controle adaquadas a sistemas descritos por coordenadas redundantes \'e feito baseado nas leis de controle n\~ao linear robusto estudas, com o objetivo de realizar o controle de plataformas rob\'oticas cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios. Essa etapa do projeto exige a integra\c{c}\~ao dos conhecimentos adquiridos nas \'areas de modelagem e controle de plataformas rob\'oticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
+O desenvolvimento de leis de controle adaquadas a sistemas descritos por coordenadas redundantes \'e feito baseado nas leis de controle n\~ao-linear robusto estudas, com o objetivo de realizar o controle de plataformas rob\'oticas cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios. Essa etapa do projeto exige a integra\c{c}\~ao dos conhecimentos adquiridos nas \'areas de modelagem e controle de plataformas rob\'oticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
 
 %\newpage
 
@@ -1081,7 +1081,7 @@ c_2 \dot{\theta}_{2,2} + \gamma_2 \sign(\dot{\theta}_{2,2}) \\
 
 \subsection{Controle por modos deslizantes}\label{S04-2}
 
-Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta t\'ecnica de controle n\~ao linear robusto \'e a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdu\c{c}\~ao, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
+Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta t\'ecnica de controle n\~ao-linear robusto \'e a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdu\c{c}\~ao, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
 
 Seja um sistema din\^amico dado pela seguinte equa\c{c}\~ao diferencial:
 \begin{equation} \label{eq:SimpleODE}
@@ -1322,7 +1322,7 @@ Ser\~ao realizados os seguintes passos para a realiza\c{c}\~ao da proposta:
 \item[(5)] 	Aplica\c{c}\~ao do algoritmo desenvolvido em diferentes mecanismos.
 \item[(6)] 	Simula\c{c}\~ao da din\^amica inversa para os mecanismos escolhidos.
 \item[(7)]  Estudo de t\'ecnicas de controle n\~ao-linear.
-\item[(8)]  Desenvolvimento de metodologia de projeto de controlador n\~ao linear robusto, voltada \`a mecanismos paralelos com incertezas param\'etricas.
+\item[(8)]  Desenvolvimento de metodologia de projeto de controlador n\~ao-linear robusto, voltada \`a mecanismos paralelos com incertezas param\'etricas.
 \item[(9)] 	Simula\c{c}\~ao da din\^amica direta utilizando as t\'ecnicas de controle estudadas.
 \item[(10)] 	Desenvolvimento de leis de controle que permitam  o controle de mecanismos descritos por modelos  com coordenadas redundantes.
 \item[(11)] Simula\c{c}\~ao da din\^amica direita utilizando as t\'ecnicas de controle com vari\'aveis redundantes.
