@@ -593,29 +593,32 @@ Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriai
 Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n} \,$ $n+1$ subsistemas mec\^anicos e $\ssM$ um sistema mec\^anico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
 
 \begin{itemize}
-\item $\mq_r$: matriz coluna de coordenadas generalizadas que descrevem a orienta\c{c}\~ao da plataforma/efetuador $\ssB_0$. \'E dada pelas componentes um quaternion unit\'ario, i.e. $\mq_r = \begin{bmatrix} q_i & q_j & q_k & q_r \end{bmatrix}^\msT $ com $ \mq_r^\msT \cdot \mq_r = \vct{1}$.
+\item $\mq_r$: matriz coluna de coordenadas generalizadas que descrevem a orienta\c{c}\~ao da plataforma/efetuador $\ssB_0$. Normalmente \'e dada pelas componentes um quaternion unit\'ario, i.e. $\mq_r = \begin{bmatrix} q_i & q_j & q_k & q_r \end{bmatrix}^\msT $ com $ \mq_r^\msT \cdot \mq_r = \vct{1}$.
 \item $\mq_t$: matriz coluna de coordenadas generalizadas que descrevem a posi\c{c}\~ao da plataforma/efetuador $\ssB_0$.
 \item $\mq_0$: matriz coluna de todas as coordenadas generalizadas da plataforma/efetuador $\ssB_0$. \'E definida como $\mq_0 = \begin{bmatrix} \mq_r^\msT & \mq_t^\msT \end{bmatrix}^\msT$.
 \item $\mq_j\ssh, \,j=1, ..., n$: matriz coluna de coordenadas generalizadas independentes do subsistema  $\ssB_j$.
 \item $\mq\hcir$: matriz coluna de coordenadas generalizadas redundantes n\~ao pertencentes \`a plataforma/efetuador. Definida como $\mq\hcir = \begin{bmatrix}  {\mq_1\ssh}^\msT & ... & {\mq_{n}\ssh}^\msT \end{bmatrix}^\msT $.
 \item $\mq$: matriz coluna contendo todas as coordenadas generalizadas do sistema $\ssM$. Definida como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq\hcir}^\msT \end{bmatrix}^\msT $.
 \item $\overline{\mq}(\mq)$: matriz coluna dos v\'inculos de posi\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mq}(\mq) = \mzr $.
-\item $\mp\ssh_0$: matriz coluna de velocidades generalizadas independentes da plataforma/efetuador $\ssB_0$. Respeita $\mp\ssh_0 = \mD(\mq_0)\dot{\mq}_0$, sendo $\mD(\mq_0)$ uma matriz de posto cheio com n\'umero de colunas maior ou igual ou n\'umero de linhas tal que $\dot{\mq}_0  = \mD^\msP(\mq_0) \mp\ssh_0$.
+\item $\mp_r$: matriz coluna de velocidades generalizadas relativas \`a velocidade angulare da plataforma/efetuador $\ssB_0$. Respeita $\mp_r = \mD(\mq_r)\dot{\mq}_r$, sendo $\mD(\mq_r)$ uma matriz de posto cheio com n\'umero de colunas maior ou igual ou n\'umero de linhas tal que $\dot{\mq}_r  = \mD^\msP(\mq_r) \mp_r$.
+\item $\mp_t$: matriz coluna de velocidades generalizadas relativas \`a velocidade do centro de massa de $\ssB_0$. \'E dada por $\mp_t = \dot{\mq}_t$.
+\item $\mp\ssh_0$: matriz coluna de todas as velocidades generalizadas independentes da plataforma/efetuador $\ssB_0$. \'E definida como $\mp\ssh_0 = \begin{bmatrix} \mp_r^\msT & \mp_t^\msT \end{bmatrix}^\msT$.
+\item $\mp\cir_0$: matriz coluna de velocidades generalizadas redundantes da plataforma/efetuador $\ssB_0$. \'E dada por $\mp\cir_0 = \dot{\mq}_r$.
 \item $\mp_j\ssh, \,j=1, ..., n$: matriz coluna de velocidades generalizadas independentes do subsistema  $\ssB_j$. \'E definida por $\mp_j\ssh = \dot{\mq}_j\ssh$.
 \item $\mp_j\cir, \,j=1, ..., n$: matriz coluna de velocidades generalizadas redundantes do subsistema  $\ssB_j$.
-\item $\mp_j, \,j=1, ..., n$: matriz coluna de velocidades generalizadas do subsistema  $\ssB_j$. \'E definida por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
+\item $\mp_j, \,j=0, ..., n$: matriz coluna de velocidades generalizadas do subsistema  $\ssB_j$. \'E definida por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
 \item $\mp\ssh$: matriz coluna de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. \'E dada por $\mp\ssh = \mp_0\ssh$.
-\item $\mp\cir$: matriz coluna de velocidades generalizadas redundantes de $\ssM$. \'E definida por $\mp\cir = \begin{bmatrix} \mp_1^\msT & \mp_2^\msT & ... & \mp_{n}^\msT \end{bmatrix}^\msT $.
+\item $\mp\cir$: matriz coluna de velocidades generalizadas redundantes de $\ssM$. \'E definida por $\mp\cir = \begin{bmatrix} {\mp\cir_0}^\msT & \mp_1^\msT & ... & \mp_{n}^\msT \end{bmatrix}^\msT $.
 \item $\mp$: matriz coluna contendo todas as velocidades generalizadas de $\ssM$. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
-\item $\mrho$: matriz coluna definida como $\mrho = \begin{bmatrix} {\mrho\ssh}^\msT & {\mrho\cir}^\msT \end{bmatrix}^\msT $, sendo $\mrho\ssh = \mp_0\ssh$ e $\mrho\cir = \dot{\mq}\hcir $.
+\item $\mrho$: matriz coluna definida como $\mrho = \begin{bmatrix} {\mrho\ssh}^\msT & {\mrho\cir}^\msT \end{bmatrix}^\msT $, sendo $\mrho\ssh = \mp_0\ssh$ e $\mrho\cir = \dot{\mq}\hcir = \begin{bmatrix} {\mp\ssh_1}^\msT & ... &  {\mp\ssh_n}^\msT \end{bmatrix}^\msT $.
 \item $\underline{\dot{\mq}}(\mq,\mrho)$: $\dot{\mq}$ escrita em fun\c{c}\~ao de $\mq$ e $\mrho$.
 \item $\overline{\momega}(\mq,\mrho)$: matriz coluna dos v\'inculos de orienta\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\momega}(\mq,\mrho) = \mzr $.
-\item $\overline{\mrho}(\mq,\mrho)$: matriz coluna dos v\'inculos de velocidades entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mrho}(\mq,\mrho) = \mzr $.
-\item $\mA_j(\mq_j\ssh), \,j=0, ..., n$: Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
-\item $\mC_j(\mq_j\ssh), \,j=0, ..., n$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
+\item $\overline{\mrho}(\mq,\mrho)$: matriz coluna de todos os v\'inculos de velocidades entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mrho}(\mq,\mrho) = \mzr $.
+\item $\mA_j(\mq), \,j=0, ..., n$: Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
+\item $\mC_j(\mq), \,j=0, ..., n$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
 \item $\mM_j, \,j=0, ..., n$: matriz de in\'ercia desacoplada do subsistema $\ssB_j$.
-\item $\mv_j(\mp_j\ssh), \,j=0, ..., n$: matriz coluna dos termos girosc\'opicos desacoplados do subsistema $\ssB_j$.
-\item $\mf_j(\mq_j\ssh), \,j=0, ..., n$: matriz coluna dos esfor\c{c}os de atrito do subsistema $\ssB_j$.
+\item $\mv_j(\mp), \,j=0, ..., n$: matriz coluna dos termos girosc\'opicos desacoplados do subsistema $\ssB_j$.
+\item $\mf_j(\mq), \,j=0, ..., n$: matriz coluna dos esfor\c{c}os de atrito do subsistema $\ssB_j$.
 \item $\mg_j, \,j=0, ..., n$: matriz coluna dos esfor\c{c}os gravitacionais do subsistema $\ssB_j$.
 \item $\mu_j, \,j=0, ..., n$: matriz coluna dos esfor\c{c}os ativos externos do subsistema $\ssB_j$.
 \end{itemize}
@@ -624,7 +627,6 @@ O modelo para simula\c{c}\~ao din\^amica direta \'e dado pelo seguinte equaciona
 
 \begin{equation} \label{eq:DinamicaDireta2}
 \begin{cases}
-\dot{\mq}_0 = \mD^\msP (\mq_0) \mp\ssh \\
 \mC^\msT(\mq) \Big( \mM \dot{\mp} + \mv(\mp) + \mf(\mp) + \mg \Big) = \breve{\mC}^\msT(\mq) \mu \\
 \mA(\mq) \dot{\mp} = \mb(\mq,\mp)
 \end{cases}
@@ -634,30 +636,34 @@ Sendo:
 
 \begin{equation} \label{eq:dq}
 \underline{\dot{\mq}}(\mq,\mrho) = \begin{bmatrix}
-\mD^\msP \mp\ssh_0 \\
+\mD^\msP \mp_r \\
+\mp_t \\
 \mp\ssh_1 \\
 \vdots \\
 \mp\ssh_n \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-\mD^\msP  & \mzr & \ldots & \mzr\\
- \mzr & \mone & \ldots & \mzr\\
-\vdots & \vdots & \ddots & \vdots\\
-\mzr  & \mzr     &\ldots & \mone
+\mD^\msP  & \mzr & \mzr & \ldots & \mzr\\
+\mzr & \mone & \mzr & \ldots & \mzr\\
+\mzr & \mzr & \mone & \ldots & \mzr\\
+\vdots & \vdots & \vdots &  \ddots & \vdots\\
+\mzr  & \mzr & \mzr &\ldots & \mone
 \end{bmatrix}
 \begin{bmatrix}
-\mp\ssh_0 \\
+\mp_r \\
+\mp_t \\
 \mp\ssh_1 \\
 \vdots \\
 \mp\ssh_n \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-\mD^\msP  & \mzr & \ldots & \mzr\\
- \mzr & \mone & \ldots & \mzr\\
-\vdots & \vdots & \ddots & \vdots\\
-\mzr  & \mzr     &\ldots & \mone
+\mD^\msP  & \mzr & \mzr & \ldots & \mzr\\
+\mzr & \mone & \mzr & \ldots & \mzr\\
+\mzr & \mzr & \mone & \ldots & \mzr\\
+\vdots & \vdots & \vdots &  \ddots & \vdots\\
+\mzr  & \mzr & \mzr &\ldots & \mone
 \end{bmatrix}
 \mrho
 \end{equation}
@@ -672,7 +678,7 @@ Sendo:
 \begin{equation} \label{eq:MatrizCchapeu}
 \breve{\mC} = \begin{bmatrix}
 \mone \\
-- \displaystyle\frac{\partial \overline{\mrho}}{\partial \mrho\cir}^\msI \cdot  \frac{\partial \overline{\mrho}}{\partial \mrho\ssh }
+- \displaystyle\frac{\partial \overline{\mrho}}{\partial \mrho\cir}^\msP \frac{\partial \overline{\mrho}}{\partial \mrho\ssh }
 \end{bmatrix}
 \end{equation}
 
@@ -691,10 +697,10 @@ Sendo:
 \mA = 
 \begin{bmatrix}
 \begin{bmatrix}
-\mzr &  \mA_1  & \mzr & \ldots & \mzr\\
-\mzr  &  \mzr & \mA_2 & \ldots & \mzr\\
-\vdots & \vdots & \vdots & \ddots & \vdots\\
-\mzr  &   \mzr  & \mzr     &\ldots & \mA_{n}
+\mA_0  & \mzr & \ldots & \mzr\\
+\mzr & \mA_1 & \ldots & \mzr\\
+\vdots & \vdots & \ddots & \vdots\\
+\mzr  & \mzr     &\ldots & \mA_{n}
 \end{bmatrix} \\
 \displaystyle\frac{\partial \overline{\mrho}}{\partial \mp}
 \end{bmatrix}
@@ -739,7 +745,7 @@ Sendo:
 \end{bmatrix}^\msT
 \end{equation}
 
-Aqui seguem as etapas do algoritmo para dedu\c{c}\~ao do modelo din\^amico de um subsistema serial acompanhado de um exemplo de aplica\c{c}\~ao para dedu\c{c}\~ao do modelo din\^amico do mecanismo 5R (pent\'agono articulado) a partir do acoplamento dos modelos de 2 mecanismos \underline{R}\underline{R} e uma massa pontual (efetuador).
+Aqui seguem as etapas do algoritmo para dedu\c{c}\~ao do modelo din\^amico de um mecanismo paralelo acompanhado de um exemplo de aplica\c{c}\~ao, a dedu\c{c}\~ao do modelo din\^amico do mecanismo 5R (pent\'agono articulado) a partir do acoplamento dos modelos de 2 mecanismos \underline{R}\underline{R} e uma massa pontual (efetuador).
 
 \begin{figure}[H]
 	\centering
