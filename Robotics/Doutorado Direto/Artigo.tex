@@ -755,30 +755,14 @@ Aqui seguem as etapas do algoritmo para dedu\c{c}\~ao do modelo din\^amico de um
 \end{figure}
 
 O modelo do mecanismo \underline{R}\underline{R} \'e dado pela equa\c{c}\~ao \eqref{eq:RR}. O modelo da massa pontual \'e dado pela seguinte express\~ao:
-
 \begin{equation} \label{eq:MassaPontual}
-\begin{cases}
-\begin{bmatrix}
-\dot{x} \\
-\dot{y}
-\end{bmatrix}
-=
-\begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-v_{x} \\
-v_{y}
-\end{bmatrix}
-\\
 \begin{bmatrix}
 m_0 \\
 m_0 \\
 \end{bmatrix}^\msD
 \begin{bmatrix}
-\dot{v}_{x} \\
-\dot{v}_{y}
+\ddot{x} \\
+\ddot{y}
 \end{bmatrix}
 +
 \begin{bmatrix}
@@ -790,7 +774,6 @@ m_0 g
 0 \\
 0
 \end{bmatrix}
-\end{cases}
 \end{equation}
 
 Etapas do algoritmo:
@@ -799,7 +782,11 @@ Etapas do algoritmo:
 \item[1)] Defini\c{c}\~ao das coordenadas generalizadas:
 
 \begin{equation}
-\mq_0 = \begin{bmatrix}
+\mq_r = \vct{\varnothing}
+\end{equation}
+
+\begin{equation}
+\mq_t = \begin{bmatrix}
 x & y
 \end{bmatrix}^\msT
 \end{equation}
@@ -819,10 +806,13 @@ x & y
 \item[2)] Defini\c{c}\~ao das velocidades generalizadas:
 
 \begin{equation}
-\mp_0\ssh = \begin{bmatrix}
-\dot{x} & \dot{y} \\
+\mp_r = \vct{\varnothing}
+\end{equation}
+\begin{equation}
+\mp_t = \dot{\mq}_t = 
+\begin{bmatrix}
+\dot{x} & \dot{y}
 \end{bmatrix}^\msT
-\Rightarrow \mD = \mone
 \end{equation}
 \begin{equation}
 \mp_1\cir = \begin{bmatrix}
@@ -835,7 +825,7 @@ x & y
 \end{bmatrix}^\msT
 \end{equation}
 
-\item[3)] Defini\c{c}\~ao dos v\'inculos de posi\c{c}\~ao utilizando matrizes de transforma\c{c}\~ao homog\^enea:
+\item[3)] Defini\c{c}\~ao dos v\'inculos de posi\c{c}\~ao entre subsistemas utilizando matrizes de transforma\c{c}\~ao homog\^enea:
 
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttN_1} =
@@ -931,59 +921,58 @@ y - l_1 \ssin_{2,1} - l_2 \ssin_{2,1\plus 2} \\
 = \mzr
 \end{equation}
 
-\item[4)] C\'alculo dos Jacobianos dos v\'inculos de posi\c{c}\~ao e defini\c{c}\~ao dos v\'inculos de velocidades:
+\item[4)] Defini\c{c}\~ao dos v\'inculos de orienta\c{c}\~ao entre subsistemas:
+\begin{equation}
+\overline{\momega}(\mq,\mrho) = \vct{\varnothing}
+\end{equation}
+
+Nesse exemplo n\~ao h\'a v\'inculos de orienta\c{c}\~ao entre subsistemas.
+
+\item[5)] C\'alculo dos Jacobianos dos v\'inculos de posi\c{c}\~ao e defini\c{c}\~ao dos v\'inculos de velocidades:
 
 \begin{equation}
-\frac{\partial \overline{\mq}}{\partial \mq_0} = 
+\frac{\partial \overline{\mq}}{\partial \mq} = 
 \begin{bmatrix}
-1 & 0 \\
-0 & 1 \\
-1 & 0 \\
-0 & 1 \\
+1 & 0 & l_1 \ssin_{1,1} + l_2 \ssin_{1\plus 2} &  l_2 \ssin_{1\plus 2} & 0 & 0 \\
+0 & 1 & -l_1 \ccos_{1,1} - l_2 \ccos_{1\plus 2} & -l_2 \ccos_{1\plus 2} & 0 & 0  \\
+1 & 0 & 0 & 0 & -l_1 \ssin_{2,1} - l_2 \ssin_{2\plus 2} & -l_2 \ssin_{2\plus 2}  \\
+0 & 1 & 0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2\plus 2} & -l_2 \ccos_{2\plus 2}   \\
 \end{bmatrix}
 \end{equation}
 
 \begin{equation}
-\frac{\partial \overline{\mq}}{\partial \mq\hcir} = 
-\begin{bmatrix}
- l_1 \ssin_{1,1} + l_2 \ssin_{1\plus 2} &  l_2 \ssin_{1\plus 2} & 0 & 0 \\
--l_1 \ccos_{1,1} - l_2 \ccos_{1\plus 2} & -l_2 \ccos_{1\plus 2} & 0 & 0  \\
-0 & 0 & -l_1 \ssin_{2,1} - l_2 \ssin_{2\plus 2} & -l_2 \ssin_{2\plus 2}  \\
-0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2\plus 2} & -l_2 \ccos_{2\plus 2}   \\
-\end{bmatrix}
+\underline{\dot{\mq}}(\mq,\mrho) = \begin{bmatrix}
+\dot{x} &
+\dot{y} &
+\dot{\theta}_{1,1} &
+\dot{\theta}_{1,2} &
+\dot{\theta}_{2,1} &
+\dot{\theta}_{2,2}
+\end{bmatrix}^\msT
 \end{equation}
-
 \begin{equation}
-\overline{\mrho} =  
+\overline{\mrho}(\mq,\mrho) =  
 \begin{bmatrix}
-1 & 0 \\
-0 & 1 \\
-1 & 0 \\
-0 & 1 \\
+1 & 0 & l_1 \ssin_{1,1} + l_2 \ssin_{1\plus 2} &  l_2 \ssin_{1\plus 2} & 0 & 0 \\
+0 & 1 & -l_1 \ccos_{1,1} - l_2 \ccos_{1\plus 2} & -l_2 \ccos_{1\plus 2} & 0 & 0  \\
+1 & 0 & 0 & 0 & -l_1 \ssin_{2,1} - l_2 \ssin_{2\plus 2} & -l_2 \ssin_{2\plus 2}  \\
+0 & 1 & 0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2\plus 2} & -l_2 \ccos_{2\plus 2}   \\
 \end{bmatrix}
 \begin{bmatrix}
 \dot{x} \\
 \dot{y} \\
-\end{bmatrix}
-+ 
- \begin{bmatrix}
- l_1 \ssin_{1,1} + l_2 \ssin_{1\plus 2} &  l_2 \ssin_{1\plus 2} & 0 & 0 \\
--l_1 \ccos_{1,1} - l_2 \ccos_{1\plus 2} & -l_2 \ccos_{1\plus 2} & 0 & 0  \\
-0 & 0 & -l_1 \ssin_{2,1} - l_2 \ssin_{2\plus 2} & -l_2 \ssin_{2\plus 2}  \\
-0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2\plus 2} & -l_2 \ccos_{2\plus 2}   \\
-\end{bmatrix}
-\begin{bmatrix}
 \dot{\theta}_{1,1} \\
 \dot{\theta}_{1,2} \\
 \dot{\theta}_{2,1} \\
-\dot{\theta}_{2,2} \\
-\end{bmatrix} = \mzr
+\dot{\theta}_{2,2}
+\end{bmatrix}
+ = \mzr
 \end{equation}
 
-\item[5)] C\'alculo de $\hat{\mC}$, $\mC$, $\mA$ e $\mb$ atrav\'es de \eqref{eq:MatrizCchapeu}, \eqref{eq:MatrizC2}, \eqref{eq:MatrizA2} e \eqref{eq:Matrizb2}:
+\item[6)] C\'alculo de $\breve{\mC}$, $\mC$, $\mA$ e $\mb$ atrav\'es de \eqref{eq:MatrizCchapeu}, \eqref{eq:MatrizC2}, \eqref{eq:MatrizA2} e \eqref{eq:Matrizb2}:
 
 \begin{equation}
-\hat{\mC} =
+\breve{\mC} =
 \begin{bmatrix}
 1 & 0 \\
 0 & 1 \\
@@ -1064,7 +1053,7 @@ l_{2} \ssin_{2,1}  \dot{\theta}_{2,1}^2 + l_{g2} \ssin_{2, 1\plus 2}   (\dot{\th
 \end{equation}
 
 \begin{itemize}
-\item[6)] Obter $\mM$, $\mv$, $\mf$, $\mg$ e $\mu$ atrav\'es de \eqref{eq:MatrizM2}, \eqref{eq:Matrizv2}, \eqref{eq:Matrizf2}, \eqref{eq:Matrizg2} e \eqref{eq:Matrizu}:
+\item[7)] Obter $\mM$, $\mv$, $\mf$, $\mg$ e $\mu$ atrav\'es de \eqref{eq:MatrizM2}, \eqref{eq:Matrizv2}, \eqref{eq:Matrizf2}, \eqref{eq:Matrizg2} e \eqref{eq:Matrizu}:
 
 \begin{equation}
 \mM =
@@ -1072,28 +1061,25 @@ l_{2} \ssin_{2,1}  \dot{\theta}_{2,1}^2 + l_{g2} \ssin_{2, 1\plus 2}   (\dot{\th
 m_0 & m_0 & 0 & 0 & J_{z1} & J_{z2} & m_1 & m_1 & m_2 & m_2 & 0 & 0 & J_{z1} & J_{z2} & m_1 & m_1 & m_2 & m_2
 \end{bmatrix}^\msD
 \end{equation}
-
 \begin{equation}
 \mv = \mzr
 \end{equation}
-
 \begin{equation}
 \mg =
 \begin{bmatrix}
 0 & m_0 g & 0 & 0 & 0 & 0 & 0 & m_1 g & 0 & m_2 g & 0 & 0 & 0 & 0 & 0 & m_1 g & 0 & m_2 g
 \end{bmatrix}^\msT
 \end{equation}
-
 \begin{equation}
 \mu =
 \begin{bmatrix}
-0 \\
-0 \\
-\tau_{1,1} \\
-\tau_{1,2} \\
-\tau_{2,1} \\
-\tau_{2,2} \\
-\end{bmatrix}
+0 &
+0 &
+\tau_{1,1} &
+\tau_{1,2} &
+\tau_{2,1} &
+\tau_{2,2}
+\end{bmatrix}^\msT
 \end{equation}
 
 \begin{equation}
