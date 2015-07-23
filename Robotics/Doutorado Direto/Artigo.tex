@@ -1067,7 +1067,7 @@ c_2 \dot{\theta}_{2,2} + \gamma_2 \sign(\dot{\theta}_{2,2}) \\
 
 \subsection{Modelo din\^amico acoplado}\label{S04-3}
 
-Para realizar o projeto do controlador \'e conveniente reescrever o modelo do mecanismo da seguinte maneira:
+Para as dedu\c{c}\~oes que ser\~ao feitas nas pr\'oximas subse\c{c}\~oes, \'e conveniente reescrever o modelo do mecanismo da seguinte maneira:
 
 \begin{equation} \label{eq:ModeloAcoplado}
 \mM\ssh(\mq) \dot{\mp}\ssh + \mv\ssh(\mq,\mp) + \mf\ssh(\mq,\mp) + \mg\ssh(\mq) = \mZ^\msT (\mq) \mu^\star
@@ -1094,40 +1094,188 @@ Al\'em disso, a matriz coluna $\mu^\star$ \'e definida de modo que suas componen
 \end{equation}
 
 $\mu^\star$ s\~ao os esfor\c{c}os ativos aplicados na dire\c{c}\~ao de $\dot{\mq}^\star$, sendo $\mq^\star$ uma matriz coluna de deslocamentos relativos das juntas atuadas. Pode-se provar que:
-\begin{equation}
+\begin{equation} \label{eq:qstar}
 \dot{\mq}^\star = \mZ \mp\ssh
 \end{equation}
 
 \subsection{Inclus\~ao da din\^amica dos atuadores}\label{S04-4}
 
-Esta subse\c{c}\~ao \'e dedicada \'a inclus\~ao da din\^amica dos atuadores no modelos deduzidos. Ser\~ao explorados apenas atuadores do tipo motor DC com redutor acoplado. Para isso, primeiramente definimos os par\^ametros do modelo do sistema motor-redutor:
+%Esta subse\c{c}\~ao \'e dedicada \'a inclus\~ao da din\^amica dos atuadores no modelos deduzidos. Ser\~ao explorados apenas atuadores do tipo motor DC com redutor acoplado. Para isso, primeiramente definimos os par\^ametros do modelo do sistema motor-redutor:
+
+Para incluir a din\^amica de atuadores do tipo motor DC com redutor acoplado nos modelos de manipuladores seriais e plataformas paralelas, definimos os par\^ametros do modelo do sistema motor-redutor:
 
 \begin{itemize}
 \item $L [H]$: indut\^ancia da armadura.
 \item $R [\Omega]$: resist\^encia da armadura.
 \item $k_w [V \cdot s / rad]$: constante de for\c{c}a contra-eletromotriz.
 \item $k_t[N \cdot m / A]$: constante de torque.
+\item $J_m [kg \cdot m^2]$: Momento de in\'ercia do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
+\item $c_m [kg \cdot m^2/s]$: Coeficiente de atrito viscoso do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
+\item $\gamma_m [N \cdot m]$: Coeficiente de atrito seco do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
 \item $r$: rela\c{c}\~ao de redu\c{c}\~ao.
 \item $\eta$: efici\^encia do redutor
-\item $J_m$: Momento de in\'ercia do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
-\item $c_m$: Coeficiente de atrito viscoso do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
-\item $\gamma_m$: Coeficiente de atrito seco do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
 \end{itemize}
 
 O modelo din\^amico do sistema motor-redutor \'e dado por:
 
-\begin{equation}
+\begin{equation} \label{eq:Motor}
 \begin{cases}
 L \frac{\dd i}{\dd t} + R i + k_w r \dot{\theta} = \upsilon \\
 J_m \ddot{\theta} + c_m \dot{\theta} + \gamma_m \sign(\dot{\theta}) = \eta r k_t i - \tau_{ext}
 \end{cases}
 \end{equation}
 
-Sendo $i$ a corrente da armadura, $\upsilon$ a tens\~ao de entrada, $\theta$ o deslocamento angular do eixo do redutor, e $\tau_{ext}$ o torque externo aplicado pelo mecanismo em que o redutor est\'a acoplado. 
+Sendo $i$ a corrente da armadura, $\upsilon$ a tens\~ao de entrada, $\theta$ o deslocamento angular do eixo do redutor, e $\tau_{ext}$ o torque externo aplicado pelo mecanismo em que o redutor est\'a acoplado. \\
+
+Seja $\nu^\star$ o n\'umero de juntas atuadas de um mecanismo $\ssM$. Cada um dos $\nu^\star$ motores do sistema \'e modelado por \eqref{eq:Motor}, sendo assim, podemos reescrever \eqref{eq:Motor} de maneira matricial:
+
+\begin{equation} \label{eq:MotorMatriz}
+\begin{cases}
+\underline{L} \frac{\dd \mi}{\dd t} + \underline{R} \mi + \underline{k_w r} \dot{\mq}^\star = \mup  \\
+\underline{J_m} \ddot{\mq}^\star + \underline{c_m} \dot{\mq}^\star + \underline{\gamma_m} \sign(\dot{\mq}^\star) = \underline{\eta r k_t} \mi - \mu^\star
+\end{cases}
+\end{equation}
+
+Isolando $\mu^\star$ e substituindo em \eqref{eq:ModeloAcoplado}, temos:
+
+\begin{equation} \label{eq:AcoplandoMotor}
+\mM\ssh(\mq) \dot{\mp}\ssh + \mv\ssh(\mq,\mp) + \mf\ssh(\mq,\mp) + \mg\ssh(\mq) = \mZ^\msT (\mq) (\underline{\eta r k_t} \mi - \underline{J_m} \ddot{\mq}^\star - \underline{c_m} \dot{\mq}^\star - \underline{\gamma_m} \sign(\dot{\mq}^\star) )
+\end{equation}
+
+Aplicando \eqref{eq:qstar} em \eqref{eq:AcoplandoMotor}, podemos reescrever $\eqref{eq:AcoplandoMotor}$ da seguinte maneira:
+
+\begin{equation}
+{\mM\ssh}'(\mq) \dot{\mp}\ssh + {\mv\ssh}'(\mq,\mp) + {\mf\ssh}'(\mq,\mp) + {\mg\ssh}(\mq) = \mZ^\msT (\mq) \underline{\eta r k_t} \mi
+\end{equation}
+
+Sendo:
+
+\begin{equation}
+{\mM\ssh}' = \mM\ssh + \mZ^\msT \underline{J_m} \mZ
+\end{equation}
+\begin{equation}
+{\mv\ssh}' = \mv\ssh + \mZ^\msT \underline{J_m} \dot{\mZ}\mp\ssh
+\end{equation}
+\begin{equation}
+{\mf\ssh}' = \mf\ssh + \mZ^\msT \underline{c_m} \mZ \mp\ssh + \mZ^\msT \underline{\gamma_m} \sign(\mZ \mp\ssh)
+\end{equation}
+
+Portanto, o modelo do mecanismo $\ssM$ considerando a din\^amica dos atuadores \'e dado por:
+
+\begin{equation} \label{eq:MotorAcoplado}
+\begin{cases}
+\underline{L} \frac{\dd \mi}{\dd t} + \underline{R} \mi + \underline{k_w r} \mZ (\mq) \mp\ssh = \mup
+\\
+{\mM\ssh}'(\mq) \dot{\mp}\ssh + {\mv\ssh}'(\mq,\mp) + {\mf\ssh}'(\mq,\mp) + {\mg\ssh}(\mq) = \mZ^\msT (\mq) \underline{\eta r k_t} \mi
+\end{cases}
+\end{equation}
+
+\subsection{Modelo utilizado no projeto de controle}\label{S04-5}
+
+O modelo \eqref{eq:MotorAcoplado} apresentado na subse\c{c}\~ao anterior j\'a pode ser utilizado diretamente para realizar o projeto do controlador, por\'em algumas manipula\c{c}\~oes matem\'aticas ser\~ao utilizadas para obter um modelo mais conveniente para a realiza\c{c}\~ao do projeto.
+
+A entrada do sistema \'e a matriz coluna de tens\~oes aplicadas nos motores  $\mup$. Como a sa\'ida do sistema \'e a posi\c{c}\~ao e orienta\c{c}\~ao da plataforma, \'e conveniente que a entrada do sistema apare\c{c}a na segunda equa\c{c}\~ao matricial de \eqref{eq:MotorAcoplado}. Para que isso seja poss\'ivel, isolamos $\frac{\dd \mi}{\dd t}$ na primeira equa\c{c}\~ao de \eqref{eq:MotorAcoplado} e substuimos na derivada temporal da segunda equa\c{c}\~ao:
+
+\begin{equation}
+{\mM\ssh}'(\mq) \ddot{\mp}\ssh + {{\dot{\mM}}\ssh}{'} (\mq,\mp) \dot{\mp}\ssh + {\dot{\mv}\ssh}{'}(\mq,\mp,\dot{\mp}) + {\dot{\mf}\ssh}{'}(\mq,\mp,\dot{\mp}) + {\dot{\mg}\ssh}(\mq,\mp) = \dot{\mZ}^\msT (\mq) \underline{\eta r k_t} \mi + \mZ^\msT (\mq) \underline{(\eta r k_t / L)} ( \mup -  \underline{R} \mi - \underline{k_w r} \mZ (\mq) \mp\ssh )
+\end{equation}
+\begin{equation} \label{eq:MotorAcoplado2}
+\therefore {\mM\ssh}' \ddot{\mp}\ssh + {{\dot{\mM}}\ssh}{'} \dot{\mp}\ssh + {\dot{\mv}\ssh}{'} + {\dot{\mf}\ssh}{'} + {\dot{\mg}\ssh} + ( \mZ^\msT  \underline{(R/L)} - \dot{\mZ}^\msT ) \underline{\eta r k_t} \mi + \mZ^\msT  \underline{(\eta r^2 k_t k_w / L)}  \mZ \mp\ssh =  \mZ^\msT  \underline{(\eta r k_t / L)} \mup
+\end{equation}
+
+Ainda n\~ao \'e poss\'ivel isolar $\mup$ em \eqref{eq:MotorAcoplado2}, pois \'e poss\'ivel que o mecanismo $\ssM$ tenha atua\c{c}\~ao redundante, o que implica que poder\~ao existir\~ao mais inc\'ognitas que equa\c{c}\~oes e consequentemente infinitas solu\c{c}\~oes para $\mup$. Dentro de todas as solu\c{c}\~oes para $\mup$ ser\'a escolhida aquela que minimiza $\mup^\msT \mQ \mup$, sendo $\mQ$ uma matriz sim\'etrica positiva definida. Assim:
+
+\begin{equation} \label{eq:Optimization_}
+\begin{aligned}
+& \underset{\mup}{\text{Min}}
+& & \mup^\msT \mQ \mup \\
+& \text{tal que}
+& & \mZ^\msT  \underline{(\eta r k_t / L)} \mup = \mup'
+\end{aligned}
+\end{equation}
+
+Sendo:
+\begin{equation} \label{eq:muplinha}
+\mup' = \ddot{\mp}\ssh + {{\dot{\mM}}\ssh}{'} \dot{\mp}\ssh + {\dot{\mv}\ssh}{'} + {\dot{\mf}\ssh}{'} + {\dot{\mg}\ssh} + ( \mZ^\msT  \underline{(R/L)} - \dot{\mZ}^\msT ) \underline{\eta r k_t} \mi + \mZ^\msT  \underline{(\eta r^2 k_t k_w / L)}  \mZ \mp\ssh
+\end{equation}
+
+Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema \'e equivalente:
+\begin{equation}
+\begin{aligned}
+& \underset{\mv, \mlambda}{\text{Min}}
+& & \mathfrak{L} = \mup^\msT \mQ \mup + (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup')^\msT \mlambda \\
+\end{aligned}
+\end{equation}
 
 
+Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
 
-\subsection{Controle por modos deslizantes}\label{S04-5}
+$$ \dl \mathfrak{L} = 0 \Rightarrow \dl \mup^\msT \mQ \mup + \mup^\msT \mQ \dl \mup + (\mZ^\msT  \underline{(\eta r k_t / L)} \dl \mup)^\msT \mlambda + (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup')^\msT \dl \mlambda = 0 $$
+$$ \Rightarrow \dl \mup^\msT \Big( (\mQ + \mQ^\msT)\mup + \underline{(\eta r k_t / L)} \mZ \mlambda \Big) + \dl \mlambda^\msT (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup') = 0 $$
+
+Como $\mQ$ \'e sim\'etrica e $\dl \mup$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
+\begin{equation} \label{eq:OptimizationSol_}
+\begin{cases}
+2 \mQ \mup + \underline{(\eta r k_t / L)} \mZ \mlambda = \mzr \\
+\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup' = \mzr
+\end{cases}
+\end{equation}
+
+Seja $\mPsi$ o complemento ortogonal de $\mZ^\msT  \underline{(\eta r k_t / L)}$. Multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol_} por $\mPsi^\msT$, temos:
+\begin{equation} \label{eq:OptimizationSol_2}
+\begin{cases}
+2 \mPsi^\msT \mQ \mup + \mPsi^\msT \underline{(\eta r k_t / L)} \mZ \mlambda = 2 \mPsi^\msT \mQ \mup = \mzr \\
+\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup' = \mzr
+\end{cases}
+\end{equation}
+\begin{equation} \label{eq:OptimizationSol_3}
+\therefore
+\begin{bmatrix}
+\mZ^\msT  \underline{(\eta r k_t / L)} \\
+\mPsi^\msT \mQ
+\end{bmatrix}
+\mup = 
+\begin{bmatrix}
+\mup' \\
+\mzr
+\end{bmatrix}
+\Rightarrow
+\mup =
+\begin{bmatrix}
+\mZ^\msT  \underline{(\eta r k_t / L)} \\
+\mPsi^\msT \mQ
+\end{bmatrix}^\msI
+\begin{bmatrix}
+\mup' \\
+\mzr
+\end{bmatrix}
+\end{equation} \\
+
+Seja $\mLambda$ um matriz tal que:
+\begin{equation} \label{eq:mupexplicito}
+\mu = \mLambda \mup'
+\end{equation}
+Ou seja:
+\begin{equation}
+\begin{bmatrix}
+\mZ^\msT  \underline{(\eta r k_t / L)} \\
+\mPsi^\msT \mQ
+\end{bmatrix}^\msI
+\begin{bmatrix}
+\mup' \\
+\mzr
+\end{bmatrix}
+= \mLambda \mup'
+\end{equation}
+No caso de n\~ao haver atua\c{c}\~ao redundante:
+\begin{equation}
+\mLambda = ( \mZ^\msT  \underline{(\eta r k_t / L)} )^\msI
+\end{equation}
+
+Substituindo \eqref{eq:mupexplicito} em \eqref{eq:muplinha}, temos:
+
+
+\subsection{Controle por modos deslizantes}\label{S04-6}
 
 Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta t\'ecnica de controle n\~ao-linear robusto \'e a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdu\c{c}\~ao, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
 
@@ -1204,7 +1352,7 @@ s_0 + k t, \, t < t_s \\
 
 Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero.
 
-\subsection{Controle por modos deslizantes extendido}\label{S04-6}
+\subsection{Controle por modos deslizantes extendido}\label{S04-7}
 
 Esta subse\c{c}\~ao tem o intuido de apresentar o desenvolvimento da lei de controle adequada para sistemas descritos por coordenadas redundantes desenvolvida. \\
 
