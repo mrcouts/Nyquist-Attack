@@ -130,7 +130,7 @@ O desenvolvimento de leis de controle adaquadas a sistemas descritos por coorden
 Esta se\c{c}\~ao pretende apresentar uma s\'intese dos principais resultados te\'oricos obtidos at\'e o momento.
 
 %---ALGORITMO PARA MODELAGEM DE PLATAFORMAS ROBÓTICAS------------------------------------------------------------------------------------------
-\subsection{Algoritmo para modelagem de plataformas rob\'oticas}\label{S04-1}
+\subsection{Algoritmo para modelagem de mecanismos seriais}\label{S04-1}
 
 Para explicar o algoritmo desenvolvido \'e necess\'ario primeiro definir uma s\'erie de conceitos: \\
 
@@ -158,7 +158,7 @@ Seja $\ssB$ um sistema mec\^anico serial de $\nu\ssh$ graus de liberdade. Defini
 \item $\mp$: matriz coluna contendo todas as velocidades generalizadas. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
 \item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em fun\c{c}\~ao de $\mq\ssh$ e $\mp\ssh$.
 \item $\mA(\mq\ssh)$: Jacobiano dos v\'inculos de velocidades.
-\item $\mC(\mq\ssh)$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades.
+\item $\mC(\mq\ssh)$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades. Al\'em disso $\mp = \mC(\mq\ssh) \mp\ssh$.
 \item $\mM$: matriz de in\'ercia desacoplada.
 \item $\mv(\mp\ssh)$: vetor dos termos girosc\'opicos desacoplados.
 \item $\mf(\mq\ssh)$: vetor dos esfor\c{c}os de atrito aplicados na dire\c{c}\~ao oposta a $\mp$.
@@ -168,7 +168,6 @@ Seja $\ssB$ um sistema mec\^anico serial de $\nu\ssh$ graus de liberdade. Defini
 \end{itemize}
 
 O algoritmo \'e baseado na metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi para modelagem dos subsistemas seriais. O modelo para simula\c{c}\~ao din\^amica direta \'e dado pelo seguinte equacionamento:
-
 \begin{equation} \label{eq:DinamicaDireta}
 \begin{cases}
 \mC^\mathsf{T}(\mq\ssh) \Big( \mM \dot{\mp} + \mv(\mp\ssh) + \mf(\mp\ssh) + \mg \Big) = \mu \\
@@ -184,25 +183,20 @@ Sendo:
 \displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh}
 \end{bmatrix}
 \end{equation}
-
 \begin{equation} \label{eq:MatrizA}
 \mA = \begin{bmatrix}
 \displaystyle\frac{\partial \underline{\mp}^\circ}{\partial \mp\ssh} & -\mone 
 \end{bmatrix}
 \end{equation}
-
 \begin{equation} \label{eq:Matrizb}
 \mb = - \dot{\mA}(\mq\ssh,\mp\ssh) \mp
 \end{equation}
-
 \begin{equation} \label{eq:EnergiaDeAceleracoes}
 S = \frac{1}{2} \sum_{i=1}^{\nu\ssh} \Big( m_i \va_i \cdot \va_i + \dot{\vomega}_i \cdot \vI_i \dot{\vomega}_i + 2 \dot{\vomega}_i \cdot ( \vomega_i \wedge \vI_i \vomega_i ) \Big)
 \end{equation}
-
 \begin{equation} \label{eq:MatrizM}
 \mM = \frac{\partial^2 S}{\partial \dot{\mp}^2}
 \end{equation}
-
 \begin{equation} \label{eq:Matrizv}
 \mv = \frac{\partial S}{\partial \dot{\mp}} - \frac{\partial^2 S}{\partial \dot{\mp}^2} \dot{\mp}
 \end{equation}
@@ -224,7 +218,6 @@ Aqui seguem as etapas do algoritmo para dedu\c{c}\~ao do modelo din\^amico de um
 \theta_1 & \theta_2
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \mq\cir = \begin{bmatrix}
 x_1 & y_1 & x_2 & y_2
@@ -238,7 +231,6 @@ x_1 & y_1 & x_2 & y_2
 \dot{\theta}_1 & \dot{\theta}_2
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \mp\cir = \begin{bmatrix}
 \omega_{z1} & \omega_{z2} & v_{x1} & v_{y1} & v_{x2} & v_{y2}
@@ -253,21 +245,18 @@ x_1 & y_1 & x_2 & y_2
 l_{g1} & 0 & 0 & 1
 \end{bmatrix}^\msT
 \end{equation}
-
 \begin{equation}
 \hvct{\ttg_2}_{\ttB_2}  =
 \begin{bmatrix} 
 l_{g2} & 0 & 0 & 1
 \end{bmatrix}^\msT
 \end{equation}
-
 \begin{equation}
 \hvct{\ttx}_{\ttB_2}  =
 \begin{bmatrix} 
 l_2 & 0 & 0 & 1
 \end{bmatrix}^\msT
 \end{equation}
-
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttB_1} =
 \begin{bmatrix}
@@ -277,7 +266,6 @@ l_2 & 0 & 0 & 1
 0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \hvct{\mone}_{\ttB_1 \rl \ttB_2} =
 \begin{bmatrix}
@@ -287,7 +275,6 @@ l_2 & 0 & 0 & 1
 0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttB_2} = \hvct{\mone}_{\ttN \rl \ttB_1} \hvct{\mone}_{\ttB_1 \rl \ttB_2} =
 \begin{bmatrix}
@@ -297,7 +284,6 @@ l_2 & 0 & 0 & 1
 0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \hvct{\ttg_1}_{\ttN}  = \hvct{\mone}_{\ttN \rl \ttB_1} \hvct{\ttg_1}_{\ttB_1} =
 \begin{bmatrix}
@@ -307,7 +293,6 @@ l_{g1} \ssin_1 \\
 1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \hvct{\ttg_2}_{\ttN}  = \hvct{\mone}_{\ttN \rl \ttB_2} \hvct{\ttg_2}_{\ttB_2} =
 \begin{bmatrix}
@@ -317,7 +302,6 @@ l_1 \ssin_1 + l_{g2} \ssin_{1\plus 2} \\
 1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \hvct{\ttx}_{\ttN}  = \hvct{\mone}_{\ttN \rl \ttB_2} \hvct{\ttx}_{\ttB_2} =
 \begin{bmatrix}
@@ -338,7 +322,6 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
  0 \\
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 [\underline{\vv}_2]_{\ttN} = \frac{\dd}{\dd t} [\ttg_2]_\ttN =
 \begin{bmatrix}
@@ -365,7 +348,6 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
 \dot{\theta}_1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \smat{\underline{\vomega}_2}_{\ttB_2 \rl \ttB_2} = \tvct{\mone}_{\ttN \rl \ttB_2} \frac{\dd}{\dd t} \vct{\mone}_{\ttN \rl \ttB_2} = 
 \begin{bmatrix}
@@ -395,7 +377,6 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
  l_{1} \ccos_1 \dot{\theta}_1 + l_{g2} \ccos_{1\plus 2} ( \dot{\theta}_1 + \dot{\theta}_2 )\\
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \frac{\partial \underline{\mp}\cir}{\partial \mp\ssh} =
 \begin{bmatrix}
@@ -421,7 +402,6 @@ l_1 \ssin_1 + l_2 \ssin_{1\plus 2} \\
  l_{1} \ssin_1  + l_{g2} \ccos_{1\plus 2} &   l_{g2} \ccos_{1\plus 2} \\
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \mA =
 \begin{bmatrix}
@@ -459,7 +439,6 @@ S = \frac{1}{2} \Big( m_1 (\dot{v}_{x1}^2 + \dot{v}_{y1}^2) + m_2 (\dot{v}_{x2}^
 0 & 0 & J_{z1} & J_{z2} & m_1 & m_1 & m_2 & m_2
 \end{bmatrix}^\msD
 \end{equation}
-
 \begin{equation}
 \mv = \mzr
 \end{equation}
@@ -479,7 +458,6 @@ c_2 \dot{\theta}_2 + \gamma_2 \sign (\dot{\theta}_2) \\
 0 \\
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \mg =
 \begin{bmatrix}
@@ -493,7 +471,6 @@ m_1 g \\
 m_2 g
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \mu =
 \begin{bmatrix}
@@ -588,6 +565,8 @@ l_{1} \ssin_1  \dot{\theta}_1^2 + l_{g2} \ssin_{1\plus 2}   (\dot{\theta}_1+\dot
 \end{cases}
 \end{equation}\normalsize
 
+\subsection{Algoritmo para modelagem de mecanismos paralelos}\label{S04-2}
+
 Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriais j\'a deduzidos, \'e necess\'ario introduzir mais alguns conceitos: \\
 
 Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n} \,$ $n+1$ subsistemas mec\^anicos e $\ssM$ um sistema mec\^anico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
@@ -624,16 +603,13 @@ Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n} \,$ $n+1$ subsistemas mec\^anicos e $\s
 \end{itemize}
 
 O modelo para simula\c{c}\~ao din\^amica direta \'e dado pelo seguinte equacionamento:
-
 \begin{equation} \label{eq:DinamicaDireta2}
 \begin{cases}
 \mC^\msT(\mq) \Big( \mM \dot{\mp} + \mv(\mp) + \mf(\mp) + \mg \Big) = \breve{\mC}^\msT(\mq) \mu \\
 \mA(\mq) \dot{\mp} = \mb(\mq,\mp)
 \end{cases}
 \end{equation}
-
 Sendo:
-
 \begin{equation} \label{eq:dq}
 \underline{\dot{\mq}}(\mq,\mrho) = \begin{bmatrix}
 \mD^\msP \mp_r \\
@@ -667,21 +643,18 @@ Sendo:
 \end{bmatrix}
 \mrho
 \end{equation}
-
 \begin{equation} \label{eq:VinculosVelocidades}
 \overline{\mrho} = \begin{bmatrix}
 \displaystyle\frac{\partial \overline{\mq}}{\partial \mq} \cdot \underline{\dot{\mq}} \\
 \overline{\momega}
 \end{bmatrix}
 \end{equation}
-
 \begin{equation} \label{eq:MatrizCchapeu}
 \breve{\mC} = \begin{bmatrix}
 \mone \\
 - \displaystyle\frac{\partial \overline{\mrho}}{\partial \mrho\cir}^\msP \frac{\partial \overline{\mrho}}{\partial \mrho\ssh }
 \end{bmatrix}
 \end{equation}
-
 \begin{equation} \label{eq:MatrizC2}
 \mC = 
 \begin{bmatrix}
@@ -692,7 +665,6 @@ Sendo:
 \end{bmatrix}
 \breve{\mC}
 \end{equation}
-
 \begin{equation} \label{eq:MatrizA2}
 \mA = 
 \begin{bmatrix}
@@ -705,11 +677,9 @@ Sendo:
 \displaystyle\frac{\partial \overline{\mrho}}{\partial \mp}
 \end{bmatrix}
 \end{equation}
-
 \begin{equation} \label{eq:Matrizb2}
 \mb = - \dot{\mA}(\mq,\mp) \mp
 \end{equation}
-
 \begin{equation} \label{eq:MatrizM2}
 \mM =
 \begin{bmatrix}
@@ -719,25 +689,21 @@ Sendo:
 \mzr  &   \mzr       &\ldots & \mM_{n}
 \end{bmatrix}
 \end{equation}
-
 \begin{equation} \label{eq:Matrizv2}
 \mv = \begin{bmatrix}
 \mv_0^\msT & \mv_1^\msT & ... & \mv_{n}^\msT
 \end{bmatrix}^\msT
 \end{equation}
-
 \begin{equation} \label{eq:Matrizf2}
 \mf = \begin{bmatrix}
 \mf_0^\msT & \mf_1^\msT & ... & \mf_{n}^\msT
 \end{bmatrix}^\msT
 \end{equation}
-
 \begin{equation} \label{eq:Matrizg2}
 \mg = \begin{bmatrix}
 \mg_0^\msT & \mg_1^\msT & ... & \mg_{n}^\msT
 \end{bmatrix}^\msT
 \end{equation}
-
 \begin{equation}
 \mu =
 \begin{bmatrix} \label{eq:Matrizu}
@@ -836,7 +802,6 @@ x & y
 0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \hvct{\mone}_{\ttN \rl \ttN_2} =
 \begin{bmatrix}
@@ -846,7 +811,6 @@ x & y
 0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \vct{\ttx_0}_{\ttN} =
 \begin{bmatrix}
@@ -855,7 +819,6 @@ y \\
 0 \\
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \vct{\ttx_1}_{\ttN_1} =
 \begin{bmatrix}
@@ -864,7 +827,6 @@ l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\
 0
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \vct{\ttx_2}_{\ttN_2} =
 \begin{bmatrix}
@@ -873,7 +835,6 @@ l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
 0
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \hvct{\ttx_1}_{\ttN} = \hvct{\mone}_{\ttN \rl \ttN_1} \hvct{\ttx_1}_{\ttN_1} =
 \begin{bmatrix}
@@ -883,7 +844,6 @@ l_1 \ssin_{1,1} + l_2 \ssin_{1,1\plus 2} \\
 1
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \hvct{\ttx_2}_{\ttN} = \hvct{\mone}_{\ttN \rl \ttN_2} \hvct{\ttx_2}_{\ttN_2} =
 \begin{bmatrix}
@@ -909,7 +869,6 @@ x = -l_0 - l_1 \ccos_{2,1} - l_2 \ccos_{2,1\plus 2} \\
 y = l_1 \ssin_{2,1} + l_2 \ssin_{2,1\plus 2} \\
 \end{cases}
 \end{equation}
-
 \begin{equation}
 \therefore \overline{\mq}(\mq) = 
 \begin{bmatrix}
@@ -939,7 +898,6 @@ Nesse exemplo n\~ao h\'a v\'inculos de orienta\c{c}\~ao entre subsistemas.
 0 & 1 & 0 & 0 & -l_1 \ccos_{2,1} - l_2 \ccos_{2\plus 2} & -l_2 \ccos_{2\plus 2}   \\
 \end{bmatrix}
 \end{equation}
-
 \begin{equation}
 \underline{\dot{\mq}}(\mq,\mrho) = \begin{bmatrix}
 \dot{x} &
@@ -1051,7 +1009,6 @@ l_{2} \ssin_{2,1}  \dot{\theta}_{2,1}^2 + l_{g2} \ssin_{2, 1\plus 2}   (\dot{\th
 -l_1 \ssin_{2,1} \dot{\theta}_{2,1}^2 - l_2 \ssin_{2,1\plus 2} (\dot{\theta}_{2,1} + \dot{\theta}_{1,2})^2 \\
 \end{bmatrix}
 \end{equation}
-
 \begin{itemize}
 \item[7)] Obter $\mM$, $\mv$, $\mf$, $\mg$ e $\mu$ atrav\'es de \eqref{eq:MatrizM2}, \eqref{eq:Matrizv2}, \eqref{eq:Matrizf2}, \eqref{eq:Matrizg2} e \eqref{eq:Matrizu}:
 
@@ -1108,7 +1065,69 @@ c_2 \dot{\theta}_{2,2} + \gamma_2 \sign(\dot{\theta}_{2,2}) \\
 
 \end{itemize}
 
-\subsection{Controle por modos deslizantes}\label{S04-2}
+\subsection{Modelo din\^amico acoplado}\label{S04-3}
+
+Para realizar o projeto do controlador \'e conveniente reescrever o modelo do mecanismo da seguinte maneira:
+
+\begin{equation} \label{eq:ModeloAcoplado}
+\mM\ssh(\mq) \dot{\mp}\ssh + \mv\ssh(\mq,\mp) + \mf\ssh(\mq,\mp) + \mg\ssh(\mq) = \mZ^\msT (\mq) \mu^\star
+\end{equation}
+
+Esse modelo \'e obtido utilizando a propriedade da matriz $\mC$ deduzida de que $\mp = \mC(\mq) \mp\ssh$. Sendo assim:
+
+\begin{equation}
+\mM\ssh = \mC^\msT \mM \mC
+\end{equation}
+\begin{equation}
+\mv\ssh = \mC^\msT ( \mM \dot{\mC} \mp\ssh + \mv )
+\end{equation}
+\begin{equation}
+\mf\ssh = \mC^\msT \mf
+\end{equation}
+\begin{equation}
+\mg\ssh = \mC^\msT \mg
+\end{equation}
+
+Al\'em disso, a matriz coluna $\mu^\star$ \'e definida de modo que suas componentes sejam apenas as componentes n\~ao nulas de $\mu$. Sendo assim, $\mZ$ \'e definida da seguinte maneira:
+\begin{equation}
+\mZ = \displaystyle\frac{\partial \mu}{\partial \mu^\star}^\msT \breve{\mC}
+\end{equation}
+
+$\mu^\star$ s\~ao os esfor\c{c}os ativos aplicados na dire\c{c}\~ao de $\dot{\mq}^\star$, sendo $\mq^\star$ uma matriz coluna de deslocamentos relativos das juntas atuadas. Pode-se provar que:
+\begin{equation}
+\dot{\mq}^\star = \mZ \mp\ssh
+\end{equation}
+
+\subsection{Inclus\~ao da din\^amica dos atuadores}\label{S04-4}
+
+Esta subse\c{c}\~ao \'e dedicada \'a inclus\~ao da din\^amica dos atuadores no modelos deduzidos. Ser\~ao explorados apenas atuadores do tipo motor DC com redutor acoplado. Para isso, primeiramente definimos os par\^ametros do modelo do sistema motor-redutor:
+
+\begin{itemize}
+\item $L [H]$: indut\^ancia da armadura.
+\item $R [\Omega]$: resist\^encia da armadura.
+\item $k_w [V \cdot s / rad]$: constante de for\c{c}a contra-eletromotriz.
+\item $k_t[N \cdot m / A]$: constante de torque.
+\item $r$: rela\c{c}\~ao de redu\c{c}\~ao.
+\item $\eta$: efici\^encia do redutor
+\item $J_m$: Momento de in\'ercia do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
+\item $c_m$: Coeficiente de atrito viscoso do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
+\item $\gamma_m$: Coeficiente de atrito seco do sistema motor-redutor medido em rela\c{c}\~ao ao eixo de sa\'ida do redutor.
+\end{itemize}
+
+O modelo din\^amico do sistema motor-redutor \'e dado por:
+
+\begin{equation}
+\begin{cases}
+L \frac{\dd i}{\dd t} + R i + k_w r \dot{\theta} = \upsilon \\
+J_m \ddot{\theta} + c_m \dot{\theta} + \gamma_m \sign(\dot{\theta}) = \eta r k_t i - \tau_{ext}
+\end{cases}
+\end{equation}
+
+Sendo $i$ a corrente da armadura, $\upsilon$ a tens\~ao de entrada, $\theta$ o deslocamento angular do eixo do redutor, e $\tau_{ext}$ o torque externo aplicado pelo mecanismo em que o redutor est\'a acoplado. 
+
+
+
+\subsection{Controle por modos deslizantes}\label{S04-5}
 
 Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta t\'ecnica de controle n\~ao-linear robusto \'e a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdu\c{c}\~ao, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
 
@@ -1185,7 +1204,7 @@ s_0 + k t, \, t < t_s \\
 
 Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero.
 
-\subsection{Controle por modos deslizantes extendido}\label{S04-3}
+\subsection{Controle por modos deslizantes extendido}\label{S04-6}
 
 Esta subse\c{c}\~ao tem o intuido de apresentar o desenvolvimento da lei de controle adequada para sistemas descritos por coordenadas redundantes desenvolvida. \\
 
