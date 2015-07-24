@@ -1267,14 +1267,13 @@ Ou seja:
 \end{bmatrix}
 = \mLambda \mup'
 \end{equation}
-
 No caso de n\~ao haver atua\c{c}\~ao redundante:
 \begin{equation}
 \mLambda = ( \mZ^\msT  \underline{(\eta r k_t / L)} )^\msI
 \end{equation}
 
 Substituindo \eqref{eq:muplinha} em \eqref{eq:mupexplicito}, temos:
-\begin{equation}
+\begin{equation} \label{eq:ModeloGenerico}
 \mH(\mq) \ddot{\mp}\ssh + \mh(\mq,\mp,\dot{\mp}, \mi) = \mup
 \end{equation}
 
@@ -1285,6 +1284,78 @@ Sendo:
 \begin{equation}
 \mh = \mLambda ({{\dot{\mM}}\ssh}{'} \dot{\mp}\ssh + {\dot{\mv}\ssh}{'} + {\dot{\mf}\ssh}{'} + {\dot{\mg}\ssh} + ( \mZ^\msT  \underline{(R/L)} - \dot{\mZ}^\msT ) \underline{\eta r k_t} \mi + \mZ^\msT  \underline{(\eta r^2 k_t k_w / L)}  \mZ \mp\ssh)
 \end{equation}
+
+Para o caso da orienta\c{c}\~ao da plataforma de $\ssM$ n\~ao ser descrita por coordenadas redundantes, temos $\mp\ssh = \dot{\mq}_0$, o que leva ao seguinte modelo para o sistema a ser controlado:
+
+\begin{equation} \label{eq:ModeloSRed}
+\begin{cases}
+\underline{L} \frac{\dd \mi}{\dd t} + \underline{R} \mi + \underline{k_w r} \mZ (\mq) \dot{\mq}_0= \mup
+\\
+\mH(\mq) \dddot{\mq}_0 + \mh(\mq,\mp,\dot{\mp}, \mi) = \mup
+\end{cases}
+\end{equation}
+
+Para o caso da orienta\c{c}\~ao da plataforma de $\ssM$ ser descrita por coordenadas redundantes, temos:
+
+\begin{equation}
+\mp\ssh = \begin{bmatrix}
+\mp_r \\
+\mp_t \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mD \dot{\mq}_r \\
+\dot{\mq}_t \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mD & \mzr \\
+\mzr & \mone
+\end{bmatrix}
+\begin{bmatrix}
+\dot{\mq}_r \\
+\dot{\mq}_t \\
+\end{bmatrix}
+= \mD' \dot{\mq}_0
+\end{equation}
+\begin{equation} \label{eq:mp2mq}
+\ddot{\mp}\ssh = \mD' \dddot{\mq}_0 + 2\dot{\mD}' \ddot{\mq}_0 + \ddot{\mD}' \dot{\mq}_0
+\end{equation}
+
+Substituindo \eqref{eq:mp2mq} em \eqref{eq:ModeloGenerico}, temos:
+
+\begin{equation}
+\mH'(\mq) \dddot{\mq}_0 + \mh'(\mq,\mp,\dot{\mp}, \mi) = \mup
+\end{equation}
+
+Sendo:
+
+\begin{equation}
+\mH' = \mH \mD'
+\end{equation}
+\begin{equation}
+\mh' = \mH( 2\dot{\mD}' \ddot{\mq}_0 + \ddot{\mD}' \dot{\mq}_0 ) + \mh
+\end{equation}
+
+O que leva ao seguinte modelo para o sistema a ser controlado:
+
+\begin{equation} \label{eq:ModeloCRed}
+\begin{cases}
+\underline{L} \frac{\dd \mi}{\dd t} + \underline{R} \mi + \underline{k_w r} \mZ (\mq) \dot{\mq}_0= \mup
+\\
+\mH'(\mq) \dddot{\mq}_0 + \mh'(\mq,\mp,\dot{\mp}, \mi) = \mup
+\\
+\mA'(\mq) \dddot{\mq}_0 = \mb'(\mq,\mp,\dot{\mp})
+\end{cases}
+\end{equation}
+
+Sendo $\mA'(\mq)$ o jacobiano das equa\c{c}\~oes vinculares que relacionam as componentes $\mq_0$, e  $\mb'(\mq,\mp,\dot{\mp})$ dado por:
+\begin{equation}
+\mb' = -2 \dot{\mA}' \ddot{\mq}_0 - \ddot{\mA}' \dot{\mq}_0
+\end{equation}
+
+Vale observar que ${\mA'}^\msT$ \'e complemento ortogonal de $\mD'$, e como $\mH$ n\~ao \'e singular, tamb\'em \'e complemento ortogonal de $\mH'$.
+
 
 \subsection{Controle por modos deslizantes}\label{S04-6}
 
