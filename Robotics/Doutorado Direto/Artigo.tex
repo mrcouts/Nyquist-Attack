@@ -1172,9 +1172,9 @@ Portanto, o modelo do mecanismo $\ssM$ considerando a din\^amica dos atuadores \
 
 \subsection{Modelo utilizado no projeto de controle}\label{S04-5}
 
-O modelo \eqref{eq:MotorAcoplado} apresentado na subse\c{c}\~ao anterior j\'a pode ser utilizado diretamente para realizar o projeto do controlador, por\'em algumas manipula\c{c}\~oes matem\'aticas ser\~ao utilizadas para obter um modelo mais conveniente para a realiza\c{c}\~ao do projeto.
+Partindo do modelo \eqref{eq:MotorAcoplado}, apresentado na subse\c{c}\~ao anterior, ser\~ao utilizados alguns artif\'icios matem\'aticos a fim de obter um modelo mais conveniente para a realiza\c{c}\~ao do projeto de controle.
 
-A entrada do sistema \'e a matriz coluna de tens\~oes aplicadas nos motores  $\mup$. Como a sa\'ida do sistema \'e a posi\c{c}\~ao e orienta\c{c}\~ao da plataforma, \'e conveniente que a entrada do sistema apare\c{c}a na segunda equa\c{c}\~ao matricial de \eqref{eq:MotorAcoplado}. Para que isso seja poss\'ivel, isolamos $\frac{\dd \mi}{\dd t}$ na primeira equa\c{c}\~ao de \eqref{eq:MotorAcoplado} e substuimos na derivada temporal da segunda equa\c{c}\~ao:
+A entrada do sistema \'e a matriz coluna $\mup$, cujas componentes s\~ao de tens\~oes aplicadas nos motores. Como a sa\'ida do sistema \'e a posi\c{c}\~ao e orienta\c{c}\~ao da plataforma, \'e conveniente que a entrada do sistema apare\c{c}a na segunda equa\c{c}\~ao matricial de \eqref{eq:MotorAcoplado}. Para que isso seja poss\'ivel, isolamos $\frac{\dd \mi}{\dd t}$ na primeira equa\c{c}\~ao de \eqref{eq:MotorAcoplado} e substuimos na derivada temporal da segunda equa\c{c}\~ao:
 
 \begin{equation}
 {\mM\ssh}'(\mq) \ddot{\mp}\ssh + {{\dot{\mM}}\ssh}{'} (\mq,\mp) \dot{\mp}\ssh + {\dot{\mv}\ssh}{'}(\mq,\mp,\dot{\mp}) + {\dot{\mf}\ssh}{'}(\mq,\mp,\dot{\mp}) + {\dot{\mg}\ssh}(\mq,\mp) = \dot{\mZ}^\msT (\mq) \underline{\eta r k_t} \mi + \mZ^\msT (\mq) \underline{(\eta r k_t / L)} ( \mup -  \underline{R} \mi - \underline{k_w r} \mZ (\mq) \mp\ssh )
@@ -1183,7 +1183,7 @@ A entrada do sistema \'e a matriz coluna de tens\~oes aplicadas nos motores  $\m
 \therefore {\mM\ssh}' \ddot{\mp}\ssh + {{\dot{\mM}}\ssh}{'} \dot{\mp}\ssh + {\dot{\mv}\ssh}{'} + {\dot{\mf}\ssh}{'} + {\dot{\mg}\ssh} + ( \mZ^\msT  \underline{(R/L)} - \dot{\mZ}^\msT ) \underline{\eta r k_t} \mi + \mZ^\msT  \underline{(\eta r^2 k_t k_w / L)}  \mZ \mp\ssh =  \mZ^\msT  \underline{(\eta r k_t / L)} \mup
 \end{equation}
 
-Ainda n\~ao \'e poss\'ivel isolar $\mup$ em \eqref{eq:MotorAcoplado2}, pois \'e poss\'ivel que o mecanismo $\ssM$ tenha atua\c{c}\~ao redundante, o que implica que poder\~ao existir\~ao mais inc\'ognitas que equa\c{c}\~oes e consequentemente infinitas solu\c{c}\~oes para $\mup$. Dentro de todas as solu\c{c}\~oes para $\mup$ ser\'a escolhida aquela que minimiza $\mup^\msT \mQ \mup$, sendo $\mQ$ uma matriz sim\'etrica positiva definida. Assim:
+Ainda n\~ao \'e poss\'ivel isolar $\mup$ em \eqref{eq:MotorAcoplado2}, pois \'e poss\'ivel que o mecanismo $\ssM$ tenha atua\c{c}\~ao redundante, o que implica que poder\~ao existir mais inc\'ognitas que equa\c{c}\~oes e consequentemente infinitas solu\c{c}\~oes para $\mup$. Dentro de todas as solu\c{c}\~oes para $\mup$ ser\'a escolhida aquela que minimiza $\mup^\msT \mQ \mup$, sendo $\mQ$ uma matriz sim\'etrica positiva definida, ou seja:
 
 \begin{equation} \label{eq:Optimization_}
 \begin{aligned}
@@ -1267,13 +1267,24 @@ Ou seja:
 \end{bmatrix}
 = \mLambda \mup'
 \end{equation}
+
 No caso de n\~ao haver atua\c{c}\~ao redundante:
 \begin{equation}
 \mLambda = ( \mZ^\msT  \underline{(\eta r k_t / L)} )^\msI
 \end{equation}
 
-Substituindo \eqref{eq:mupexplicito} em \eqref{eq:muplinha}, temos:
+Substituindo \eqref{eq:muplinha} em \eqref{eq:mupexplicito}, temos:
+\begin{equation}
+\mH(\mq) \ddot{\mp}\ssh + \mh(\mq,\mp,\dot{\mp}, \mi) = \mup
+\end{equation}
 
+Sendo:
+\begin{equation}
+\mH = \mLambda {\mM\ssh}'
+\end{equation}
+\begin{equation}
+\mh = \mLambda ({{\dot{\mM}}\ssh}{'} \dot{\mp}\ssh + {\dot{\mv}\ssh}{'} + {\dot{\mf}\ssh}{'} + {\dot{\mg}\ssh} + ( \mZ^\msT  \underline{(R/L)} - \dot{\mZ}^\msT ) \underline{\eta r k_t} \mi + \mZ^\msT  \underline{(\eta r^2 k_t k_w / L)}  \mZ \mp\ssh)
+\end{equation}
 
 \subsection{Controle por modos deslizantes}\label{S04-6}
 
