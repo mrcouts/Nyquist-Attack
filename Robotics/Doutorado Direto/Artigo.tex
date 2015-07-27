@@ -1125,7 +1125,7 @@ J_m \ddot{\theta} + c_m \dot{\theta} + \gamma_m \sign(\dot{\theta}) = \eta r k_t
 \end{cases}
 \end{equation}
 
-Sendo $i$ a corrente da armadura, $\upsilon$ a tens\~ao de entrada, $\theta$ o deslocamento angular do eixo do redutor, e $\tau_{ext}$ o torque externo aplicado pelo mecanismo em que o redutor est\'a acoplado. \\
+Sendo $i$ a corrente da armadura, $\upsilon$ a tens\~ao de entrada, $\theta$ o deslocamento angular do eixo do redutor, e $\tau_{ext}$ o torque externo aplicado pelo mecanismo em que eixo de sa\'ida do redutor est\'a acoplado. \\
 
 Seja $\nu^\star$ o n\'umero de juntas atuadas de um mecanismo $\ssM$. Cada um dos $\nu^\star$ motores do sistema \'e modelado por \eqref{eq:Motor}, sendo assim, podemos reescrever \eqref{eq:Motor} de maneira matricial:
 
@@ -1221,7 +1221,7 @@ Como $\mQ$ \'e sim\'etrica e $\dl \mup$ e $\dl \mlambda$ s\~ao arbitr\'arios, te
 \end{cases}
 \end{equation}
 
-Seja $\mPsi$ o complemento ortogonal de $\mZ^\msT  \underline{(\eta r k_t / L)}$. Multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol_} por $\mPsi^\msT$, temos:
+Seja $\mPsi$ um complemento ortogonal de $\mZ^\msT  \underline{(\eta r k_t / L)}$. Multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol_} por $\mPsi^\msT$, temos:
 \begin{equation} \label{eq:OptimizationSol_2}
 \begin{cases}
 2 \mPsi^\msT \mQ \mup + \mPsi^\msT \underline{(\eta r k_t / L)} \mZ \mlambda = 2 \mPsi^\msT \mQ \mup = \mzr \\
@@ -1356,8 +1356,72 @@ Sendo $\mA'(\mq)$ o jacobiano das equa\c{c}\~oes vinculares que relacionam as co
 
 Vale observar que ${\mA'}^\msT$ \'e complemento ortogonal de $\mD'$, e como $\mH$ n\~ao \'e singular, tamb\'em \'e complemento ortogonal de $\mH'$.
 
+\subsection{Projeto do Controlador}\label{S04-6}
 
-\subsection{Controle por modos deslizantes}\label{S04-6}
+Esta subse\c{c}\~ao \'e destinada ao projeto de controladores n\~ao-lineares robustos, destinados ao controle de posi\c{c}\~ao e orienta\c{c}\~ao de plataformas paralelas descritas pelos modelos \eqref{eq:ModeloSRed} e \eqref{eq:ModeloCRed}, utilizando a t\'ecnica de controle por modos deslizantes.
+
+Sejam $\underline{k_p}$ e $\underline{k_v}$ matrizes diagonais positivas definidas, $\mq_0^\sdia$ uma matriz coluna de sinais refer\^encia, e $\ms$ uma matriz coluna dada por:
+\begin{equation} \label{eq:SlidingSurfaces}
+\ms = -(\ddot{\me} + \underline{k_v}\dot{\me} + \underline{k_p}\me)
+\end{equation} 
+
+Sendo:
+\begin{equation}
+\me = \mq_0^\sdia - \mq_0
+\end{equation}
+
+Seja $V(\ms)$ um fun\c{c}\~ao de Lyapunov dada por:
+\begin{equation}
+V(\ms) = \frac{1}{2} \ms^\msT \ms
+\end{equation}
+
+Pela teoria de estabilidade de Lyapunov, se $\dot{V} < 0 \,\, \forall \ms \neq \mzr$, $\ms$ converge para $\mzr$ independentemente das condi\c{c}\~oes iniciais do sistema. Para que isso seja poss\'ivel, \'e imposta a seguinte condi\c{c}\~ao:
+\begin{equation} \label{eq:SlidingCondition}
+\frac{\dd}{\dd t} V(\ms) = \ms^\msT \dot{\ms} \leq - \varkappa \, \ms^\msT \sign(\ms) 
+\end{equation}
+
+Sendo $\varkappa$ uma constante positiva. Repare que $\ms^\msT \sign(\ms)$ \'e a soma dos m\'odulos das componentes de $\ms$, o que implica que $- \varkappa \, \ms^\msT \sign(\ms) < 0 \,\, \forall \ms \neq \mzr$. Repare tamb\'em que se $\dot{\ms} = - \varkappa \,\sign(\ms)$,  \eqref{eq:SlidingCondition} \'e satisfeita e cada componente de $\ms$ respeita a EDO $\dot{s_i} = - \varkappa \,\sign(s_i)$, a qual converge para zero em um tempo finito de $t = \frac{|s_i(0)|}{\varkappa}$. Sendo assim, pode-se dizer que se \eqref{eq:SlidingCondition} for satisfeita, $\ms$ converge para zero em tempo finito e, a partir desse momento, o erro de controle $\me$ converge assint\'oticamente para zero.
+
+O projeto do controlador \'e feito utilizando a condi\c{c}\~ao \eqref{eq:SlidingCondition}, a qual \'e conhecida como condi\c{c}\~ao de escorregamento. Assim, derivando \eqref{eq:SlidingSurfaces}, temos:
+
+\begin{equation} \label{eq:DSlidingSurfaces}
+\dot{\ms} = \dddot{\mq}_0 -(\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me})
+\end{equation}
+
+Substituindo \eqref{eq:DSlidingSurfaces} em \eqref{eq:SlidingCondition}, temos:
+
+\begin{equation} \label{eq:SlidingCondition2}
+\ms^\msT (\dddot{\mq}_0 -(\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}) + \varkappa \, \sign(\ms) ) \leq 0
+\end{equation} \\
+
+A partir de agora o projeto do controlador ser\'a dividido em dois casos:
+
+\begin{itemize}
+\item[i)] $\mq_0$ \'e um conjunto de coordenadas independentes
+
+Nesse caso, o modelo do sistema \'e dado por \eqref{eq:ModeloSRed}, ou seja:
+
+$$
+\begin{cases}
+\underline{L} \frac{\dd \mi}{\dd t} + \underline{R} \mi + \underline{k_w r} \mZ (\mq) \dot{\mq}_0= \mup
+\\
+\mH(\mq) \dddot{\mq}_0 + \mh(\mq,\mp,\dot{\mp}, \mi) = \mup
+\end{cases}
+$$
+
+Isolando $\dddot{\mq}_0$ na segunda equa\c{c}\~ao de \eqref{eq:ModeloSRed} e subtituindo em \eqref{eq:SlidingCondition2}, temos:
+\begin{equation} \label{eq:SlidingCondition3}
+\ms^\msT (\mH^\msI (\mup - \mh ) -(\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}) + \varkappa \, \sign(\ms) ) \leq 0
+\end{equation}
+
+Para satisfazer \eqref{eq:SlidingCondition3}, \'e utilizada a seguinte lei de controle:
+\begin{equation}
+\mup = \hat{\mh} + \hat{\mH}( \dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me} - \underline{k} \sign(\ms) )
+\end{equation}
+
+\end{itemize}
+
+\subsection{Controle por modos deslizantes}\label{S04-7}
 
 Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta t\'ecnica de controle n\~ao-linear robusto \'e a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdu\c{c}\~ao, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
 
@@ -1434,7 +1498,7 @@ s_0 + k t, \, t < t_s \\
 
 Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero.
 
-\subsection{Controle por modos deslizantes extendido}\label{S04-7}
+\subsection{Controle por modos deslizantes extendido}\label{S04-8}
 
 Esta subse\c{c}\~ao tem o intuido de apresentar o desenvolvimento da lei de controle adequada para sistemas descritos por coordenadas redundantes desenvolvida. \\
 
