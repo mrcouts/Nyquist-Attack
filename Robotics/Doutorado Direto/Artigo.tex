@@ -1415,9 +1415,45 @@ Isolando $\dddot{\mq}_0$ na segunda equa\c{c}\~ao de \eqref{eq:ModeloSRed} e sub
 \end{equation}
 
 Para satisfazer \eqref{eq:SlidingCondition3}, \'e utilizada a seguinte lei de controle:
-\begin{equation}
+\begin{equation} \label{eq:ControlLawSRed}
 \mup = \hat{\mh} + \hat{\mH}( \dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me} - \underline{k} \sign(\ms) )
 \end{equation}
+
+Sendo $\hat{\mh}$ e $\hat{\mH}$ estimadores de $\mh$ e $\mH$, respectivamente. Substituindo \eqref{eq:ControlLawSRed} em \eqref{eq:SlidingCondition3}, temos:
+\begin{equation} \label{eq:SlidingCondition4}
+\ms^\msT (\mdelta + \mDelta (\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me})  + \varkappa \, \sign(\ms) - (\mDelta + \mone) \underline{k} \sign(\ms) ) \leq 0
+\end{equation}
+
+Sendo:
+\begin{equation}
+\mdelta(\mq,\mq,\dot{\mp},\mi) = \mH^\msI (\hat{\mh} - \mh)
+\end{equation}
+\begin{equation}
+\mDelta(\mq) = \mH^\msI \hat{\mH} - \mone
+\end{equation}
+
+Pode-se dizer que \eqref{eq:SlidingCondition4} \'e sempre satisfeita se:
+\begin{equation} \label{eq:DesigualdadeK1}
+(\mDelta + \mone) \cdot \diag(\underline{k})  \geq | \mdelta + \mDelta (\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me})  + \varkappa \, \sign(\ms) |
+\end{equation}
+
+Aplicando a desigualdade triangular em cada componente do lado esquerdo de \eqref{eq:DesigualdadeK1}, temos:
+\begin{equation}
+| \mdelta + \mDelta (\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me})  + \varkappa \, \sign(\ms) | \leq |\mdelta|_{max} + |\mDelta|_{max} |\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}| + \diag(\varkappa \mone)
+\end{equation}
+
+Portanto, se a seguinte inequa\c{c}\~ao matricial for respeitada:
+\begin{equation} \label{eq:DesigualdadeK2}
+(\mDelta + \mone) \cdot \diag(\underline{k})  \geq |\mdelta|_{max} + |\mDelta|_{max} |\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}| + \diag(\varkappa \mone)
+\end{equation}
+
+\eqref{eq:SlidingCondition4} ser\'a respeitada, o que garante que a condi\c{c}\~ao de escorregamento \eqref{eq:SlidingCondition} seja respeitada e consequentemente garante a converg\^encia do erro de controle $\me$ para zero.
+
+Uma poss\'ivel solu\c{c}\~ao para \eqref{eq:DesigualdadeK2}, v\'alida apenas se o somat\'orio de cada uma das linhas de $|\mDelta|_{max}$ for menor do que $1$, \'e dada por:
+\begin{equation}
+k = \displaystyle\max_{1 \leq i \leq \nu_0} \Big( \frac{|\mdelta_i|_{max} + \varkappa}{1 - \sum_{j=1}^{\nu_0} |\mDelta_{i,j}|_{max} } \Big) + \sum_{\kappa = 1}^{\nu_0} \displaystyle\max_{1 \leq i \leq \nu_0} \Big( \frac{|\mDelta_{i,\kappa}|_{max}}{1 - \sum_{j=1}^{\nu_0} |\mDelta_{i,j}|_{max} } \Big)
+\end{equation}
+
 
 \end{itemize}
 
