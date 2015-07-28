@@ -1190,34 +1190,34 @@ Ainda n\~ao \'e poss\'ivel isolar $\mup$ em \eqref{eq:MotorAcoplado2}, pois \'e 
 & \underset{\mup}{\text{Min}}
 & & \mup^\msT \mQ \mup \\
 & \text{tal que}
-& & \mZ^\msT  \underline{(\eta r k_t / L)} \mup = \mup'
+& & \mZ^\msT  \underline{(\eta r k_t / L)} \mup = \mz
 \end{aligned}
 \end{equation}
 
 Sendo:
 \begin{equation} \label{eq:muplinha}
-\mup' = \ddot{\mp}\ssh + {{\dot{\mM}}\ssh}{'} \dot{\mp}\ssh + {\dot{\mv}\ssh}{'} + {\dot{\mf}\ssh}{'} + {\dot{\mg}\ssh} + ( \mZ^\msT  \underline{(R/L)} - \dot{\mZ}^\msT ) \underline{\eta r k_t} \mi + \mZ^\msT  \underline{(\eta r^2 k_t k_w / L)}  \mZ \mp\ssh
+\mz = \ddot{\mp}\ssh + {{\dot{\mM}}\ssh}{'} \dot{\mp}\ssh + {\dot{\mv}\ssh}{'} + {\dot{\mf}\ssh}{'} + {\dot{\mg}\ssh} + ( \mZ^\msT  \underline{(R/L)} - \dot{\mZ}^\msT ) \underline{\eta r k_t} \mi + \mZ^\msT  \underline{(\eta r^2 k_t k_w / L)}  \mZ \mp\ssh
 \end{equation}
 
 Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema \'e equivalente:
 \begin{equation}
 \begin{aligned}
 & \underset{\mv, \mlambda}{\text{Min}}
-& & \mathfrak{L} = \mup^\msT \mQ \mup + (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup')^\msT \mlambda \\
+& & \mathfrak{L} = \mup^\msT \mQ \mup + (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mz)^\msT \mlambda \\
 \end{aligned}
 \end{equation}
 
 
 Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
 
-$$ \dl \mathfrak{L} = 0 \Rightarrow \dl \mup^\msT \mQ \mup + \mup^\msT \mQ \dl \mup + (\mZ^\msT  \underline{(\eta r k_t / L)} \dl \mup)^\msT \mlambda + (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup')^\msT \dl \mlambda = 0 $$
-$$ \Rightarrow \dl \mup^\msT \Big( (\mQ + \mQ^\msT)\mup + \underline{(\eta r k_t / L)} \mZ \mlambda \Big) + \dl \mlambda^\msT (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup') = 0 $$
+$$ \dl \mathfrak{L} = 0 \Rightarrow \dl \mup^\msT \mQ \mup + \mup^\msT \mQ \dl \mup + (\mZ^\msT  \underline{(\eta r k_t / L)} \dl \mup)^\msT \mlambda + (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mz)^\msT \dl \mlambda = 0 $$
+$$ \Rightarrow \dl \mup^\msT \Big( (\mQ + \mQ^\msT)\mup + \underline{(\eta r k_t / L)} \mZ \mlambda \Big) + \dl \mlambda^\msT (\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mz) = 0 $$
 
 Como $\mQ$ \'e sim\'etrica e $\dl \mup$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
 \begin{equation} \label{eq:OptimizationSol_}
 \begin{cases}
 2 \mQ \mup + \underline{(\eta r k_t / L)} \mZ \mlambda = \mzr \\
-\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup' = \mzr
+\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mz = \mzr
 \end{cases}
 \end{equation}
 
@@ -1225,7 +1225,7 @@ Seja $\mPsi$ um complemento ortogonal de $\mZ^\msT  \underline{(\eta r k_t / L)}
 \begin{equation} \label{eq:OptimizationSol_2}
 \begin{cases}
 2 \mPsi^\msT \mQ \mup + \mPsi^\msT \underline{(\eta r k_t / L)} \mZ \mlambda = 2 \mPsi^\msT \mQ \mup = \mzr \\
-\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mup' = \mzr
+\mZ^\msT  \underline{(\eta r k_t / L)} \mup - \mz = \mzr
 \end{cases}
 \end{equation}
 \begin{equation} \label{eq:OptimizationSol_3}
@@ -1236,7 +1236,7 @@ Seja $\mPsi$ um complemento ortogonal de $\mZ^\msT  \underline{(\eta r k_t / L)}
 \end{bmatrix}
 \mup = 
 \begin{bmatrix}
-\mup' \\
+\mz \\
 \mzr
 \end{bmatrix}
 \Rightarrow
@@ -1246,14 +1246,14 @@ Seja $\mPsi$ um complemento ortogonal de $\mZ^\msT  \underline{(\eta r k_t / L)}
 \mPsi^\msT \mQ
 \end{bmatrix}^\msI
 \begin{bmatrix}
-\mup' \\
+\mz \\
 \mzr
 \end{bmatrix}
 \end{equation} \\
 
 Seja $\mLambda$ um matriz tal que:
 \begin{equation} \label{eq:mupexplicito}
-\mu = \mLambda \mup'
+\mu = \mLambda \mz
 \end{equation}
 Ou seja:
 \begin{equation}
@@ -1262,10 +1262,10 @@ Ou seja:
 \mPsi^\msT \mQ
 \end{bmatrix}^\msI
 \begin{bmatrix}
-\mup' \\
+\mz \\
 \mzr
 \end{bmatrix}
-= \mLambda \mup'
+= \mLambda \mz
 \end{equation}
 No caso de n\~ao haver atua\c{c}\~ao redundante:
 \begin{equation}
@@ -1343,9 +1343,16 @@ O que leva ao seguinte modelo para o sistema a ser controlado:
 \begin{cases}
 \underline{L} \frac{\dd \mi}{\dd t} + \underline{R} \mi + \underline{k_w r} \mZ (\mq) \dot{\mq}_0= \mup
 \\
-\mH'(\mq) \dddot{\mq}_0 + \mh'(\mq,\mp,\dot{\mp}, \mi) = \mup
-\\
-\mA'(\mq) \dddot{\mq}_0 = \mb'(\mq,\mp,\dot{\mp})
+\begin{bmatrix}
+\mH'(\mq) \\
+\mA'(\mq)
+\end{bmatrix}
+\dddot{\mq}_0
+=
+\begin{bmatrix}
+\mup - \mh'(\mq,\mp,\dot{\mp}, \mi) \\
+\mb'(\mq,\mp,\dot{\mp})
+\end{bmatrix}
 \end{cases}
 \end{equation}
 
@@ -1385,19 +1392,23 @@ Sendo $\varkappa$ uma constante positiva. Repare que $\ms^\msT \sign(\ms)$ \'e a
 O projeto do controlador \'e feito utilizando a condi\c{c}\~ao \eqref{eq:SlidingCondition}, a qual \'e conhecida como condi\c{c}\~ao de escorregamento. Assim, derivando \eqref{eq:SlidingSurfaces}, temos:
 
 \begin{equation} \label{eq:DSlidingSurfaces}
-\dot{\ms} = \dddot{\mq}_0 -(\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me})
+\dot{\ms} = \dddot{\mq}_0 - \msigma
+\end{equation}
+Sendo:
+\begin{equation}
+\msigma = \dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}
 \end{equation}
 
 Substituindo \eqref{eq:DSlidingSurfaces} em \eqref{eq:SlidingCondition}, temos:
 
 \begin{equation} \label{eq:SlidingCondition2}
-\ms^\msT (\dddot{\mq}_0 -(\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}) + \varkappa \, \sign(\ms) ) \leq 0
+\ms^\msT (\dddot{\mq}_0 -\msigma + \varkappa \, \sign(\ms) ) \leq 0
 \end{equation} \\
 
 A partir de agora o projeto do controlador ser\'a dividido em dois casos:
 
 \begin{itemize}
-\item[i)] $\mq_0$ \'e um conjunto de coordenadas independentes
+\item[i)] $\mq_0$ \'e um conjunto de coordenadas generalizadas independentes
 
 Nesse caso, o modelo do sistema \'e dado por \eqref{eq:ModeloSRed}, ou seja:
 
@@ -1411,17 +1422,17 @@ $$
 
 Isolando $\dddot{\mq}_0$ na segunda equa\c{c}\~ao de \eqref{eq:ModeloSRed} e subtituindo em \eqref{eq:SlidingCondition2}, temos:
 \begin{equation} \label{eq:SlidingCondition3}
-\ms^\msT (\mH^\msI (\mup - \mh ) -(\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}) + \varkappa \, \sign(\ms) ) \leq 0
+\ms^\msT (\mH^\msI (\mup - \mh ) -\msigma + \varkappa \, \sign(\ms) ) \leq 0
 \end{equation}
 
 Para satisfazer \eqref{eq:SlidingCondition3}, \'e utilizada a seguinte lei de controle:
 \begin{equation} \label{eq:ControlLawSRed}
-\mup = \hat{\mh} + \hat{\mH}( \dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me} - \underline{k} \sign(\ms) )
+\mup = \hat{\mh} + \hat{\mH}( \msigma - \underline{k} \sign(\ms) )
 \end{equation}
 
 Sendo $\hat{\mh}$ e $\hat{\mH}$ estimadores de $\mh$ e $\mH$, respectivamente. Substituindo \eqref{eq:ControlLawSRed} em \eqref{eq:SlidingCondition3}, temos:
 \begin{equation} \label{eq:SlidingCondition4}
-\ms^\msT (\mdelta + \mDelta (\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me})  + \varkappa \, \sign(\ms) - (\mDelta + \mone) \underline{k} \sign(\ms) ) \leq 0
+\ms^\msT (\mdelta + \mDelta \msigma  + \varkappa \, \sign(\ms) - (\mDelta + \mone) \underline{k} \sign(\ms) ) \leq 0
 \end{equation}
 
 Sendo:
@@ -1434,226 +1445,141 @@ Sendo:
 
 Pode-se dizer que \eqref{eq:SlidingCondition4} \'e sempre satisfeita se:
 \begin{equation} \label{eq:DesigualdadeK1}
-(\mDelta + \mone) \cdot \diag(\underline{k})  \geq | \mdelta + \mDelta (\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me})  + \varkappa \, \sign(\ms) |
+(\mDelta + \mone) \cdot \diag(\underline{k})  \geq | \mdelta + \mDelta \msigma  + \varkappa \, \sign(\ms) |
 \end{equation}
 
 Aplicando a desigualdade triangular em cada componente do lado esquerdo de \eqref{eq:DesigualdadeK1}, temos:
 \begin{equation}
-| \mdelta + \mDelta (\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me})  + \varkappa \, \sign(\ms) | \leq |\mdelta|_{max} + |\mDelta|_{max} |\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}| + \diag(\varkappa \mone)
+| \mdelta + \mDelta \msigma  + \varkappa \, \sign(\ms) | \leq |\mdelta|_{max} + |\mDelta|_{max} |\msigma| + \diag(\varkappa \mone)
 \end{equation}
 
 Portanto, se a seguinte inequa\c{c}\~ao matricial for respeitada:
 \begin{equation} \label{eq:DesigualdadeK2}
-(\mDelta + \mone) \cdot \diag(\underline{k})  \geq |\mdelta|_{max} + |\mDelta|_{max} |\dddot{\mq}_0^\sdia + \underline{k_v}\ddot{\me} + \underline{k_p}\dot{\me}| + \diag(\varkappa \mone)
+(\mDelta + \mone) \cdot \diag(\underline{k})  \geq |\mdelta|_{max} + |\mDelta|_{max} |\msigma| + \diag(\varkappa \mone)
 \end{equation}
 
-\eqref{eq:SlidingCondition4} ser\'a respeitada, o que garante que a condi\c{c}\~ao de escorregamento \eqref{eq:SlidingCondition} seja respeitada e consequentemente garante a converg\^encia do erro de controle $\me$ para zero.
+\eqref{eq:SlidingCondition4} ser\'a respeitada, o que garante que a condi\c{c}\~ao de escorregamento \eqref{eq:SlidingCondition} tamb\'em seja respeitada e consequentemente garante a converg\^encia do erro de controle para zero.
 
-Uma poss\'ivel solu\c{c}\~ao para \eqref{eq:DesigualdadeK2}, v\'alida apenas se o somat\'orio de cada uma das linhas de $|\mDelta|_{max}$ for menor do que $1$, \'e dada por:
+Uma poss\'ivel solu\c{c}\~ao para \eqref{eq:DesigualdadeK2} \'e obtida fazendo $\underline{k} = k \mone$, a qual \'e v\'alida apenas se o somat\'orio de cada uma das linhas de $|\mDelta|_{max}$ for menor do que $1$. Esta solu\c{c}\~ao \'e dada por:
 \begin{equation}
-k = \displaystyle\max_{1 \leq i \leq \nu_0} \Big( \frac{|\mdelta_i|_{max} + \varkappa}{1 - \sum_{j=1}^{\nu_0} |\mDelta_{i,j}|_{max} } \Big) + \sum_{\kappa = 1}^{\nu_0} \displaystyle\max_{1 \leq i \leq \nu_0} \Big( \frac{|\mDelta_{i,\kappa}|_{max}}{1 - \sum_{j=1}^{\nu_0} |\mDelta_{i,j}|_{max} } \Big)
+k = \varkappa + \displaystyle\max_{1 \leq i \leq \nu\ssh} \Big( \frac{|\delta_i|_{max}}{1 - \sum_{j=1}^{\nu\ssh} |\Delta_{i,j}|_{max} } \Big) + \sum_{\kappa = 1}^{\nu\ssh} \displaystyle\max_{1 \leq i \leq \nu\ssh} \Big( \frac{|\Delta_{i,\kappa}|_{max}}{1 - \sum_{j=1}^{\nu\ssh} |\Delta_{i,j}|_{max} } \Big) |\sigma_\kappa|
 \end{equation}
 
+Sendo $\delta_i$ e $\sigma_i$ as i-\'esimas componentes de $\mdelta$ e $\msigma$, repectivamente, e $\Delta_{i,j}$ o elemento da i-\'esima linha e j-\'esima coluna de $\mDelta$.
 
-\end{itemize}
+\item[ii)] $\mq_0$ \'e um conjunto de coordenadas generalizadas redundantes
 
-\subsection{Controle por modos deslizantes}\label{S04-7}
+Nesse caso, o modelo do sistema \'e dado por \eqref{eq:ModeloCRed}, ou seja:
 
-Nesta subse\c{c}\~ao ser\'a feita uma breve introdu\c{c}\~ao ao controle por modos deslizantes. Esta t\'ecnica de controle n\~ao-linear robusto \'e a base para do desenvolvimento da metodologia de projeto de controle para mecanismos paralelos e para o desenvolvimento de leis de controle adequadas para sistemas descritos por coordenadas redundantes. Nesta introdu\c{c}\~ao, o tema ser\'a explorado apenas para o controle de sistemas de segunda ordem, sem incertezas param\'etricas. \\
-
-Seja um sistema din\^amico dado pela seguinte equa\c{c}\~ao diferencial:
-\begin{equation} \label{eq:SimpleODE}
-\ddot{x} = u
-\end{equation}
-
-Definimos a seguinte superf\'icie, chamada de superf\'icie de escorregamento:
-\begin{equation} \label{eq:SlidingSurface}
-s(e, \dot{e}) = - (\dot{e} + \lambda e) = 0, \, \lambda > 0
-\end{equation}
-
-Sendo $e = x_d - x$ o erro de controle e $x_d$ o sinal de refer\^encia. Repare que se o sistema estiver na superf\'icie de escorregamento, temos:
-\begin{equation} \label{eq:SlidingError}
-\dot{e} + \lambda e = 0 \Rightarrow e(t) = C e^{- \lambda t}
-\end{equation}
-
-Sendo assim, o erro cai exponencialmente para zero, com constante de tempo $1/\lambda$.
-
-Para encontrar a lei de controle que leva o sistema \`a superf\'icie de escorregamento, parte-se da defini\c{c}\~ao de $s$:
-
-$$ s = -(\dot{e} + \lambda e) $$
-
-Derivando no tempo:
-\begin{equation} \label{eq:dotS}
-\dot{s} =  -(\ddot{e} + \lambda \dot{e}) = \ddot{x} - \ddot{x}_d - \lambda \dot{e} 
-\end{equation}
-
-Substituindo \eqref{eq:SimpleODE} em \eqref{eq:dotS}:
-\begin{equation} \label{dotS2}
-\dot{s} = u - \ddot{x}_d - \lambda \dot{e}
-\end{equation}
-
-Utizando a seguinte lei de controle:
-\begin{equation} \label{SMControlLaw1D}
-u = \ddot{x}_d + \lambda \dot{e} - k \sign (s), \, k>0
-\end{equation}
-
-Temos:
-\begin{equation} \label{CloserLoop1D}
-\dot{s} = -k \sign(s) 
-\end{equation}
-
-Supondo que o sistema come\c{c}a em $s(0) = s_0 >0$. Resolvendo a EDO para $s>0$:
-
-$$ \dot{s} = -k \Rightarrow s = -k t + c $$
-$$ s(0) = s_0 \Rightarrow c = s_0 $$
-$$ \therefore s = s_0 - k t, \, s>0 $$
-
-Em $t = t_s = \frac{|s_0|}{k}$, $s$ chega em zero. Resolvendo a EDO para $s(t_s) = 0$:
-
-$$ \dot{s} = 0 \Rightarrow s =  c $$
-$$ s(t_s) = 0 \Rightarrow c = 0 $$
-
-Portanto, para a solu\c{c}\~ao da EDO para $s(0) = s_0 > 0$ \'e
-\begin{equation} \label{eq:SM-ODE-Sol1}
-s(t) =
+$$
 \begin{cases}
-s_0 - k t, \, t < t_s \\
-0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
+\underline{L} \frac{\dd \mi}{\dd t} + \underline{R} \mi + \underline{k_w r} \mZ (\mq) \dot{\mq}_0= \mup
+\\
+\begin{bmatrix}
+\mH'(\mq) \\
+\mA'(\mq)
+\end{bmatrix}
+\dddot{\mq}_0
+=
+\begin{bmatrix}
+\mup - \mh'(\mq,\mp,\dot{\mp}, \mi) \\
+\mb'(\mq,\mp,\dot{\mp})
+\end{bmatrix}
 \end{cases}
+$$
+
+Seja $\mup$ a seguinte lei de controle:
+\begin{equation} \label{eq:ControlLawR1}
+\mup = \hat{\mH}' \mup' + \hat{\mh}'
+\end{equation}
+Sendo $\mup'$ uma matriz coluna que respeita a seguinte restri\c{c}\~ao:
+\begin{equation} \label{eq:ControlLawR1Constraint}
+\mA' \mup' = \mb'
 \end{equation}
 
-Resolvendo para $s(0) = s_0 < 0$, temos um resultado an\'alogo:
-
-\begin{equation} \label{eq:SM-ODE-Sol2}
-s(t) =
-\begin{cases}
-s_0 + k t, \, t < t_s \\
-0, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, t \geq t_s \\
-\end{cases}
-\end{equation}
-
-Assim, pode-se concluir que a EDO \eqref{CloserLoop1D} converge para $s=0$, independente da condi\c{c}\~ao inicial. Portanto, temos que a lei de controle \eqref{SMControlLaw1D} faz com que o sistema representado por \eqref{eq:SimpleODE} siga o sinal de refer\^encia, pois o erro de controle converge para zero.
-
-\subsection{Controle por modos deslizantes extendido}\label{S04-8}
-
-Esta subse\c{c}\~ao tem o intuido de apresentar o desenvolvimento da lei de controle adequada para sistemas descritos por coordenadas redundantes desenvolvida. \\
-
-Seja o modelo de um sistema mec\^anico multi-corpos descrito pelas seguintes equa\c{c}\~oes:
-\begin{equation} \label{eq:MechanicalSystem}
-\begin{cases}
-\mC^\msT (\mq) \Big( \mM (\mq) \ddot{\mq} + \mw (\mq, \dot{\mq}) + \mz (\mq) \Big) = \mu \\
-\mA (\mq) \ddot{\mq} + \mb (\mq, \dot{\mq}) = \mzr
-\end{cases}
-\end{equation}
-
-De maneira matricial compacta:
-\begin{equation} \label{eq:MechanicalSystemMatrix}
+Substituindo \eqref{eq:ControlLawR1} e \eqref{eq:ControlLawR1Constraint} na segunda equa\c{c}\~ao de \eqref{eq:ModeloCRed}, temos:
+\begin{equation}
 \begin{bmatrix}
-\mC^\msT \mM \\
-\mA
+\mH' \\
+\mA'
 \end{bmatrix}
-\ddot{\mq}
+\dddot{\mq}_0
 =
 \begin{bmatrix}
-\mu - \mC^\msT(\mw + \mz) \\
--\mb
+\hat{\mh}' - \mh' \\
+\mzr
 \end{bmatrix}
-\end{equation}
-
-Gostaria que $ \ddot{\mq} = \mv $, sendo $\mv$ uma entrada de controle. Para que isso aconte\c{c}a, utilizamos a seguinte lei de controle:
-\begin{equation} \label{eq:ControlLawV}
-\mu = \mC^\msT ( \mM \mv + \mw + \mz )
-\end{equation}
-
-Como queremos que $ \ddot{\mq} = \mv $ e $\ddot{\mq}$ tem restri\c{c}\~oes, $\mv$ deve respeitar as mesmas restri\c{c}\~oes, ou seja:
-\begin{equation} \label{eq:ControlLawVRestriction}
-\mA \mv + \mb = \mzr
-\end{equation}
-
-Aplicando a lei de controle \eqref{eq:ControlLawV} e a restri\c{c}\~ao \eqref{eq:ControlLawVRestriction} em \eqref{eq:MechanicalSystemMatrix}, temos: \\
-
-$ \begin{bmatrix}
-\mC^\msT \mM \\
-\mA
-\end{bmatrix}
-\ddot{\mq}
-=
++
 \begin{bmatrix}
-\mC^\msT ( \mM \mv + \mw + \mz ) - \mC^\msT(\mw + \mz) \\
-\mA \mv
+\hat{\mH}' \\
+\mA'
 \end{bmatrix}
-=
-\begin{bmatrix}
-\mC^\msT  \mM \mv \\
-\mA \mv
-\end{bmatrix}
-=
-\begin{bmatrix}
-\mC^\msT \mM \\
-\mA
-\end{bmatrix}
-\mv $ \\
-
-Como $\begin{bmatrix} \mC^\msT \, \mM \\ \mA \end{bmatrix}$ \'e n\~ao singular:
-
-\begin{equation} \label{eq:ClosedLoopV}
-\ddot{\mq} = \mv
+\mup'
 \end{equation}
 
-Seja $\mv'$ dado pela lei de controle por modos deslizantes:
-\begin{equation} \label{eq:SMControlowLasV1'}
-\mv' = \ddot{\mq}_{n, d} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me)
+Repare que, se n\~ao houvessem erros de modelagem, ter\'iamos:
+\begin{equation}
+\dddot{\mq}_0 = \mup'
 \end{equation}
-Sendo $ \me = \mq_{n,d} - \mq $ o erro de controle e $\mq_{n,d}$ o sinal de refer\^encia. Se n\~ao houvesse restri\c{c}\~oes, poderiamos fazer $ \mv = \mv' $ :
-$$ \ddot{\mq} = \mv \Rightarrow  \ddot{\me} + \lambda \dot{\me} + k \sign (\dot{\me} + \lambda \me) = \mzr \Leftrightarrow \dot{\ms} = - k \sign(\ms)$$
-Isso garantiria que $\me \rightarrow 0$ quando $t \rightarrow \infty$ para quaisquer condi\c{c}\~oes iniciais, como visto na se\c{c}\~ao anterior. \\
 
-Como temos restri\c{c}\~oes em $\mv$, procuramos $\mv$ mais pr\'oximo poss\'ivel de $\mv'$ atraves da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
-\begin{equation} \label{eq:Optimization}
+Seja $\mup''$ uma matriz coluna dada por:
+\begin{equation}
+\mup'' = \sigma - \underline{k} \sign(\ms)
+\end{equation}
+
+Se n\~ao houvesse restri\c{c}\~oes em $\mup'$,  poderiamos fazer $ \mup' = \mup'' $ e projetar $\underline{k}$ de maneira similar \`a apresentada no item $i)$.
+
+Como temos restri\c{c}\~oes em $\mup'$, procuramos $\mup'$ mais pr\'oximo poss\'ivel de $\mup''$ atrav\'es da solu\c{c}\~ao do seguinte problema de otimiza\c{c}\~ao:
+\begin{equation} \label{eq:Optimization__}
 \begin{aligned}
-& \underset{\mv}{\text{Min}}
-& & (\mv - \mv')^\msT \mM (\mv - \mv') \\
+& \underset{\mup'}{\text{Min}}
+& & (\mup' - \mup'')^\msT {\mH'}^\msT \mH' (\mup' - \mup'') \\
 & \text{tal que}
-& & \mA \mv + \mb = \mzr
+& & \mA' \mup'  = \mb'
 \end{aligned}
 \end{equation}
 
-Como $\mM$ \'e n\~ao-negativa definida, temos que $(\mv - \mv')^\msT \mM (\mv - \mv') \geq 0 $ para qualquer valor de $\mv$.
+Como ${\mH'}^\msT \mH'$ \'e n\~ao-negativa definida, temos que $(\mup' - \mup'')^\msT {\mH'}^\msT \mH' (\mup' - \mup'') \geq 0 $ para qualquer valor de $\mup'$.
 
 Aplicando a t\'enica dos multiplicadores de Lagrange, pode-se dizer que o seguinte problema \'e equivalente:
 \begin{equation}
 \begin{aligned}
 & \underset{\mv, \mlambda}{\text{Min}}
-& & L = (\mv - \mv')^\msT \mM (\mv - \mv') + (\mA \mv + \mb)^\msT \mlambda \\
+& & \mathfrak{L} = (\mup' - \mup'')^\msT {\mH'}^\msT \mH' (\mup' - \mup'') + (\mA' \mup'  - \mb')^\msT \mlambda \\
 \end{aligned}
 \end{equation}
 
 
 Para solucionar o problema, imp\~oe-se a estacionariedade da fun\c{c}\~ao lagrangeana:
 
-$$ \dl L = 0 \Rightarrow \dl \mv^\msT \mM (\mv - \mv') + (\mv - \mv')^\msT \mM \dl \mv + (\mA \dl \mv)^\msT \mlambda + (\mA \mv + \mb)^\msT \dl \mlambda = 0 $$
-$$ \Rightarrow \dl \mv^\msT \Big( (\mM + \mM^\msT)(\mv - \mv') + \mA^\msT \mlambda \Big) + \dl \mlambda^\msT (\mA \mv + \mb) = 0 $$
+$$ \dl \mathfrak{L} = 0 \Rightarrow \dl {\mup'}^\msT {\mH'}^\msT \mH' (\mup' - \mup'') + (\mup' - \mup'')^\msT {\mH'}^\msT \mH' \dl \mup' + (\mA' \dl \mup')^\msT \mlambda + (\mA' \mup'  - \mb')^\msT \dl \mlambda = 0 $$
+$$ \Rightarrow \dl \mup'^\msT \Big( 2 {\mH'}^\msT \mH' (\mup' - \mup'') + \mA'^\msT \mlambda \Big) + \dl \mlambda^\msT (\mA' \mup' - \mb') = 0 $$
 
-Como $\mM$ \'e sim\'etrica e $\dl \mv$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
-\begin{equation} \label{eq:OptimizationSol}
+Como $\dl \mup'$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
+\begin{equation} \label{eq:OptimizationSol__}
 \begin{cases}
-2 \mM (\mv - \mv') + \mA^\msT \mlambda = \mzr \\
-\mA \mv + \mb = \mzr
+{\mH'}^\msT \mH' (\mup' - \mup'') + \mA'^\msT \mlambda = \mzr \\
+\mA' \mup'  = \mb'
 \end{cases}
 \end{equation}
 
-Como $\mC$ \'e o complemento ortogonal de $\mA$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol} por $\mC^\msT$, temos: \\
+Como $\mH'$ \'e complemento ortogonal de $\mA'$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol__} por $\mH'$, temos: \\
 
-$ 2 \mC^\msT \mM (\mv - \mv') + \mC^\msT \mA^\msT \mlambda = \mzr $
-$ \Rightarrow  \mC^\msT \mM (\mv - \mv')  = \mzr $
-\begin{equation} \label{eq:OptimizationSol2}
-\therefore \mC^\msT \mM \mv  = \mC^\msT \mM  \mv'
+$ 2 \mH' {\mH'}^\msT \mH' (\mup' - \mup'') + \mH \mA'^\msT \mlambda = \mzr $
+$ \Rightarrow  \mH' {\mH'}^\msT \mH' (\mup' - \mup'')  = \mzr $
+
+Como $\mH' {\mH'}^\msT$ \'e n\~ao singular:
+\begin{equation} \label{eq:OptimizationSol2__}
+\therefore \mH' \mup'  = \mH' \mup''
 \end{equation}
 
-Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\ddot{\mq} = \mv'$, segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
-\begin{equation} \label{eq:ControlLawFinal}
-\mu = \mC^\msT ( \mM \mv' + \mw + \mz )
+Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\dddot{\mq}_0 = \mup''$ (desprezando os erros de modelagem), segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
+\begin{equation} \label{eq:ControlLawFinal__}
+\mup = \hat{\mH}' \mup'' + \hat{\mh}' = \hat{\mH}'(\msigma - \underline{k} \sign(\ms)) + \hat{\mh}'
 \end{equation}
+
+\end{itemize}
+
 
 \section{Publica\c{c}\~oes}\label{S05}
 
