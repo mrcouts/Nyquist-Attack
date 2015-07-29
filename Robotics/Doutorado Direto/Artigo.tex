@@ -1563,7 +1563,7 @@ Como $\dl \mup'$ e $\dl \mlambda$ s\~ao arbitr\'arios, temos:
 \end{cases}
 \end{equation}
 
-Como $\mH'$ \'e complemento ortogonal de $\mA'$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol__} por $\mH'$, temos: \\
+Como ${\mH'}^\msT$ \'e complemento ortogonal de $\mA'$, multiplicando a primeira equa\c{c}\~ao de \eqref{eq:OptimizationSol__} por $\mH'$, temos: \\
 
 $ 2 \mH' {\mH'}^\msT \mH' (\mup' - \mup'') + \mH \mA'^\msT \mlambda = \mzr $
 $ \Rightarrow  \mH' {\mH'}^\msT \mH' (\mup' - \mup'')  = \mzr $
@@ -1576,6 +1576,57 @@ Como $\mH' {\mH'}^\msT$ \'e n\~ao singular:
 Sendo assim, temos que a lei de controle que torna o sistema em malha fechado o mais pr\'oximo poss\'ivel de $\dddot{\mq}_0 = \mup''$ (desprezando os erros de modelagem), segundo o crit\'erio de otimiza\c{c}\~ao adotado, \'e:
 \begin{equation} \label{eq:ControlLawFinal__}
 \mup = \hat{\mH}' \mup'' + \hat{\mh}' = \hat{\mH}'(\msigma - \underline{k} \sign(\ms)) + \hat{\mh}'
+\end{equation}
+
+Depois de encontrada a lei de controle \'otima, \'e necess\'ario projetar a matriz de ganhos $\underline{k}$ utilizando a condi\c{c}\~ao de escorregamento \eqref{eq:SlidingCondition}. Para isso, lembrando que ${\mH'}^\msT$ \'e complemento ortogonal de $\mA'$, isolamos $\dddot{\mq}_0$ em \eqref{eq:ModeloCRed}:
+\begin{equation} \label{eq:dddotq0}
+\dddot{\mq}_0 = {\mH'}^\msP (\mup - \mh') + {\mA'}^\msP \mb'
+\end{equation}
+
+Substituindo a lei de controle \eqref{eq:ControlLawFinal__} em \eqref{eq:dddotq0}, temos:
+\begin{equation} \label{eq:dddotq02}
+\dddot{\mq}_0 = {\mH'}^\msP ( \hat{\mH}'(\msigma - \underline{k} \sign(\ms)) + \hat{\mh}' - \mh') + {\mA'}^\msP \mb'
+\end{equation}
+
+Finalmente, substituindo \eqref{eq:dddotq02} na condi\c{c}\~ao de escorregamento \eqref{eq:SlidingCondition}, obtemos:
+\begin{equation} \label{eq:SlidingConditionRed}
+\ms^\msT ( \mdelta + \mDelta \msigma  + \varkappa \sign(\ms) + {\mA'}^\msP \mb' - (\mDelta + \mone) \underline{k} \sign(\ms) ) \leq \mzr
+\end{equation}
+
+Sendo:
+\begin{equation}
+\mdelta(\mq,\mq,\dot{\mp},\mi) = {\mH}'^\msP (\hat{\mh}' - \mh')
+\end{equation}
+\begin{equation}
+\mDelta(\mq) = {\mH'}^\msP \hat{\mH}' - \mone
+\end{equation}
+
+De maneira an\'aloga ao que foi apresentado no item $i)$, se a seguinte inequa\c{c}\~ao matricial for respeitada:
+\begin{equation} \label{eq:DesigualdadeKRed}
+(\mDelta + \mone) \cdot \diag(\underline{k})  \geq |\mdelta|_{max} + |\mDelta|_{max} |\msigma| + \diag(\varkappa \mone) + |{\mA'}^\msP \mb'|
+\end{equation}
+
+\eqref{eq:SlidingConditionRed} ser\'a respeitada, o que garante que a condi\c{c}\~ao de escorregamento \eqref{eq:SlidingCondition} tamb\'em seja respeitada e consequentemente garante a converg\^encia do erro de controle para zero.
+
+Por\'em, desprezando os erros de modelagem em $\mH$ e admitindo que $\mD'$ n\~ao depende de par\^ametros incertos, pode-se observar que $\mDelta + \mone$ \'e singular, pois $\mD'$ tem mais colunas do que linhas:
+\begin{equation}
+\mDelta + \mone = {\mH'}^\msP \hat{\mH}' = {\mD'}^\msP {\mH}^\msI \hat{\mH} \mD' \simeq {\mD'}^\msP \mD'
+\end{equation}
+
+Sendo assim, n\~ao h\'a como garantir que \eqref{eq:DesigualdadeKRed} ser\'a sempre satisfeita. Por\'em \'e poss\'ivel projetar $\underline{k}$ de modo que \eqref{eq:DesigualdadeKRed} chegue o mais prox\'imo poss\'ivel de ser safeita. Para isso, o seguinte problema de otimiza\c{c}\~ao deve ser resolvido numericamente a cada atualiza{c}\~ao da lei de controle:
+
+\begin{equation} \label{eq:OptimizationRed}
+\begin{aligned}
+& \underset{\diag(\underline{k})}{\text{Min}}
+& & ({\mD'}^\msP \mD' \diag(\underline{k}) - \md )^\msT  ({\mD'}^\msP \mD' \diag(\underline{k}) - \md) \\
+& \text{tal que}
+& & \diag(\underline{k}) \geq \mzr
+\end{aligned}
+\end{equation}
+
+Sendo:
+\begin{equation}
+\md = |\mdelta|_{max} + |\mDelta|_{max} |\msigma| + \diag(\varkappa \mone) + |{\mA'}^\msP \mb'|
 \end{equation}
 
 \end{itemize}
