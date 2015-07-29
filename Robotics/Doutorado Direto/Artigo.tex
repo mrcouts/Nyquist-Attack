@@ -68,7 +68,7 @@ Utilizando os m\'etodos tradicionais de modelagem de Sistemas Mec\^anicos Multic
 
 A solu\c{c}\~ao proposta para ser poss\'ivel aumentar a performance, garantindo a robustez, de um sistema de controle de mecanismos paralelos \'e a utiliza\c{c}\~ao dos novos m\'etodos de modelagem din\^amica desenvolvidos pelo grupo de pesquisa do Prof. Doutor Tarcisio Antonio Hess Coelho, os quais s\~ao adequados para incluir todos os efeitos de din\^amica de corpos r\'igidos, independentemente da complexidade do sistema.
 
-O presente projeto visa desenvolver um algoritmo que inclua todos os efeitos da din\^amica de corpos r\'igidos para realizar a modelagem din\^amica de mecanismos paralelos (baseado na metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atua\c{c}\~ao redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
+O presente projeto visa desenvolver um algoritmo que inclua todos os efeitos da din\^amica de corpos r\'igidos para realizar a modelagem din\^amica de mecanismos paralelos (baseado na metodologia de Orsino e nas equa\c{c}\~oes de Gibbs-Appell e Maggi), desenvolver uma metodologia de projeto de controle robusto para mecanismos paralelos tradicionais e mecanismos com atua\c{c}\~ao redundante, e desenvolver leis de controle adequadas para sistemas descritos por coordenadas redundantes.
 
 \vspace{10pt}
 
@@ -84,9 +84,9 @@ PALAVRAS-CHAVE: {Sistemas mec\^anicos multicorpos, mecanismos paralelos, control
 \newpage
 \section{Introdu\c{c}\~ao}\label{S01}
 
-H\'a uma s\'erie de vantagens em utilizar mecanismos de cadeia cinem\'atica paralela no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precis\~ao de posicionamento do efetuador e uma redu\c{c}\~ao significativa na in\'ercia. Outra caracter\'istica marcante desse tipo de arquitetura s\~ao as altas velocidades e acelera\c{c}\~oes atingidas, as quais superam muito os valores m\'aximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espa\c{c}o de trabalho e modelo din\^amico muito mais complexo e dif\'icil de se obter \cite{Merlet2002, Rynaldo}. 
+H\'a uma s\'erie de vantagens em utilizar mecanismos de cadeia cinem\'atica paralela no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precis\~ao de posicionamento do efetuador e uma redu\c{c}\~ao significativa na in\'ercia. Outra caracter\'istica marcante desse tipo de arquitetura s\~ao as altas velocidades e acelera\c{c}\~oes atingidas, as quais superam muito os valores m\'aximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem \`a possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espa\c{c}o de trabalho e modelo din\^amico muito mais complexo e dif\'icil de se obter \cite{Merlet2002, Rynaldo}. 
 
-	Devido à grande dificuldade de se obter o modelo din\^amico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande dom\'inio sobre a din\^amica do sistema, como plataformas rob\'oticas voltadas \`a reabilita\c{c}\~ao, pois \'e necess\'ario um conhecimento detalhado do comportamento din\^amico do mecanismo utilizado para poder controlar as for\c{c}as de intera\c{c}\~ao entre o mecanismo e o paciente \cite{Andre, Andre2}.
+	Devido \`a grande dificuldade de se obter o modelo din\^amico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande dom\'inio sobre a din\^amica do sistema, como plataformas rob\'oticas voltadas \`a reabilita\c{c}\~ao, pois \'e necess\'ario um conhecimento detalhado do comportamento din\^amico do mecanismo utilizado para poder controlar as for\c{c}as de intera\c{c}\~ao entre o mecanismo e o paciente \cite{Andre, Andre2}.
 	
 	Atualmente novas metodologias para modelagem de din\^amica multicorpos que se mostram muito mais adequadas para aplica\c{c}\~oes em qualquer tipo de mecanismo est\~ao sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando tamb\'em orientado pelo professor Dr. Tarc\'isio Coelho \cite{Orsino2013, Apostila}.
 	
@@ -100,14 +100,14 @@ A proposta atual \'e a utiliza\c{c}\~ao de novos m\'etodos de modelagem din\^ami
 
 Os principais objetivos do projeto s\~ao:
 \begin{itemize}
-\item Desenvolvimento de um algoritmo para dedu\c{c}\~ao das equa\c{c}\~oes diferenciais de movimento de mecanismos de arquiteturas serial e paralela com v\'inculos de natureza hol\^onoma (baseado na metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi) que possua as seguintes caracter\'isticas:
+\item Desenvolvimento de um algoritmo para dedu\c{c}\~ao das equa\c{c}\~oes diferenciais de movimento de mecanismos de arquiteturas serial e paralela com v\'inculos de natureza hol\^onoma (baseado na metodologia de Orsino e nas equa\c{c}\~oes de Gibbs-Appell e Maggi) que possua as seguintes caracter\'isticas:
 \begin{itemize}
 \item Considere todos os efeitos da din\^amica de corpos r\'igidos.
 \item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
 \item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
 \end{itemize}
-\item Desenvolvimento de metodologia de projeto de controle n\~ao-linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
-\item Desenvolvimento de lei de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.
+\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao-linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
+\item Elabora\c{c}\~ao de leis de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.
 \end{itemize}
 
  
@@ -115,13 +115,13 @@ Os principais objetivos do projeto s\~ao:
 
 \section{Metodologia do projeto}\label{S03}
 
-O desenvolvimento do projeto consiste basicamente em tr\^es frentes: o desenvolvimento e aprimoramento do algoritmo utilizado para modelagem din\^amica das plataformas rob\'oticas, o desenvolvimento de uma metologia de projeto de sistema de controle n\~ao-linear robusto para plataformas rob\'oticas com incertezas param\'etricas, e a elabora\c{c}\~ao de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
+O desenvolvimento do projeto consiste basicamente em tr\^es frentes: aprimoramento e especializa\c{c}\~ao do algoritmo utilizado para modelagem din\^amica das plataformas rob\'oticas, elabora\c{c}\~ao de uma metologia de projeto de sistema de controle n\~ao-linear robusto para plataformas rob\'oticas com incertezas param\'etricas, e a elabora\c{c}\~ao de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
 
-O desenvolvimento do algoritmo de modelagem \'e feito come\c{c}ando pelo estudo dos m\'etodos tracionais e da metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi de modelagem de sistemas mec\^anicos multicorpos, seguido pela concep\c{c}\~ao da primeira vers\~ao do algoritmo, aplica\c{c}\~ao da vers\~ao atual do algoritmo em diversas plataformas rob\'oticas utilizando softwares de manipula\c{c}\~ao simb\'olicas, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos ao algoritmo, voltando \`as etapas de aplica\c{c}\~ao, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos iterativamente.
+O desenvolvimento do algoritmo de modelagem \'e feito come\c{c}ando pelo estudo dos formalismos tradicionais e da metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi de modelagem de sistemas mec\^anicos multicorpos, seguido pela concep\c{c}\~ao da primeira vers\~ao do algoritmo, aplica\c{c}\~ao da vers\~ao atual do algoritmo em diversas plataformas rob\'oticas utilizando softwares de manipula\c{c}\~ao simb\'olicas, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos ao algoritmo, voltando \`as etapas de aplica\c{c}\~ao, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos iterativamente.
 
-O desenvolvimento da metodologia de projeto de sistema de controle n\~ao-linear robusto para plataformas rob\'otica com incertezas param\'etricas inicia-se no estudo de t\'ecnicas de controle que seguem esta linha e aplica\c{c}\~ao em sistemas de menor complexidade. Depois de adquirir o dom\'inio das leis de controle estudadas, aplicar as t\'ercnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao m\'aximo a metodologia de projeto desenvolvida.
+A elabora\c{c}\~ao da metodologia de projeto de sistema de controle n\~ao-linear robusto para plataformas rob\'otica com incertezas param\'etricas inicia-se no estudo de t\'ecnicas de controle que seguem esta linha e aplica\c{c}\~ao em sistemas de menor complexidade. Depois de adquirir o dom\'inio das leis de controle estudadas, aplicar as t\'ecnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao m\'aximo a metodologia de projeto desenvolvida.
 
-O desenvolvimento de leis de controle adaquadas a sistemas descritos por coordenadas redundantes \'e feito baseado nas leis de controle n\~ao-linear robusto estudas, com o objetivo de realizar o controle de plataformas rob\'oticas cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios. Essa etapa do projeto exige a integra\c{c}\~ao dos conhecimentos adquiridos nas \'areas de modelagem e controle de plataformas rob\'oticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
+A elabora\c{c}\~ao de leis de controle adaquadas a sistemas descritos por coordenadas redundantes \'e feita baseado nas leis de controle n\~ao-linear robusto estudas, com o objetivo de realizar o controle de plataformas rob\'oticas cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios. Essa etapa do projeto exige a integra\c{c}\~ao dos conhecimentos adquiridos nas \'areas de modelagem e controle de plataformas rob\'oticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
 
 %\newpage
 
@@ -148,14 +148,14 @@ Seja $\ssB$ um sistema mec\^anico serial de $\nu\ssh$ graus de liberdade. Defini
 \item $\vomega_i$: vetor velocidade angular absoluta da barra $\llB_i$.
 \item $\vv_i$: vetor velocidade linear absoluta do centro de massa $\ttg_i$.
 \item $\va_i$: vetor acelera\c{c}\~ao linear absoluta do centro de massa $\ttg_i$.
-\item $\momega$: matriz coluna contendo as compontentes n\~ao nulas de $[\vomega_i]_{\ttB_i}$, com $i=1,...,\nu\ssh$.
-\item $\mathbb{\nu}$: matriz coluna contendo as compontentes n\~ao nulas de $[\vv_i]_{\ttN}$, com $i=1,...,\nu\ssh$.
-\item  $\mq\ssh$: matriz coluna de $\nu\ssh$ coordenadas generalizadas independentes. Cont\'em os deslocamentos angulares relativos das juntas rotativas e os deslocamentos lineares relativos das juntas prism\'aticas.
-\item $\mq\cir$: matriz coluna  de $\nu_{\mq\cir}$ coordenadas generalizadas redundantes. Cont\'em as coordenadas dos centros de massa das barras do mecanismo escritas no sistema $\ttN$.
-\item $\mq$: matriz coluna contendo todas as coordenadas generalizadas. \'E definida por $\mq = \begin{bmatrix} {\mq\ssh}^\msT & {\mq\cir}^\msT \end{bmatrix}^\msT $
-\item $\mp\ssh$: matriz coluna de $\nu\ssh$ velocidades generalizadas independentes. \'E dada por $\mp\ssh = \dot{\mq}\ssh$.
-\item $\mp\cir$: matriz coluna de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. \'E definida por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
-\item $\mp$: matriz coluna contendo todas as velocidades generalizadas. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
+\item $\momega$: matriz-coluna contendo as compontentes n\~ao nulas de $[\vomega_i]_{\ttB_i}$, com $i=1,...,\nu\ssh$.
+\item $\mathbb{\nu}$: matriz-coluna contendo as compontentes n\~ao nulas de $[\vv_i]_{\ttN}$, com $i=1,...,\nu\ssh$.
+\item  $\mq\ssh$: matriz-coluna de $\nu\ssh$ coordenadas generalizadas independentes. Cont\'em os deslocamentos angulares relativos das juntas rotativas e os deslocamentos lineares relativos das juntas prism\'aticas.
+\item $\mq\cir$: matriz-coluna  de $\nu_{\mq\cir}$ coordenadas generalizadas redundantes. Cont\'em as coordenadas dos centros de massa das barras do mecanismo escritas no sistema $\ttN$.
+\item $\mq$: matriz-coluna contendo todas as coordenadas generalizadas. \'E definida por $\mq = \begin{bmatrix} {\mq\ssh}^\msT & {\mq\cir}^\msT \end{bmatrix}^\msT $
+\item $\mp\ssh$: matriz-coluna de $\nu\ssh$ velocidades generalizadas independentes. \'E dada por $\mp\ssh = \dot{\mq}\ssh$.
+\item $\mp\cir$: matriz-coluna de $\nu_{\mp\cir}$ velocidades generalizadas redundandes. \'E definida por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
+\item $\mp$: matriz-coluna contendo todas as velocidades generalizadas. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
 \item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em fun\c{c}\~ao de $\mq\ssh$ e $\mp\ssh$.
 \item $\mA(\mq\ssh)$: Jacobiano dos v\'inculos de velocidades.
 \item $\mC(\mq\ssh)$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades. Al\'em disso $\mp = \mC(\mq\ssh) \mp\ssh$.
@@ -572,34 +572,34 @@ Para realizar a modelagem de mecanismos paralelos a partir de subsistemas seriai
 Sejam $\ssB_0$, $\ssB_1$, ..., $\ssB_{n} \,$ $n+1$ subsistemas mec\^anicos e $\ssM$ um sistema mec\^anico de $\nu\ssh$ graus de liberdade gerado pelo acoplamento dos subsistemas citados. Definimos:
 
 \begin{itemize}
-\item $\mq_r$: matriz coluna de coordenadas generalizadas que descrevem a orienta\c{c}\~ao da plataforma/efetuador $\ssB_0$. Normalmente \'e dada pelas componentes um quaternion unit\'ario, i.e. $\mq_r = \begin{bmatrix} q_i & q_j & q_k & q_r \end{bmatrix}^\msT $ com $ \mq_r^\msT \cdot \mq_r = \vct{1}$.
-\item $\mq_t$: matriz coluna de coordenadas generalizadas que descrevem a posi\c{c}\~ao da plataforma/efetuador $\ssB_0$.
-\item $\mq_0$: matriz coluna de todas as coordenadas generalizadas da plataforma/efetuador $\ssB_0$. \'E definida como $\mq_0 = \begin{bmatrix} \mq_r^\msT & \mq_t^\msT \end{bmatrix}^\msT$.
-\item $\mq_j\ssh, \,j=1, ..., n$: matriz coluna de coordenadas generalizadas independentes do subsistema  $\ssB_j$.
-\item $\mq\hcir$: matriz coluna de coordenadas generalizadas redundantes n\~ao pertencentes \`a plataforma/efetuador. Definida como $\mq\hcir = \begin{bmatrix}  {\mq_1\ssh}^\msT & ... & {\mq_{n}\ssh}^\msT \end{bmatrix}^\msT $.
-\item $\mq$: matriz coluna contendo todas as coordenadas generalizadas do sistema $\ssM$. Definida como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq\hcir}^\msT \end{bmatrix}^\msT $.
-\item $\overline{\mq}(\mq)$: matriz coluna dos v\'inculos de posi\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mq}(\mq) = \mzr $.
-\item $\mp_r$: matriz coluna de velocidades generalizadas relativas \`a velocidade angulare da plataforma/efetuador $\ssB_0$. Respeita $\mp_r = \mD(\mq_r)\dot{\mq}_r$, sendo $\mD(\mq_r)$ uma matriz de posto cheio com n\'umero de colunas maior ou igual ou n\'umero de linhas tal que $\dot{\mq}_r  = \mD^\msP(\mq_r) \mp_r$.
-\item $\mp_t$: matriz coluna de velocidades generalizadas relativas \`a velocidade do centro de massa de $\ssB_0$. \'E dada por $\mp_t = \dot{\mq}_t$.
-\item $\mp\ssh_0$: matriz coluna de todas as velocidades generalizadas independentes da plataforma/efetuador $\ssB_0$. \'E definida como $\mp\ssh_0 = \begin{bmatrix} \mp_r^\msT & \mp_t^\msT \end{bmatrix}^\msT$.
-\item $\mp\cir_0$: matriz coluna de velocidades generalizadas redundantes da plataforma/efetuador $\ssB_0$. \'E dada por $\mp\cir_0 = \dot{\mq}_r$.
-\item $\mp_j\ssh, \,j=1, ..., n$: matriz coluna de velocidades generalizadas independentes do subsistema  $\ssB_j$. \'E definida por $\mp_j\ssh = \dot{\mq}_j\ssh$.
-\item $\mp_j\cir, \,j=1, ..., n$: matriz coluna de velocidades generalizadas redundantes do subsistema  $\ssB_j$.
-\item $\mp_j, \,j=0, ..., n$: matriz coluna de velocidades generalizadas do subsistema  $\ssB_j$. \'E definida por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
-\item $\mp\ssh$: matriz coluna de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. \'E dada por $\mp\ssh = \mp_0\ssh$.
-\item $\mp\cir$: matriz coluna de velocidades generalizadas redundantes de $\ssM$. \'E definida por $\mp\cir = \begin{bmatrix} {\mp\cir_0}^\msT & \mp_1^\msT & ... & \mp_{n}^\msT \end{bmatrix}^\msT $.
-\item $\mp$: matriz coluna contendo todas as velocidades generalizadas de $\ssM$. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
-\item $\mrho$: matriz coluna definida como $\mrho = \begin{bmatrix} {\mrho\ssh}^\msT & {\mrho\cir}^\msT \end{bmatrix}^\msT $, sendo $\mrho\ssh = \mp_0\ssh$ e $\mrho\cir = \dot{\mq}\hcir = \begin{bmatrix} {\mp\ssh_1}^\msT & ... &  {\mp\ssh_n}^\msT \end{bmatrix}^\msT $.
+\item $\mq_r$: matriz-coluna de coordenadas generalizadas que descrevem a orienta\c{c}\~ao da plataforma/efetuador $\ssB_0$. Normalmente \'e dada pelas componentes um quaternion unit\'ario, i.e. $\mq_r = \begin{bmatrix} q_i & q_j & q_k & q_r \end{bmatrix}^\msT $ com $ \mq_r^\msT \cdot \mq_r = \vct{1}$.
+\item $\mq_t$: matriz-coluna de coordenadas generalizadas que descrevem a posi\c{c}\~ao da plataforma/efetuador $\ssB_0$.
+\item $\mq_0$: matriz-coluna de todas as coordenadas generalizadas da plataforma/efetuador $\ssB_0$. \'E definida como $\mq_0 = \begin{bmatrix} \mq_r^\msT & \mq_t^\msT \end{bmatrix}^\msT$.
+\item $\mq_j\ssh, \,j=1, ..., n$: matriz-coluna de coordenadas generalizadas independentes do subsistema  $\ssB_j$.
+\item $\mq\hcir$: matriz-coluna de coordenadas generalizadas redundantes n\~ao pertencentes \`a plataforma/efetuador. Definida como $\mq\hcir = \begin{bmatrix}  {\mq_1\ssh}^\msT & ... & {\mq_{n}\ssh}^\msT \end{bmatrix}^\msT $.
+\item $\mq$: matriz-coluna contendo todas as coordenadas generalizadas do sistema $\ssM$. Definida como $\mq = \begin{bmatrix} \mq_0^\msT & {\mq\hcir}^\msT \end{bmatrix}^\msT $.
+\item $\overline{\mq}(\mq)$: matriz-coluna dos v\'inculos de posi\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mq}(\mq) = \mzr $.
+\item $\mp_r$: matriz-coluna de velocidades generalizadas associadas a movimentos de rota\c{c}\~ao (instant\^anea) em torno do centro de massa da plataforma/efetuador $\ssB_0$. Respeita $\mp_r = \mD(\mq_r)\dot{\mq}_r$, sendo $\mD(\mq_r)$ uma matriz de posto completo com n\'umero de colunas maior ou igual ou n\'umero de linhas tal que $\dot{\mq}_r  = \mD^\msP(\mq_r) \mp_r$.
+\item $\mp_t$: matriz-coluna de velocidades generalizadas associadas \`a transla\c{c}\~ao do centro de massa de $\ssB_0$. \'E dada por $\mp_t = \dot{\mq}_t$.
+\item $\mp\ssh_0$: matriz-coluna de todas as velocidades generalizadas independentes da plataforma/efetuador $\ssB_0$. \'E definida como $\mp\ssh_0 = \begin{bmatrix} \mp_r^\msT & \mp_t^\msT \end{bmatrix}^\msT$.
+\item $\mp\cir_0$: matriz-coluna de velocidades generalizadas redundantes da plataforma/efetuador $\ssB_0$. \'E dada por $\mp\cir_0 = \dot{\mq}_r$.
+\item $\mp_j\ssh, \,j=1, ..., n$: matriz-coluna de velocidades generalizadas independentes do subsistema  $\ssB_j$. \'E definida por $\mp_j\ssh = \dot{\mq}_j\ssh$.
+\item $\mp_j\cir, \,j=1, ..., n$: matriz-coluna de velocidades generalizadas redundantes do subsistema  $\ssB_j$.
+\item $\mp_j, \,j=0, ..., n$: matriz-coluna de velocidades generalizadas do subsistema  $\ssB_j$. \'E definida por $\mp_j = \begin{bmatrix} {\mp_j\ssh}^\msT & {\mp_j\cir}^\msT \end{bmatrix}$.
+\item $\mp\ssh$: matriz-coluna de $\nu\ssh$ velocidades generalizadas independentes de $\ssM$. \'E dada por $\mp\ssh = \mp_0\ssh$.
+\item $\mp\cir$: matriz-coluna de velocidades generalizadas redundantes de $\ssM$. \'E definida por $\mp\cir = \begin{bmatrix} {\mp\cir_0}^\msT & \mp_1^\msT & ... & \mp_{n}^\msT \end{bmatrix}^\msT $.
+\item $\mp$: matriz-coluna contendo todas as velocidades generalizadas de $\ssM$. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $.
+\item $\mrho$: matriz-coluna definida como $\mrho = \begin{bmatrix} {\mrho\ssh}^\msT & {\mrho\cir}^\msT \end{bmatrix}^\msT $, sendo $\mrho\ssh = \mp_0\ssh$ e $\mrho\cir = \dot{\mq}\hcir = \begin{bmatrix} {\mp\ssh_1}^\msT & ... &  {\mp\ssh_n}^\msT \end{bmatrix}^\msT $.
 \item $\underline{\dot{\mq}}(\mq,\mrho)$: $\dot{\mq}$ escrita em fun\c{c}\~ao de $\mq$ e $\mrho$.
-\item $\overline{\momega}(\mq,\mrho)$: matriz coluna dos v\'inculos de orienta\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\momega}(\mq,\mrho) = \mzr $.
-\item $\overline{\mrho}(\mq,\mrho)$: matriz coluna de todos os v\'inculos de velocidades entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mrho}(\mq,\mrho) = \mzr $.
+\item $\overline{\momega}(\mq,\mrho)$: matriz-coluna dos v\'inculos de orienta\c{c}\~ao entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\momega}(\mq,\mrho) = \mzr $.
+\item $\overline{\mrho}(\mq,\mrho)$: matriz-coluna de todos os v\'inculos de velocidades entre subsistemas. As equa\c{c}\~oes v\'inculares s\~ao dadas por $\overline{\mrho}(\mq,\mrho) = \mzr $.
 \item $\mA_j(\mq), \,j=0, ..., n$: Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
 \item $\mC_j(\mq), \,j=0, ..., n$: complemento ortogonal do Jacobiano dos v\'inculos de velocidades do subsistema $\ssB_j$.
 \item $\mM_j, \,j=0, ..., n$: matriz de in\'ercia desacoplada do subsistema $\ssB_j$.
-\item $\mv_j(\mp), \,j=0, ..., n$: matriz coluna dos termos girosc\'opicos desacoplados do subsistema $\ssB_j$.
-\item $\mf_j(\mq), \,j=0, ..., n$: matriz coluna dos esfor\c{c}os de atrito do subsistema $\ssB_j$.
-\item $\mg_j, \,j=0, ..., n$: matriz coluna dos esfor\c{c}os gravitacionais do subsistema $\ssB_j$.
-\item $\mu_j, \,j=0, ..., n$: matriz coluna dos esfor\c{c}os ativos externos do subsistema $\ssB_j$.
+\item $\mv_j(\mp), \,j=0, ..., n$: matriz-coluna dos termos girosc\'opicos desacoplados do subsistema $\ssB_j$.
+\item $\mf_j(\mq), \,j=0, ..., n$: matriz-coluna dos esfor\c{c}os de atrito do subsistema $\ssB_j$.
+\item $\mg_j, \,j=0, ..., n$: matriz-coluna dos esfor\c{c}os gravitacionais do subsistema $\ssB_j$.
+\item $\mu_j, \,j=0, ..., n$: matriz-coluna dos esfor\c{c}os ativos externos do subsistema $\ssB_j$.
 \end{itemize}
 
 O modelo para simula\c{c}\~ao din\^amica direta \'e dado pelo seguinte equacionamento:
@@ -1088,14 +1088,14 @@ Esse modelo \'e obtido utilizando a propriedade da matriz $\mC$ deduzida de que 
 \mg\ssh = \mC^\msT \mg
 \end{equation}
 
-Al\'em disso, a matriz coluna $\mu^\star$ \'e definida de modo que suas componentes sejam apenas as componentes n\~ao nulas de $\mu$. Sendo assim, $\mZ$ \'e definida da seguinte maneira:
+Al\'em disso, a matriz-coluna $\mu^\star$ \'e definida de modo que suas componentes sejam apenas as componentes n\~ao nulas de $\mu$. Sendo assim, $\mZ$ \'e definida da seguinte maneira:
 \begin{equation}
 \mZ = \displaystyle\frac{\partial \mu}{\partial \mu^\star}^\msT \breve{\mC}
 \end{equation}
 
-$\mu^\star$ s\~ao os esfor\c{c}os ativos aplicados na dire\c{c}\~ao de $\dot{\mq}^\star$, sendo $\mq^\star$ uma matriz coluna de deslocamentos relativos das juntas atuadas. Pode-se provar que:
+$\mu^\star$ s\~ao os esfor\c{c}os ativos aplicados na dire\c{c}\~ao de $\dot{\mq}^\star$, sendo $\mq^\star$ uma matriz-coluna de deslocamentos relativos das juntas atuadas. Pode-se provar que \footnote{A prova se baseia no fato de que $\dot{\mq}^\star = \frac{\partial \mrho}{\partial \dot{\mq}^\star}^\msT \mrho$, $\mrho = \breve{\mC} \mp\ssh$ e $\frac{\partial \mrho}{\partial \dot{\mq}^\star} = \frac{\partial \mu}{\partial \mu^\star} $}:
 \begin{equation} \label{eq:qstar}
-\dot{\mq}^\star = \mZ \mp\ssh
+\dot{\mq}^\star =  \mZ \mp\ssh
 \end{equation}
 
 \subsection{Inclus\~ao da din\^amica dos atuadores}\label{S04-4}
@@ -1174,7 +1174,7 @@ Portanto, o modelo do mecanismo $\ssM$ considerando a din\^amica dos atuadores \
 
 Partindo do modelo \eqref{eq:MotorAcoplado}, apresentado na subse\c{c}\~ao anterior, ser\~ao utilizados alguns artif\'icios matem\'aticos a fim de obter um modelo mais conveniente para a realiza\c{c}\~ao do projeto de controle.
 
-A entrada do sistema \'e a matriz coluna $\mup$, cujas componentes s\~ao de tens\~oes aplicadas nos motores. Como a sa\'ida do sistema \'e a posi\c{c}\~ao e orienta\c{c}\~ao da plataforma, \'e conveniente que a entrada do sistema apare\c{c}a na segunda equa\c{c}\~ao matricial de \eqref{eq:MotorAcoplado}. Para que isso seja poss\'ivel, isolamos $\frac{\dd \mi}{\dd t}$ na primeira equa\c{c}\~ao de \eqref{eq:MotorAcoplado} e substuimos na derivada temporal da segunda equa\c{c}\~ao:
+A entrada do sistema \'e a matriz-coluna $\mup$, cujas componentes s\~ao de tens\~oes aplicadas nos motores. Como a sa\'ida do sistema \'e a posi\c{c}\~ao e orienta\c{c}\~ao da plataforma, \'e conveniente que a entrada do sistema apare\c{c}a na segunda equa\c{c}\~ao matricial de \eqref{eq:MotorAcoplado}. Para que isso seja poss\'ivel, isolamos $\frac{\dd \mi}{\dd t}$ na primeira equa\c{c}\~ao de \eqref{eq:MotorAcoplado} e substuimos na derivada temporal da segunda equa\c{c}\~ao:
 
 \begin{equation}
 {\mM\ssh}'(\mq) \ddot{\mp}\ssh + {{\dot{\mM}}\ssh}{'} (\mq,\mp) \dot{\mp}\ssh + {\dot{\mv}\ssh}{'}(\mq,\mp,\dot{\mp}) + {\dot{\mf}\ssh}{'}(\mq,\mp,\dot{\mp}) + {\dot{\mg}\ssh}(\mq,\mp) = \dot{\mZ}^\msT (\mq) \underline{\eta r k_t} \mi + \mZ^\msT (\mq) \underline{(\eta r k_t / L)} ( \mup -  \underline{R} \mi - \underline{k_w r} \mZ (\mq) \mp\ssh )
@@ -1367,7 +1367,7 @@ Vale observar que ${\mA'}^\msT$ \'e complemento ortogonal de $\mD'$, e como $\mH
 
 Esta subse\c{c}\~ao \'e destinada ao projeto de controladores n\~ao-lineares robustos, destinados ao controle de posi\c{c}\~ao e orienta\c{c}\~ao de plataformas paralelas descritas pelos modelos \eqref{eq:ModeloSRed} e \eqref{eq:ModeloCRed}, utilizando a t\'ecnica de controle por modos deslizantes.
 
-Sejam $\underline{k_p}$ e $\underline{k_v}$ matrizes diagonais positivas definidas, $\mq_0^\sdia$ uma matriz coluna de sinais refer\^encia, e $\ms$ uma matriz coluna dada por:
+Sejam $\underline{k_p}$ e $\underline{k_v}$ matrizes diagonais positivas definidas, $\mq_0^\sdia$ uma matriz-coluna de sinais refer\^encia, e $\ms$ uma matriz-coluna dada por:
 \begin{equation} \label{eq:SlidingSurfaces}
 \ms = -(\ddot{\me} + \underline{k_v}\dot{\me} + \underline{k_p}\me)
 \end{equation} 
@@ -1492,7 +1492,7 @@ Seja $\mup$ a seguinte lei de controle:
 \begin{equation} \label{eq:ControlLawR1}
 \mup = \hat{\mH}' \mup' + \hat{\mh}'
 \end{equation}
-Sendo $\mup'$ uma matriz coluna que respeita a seguinte restri\c{c}\~ao:
+Sendo $\mup'$ uma matriz-coluna que respeita a seguinte restri\c{c}\~ao:
 \begin{equation} \label{eq:ControlLawR1Constraint}
 \mA' \mup' = \mb'
 \end{equation}
@@ -1522,7 +1522,7 @@ Repare que, se n\~ao houvessem erros de modelagem, ter\'iamos:
 \dddot{\mq}_0 = \mup'
 \end{equation}
 
-Seja $\mup''$ uma matriz coluna dada por:
+Seja $\mup''$ uma matriz-coluna dada por:
 \begin{equation}
 \mup'' = \sigma - \underline{k} \sign(\ms)
 \end{equation}
@@ -1639,7 +1639,7 @@ A partir dos resultados obtidos no trabalho de formatura realizado na gradua\c{c
 
 Um capitulo do livro {\em Dynamic balancing of mechanisms and synthesizing of parallel
 robots}  (editado pelo Prof. Dr. Dan Zhang da Universidade do Instituto de Tecnologia
-de Ontario e a ser publicado pela editora Springer), denominado "Dynamic modelling
+de Ontario e a ser publicado pela editora Springer), denominado ``Dynamic modelling
 and control of balanced parallel mechanisms" foi escrito em coautoria com o aluno de
 doutorado direto Renato M. M. Orsino e com o Prof. Dr. Tarc\'isio Antonio Hess Coelho.
 Este cap\'itulo de livro trata do uso de uma metodologia de modelagem modular para o
