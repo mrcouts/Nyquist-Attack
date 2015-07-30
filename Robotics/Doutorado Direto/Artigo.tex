@@ -73,7 +73,7 @@ O presente projeto visa desenvolver um algoritmo que inclua todos os efeitos da 
 \vspace{10pt}
 
 \noindent
-PALAVRAS-CHAVE: {Sistemas mec\^anicos multicorpos, mecanismos paralelos, controle n\~ao-linear}
+PALAVRAS-CHAVE: {Sistemas mec\^anicos multicorpos, mecanismos paralelos, controle n\~ao linear}
 
 
 
@@ -90,13 +90,13 @@ H\'a uma s\'erie de vantagens em utilizar mecanismos de cadeia cinem\'atica para
 	
 	Atualmente novas metodologias para modelagem de din\^amica multicorpos que se mostram muito mais adequadas para aplica\c{c}\~oes em qualquer tipo de mecanismo est\~ao sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando tamb\'em orientado pelo professor Dr. Tarc\'isio Coelho \cite{Orsino2013, Apostila}.
 	
-	Outro assunto relevante ainda pouco estudado por pesquisadores \'e o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como j\'a foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os m\'etodos tradicionais, ainda s\~ao poucos os estudos de implementa\c{c}\~ao de t\'ecnicas de controle em mecanismos de cadeia fechada. Sendo assim, \'e poss\'ivel aliar as novas metodologias de modelagem desenvolvidas \`a implementa\c{c}\~ao, adapta\c{c}\~ao e aprimoramentos de algoritmos de controle n\~ao-linear voltados a mecanismos paralelos \cite{Craig}. Al\'em disso \'e poss\'ivel aproveitar os novos m\'etodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementa\c{c}\~ao de leis de controle utilizando vari\'aveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
+	Outro assunto relevante ainda pouco estudado por pesquisadores \'e o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como j\'a foi dito anteriormente, devido \`a grande dificuldade de modelagem de sistemas complexos utilizando os m\'etodos tradicionais, ainda s\~ao poucos os estudos de implementa\c{c}\~ao de t\'ecnicas de controle em mecanismos de cadeia fechada. Sendo assim, \'e poss\'ivel aliar as novas metodologias de modelagem desenvolvidas \`a implementa\c{c}\~ao, adapta\c{c}\~ao e aprimoramentos de algoritmos de controle n\~ao linear voltados a mecanismos paralelos \cite{Craig, Slotini}. Al\'em disso \'e poss\'ivel aproveitar os novos m\'etodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementa\c{c}\~ao de leis de controle utilizando vari\'aveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
 
 %--------------------METHODOLOGY--------------------%
 
 \section{Objetivos}\label{S02}
 
-A proposta atual \'e a utiliza\c{c}\~ao de novos m\'etodos de modelagem din\^amica multicorpos para implementar, adaptar e aprimorar algoritmos de controle n\~ao-linear para mecanismos paralelos. Possui diferencia\c{c}\~ao em rela\c{c}\~ao a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda s\~ao pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda n\~ao s\~ao t\~ao explorados, e estuda t\'ecnicas de controle n\~ao-linear, inclusive a utiliza\c{c}\~ao de vari\'aveis redundantes em sistemas de controle, algo n\~ao muito comum na literatura.
+A proposta atual \'e a utiliza\c{c}\~ao de novos m\'etodos de modelagem din\^amica multicorpos para implementar, adaptar e aprimorar algoritmos de controle n\~ao linear para mecanismos paralelos. Possui diferencia\c{c}\~ao em rela\c{c}\~ao a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda s\~ao pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda n\~ao s\~ao t\~ao explorados, e estuda t\'ecnicas de controle n\~ao linear, inclusive a utiliza\c{c}\~ao de vari\'aveis redundantes em sistemas de controle, algo n\~ao muito comum na literatura.
 
 Os principais objetivos do projeto s\~ao:
 \begin{itemize}
@@ -106,8 +106,9 @@ Os principais objetivos do projeto s\~ao:
 \item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
 \item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
 \end{itemize}
-\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao-linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
+\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
 \item Elabora\c{c}\~ao de leis de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.
+\item Realizar simula\c{c}\~oes e valida\c{c}\~oes experimentais das leis de controle propostas.
 \end{itemize}
 
  
@@ -115,13 +116,15 @@ Os principais objetivos do projeto s\~ao:
 
 \section{Metodologia do projeto}\label{S03}
 
-O desenvolvimento do projeto consiste basicamente em tr\^es frentes: aprimoramento e especializa\c{c}\~ao do algoritmo utilizado para modelagem din\^amica das plataformas rob\'oticas, elabora\c{c}\~ao de uma metologia de projeto de sistema de controle n\~ao-linear robusto para plataformas rob\'oticas com incertezas param\'etricas, e a elabora\c{c}\~ao de leis de controle adaquadas a sistemas descritos por coordenadas redundantes.
+O desenvolvimento do projeto consiste basicamente em quatro frentes: aprimoramento e especializa\c{c}\~ao do algoritmo utilizado para modelagem din\^amica das plataformas rob\'oticas, elabora\c{c}\~ao de uma metodologia de projeto de sistema de controle n\~ao linear robusto para plataformas rob\'oticas com incertezas param\'etricas, elabora\c{c}\~ao de leis de controle adaquadas a sistemas descritos por coordenadas redundantes, e valida\c{c}\~ao das leis de controle propostas atrav\'es de simula\c{c}\~oes e experimentos. 
 
 O desenvolvimento do algoritmo de modelagem \'e feito come\c{c}ando pelo estudo dos formalismos tradicionais e da metodologia de Orsino baseada nas equa\c{c}\~oes de Gibbs-Appell e Maggi de modelagem de sistemas mec\^anicos multicorpos, seguido pela concep\c{c}\~ao da primeira vers\~ao do algoritmo, aplica\c{c}\~ao da vers\~ao atual do algoritmo em diversas plataformas rob\'oticas utilizando softwares de manipula\c{c}\~ao simb\'olicas, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos ao algoritmo, voltando \`as etapas de aplica\c{c}\~ao, automatiza\c{c}\~ao e adi\c{c}\~ao de aprimoramentos iterativamente.
 
-A elabora\c{c}\~ao da metodologia de projeto de sistema de controle n\~ao-linear robusto para plataformas rob\'oticas com incertezas param\'etricas inicia-se no estudo de t\'ecnicas de controle que seguem esta linha e aplica\c{c}\~ao em sistemas de menor complexidade. Depois de adquirir o dom\'inio das leis de controle estudadas, aplicar as t\'ecnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao m\'aximo a metodologia de projeto desenvolvida.
+A elabora\c{c}\~ao da metodologia de projeto de sistema de controle n\~ao linear robusto para plataformas rob\'oticas com incertezas param\'etricas inicia-se no estudo de t\'ecnicas de controle que seguem esta linha e aplica\c{c}\~ao em sistemas de menor complexidade. Depois de adquirir o dom\'inio das leis de controle estudadas, aplicar as t\'ecnicas nos modelos de manipuladores paralelos deduzidos pelo algoritmo de modelagem desenvolvido e por fim automatizar ao m\'aximo a metodologia de projeto desenvolvida.
 
-A elabora\c{c}\~ao de leis de controle adequadas a sistemas descritos por coordenadas redundantes \'e feita baseado nas leis de controle n\~ao-linear robusto estudadas, com o objetivo de realizar o controle de plataformas rob\'oticas cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios. Essa etapa do projeto exige a integra\c{c}\~ao dos conhecimentos adquiridos nas \'areas de modelagem e controle de plataformas rob\'oticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
+A elabora\c{c}\~ao de leis de controle adequadas a sistemas descritos por coordenadas redundantes \'e feita baseada nas leis de controle n\~ao linear robusto estudadas, com o objetivo de realizar o controle de plataformas rob\'oticas cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios. Essa etapa do projeto exige a integra\c{c}\~ao dos conhecimentos adquiridos nas \'areas de modelagem e controle de plataformas rob\'oticas, com o fim de sintetizar novas leis de controle adequadas a sistemas descritos por coordenadas redundantes.
+
+A valida\c{c}\~ao experimental das leis de controle propostas ser\'a feita em parceria com outros alunos orientados pelo Prof. Dr. Tarc\'isio Ant\^onio Hess Coelho, os quais realizam trabalhos experimentais relacionados a controle de mecanismos paralelos. 
 
 %\newpage
 
@@ -154,7 +157,7 @@ Seja $\ssB$ um sistema mec\^anico serial de $\nu\ssh$ graus de liberdade. Defini
 \item $\mq\cir$: matriz-coluna de coordenadas generalizadas redundantes. Cont\'em as coordenadas dos centros de massa das barras do mecanismo escritas no sistema $\ttN$.
 \item $\mq$: matriz-coluna contendo todas as coordenadas generalizadas. \'E definida por $\mq = \begin{bmatrix} {\mq\ssh}^\msT & {\mq\cir}^\msT \end{bmatrix}^\msT $
 \item $\mp\ssh$: matriz-coluna de $\nu\ssh$ velocidades generalizadas independentes. \'E dada por $\mp\ssh = \dot{\mq}\ssh$.
-\item $\mp\cir$: matriz-coluna de velocidades generalizadas redundandes. \'E definida por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
+\item $\mp\cir$: matriz-coluna de velocidades generalizadas redundantes. \'E definida por $\mp\cir = \begin{bmatrix} \momega^\msT & \mathbb{\nu}^\msT \end{bmatrix}^\msT $
 \item $\mp$: matriz-coluna contendo todas as velocidades generalizadas. \'E definida por $\mp = \begin{bmatrix} {\mp\ssh}^\msT & {\mp\cir}^\msT \end{bmatrix}^\msT $
 \item $\underline{\mp}\cir(\mq\ssh,\mp\ssh)$: $\mp\cir$ escrito em fun\c{c}\~ao de $\mq\ssh$ e $\mp\ssh$.
 \item $\mA(\mq\ssh)$: Jacobiano dos v\'inculos de velocidades.
@@ -1365,7 +1368,7 @@ Vale observar que ${\mA'}^\msT$ \'e complemento ortogonal de $\mD'$, e como $\mH
 
 \subsection{Projeto do Controlador}\label{S04-6}
 
-Esta subse\c{c}\~ao \'e destinada ao projeto de controladores n\~ao-lineares robustos, destinados ao controle de posi\c{c}\~ao e orienta\c{c}\~ao de plataformas paralelas descritas pelos modelos \eqref{eq:ModeloSRed} e \eqref{eq:ModeloCRed}, utilizando a t\'ecnica de controle por modos deslizantes.
+Esta subse\c{c}\~ao \'e destinada ao projeto de controladores n\~ao lineares robustos, destinados ao controle de posi\c{c}\~ao e orienta\c{c}\~ao de plataformas paralelas descritas pelos modelos \eqref{eq:ModeloSRed} e \eqref{eq:ModeloCRed}, utilizando a t\'ecnica de controle por modos deslizantes.
 
 Sejam $\underline{k_p}$ e $\underline{k_v}$ matrizes diagonais positivas definidas, $\mq_0^\sdia$ uma matriz-coluna de sinais refer\^encia, e $\ms$ uma matriz-coluna dada por:
 \begin{equation} \label{eq:SlidingSurfaces}
@@ -1644,13 +1647,13 @@ and control of balanced parallel mechanisms" foi escrito em coautoria com o alun
 doutorado direto Renato M. M. Orsino e com o Prof. Dr. Tarc\'isio Antonio Hess Coelho.
 Este cap\'itulo de livro trata do uso de uma metodologia de modelagem modular para o
 balanceamento adaptativo e desenvolvimento de algoritmos de controle para mecanismos
-rob\'oticos paralelos. Encontra-se, atualmente, em fase de revis\~ao pelos editores.
+rob\'oticos paralelos. A revis\~ao pelos editores e autores j\'a foi realizada e em breve ser\'a feita a publica\c{c}\~ao.
 
 Um artigo submetido para o {\em  Special Issue on: ``Dynamic Balancing of Mechanisms and Parallel Robots" } do peri\'odico International Journal of Mechanisms and Robotic Systems, denominado ``A new approach for designing dynamic balanced serial mechanisms", o qual foi escrito em coautoria com o Prof. Dr. Tarc\'isio Antonio Hess Coelho. Foram recebidos coment\'arios favor\'aveis dos revisores e est\'a em fase de revis\~ao pelos autores.
 
 \section{Disciplinas de p\'os-gradua\c{c}\~ao}\label{S06}
 
-Ao longo do programa o aluno j\'a cumpriu 40 cr\'editos, tendo cursado 5 disciplinas 
+Ao longo do programa o aluno j\'a cumpriu 48 cr\'editos, tendo cursado 6 disciplinas 
 de p\'os-gradua\c{c}\~ao:
 \begin{itemize}
 \item PME--5004 --- Complementos de Matem\'atica I
@@ -1676,19 +1679,15 @@ Ser\~ao realizados os seguintes passos para a realiza\c{c}\~ao da proposta:
 
 \begin{itemize}
 \item[(1)] 	Cumprimentos dos cr\'editos de p\'os-gradua\c{c}\~ao.
-\item[(2)] 	Pesquisa e revis\~ao bibliogr\'afica da literatura para o desenvolvimento te\'orico.
+\item[(2)]  Estudo de t\'ecnicas de projeto de observador de estados n\~ao linear.
 \item[(3)]  Aperfei\c{c}oamento e implementa\c{c}\~ao em python do algoritmo de modelagem din\^amica multicorpos desenvolvido.
-\item[(4)] 	Aplica\c{c}\~ao do algoritmo para realiza\c{c}\~ao da modelagem de diferentes mecanismos paralelos.
-\item[(5)] 	Simula\c{c}\~ao da din\^amica inversa para os mecanismos escolhidos.
-\item[(6)]  Estudo de t\'ecnicas de projeto de observador de estados n\~ao-linear.
-\item[(7)]  Implementa\c{c}\~ao em python de um algoritmo de projeto de controlador n\~ao-linear robusto, baseado na metodologia desenvolvida.
-\item[(8)]  Implementa\c{c}\~ao em python de um algoritmo de projeto de observador de estados n\~ao-linear robusto.
-\item[(9)] Simula\c{c}\~ao da din\^amica direta utilizando as t\'ecnicas de controle estudadas.
-\item[(10)] Simula\c{c}\~ao da din\^amica direta utilizando as t\'ecnicas de controle com vari\'aveis redundantes.
-\item[(11)] 	Compara\c{c}\~ao e an\'alise dos resultados obtidos utilizando as leis de controles implementadas em simula\c{c}\~ao.
-\item[(12)] 	Valida\c{c}\~ao experimental da metodologia de projeto de controle elaborada em mecanismos do laborat\'orio.
-\item[(13)] 	Avalia\c{c}\~ao geral dos resultados.
-\item[(14)] Preparo da disserta\c{c}\~ao.
+\item[(4)] 	Implementa\c{c}\~ao em python de rotinas para simula\c{c}\~ao din\^amica inversa.
+\item[(5)]  Implementa\c{c}\~ao em python de rotinas para simula\c{c}\~ao din\^amica direta.
+\item[(6)]  Implementa\c{c}\~ao em python de um algoritmo de projeto de controlador n\~ao linear robusto, baseado na metodologia desenvolvida.
+\item[(7)]  Implementa\c{c}\~ao em python de um algoritmo de projeto de observador de estados n\~ao linear.
+\item[(8)]  Utilizando as rotinas desenvolvidas, realizar a modelagem, projeto de controlador, projeto de observador de estados, e simula\c{c}\~oes da din\^amica direta em malha fechada de diferentes mecanismos paralelos.
+\item[(9)] 	Valida\c{c}\~ao experimental dos resultados obtidos nas simula\c{c}\~oes.
+\item[(10)] Preparo da disserta\c{c}\~ao.
 \end{itemize}
 
 Aqui segue um cronograma estimado para realiza\c{c}\~ao das atividades propostas:
@@ -1699,37 +1698,28 @@ Aqui segue um cronograma estimado para realiza\c{c}\~ao das atividades propostas
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|} 
 	\hline
 	\rule[-2mm]{0mm}{6mm}
-	Ativ./Quad. & $3^o/15$ & $1^o/16$ & $2^o/16$ & $3^o/16$ & $1^o/17$ & $1^o/17$ & $3^o/17$ \\
+	Ativ./Quad. & $3^o/15$ & $1^o/16$ & $2^o/16$ & $3^o/16$ & $1^o/17$ & $2^o/17$ & $3^o/17$ \\
 	\hline
 	\rule[-2mm]{0mm}{6mm}
-	(1) & \rule[0mm]{10mm}{2mm} & & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  & &   \\
+	(1) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &  &   \\
 	\rule[-1mm]{0mm}{5mm}
 	(2) & \rule[0mm]{10mm}{2mm} &  &  &  &  &  &   \\
 	\rule[-1mm]{0mm}{5mm}
-	(3) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &  &
-	&  \\
+	(3) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm}  &  &  &  &  &   \\
 	\rule[-1mm]{0mm}{5mm}
-	(4) &  & \rule[0mm]{10mm}{2mm}  & \rule[0mm]{10mm}{2mm}  &  &  &  &\\
+	(4) & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &  &  &   \\
 	\rule[-1mm]{0mm}{5mm}
-	(5) &   & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &\\
+	(5) &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &  &   \\
 	\rule[-1mm]{0mm}{5mm}
-	(6) &   &  &  & \rule[0mm]{10mm}{2mm} &  & & \\
+	(6) &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm}  &  &  &   \\
 	\rule[-1mm]{0mm}{5mm}
-	(7) &  & \rule[0mm]{10mm}{2mm} &  &  &  &  &\\ 
+	(7) &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  &   \\
 	\rule[-1mm]{0mm}{5mm}
-	(8) &  &  & \rule[0mm]{10mm}{2mm} &  &  &  &\\
+	(8) &  &  &  & \rule[0mm]{10mm}{2mm}  &  &  &   \\
 	\rule[-1mm]{0mm}{5mm}
-	(9) &  &  &  & \rule[0mm]{10mm}{2mm} &  &  &\\
-	\rule[-1mm]{0mm}{5mm}
-	(10) &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  &  & \  \\
+	(9) &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &   \\
 	\rule[-2mm]{0mm}{6mm}
-	(11) &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  & \\
-	\rule[-2mm]{0mm}{6mm}
-	(12) &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} &  \\
-	\rule[-2mm]{0mm}{6mm}
-	(13) &  &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} \\
-	\rule[-2mm]{0mm}{6mm}
-	(14) &  &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} \\
+	(10) &  &  &  &  & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm} & \rule[0mm]{10mm}{2mm}  \\
 	\hline
 \end{tabular} 
 \label{crono}
