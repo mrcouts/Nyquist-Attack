@@ -65,7 +65,7 @@ University of Sao Paulo, Brazil. E-mail: tarchess@usp.br}
 
 \begin{abstract}
 
-Adaptive balancing means that the mechanical structure of the manipulator is modified in order to achieve the decoupling of dynamic equations. This work deals with a systematic methodology for the adaptive balancing. Basically, two balancing techniques are employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators is discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions are developed here for 3-dof spatial and planar open-loop kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints.
+Adaptive balancing means that the mechanical structure of the manipulator is modified in order to achieve the decoupling of dynamic equations. This work deals with a systematic formulation for the adaptive balancing. Basically, two traditional balancing techniques are employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators is discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions are developed here for 3-dof spatial and planar open-loop kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints.
 
 \vspace{10pt}
 
@@ -86,13 +86,13 @@ Balancing can be considered as an important issue related to the design of any k
 
 Moreover, Coelho et al. \cite{15coelho}, Moradi et al. \cite{16moradi} and Arakelian and Sargsyan \cite{17arakelian} use the adaptive balancing to achieve the decoupling of dynamic equations for open-loop kinematic chain mechanisms. Consequently, this action simplifies the control of manipulators due to the fact that the actuators can be controlled independently. The necessary modifications comprise the addition of either counterweights, or counter-rotating disks or even both to the original kinematic chain of the manipulator. Consequently, the terms associated to gravitational, centripetal and Coriolis efforts are completely eliminated from the dynamic equations. As a matter of fact, the effective inertias for all the actuator axes are constant and the mathematical expressions of the driving torques/forces become rather simple. One of the main advantages of this approach concerns the reduction of computing time for a closed-loop control of manipulators. Such reduction is really significant and it constitutes in a great benefit for real-time applications.
 
-The contributions of this work are the following: to present a systematic methodology for the adaptive balancing, to discuss the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators, not only in terms of the possibility to achieve such balancing but also in terms of the increase in the complexity level of the modified mechanical structure. The analysed manipulators correspond to 3-dof spatial and planar open loop-kinematic chain, whose topologies are composed of revolute and prismatic joints. 
+The contributions of this work are the following: to present a systematic formulation to obtain the balancing conditions for the adaptive balancing, to discuss the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators, not only in terms of the possibility to achieve such balancing but also in terms of the increase in the complexity level of the modified mechanical structure. The analysed manipulators correspond to 3-dof spatial and planar open loop-kinematic chain, whose topologies are composed of revolute and prismatic joints. 
 
-This work is organized as follows. Section 2 describes the proposed methodology, while section 3 deals with the application of the methodology to 3 types of serial manipulators. Finally, the conclusions are drawn in section 4.
+This work is organized as follows. Section 2 describes the proposed formulation, while section 3 deals with the application of the formulation to 3 types of serial manipulators. Finally, the conclusions are drawn in section 4.
 
-%--------------------METHODOLOGY--------------------%
+%--------------------FORMULATION--------------------%
 
-\section{Mothodology}\label{S02}
+\section{Formulation}\label{S02}
 
 \subsection{Dynamic Model}\label{S02-1}
 
@@ -105,18 +105,18 @@ The dynamic model of a serial mechanism can be written in this way:
 Being $\mq\ssh$ a column-matrix of independent generalized coordinates, whose entries are relative displacements of the joints, and $\mu$ the generalized actuators' efforts in the directions of the independent quasi-velocities $\mp\ssh = \dot{\mq}\ssh$.
 %Sendo $\mq\ssh$ um conjunto de coordenadas generalizadas independentes, cujos elementos s\~{a}o os deslocamentos relativos das juntas e $\mu$ os esfor\c{c}os generalizados nas dire\c{c}\~oes das quasi-velocidades independentes $\mp\ssh = \dot{\mq}\ssh$.
 
-To perform the dynamic balancing of a serial mechanism, using the proposed approach, it is necessary to first obtain the dynamic model of the unbalanced mechanism. As in a serial mechanism it is possible to express all the absolute velocities of the links' centers of mass and all the absolute angular velocities of the links in function of $\mq\ssh$ and $\dot{\mq}\ssh$, the dynamic model can be obtained without major difficulties using analytical mechanics techniques, like Lagrange \cite{18tsai} and Kane \cite{19kane} formalisms and Orsino's method \cite{21orsino}, allied to programs or libraries of programming languages that are capable of using symbolic manipulation, such as Mathematica and SymPy.
+To perform the dynamic balancing of a serial mechanism, using the proposed approach, it is necessary to first obtain the dynamic model of the unbalanced mechanism. As in a serial mechanism it is possible to express all the absolute velocities of the links' centers of mass and all the absolute angular velocities of the links in function of $\mq\ssh$ and $\dot{\mq}\ssh$, the dynamic model can be obtained without major difficulties using analytical mechanics techniques, like Lagrange \cite{18tsai} and Kane \cite{19kane} formalisms, Orsino's method \cite{21orsino}, and Boltzmann-Hamel equations \cite{22altuzarra}, allied to programs or libraries of programming languages that are capable of using symbolic manipulation, such as Mathematica and SymPy.
 %Para realizar o balanceamento din\^{a}mico de um mecanismo serial, utilizando abordagem proposta, \'{e} necess\'{a}rio primeiro obter o modelo do mecanismo desbalanceado. Como em um mecanismo serial \'{e} poss\'{i}vel de expressar todas as velocidades lineares absolutas dos centros de massa das barras e todas as velocidades angulares absolutas das barras em fun\c{c}\~ao de $\mq\ssh$ e  $\dot{\mq}\ssh$, o modelo din\^{a}mico pode ser obtido sem grandes dificuldades utilizando m\'{e}todos de mec\'{a}nica anal\'{i}tica, como Lagrange, Kane e Orsino, aliados a programas ou bibliotecas de linguagens de programa\c{c}\~{a}o que s\~{a}o capazes de utilizar manipula\c{c}\~{a}o simb\'{o}lica, como o Mathematica e o SymPy.
 
 
 \subsection{Static Balancing}\label{S02-2}
 
-After obtaining the dynamic model, the static balancing is performed finding the links' centers of mass positions that make $\mg\ssh = \mzr$. Is is possible for mechanisms with only revolute joints and mechanisms with prismatic joints whose directions are orthogonal to the gravity. The positioning of the centers of mass is done mechanically extending the mechanism's bars and adding counterweights.
+After obtaining the dynamic model, the static balancing is performed finding the links' centers of mass positions that make $\mg\ssh = \mzr$. It is possible for mechanisms with only revolute joints and mechanisms with prismatic joints whose directions are orthogonal to the gravity. The positioning of the centers of mass is done mechanically extending the mechanism's bars and adding counterweights.
 %Depois de obtido o modelo din\^{a}mico, realiza-se o balanceamento est\'{a}tico encontrando as posi\c{c}\~{o}es dos centros de massa das barras que fazem com que $\mg\ssh = \mzr$. Isso \'{e} poss\'{i}vel para mecanismos com juntas apenas rotativas e mecanismos com juntas prism\'{a}ticas cujas dire\c{c}\~{o}es s\~{a}o ortogonais \`{a} gravidade. O posicionamento dos centros de massa \'e realizado mecanicamente com o prologamento das barras do mecanismo e adi\c{c}\~ao de contra-pesos.
 
 \subsection{Dynamic Balancing}\label{S02-3}
 
-The dynamic balancing is performed coupling counter-rotating disks to the statically balanced mechanism model. This is done using the coupling subsystems technique of Orsino's method \cite{21orsino}.
+The dynamic balancing is performed coupling counter-rotating disks to the statically balanced mechanism model. This is done using the coupling subsystems technique of Orsino's method \footnote{A similar modelling approach is presented in the work by Altuzarra et al. \cite{22altuzarra}} \cite{21orsino}.
 %O balanceamento din\^{a}mico \'{e} obtido acoplando discos girantes ao modelo do mecanismo est\'{a}ticamente balanceado. Isso \'{e} feito utilizando a t\'{e}cnica de acoplamento de subsistemas do M\'{e}todo Orsino.
 
 Let $\ssM_0$ be a mechanical subsystem composed by a statically balanced serial mechanism, whose equation of motion is given by \eqref{eq:SerialDynamics}, with $\mg\ssh = \mzr$. Let $\ssM_i$ be a mechanical subsystem composed by a counter-rotating disk that will be coupled to the mechanism, whose equation of motion is given by:
@@ -196,7 +196,7 @@ The dynamic balancing is achieved by finding the relations between system parame
 
 \section{Applying the technique}\label{S03}
 
-In this section, the proposed methodology will be applied in three different 3-dof serial mechanisms. In order to do this, first some definitions valid for these mechanisms will be made:
+In this section, the proposed formulation will be applied in three different 3-dof serial mechanisms. In order to do this, first some definitions valid for these mechanisms will be made:
 %Nesta se\c{c}\~{a}o, a metodologia proposta ser\'{a} aplicada em tr\^{e}s diferentes mecanismos seriais de 3 graus de liberdade, um plano e dois espaciais. Para isso, primeiramente faremos algumas defini\c{c}\~{o}es v\'{a}lidas para os mecanismos em quest\~{a}o:
 
 \begin{equation}\label{eq:Mh3dof}
@@ -266,7 +266,7 @@ Denavit-Hartenberg convention will be used for defining the coordinate system fi
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.11]{RRR2D.jpg}  
+	\includegraphics[scale=0.09197]{RRR2D.jpg}  
 	\caption{Dynamically balanced \underline{RRR} planar serial mechanism}
 	\label{fig:RRR2D}
 \end{figure}
@@ -312,10 +312,10 @@ To perform the dynamic balancing, 4 counter-rotating disks are coupled to the me
 \begin{equation}\label{eq:DiscsModel1}
 \mM\ssh_i = \begin{bmatrix} J_{z_{i+3}} \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{z_{i+3}} \end{bmatrix}, \; i = 1, 2, 3, 4
 \end{equation}
-The counter-rotating disks 4 and 5 are coupled to link 1, being that disk 4 has an angular displacement of $\theta_2$ relative to link 1, due to the belt transmission of the spin of motor 2, while disk 5 has an angular displacement of $\beta\theta_2$, with $\beta < 0$, relative to link 1, due to the gear transmission of the spin of disk 1.
+The counter-rotating disks 1 and 2 (rigid bodies 4 and 5) are coupled to link 1, being that disk 1 has an angular displacement of $\theta_2$ relative to link 1, due to the belt transmission of the spin of motor 2, while disk 2 has an angular displacement of $\beta\theta_2$, with $\beta < 0$, relative to link 1, due to the gear transmission of the spin of disk 1.
 %Os discos 1 e 2 est\~{a}o acoplados \`{a} barra 1, sendo que o disco 1 apresenta um giro de $\theta_2$ relativo \`{a} barra 1, devido \`{a} transmiss\~{a}o por correia do giro do motor 2, enquanto o disco 2 apresenta um giro de $\beta\theta_2$, com $\beta < 0$, relativo \'{a} barra 1, devido \'{a} transmiss\~{a}o por engrenagem do giro do disco 1.
 
-The counter-rotating disks 6 and 7 are coupled to link 2, being that disk 6 has an angular displacement of $\theta_3$ relative to link 2, due to the belt transmission of the spin of motor 3, while disk 7 has an angular displacement of $\gamma\theta_3$, with $\gamma < 0$, relative to link 2, due to the gear transmission of the spin of disk 6.
+The counter-rotating disks 3 and 4 (rigid bodies 6 and 7) are coupled to link 2, being that disk 3 has an angular displacement of $\theta_3$ relative to link 2, due to the belt transmission of the spin of motor 3, while disk 4 has an angular displacement of $\gamma\theta_3$, with $\gamma < 0$, relative to link 2, due to the gear transmission of the spin of disk 3.
 %Os discos 3 e 4 est\~{a}o acoplados \`{a} barra 2, sendo que o disco 3 apresenta um giro de $\theta_3$ relativo \`{a} barra 2, devido \`{a} transmiss\~{a}o por correia do giro do motor 3, enquanto o disco 4 apresenta um giro de $\gamma\theta_3$, com $\gamma < 0$, relativo \'{a} barra 2, devido \'{a} transmiss\~{a}o por engrenagem do giro do disco 3.
 
 Thus, the following quasi-velocities constraints are obtained:
@@ -449,7 +449,7 @@ D_{111} = D_{122} = D_{133} = D_{222} = D_{233} = D_{322} = D_{333} = 0 \\
 D_{112} = - D_{211} \\
 D_{113} = - D_{311} \\
 D_{123} = D_{212} = D_{213} = D_{223} = D_{312} = D_{313} = D_{323} = 0 \\
-\mg = \mzr
+\mg\ssh = \mzr
 \end{cases}
 \end{equation}
 To perform the dynamic balancing, 2 counter-rotating disks are coupled to the mechanism, as shown in figure 2. The following dynamic models are used for them:
@@ -457,7 +457,7 @@ To perform the dynamic balancing, 2 counter-rotating disks are coupled to the me
 \begin{equation}\label{eq:DiscsModel2}
 \mM\ssh_i = \begin{bmatrix} J_{x_{i+3}} & 0 & 0 \\ 0 & J_{y_{i+3}} & 0 \\ 0 & 0 & J_{z_{i+3}} \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{x_{i+3}} \\ \omega_{y_{i+3}} \\ \omega_{z_{i+3}} \end{bmatrix}, \; i = 1, 2
 \end{equation}
-The counter-rotating disks 4 and 5 are coupled to link 2, being that disk 4 has an angular displacement of $\theta_3$ relative to link 2, due to the belt transmission of the spin of motor 3, while disk 5 has an angular displacement of $\beta\theta_3$, with $\beta < 0$, relative to link 2, due to the gear transmission of the spin of disk 4.
+The counter-rotating disks 1 and 2 (rigid bodies 4 and 5) are coupled to link 2, being that disk 1 has an angular displacement of $\theta_3$ relative to link 2, due to the belt transmission of the spin of motor 3, while disk 2 has an angular displacement of $\beta\theta_3$, with $\beta < 0$, relative to link 2, due to the gear transmission of the spin of disk 1.
 %Os discos 1 e 2 est\~{a}o acoplados \`{a} barra 2, sendo que o disco 1 apresenta um giro de $\theta_3$ relativo \`{a} barra 2, devido \`{a} transmiss\~{a}o por correia do giro do motor 3, enquanto o disco 2 apresenta um giro de $\beta\theta_3$, com $\beta < 0$, relativo \'{a} barra 2, devido \`{a} transmiss\~{a}o por engrenagem do giro do disco 2.
 
 Thus, the following quasi-velocities constraints are obtained:
@@ -615,7 +615,7 @@ To perform the dynamic balancing, 2 counter-rotating disks are coupled to the me
 \begin{equation}\label{eq:DiscsModel3}
 \mM\ssh_i = \begin{bmatrix} J_{z_{i+3}} \end{bmatrix}; \; \mp\ssh_i = \begin{bmatrix} \omega_{z_{i+3}} \end{bmatrix}, \; i = 1, 2
 \end{equation}
-The counter-rotating disks 4 and 5 are coupled to link 1, being that disk 4 has an angular displacement of $\theta_2$ relative to link 1, due to the belt transmission of the spin of motor 2, while disk 5 has an angular displacement of $\beta\theta_2$, with $\beta < 0$, relative to link 1, due to the gear transmission of the spin of disk 4.
+The counter-rotating disks 1 and 2 (rigid bodies 4 and 5) are coupled to link 1, being that disk 1 has an angular displacement of $\theta_2$ relative to link 1, due to the belt transmission of the spin of motor 2, while disk 2 has an angular displacement of $\beta\theta_2$, with $\beta < 0$, relative to link 1, due to the gear transmission of the spin of disk 1.
 %Os discos 1 e 2 est\~{a}o acoplados \`{a} barra 1, sendo que o disco 1 apresenta um giro de $\theta_2$ relativo \`{a} barra 1, devido \`{a} transmiss\~{a}o por correia do giro do motor 2, enquanto o disco 2 apresenta um giro de $\beta\theta_2$, com $\beta < 0$, relativo \'{a} barra 1, devido \'{a} transmiss\~{a}o por engrenagem do giro do disco 1.
 
 Thus, the following quasi-velocities constraints are obtained:
@@ -631,7 +631,7 @@ Thus, the following quasi-velocities constraints are obtained:
 \omega_{z_5} = \dot{\theta}_1 + \beta\dot{\theta}_2 \\
 \end{cases}
 \Rightarrow
-\overline{\mp} = 
+\underline{\mp}^\circ = 
 \begin{bmatrix}
 \dot{\theta}_1 + \dot{\theta}_2 \\
 \dot{\theta}_1 + \beta\dot{\theta}_2 \\
@@ -697,7 +697,7 @@ Note that the necessary conditions for the dynamic balancing of this mechanism d
 
 \section{Conclusions}\label{S04}
 
-This work dealt with a systematic methodology for the adaptive balancing. Two balancing techniques were employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators was discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions were developed for 3-dof spatial and planar open loop-kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints. By analysing the necessary conditions, one can notice that the adaptive balancing  brings great benefits for the planar \underline{RRR} and the spatial \underline{RRP}. However, for the spatial \underline{RRR}, in spite of the achievement of the adaptive balancing, the modifications in the mechanical structure cause the increase of the link inertias and the actuator torques, accordingly. Consequently, the authors believe that the discussion provided here might help the designer to choose an adequate topology for a specific application taking advantage of the adaptive balancing whenever it brings no further consequences in terms of the added inertias.
+This work dealt with a systematic formulation for the adaptive balancing. Two balancing techniques were employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators was discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions were developed for 3-dof spatial and planar open loop-kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints. By analysing the necessary conditions, one can notice that the adaptive balancing  brings great benefits for the planar \underline{RRR} and the spatial \underline{RRP}. However, for the spatial \underline{RRR}, in spite of the achievement of the adaptive balancing, the modifications in the mechanical structure cause the increase of the link inertias and the actuator torques, accordingly. Consequently, the authors believe that the discussion provided here might help the designer to choose an adequate topology for a specific application taking advantage of the adaptive balancing whenever it brings no further consequences in terms of the added inertias.
 
 %--------------------ACKNOWLEDGMENTS--------------------%
 
