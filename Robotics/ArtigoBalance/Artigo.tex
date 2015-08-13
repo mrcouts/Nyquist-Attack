@@ -562,8 +562,18 @@ k_3 = \frac{(J_{z_3}+J_{z_4})(J_{z_3}+J_{z_4}+J_{z_5})}{J_{z_5}} \\
 \end{cases}
 \end{equation}
 
+Note that the necessary conditions for the dynamic balancing of this mechanism require very high moments of inertia in the direction of the link segment for the bars 2 and 3, which is not convenient for an industrial manipulator. Among the five conditions of \eqref{eq:DynamicBalancing2}, let's consider the following two:
+\begin{equation}\label{eq:DynamicBalancing2_}
+\begin{cases}
+J_{x_2} = J_{y_2} \\
+J_{x_3} = J_{y_3} + m_3 l_2^2 ( 1 + \frac{m_3}{m_2} )\\
+\end{cases}
+\end{equation}
 
-Note that the necessary conditions for the dynamic balancing of this mechanism require very high transversal moments of inertia for the bars 2 and 3, which is not convenient for an industrial manipulator. The next example of application will be in another 3-dof spatial serial mechanism, in which such inconvenience does not occur.
+According Denavit-Hartenberg convention, the x-axis is the direction of the link segment while the y-axis and the z-axis are the corresponding transversal directions, for the bars 2 and 3. In this case, tipically, the $J_x$ moment of inertia is quite low in a comparison with $J_y$ and $J_z$. In order to satisfy the balancing conditions, the values of $J_x$ should be equal $J_y$ for bar 2 and  higher than $J_y$ for bar 3. Consequently, the link section should be increased according, which would lead to an inconvenient extremely large cross section.
+
+
+The next example of application will be in another 3-dof spatial serial mechanism, in which such inconvenience does not occur.
 %Repare que as condi\c{c}\~oes necess\'{a}rias para o balanceamento din\^{a}mico deste mecanismo requerem momentos de in\'{e}rcia transversais muito elevados para as barras 2 e 3, o que n\~{a}o \'{e} nada conveniente para um manipulador industrial. O pr\'{o}ximo exemplo de aplica\c{c}\~{a}o ser\'{a} em outro mecanismo serial espacial de 3 graus de liberdade, em que esse tipo de inconveniente n\~{a}o acontece.
 
 \subsection{3-dof \underline{RRP} spatial serial mechanism (SCARA)} \label{S03-2}
@@ -697,7 +707,7 @@ Note that the necessary conditions for the dynamic balancing of this mechanism d
 
 \section{Conclusions}\label{S04}
 
-This work dealt with a systematic formulation for the adaptive balancing. Two balancing techniques were employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators was discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions were developed for 3-dof spatial and planar open loop-kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints. By analysing the necessary conditions, one can notice that the adaptive balancing  brings great benefits for the planar \underline{RRR} and the spatial \underline{RRP}. However, for the spatial \underline{RRR}, in spite of the achievement of the adaptive balancing, the modifications in the mechanical structure cause the increase of the link inertias and the actuator torques, accordingly. Consequently, the authors believe that the discussion provided here might help the designer to choose an adequate topology for a specific application taking advantage of the adaptive balancing whenever it brings no further consequences in terms of the added inertias.
+This work dealt with a systematic formulation for the adaptive balancing. This special formulation uses the dynamic coupling between subsystems in order to derive the equations of motion of the whole system in a explicit form. Consequently, this feature allows the automatic generation of the adaptive balancing conditions. Two traditional balancing techniques were employed here: the addition of counterweight and counter-rotating disks coupled to the moving links. In addition, the feasibility of the dynamic decoupling for 3 distinct types of serial manipulators was discussed regarding the achievement of such balancing and the complexity level of the modified mechanical structure. The balancing conditions were developed for 3-dof spatial and planar open loop-kinematic chain mechanisms, whose topologies are composed of revolute and prismatic joints. By analysing the necessary conditions, one can notice that the adaptive balancing  brings great benefits for the planar \underline{RRR} and the spatial \underline{RRP}. However, for the spatial \underline{RRR}, in spite of the achievement of the adaptive balancing, the modifications in the mechanical structure require very high moments of inertia in the direction of the link segment for the second and third bars of the mechanism, which would lead to bars with extremely large cross sections. Consequently, the authors believe that the discussion provided here might help the designer to choose an adequate topology for a specific application taking advantage of the adaptive balancing whenever it brings no further consequences in terms of the added inertias.
 
 %--------------------ACKNOWLEDGMENTS--------------------%
 
