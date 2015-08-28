@@ -65,4 +65,7 @@ O_ = [Matrix([0,0,0])] + [vI_[i][0:3,3] for i in range(Denavit_matrix.rows)]
 
 dO_ = [simplify(O_[Denavit_matrix.rows] - O_[i]) for i in range(Denavit_matrix.rows)]
 
-J_ = simplify(Matrix([Matrix([z_[i].cross(dO_[i]),z_[i]]).T for i in range(Denavit_matrix.rows) ]).T)
+Jv_ = simplify(Matrix( [z_[i].cross(dO_[i]).T for i in range(Denavit_matrix.rows) ]).T )
+Jw_ = simplify( vI_[5][0:3,0:3].T*Matrix( [z_[i] for i in range(Denavit_matrix.rows) ]).T )
+
+J_ = Matrix([Jv_,Jw_])
