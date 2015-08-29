@@ -53,6 +53,9 @@ a = Matrix([0,0,0,0])
 alpha = Matrix([pi/2,-pi/2,pi/2,0])
 d = Matrix([0,symbols('l_1')+symbols('l_2'),0,symbols('l_3')+symbols('l_4')])
 theta = Matrix([symbols('theta_1')+pi/2,symbols('theta_2'),symbols('theta_3'),symbols('theta_4')])
+cx = Matrix([0,0,0,0])
+cy = Matrix([0,symbols('l_2')-symbols('lg_2'),0,symbols('l_4')-symbols('lg_4')])
+cz = Matrix([symbols('lg_1'),0,symbols('lg_3'),0])
 
 Denavit_matrix = Matrix([a.T,alpha.T,d.T,theta.T]).T
 
