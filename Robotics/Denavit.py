@@ -50,7 +50,7 @@ H_d3 = lambda mat:[H_d2(mat[i,:]) for i in range(mat.rows)]
 #theta = Matrix([symbols('theta_1')+pi/2,symbols('theta_2'),symbols('theta_3'),symbols('theta_4'),symbols('theta_5'),symbols('theta_6')])
 
 a = Matrix([0,0,0,0])
-alpha = Matrix([pi/2,-pi/2,pi/2,0])
+alpha = Matrix([pi/2,-pi/2,pi/2,-pi/2])
 d = Matrix([0,symbols('l_1')+symbols('l_2'),0,symbols('l_3')+symbols('l_4')])
 theta = Matrix([symbols('theta_1')+pi/2,symbols('theta_2'),symbols('theta_3'),symbols('theta_4')])
 cx = Matrix([0,0,0,0])
@@ -70,6 +70,11 @@ for i in range(1,Denavit_matrix.rows):
     
 z_ = [Matrix([0,0,1])] + [vI_[i][0:3,2] for i in range(Denavit_matrix.rows)]
 O_ = [Matrix([0,0,0])] + [vI_[i][0:3,3] for i in range(Denavit_matrix.rows)]
+Og_ = [ simplify(Matrix([(vI_[i]*Matrix([cx[i],cy[i],cz[i],1]))[0:3] ]).T) for i in range(Denavit_matrix.rows)]
+
+Jv__ = [  simplify( Matrix([z_[i].cross(Og_[j]- O_[i]).T if i <= j else zeros(1,3)  for i in range(Denavit_matrix.rows)]).T ) for j in range(Denavit_matrix.rows)]
+Jw__ = [  simplify( vI_[j][0:3,0:3].T*Matrix([z_[i].T if i <= j else zeros(1,3)  for i in range(Denavit_matrix.rows)]).T ) for j in range(Denavit_matrix.rows)]
+J__ = Matrix( [Matrix([Jv__[i],Jw__[i]]) for i in range(Denavit_matrix.rows)] )
 
 dO_ = [simplify(O_[Denavit_matrix.rows] - O_[i]) for i in range(Denavit_matrix.rows)]
 
