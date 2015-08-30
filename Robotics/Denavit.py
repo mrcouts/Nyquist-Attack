@@ -49,18 +49,24 @@ H_d3 = lambda mat:[H_d2(mat[i,:]) for i in range(mat.rows)]
 #d = Matrix([0,symbols('l_1')+symbols('l_2'),0,symbols('l_3')+symbols('l_4'),0,symbols('l_5')+symbols('l_6')])
 #theta = Matrix([symbols('theta_1')+pi/2,symbols('theta_2'),symbols('theta_3'),symbols('theta_4'),symbols('theta_5'),symbols('theta_6')])
 
-a = Matrix([0,0,0,0])
-alpha = Matrix([pi/2,-pi/2,pi/2,-pi/2])
-d = Matrix([0,symbols('l_1')+symbols('l_2'),0,symbols('l_3')+symbols('l_4')])
-theta = Matrix([symbols('theta_1')+pi/2,symbols('theta_2'),symbols('theta_3'),symbols('theta_4')])
-cx = Matrix([0,0,0,0])
-cy = Matrix([0,symbols('l_2')-symbols('lg_2'),0,symbols('l_4')-symbols('lg_4')])
-cz = Matrix([symbols('lg_1'),0,symbols('lg_3'),0])
+#a = Matrix([0,0,0,0])
+#alpha = Matrix([pi/2,-pi/2,pi/2,-pi/2])
+#d = Matrix([0,symbols('l_1')+symbols('l_2'),0,symbols('l_3')+symbols('l_4')])
+#theta = Matrix([symbols('theta_1')+pi/2,symbols('theta_2'),symbols('theta_3'),symbols('theta_4')])
+#cx = Matrix([0,0,0,0])
+#cy = Matrix([0,symbols('l_2')-symbols('lg_2'),0,symbols('l_4')-symbols('lg_4')])
+#cz = Matrix([symbols('lg_1'),0,symbols('lg_3'),0])
+#Denavit_matrix = Matrix([a.T,alpha.T,d.T,theta.T, cx.T, cy.T, cz.T]).T
 
-Denavit_matrix = Matrix([a.T,alpha.T,d.T,theta.T]).T
+Denavit_matrix = Matrix([
+[0,  pi/2, 0                            , symbols('theta_1')+pi/2, 0, 0                             , symbols('lg_1')],
+[0, -pi/2, symbols('l_1')+symbols('l_2'), symbols('theta_2')     , 0, symbols('l_2')-symbols('lg_2'), 0              ], 
+[0,  pi/2, 0                            , symbols('theta_3')     , 0, 0                             , symbols('lg_3')],
+[0, -pi/2, symbols('l_3')+symbols('l_4'), symbols('theta_4')     , 0, symbols('l_4')-symbols('lg_4'), 0              ] 
+])
 
 #Matrizes de transformacao homogenea relativas  
-vH_ = H_d3(Denavit_matrix)
+vH_ = H_d3(Denavit_matrix[:,0:4])
 
 #Matrizes de transformacao homogenea absolutas
 vI_ = []
@@ -70,7 +76,7 @@ for i in range(1,Denavit_matrix.rows):
     
 z_ = [Matrix([0,0,1])] + [vI_[i][0:3,2] for i in range(Denavit_matrix.rows)]
 O_ = [Matrix([0,0,0])] + [vI_[i][0:3,3] for i in range(Denavit_matrix.rows)]
-Og_ = [ simplify(Matrix([(vI_[i]*Matrix([cx[i],cy[i],cz[i],1]))[0:3] ]).T) for i in range(Denavit_matrix.rows)]
+Og_ = [ simplify(Matrix([(vI_[i]*Matrix([Denavit_matrix[i,4:7].T,[1]]))[0:3] ]).T) for i in range(Denavit_matrix.rows)]
 
 Jv__ = [  simplify( Matrix([z_[i].cross(Og_[j]- O_[i]).T if i <= j else zeros(1,3)  for i in range(Denavit_matrix.rows)]).T ) for j in range(Denavit_matrix.rows)]
 Jw__ = [  simplify( vI_[j][0:3,0:3].T*Matrix([z_[i].T if i <= j else zeros(1,3)  for i in range(Denavit_matrix.rows)]).T ) for j in range(Denavit_matrix.rows)]
