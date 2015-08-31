@@ -28,6 +28,12 @@ def H(axis, T, dx, dy, dz):
         raise ValueError("Soh pode ser string x, y, z ou 0!")
         
 ###############################################################################
+#RRP        
+#DH = Matrix([
+#[0, +pi/2, symbols('l_1')               , symbols('theta_1')+pi/2, 0, -symbols('l_1')+symbols('lg_1'), 0                              , 'R'],
+#[0, +pi/2, 0                            , symbols('theta_2')+pi/2, 0, 0                              , symbols('lg_2')                , 'R'], 
+#[0,  0   , symbols('l_2')+symbols('d_3'), 0                      , 0, 0                              , -symbols('l_3')+symbols('lg_3'), 'P']
+#])
         
 DH = Matrix([
 [0,  pi/2, 0                            , symbols('theta_1')+pi/2, 0, 0                             , symbols('lg_1'), 'R'],
@@ -53,8 +59,8 @@ z_ = [Matrix([0,0,1])] + [vI_[i][0:3,2] for i in range(DH.rows)]
 O_ = [Matrix([0,0,0])] + [vI_[i][0:3,3] for i in range(DH.rows)]
 Og_ = [ simplify(Matrix([(vI_[i]*Matrix([DH[i,4:7].T,[1]]))[0:3] ]).T) for i in range(DH.rows)]
 
-Jv__ = [simplify( Matrix([z_[i].cross(Og_[j]- O_[i]).T if i <= j else zeros(1,3) for i in range(DH.rows)]).T ) for j in range(DH.rows)]
-Jw__ = [simplify( vI_[j][0:3,0:3].T*Matrix([z_[i].T if i <= j else zeros(1,3) for i in range(DH.rows)]).T ) for j in range(DH.rows)]
+Jv__ = [simplify( Matrix([z_[i].cross(Og_[j]- O_[i]).T if str(DH[i,7]) == 'R' and i <= j else ( z_[i].T if i <= j else zeros(1,3) ) for i in range(DH.rows)]).T ) for j in range(DH.rows)]
+Jw__ = [simplify( vI_[j][0:3,0:3].T*Matrix([z_[i].T if str(DH[i,7]) == 'R' and i <= j else zeros(1,3) for i in range(DH.rows)]).T ) for j in range(DH.rows)]
 J__ = Matrix( [Matrix([Jv__[i],Jw__[i]]) for i in range(DH.rows)] )
 
 Jv_ = simplify(Matrix( [z_[i].cross(O_[DH.rows] - O_[i]).T for i in range(DH.rows) ]).T )
