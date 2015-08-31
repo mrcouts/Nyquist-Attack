@@ -7,23 +7,13 @@ init_printing(use_unicode=True)
 
 t = symbols('t')
 
-def Rotx(T):
-    return Matrix([[1, 0, 0],[0, cos(T),-sin(T)],[0, sin(T), cos(T)]])
+Rotx = lambda T: Matrix([[1, 0, 0],[0, cos(T),-sin(T)],[0, sin(T), cos(T)]])
+Roty = lambda T: Matrix([[cos(T), 0, sin(T)],[0, 1, 0],[-sin(T), 0, cos(T)]])
+Rotz = lambda T: Matrix([[cos(T), -sin(T), 0],[sin(T), cos(T), 0], [0, 0, 1]])
 
-def Roty(T):
-    return Matrix([[cos(T), 0, sin(T)],[0, 1, 0],[-sin(T), 0, cos(T)]])
-
-def Rotz(T):
-    return Matrix([[cos(T), -sin(T), 0],[sin(T), cos(T), 0], [0, 0, 1]])
-
-def Hx(T,dx,dy,dz):
-    return Rotx(T).col_insert(3,Matrix([[dx,dy,dz]]).T).row_insert(3,Matrix([[0,0,0,1]]))
-    
-def Hy(T,dx,dy,dz):
-    return Roty(T).col_insert(3,Matrix([[dx,dy,dz]]).T).row_insert(3,Matrix([[0,0,0,1]]))
-    
-def Hz(T,dx,dy,dz):
-    return Rotz(T).col_insert(3,Matrix([[dx,dy,dz]]).T).row_insert(3,Matrix([[0,0,0,1]]))
+Hx = lambda T,dx,dy,dz: Rotx(T).col_insert(3,Matrix([[dx,dy,dz]]).T).row_insert(3,Matrix([[0,0,0,1]]))
+Hy = lambda T,dx,dy,dz: Roty(T).col_insert(3,Matrix([[dx,dy,dz]]).T).row_insert(3,Matrix([[0,0,0,1]]))
+Hz = lambda T,dx,dy,dz: Rotz(T).col_insert(3,Matrix([[dx,dy,dz]]).T).row_insert(3,Matrix([[0,0,0,1]]))
     
 def H(axis, T, dx, dy, dz):
     if axis == 'x' :
@@ -47,9 +37,8 @@ DH = Matrix([
 ])
                 
 def H_d(mat):
-    H1_d = lambda a, alpha, d, theta: H('z',theta,0,0,0)*H('0',0,0,0,d)*H('0',0,a,0,0)*H('x',alpha,0,0,0)
-    H2_d = lambda lista:H1_d(*lista[0:4])
-    return [H2_d(mat[i,:]) for i in range(mat.rows)]
+    _H_d = lambda a, alpha, d, theta: H('z',theta,0,0,0)*H('0',0,0,0,d)*H('0',0,a,0,0)*H('x',alpha,0,0,0)
+    return [_H_d(*mat[i,0:4]) for i in range(mat.rows)]
 
 #Matrizes de transformacao homogenea relativas  
 vH_ = H_d(DH[:,0:4])
