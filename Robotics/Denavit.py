@@ -43,24 +43,40 @@ class Serial(object):
 
         Id = '' if ID == '' else '_' + str(ID)
         
-        self.H__ = H_d(DH_[:,0:4])
+        self.Hr__ = H_d(DH_[:,0:4])
         
-        self.I__ = []
-        self.I__.append(self.H__[0])
+        self.H__ = []
+        self.H__.append(self.Hr__[0])
         for i in range(1,self.dof):
-            self.I__.append(simplify(self.I__[i-1]*self.H__[i]))
+            self.H__.append(simplify(self.H__[i-1]*self.Hr__[i]))
         
-        self.z__ = [Matrix([0,0,1])] + [self.I__[i][0:3,2] for i in range(self.dof)]
-        self.o__ = [Matrix([0,0,0])] + [self.I__[i][0:3,3] for i in range(self.dof)]
-        self.og__ = [ simplify(Matrix([(self.I__[i]*Matrix([DH_[i,4:7].T,[1]]))[0:3] ]).T) for i in range(self.dof)]
+        self.z__ = [Matrix([0,0,1])] + [self.H__[i][0:3,2] for i in range(self.dof)]
+        self.o__ = [Matrix([0,0,0])] + [self.H__[i][0:3,3] for i in range(self.dof)]
+        self.og__ = [ simplify(Matrix([(self.H__[i]*Matrix([DH_[i,4:7].T,[1]]))[0:3] ]).T) for i in range(self.dof)]
         
         self.Jv__ = [simplify( Matrix([self.z__[i].cross(self.og__[j]- self.o__[i]).T if str(DH_[i,7]) == 'R' and i <= j else ( self.z__[i].T if i <= j else zeros(1,3) ) for i in range(self.dof)]).T ) for j in range(self.dof)]
-        self.Jw__ = [simplify( self.I__[j][0:3,0:3].T*Matrix([self.z__[i].T if str(DH_[i,7]) == 'R' and i <= j else zeros(1,3) for i in range(self.dof)]).T ) for j in range(self.dof)]
+        self.Jw__ = [simplify( self.H__[j][0:3,0:3].T*Matrix([self.z__[i].T if str(DH_[i,7]) == 'R' and i <= j else zeros(1,3) for i in range(self.dof)]).T ) for j in range(self.dof)]
         self.Jg_ = Matrix( [Matrix([self.Jv__[i],self.Jw__[i]]) for i in range(self.dof)] )
         
         self.Jv_ = simplify(Matrix( [self.z__[i].cross(self.o__[self.dof] - self.o__[i]).T if str(DH_[i,7]) == 'R' else self.z__[i].T for i in range(self.dof) ]).T )
-        self.Jw_ = simplify( self.I__[self.dof-1][0:3,0:3].T*Matrix( [self.z__[i].T if str(DH_[i,7]) == 'R' else zeros(1,3) for i in range(self.dof) ]).T )
+        self.Jw_ = simplify( self.H__[self.dof-1][0:3,0:3].T*Matrix( [self.z__[i].T if str(DH_[i,7]) == 'R' else zeros(1,3) for i in range(self.dof) ]).T )
         self.J_ = Matrix([self.Jv_,self.Jw_])
+        
+        #Dinamica
+        self.I__ = [Matrix([[symbols('Jx'+str(i+1)), symbols('Jxy'+str(i+1)),symbols('Jxz'+str(i+1))],
+                            [symbols('Jxy'+str(i+1)),symbols('Jy'+str(i+1)), symbols('Jyz'+str(i+1))],
+                            [symbols('Jxz'+str(i+1)),symbols('Jyz'+str(i+1)),symbols('Jz'+str(i+1))]]) for i in range(self.dof)]
+                            
+        self.w__ = [Matrix([symbols('wy'+str(i+1)),symbols('wy'+str(i+1)),symbols('wz'+str(i+1))]) for i in range(self.dof)]        
+        
+        self.M__ = [diag(eye(3)*symbols('m'+str(i+1)), self.I__[i]) for i in range(self.dof)]
+        self.v__ = [Matrix([zeros(3,1),self.w__[i].cross(self.I__[i]*self.w__[i])]) for i in range(self.dof)]
+        
+        self.M_ = diag(zeros(self.dof),*self.M__)
+        self.v_ = Matrix([zeros(self.dof,1), Matrix([R.v__[i] for i in range(self.dof)]) ])
+
+        self.C_ = Matrix([eye(self.dof),self.Jg_])              
+        
 
 #RRP        
 DH_ = Matrix([
