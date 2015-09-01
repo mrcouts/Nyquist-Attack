@@ -35,45 +35,45 @@ def H_d(mat):
 
 class Serial(object):
     """Serial robots dynamics."""
-    def __init__(self, name, ID, DH):
+    def __init__(self, name, ID, DH_):
         self.name = name
         self.ID = ID
-        self.dof = DH.rows
-        self.DH = DH
+        self.dof = DH_.rows
+        self.DH_ = DH_
 
         Id = '' if ID == '' else '_' + str(ID)
         
-        self.vH_ = H_d(DH[:,0:4])
+        self.H__ = H_d(DH_[:,0:4])
         
-        self.vI_ = []
-        self.vI_.append(self.vH_[0])
-        for i in range(1,DH.rows):
-            self.vI_.append(simplify(self.vI_[i-1]*self.vH_[i]))
+        self.I__ = []
+        self.I__.append(self.H__[0])
+        for i in range(1,self.dof):
+            self.I__.append(simplify(self.I__[i-1]*self.H__[i]))
         
-        self.z_ = [Matrix([0,0,1])] + [self.vI_[i][0:3,2] for i in range(DH.rows)]
-        self.O_ = [Matrix([0,0,0])] + [self.vI_[i][0:3,3] for i in range(DH.rows)]
-        self.Og_ = [ simplify(Matrix([(self.vI_[i]*Matrix([DH[i,4:7].T,[1]]))[0:3] ]).T) for i in range(DH.rows)]
+        self.z__ = [Matrix([0,0,1])] + [self.I__[i][0:3,2] for i in range(self.dof)]
+        self.o__ = [Matrix([0,0,0])] + [self.I__[i][0:3,3] for i in range(self.dof)]
+        self.og__ = [ simplify(Matrix([(self.I__[i]*Matrix([DH_[i,4:7].T,[1]]))[0:3] ]).T) for i in range(self.dof)]
         
-        self.Jv__ = [simplify( Matrix([self.z_[i].cross(self.Og_[j]- self.O_[i]).T if str(DH[i,7]) == 'R' and i <= j else ( self.z_[i].T if i <= j else zeros(1,3) ) for i in range(DH.rows)]).T ) for j in range(DH.rows)]
-        self.Jw__ = [simplify( self.vI_[j][0:3,0:3].T*Matrix([self.z_[i].T if str(DH[i,7]) == 'R' and i <= j else zeros(1,3) for i in range(DH.rows)]).T ) for j in range(DH.rows)]
-        self.J__ = Matrix( [Matrix([self.Jv__[i],self.Jw__[i]]) for i in range(DH.rows)] )
+        self.Jv__ = [simplify( Matrix([self.z__[i].cross(self.og__[j]- self.o__[i]).T if str(DH_[i,7]) == 'R' and i <= j else ( self.z__[i].T if i <= j else zeros(1,3) ) for i in range(self.dof)]).T ) for j in range(self.dof)]
+        self.Jw__ = [simplify( self.I__[j][0:3,0:3].T*Matrix([self.z__[i].T if str(DH_[i,7]) == 'R' and i <= j else zeros(1,3) for i in range(self.dof)]).T ) for j in range(self.dof)]
+        self.Jg_ = Matrix( [Matrix([self.Jv__[i],self.Jw__[i]]) for i in range(self.dof)] )
         
-        self.Jv_ = simplify(Matrix( [self.z_[i].cross(self.O_[DH.rows] - self.O_[i]).T if str(DH[i,7]) == 'R' else self.z_[i].T for i in range(DH.rows) ]).T )
-        self.Jw_ = simplify( self.vI_[DH.rows-1][0:3,0:3].T*Matrix( [self.z_[i].T if str(DH[i,7]) == 'R' else zeros(1,3) for i in range(DH.rows) ]).T )
+        self.Jv_ = simplify(Matrix( [self.z__[i].cross(self.o__[self.dof] - self.o__[i]).T if str(DH_[i,7]) == 'R' else self.z__[i].T for i in range(self.dof) ]).T )
+        self.Jw_ = simplify( self.I__[self.dof-1][0:3,0:3].T*Matrix( [self.z__[i].T if str(DH_[i,7]) == 'R' else zeros(1,3) for i in range(self.dof) ]).T )
         self.J_ = Matrix([self.Jv_,self.Jw_])
 
 #RRP        
-DH = Matrix([
+DH_ = Matrix([
 [0, +pi/2, symbols('l_1')               , symbols('theta_1')+pi/2, 0, -symbols('l_1')+symbols('lg_1'), 0                              , 'R'],
 [0, +pi/2, 0                            , symbols('theta_2')+pi/2, 0, 0                              , symbols('lg_2')                , 'R'], 
 [0,  0   , symbols('l_2')+symbols('d_3'), 0                      , 0, 0                              , -symbols('l_3')+symbols('lg_3'), 'P']
 ])
         
-DH_2 = Matrix([
+DH2_ = Matrix([
 [0,  pi/2, 0                            , symbols('theta_1')+pi/2, 0, 0                             , symbols('lg_1'), 'R'],
 [0, -pi/2, symbols('l_1')+symbols('l_2'), symbols('theta_2')     , 0, symbols('l_2')-symbols('lg_2'), 0              , 'R'], 
 [0,  pi/2, 0                            , symbols('theta_3')     , 0, 0                             , symbols('lg_3'), 'R'],
 [0, -pi/2, symbols('l_3')+symbols('l_4'), symbols('theta_4')     , 0, symbols('l_4')-symbols('lg_4'), 0              , 'R'] 
 ])
 
-R = Serial('RRP',0,DH)
+R = Serial('RRP',0,DH_)
