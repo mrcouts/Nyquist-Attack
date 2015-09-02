@@ -73,7 +73,7 @@ class Serial(object):
         self.v__ = [Matrix([zeros(3,1),self.w__[i].cross(self.I__[i]*self.w__[i])]) for i in range(self.dof)]
         
         self.M_ = diag(zeros(self.dof),*self.M__)
-        self.v_ = Matrix([zeros(self.dof,1), Matrix([R.v__[i] for i in range(self.dof)]) ])
+        self.v_ = Matrix([zeros(self.dof,1), Matrix([self.v__[i] for i in range(self.dof)]) ])
 
         self.C_ = Matrix([eye(self.dof),self.Jg_])              
         
