@@ -35,7 +35,7 @@ def H_d(mat):
 
 class Serial(object):
     """Serial robots dynamics."""
-    def __init__(self, name, ID, DH_):
+    def __init__(self, name, ID, DH_, g_dir_):
         self.name = name
         self.ID = ID
         self.dof = DH_.rows
@@ -52,6 +52,7 @@ class Serial(object):
         self.w__ = [Matrix([symbols('wy'+str(i+1)),symbols('wy'+str(i+1)),symbols('wz'+str(i+1))]) for i in range(self.dof)]
         self.w_ = Matrix([self.w__[i] for i in range(self.dof)]) 
         
+        #Cinematica
         self.Hr__ = H_d(DH_[:,0:4])
         
         self.H__ = []
@@ -80,29 +81,38 @@ class Serial(object):
         
         self.M__ = [diag(eye(3)*symbols('m'+str(i+1)), self.I__[i]) for i in range(self.dof)]
         self.v__ = [Matrix([zeros(3,1),self.w__[i].cross(self.I__[i]*self.w__[i])]) for i in range(self.dof)]
+        self.g__ = [Matrix([-symbols('m'+str(i+1))*symbols('g')*g_dir_,zeros(3,1)]) for i in range(self.dof)]
         
         self.M_ = diag(zeros(self.dof),*self.M__)
         self.v_ = Matrix([zeros(self.dof,1), Matrix([self.v__[i] for i in range(self.dof)]) ])
-
+        self.g_ = Matrix([zeros(self.dof,1), Matrix([self.g__[i] for i in range(self.dof)]) ])        
+        
         self.C_ = Matrix([eye(self.dof),self.J_])              
         
         self.v_aux_ = simplify(self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in range(3*self.dof)]))
         
         self.Mh_ = simplify(self.C_.T*self.M_*self.C_)
         self.vh_ = simplify(self.C_.T*( self.v_aux_ + self.M_*self.C_.diff(t)*self.dq_ ))
+        self.gh_ = simplify(self.C_.T*self.g_)
+        
+#RR
+DH_ = Matrix([
+[symbols('l_1'), 0, 0, Function('theta_1')(t), -symbols('l_1')+symbols('lg_1'), 0, 0, 'R'],
+[symbols('l_2'), 0, 0, Function('theta_2')(t), -symbols('l_2')+symbols('lg_2'), 0, 0, 'R']
+])
 
 #RRP        
-DH_ = Matrix([
+DH2_ = Matrix([
 [0, +pi/2, symbols('l_1')               , Function('theta_1')(t)+pi/2, 0, -symbols('l_1')+symbols('lg_1'), 0                              , 'R'],
 [0, +pi/2, 0                            , Function('theta_2')(t)+pi/2, 0, 0                              , symbols('lg_2')                , 'R'], 
 [0,  0   , symbols('l_2')+Function('d_3')(t), 0                      , 0, 0                              , -symbols('l_3')+symbols('lg_3'), 'P']
 ])
         
-DH2_ = Matrix([
+DH3_ = Matrix([
 [0,  pi/2, 0                            , symbols('theta_1')+pi/2, 0, 0                             , symbols('lg_1'), 'R'],
 [0, -pi/2, symbols('l_1')+symbols('l_2'), symbols('theta_2')     , 0, symbols('l_2')-symbols('lg_2'), 0              , 'R'], 
 [0,  pi/2, 0                            , symbols('theta_3')     , 0, 0                             , symbols('lg_3'), 'R'],
 [0, -pi/2, symbols('l_3')+symbols('l_4'), symbols('theta_4')     , 0, symbols('l_4')-symbols('lg_4'), 0              , 'R'] 
 ])
 
-R = Serial('RRP',0,DH_)
+R = Serial('RR',0,DH_, Matrix([0,-1,0]))
