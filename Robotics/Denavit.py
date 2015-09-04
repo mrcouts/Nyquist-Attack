@@ -49,8 +49,10 @@ class Serial(object):
                         
         self.dq_ = self.q_.diff(t)
         
-        self.w__ = [Matrix([symbols('wy'+str(i+1)),symbols('wy'+str(i+1)),symbols('wz'+str(i+1))]) for i in range(self.dof)]
+        self.vel__ = [Matrix([Function('vx'+str(i+1))(t),Function('vy'+str(i+1))(t),Function('vz'+str(i+1))(t)]) for i in range(self.dof)]        
+        self.w__   = [Matrix([Function('wx'+str(i+1))(t),Function('wy'+str(i+1))(t),Function('wz'+str(i+1))(t)]) for i in range(self.dof)]
         self.w_ = Matrix([self.w__[i] for i in range(self.dof)]) 
+        self.p_ = Matrix([self.dq_, Matrix([ Matrix([self.vel__[i],self.w__[i]]) for i in range(self.dof)]) ])
         
         #Cinematica
         self.Hr__ = H_d(DH_[:,0:4])
@@ -80,20 +82,24 @@ class Serial(object):
                             [0*symbols('Jxz'+str(i+1)),0*symbols('Jyz'+str(i+1)),symbols('Jz'+str(i+1))]]) for i in range(self.dof)]
         
         self.M__ = [diag(eye(3)*symbols('m'+str(i+1)), self.I__[i]) for i in range(self.dof)]
-        self.v__ = [Matrix([zeros(3,1),self.w__[i].cross(self.I__[i]*self.w__[i])]) for i in range(self.dof)]
+        self.v__ = [simplify(Matrix([zeros(3,1),self.w__[i].cross(self.I__[i]*self.w__[i])])) for i in range(self.dof)]
         self.g__ = [Matrix([-symbols('m'+str(i+1))*symbols('g')*g_dir_,zeros(3,1)]) for i in range(self.dof)]
         
         self.M_ = diag(zeros(self.dof),*self.M__)
         self.v_ = Matrix([zeros(self.dof,1), Matrix([self.v__[i] for i in range(self.dof)]) ])
-        self.g_ = Matrix([zeros(self.dof,1), Matrix([self.g__[i] for i in range(self.dof)]) ])        
+        self.g_ = Matrix([zeros(self.dof,1), Matrix([self.g__[i] for i in range(self.dof)]) ])
+        self.f_ = Matrix([Matrix([symbols('b'+str(i+1))*self.dq_[i] + symbols('gamma'+str(i+1))*tanh(symbols('n'+str(i+1))*self.dq_[i]) for i in range(self.dof)]), zeros(6*self.dof,1) ])
         
-        self.C_ = Matrix([eye(self.dof),self.J_])              
+        self.C_ = Matrix([eye(self.dof),self.J_])
+        self.A_ = Matrix([self.J_.T,-eye(6*self.dof).T]).T
+        self.b_ = simplify( -self.A_.diff(t)*self.p_)
         
         self.v_aux_ = simplify(self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in range(3*self.dof)]))
         
         self.Mh_ = simplify(self.C_.T*self.M_*self.C_)
         self.vh_ = simplify(self.C_.T*( self.v_aux_ + self.M_*self.C_.diff(t)*self.dq_ ))
         self.gh_ = simplify(self.C_.T*self.g_)
+        self.fh_ = simplify(self.C_.T*self.f_)
         
 #RR
 DH_ = Matrix([
@@ -116,3 +122,13 @@ DH3_ = Matrix([
 ])
 
 R = Serial('RR',0,DH_, Matrix([0,-1,0]))
+
+SUBS = [
+    (sin(R.q_[0]), symbols('s_1')),
+    (cos(R.q_[0]), symbols('c_1')),
+    (sin(R.q_[1]), symbols('s_2')),
+    (cos(R.q_[1]), symbols('c_2')),
+    (sin(R.q_[0]+R.q_[1]), symbols('s_12')),
+    (cos(R.q_[0]+R.q_[1]), symbols('c_12')),
+    (R.q_[0], symbols('theta_1')),
+    (R.q_[1], symbols('theta_2'))]
