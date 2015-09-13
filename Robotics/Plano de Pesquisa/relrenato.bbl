@@ -1,8 +1,8 @@
 \begin{thebibliography}{10}
 
 \bibitem{Rynaldo}
-Rynaldo Z. H. de Almeida.
-\newblock Modelagem din\~amica e controle e rob\^o manipulador
+R. Z. H. de Almeida.
+\newblock Modelagem din\^amica e controle e rob\^o manipulador
 de arquitetura paralela assim\'etrica de tr\^es graus de liberdade.
 \newblock {\em Tese (Doutorado) - Escola Polit\'ecnica da Universidade de
 S\~ao Paulo. Departamento de Engenharia Mecatr\^onica e de
@@ -10,7 +10,7 @@ Sistemas Mec\^anicos},
   2013.
   
 \bibitem{Andre}
-Andr\'e G. Coutinho and Guilherme M. Dobriankyj.
+G. M. Dobriankyj and A. G. Coutinho.
 \newblock Plataforma rob\'otica para reabilita\c{c}\~ao do membro superior humano.
 \newblock {\em Tese (Trabalho de Conclus\~ao de Curso) - Escola Polit\'ecnica da Universidade de
 S\~ao Paulo. Departamento de Engenharia Mecatr\^onica e de
@@ -18,45 +18,90 @@ Sistemas Mec\^anicos}, 2013.
 
 
 \bibitem{Apostila}
-Renato M. M. Orsino and Tarcisio A. Hess Coelho.
+R. M. M. Orsino and T. A. H. Coelho.
 \newblock Metodologia para An\'alise e S\'intese de Mecanismos.
 \newblock {\em Material de apoio para as disciplinas PMR2430 e PMR2331 - Escola Polit\'ecnica da Universidade de
 S\~ao Paulo}, 2013.
 
 \bibitem{Craig}
-J.J. Craig.
+J. J. Craig.
 \newblock {\em {Introduction to robotics: mechanics and control}}.
 \newblock Addison-Wesley series in electrical and computer engineering: control
   engineering. Pearson/Prentice Hall, 2005.
   
 \bibitem{Jarzebowska2009}
-Elzbieta Jarzebowska.
+E. Jarzebowska.
 \newblock Quasi-coordinates based dynamics modeling and control design for
   nonholonomic systems.
 \newblock {\em Nonlinear Analysis: Theory, Methods and Applications},
   71(12):e118 -- e131, 2009.
 
 \bibitem{Merlet2002}
-J.P. Merlet.
+J-P. Merlet.
 \newblock {Still a long way to go on the road for parallel mechanisms}.
 \newblock In {\em ASME DETC Conference, {Montreal, 2002}}, 2002.
 
 \bibitem{Orsino2013}
-Renato M.~M. Orsino and Tarcisio A.~Hess Coelho.
+R. M. M. Orsino and T. A. H. Coelho.
 \newblock A contribution for developing more efficient dynamic modelling
   algorithms of parallel robots.
 \newblock {\em International Journal of Mechanisms and Robotic Systems},
   1(1):15 -- 34, 2013.
 
 \bibitem{Zubizarreta}
-Zubizarreta, A. and Cabanes, I. and Marcos, M. and Pinto, C. and Portillo, E.
+A. Zubizarreta, I. Cabanes, M. Marcos, C. Pinto,  E. Portillo.
 \newblock Extended CTC control for parallel robots.
 \newblock {\em Emerging Technologies and Factory Automation (ETFA), 2010 IEEE Conference on}, 2010.
 
 \bibitem{Bloch}
-Bloch, A.M. and Reyhanoglu, M. and McClamroch, N.H.
+A.M. Bloch, M. Reyhanoglu, N.H. McClamroch.
 \newblock Control and stabilization of nonholonomic dynamic systems.
 \newblock {\em Automatic Control, IEEE Transactions on}, 1992.
 
+\bibitem{Khalil}
+W. Khalil and Dombre E.
+\newblock {\em {Modeling, Identification and Control of Robots}}.
+\newblock Taylor \& Francis, 2002.
+
+\bibitem{Tsai}
+L. W. Tsai.
+\newblock {\em {Robot Analysis: The Mechanics of Serial and Parallel Manipulators}}.
+\newblock John Wiley \& Sons, 1999.
+
+\bibitem{Kumazawa}
+V. D. Kumazawa, T. A. Hess Coelho, D. Rinaudi, G. Carbone, M. Ceccarelli.  
+\newblock {Kinematic analysis and operation feasibility of a 3-dof asymmetric parallel mechanism}.
+\newblock In {\em 20th COBEM, {Gramado, Brazil}}, 2009.
+
+\bibitem{Slotini}
+J-J. E. Slotine and W. Li.
+\newblock {\em {Applied nonlinear control}}.
+\newblock Prentice Hall, 1991.
+
+\bibitem{Biorob}
+G. M. Dobrianskyj, A. G. Coutinho, T. A. H. Coelho.
+\newblock Development of a controller for a 3-DOF robotic platform for user interaction in rehabilitation therapies.
+\newblock {\em Biomedical Robotics and Biomechatronics 2014 5th IEEE RAS EMBS International Conference on},
+  819 -- 825, 2014.
+
+\bibitem{20altuzarra}
+O. Altuzarra, P. M. Eggers, F. J. Campa, C. Roldan-Paraponiaris, C. Pinto, 
+\newblock Dynamic Modelling of Lower-Mobility Parallel Manipulators Using the Boltzmann-Hamel Equations
+\newblock {\em Mechanisms, Transmissions and Applications}, 31: 157--165, 2015.
+
+\bibitem{21orsino}
+R. M. M. Orsino, T. A. H. Coelho, C. P. Pesce, 
+\newblock Analytical mechanics approaches in the dynamic modelling of Delta mechanism
+\newblock {\em Robotica}, 33(4): 953--973, 2015.
+
+\bibitem{22orsino}
+R. M. M. Orsino, A. G. Coutinho, T. A. H. Coelho,
+\newblock Dynamic modelling and control of balanced parallel mechanisms.
+\newblock Book chapter of {\em Dynamic Balancing of Mechanisms and Synthesizing of Parallel Robots}, Springer, 2016 (in press).
+
+\bibitem{23orsino}
+R. M. M. Orsino, T. A. H. Coelho (2015).
+\newblock A contribution on the modular modelling of multibody systems.
+\newblock Manuscript submitted for publication
 
 \end{thebibliography}
