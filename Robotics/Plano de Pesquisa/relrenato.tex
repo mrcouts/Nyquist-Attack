@@ -129,9 +129,20 @@ Os principais objetivos do projeto s\~ao:
 %A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorpos para implementar, adaptar e aprimorar algoritmos de controle não-linear para mecanismos paralelos. Possui diferenciação em relação a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda são pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda não são tão explorados, e estuda técnicas de controle não-linear, inclusive a possibilidade da utilização de variáveis redundantes em sistemas de controle, fato não muito comum na literatura.
 
 
-%RESULTADOS--------------------------------------------------------------------
+%---METODOLOGIA DO PROJETO--------------------------------------------------------------------
 \newpage
 \section{Metodologia do projeto}\label{method}
+
+O estágio atual de desenvolvimento do presente projeto ocorre basicamente em três áreas:
+a realização da modelagem e simulação cinemática e dinâmica do mecanismo 2\underline{R}SU + \underline{P}PaP, o projeto de um controlador não linear multivariável robusto baseado no modelo dinâmico, e a validação experimental das leis de controle sintetizadas.
+
+Os trabalhos no âmbito de modelagem e simulação estão sendo desenvolvidos a partir da aplicação do algoritmo genérico  de modelagem cinemática e dinâmica de mecanismos paralelos desenvolvido, baseado na utilização dos parâmetros de Denavit-Hartenberg e no método Orsino de acoplamento de subsistemas. Toda modelagem será feita em Python, utilizando uma biblioteca de manipulação simbólica (SymPy).
+As simulações da dinâmica direta do mecanismo serão feitas utilizando métodos implícitos de solução de sistemas de EDOs, de modo a garantir estabilidade numérica do método, mesmo utilizando leis de controle descontínuas.
+
+Os trabalhos na área de projeto de controle serão feitos utilizando a metodologia desenvolvida de projeto de controladores robustos multivariáveis para mecanismos paralelos, baseada no modelo dinâmico do mecanismo a ser controlado e na técnica de controle por modos deslizantes.
+
+Os trabalhos no âmbito da validação experimental das leis de controle sintetizadas serão realizados no protótipo do mecanismo 2\underline{R}SU + \underline{P}PaP desenvolvido no laboratório de mecanismos. A bancada experimental já está funcional e já estão sendo feitos testes de leis de controle de trajetória baseadas apenas no modelo cinemático do mecanismo. Para realização da validação experimental, será realizada a identificação dos parâmetros do sistema e suas respectivas incertezas, projeto do controlador baseado nos parâmetros e incertezas identificadas, e implementação das leis de controle e aquisição de dados em ambiente Labview.
+
 
 %---PUBLICAÇÕES---------------------------------------------------------
 \newpage
