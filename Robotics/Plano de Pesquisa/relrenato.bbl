@@ -84,18 +84,28 @@ G. M. Dobrianskyj, A. G. Coutinho, T. A. H. Coelho.
 \newblock {\em Biomedical Robotics and Biomechatronics 2014 5th IEEE RAS EMBS International Conference on},
   819 -- 825, 2014.
 
+\bibitem{Cheng}
+H. Cheng, Y-K. Yiu, Z. Li.
+\newblock Dynamics and control of redundantly actuated parallel manipulators
+\newblock {\em Mechatronics, IEEE/ASME Transactions on}, 8(4): 483--491, 2003.
+
 \bibitem{20altuzarra}
-O. Altuzarra, P. M. Eggers, F. J. Campa, C. Roldan-Paraponiaris, C. Pinto, 
+O. Altuzarra, P. M. Eggers, F. J. Campa, C. Roldan-Paraponiaris, C. Pinto.
 \newblock Dynamic Modelling of Lower-Mobility Parallel Manipulators Using the Boltzmann-Hamel Equations
 \newblock {\em Mechanisms, Transmissions and Applications}, 31: 157--165, 2015.
 
+\bibitem{Abdellatif}
+H. Abdellatif, B. Heimann, J. Kotlarski, T. Ortmaier.
+\newblock Practical model-based and robust control of parallel manipulators using passivity and sliding mode theory
+\newblock Book chapter of {\em Robotics 2010: Current and Future Challenges}, InTech, 2010.
+
 \bibitem{21orsino}
-R. M. M. Orsino, T. A. H. Coelho, C. P. Pesce, 
+R. M. M. Orsino, T. A. H. Coelho, C. P. Pesce.
 \newblock Analytical mechanics approaches in the dynamic modelling of Delta mechanism
 \newblock {\em Robotica}, 33(4): 953--973, 2015.
 
 \bibitem{22orsino}
-R. M. M. Orsino, A. G. Coutinho, T. A. H. Coelho,
+R. M. M. Orsino, A. G. Coutinho, T. A. H. Coelho.
 \newblock Dynamic modelling and control of balanced parallel mechanisms.
 \newblock Book chapter of {\em Dynamic Balancing of Mechanisms and Synthesizing of Parallel Robots}, Springer, 2016 (in press).
 
