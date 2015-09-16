@@ -99,6 +99,21 @@ H. Abdellatif, B. Heimann, J. Kotlarski, T. Ortmaier.
 \newblock Practical model-based and robust control of parallel manipulators using passivity and sliding mode theory
 \newblock Book chapter of {\em Robotics 2010: Current and Future Challenges}, InTech, 2010.
 
+\bibitem{Li}
+Y. Li and Q. Xu.
+\newblock Dynamic modeling and robust control of a 3-PRC translational parallel kinematic machine
+\newblock {\em Robotics and Computer-Integrated Manufacturing}, 25(3): 630--640, 2009.
+
+\bibitem{Linda}
+O. Linda and M. Manic.
+\newblock Uncertainty-robust design of interval type-2 fuzzy logic controller for delta parallel robot
+\newblock {\em Industrial Informatics, IEEE Transactions on}, 7(4): 661--670, 2011.
+
+\bibitem{Chen}
+S-L. Chen and Y-C. Tsai 
+\newblock Contouring control of a parallel mechanism based on equivalent errors
+\newblock {\em American Control Conference, 2008}, 2384--2388, 2008.
+
 \bibitem{21orsino}
 R. M. M. Orsino, T. A. H. Coelho, C. P. Pesce.
 \newblock Analytical mechanics approaches in the dynamic modelling of Delta mechanism
@@ -113,5 +128,8 @@ R. M. M. Orsino, A. G. Coutinho, T. A. H. Coelho.
 R. M. M. Orsino, T. A. H. Coelho (2015).
 \newblock A contribution on the modular modelling of multibody systems.
 \newblock Manuscript submitted for publication
+
+
+
 
 \end{thebibliography}
