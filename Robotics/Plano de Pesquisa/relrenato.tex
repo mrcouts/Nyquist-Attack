@@ -98,55 +98,40 @@ Prof. Dr. Tarcísio A. Hess Coelho
 	Atualmente novas metodologias para modelagem de dinâmica multicorpos que se mostram muito mais adequadas para aplicações em qualquer tipo de mecanismo estão sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando também orientado pelo professor Dr. Tarcísio Coelho \cite{Orsino2013, Apostila}.
 	
 	Outro assunto relevante ainda pouco estudado por pesquisadores é o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como já foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os métodos tradicionais, ainda são poucos os estudos de implementação de técnicas de controle em mecanismos de cadeia fechada. Sendo assim, é possível aliar as novas metodologias de modelagem desenvolvidas à implementação, adaptação e aprimoramentos de algoritmos de controle não-linear voltados a mecanismos paralelos \cite{Craig}. Além disso é possível aproveitar os novos métodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementação de leis de controle utilizando variáveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
+	
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.2]{Mecanismo.jpeg}  
+	\caption{Mecanismo 2\underline{R}SU + \underline{P}PaP}
+	\label{fig:Mecanismo}
+\end{figure}
 
 
 %OBJETIVOS E JUSTIFICATIVAS--------------------------------------------
 \newpage
 \section{Objetivos}\label{objetivos}
 
-A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorpos para implementar, adaptar e aprimorar algoritmos de controle não-linear para mecanismos paralelos. Possui diferenciação em relação a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda são pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda não são tão explorados, e estuda técnicas de controle não-linear, inclusive a possibilidade da utilização de variáveis redundantes em sistemas de controle, fato não muito comum na literatura.
+A proposta atual \'e a utiliza\c{c}\~ao de novos m\'etodos de modelagem din\^amica multicorpos para implementar, adaptar e aprimorar algoritmos de controle n\~ao linear para mecanismos paralelos. Possui diferencia\c{c}\~ao em rela\c{c}\~ao a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda s\~ao pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda n\~ao s\~ao t\~ao explorados, e estuda t\'ecnicas de controle n\~ao linear, inclusive a utiliza\c{c}\~ao de vari\'aveis redundantes em sistemas de controle, algo n\~ao muito comum na literatura.
+
+Os principais objetivos do projeto s\~ao:
+\begin{itemize}
+\item Desenvolvimento de um algoritmo para dedu\c{c}\~ao das equa\c{c}\~oes diferenciais de movimento de mecanismos de arquiteturas serial e paralela com v\'inculos de natureza hol\^onoma (baseado na metodologia de Orsino e nas equa\c{c}\~oes de Gibbs-Appell e Maggi) que possua as seguintes caracter\'isticas:
+\begin{itemize}
+\item Considere todos os efeitos da din\^amica de corpos r\'igidos.
+\item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
+\item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
+\end{itemize}
+\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
+\item Elabora\c{c}\~ao de leis de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.
+\item Realizar simula\c{c}\~oes e valida\c{c}\~oes experimentais das leis de controle propostas.
+\end{itemize}
+
+%A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorpos para implementar, adaptar e aprimorar algoritmos de controle não-linear para mecanismos paralelos. Possui diferenciação em relação a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda são pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda não são tão explorados, e estuda técnicas de controle não-linear, inclusive a possibilidade da utilização de variáveis redundantes em sistemas de controle, fato não muito comum na literatura.
 
 
 %RESULTADOS--------------------------------------------------------------------
 \newpage
 \section{Metodologia do projeto}\label{method}
-
-Serão realizados as seguintes etapas para a realização da proposta:
-
-\begin{itemize}
-
-\item[(1)] 	Modelagem cinemática do mecanismo 2\underline{R}SU + \underline{P}PaP
-\item[(2)] 	Modelagem dinâmica do mecanismo
-\item[(3)] Simulação dinâmica inversa do mecanismo
-\item[(4)] Simulação dinâmica direta do mecanismo utilizando leis de Controle por Torque Computado
-\item[(5)] Identificação dos parâmetros do sistema e suas respectivas incertezas, utilizando o protótipo
-\item[(6)] Projeto de controlador por modos deslizantes
-\item[(7)] Simulação do sistema em malha fechada, utilizando o controlador projetado
-\item[(8)] Preparo para o exame de qualificação
-\item[(9)] Validação experimental do controlador projetado, utilizando o protótipo
-\item[(10)] Escrever artigo sobre uma nova abordagem para modelagem dinâmica de mecanismos seriais, utilizando o método Orsino de acoplamento de subsistemas, aliado aos parâmetros de Denavit-Hartenberg
-\item[(11)] Escrever artigo sobre modelagem dinâmica de mecanismos paralelos, utilizando o método Orsino de acoplamento de subsistemas
-\item[(12)] Escrever artigo sobre controle não linear robusto aplicado a mecanismos paralelos
-\item[(13)] Avaliação geral dos resultados
-\item[(14)] Preparo da tese
-
-
- 
-
-%\item[(1)] 	Cumprimentos dos créditos de pós-graduação.
-%\item[(2)] 	Pesquisa e revisão bibliográfica da literatura para o desenvolvimento teórico.
-%\item[(3)] 	Estudo dos aprimoramentos dos métodos de Lagrange, Kane e PTV, desenvolvidos no grupo de pesquisa do professor Dr. Tarcísio Coelho.
-%\item[(4)] 	Aplicação dos métodos em diferentes mecanismos paralelos.
-%\item[(5)] 	Discussão e comparação entre os resultados obtidos utilizando cada um dos métodos aplicados.
-%\item[(6)] 	Simulação da dinâmica inversa para os mecanismos escolhidos.
-%\item[(7)]  Estudo de técnicas de controle não-linear.
-%\item[(8)] 	Simulação da dinâmica direta utilizando as técnicas de controle estudadas.
-%\item[(9)] 	Inclusão de variáveis redundantes nas leis de controle estudadas.
-%\item[(10)] Simulação da dinâmica direita utilizando as técnicas de controle com variáveis redundantes.
-%\item[(11)] 	Comparação e análise dos resultados obtidos utilizando as leis de controles implementadas em simulação.
-%\item[(12)] 	Avaliação geral dos resultados.
-%\item[(13)] Preparo da dissertação.
-\end{itemize}
 
 %---PUBLICAÇÕES---------------------------------------------------------
 \newpage
@@ -198,7 +183,41 @@ na qual tamb\'em foi obtido conceito A.
 \newpage
 \section{Cronograma de Atividades do Projeto}\label{atividades}
 
-Aqui segue um cronograma estimado para realização das atividades propostas no tópicos de Metologias:
+Serão realizados as seguintes etapas para a realização da proposta:
+
+\begin{itemize}
+
+\item[(1)] 	Modelagem cinemática do mecanismo 2\underline{R}SU + \underline{P}PaP
+\item[(2)] 	Modelagem dinâmica do mecanismo
+\item[(3)] Simulação dinâmica inversa do mecanismo
+\item[(4)] Simulação dinâmica direta do mecanismo utilizando leis de Controle por Torque Computado
+\item[(5)] Identificação dos parâmetros do sistema e suas respectivas incertezas, utilizando o protótipo
+\item[(6)] Projeto de controlador por modos deslizantes
+\item[(7)] Simulação do sistema em malha fechada, utilizando o controlador projetado
+\item[(8)] Preparo para o exame de qualificação
+\item[(9)] Validação experimental do controlador projetado, utilizando o protótipo
+\item[(10)] Escrever artigo sobre uma nova abordagem para modelagem dinâmica de mecanismos seriais, utilizando o método Orsino de acoplamento de subsistemas, aliado aos parâmetros de Denavit-Hartenberg
+\item[(11)] Escrever artigo sobre modelagem dinâmica de mecanismos paralelos, utilizando o método Orsino de acoplamento de subsistemas
+\item[(12)] Escrever artigo sobre controle não linear robusto aplicado a mecanismos paralelos
+\item[(13)] Avaliação geral dos resultados
+\item[(14)] Preparo da tese
+
+%\item[(1)] 	Cumprimentos dos créditos de pós-graduação.
+%\item[(2)] 	Pesquisa e revisão bibliográfica da literatura para o desenvolvimento teórico.
+%\item[(3)] 	Estudo dos aprimoramentos dos métodos de Lagrange, Kane e PTV, desenvolvidos no grupo de pesquisa do professor Dr. Tarcísio Coelho.
+%\item[(4)] 	Aplicação dos métodos em diferentes mecanismos paralelos.
+%\item[(5)] 	Discussão e comparação entre os resultados obtidos utilizando cada um dos métodos aplicados.
+%\item[(6)] 	Simulação da dinâmica inversa para os mecanismos escolhidos.
+%\item[(7)]  Estudo de técnicas de controle não-linear.
+%\item[(8)] 	Simulação da dinâmica direta utilizando as técnicas de controle estudadas.
+%\item[(9)] 	Inclusão de variáveis redundantes nas leis de controle estudadas.
+%\item[(10)] Simulação da dinâmica direita utilizando as técnicas de controle com variáveis redundantes.
+%\item[(11)] 	Comparação e análise dos resultados obtidos utilizando as leis de controles implementadas em simulação.
+%\item[(12)] 	Avaliação geral dos resultados.
+%\item[(13)] Preparo da dissertação.
+\end{itemize}
+
+Aqui segue um cronograma estimado para realização das atividades propostas:
 
 \begin{table}[!ht]
 \begin{center}
