@@ -34,7 +34,7 @@ E. Jarzebowska.
 \newblock Quasi-coordinates based dynamics modeling and control design for
   nonholonomic systems.
 \newblock {\em Nonlinear Analysis: Theory, Methods and Applications},
-  71(12):e118 -- e131, 2009.
+  71(12):118 -- 131, 2009.
 
 \bibitem{Merlet2002}
 J-P. Merlet.
@@ -59,7 +59,7 @@ A.M. Bloch, M. Reyhanoglu, N.H. McClamroch.
 \newblock {\em Automatic Control, IEEE Transactions on}, 1992.
 
 \bibitem{Khalil}
-W. Khalil and Dombre E.
+W. Khalil and E. Dombre.
 \newblock {\em {Modeling, Identification and Control of Robots}}.
 \newblock Taylor \& Francis, 2002.
 
@@ -78,11 +78,26 @@ J-J. E. Slotine and W. Li.
 \newblock {\em {Applied nonlinear control}}.
 \newblock Prentice Hall, 1991.
 
+\bibitem{Utkin}
+V. Utkin, J. Guldner, J. Shi.
+\newblock {\em {Sliding mode control in electro-mechanical systems}}.
+\newblock  Vol. 34. CRC press, 2009.
+
 \bibitem{Biorob}
 G. M. Dobrianskyj, A. G. Coutinho, T. A. H. Coelho.
 \newblock Development of a controller for a 3-DOF robotic platform for user interaction in rehabilitation therapies.
 \newblock {\em Biomedical Robotics and Biomechatronics 2014 5th IEEE RAS EMBS International Conference on},
   819 -- 825, 2014.
+  
+\bibitem{Denavit}
+J. Denavit and R. S. Hartenberg.
+\newblock A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.
+\newblock {\em Journal of Applied Mechanics}, 215--221, June 1955.
+  
+\bibitem{Lipkin}
+H. Lipkin. 
+\newblock A note on denavit-hartenberg notation in robotics.
+\newblock {\em ASME 2005 International Design Engineering Technical Conferences and Computers and Information in Engineering Conference}, 921--926, 2005.
 
 \bibitem{Cheng}
 H. Cheng, Y-K. Yiu, Z. Li.
@@ -97,7 +112,7 @@ O. Altuzarra, P. M. Eggers, F. J. Campa, C. Roldan-Paraponiaris, C. Pinto.
 \bibitem{Abdellatif}
 H. Abdellatif, B. Heimann, J. Kotlarski, T. Ortmaier.
 \newblock Practical model-based and robust control of parallel manipulators using passivity and sliding mode theory
-\newblock Book chapter of {\em Robotics 2010: Current and Future Challenges}, InTech, 2010.
+\newblock {\em Robotics 2010: Current and Future Challenges}, InTech, 2010.
 
 \bibitem{Li}
 Y. Li and Q. Xu.
@@ -110,7 +125,7 @@ O. Linda and M. Manic.
 \newblock {\em Industrial Informatics, IEEE Transactions on}, 7(4): 661--670, 2011.
 
 \bibitem{Chen}
-S-L. Chen and Y-C. Tsai 
+S-L. Chen and Y-C. Tsai. 
 \newblock Contouring control of a parallel mechanism based on equivalent errors
 \newblock {\em American Control Conference, 2008}, 2384--2388, 2008.
 
@@ -121,13 +136,19 @@ R. M. M. Orsino, T. A. H. Coelho, C. P. Pesce.
 
 \bibitem{22orsino}
 R. M. M. Orsino, A. G. Coutinho, T. A. H. Coelho.
-\newblock Dynamic modelling and control of balanced parallel mechanisms.
-\newblock Book chapter of {\em Dynamic Balancing of Mechanisms and Synthesizing of Parallel Robots}, Springer, 2016 (in press).
+\newblock Dynamic modelling and control of balanced parallel mechanisms
+\newblock {\em Dynamic Balancing of Mechanisms and Synthesizing of Parallel Robots}, Springer, 2016 (in press).
 
 \bibitem{23orsino}
-R. M. M. Orsino, T. A. H. Coelho (2015).
+R. M. M. Orsino and T. A. H. Coelho (2015).
 \newblock A contribution on the modular modelling of multibody systems.
 \newblock Manuscript submitted for publication
+
+\bibitem{Coutinho}
+A. G. Coutinho and T. A. H. Coelho (2015).
+\newblock A new approach for obtaining the dynamic balancing conditions in serial mechanisms.
+\newblock Manuscript submitted for publication
+
 
 
 

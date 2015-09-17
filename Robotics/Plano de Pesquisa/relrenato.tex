@@ -97,35 +97,31 @@ Devido à difícil obtenção e alta complexidade do modelo dinâmico, o controle de 
 
 %	Devido à grande dificuldade de se obter o modelo dinâmico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande domínio sobre a dinâmica dos sistema, como plataformas robóticas voltadas a reabilitação, pois é necessário um conhecimento detalhado do comportamento dinâmico do mecanismo utilizado para poder controlar as forças de interação entre o mecanismo e o paciente \cite{Andre}.
 	
-	Atualmente novas metodologias para modelagem de dinâmica multicorpos que se mostram muito mais adequadas para aplicações em qualquer tipo de mecanismo estão sendo desenvolvidas, das quais se destaca o trabalho realizado por Renato Orsino, doutorando também orientado pelo professor Dr. Tarcísio Coelho \cite{Apostila, Orsino2013, 21orsino, 22orsino, 23orsino}.
+	Atualmente novas metodologias para modelagem de dinâmica multicorpos que se mostram muito mais adequadas para aplicações em qualquer tipo de mecanismo estão sendo desenvolvidas \cite{Jarzebowska2009,Cheng, 20altuzarra}, das quais se destaca o trabalho realizado por Renato Orsino, doutorando também orientado pelo professor Dr. Tarcísio Coelho \cite{Apostila, Orsino2013, 21orsino, 22orsino, 23orsino}.
 	
 	Outro assunto relevante ainda pouco estudado por pesquisadores é o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como já foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os métodos tradicionais, ainda são poucos os estudos de implementação de técnicas de controle em mecanismos de cadeia fechada. Sendo assim, é possível aliar as novas metodologias de modelagem desenvolvidas à implementação, adaptação e aprimoramentos de algoritmos de controle não-linear voltados a mecanismos paralelos \cite{Craig}. Além disso é possível aproveitar os novos métodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementação de leis de controle utilizando variáveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
-	
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.2]{Mecanismo.jpeg}  
-	\caption{Mecanismo 2\underline{R}SU + \underline{P}PaP}
-	\label{fig:Mecanismo}
-\end{figure}
 
 
 %OBJETIVOS E JUSTIFICATIVAS--------------------------------------------
 \newpage
 \section{Objetivos}\label{objetivos}
 
-A proposta atual \'e a utiliza\c{c}\~ao de novos m\'etodos de modelagem din\^amica multicorpos para implementar, adaptar e aprimorar algoritmos de controle n\~ao linear para mecanismos paralelos. Possui diferencia\c{c}\~ao em rela\c{c}\~ao a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda s\~ao pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda n\~ao s\~ao t\~ao explorados, e estuda t\'ecnicas de controle n\~ao linear, inclusive a utiliza\c{c}\~ao de vari\'aveis redundantes em sistemas de controle, algo n\~ao muito comum na literatura.
+%A proposta atual \'e a utiliza\c{c}\~ao de novos m\'etodos de modelagem din\^amica multicorpos para implementar, adaptar e aprimorar algoritmos de controle n\~ao linear para mecanismos paralelos. Possui diferencia\c{c}\~ao em rela\c{c}\~ao a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda s\~ao pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda n\~ao s\~ao t\~ao explorados, e estuda t\'ecnicas de controle n\~ao linear, inclusive a utiliza\c{c}\~ao de vari\'aveis redundantes em sistemas de controle, algo n\~ao muito comum na literatura.
 
 Os principais objetivos do projeto s\~ao:
 \begin{itemize}
-\item Desenvolvimento de um algoritmo para dedu\c{c}\~ao das equa\c{c}\~oes diferenciais de movimento de mecanismos de arquiteturas serial e paralela com v\'inculos de natureza hol\^onoma (baseado na metodologia de Orsino e nas equa\c{c}\~oes de Gibbs-Appell e Maggi) que possua as seguintes caracter\'isticas:
+\item Desenvolvimento de um algoritmo para dedu\c{c}\~ao das equa\c{c}\~oes diferenciais de movimento de mecanismos de arquiteturas serial e paralela com v\'inculos de natureza hol\^onoma (baseado na utilização dos parâmetros de Denavit-Hartenberg \cite{Craig, Denavit, Lipkin} e no método Orsino de acoplamento de subsistemas \cite{23orsino}) que possua as seguintes caracter\'isticas:
 \begin{itemize}
-\item Considere todos os efeitos da din\^amica de corpos r\'igidos.
+\item Considere todos os efeitos da din\^amica de corpos r\'igidos, inclusive atritos nas juntas.
 \item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
 \item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
 \end{itemize}
-\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao linear robusto, baseado na t\'ecnica de controle por modos deslizantes, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante, com incertezas param\'etricas.
-\item Elabora\c{c}\~ao de leis de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.
-\item Realizar simula\c{c}\~oes e valida\c{c}\~oes experimentais das leis de controle propostas.
+\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao linear robusto, baseado na t\'ecnica de controle por modos deslizantes \cite{Slotini, Utkin}, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante \cite{Cheng}, com incertezas param\'etricas.
+%\item Elabora\c{c}\~ao de leis de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.,
+\item Realizar a modelagem cinemática e dinâmica do mecanismo 2\underline{R}SU+\underline{P}PaP \cite{Kumazawa}, utilizando o algoritmo de modelagem desenvolvido.
+\item Realizar o projeto de um controlador de trajetória para o mecanismo escolhido, utilizando a metodologia de projeto de controle proposta.
+\item Realizar simula\c{c}\~oes dinâmicas das leis de controle sintetizadas.
+\item Realizar a validação experimental do controlador projetado no protótipo do mecanismo escolhido, que se encontra no laboratório de mecanismos.
 \end{itemize}
 
 %A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorpos para implementar, adaptar e aprimorar algoritmos de controle não-linear para mecanismos paralelos. Possui diferenciação em relação a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda são pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda não são tão explorados, e estuda técnicas de controle não-linear, inclusive a possibilidade da utilização de variáveis redundantes em sistemas de controle, fato não muito comum na literatura.
@@ -138,12 +134,19 @@ Os principais objetivos do projeto s\~ao:
 O estágio atual de desenvolvimento do presente projeto ocorre basicamente em três áreas:
 a realização da modelagem e simulação cinemática e dinâmica do mecanismo 2\underline{R}SU + \underline{P}PaP \cite{Kumazawa}, o projeto de um controlador não linear multivariável robusto baseado no modelo dinâmico, e a validação experimental das leis de controle sintetizadas.
 
-Os trabalhos no âmbito de modelagem e simulação estão sendo desenvolvidos a partir da aplicação do algoritmo genérico  de modelagem cinemática e dinâmica de mecanismos paralelos desenvolvido, baseado na utilização dos parâmetros de Denavit-Hartenberg e no método Orsino de acoplamento de subsistemas \cite{23orsino}. Toda modelagem será feita em Python, utilizando uma biblioteca de manipulação simbólica (SymPy).
+Os trabalhos no âmbito de modelagem e simulação estão sendo desenvolvidos a partir da aplicação do algoritmo genérico  de modelagem cinemática e dinâmica de mecanismos paralelos desenvolvido, baseado na utilização dos parâmetros de Denavit-Hartenberg \cite{Craig, Denavit, Lipkin} e no método Orsino de acoplamento de subsistemas \cite{23orsino}. Toda modelagem será feita em Python, utilizando uma biblioteca de manipulação simbólica (SymPy).
 As simulações da dinâmica direta do mecanismo serão feitas utilizando métodos implícitos de solução de sistemas de EDOs, de modo a garantir estabilidade numérica do método, mesmo utilizando leis de controle descontínuas.
 
-Os trabalhos na área de projeto de controle serão feitos utilizando a metodologia desenvolvida de projeto de controladores robustos multivariáveis para mecanismos paralelos, baseada no modelo dinâmico do mecanismo a ser controlado e na técnica de controle por modos deslizantes \cite{Slotini}.
+Os trabalhos na área de projeto de controle serão feitos utilizando a metodologia desenvolvida de projeto de controladores robustos multivariáveis para mecanismos paralelos, baseada no modelo dinâmico do mecanismo a ser controlado e na técnica de controle por modos deslizantes \cite{Slotini, Utkin}.
 
-Os trabalhos no âmbito da validação experimental das leis de controle sintetizadas serão realizados no protótipo do mecanismo 2\underline{R}SU + \underline{P}PaP que encontra-se no laboratório de mecanismos. A bancada experimental já está funcional e já estão sendo realizados ensaios de leis de controle de trajetória baseadas apenas no modelo cinemático do mecanismo. Para realização da validação experimental, será realizada a identificação dos parâmetros do sistema e suas respectivas incertezas, projeto do controlador baseado nos parâmetros e incertezas identificadas, e implementação das leis de controle e aquisição de dados em ambiente Labview.
+Os trabalhos no âmbito da validação experimental das leis de controle sintetizadas serão realizados no protótipo do mecanismo 2\underline{R}SU + \underline{P}PaP que encontra-se no laboratório de mecanismos. A bancada experimental já está funcional e já estão sendo realizados ensaios de leis de controle de trajetória baseadas apenas no modelo cinemático do mecanismo. Para realização da validação experimental, será realizada a identificação dos parâmetros do sistema e suas respectivas incertezas, projeto do controlador baseado nos parâmetros e incertezas identificadas, e implementação das leis de controle e aquisição de dados em ambiente Labview. \\
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.2]{Mecanismo.jpeg}  
+	\caption{Mecanismo 2\underline{R}SU + \underline{P}PaP}
+	\label{fig:Mecanismo}
+\end{figure}
 
 
 %---PUBLICAÇÕES---------------------------------------------------------
@@ -156,13 +159,13 @@ A partir dos resultados obtidos no trabalho de formatura realizado na gradua\c{c
 Um cap\' itulo do livro {\em Dynamic balancing of mechanisms and synthesizing of parallel
 robots}  (editado pelo Prof. Dr. Dan Zhang da Universidade do Instituto de Tecnologia
 de Ontario e a ser publicado pela editora Springer), denominado ``Dynamic modelling
-and control of balanced parallel mechanisms" foi escrito em coautoria com o aluno de
+and control of balanced parallel mechanisms'' \cite{22orsino} foi escrito em coautoria com o aluno de
 doutorado direto Renato M. M. Orsino e com o Prof. Dr. Tarc\'isio Antonio Hess Coelho.
 Este cap\'itulo de livro trata do uso de uma metodologia de modelagem modular para o
 balanceamento adaptativo e desenvolvimento de algoritmos de controle para mecanismos
 rob\'oticos paralelos. A revis\~ao pelos editores e autores j\'a foi realizada e em breve ser\'a feita a publica\c{c}\~ao.
 
-Um artigo submetido para o {\em  Special Issue on: ``Dynamic Balancing of Mechanisms and Parallel Robots'' } do peri\'odico International Journal of Mechanisms and Robotic Systems, denominado ``A new approach for obtaining the dynamic balancing conditions in serial mechanisms'', o qual foi escrito em coautoria com o Prof. Dr. Tarc\'isio Antonio Hess Coelho. O artigo já foi aceito e está em fase de revisão gramatical e ortográfica, realizada pelos autores.
+Um artigo submetido para o {\em  Special Issue on: ``Dynamic Balancing of Mechanisms and Parallel Robots'' } do peri\'odico International Journal of Mechanisms and Robotic Systems, denominado ``A new approach for obtaining the dynamic balancing conditions in serial mechanisms'' \cite{Coutinho}, o qual foi escrito em coautoria com o Prof. Dr. Tarc\'isio Antonio Hess Coelho. O artigo já foi aceito e está em fase de revisão gramatical e ortográfica, realizada pelos autores.
 
 
 %---DISCIPLINAS CURSADAS---------------------------------------------------------
@@ -209,7 +212,7 @@ Serão realizados as seguintes etapas para a realização da proposta:
 \item[(7)] Simulação do sistema em malha fechada, utilizando o controlador projetado
 \item[(8)] Preparo para o exame de qualificação
 \item[(9)] Validação experimental do controlador projetado, utilizando o protótipo
-\item[(10)] Escrever artigo sobre uma nova abordagem para modelagem dinâmica de mecanismos seriais, utilizando o método Orsino de acoplamento de subsistemas, aliado aos parâmetros de Denavit-Hartenberg
+\item[(10)] Escrever artigo sobre uma nova abordagem para modelagem dinâmica de mecanismos seriais, utilizando o método Orsino de acoplamento de subsistemas, aliado aos parâmetros de Denavit-Hartenberg \cite{Craig, Denavit, Lipkin}
 \item[(11)] Escrever artigo sobre modelagem dinâmica de mecanismos paralelos, utilizando o método Orsino de acoplamento de subsistemas
 \item[(12)] Escrever artigo sobre controle não linear robusto aplicado a mecanismos paralelos
 \item[(13)] Avaliação geral dos resultados
