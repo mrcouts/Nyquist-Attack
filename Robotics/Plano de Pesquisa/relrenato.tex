@@ -91,24 +91,26 @@ Prof. Dr. Tarcísio A. Hess Coelho
 \newpage
 \section{Introdução}\label{intro}
 
-Os mecanismos de arquitetura paralela são amplamente utilizadas em simuladores de voo, simuladores automobilisticos, e tarefas de {\em pick-and-place}. Além disso, também são utilizados em sistemas de posicionamento, sistemas de medição, máquinas de usinagem, entre outras tarefas. 
+Os mecanismos de arquitetura paralela são amplamente utilizados em simuladores de voo, simuladores automobilisticos, e tarefas de {\em pick-and-place}. Além disso, também são empregados em sistemas de posicionamento, sistemas de medição, máquinas de usinagem, entre outras tarefas. 
 
-Há uma série de vantagens em utilizar mecanismos paralelos no lugar dos tradicionais seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precisão de posicionamento, alta rigidez estrutural, e uma redução significativa na inércia \cite{Merlet2002, Khalil, Tsai, Cheng}. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}.
+Há uma série de vantagens em utilizar mecanismos paralelos no lugar dos tradicionais seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precisão de posicionamento, alta rigidez estrutural, e uma redução significativa na inércia \cite{Merlet2002, Khalil, Tsai, Cheng}. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de instalação de todos os motores na base imóvel do mecanismo. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e de difícil obtenção \cite{Rynaldo, Merlet2002}.
 %As maiores vantagens em utilizar mecanismos paralelos no lugar dos tradicionais mecanismos seriais são sua grande capacidade de carga, alta precisão de posicionamento do efetuador, alta rigidez estrutural, e uma redução significativa na inércia \cite{Merlet2002, Khalil, Tsai, Cheng}. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.21]{theadeptquat.jpg}  
+	\includegraphics[scale=0.18]{theadeptquat.jpg}  
 	\caption{Robô industrial Adept Quattro}
 	\label{fig:Mecanismo}
 \end{figure}
 
 %	Há uma série de vantagens em utilizar mecanismos de cadeia cinemática paralela no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precisão de posicionamento do efetuador, alta rigidez estrutural, e uma redução significativa na inércia \cite{Merlet2002, Khalil, Tsai, Cheng}. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}. 
-Devido à difícil obtenção e alta complexidade do modelo dinâmico, o controle de mecanismos de arquitetura paralela é uma tarefa desafiadora. A utilização de modelos dinâmicos simplificados limita o desempenho do projeto de controladores baseados no modelo. Porém, mesmo tendo conseguido obter o modelo dinâmico completo, técnicas de controle não linear tradicionais que realizam compensação das não linearidades do sistema \cite{Craig, Slotini} podem gerar leis de controle com custo computacional muito elevado. Esse paradigma contribui com a falta de estratégias de controle apropriadas para esse tipo de mecanismos, e consequentemente uma exploração não satisfatória dos potenciais promissores de tais máquinas, como resposta dinâmica rápida e alta precisão \cite{Abdellatif}.
+Levando-se em conta esta dificuldade de obtenção e a complexidade inerente do modelo dinâmico, o controle de mecanismos de arquitetura paralela é uma tarefa desafiadora. A utilização de modelos dinâmicos simplificados limita o desempenho do projeto de controladores baseados no modelo. Porém, mesmo na hipótesez do modelo dinâmico completo estar disponível, o emprego de técnicas de controle não linear pode acarretar um custo  computacional muito elevado \cite{Craig, Zubizarreta, Slotini}. Este paradigma, aliado à falta de estratégias de controle apropriadas para esse tipo de mecanismos, resulta na exploração insatisfatória dos potenciais promissores de tais máquinas, como resposta dinâmica rápida e alta precisão \cite{Abdellatif}. Além disso, observa-se na literatura a escassez de trabalhos publicados com comprovação experimental de técnicas de controle aplicáveis a mecanismos paralelos \cite{Rynaldo}.
 
 %	Devido à grande dificuldade de se obter o modelo dinâmico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande domínio sobre a dinâmica dos sistema, como plataformas robóticas voltadas a reabilitação, pois é necessário um conhecimento detalhado do comportamento dinâmico do mecanismo utilizado para poder controlar as forças de interação entre o mecanismo e o paciente \cite{Andre}.
 	
-	Visto que atualmente estão sendo desenvolvidas novas metodologias para modelagem dinâmica multicorpos que se mostram muito mais adequadas para aplicações em mecanismos paralelos, das quais se destacam os trabalhos de Orsino et. al. \cite{Orsino2013, 21orsino, 22orsino, 23orsino}, é possível aliar essas novas metodologias a técnicas de controle não linear robusto, como o controle por modos deslizantes \cite{Slotini, Utkin}, para sintetizar leis de controle de alto desempenho e custo computacional mais adequado, de modo a tornar possível uma maior exploração dos potenciais promissores dos manipuladores paralelos.
+    Uma alternativa para a superação desta dificuldade seria a combinação de técnicas de controle não linear robusto (por exemplo, controle por modos deslizantes \cite{Slotini, Utkin}) com modelos dinâmicos completos de mecanismos paralelos, desenvolvidos a partir de novas metodologias de modelagem de sistemas multicorpos \cite{Orsino2013, 21orsino, 22orsino, 23orsino}. Com esta estratégia, torna-se possível sintetizar leis de controle de alto desempenho e custo computacional mais adequado, viabilizando a exploração do potencial promissor dos mecanismos paralelos.
+	
+%	Visto que atualmente estão sendo desenvolvidas novas metodologias para modelagem dinâmica multicorpos que se mostram muito mais adequadas para aplicações em mecanismos paralelos, das quais se destacam os trabalhos de Orsino et. al. \cite{Orsino2013, 21orsino, 22orsino, 23orsino}, é possível aliar essas novas metodologias a técnicas de controle não linear robusto, como o controle por modos deslizantes \cite{Slotini, Utkin}, para sintetizar leis de controle de alto desempenho e custo computacional mais adequado, de modo a tornar possível uma maior exploração dos potenciais promissores dos manipuladores paralelos.
 	
 %	Outro assunto relevante ainda pouco estudado por pesquisadores é o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como já foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os métodos tradicionais, ainda são poucos os estudos de implementação de técnicas de controle em mecanismos de cadeia fechada. Sendo assim, é possível aliar as novas metodologias de modelagem desenvolvidas à implementação, adaptação e aprimoramentos de algoritmos de controle não-linear voltados a mecanismos paralelos \cite{Craig}. 
 	
@@ -123,13 +125,14 @@ Devido à difícil obtenção e alta complexidade do modelo dinâmico, o controle de 
 
 Os principais objetivos do projeto s\~ao:
 \begin{itemize}
-\item Desenvolvimento de um algoritmo para dedu\c{c}\~ao das equa\c{c}\~oes diferenciais de movimento de mecanismos de arquiteturas serial e paralela com v\'inculos de natureza hol\^onoma (baseado na utilização dos parâmetros de Denavit-Hartenberg \cite{Craig, Denavit, Lipkin} e no método Orsino de acoplamento de subsistemas \cite{23orsino}) que possua as seguintes caracter\'isticas:
-\begin{itemize}
-\item Considere todos os efeitos da din\^amica de corpos r\'igidos, inclusive atritos nas juntas.
-\item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
-\item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
-\end{itemize}
-\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao linear robusto de alto desempenho, baseado na t\'ecnica de controle por modos deslizantes \cite{Slotini, Utkin}, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante \cite{Cheng}, com incertezas param\'etricas, que torne possível sintetizar leis de controle com custo computacional consideralvemente menor que o tradicioanal Controle por Torque Computado \cite{Craig}.
+\item Desenvolvimento de um algoritmo gerador de modelos dinâmicos completos de mecanismos paralelos, de forma explícita. Pretende-se utilizar a metodologia proposta por Orsino et. al. \cite{23orsino} de acoplamento de subsistemas multicorpos.
+%\item Desenvolvimento de um algoritmo para dedu\c{c}\~ao das equa\c{c}\~oes diferenciais de movimento de mecanismos de arquiteturas serial e paralela com v\'inculos de natureza hol\^onoma (baseado na utilização dos parâmetros de Denavit-Hartenberg \cite{Craig, Denavit, Lipkin} e no método Orsino de acoplamento de subsistemas \cite{23orsino}) que possua as seguintes caracter\'isticas:
+%\begin{itemize}
+%\item Considere todos os efeitos da din\^amica de corpos r\'igidos, inclusive atritos nas juntas.
+%\item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
+%\item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
+%\end{itemize}
+\item Elabora\c{c}\~ao de uma metodologia de projeto de controlador n\~ao linear robusto, de alto desempenho, baseado na t\'ecnica de controle por modos deslizantes \cite{Slotini, Utkin}, aplicável a  mecanismos de arquitetura paralela. Para tanto, serão consideradas as incertezas param\'etricas e a possibilidade de atua\c{c}\~ao redundante \cite{Cheng},  além da síntese de leis de controle com custo computacional consideralvemente menor do que as tradicionais, que empregam o Controle por Torque Computado \cite{Craig, Zubizarreta}.
 %\item Elabora\c{c}\~ao de leis de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.,
 \item Realizar a modelagem cinemática e dinâmica do mecanismo 2\underline{R}SU+\underline{P}PaP \cite{Kumazawa}, utilizando o algoritmo de modelagem desenvolvido.
 \item Realizar o projeto de um controlador de trajetória para o mecanismo escolhido, utilizando a metodologia de projeto de controle proposta.
@@ -137,7 +140,7 @@ Os principais objetivos do projeto s\~ao:
 \item Realizar a validação experimental do controlador projetado no protótipo do mecanismo escolhido, que se encontra no laboratório de mecanismos.
 \end{itemize}
 
-É importante ressaltar que os dois primeiros objetivos citados já foram alcançados e que a arquitetura paralela 2\underline{R}SU+\underline{P}PaP foi desenvolvida pelo grupo de pesquisa do Prof. Dr. Tarcio Antonio Hess Coelho, havendo ainda poucos estudos na literatura sobre esta arquitetura. Sendo assim, pode-se afirmar que simulações dinâmicas e validações experimentais de leis de controle não-linear robusto neste mecanismo tem caráter inédito.
+É importante ressaltar que os dois primeiros objetivos citados já foram alcançados e que a arquitetura paralela 2\underline{R}SU+\underline{P}PaP foi desenvolvida pelo grupo de pesquisa do Prof. Dr. Tarcio Antonio Hess Coelho, havendo ainda poucos estudos na literatura sobre ela. Sendo assim, pode-se afirmar que simulações dinâmicas e validações experimentais de leis de controle não-linear robusto neste mecanismo tem caráter inédito.
 
 %A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorpos para implementar, adaptar e aprimorar algoritmos de controle não-linear para mecanismos paralelos. Possui diferenciação em relação a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda são pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda não são tão explorados, e estuda técnicas de controle não-linear, inclusive a possibilidade da utilização de variáveis redundantes em sistemas de controle, fato não muito comum na literatura.
 
@@ -168,26 +171,25 @@ Os trabalhos no âmbito da validação experimental das leis de controle sintetizad
 \newpage
 \section{Publicações}\label{publi}
 
-A partir dos resultados obtidos no trabalho de formatura realizado na gradua\c{c}\~ao, foi escrito um artigo denominado
-``Development of a controller for a 3-DOF robotic platform for user interaction in rehabilitation therapies'' \cite{Biorob}, o qual foi escrito pelo aluno em coautoria com Eng. Guilherme Martinho Dobrianskyj e seu orientador, Prof. Dr. Tarc\'isio Ant\^onio Hess Coelho. Foi aceito e apresentado no BioRob 2014 (IEEE International Conference on Biomedical Robotics and Biomechatronics) na se\c{c}\~ao de posters, no dia 15 de agosto de 2014. O artigo pode ser acessado por \url{http://dx.doi.org/10.1109/BIOROB.2014.6913880}.
+A partir dos resultados obtidos no trabalho de formatura realizado na gradua\c{c}\~ao, foi publicado um artigo intitulado ``Development of a controller for a 3-DOF robotic platform for user interaction in rehabilitation therapies'' \cite{Biorob}, o qual foi escrito pelo aluno em coautoria com Eng. Guilherme Martinho Dobrianskyj e seu orientador, Prof. Dr. Tarc\'isio Ant\^onio Hess Coelho. Este trabalho foi apresentado no BioRob 2014 (IEEE International Conference on Biomedical Robotics and Biomechatronics) na se\c{c}\~ao de posters, no dia 15 de agosto de 2014. O artigo pode ser acessado por \url{http://dx.doi.org/10.1109/BIOROB.2014.6913880}.
 
-Um cap\' itulo do livro {\em Dynamic balancing of mechanisms and synthesizing of parallel
+Um cap\' itulo de livro, intitulado ``Dynamic modelling
+and control of balanced parallel mechanisms'' \cite{22orsino}, foi escrito em coautoria com o aluno de
+doutorado direto Renato M. M. Orsino e com o Prof. Dr. Tarc\'isio Antonio Hess Coelho, para o livro {\em Dynamic balancing of mechanisms and synthesizing of parallel
 robots}  (editado pelo Prof. Dr. Dan Zhang da Universidade do Instituto de Tecnologia
-de Ontario e a ser publicado pela editora Springer), denominado ``Dynamic modelling
-and control of balanced parallel mechanisms'' \cite{22orsino} foi escrito em coautoria com o aluno de
-doutorado direto Renato M. M. Orsino e com o Prof. Dr. Tarc\'isio Antonio Hess Coelho.
+de Ontario e a ser publicado pela editora Springer).
 Este cap\'itulo de livro trata do uso de uma metodologia de modelagem modular para o
 balanceamento adaptativo e desenvolvimento de algoritmos de controle para mecanismos
 rob\'oticos paralelos. A revis\~ao pelos editores e autores j\'a foi realizada e em breve ser\'a feita a publica\c{c}\~ao.
 
-Um artigo submetido para o {\em  Special Issue on: ``Dynamic Balancing of Mechanisms and Parallel Robots'' } do peri\'odico {\em International Journal of Mechanisms and Robotic Systems}, denominado ``A new approach for obtaining the dynamic balancing conditions in serial mechanisms'' \cite{Coutinho}, o qual foi escrito em coautoria com o Prof. Dr. Tarc\'isio Antonio Hess Coelho. O artigo já foi aceito e está em fase de revisão gramatical e ortográfica, realizada pelos autores.
+Um artigo, submetido para o {\em  Special Issue on: ``Dynamic Balancing of Mechanisms and Parallel Robots'' } do peri\'odico {\em International Journal of Mechanisms and Robotic Systems}, intitulado ``A new approach for obtaining the dynamic balancing conditions in serial mechanisms'' \cite{Coutinho}, foi escrito em coautoria com o Prof. Dr. Tarc\'isio Antonio Hess Coelho. O artigo já foi aceito e está em fase de revisão gramatical e ortográfica, realizada pelos autores.
 
 
 %---DISCIPLINAS CURSADAS---------------------------------------------------------
 \newpage
 \section{Disciplinas de pós-graduação}\label{disci}
 
-Ao longo do programa o aluno j\'a cumpriu 48 cr\'editos, tendo cursado 6 disciplinas 
+Ao longo do programa o aluno j\'a cumpriu 56 cr\'editos, tendo cursado 7 disciplinas 
 de p\'os-gradua\c{c}\~ao:
 \begin{itemize}
 \item PME--5004 --- Complementos de Matem\'atica I
@@ -229,7 +231,7 @@ Serão realizados as seguintes etapas para a realização da proposta:
 \item[(7)] Simulação do sistema em malha fechada, utilizando o controlador projetado
 \item[(8)] Preparo para o exame de qualificação
 \item[(9)] Validação experimental do controlador projetado, utilizando o protótipo
-\item[(10)] Escrever artigo sobre uma nova abordagem para modelagem dinâmica de mecanismos seriais, utilizando o método Orsino de acoplamento de subsistemas, aliado aos parâmetros de Denavit-Hartenberg \cite{Craig, Denavit, Lipkin}
+\item[(10)] Escrever artigo sobre uma nova abordagem para modelagem dinâmica de mecanismos seriais, utilizando o método Orsino de acoplamento de subsistemas \cite{23orsino}, aliado aos parâmetros de Denavit-Hartenberg \cite{Craig, Denavit, Lipkin}
 \item[(11)] Escrever artigo sobre modelagem dinâmica de mecanismos paralelos, utilizando o método Orsino de acoplamento de subsistemas
 \item[(12)] Escrever artigo sobre controle não linear robusto aplicado a mecanismos paralelos
 \item[(13)] Avaliação geral dos resultados
