@@ -93,12 +93,12 @@ Prof. Dr. Tarcísio A. Hess Coelho
 
 Os mecanismos de arquitetura paralela são amplamente utilizadas em simuladores de voo, simuladores automobilisticos, e tarefas de {\em pick-and-place}. Além disso, também são utilizados em sistemas de posicionamento, sistemas de medição, máquinas de usinagem, entre outras tarefas. 
 
-Há uma série de vantagens em utilizar mecanismos paralelos no lugar dos tradicionais mecanismos seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precisão de posicionamento, alta rigidez estrutural, e uma redução significativa na inércia \cite{Merlet2002, Khalil, Tsai, Cheng}. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}.
+Há uma série de vantagens em utilizar mecanismos paralelos no lugar dos tradicionais seriais. Dentre elas podemos citar sua grande capacidade de carga, alta precisão de posicionamento, alta rigidez estrutural, e uma redução significativa na inércia \cite{Merlet2002, Khalil, Tsai, Cheng}. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}.
 %As maiores vantagens em utilizar mecanismos paralelos no lugar dos tradicionais mecanismos seriais são sua grande capacidade de carga, alta precisão de posicionamento do efetuador, alta rigidez estrutural, e uma redução significativa na inércia \cite{Merlet2002, Khalil, Tsai, Cheng}. Outra característica marcante desse tipo de arquitetura são as altas velocidades e acelerações atingidas, as quais superam muito os valores máximos atingidos utilizando arquitetura serial. Grande parte dessas vantagens se devem à possibilidade de ter todos os motores localizados na base. Como desvantagens podemos citar o menor espaço de trabalho e modelo dinâmico muito mais complexo e difícil de se obter \cite{Merlet2002, Rynaldo}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.2]{theadeptquat.jpg}  
+	\includegraphics[scale=0.21]{theadeptquat.jpg}  
 	\caption{Robô industrial Adept Quattro}
 	\label{fig:Mecanismo}
 \end{figure}
@@ -108,9 +108,9 @@ Devido à difícil obtenção e alta complexidade do modelo dinâmico, o controle de 
 
 %	Devido à grande dificuldade de se obter o modelo dinâmico completo de mecanismos paralelos, muitos pesquisadores preferem utilizar mecanismos seriais para realizar tarefas que exigem um grande domínio sobre a dinâmica dos sistema, como plataformas robóticas voltadas a reabilitação, pois é necessário um conhecimento detalhado do comportamento dinâmico do mecanismo utilizado para poder controlar as forças de interação entre o mecanismo e o paciente \cite{Andre}.
 	
-	Atualmente novas metodologias para modelagem de dinâmica multicorpos que se mostram muito mais adequadas para aplicações em qualquer tipo de mecanismo estão sendo desenvolvidas \cite{Jarzebowska2009,Cheng, 20altuzarra}, das quais se destaca o trabalho realizado por Renato Orsino, doutorando também orientado pelo professor Dr. Tarcísio Coelho \cite{Apostila, Orsino2013, 21orsino, 22orsino, 23orsino}.
+	Visto que atualmente estão sendo desenvolvidas novas metodologias para modelagem dinâmica multicorpos que se mostram muito mais adequadas para aplicações em mecanismos paralelos, das quais se destacam os trabalhos de Orsino et. al. \cite{Orsino2013, 21orsino, 22orsino, 23orsino}, é possível aliar essas novas metodologias a técnicas de controle não linear robusto, como o controle por modos deslizantes \cite{Slotini, Utkin}, para sintetizar leis de controle de alto desempenho e custo computacional mais adequado, de modo a tornar possível uma maior exploração dos potenciais promissores dos manipuladores paralelos.
 	
-	Outro assunto relevante ainda pouco estudado por pesquisadores é o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como já foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os métodos tradicionais, ainda são poucos os estudos de implementação de técnicas de controle em mecanismos de cadeia fechada. Sendo assim, é possível aliar as novas metodologias de modelagem desenvolvidas à implementação, adaptação e aprimoramentos de algoritmos de controle não-linear voltados a mecanismos paralelos \cite{Craig}. 
+%	Outro assunto relevante ainda pouco estudado por pesquisadores é o controle voltado a mecanismos paralelos \cite{Merlet2002}. Como já foi dito anteriormente, devido a grande dificuldade de modelagem de sistemas complexos utilizando os métodos tradicionais, ainda são poucos os estudos de implementação de técnicas de controle em mecanismos de cadeia fechada. Sendo assim, é possível aliar as novas metodologias de modelagem desenvolvidas à implementação, adaptação e aprimoramentos de algoritmos de controle não-linear voltados a mecanismos paralelos \cite{Craig}. 
 	
 %Além disso é possível aproveitar os novos métodos desenvolvidos para explorar outro assunto ainda pouco estudado, a implementação de leis de controle utilizando variáveis redundantes \cite{ Rynaldo,Jarzebowska2009, Zubizarreta, Bloch}.
 
@@ -129,13 +129,15 @@ Os principais objetivos do projeto s\~ao:
 \item Aplica\c{c}\~ao simples, mesmo para sistemas de alta complexidade.
 \item Alto grau de automatiza\c{c}\~ao, de modo que possa ser facilmente implementado em softwares de manipula\c{c}\~ao simb\'olica.
 \end{itemize}
-\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao linear robusto, baseado na t\'ecnica de controle por modos deslizantes \cite{Slotini, Utkin}, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante \cite{Cheng}, com incertezas param\'etricas.
+\item Elabora\c{c}\~ao de uma metodologia de projeto de controle n\~ao linear robusto de alto desempenho, baseado na t\'ecnica de controle por modos deslizantes \cite{Slotini, Utkin}, para mecanismos de arquitetura paralela, tradicionais e com atua\c{c}\~ao redundante \cite{Cheng}, com incertezas param\'etricas, que torne possível sintetizar leis de controle com custo computacional consideralvemente menor que o tradicioanal Controle por Torque Computado \cite{Craig}.
 %\item Elabora\c{c}\~ao de leis de controle adequada para sistemas descritos por coordenadas redundantes, como por exemplo modelos mecanismos cuja orienta\c{c}\~ao \'e descrita por quaternions unit\'arios.,
 \item Realizar a modelagem cinemática e dinâmica do mecanismo 2\underline{R}SU+\underline{P}PaP \cite{Kumazawa}, utilizando o algoritmo de modelagem desenvolvido.
 \item Realizar o projeto de um controlador de trajetória para o mecanismo escolhido, utilizando a metodologia de projeto de controle proposta.
 \item Realizar simula\c{c}\~oes dinâmicas das leis de controle sintetizadas.
 \item Realizar a validação experimental do controlador projetado no protótipo do mecanismo escolhido, que se encontra no laboratório de mecanismos.
 \end{itemize}
+
+É importante ressaltar que os dois primeiros objetivos citados já foram alcançados e que a arquitetura paralela 2\underline{R}SU+\underline{P}PaP foi desenvolvida pelo grupo de pesquisa do Prof. Dr. Tarcio Antonio Hess Coelho, havendo ainda poucos estudos na literatura sobre esta arquitetura. Sendo assim, pode-se afirmar que simulações dinâmicas e validações experimentais de leis de controle não-linear robusto neste mecanismo tem caráter inédito.
 
 %A proposta atual é a utilização de novos métodos de modelagem dinâmica multicorpos para implementar, adaptar e aprimorar algoritmos de controle não-linear para mecanismos paralelos. Possui diferenciação em relação a outros trabalhos desenvolvidos, pois utiliza novas metodologias para modelagem, as quais ainda são pouco difundidas, tem foco em mecanismos de cadeia fechada, os quais ainda não são tão explorados, e estuda técnicas de controle não-linear, inclusive a possibilidade da utilização de variáveis redundantes em sistemas de controle, fato não muito comum na literatura.
 
@@ -145,7 +147,7 @@ Os principais objetivos do projeto s\~ao:
 \section{Metodologia do projeto}\label{method}
 
 O estágio atual de desenvolvimento do presente projeto ocorre basicamente em três áreas:
-a realização da modelagem e simulação cinemática e dinâmica do mecanismo 2\underline{R}SU + \underline{P}PaP \cite{Kumazawa}, o projeto de um controlador não linear multivariável robusto baseado no modelo dinâmico, e a validação experimental das leis de controle sintetizadas.
+a realização da modelagem e simulação cinemática e dinâmica do mecanismo 2\underline{R}SU + \underline{P}PaP \cite{Kumazawa}, o projeto de um controlador não linear robusto de alto desempenho baseado no modelo dinâmico, e a validação experimental das leis de controle sintetizadas.
 
 Os trabalhos no âmbito de modelagem e simulação estão sendo desenvolvidos a partir da aplicação do algoritmo genérico  de modelagem cinemática e dinâmica de mecanismos paralelos desenvolvido, baseado na utilização dos parâmetros de Denavit-Hartenberg \cite{Craig, Denavit, Lipkin} e no método Orsino de acoplamento de subsistemas \cite{23orsino}. Toda modelagem será feita em Python, utilizando uma biblioteca de manipulação simbólica (SymPy).
 As simulações da dinâmica direta do mecanismo serão feitas utilizando métodos implícitos de solução de sistemas de EDOs, de modo a garantir estabilidade numérica do método, mesmo utilizando leis de controle descontínuas.
@@ -178,7 +180,7 @@ Este cap\'itulo de livro trata do uso de uma metodologia de modelagem modular pa
 balanceamento adaptativo e desenvolvimento de algoritmos de controle para mecanismos
 rob\'oticos paralelos. A revis\~ao pelos editores e autores j\'a foi realizada e em breve ser\'a feita a publica\c{c}\~ao.
 
-Um artigo submetido para o {\em  Special Issue on: ``Dynamic Balancing of Mechanisms and Parallel Robots'' } do peri\'odico International Journal of Mechanisms and Robotic Systems, denominado ``A new approach for obtaining the dynamic balancing conditions in serial mechanisms'' \cite{Coutinho}, o qual foi escrito em coautoria com o Prof. Dr. Tarc\'isio Antonio Hess Coelho. O artigo já foi aceito e está em fase de revisão gramatical e ortográfica, realizada pelos autores.
+Um artigo submetido para o {\em  Special Issue on: ``Dynamic Balancing of Mechanisms and Parallel Robots'' } do peri\'odico {\em International Journal of Mechanisms and Robotic Systems}, denominado ``A new approach for obtaining the dynamic balancing conditions in serial mechanisms'' \cite{Coutinho}, o qual foi escrito em coautoria com o Prof. Dr. Tarc\'isio Antonio Hess Coelho. O artigo já foi aceito e está em fase de revisão gramatical e ortográfica, realizada pelos autores.
 
 
 %---DISCIPLINAS CURSADAS---------------------------------------------------------
@@ -194,16 +196,18 @@ de p\'os-gradua\c{c}\~ao:
 \item PMR--5238 --- An\'alise e S\'intese de Mecanismo Planos e Tridimensionais
 \item PMR--5211 --- Mec\^anica dos S\'olidos Experimental
 \item PMR--5234 --- T\'ecnicas de Ultra-Som e suas aplica\c{c}\~oes na Ind\'ustria e na Medicina
+\item PMR--5014 --- Controle N\~ao Linear Aplicado a Sistemas Mec\^anicos e Mecatr\^onicos
 \end{itemize}
 
 Ressalta-se que em todas o aluno obteve conceito A, demonstrando bom aproveitamento. \\
 
-Al\'em disso, foi cursada como ouvinte a seguinte disciplina:
-\begin{itemize}
-\item PMR--5014 --- Controle N\~ao Linear Aplicado a Sistemas Mec\^anicos e Mecatr\^onicos	
-\end{itemize}
+Ainda é necessário cumprir mais 24 créditos de pós-graduação, os quais deverão ser cumpridos realizando a publicação de 3 artigos em periódicos indexados.
 
-na qual tamb\'em foi obtido conceito A.
+%Al\'em disso, foi cursada como ouvinte a seguinte disciplina:
+%\begin{itemize}
+%\end{itemize}
+%
+%na qual tamb\'em foi obtido conceito A.
 
 
 
