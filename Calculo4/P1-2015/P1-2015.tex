@@ -45,8 +45,7 @@ MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
     Prove que a série é convergente e calcule explicitamente uma aproximação do valor da soma da série com erro menor que $2 \cdot 10^{-3}$.
 \end{itemize}
 
-
-\noindent{\bf \\ \\Solução:}
+\noindent{\bf \\Solução:}
 \begin{itemize}
     \item[a)] A sequencia dada pode ser descrita como:
     
@@ -147,14 +146,14 @@ Com $erro < 10^{-3}$.
 $$\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \lim_{n\rightarrow\infty} \Big( \frac{n+1}{2n+1} \Big)^{3n+2} \Big( \frac{2n-1}{n} \Big)^{3n-1} = \lim_{n\rightarrow\infty}  \Big( \frac{n+1}{2n+1} \Big)^3 \Big( \frac{n+1}{n} \Big)^{3n-1} \Big( \frac{2n-1}{2n+1} \Big)^{3n-1} $$
 
 \begin{itemize}
-\item[--] $\displaystyle\lim_{n\rightarrow\infty}  \Big( \displaystyle\frac{n+1}{2n+1} \Big)^3 = \displaystyle\lim_{n\rightarrow\infty}  \Big( \displaystyle\frac{1+\frac{1}{n}}{2+\frac{1}{n}} \Big)^3 = \displaystyle\frac{1}{2^3} $
-\item[--] $\displaystyle\lim_{n\rightarrow\infty} \Big( \displaystyle\frac{n+1}{n} \Big)^{3n-1} = \displaystyle\lim_{n\rightarrow\infty} e^{(3n-1) \ln(\frac{n+1}{n})} = e^3$, pois:
+\item[$\bullet$] $\displaystyle\lim_{n\rightarrow\infty}  \Big( \displaystyle\frac{n+1}{2n+1} \Big)^3 = \displaystyle\lim_{n\rightarrow\infty}  \Big( \displaystyle\frac{1+\frac{1}{n}}{2+\frac{1}{n}} \Big)^3 = \displaystyle\frac{1}{2^3} $
+\item[$\bullet$] $\displaystyle\lim_{n\rightarrow\infty} \Big( \displaystyle\frac{n+1}{n} \Big)^{3n-1} = \displaystyle\lim_{n\rightarrow\infty} e^{(3n-1) \ln(\frac{n+1}{n})} = e^3$, pois:
 \begin{itemize}
 \item[--] $\displaystyle\lim_{x\rightarrow\infty} (3x-1) \ln\Big(\frac{x+1}{x}\Big) = \displaystyle\lim_{x\rightarrow\infty} \frac{ \ln\big(\frac{x+1}{x}\big) }{\frac{1}{3x-1}} \underset{u = \frac{1}{x}}{=} \displaystyle\lim_{u\rightarrow 0} \frac{ \ln(u+1) }{\frac{u}{3-u}}$
 
 $\underset{\frac{0}{0}}{\overset{L'H}{=}} \displaystyle\lim_{u\rightarrow 0} \displaystyle \frac{\frac{1}{u+1}}{\frac{1\cdot(3-u)-u\cdot(-1)}{(3-u)^2}}=3$
 \end{itemize}
-\item[--] $\displaystyle\lim_{n\rightarrow\infty} \Big( \displaystyle\frac{2n-1}{2n+1} \Big)^{3n-1} = \displaystyle\lim_{n\rightarrow\infty} e^{(3n-1) \ln(\frac{2n-1}{2n+1})} = e^{-3}$, pois:
+\item[$\bullet$] $\displaystyle\lim_{n\rightarrow\infty} \Big( \displaystyle\frac{2n-1}{2n+1} \Big)^{3n-1} = \displaystyle\lim_{n\rightarrow\infty} e^{(3n-1) \ln(\frac{2n-1}{2n+1})} = e^{-3}$, pois:
 \begin{itemize}
 \item[--] $\displaystyle\lim_{x\rightarrow\infty} (3x-1) \ln\Big(\frac{2x-1}{2x+1}\Big) = \displaystyle\lim_{x\rightarrow\infty} \frac{ \ln\big(\frac{2x-1}{2x+1}\big) }{\frac{1}{3x-1}} \underset{u = \frac{1}{x}}{=} \displaystyle\lim_{u\rightarrow 0} \frac{ \ln\big(\frac{2-u}{2+u}\big) }{\frac{u}{3-u}}$
 
@@ -180,8 +179,8 @@ porque sabemos que a sequência $(\frac{n+1}{n})^n$ é crescente e tende a $e$. 
 \item[c)] Para analisar a convergência da série, utilizamos o critério da integral, com $f(x) = \frac{\ln \frac{x}{2}}{x}$. Para isso, precisamos verificar se o termo geral da série vai a zero e se $f$ é decrescente.
     
     \begin{itemize}
-    \item[--] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{x \rightarrow \infty} f(x) = \lim_{x \rightarrow \infty} \frac{\ln \frac{x}{2}}{x} \underset{\frac{\infty}{\infty}}{ \overset{L'H}{=}} \lim_{x \rightarrow \infty} \frac{\frac{2}{x} \cdot \frac{1}{2}}{1} = 0$
-    \item[--] $f'(x) = \frac{\frac{1}{x} \cdot x - \ln(\frac{x}{2}) \cdot 1}{x^2} = \frac{1 - \ln(\frac{x}{2})}{x^2} < 0, \forall x > 2e  \Rightarrow f$ é decrescente $\forall x > 2e$.
+    \item[$\bullet$] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{x \rightarrow \infty} f(x) = \lim_{x \rightarrow \infty} \frac{\ln \frac{x}{2}}{x} \underset{\frac{\infty}{\infty}}{ \overset{L'H}{=}} \lim_{x \rightarrow \infty} \frac{\frac{2}{x} \cdot \frac{1}{2}}{1} = 0$
+    \item[$\bullet$] $f'(x) = \frac{\frac{1}{x} \cdot x - \ln(\frac{x}{2}) \cdot 1}{x^2} = \frac{1 - \ln(\frac{x}{2})}{x^2} < 0, \forall x > 2e  \Rightarrow f$ é decrescente $\forall x > 2e$.
     \end{itemize}
     
     $$ \int_{6}^\infty f(x) \, dx = \int_{6}^\infty \frac{\ln \frac{x}{2}}{x}  \, dx \underset{u = \ln \frac{x}{2} \Rightarrow du = \frac{dx}{x} }{=} \int_{\ln 6}^\infty u  \, du = \lim_{u\rightarrow\infty} \frac{u^2}{2} - \frac{(\ln 6)^2}{2} = \infty $$
@@ -195,15 +194,15 @@ porque sabemos que a sequência $(\frac{n+1}{n})^n$ é crescente e tende a $e$. 
 \newpage
 \noindent{\bf 3ª Questão: }
 \begin{itemize}
-\item[a)] (2,0 pontos) Seja
+\item[a)] (2,5) Determinar os valores de $x \in \mathbb{R}$ para os quais a série de potências
 
-\begin{center}
-$ f(x) = \displaystyle\begin{cases} 0 \, , \,\,\,\,\,\,\, $ se $ x \in \Big[-\pi, -\frac{\pi}{2} \Big[ \,$ ou $x \in \Big]\frac{\pi}{2}, \pi \Big] \\\\ 2|x| \,,$ se $ x \in \Big[-\frac{\pi}{2}, \frac{\pi}{2} \Big] \end{cases}$
-\end{center}
+$$ \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 2^{n+1}} (x-2)^n $$
 
-Encontre a série de Fourier de $f$.
+é convergente.
 
-\item[b)] (1,5 pontos) Se $S(x)$ é a soma da série encontrada em $a)$, esboce o gráfico de $S$ no intervalo $[-3\pi,3\pi]$, calcule $S\Big(39 \displaystyle\frac{\pi}{2}\Big)$ e $S\Big(1223 \displaystyle\frac{\pi}{8}\Big)$.
+\item[b)] (1,5) Estudar a convergência em termos de $\alpha > 0$:
+
+$$ \sum_{n=3}^\infty \frac{1}{n (\ln n)(\ln (\ln n))^\alpha} $$
 
 \end{itemize}
 
@@ -212,272 +211,81 @@ Encontre a série de Fourier de $f$.
 \\
 
 \begin{itemize}
-\item[a)]
+\item[a)] Aplicando o critério da razão, temos:
 
-$$ a_0 = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \, dx = \frac{1}{\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 2 |x| \, dx = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} 2 x \, dx = \frac{2}{\pi} x^2 \Big|_0^{\frac{\pi}{2}} = \frac{\pi}{2} $$
+$$\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \lim_{n\rightarrow\infty} \frac{(3n+1) |x-2|^{n+1}}{(n+2)^2 \, 2^{n+2}}  \cdot \frac{(n+1)^2 \, 2^{n+1}}{(3n-2) |x-2|^n} = \lim_{n\rightarrow\infty} \Big( \frac{3n+1}{3n-2} \Big) \Big( \frac{n+1}{n+2} \Big)^2 \frac{|x-2|}{2}  $$
+$$ = \lim_{n\rightarrow\infty} \Bigg( \frac{3+\frac{1}{n}}{3-\frac{2}{n}} \Bigg) \Bigg( \frac{1+\frac{1}{n}}{1+\frac{2}{n}} \Bigg)^2 \frac{|x-2|}{2} = \frac{|x-2|}{2} $$
 
-$$ a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (n x) \, dx = \frac{1}{\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 2 |x| \cos (n x) \, dx = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} 2 x \cos (n x) \, dx $$
+Para $\frac{|x-2|}{2} < 1 \Leftrightarrow |x-2| < 2$: a série converge absolutamente, pelo critério da razão.
 
-$$ \int_{0}^{\frac{\pi}{2}}  x \cos (n x) \, dx =  \frac{x \sen (nx)}{n} \Big|_0^\frac{\pi}{2} -  \int_{0}^{\frac{\pi}{2}} \frac{\sen(nx)}{n} \,dx = \frac{\pi \sen( \frac{n \pi}{2})}{2 n} + \frac{\cos (nx)}{n^2} \Big|_0^\frac{\pi}{2}    $$
+Para $\frac{|x-2|}{2} > 1 \Leftrightarrow |x-2| > 2$: o termo geral não vai a zero e, portanto, a série diverge.
 
-$$ = \frac{\pi \sen( \frac{n \pi}{2})}{2 n} + \frac{ ( \cos (\frac{n \pi}{2}) -1)}{n^2} $$
+Para $\frac{|x-2|}{2} = 1 \Rightarrow x = 0 \lor x=4$: o critério da razão é inconclusivo, outros critérios devem ser utilizados. \\
 
-$$ \therefore a_n =  \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} $$
+Para $x=4$, temos:
 
-\begin{center}
-$b_n = \displaystyle\frac{1}{\pi} \displaystyle\int_{-\pi}^\pi f(x) \sen (n x) \, dx = 0 \,\,$ (função ímpar)
-\end{center}
+$$  \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-2)^n = \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2} $$
 
-$$ \therefore S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n \cos(nx) + b_n \sen(nx) \Big) = \frac{\pi}{4} + \sum_{n=1}^\infty \Big( \frac{ 2 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 4 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} \Big) \cos (nx) $$
+Para analisar a convergência desta série, utilizamos o critério da comparação no limite:
 
-\item[b)] Pelo toerema da convergência da série de Fourier, $S(x)$ converge para:
+$$ L = \lim_{n\rightarrow\infty} \frac{\frac{3n-2}{(n+1)^2 \, 2}}{\frac{1}{n}} = \lim_{n\rightarrow\infty} \frac{3n^2-2n}{(n+1)^2 \, 2} = \lim_{n\rightarrow\infty} \frac{3-\frac{2}{n}}{(1+\frac{1}{n})^2 \, 2} = \frac{3}{2}  $$
 
-\begin{itemize}
-\item[$\bullet$] Para $x \in  (-\pi,\pi)$:
-	\begin{itemize}
-	\item[-] $f(x), \,$ onde f(x) é contínua
-	\item[-] A média dos limites laterais, onde f(x) é descontínua
-	\end{itemize}
-\item[$\bullet$] $\displaystyle\frac{f(\pi)+f(-\pi)}{2}, \, $ para $ x = \pi $ ou $ x = -\pi $ 
-\item[$\bullet$] Para $x \notin [ -\pi,\pi]$: repete-se periodicamente.
-\end{itemize}
+Como $0 < L < \infty$, temos que série diverge, pois $\displaystyle\sum_{n=1}^\infty \frac{1}{n}$ é uma série divergente.
 
-Sendo assim:
-$$ S\Big(\frac{39 \pi}{2}\Big) = S\Big(17\pi + \frac{\pi}{2}\Big) = S\Big(\pi + \frac{\pi}{2}\Big) = S\Big(- \frac{\pi}{2}\Big) = \frac{1}{2} ( \lim_{x \rightarrow - \frac{\pi}{2}^+ } f(x) + \lim_{x \rightarrow - \frac{\pi}{2}^- } f(x) ) = \frac{1}{2} ( \pi + 0) = \frac{\pi}{2} $$
+Para $x=0$, temos:
 
-$$ S\Big(1223 \cdot \frac{\pi}{8}\Big) = S\Big(152\pi + \frac{7 \pi}{8}\Big) = S\Big(\frac{7\pi}{8}\Big) = f\Big(\frac{7\pi}{8}\Big) = 0 $$
+$$  \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-2)^n = \sum_{n=1}^\infty \frac{(-1)^n \, (3n-2)}{(n+1)^2 \, 2} $$
+
+Esta série não apresenta convergência absoluta, pois já verificamos que $\displaystyle\sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2}$ diverge. \\
+
+Para verificar se há convergência condicional, utilizamos o critério das séries alternadas: 
+    
+    \begin{itemize}
+    \item[$\bullet$] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{n \rightarrow \infty} \frac{3n-2}{(n+1)^2 \, 2} = \lim_{n \rightarrow \infty} \frac{3n-2}{(n^2 + 2n + 1) \, 2} = \lim_{n \rightarrow \infty} \frac{3-\frac{2}{n}}{(n + \frac{2}{n} + \frac{1}{n^2}) \, 2} = 0 $
+    \item[$\bullet$] $|a_{n}| = f(n) = \displaystyle\frac{3n-2}{(n+1)^2 \, 2}  $
+    
+    $f'(x) = \displaystyle\frac{3 \cdot (x+1)^2 -  (3x-2) \cdot 2 (x+1)}{(x+1)^4} = \frac{7 - 3x}{(x+1)^3} < 0, \forall x > \frac{7}{3}$
+    
+    $\therefore |a_{n}|$ é decrescente $\forall n \geq 3$.  
+    
+    \end{itemize}
+    
+    Como o módulo do termo geral da série é descrescente e vai a zero, pode-se afirmar que, pelo critério das séries alternadas, a série é convergente. Portanto, a série converge condicionalmente. 
+
+\item[b)] Para analisar a convergência da série, utilizamos o critério da integral, com $f(x) = \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}$. Como $\alpha > 0$, o termo geral da série vai a zero e $f$ é claramente positiva e decrescente para $x \geq 3$.
+    
+    $$ \int_{3}^\infty f(x) \, dx = \int_{3}^\infty \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}  \, dx \underset{u = \ln x \Rightarrow du = \frac{dx}{x} }{=} \int_{\ln 3}^\infty \frac{1}{ u(\ln u)^\alpha}  \, du = \underset{v = \ln u \Rightarrow dv = \frac{du}{u} }{=} \int_{\ln(\ln 3)}^\infty \frac{1}{ v^\alpha}  \, dv $$
+    
+    $$
+    \Rightarrow \int_{3}^\infty f(x) \, dx =
+    \begin{cases}
+    \displaystyle \lim_{v\rightarrow\infty} \displaystyle\frac{v^{1-\alpha}}{1-\alpha} - \displaystyle\frac{(\ln(\ln 3))^{1-\alpha}}{1-\alpha}, \; \alpha \neq 1 \\
+    \displaystyle \lim_{v\rightarrow\infty}\ln (v) - \ln (\ln(\ln 3)), \;\;\;\;\; \alpha = 1
+    \end{cases}
+    $$
+    
+    $$
+    \lim_{v\rightarrow\infty} \displaystyle\frac{v^{1-\alpha}}{1-\alpha} =
+    \begin{cases}
+    \infty, \;\; 1-\alpha > 0 \\
+    0, \;\;\;\; 1-\alpha < 0
+    \end{cases}
+    $$
+    
+        $$
+    \therefore \int_{3}^\infty f(x) \, dx =
+    \begin{cases}
+    \infty, \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;  0 < \alpha \leq 1 \\
+    - \displaystyle\frac{(\ln(\ln 3))^{1-\alpha}}{1-\alpha}, \; \alpha > 1
+    \end{cases}
+    $$
+    
+    A série converge se e somente se a integral imprópria converge. Sendo assim, temos que a série converge para $\alpha > 1$ e diverge para $0 < \alpha \leq 1$.
 
 \end{itemize}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TURMA B%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{center}
-\textbf{Instituto de Matemática e Estatística da USP\\
-MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
-\textbf{2a. Prova - 2o. Semestre 2014 - 13/10/2014}
-\end{center}
-
-\noindent {\bf Turma B}
-
-\noindent{\bf 1ª Questão:}
-\begin{itemize}
-	\item[a)] (1,0 ponto) Seja $ f(x) = \displaystyle\frac{1}{1+3x^4}$. Calcule $f^{(40)}(0)$.
-	
-	\item[b)] Obtenha uma expressão para a soma da série $\displaystyle\sum_{n=1}^\infty (-1)^n \, 3^n \, 16 n^2 \, x^{4n}$ 
-	\item[c)] Encontre um valor para a soma do item $b)$, quando $x = \displaystyle\frac{1}{3}$.
-\end{itemize}
-
-
-\noindent{\bf \\ \\Solução:}
-\begin{itemize}
-    \item[a)] Sabe-se que $ \displaystyle\frac{1}{1-x} = \displaystyle\sum_{n=0}^\infty x^n $, para $|x|<1$ (soma da PG). Sendo assim:
-    
-    $$\frac{1}{1 + 3x^4} = \sum_{n=0}^\infty (-3 x^4), |-3x^4| < 1$$
-    $$ = \sum_{n=0}^\infty (-1)^n  \, 3^n \, x^{4n}, |x| < \frac{1}{\sqrt[4]{3}} $$
-    
-    
-    Sabe-se que para uma série de potencias positivas $ \, \displaystyle\sum_{k=0}^\infty a_k (x-x_0)^k $, $a_k$ é dado pelo coeficiênte de Taylor: $a_k = \displaystyle\frac{f^{(k)}(x_0)}{k!}$.
-    
-    Como a série encontrada foi expandida em torno de $x_0 = 0$, temos que: $a_{40} = \displaystyle\frac{f^{(40)}(0)}{40!}$, o qual é coeficiente de $x^{40}$. \\
-    
-    O termo geral da série obtida é dado por $ \bar{a}_n = (-1)^n  \, 3^n \, x^{4n}$.
-    
-    Para $n=10$, temos $\bar{a}_{10} = 3^{10} x^{40}$, o que significa que o coeficiente de $x^{40}$ na série é $3^{10}$.
-    
-    Sendo assim, temos: $ \displaystyle\frac{f^{(40)}(0)}{40!} = 3^{10} $
-    
-    $$ \therefore f^{(40)} = 3^{10} \, 40! $$
-
-
-    \item[b)] Deseja-se encontrar uma expressão para $\displaystyle\sum_{n=1}^\infty (-1)^n \, 3^n \, 16 n^2 x^{4n}$.
-    
-     Pode-se observar que há uma certa semelhança entre os termos gerais desta série e da série do exercicio anterior. Repare que derivando em x, multiplicando por x, derivando mais uma vez e multplicando por x mais uma vez, chegamos na mesma expressão. Sendo assim:
-     
-     $$\frac{1}{1 + 3x^4} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, x^{4n}, |x| < \frac{1}{\sqrt[4]{3}} $$
-     
-     Derivando em x:
-     
-     $$\frac{-3 \cdot 4 x^3}{(1 + 3x^4)^2} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, 4 n \, x^{4n-1}, |x| < \frac{1}{\sqrt[4]{3}} $$
-     
-     $$ \Rightarrow \frac{-12 x^4}{(1 + 3x^4)^2} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, 4 n \, x^{4n}, |x| < \frac{1}{\sqrt[4]{3}} $$
-     
-     Derivando mais uma vez:
-     
-     $$ \frac{-12 [ (4 x^3) (1 + 3x^4)^2 - x^4 \cdot 2 (1 + 3 x^4) 12 x^3 ] }{(1 + 3x^4)^4} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, 16 n^2 \, x^{4n-1}, |x| < \frac{1}{\sqrt[4]{3}} $$
-     
-     $$ \frac{-12 [ 4 x^3 - 12 x^7 ] }{(1 + 3x^4)^3} =  \sum_{n=0}^\infty (-1)^n  \, 3^n \, 16 n^2 \, x^{4n-1}, |x| < \frac{1}{\sqrt[4]{3}} $$
-     
-     $$ \therefore \sum_{n=0}^\infty (-1)^n  \, 3^n \, 16 n^2 \, x^{4n} = \frac{-36 x^3 (1 - 3 x^4)}{(1 + 3 x^4)^3} , |x| < \frac{1}{\sqrt[4]{3}} $$
-     
-     \item[c)] Como $ x = \frac{1}{3}$ está dentro do intervalo de convergência da série do item $b)$, temos que:
-     
-     $$  \sum_{n=0}^\infty   \frac{(-1)^n  \, 16 n^2}{27^n} = \frac{-36 \cdot \frac{1}{27} (1 - 3 \cdot \frac{1}{81})}{(1 + 3  \cdot \frac{1}{81})^3} = -\frac{3^5 \, 13}{2^3 \, 7^3} = -\frac{3159}{2744} $$
-    
-
-\end{itemize}
-\ \
-
-%---------------------------------------QUESTAO 2-----------------------------------------
-\newpage
-
-\noindent{\bf 2ª Questão:}
-
-\begin{itemize}
-\item[a)] (1,5 pontos) Seja $ f(x) = \begin{cases} \displaystyle\frac{e^{2x}-1}{x} \, , \, $ se $ x \neq 0 \\ 2 \, , \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, $ se $x = 0 \end{cases} $
-
-\begin{itemize}
-\item[a1)] Encontre uma série numérica cuja soma seja igual a $ \displaystyle\int_0^{1/4} \, f(x) \, dx$.
-\item[a2)] Encontre um valor aproximado para $ \displaystyle\int_0^{1/4} \, f(x) \, dx$, com erro, em módulo, menor que $10^{-4}$. 
-\end{itemize}
-
-\item[b)] (1,5 pontos) Sabendo que a série de Fourier de senos de $g(x) = x(\pi - x)$, em $[0, \pi]$ é
-
-\begin{center}
-$ \displaystyle\frac{8}{\pi} \Big( \sen x + \displaystyle\frac{\sen (3x)}{3^3} + \displaystyle\frac{\sen (5x)}{5^3} + ... \Big) \,$,
-\end{center} 
-
-calcule $ \displaystyle\sum_{n=0}^{\infty} \, \Big( \displaystyle\frac{1}{2n + 1} \Big)^6 $.
-
-\end{itemize}
-
-\noindent{\bf Solução:} \\
-
-\begin{itemize}
-\item[a1)] Sabe-se que:
-
-$$ e^x  = \sum_{n=0}^\infty \frac{x^n}{n!} \, , \forall x \in \mathbb{R}$$
-
-Sendo assim:
-
-$$ e^{2x} - 1 = \sum_{n=0}^\infty \frac{(2x)^n}{n!} - 1 =  \sum_{n=1}^\infty \frac{2^n \, x^n}{n!} \, , \forall x \in \mathbb{R} $$
-$$ \therefore \frac{e^{2x} - 1}{x} = \sum_{n=1}^\infty \frac{2^n \, x^{n-1}}{n!} \, , \forall x \neq 0 $$
-
-Para x = 0:
-
-$$ \sum_{n=1}^\infty \frac{2^n \, x^{n-1}}{n!} = 2 $$
-
-$$ \therefore f(x) = \sum_{n=1}^\infty \frac{2^n \, x^{n-1}}{n!} \, , \forall x \in \mathbb{R} $$
-
-Assim:
-
-$$ \int_{0}^{x'} f(x) \, dx = \sum_{n=1}^\infty \frac{2^n \, x^{n}}{n \cdot n!} \Big|_{0}^{x'} = \sum_{n=1}^\infty \frac{2^n \, (x')^{n}}{n \cdot n!} \, , \forall x \in \mathbb{R} $$
-
-Para $ x' = 1/4$:
-
-$$ \int_{0}^{1/4} f(x) \, dx =  \sum_{n=1}^\infty \frac{2^n}{ 4^n \, n \cdot n!} = \sum_{n=1}^\infty \frac{1}{ 2^n \, n \cdot n!} $$
-
-\item[a2)] Deseja-se calcular $ \displaystyle\int_{0}^{1/4} f(x) \, dx$ com $erro < \varepsilon = 10^{-4}$. Do item anterior, sabe-se que:
-
-$$ \int_{0}^{1/4} f(x) \, dx = \sum_{n=1}^\infty \frac{1}{ 2^n \, n \cdot n!} \simeq \sum_{n=1}^k \frac{1}{ 2^n \, n \cdot n!}  $$
-
-O erro da aproximação é dado por:
-
-$$ erro = \sum_{n=k+1}^\infty \frac{1}{ 2^n \, n \cdot n!} $$
-
-Rapare que se não tivessemos $ n \cdot n!$ multiplicando $2^n$, teríamos a soma de uma PG de razão $1/2$, a qual é fácil de calcular o valor exato da soma.
-
-Repare também que o termo $ \frac{1}{n \cdot n!} $ é sempre decrescente, ou seja:
-
-$$ \frac{1}{n \cdot n!} \leq \frac{1}{ (k+1) \cdot (k+1)!} ,\ \forall n \geq k+1 $$
-
-Sendo assim:
-
-$$ erro = \sum_{n=k+1}^\infty \frac{1}{ 2^n \, n \cdot n!} \leq \frac{1}{(k+1)(k+1)!} \sum_{n=k+1}^\infty \frac{1}{ 2^n} < \varepsilon $$
-
-$$ \frac{1}{(k+1)(k+1)!} \frac{ \frac{1}{2^{k+1}} }{1 - \frac{1}{2}} = \frac{1}{(k+1)(k+1)!} \frac{1}{2^k} < \varepsilon  $$
-
-$$ \therefore 2^k (k+1)(k+1)! > \frac{1}{\varepsilon} = 10^4 $$
-
-Para $k = 5$:
-
-$$ 2^k (k+1)(k+1)! = 32 \cdot 6 \cdot 720 = 192 \cdot 720 > 10^4 $$
-
-Portanto: 
-
-$$ \int_{0}^{1/4} f(x) \, dx  \simeq \sum_{n=1}^5 \frac{1}{ 2^n \, n \cdot n!}  $$
-
-Com $erro < 10^{-4}$.
-
-\item[b)] Seja $\tilde{g}(x)$ a extensão ímpar de $g(x)$. A série de Fourier de $\tilde{g}(x)$ é a série de senos de $g(x)$. Sabe-se que os coeficientes da série de Fourier de $\tilde{g}(x)$ são:
-
-$$ a_0 = a_n = 0 $$
-$$ b_{2n} = 0 $$
-$$ b_{2n+1} = \frac{8}{\pi (2n + 1)^3} $$
-
-Aplicando a identidade de Parceval:
-
-$$ \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n^2 + b_n^2 \Big) =\frac{1}{\pi} \int_{-\pi}^{\pi} \tilde{g}^2(x) \, dx $$
-
-$$ \Rightarrow  \sum_{n=1}^\infty  b_{2n}^2 + \sum_{n=0}^\infty  b_{2n+1}^2  =\frac{1}{\pi} \int_{-\pi}^{\pi} \tilde{g}^2(x) \, dx $$
-
-Como $\tilde{g}(x)$ é impar, $\tilde{g}^2(x)$ é par. Além disso, como $\tilde{g}(x)$ é extensão ímpar de $g(x)$, $\tilde{g}(x) = g(x)$ para $x \in [0, \pi]$. Assim, temos:
-
-$$ \sum_{n=0}^\infty  \frac{64}{\pi^2 (2n + 1)^6}  =\frac{2}{\pi} \int_{0}^{\pi} g^2(x) \, dx $$.
-
-$$ \int_{0}^{\pi} g^2(x) \, dx = \int_{0}^{\pi} x^2 \pi^2 - 2 \pi x^3 + x^4 \, dx = \Big( \frac{\pi^2 x^3}{3} - \frac{ 2\pi x^4 }{4} + \frac{x^5}{5}  \Big)_0^\pi = \frac{\pi^5}{30} $$
-
-$$ \therefore \sum_{n=0}^\infty  \frac{1}{ (2n + 1)^6} = \frac{\pi^2}{64} \cdot \frac{2}{\pi} \cdot \frac{\pi^5}{30} = \frac{\pi^6}{960}  $$
-
-\end{itemize}
-
-%---------------------------------------QUESTAO 3-----------------------------------------
-
-\newpage
-\noindent{\bf 3ª Questão: }
-\begin{itemize}
-\item[a)] (2,0 pontos) Seja
-
-\begin{center}
-$ f(x) = \displaystyle\begin{cases} 0 \, , \,\,\,\,\,\,\, $ se $ x \in \Big[-\pi, -\frac{\pi}{2} \Big[ \,$ ou $x \in \Big]\frac{\pi}{2}, \pi \Big] \\\\ 3|x| \,,$ se $ x \in \Big[-\frac{\pi}{2}, \frac{\pi}{2} \Big] \end{cases}$
-\end{center}
-
-Encontre a série de Fourier de $f$.
-
-\item[b)] (1,5 pontos) Se $S(x)$ é a soma da série encontrada em $a)$, esboce o gráfico de $S$ no intervalo $[-3\pi,3\pi]$, calcule $S\Big(39 \displaystyle\frac{\pi}{2}\Big)$ e $S\Big(1223 \displaystyle\frac{\pi}{8}\Big)$.
-
-\end{itemize}
-
-
-\noindent{\bf Solução:}
-\\
-
-\begin{itemize}
-\item[a)]
-
-$$ a_0 = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \, dx = \frac{1}{\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 3 |x| \, dx = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} 3 x \, dx = \frac{3}{\pi} x^2 \Big|_0^{\frac{\pi}{2}} = \frac{3\pi}{4} $$
-
-$$ a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (n x) \, dx = \frac{1}{\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 3 |x| \cos (n x) \, dx = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} 3 x \cos (n x) \, dx $$
-
-$$ \int_{0}^{\frac{\pi}{2}}  x \cos (n x) \, dx =  \frac{x \sen (nx)}{n} \Big|_0^\frac{\pi}{2} -  \int_{0}^{\frac{\pi}{2}} \frac{\sen(nx)}{n} \,dx = \frac{\pi \sen( \frac{n \pi}{2})}{2 n} + \frac{\cos (nx)}{n^2} \Big|_0^\frac{\pi}{2}    $$
-
-$$ = \frac{\pi \sen( \frac{n \pi}{2})}{2 n} + \frac{ ( \cos (\frac{n \pi}{2}) -1)}{n^2} $$
-
-$$ \therefore a_n =  \frac{ 3 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 6 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} $$
-
-\begin{center}
-$b_n = \displaystyle\frac{1}{\pi} \displaystyle\int_{-\pi}^\pi f(x) \sen (n x) \, dx = 0 \,\,$ (função ímpar)
-\end{center}
-
-$$ \therefore S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \Big( a_n \cos(nx) + b_n \sen(nx) \Big) = \frac{3\pi}{8} + \sum_{n=1}^\infty \Big( \frac{ 3 \sen( \frac{n \pi}{2})}{ n} +  \frac{ 6 ( \cos (\frac{n \pi}{2}) -1)}{\pi n^2} \Big) \cos (nx) $$
-
-\item[b)] Pelo toerema da convergência da série de Fourier, $S(x)$ converge para:
-
-\begin{itemize}
-\item[$\bullet$] Para $x \in  (-\pi,\pi)$:
-	\begin{itemize}
-	\item[-] $f(x), \,$ onde f(x) é contínua
-	\item[-] A média dos limites laterais, onde f(x) é descontínua
-	\end{itemize}
-\item[$\bullet$] $\displaystyle\frac{f(\pi)+f(-\pi)}{2}, \, $ para $ x = \pi $ ou $ x = -\pi $ 
-\item[$\bullet$] Para $x \notin [ -\pi,\pi]$: repete-se periodicamente.
-\end{itemize}
-
-Sendo assim:
-$$ S\Big(\frac{39 \pi}{2}\Big) = S\Big(17\pi + \frac{\pi}{2}\Big) = S\Big(\pi + \frac{\pi}{2}\Big) = S\Big(- \frac{\pi}{2}\Big) = \frac{1}{2} ( \lim_{x \rightarrow - \frac{\pi}{2}^+ } f(x) + \lim_{x \rightarrow - \frac{\pi}{2}^- } f(x) ) = \frac{1}{2} ( \frac{3\pi}{2} + 0) = \frac{3\pi}{4} $$
-
-$$ S\Big(1223 \cdot \frac{\pi}{8}\Big) = S\Big(152\pi + \frac{7 \pi}{8}\Big) = S\Big(\frac{7\pi}{8}\Big) = f\Big(\frac{7\pi}{8}\Big) = 0 $$
-
-\end{itemize}
 
 
 \end{document} 
