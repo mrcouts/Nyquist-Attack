@@ -1,0 +1,652 @@
+\documentclass[11pt,a4paper]{report}
+%\pagestyle{empty}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[dvips]{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\newcommand{\re}{\mathbb{R}}
+
+\newcommand{\sen}{\mbox{\, sen}\,}
+
+
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{22cm}
+\addtolength{\topmargin}{-1cm}
+\addtolength{\oddsidemargin}{-2cm}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TURMA A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\textbf{Instituto de Matemática e Estatística da USP\\
+MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
+\textbf{3a. Prova - 2o. Semestre 2013 - 02/12/2013}
+\end{center}
+
+\noindent {\bf Turma A}
+
+\noindent{\bf Questão 1:}
+(3,5 pontos)
+\begin{itemize}
+	\item[(a)] Determine a solução $y$ da equação diferencial $ 2x^2 y' = y(y+3x) $ tal que $y(1)=1$.
+\item[(b)]
+\begin{itemize}
+\item[(i)]  Determine todas as funções $ f : I \subset \re \rightarrow \re  $ que tornam exata a equação diferencial \\
+ $ (y^2 \sen x ) dx + y f(x) dy = 0. $
+\item[(ii)] Considere a função $f$ tal que $f(0) = -1$ e encontre a solução geral da equação dada em $(i)$.
+
+\end{itemize}
+\end{itemize}
+
+\noindent{\bf \\ \\Solução:}
+\begin{itemize}
+    \item[(a)]
+
+Isolando $y'$:
+
+$$ y' = \frac{y(y+3x)}{2x^2} = f(x,y) , x \neq 0 $$
+
+Como $ f(x,y) = f(tx,ty), \forall t \neq 0 $, temos que a equação é homogênea. Sendo assim, utilizamos a seguinte mudança de variável: $ u = \frac{y}{x} \Rightarrow y' = u'x + u $.
+
+$$ y' = \frac{y(y+3x)}{2x^2} = \frac{1}{2} \frac{y}{x} \Big ( \frac{y}{x} + 3 \Big) \Rightarrow u'x + u = \frac{1}{2} u(u+3) $$
+
+$$ u'x = \frac{1}{2} ( u^2 + 3u ) - u = \frac{1}{2} ( u^2 + u ) \Rightarrow \int \frac{2 du}{u(u+1)} = \int \frac{dx}{x}  $$
+
+Expandindo a função $ \frac{1}{u(u+1)} $ em frações parciais:
+
+$$ \frac{1}{u(u+1)} = \frac{A}{u} + \frac{B}{u+1} $$
+$$ A = \lim_{u \rightarrow 0} \frac{u}{u(u+1)} = 1 $$
+$$ B = \lim_{u \rightarrow -1} \frac{u+1}{u(u+1)} = -1 $$
+$$ \therefore \int \frac{du}{u(u+1)} = \ln |u| - \ln |u+1| $$
+
+Sendo assim, temos:
+
+$$ 2 ( \ln |u| - \ln |u+1| ) = \ln |x| + C, C \in \re $$
+
+Portanto a solução da equação diferencial para $ x \neq 0 $ é dada implicitamente por:
+
+$$ 2 \Big( \ln \Big| \frac{y}{x} \Big| - \ln \Big| \frac{y}{x}+1 \Big| \Big) = \ln |x| + C, C \in \re $$
+
+Aplicando a condição de contorno $ y(1) = 1 $:
+
+$$ 2 ( \ln 1 - \ln 2 ) = \ln |1| + C \Rightarrow C = -2 \ln 2 = \ln \frac{1}{4} $$
+$$ \therefore 2 \Big( \ln \Big| \frac{y}{x} \Big| - \ln \Big| \frac{y}{x}+1 \Big| \Big) = \ln |x| + \ln \frac{1}{4} $$
+
+
+	
+\item[(b)]
+
+Esta equação diferencial pode ser escrita como $ P(x,y) dx + Q(x,y) dy = 0 $, sendo $ P(x,y) = y^2 \sen x $ e $ Q(x,y) = y f(x) $. Podemos dizer que esta equação diferencial é exata se, e somente se, $ \frac{ \partial Q}{ \partial x} - \frac{ \partial P}{ \partial y} = 0  $. Sendo assim, para que a equação seja exata, temos:
+
+$$ \frac{ \partial Q}{ \partial x} - \frac{ \partial P}{ \partial y} = y ( f'(x) - 2 \sen x ) = 0  $$
+$$ \therefore f'(x) = 2 \sen x \Rightarrow f(x) = - 2 \cos x + C, C \in \re $$
+
+Resolvendo a equação para $ f(0) = -1 \Rightarrow f(x) = - 2 \cos x + 1 $, temos:
+
+$$
+\left\{
+\begin{array}{lc}
+\displaystyle \frac{ \partial \phi}{\partial x} = y^2 \sen x\\\\
+\displaystyle \frac{ \partial \phi}{\partial y} = y ( - 2 \cos x + 1 )\\
+\end{array}
+\right.
+$$
+
+Integrando em $x$ a primeira equação:
+
+$$ \phi (x,y) = - y^2 \cos x + c(y) $$
+
+Derivando em $y$:
+$$ \displaystyle \frac{ \partial \phi}{\partial y} = - 2 y \cos x + c'(y) $$
+
+Comparando com a segunda equação:
+
+$$ c'(y) = y \Rightarrow c(y) = \frac{y^2}{2} $$
+
+Sendo assim, temos:
+
+$$ \phi (x,y) = - y^2 \cos x + \frac{y^2}{2} $$
+
+A solução geral da equação diferencial são as curvas de nível de $ \phi (x,y) $, ou seja:
+
+$$ - y^2 \cos x + \frac{y^2}{2} = K, K \in \re $$
+
+
+
+\end{itemize}
+ \newpage
+\noindent{\bf Questão 2:} Seja $x>0$.
+\begin{itemize}
+\item [(a)] Sabendo que $ y_1(x) = x $ é solução da equação diferencial homogênea $ x^2 y'' + 2xy' - 2y = 0 $, determine outra solução linearmente independente de $y_1$.
+\item [(b)] Obtenha a solução geral da equação diferencial $ x^2 y'' + 2xy' - 2y = x^2 + 1 $
+\end{itemize}
+
+\noindent{\bf Solução:}
+\begin{itemize}
+\item [(a)] 
+
+A equação diferencial em questão é uma equação de Euler, pois apresenta o seguinte formato:
+
+$$ x^2 y'' + a_1 xy' + a_2 y = 0, a_1, a_2 \in \re  $$
+
+Sendo assim, sabe-se que a equação apresenta soluções no formato $ y(x) = x^s, s \in \re $. Assim:
+
+$$ y(x) = x^s $$
+$$ y'(x) = s x^{s-1} $$
+$$ y(x) = s (s-1) x^{s-2} $$
+
+Substituindo na equação:
+
+$$ s (s-1) x^s + 2 s x^s - 2 x^s = 0 \Rightarrow x^s ( s^2 + s - 2 ) = 0  $$
+
+A unica maneira da equação ser respeita para qualquer valor de $x$ é se tivermos $ s^2 + s - 2 = 0 $.
+Assim:
+
+$$ s^2 + s - 2 = 0 \Rightarrow s = \frac{-1 \pm \sqrt{1^2 - 4(1)(-2) } }{2} =  \frac{-1 \pm 3 }{2} $$
+
+Sendo assim, obtemos 2 soluções linermente independentes, $y_1(x) = x^{s_1} = x^1 $ e $y_2(x) = x^{s_2} = x^{-2} $ 
+
+
+\item [(b)]
+
+A solução homogênea da equação é a combinação linear das duas soluções homogêneas, $y_1$ e $y_2$:
+
+$$ y_h (x) = C_1 x + C_2 x^{-2}, C_1, C_2, \in \re $$
+
+Para encontrar a solução geral da equação utilizamos o método da Variação dos Parâmetros para encontrar uma solução particular da equação da seguinte forma:
+
+$$ y_p (x) = u_1(x) x + u_2(x) x^{-2} $$
+
+Aplicando o método:
+
+$$
+\begin{bmatrix}
+y_1 & y_2 \\
+y_1' & y_2'
+\end{bmatrix}
+\begin{bmatrix}
+u_1' \\
+u_2'
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 \\
+q(x)
+\end{bmatrix}
+\Rightarrow
+\begin{bmatrix}
+x & x^{-2} \\
+1 & -2 x^{-3}
+\end{bmatrix}
+\begin{bmatrix}
+u_1' \\
+u_2'
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 \\
+\frac{x^2 + 1}{x^2}
+\end{bmatrix}
+$$
+
+Resolvendo o sistema pela regra de Cramer:
+
+$$ u_1' = \frac{ \begin{vmatrix}
+0 & x^{-2} \\
+\frac{x^2 + 1}{x^2} & -2 x^{-3}
+\end{vmatrix}  }{ \begin{vmatrix}
+x & x^{-2} \\
+1 & -2 x^{-3}
+\end{vmatrix} }
+= \frac{ - \frac{x^2 + 1}{x^4} }{ - \frac{3}{x^2} } = \frac{1}{3} + \frac{1}{3 x^2}
+ $$
+ 
+ $$ u_2' = \frac{ \begin{vmatrix}
+x & 0 \\
+1 & \frac{x^2 + 1}{x^2}
+\end{vmatrix}  }{ \begin{vmatrix}
+x & x^{-2} \\
+1 & -2 x^{-3}
+\end{vmatrix} }
+= \frac{  \frac{x^2 + 1}{x} }{ - \frac{3}{x^2} } = -\frac{x^3}{3} - \frac{x}{3}
+ $$
+
+Integrando:
+
+$$ u_1 = \frac{x}{3} - \frac{1}{3x} $$
+$$ u_2 = - \frac{x^4}{12} - \frac{x^2}{6} $$
+$$ \therefore y_p(x) = ( \frac{x}{3} - \frac{1}{3x} )x + (- \frac{x^4}{12} - \frac{x^2}{6})x^{-2} = \frac{x^2}{4} - \frac{1}{2} $$
+
+A solução geral é a soma da solução homogênea com a solução particular:
+
+$$ y(x) = C_1 x + C_2 x^{-2} + \frac{x^2}{4} - \frac{1}{2}  , C_1, C_2, \in \re $$
+
+
+
+
+\end{itemize}
+\ \
+\newpage
+
+\noindent{\bf Questão 3:}
+\begin{itemize}
+	\item[(a)] Determine a solução geral da equação diferencial $ y'' + xy' + 2y = 0 $ em série de potências centrada em 0 e dê o seu raio de convergência
+	\item[(b)] Obtenha a solução geral da equação diferencial $ y''' - 2y''  + y' = x e^{-x} $
+\end{itemize}
+
+\noindent{\bf \\ \\Solução:}
+\begin{itemize}
+    \item[(a)] 
+
+Suponde que a solução seja uma série de potências centrada em 0:
+
+$$ y(x) = \sum_{n=0}^{\infty} a_n x^n $$
+$$ y'(x) = \sum_{n=1}^{\infty} a_n n x^{n-1} = \sum_{n=0}^{\infty} a_{n+1} (n+1) x^{n}  $$
+$$ y''(x) = \sum_{n=1}^{\infty} a_{n+1} (n+1) n  x^{n-1} = \sum_{n=0}^{\infty} a_{n+2} (n+2) (n+1)  x^{n}  $$ 
+
+É importante notar que:
+
+$$ xy' = \sum_{n=1}^{\infty} a_n n x^{n} = \sum_{n=0}^{\infty} a_n n x^{n} $$
+
+Pois o primeiro termo da somatória começando em zero é 0. \\
+Assim, substituindo na equação diferencial:
+
+$$ \sum_{n=0}^{\infty} [ a_{n+2} (n+2) (n+1) + a_n n x^{n} + 2  a_n ] x^n = 0 $$
+
+Assim, chegamos na seguinte relação de recorrência:
+
+$$ a_{n+2} = - \frac{a_n (n+2) }{(n+2)(n+1)} = - \frac{a_n}{n+1}, n = 0, 1, 2, 3 ... $$
+
+É possível perceber que a sequência dos termos pares é independente da sequência dos termos ímpares. \\
+Analisando a sequência dos termos pares:
+
+$$ n = 0 \Rightarrow a_2 = -\frac{a_0}{1} $$
+$$ n = 2 \Rightarrow a_4 = -\frac{a_2}{3} = \frac{a_0}{3 \cdot 1} $$
+$$ n = 4 \Rightarrow a_6 = -\frac{a_4}{5} = - \frac{a_0}{5 \cdot 3 \cdot 1} $$
+$$ \therefore a_{2n} = \frac{(-1)^n a_0}{(2n-1) \cdot (2n-3) \cdot (2n-5) \cdot ...  \cdot 1 } $$
+
+Analisando a sequência dos termos ímpares:
+
+$$ n = 1 \Rightarrow a_3 = -\frac{a_1}{2} $$
+$$ n = 3 \Rightarrow a_5 = -\frac{a_3}{4} = \frac{a_1}{4 \cdot 2} $$
+$$ n = 5 \Rightarrow a_7 = -\frac{a_5}{6} = - \frac{a_1}{6 \cdot 4 \cdot 2} $$
+$$ \therefore a_{2n+1} = \frac{(-1)^n a_1}{(2n) \cdot (2n-2) \cdot (2n-4) \cdot ...  \cdot 2 } $$
+
+Sendo assim a solução geral da equação é dada por:
+
+$$ y(x) = a_0 \sum_{n=0}^{\infty}  \frac{(-1)^n x^{2n}}{(2n-1) \cdot (2n-3) \cdot (2n-5) \cdot ...  \cdot 1 } + a_1 \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1} }{(2n) \cdot (2n-2) \cdot (2n-4) \cdot ...  \cdot 2 }, a_0, a_1 \in \re $$
+
+Vamos analisar a convergência em função de $x$ das duas séries obtidas. Aplicando o critério da razão:
+
+$$ \lim_{n\rightarrow \infty} \frac{x^{2n+2}}{(2n+1) \cdot (2n-1) \cdot (2n-3) \cdot ...  \cdot 1 } \frac{(2n-1) \cdot (2n-3) \cdot (2n-5) \cdot ...  \cdot 1 }{x^{2n}} = \lim_{n\rightarrow \infty} \frac{x^2}{(2n+1)} = 0   $$
+
+$$ \lim_{n\rightarrow \infty} \frac{x^{2n+3}}{(2n+2) \cdot (2n) \cdot (2n-2) \cdot ...  \cdot 2 } \frac{(2n) \cdot (2n-2) \cdot (2n-4) \cdot ...  \cdot 2 }{x^{2n+1}} = \lim_{n\rightarrow \infty} \frac{x^2}{(2n+2)} = 0   $$
+
+Pelo critério da razão, temos que as duas séries convergem para qualquer valor de $x$. Sendo assim, temos que o raio de convergência da solução da EDO por séries é infinito.
+
+\item[(b)] 
+
+Primeiro vamos encontrar a solução da equação homogênea. Como a equação possui coeficientes constantes, temos que as soluções da equação homogênea são da forma $ y(x) = e^{sx} $. Deverivando e substituindo na equação, obtemos o seguinte polinômio característico:
+
+$$ s^3 - 2s^2 + s = 0 \Rightarrow s(s-1)^2 = 0 $$
+
+Sendo assim, a solução da equação homogênea é dada por:
+
+$$ y_h(x) = C_1 + C_2 e^x + C_3 x e^x, C_1, C_2, C_3 \in \re $$
+
+Para encontrar a solução geral da equação, iremos utilizar o Método dos Coeficientes a Determinar para encontrar um solução particular. Como o termo não homogêneo é o produto de um polinômio de primeiro grau por uma exponencial e não há exponenciais com o mesmo argumento na solução homogênea, iremos buscar uma solução particular no seguinte formato:
+
+$$ y_p(x) = (Ax+B)e^{-x} $$
+
+Derivando:
+
+$$ y_p'(x) = Ae^{-x} - (Ax+B)e^{-x} = (-Ax + A - B)e^{-x} $$
+$$ y_p''(x) = - Ae^{-x} - (-Ax + A - B)e^{-x} = (Ax + B - 2A )e^{-x}  $$
+$$ y_p'''(x) = Ae^{-x} - (Ax + B - 2A )e^{-x} = (-Ax + 3A - B )e^{-x}  $$
+
+Substituindo na equação:
+
+$$(-Ax + 3A - B )e^{-x} - 2 (Ax + B - 2A )e^{-x} + (-Ax + A - B)e^{-x} = x e^{-x}$$
+$$ \Rightarrow -4Axe^{-x} + (8A - 4B)e^{-x} = xe^{-x} $$
+
+$$\therefore
+\left\{
+\begin{array}{lc}
+-4A = 1 \\
+8A - 4B = 0 \\
+\end{array}
+\right.
+\Rightarrow
+\left\{
+\begin{array}{lc}
+A = -\frac{1}{4} \\
+B = -\frac{1}{2} \\
+\end{array}
+\right.
+$$
+
+A solução geral da equação é a soma da solução homogênea com a solução particular. Assim:
+$$ y(x) = C_1 + C_2 e^x + C_3 x e^x -\frac{1}{4} x e^{-x} -\frac{1}{2} e^{-x}  , C_1, C_2, C_3 \in \re $$
+    
+\end{itemize}
+
+\ \
+\newpage
+\begin{center}
+\textbf{Instituto de Matemática e Estatística da USP\\
+MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
+\textbf{2a. Prova - 2o. Semestre 2013 - 14/10/2013}
+\end{center}
+
+\noindent {\bf Turma B}
+
+\noindent{\bf Questão 1:}
+(3,5 pontos)
+\begin{itemize}
+	\item[(a)] Determine a solução $y$ da equação diferencial $ 2x^2 y' = y(y+x) $ tal que $y(1)=-1$.
+\item[(b)]
+\begin{itemize}
+\item[(i)]  Determine todas as funções $ f : I \subset \re \rightarrow \re  $ que tornam exata a equação diferencial \\
+ $  x f(y) dx + x^2 \sen y  dy = 0. $
+\item[(ii)] Considere a função $f$ tal que $f(0) = -1$ e encontre a solução geral da equação dada em $(i)$.
+
+\end{itemize}
+\end{itemize}
+
+\noindent{\bf \\ \\Solução:}
+\begin{itemize}
+    \item[(a)]
+
+Isolando $y'$:
+
+$$ y' = \frac{y(y+x)}{2x^2} = f(x,y) , x \neq 0 $$
+
+Como $ f(x,y) = f(tx,ty), \forall t \neq 0 $, temos que a equação é homogênea. Sendo assim, utilizamos a seguinte mudança de variável: $ u = \frac{y}{x} \Rightarrow y' = u'x + u $.
+
+$$ y' = \frac{y(y+x)}{2x^2} = \frac{1}{2} \frac{y}{x} \Big ( \frac{y}{x} + 1 \Big) \Rightarrow u'x + u = \frac{1}{2} u(u+1) $$
+
+$$ u'x = \frac{1}{2} (u^2 + u) - u = \frac{1}{2}  (u^2 - u) \Rightarrow \int \frac{2 du}{u(u-1)} = \int \frac{dx}{x}  $$
+
+Expandindo a função $ \frac{1}{u(u-1)} $ em frações parciais:
+
+$$ \frac{1}{u(u-1)} = \frac{A}{u} + \frac{B}{u-1} $$
+$$ A = \lim_{u \rightarrow 0} \frac{u}{u(u-1)} = -1 $$
+$$ B = \lim_{u \rightarrow 1} \frac{u-1}{u(u-1)} = 1 $$
+$$ \therefore \int \frac{du}{u(u+1)} = -\ln |u| + \ln |u-1| $$
+
+Sendo assim, temos:
+
+$$ 2 ( - \ln |u| + \ln |u-1| ) = \ln |x| + C, C \in \re $$
+
+Portanto a solução da equação diferencial para $ x \neq 0 $ é dada implicitamente por:
+
+$$ 2 \Big( - \ln \Big| \frac{y}{x} \Big| + \ln \Big| \frac{y}{x}-1 \Big| \Big) = \ln |x| + C, C \in \re $$
+
+Aplicando a condição de contorno $ y(1) = -1 $:
+
+$$ 2 ( \ln |-1| - \ln |-2| ) = \ln |1| + C \Rightarrow C = -2 \ln 2 = \ln \frac{1}{4} $$
+$$ \therefore 2 \Big(- \ln \Big| \frac{y}{x} \Big| + \ln \Big| \frac{y}{x}-1 \Big| \Big) = \ln |x| + \ln \frac{1}{4} $$
+
+
+	
+\item[(b)]
+
+Esta equação diferencial pode ser escrita como $ P(x,y) dx + Q(x,y) dy = 0 $, sendo $ P(x,y) = x f(y) $ e $ Q(x,y) = x^2 \sen y $. Podemos dizer que esta equação diferencial é exata se, e somente se, $ \frac{ \partial Q}{ \partial x} - \frac{ \partial P}{ \partial y} = 0  $. Sendo assim, para que a equação seja exata, temos:
+
+$$ \frac{ \partial Q}{ \partial x} - \frac{ \partial P}{ \partial y} = x ( f'(y) - 2 \sen y ) = 0  $$
+$$ \therefore f'(y) = 2 \sen y \Rightarrow f(y) = - 2 \cos y + C, C \in \re $$
+
+Resolvendo a equação para $ f(0) = -1 \Rightarrow f(y) = - 2 \cos y + 1 $, temos:
+
+$$
+\left\{
+\begin{array}{lc}
+\displaystyle \frac{ \partial \phi}{\partial y} = x^2 \sen y\\\\
+\displaystyle \frac{ \partial \phi}{\partial x} = x ( - 2 \cos y + 1 )\\
+\end{array}
+\right.
+$$
+
+Integrando em $y$ a primeira equação:
+
+$$ \phi (x,y) = - x^2 \cos y + c(x) $$
+
+Derivando em $x$:
+$$ \displaystyle \frac{ \partial \phi}{\partial x} = - 2 x \cos y + c'(x) $$
+
+Comparando com a segunda equação:
+
+$$ c'(x) = x \Rightarrow c(x) = \frac{x^2}{2} $$
+
+Sendo assim, temos:
+
+$$ \phi (x,y) = - x^2 \cos y + \frac{x^2}{2} $$
+
+A solução geral da equação diferencial são as curvas de nível de $ \phi (x,y) $, ou seja:
+
+$$ - x^2 \cos y + \frac{x^2}{2} = K, K \in \re $$
+
+
+
+\end{itemize}
+ \newpage
+\noindent{\bf Questão 2:} Seja $x>0$.
+\begin{itemize}
+\item [(a)] Sabendo que $ y_1(x) = x $ é solução da equação diferencial homogênea $ x^2 y'' + 3xy' - 3y = 0 $, determine outra solução linearmente independente de $y_1$.
+\item [(b)] Obtenha a solução geral da equação diferencial $ x^2 y'' + 3xy' - 3y = x^2 + 1 $
+\end{itemize}
+
+\noindent{\bf Solução:}
+\begin{itemize}
+\item [(a)] 
+
+A equação diferencial em questão é uma equação de Euler, pois apresenta o seguinte formato:
+
+$$ x^2 y'' + a_1 xy' + a_2 y = 0, a_1, a_2 \in \re  $$
+
+Sendo assim, sabe-se que a equação apresenta soluções no formato $ y(x) = x^s, s \in \re $. Assim:
+
+$$ y(x) = x^s $$
+$$ y'(x) = s x^{s-1} $$
+$$ y(x) = s (s-1) x^{s-2} $$
+
+Substituindo na equação:
+
+$$ s (s-1) x^s + 3 s x^s - 3 x^s = 0 \Rightarrow x^s ( s^2 + 2s - 3 ) = 0  $$
+
+A unica maneira da equação ser respeita para qualquer valor de $x$ é se tivermos $ s^2 + 2s - 3 = 0 $.
+Assim:
+
+$$ s^2 + 2s - 3 = 0 \Rightarrow s = \frac{-2 \pm \sqrt{2^2 - 4(1)(-3) } }{2} =  \frac{-2 \pm 4 }{2} $$
+
+Sendo assim, obtemos 2 soluções linermente independentes, $y_1(x) = x^{s_1} = x^1 $ e $y_2(x) = x^{s_2} = x^{-3} $ 
+
+
+\item [(b)]
+
+A solução homogênea da equação é a combinação linear das duas soluções homogêneas, $y_1$ e $y_2$:
+
+$$ y_h (x) = C_1 x + C_2 x^{-3}, C_1, C_2, \in \re $$
+
+Para encontrar a solução geral da equação utilizamos o método da Variação dos Parâmetros para encontrar uma solução particular da equação da seguinte forma:
+
+$$ y_p (x) = u_1(x) x + u_2(x) x^{-3} $$
+
+Aplicando o método:
+
+$$
+\begin{bmatrix}
+y_1 & y_2 \\
+y_1' & y_2'
+\end{bmatrix}
+\begin{bmatrix}
+u_1' \\
+u_2'
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 \\
+q(x)
+\end{bmatrix}
+\Rightarrow
+\begin{bmatrix}
+x & x^{-3} \\
+1 & -3 x^{-4}
+\end{bmatrix}
+\begin{bmatrix}
+u_1' \\
+u_2'
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 \\
+\frac{x^2 + 1}{x^2}
+\end{bmatrix}
+$$
+
+Resolvendo o sistema pela regra de Cramer:
+
+$$ u_1' = \frac{ \begin{vmatrix}
+0 & x^{-3} \\
+\frac{x^2 + 1}{x^2} & -3 x^{-4}
+\end{vmatrix}  }{ \begin{vmatrix}
+x & x^{-3} \\
+1 & -3 x^{-4}
+\end{vmatrix} }
+= \frac{ - \frac{x^2 + 1}{x^5} }{ - \frac{4}{x^3} } = \frac{1}{4} + \frac{1}{4 x^2}
+ $$
+ 
+ $$ u_2' = \frac{ \begin{vmatrix}
+x & 0 \\
+1 & \frac{x^2 + 1}{x^2}
+\end{vmatrix}  }{ \begin{vmatrix}
+x & x^{-3} \\
+1 & -3 x^{-4}
+\end{vmatrix} }
+= \frac{  \frac{x^2 + 1}{x} }{ - \frac{4}{x^3} } = -\frac{x^4}{4} - \frac{x^2}{4}
+ $$
+
+Integrando:
+
+$$ u_1 = \frac{x}{4} - \frac{1}{4x} $$
+$$ u_2 = - \frac{x^5}{20} - \frac{x^3}{12} $$
+$$ \therefore y_p(x) = ( \frac{x}{4} - \frac{1}{4x} )x + (- \frac{x^5}{20} - \frac{x^3}{12})x^{-3} = \frac{x^2}{5} - \frac{1}{3} $$
+
+A solução geral é a soma da solução homogênea com a solução particular:
+
+$$ y(x) = C_1 x + C_2 x^{-3} + \frac{x^2}{5} - \frac{1}{3}  , C_1, C_2, \in \re $$
+
+
+
+
+\end{itemize}
+\ \
+\newpage
+
+\noindent{\bf Questão 3:}
+\begin{itemize}
+	\item[(a)] Determine a solução geral da equação diferencial $ y'' + xy' + 2y = 0 $ em série de potências centrada em 0 e dê o seu raio de convergência
+	\item[(b)] Obtenha a solução geral da equação diferencial $ y''' - 4y''  + 4y' = x e^{-x} $
+\end{itemize}
+
+\noindent{\bf \\ \\Solução:}
+\begin{itemize}
+    \item[(a)] 
+
+Suponde que a solução seja uma série de potências centrada em 0:
+
+$$ y(x) = \sum_{n=0}^{\infty} a_n x^n $$
+$$ y'(x) = \sum_{n=1}^{\infty} a_n n x^{n-1} = \sum_{n=0}^{\infty} a_{n+1} (n+1) x^{n}  $$
+$$ y''(x) = \sum_{n=1}^{\infty} a_{n+1} (n+1) n  x^{n-1} = \sum_{n=0}^{\infty} a_{n+2} (n+2) (n+1)  x^{n}  $$ 
+
+É importante notar que:
+
+$$ xy' = \sum_{n=1}^{\infty} a_n n x^{n} = \sum_{n=0}^{\infty} a_n n x^{n} $$
+
+Pois o primeiro termo da somatória começando em zero é 0. \\
+Assim, substituindo na equação diferencial:
+
+$$ \sum_{n=0}^{\infty} [ a_{n+2} (n+2) (n+1) + a_n n x^{n} + 2  a_n ] x^n = 0 $$
+
+Assim, chegamos na seguinte relação de recorrência:
+
+$$ a_{n+2} = - \frac{a_n (n+2) }{(n+2)(n+1)} = - \frac{a_n}{n+1}, n = 0, 1, 2, 3 ... $$
+
+É possível perceber que a sequência dos termos pares é independente da sequência dos termos ímpares. \\
+Analisando a sequência dos termos pares:
+
+$$ n = 0 \Rightarrow a_2 = -\frac{a_0}{1} $$
+$$ n = 2 \Rightarrow a_4 = -\frac{a_2}{3} = \frac{a_0}{3 \cdot 1} $$
+$$ n = 4 \Rightarrow a_6 = -\frac{a_4}{5} = - \frac{a_0}{5 \cdot 3 \cdot 1} $$
+$$ \therefore a_{2n} = \frac{(-1)^n a_0}{(2n-1) \cdot (2n-3) \cdot (2n-5) \cdot ...  \cdot 1 } $$
+
+Analisando a sequência dos termos ímpares:
+
+$$ n = 1 \Rightarrow a_3 = -\frac{a_1}{2} $$
+$$ n = 3 \Rightarrow a_5 = -\frac{a_3}{4} = \frac{a_1}{4 \cdot 2} $$
+$$ n = 5 \Rightarrow a_7 = -\frac{a_5}{6} = - \frac{a_1}{6 \cdot 4 \cdot 2} $$
+$$ \therefore a_{2n+1} = \frac{(-1)^n a_1}{(2n) \cdot (2n-2) \cdot (2n-4) \cdot ...  \cdot 2 } $$
+
+Sendo assim a solução geral da equação é dada por:
+
+$$ y(x) = a_0 \sum_{n=0}^{\infty}  \frac{(-1)^n x^{2n}}{(2n-1) \cdot (2n-3) \cdot (2n-5) \cdot ...  \cdot 1 } + a_1 \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1} }{(2n) \cdot (2n-2) \cdot (2n-4) \cdot ...  \cdot 2 }, a_0, a_1 \in \re $$
+
+Vamos analisar a convergência em função de $x$ das duas séries obtidas. Aplicando o critério da razão:
+
+$$ \lim_{n\rightarrow \infty} \frac{x^{2n+2}}{(2n+1) \cdot (2n-1) \cdot (2n-3) \cdot ...  \cdot 1 } \frac{(2n-1) \cdot (2n-3) \cdot (2n-5) \cdot ...  \cdot 1 }{x^{2n}} = \lim_{n\rightarrow \infty} \frac{x^2}{(2n+1)} = 0   $$
+
+$$ \lim_{n\rightarrow \infty} \frac{x^{2n+3}}{(2n+2) \cdot (2n) \cdot (2n-2) \cdot ...  \cdot 2 } \frac{(2n) \cdot (2n-2) \cdot (2n-4) \cdot ...  \cdot 2 }{x^{2n+1}} = \lim_{n\rightarrow \infty} \frac{x^2}{(2n+2)} = 0   $$
+
+Pelo critério da razão, temos que as duas séries convergem para qualquer valor de $x$. Sendo assim, temos que o raio de convergência da solução da EDO por séries é infinito.
+
+\item[(b)] 
+
+Primeiro vamos encontrar a solução da equação homogênea. Como a equação possui coeficientes constantes, temos que as soluções da equação homogênea são da forma $ y(x) = e^{sx} $. Deverivando e substituindo na equação, obtemos o seguinte polinômio característico:
+
+$$ s^3 - 4s^2 + 4s = 0 \Rightarrow s(s-2)^2 = 0 $$
+
+Sendo assim, a solução da equação homogênea é dada por:
+
+$$ y_h(x) = C_1 + C_2 e^{2x} + C_3 x e^{2x}, C_1, C_2, C_3 \in \re $$
+
+Para encontrar a solução geral da equação, iremos utilizar o Método dos Coeficientes a Determinar para encontrar um solução particular. Como o termo não homogêneo é o produto de um polinômio de primeiro grau por uma exponencial e não há exponenciais com o mesmo argumento na solução homogênea, iremos buscar uma solução particular no seguinte formato:
+
+$$ y_p(x) = (Ax+B)e^{-x} $$
+
+Derivando:
+
+$$ y_p'(x) = Ae^{-x} - (Ax+B)e^{-x} = (-Ax + A - B)e^{-x} $$
+$$ y_p''(x) = - Ae^{-x} - (-Ax + A - B)e^{-x} = (Ax + B - 2A )e^{-x}  $$
+$$ y_p'''(x) = Ae^{-x} - (Ax + B - 2A )e^{-x} = (-Ax + 3A - B )e^{-x}  $$
+
+Substituindo na equação:
+
+$$(-Ax + 3A - B )e^{-x} - 4 (Ax + B - 2A )e^{-x} +  4(-Ax + A - B)e^{-x} = x e^{-x}$$
+$$ \Rightarrow -9Axe^{-x} + (15A - 9B)e^{-x} = xe^{-x} $$
+
+$$\therefore
+\left\{
+\begin{array}{lc}
+-9A = 1 \\
+15A - 9B = 0 \\
+\end{array}
+\right.
+\Rightarrow
+\left\{
+\begin{array}{lc}
+A = -\frac{1}{9} \\
+B = -\frac{5}{27} \\
+\end{array}
+\right.
+$$
+
+A solução geral da equação é a soma da solução homogênea com a solução particular. Assim:
+$$ y(x) = C_1 + C_2 e^{2x} + C_3 x e^{2x} -\frac{1}{9} x e^{-x} -\frac{5}{27} e^{-x}  , C_1, C_2, C_3 \in \re $$
+    
+\end{itemize}
+
+
+\end{document} 

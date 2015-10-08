@@ -1,0 +1,569 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage[portuguese]{babel}
+\title{MAT2456 - P2-2014}
+\author{André Garnier Coutinho}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{24cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\oddsidemargin}{-2cm}
+
+\newcommand{\re}{\mathbb{R}}
+
+\newcommand{\sen}{\mbox{\,sen}}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TURMA A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\textbf{Instituto de Matemática e Estatística da USP\\
+MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
+\textbf{3a. Prova - 2o. Semestre 2014 - 24/11/2014}
+\end{center}
+
+\noindent {\bf Turma A}
+
+\noindent{\bf 1ª Questão:} Resolva:
+\begin{itemize}
+	\item[a)] (1,5 ponto) $(xy^4 + 4xy^5)\,dx + (2x^2 y^4 -1)\,dy = 0$
+	
+	\item[b)] (1,5 ponto) $y' = \displaystyle\frac{4yx + 3y^2}{x^2}, \; x>0$
+\end{itemize}
+
+\noindent{\bf \\Solução:}
+\begin{itemize}
+    \item[a)] Sejam $P(x,y) = xy^4 + 4xy^5$ e $Q(x,y) = 2x^2 y^4 -1$. \\
+    
+    Como $\displaystyle\frac{\partial Q}{\partial x} = 4xy^4 \neq \frac{\partial P}{\partial y} = 4xy^3 + 20xy^4$, a equação não é exata. \\
+    
+    Como $\displaystyle\frac{\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}}{P} = - \frac{4xy^3 + 16xy^4}{xy^4 + 4xy^5} = -\frac{4}{y}$ depende apenas de $y$, a equação admite um fator integrante que depende apenas de $y$, dado por:
+    
+    $$ \mu(y) = e^{\int (-\frac{4}{y}) \, dy} = e^{-4 \ln|y|} =  e^{\ln|\frac{1}{y^4}|} = \frac{1}{y^4} $$
+    
+    Multiplicando a EDO pelo fator integrante, temos:
+    
+    $$ (x+4xy)\,dx + \Big(2x^2 - \frac{1}{y^4}\Big)\,dy = 0 $$
+    
+   Sendo assim, agora temos: $P(x,y) = x+4xy$ e $Q(x,y) = 2x^2 - \displaystyle\frac{1}{y^4}$. \\
+   
+   Como $\displaystyle\frac{\partial Q}{\partial x} = 4x = \frac{\partial P}{\partial y} $, a equação é exata. \\
+   
+   A solução de uma EDO exata é dada por $\phi(x,y) = C, \, C \in \re$, sendo que $\nabla\phi = (P,Q)$. Assim, temos:
+   
+   $$ 
+   \begin{cases}
+   \displaystyle\frac{\partial \phi}{\partial x} = x+4xy \\
+   \\
+   \displaystyle\frac{\partial \phi}{\partial y} = 2x^2 - \displaystyle\frac{1}{y^4}
+   \end{cases} 
+   $$
+   
+Integrando em $x$ a primeira equação:
+
+$$ \phi (x,y) = \frac{x^2}{2} + 2 x^2 y + c(y) $$
+
+Derivando em $y$:
+$$ \displaystyle \frac{ \partial \phi}{\partial y} = 2x^2 + c'(y) $$
+
+Comparando com a segunda equação:
+
+$$ c'(y) = -\frac{1}{y^4} \Rightarrow c(y) = \frac{1}{3 y^3}$$
+
+Sendo assim, temos:
+
+$$ \phi (x,y) = \frac{x^2}{2} + 2 x^2 y + \frac{1}{3 y^3} $$
+
+Portanto, a solução geral da equação diferencial é dada por:
+
+$$ \frac{x^2}{2} + 2 x^2 y + \frac{1}{3 y^3} = C, \, C \in \re $$ \\
+
+    \item[b)]
+
+$$ y' = \displaystyle\frac{4yx + 3y^2}{x^2} = f(x,y) , \; x > 0 $$
+
+Como $ f(x,y) = f(tx,ty), \forall t \neq 0 $, temos que a equação é homogênea. Sendo assim, utilizamos a seguinte mudança de variável: $ u = \frac{y}{x} \Rightarrow y' = u'x + u $.
+
+$$ y' = \frac{4yx + 3y^2}{x^2} =  \frac{y}{x} \Big ( 4 + 3 \frac{y}{x} \Big) \Rightarrow u'x + u = 4u + 3u^2 $$
+
+$$ u'x = 3u + 3u^2 \Rightarrow \int \frac{du}{3u(u+1)} = \int \frac{dx}{x}, \; u \neq 0 \text{ e } u \neq -1  $$
+
+Repare que $u=0 \Rightarrow y = 0$ e $u=-1 \Rightarrow y = -x$ são soluções da EDO.
+
+Expandindo a função $ \frac{1}{u(u+1)} $ em frações parciais:
+
+$$ \frac{1}{u(u+1)} = \frac{A}{u} + \frac{B}{u+1} $$
+$$ A(u+1) + Bu = 1 \Rightarrow A = 1, B = -1 $$
+$$ \therefore \int \frac{du}{u(u+1)} = \ln |u| - \ln |u+1| = \ln \Big| \frac{u}{u+1} \Big| $$
+
+Sendo assim, temos:
+
+$$ \frac{1}{3} \ln \Big| \frac{u}{u+1} \Big| = \ln x + C, C \in \re $$
+$$ \ln \Big| \frac{u}{u+1} \Big| = 3\ln x + C, C \in \re $$
+$$  \frac{u}{u+1} = C x^3, C \in \re $$
+
+Portanto as soluções da equação diferencial para $ x > 0 $ são dadas por:
+
+$$
+\begin{cases}
+\displaystyle\frac{y}{y+x} = C x^3, C \in \re \\
+y = 0 \\
+y = -x
+\end{cases}
+$$
+
+
+\end{itemize}
+%---------------------------------------QUESTAO 2-----------------------------------------
+\newpage
+
+\noindent{\bf 2ª Questão:} 
+
+\begin{itemize}
+\item[a)] (2,0 pontos) Encontre todas as soluções de
+
+$$ y''' - 3y'' + 4y = e^{2x} + x^2 $$
+
+\item[b)] (1,5 ponto) Encontre todas as soluções de
+
+$$2x^2 y'' + y' (2x - 4x^2) + y (3x^2 -2x -2) = 0, \text{ para } x > 0,$$
+
+admitindo que $y = x e^x$ é uma das soluções.
+
+\end{itemize}
+
+\noindent{\bf Solução:} \\
+
+\begin{itemize}
+\item[a)] Primeiro vamos encontrar a solução da equação homogênea. Como a equação possui coeficientes constantes, temos que as soluções da equação homogênea são da forma $ y(x) = e^{sx} $. Deverivando e substituindo na equação, obtemos o seguinte polinômio característico:
+
+$$ s^3 - 3s^2 + 4 = 0 \Rightarrow (s+1)(s-2)^2 = 0 $$
+
+Sendo assim, a solução da equação homogênea é dada por:
+
+$$ y_h(x) = C_1 e^{-x} + C_2 e^{2x} + C_3 x e^{2x}, \; C_1, C_2, C_3 \in \re $$
+
+Para encontrar a solução geral da equação, iremos utilizar o Método dos Coeficientes a Determinar para encontrar uma solução particular. Como o termo não homogêneo é o produto de um polinômio de primeiro grau por uma exponencial e não há exponenciais com o mesmo argumento na solução homogênea, iremos buscar uma solução particular no seguinte formato:
+
+$$ y_p(x) = (Ax+B)e^{-x} $$
+
+Derivando:
+
+$$ y_p'(x) = Ae^{-x} - (Ax+B)e^{-x} = (-Ax + A - B)e^{-x} $$
+$$ y_p''(x) = - Ae^{-x} - (-Ax + A - B)e^{-x} = (Ax + B - 2A )e^{-x}  $$
+$$ y_p'''(x) = Ae^{-x} - (Ax + B - 2A )e^{-x} = (-Ax + 3A - B )e^{-x}  $$
+
+Substituindo na equação:
+
+$$(-Ax + 3A - B )e^{-x} - 2 (Ax + B - 2A )e^{-x} + (-Ax + A - B)e^{-x} = x e^{-x}$$
+$$ \Rightarrow -4Axe^{-x} + (8A - 4B)e^{-x} = xe^{-x} $$
+
+$$\therefore
+\left\{
+\begin{array}{lc}
+-4A = 1 \\
+8A - 4B = 0 \\
+\end{array}
+\right.
+\Rightarrow
+\left\{
+\begin{array}{lc}
+A = -\frac{1}{4} \\
+B = -\frac{1}{2} \\
+\end{array}
+\right.
+$$
+
+A solução geral da equação é a soma da solução homogênea com a solução particular. Assim:
+$$ y(x) = C_1 + C_2 e^x + C_3 x e^x -\frac{1}{4} x e^{-x} -\frac{1}{2} e^{-x}  , C_1, C_2, C_3 \in \re $$
+
+\item[b)] Aplicando o critério da razão:
+
+$$ \frac{|a_{n+1}|}{|a_n|} =  \frac{e^{2n+2}((n+1)!)^2}{(n+1)^{2n+2}} \cdot  \frac{n^{2n}}{e^{2n} (n!)^2} =  \frac{e^{2}(n+1)^2 (n!)^2}{(n+1)^{2} (n+1)^{2n}} \cdot  \frac{n^{2n}}{ (n!)^2} = \Bigg( \frac{e}{(\frac{n+1}{n})^n} \Bigg)^2 $$
+$$\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \lim_{n\rightarrow\infty} \Bigg( \frac{e}{(\frac{n+1}{n})^n} \Bigg)^2 = 1 $$
+
+O critério da razão não leva a nenhuma conclusão, pois $\displaystyle\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = 1 $. Porém sabe-se que:
+
+$$ \frac{|a_{n+1}|}{|a_n|} = \Bigg( \frac{e}{(\frac{n+1}{n})^n} \Bigg)^2 > 1, \forall n > 0 $$
+
+porque sabemos que a sequência $(\frac{n+1}{n})^n$ é crescente e tende a $e$. Isso implica que o termo geral não vai a zero e, portanto, a série diverge.
+
+\item[c)] Para analisar a convergência da série, utilizamos o critério da integral, com $f(x) = \frac{\ln \frac{x}{3}}{x}$. Para isso, precisamos verificar se o termo geral da série vai a zero e se $f$ é decrescente.
+    
+    \begin{itemize}
+    \item[$\bullet$] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{x \rightarrow \infty} f(x) = \lim_{x \rightarrow \infty} \frac{\ln \frac{x}{3}}{x} \underset{\frac{\infty}{\infty}}{ \overset{L'H}{=}} \lim_{x \rightarrow \infty} \frac{\frac{3}{x} \cdot \frac{1}{3}}{1} = 0$
+    \item[$\bullet$] $f'(x) = \frac{\frac{1}{x} \cdot x - \ln(\frac{x}{3}) \cdot 1}{x^2} = \frac{1 - \ln(\frac{x}{3})}{x^2} < 0, \forall x > 3e  \Rightarrow f$ é decrescente $\forall x > 3e$.
+    \end{itemize}
+    
+    $$ \int_{10}^\infty f(x) \, dx = \int_{10}^\infty \frac{\ln \frac{x}{3}}{x}  \, dx \underset{u = \ln \frac{x}{3} \Rightarrow du = \frac{dx}{x} }{=} \int_{\ln 10}^\infty u  \, du = \lim_{u\rightarrow\infty} \frac{u^2}{2} - \frac{(\ln 10)^2}{2} = \infty $$
+    
+    Como a integral imprópria diverge, $\displaystyle\sum_{n=1}^\infty |a_n|$ diverge. Porém, a série alternada converge pelo critério das séries alternadas, pois, como foi visto anteriormente, o módulo do termo geral da série é descrescente e vai a zero. Sendo assim, a série converge condicionalmente.
+
+\end{itemize}
+
+%---------------------------------------QUESTAO 3-----------------------------------------
+
+\newpage
+\noindent{\bf 3ª Questão: }
+\begin{itemize}
+\item[a)] (2,5) Determinar os valores de $x \in \mathbb{R}$ para os quais a série de potências
+
+$$ \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-3)^n $$
+
+é convergente.
+
+\item[b)] (1,5) Estudar a convergência em termos de $\alpha > 0$:
+
+$$ \sum_{n=3}^\infty \frac{1}{n (\ln n)(\ln (\ln n))^\alpha} $$
+
+\end{itemize}
+
+
+\noindent{\bf Solução:}
+\\
+
+\begin{itemize}
+\item[a)] Aplicando o critério da razão, temos:
+
+$$\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \lim_{n\rightarrow\infty} \frac{(3n+1) |x-3|^{n+1}}{(n+2)^2 \, 2^{n+2}}  \cdot \frac{(n+1)^2 \, 2^{n+1}}{(3n-2) |x-3|^n} = \lim_{n\rightarrow\infty} \Big( \frac{3n+1}{3n-2} \Big) \Big( \frac{n+1}{n+2} \Big)^2 \frac{|x-3|}{2}  $$
+$$ = \lim_{n\rightarrow\infty} \Bigg( \frac{3+\frac{1}{n}}{3-\frac{2}{n}} \Bigg) \Bigg( \frac{1+\frac{1}{n}}{1+\frac{2}{n}} \Bigg)^2 \frac{|x-3|}{2} = \frac{|x-3|}{2} $$
+
+Para $\frac{|x-3|}{2} < 1 \Leftrightarrow |x-3| < 2$: a série converge absolutamente, pelo critério da razão.
+
+Para $\frac{|x-3|}{2} > 1 \Leftrightarrow |x-3| > 2$: o termo geral não vai a zero e, portanto, a série diverge.
+
+Para $\frac{|x-3|}{2} = 1 \Rightarrow x = 1 \lor x=5$: o critério da razão é inconclusivo, outros critérios devem ser utilizados. \\
+
+Para $x=5$, temos:
+
+$$  \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-3)^n = \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2} $$
+
+Para analisar a convergência desta série, utilizamos o critério da comparação no limite:
+
+$$ L = \lim_{n\rightarrow\infty} \frac{\frac{3n-2}{(n+1)^2 \, 2}}{\frac{1}{n}} = \lim_{n\rightarrow\infty} \frac{3n^2-2n}{(n+1)^2 \, 2} = \lim_{n\rightarrow\infty} \frac{3-\frac{2}{n}}{(1+\frac{1}{n})^2 \, 2} = \frac{3}{2}  $$
+
+Como $0 < L < \infty$, temos que série diverge, pois $\displaystyle\sum_{n=1}^\infty \frac{1}{n}$ é uma série divergente.
+
+Para $x=1$, temos:
+
+$$  \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-3)^n = \sum_{n=1}^\infty \frac{(-1)^n \, (3n-2)}{(n+1)^2 \, 2} $$
+
+Esta série não apresenta convergência absoluta, pois já verificamos que $\displaystyle\sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2}$ diverge. \\
+
+Para verificar se há convergência condicional, utilizamos o critério das séries alternadas: 
+    
+    \begin{itemize}
+    \item[$\bullet$] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{n \rightarrow \infty} \frac{3n-2}{(n+1)^2 \, 2} = \lim_{n \rightarrow \infty} \frac{3n-2}{(n^2 + 2n + 1) \, 2} = \lim_{n \rightarrow \infty} \frac{3-\frac{2}{n}}{(n + \frac{2}{n} + \frac{1}{n^2}) \, 2} = 0 $
+    \item[$\bullet$] $|a_{n}| = f(n) = \displaystyle\frac{3n-2}{(n+1)^2 \, 2}  $
+    
+    $f'(x) = \displaystyle\frac{3 \cdot (x+1)^2 -  (3x-2) \cdot 2 (x+1)}{(x+1)^4} = \frac{7 - 3x}{(x+1)^3} < 0, \forall x > \frac{7}{3}$
+    
+    $\therefore |a_{n}|$ é decrescente $\forall n \geq 3$.  
+    
+    \end{itemize}
+    
+    Como o módulo do termo geral da série é descrescente e vai a zero, pode-se afirmar que, pelo critério das séries alternadas, a série é convergente. Portanto, a série converge condicionalmente. 
+
+\item[b)] Para analisar a convergência da série, utilizamos o critério da integral, com $f(x) = \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}$. Como $\alpha > 0$, o termo geral da série vai a zero e $f$ é claramente positiva e decrescente para $x \geq 3$.
+    
+    $$ \int_{3}^\infty f(x) \, dx = \int_{3}^\infty \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}  \, dx \underset{u = \ln x \Rightarrow du = \frac{dx}{x} }{=} \int_{\ln 3}^\infty \frac{1}{ u(\ln u)^\alpha}  \, du = \underset{v = \ln u \Rightarrow dv = \frac{du}{u} }{=} \int_{\ln(\ln 3)}^\infty \frac{1}{ v^\alpha}  \, dv $$
+    
+    $$
+    \Rightarrow \int_{3}^\infty f(x) \, dx =
+    \begin{cases}
+    \displaystyle \lim_{v\rightarrow\infty} \displaystyle\frac{v^{1-\alpha}}{1-\alpha} - \displaystyle\frac{(\ln(\ln 3))^{1-\alpha}}{1-\alpha}, \; \alpha \neq 1 \\
+    \displaystyle \lim_{v\rightarrow\infty}\ln (v) - \ln (\ln(\ln 3)), \;\;\;\;\; \alpha = 1
+    \end{cases}
+    $$
+    
+    $$
+    \lim_{v\rightarrow\infty} \displaystyle\frac{v^{1-\alpha}}{1-\alpha} =
+    \begin{cases}
+    \infty, \;\; 1-\alpha > 0 \\
+    0, \;\;\;\; 1-\alpha < 0
+    \end{cases}
+    $$
+    
+        $$
+    \therefore \int_{3}^\infty f(x) \, dx =
+    \begin{cases}
+    \infty, \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;  0 < \alpha \leq 1 \\
+    - \displaystyle\frac{(\ln(\ln 3))^{1-\alpha}}{1-\alpha}, \; \alpha > 1
+    \end{cases}
+    $$
+    
+    A série converge se e somente se a integral imprópria converge. Sendo assim, temos que a série converge para $\alpha > 1$ e diverge para $0 < \alpha \leq 1$.
+
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TURMA B%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\textbf{Instituto de Matemática e Estatística da USP\\
+MAT2455 - Cálculo Diferencial e Integral IV para Engenharia\\}
+\textbf{1a. Prova - 2o. Semestre 2015 - 01/09/2015}
+\end{center}
+
+\noindent {\bf Turma B}
+
+\noindent{\bf 1ª Questão:}
+\begin{itemize}
+	\item[a)] (1,0) Mostre que a seguência
+	
+	$$0,79 \;\;\;\; 0,798 \;\;\;\; 0,7989 \;\;\;\; 0,79898 \;\;\;\; 0,798989$$
+	
+	é convergente e calcule o valor de seu limite como razão entre dois inteiros.
+	
+	\item[b)] Considere a série
+	
+	$$\displaystyle\sum_{n=0}^\infty (-1)^n \, \frac{1}{(2n)!} = 1 - \frac{1}{2!} + \frac{1}{4!} - ...$$
+	
+    Prove que a série é convergente e calcule explicitamente uma aproximação do valor da soma da série com erro menor que $2 \cdot 10^{-3}$.
+\end{itemize}
+
+\noindent{\bf \\Solução:}
+\begin{itemize}
+    \item[a)] A sequencia dada pode ser descrita como:
+    
+    $$
+    \begin{cases}
+    a_1 = 0,79 \\
+    a_{n+1} =
+        \begin{cases}
+        a_n + 8 \cdot 10^{-(n+2)}, \text{$n$ ímpar} \\
+        a_n + 9 \cdot 10^{-(n+2)}, \text{$n$ par} \\
+        \end{cases}  
+    \end{cases}
+    $$
+    
+    Assim, pode-se concluir que a sequência é crescente, pois $a_{n+1} > a_n, \forall n \geq 1$. 
+    
+    Como a sequência é crescente e claramente limitada superiormente por $0,8$, temos que a sequência é convergente.
+    
+    O convergência da sequência garante que todas as sub-sequências devem convergir para o mesmo valor. Sendo assim, definimos a seguinte sub-sequência:
+    
+    $$
+    \begin{cases}
+    a_1 = 0,79 \\
+    a_{n+2} =  a_n + 89 \cdot 10^{-(n+3)}, \text{$n$ ímpar}
+    \end{cases}
+    $$
+    
+    A partir da expressão recursiva, é possível determinar uma expressão não recursiva para o termo geral da sub-sequência:
+    
+    \begin{align*} 
+    n &= 1 \rightarrow a_3 = 0,79 + 89 \cdot 10^{-4} \\ 
+    n &= 3 \rightarrow a_5 = a_3 + 89 \cdot 10^{-6} = 0,79 + 89 \cdot 10^{-4} + 89 \cdot 10^{-6} \\
+    n &= 5 \rightarrow a_7 = a_5 + 89 \cdot 10^{-8} = 0,79 + 89 \cdot 10^{-4} + 89 \cdot 10^{-6} + 89 \cdot 10^{-8}\\
+    \vdots \\
+    n &= k-2 \rightarrow a_k = 0,79 + 89 \cdot 10^{-4}(1 + 10^{-2} + 10^{-4} + ... + 10^{-k+3}), \; \text{$k$ ímpar}
+    \end{align*}
+    
+    Assim, podemos calcular o limite desta sub-sequência da seguinte maneira:
+    
+    $$ \lim_{k \rightarrow \infty} a_k = 0,79 + 89 \cdot 10^{-4} \sum_{m=0}^{\infty} (10^{-2})^m $$
+    
+    Como $\displaystyle\sum_{m=0}^{\infty} (10^{-2})^m$ é a soma de uma PG de razão positiva menor que $1$, temos:
+    
+    $$ \lim_{k \rightarrow \infty} a_k = 0,79 + 89 \cdot 10^{-4} \cdot \frac{1}{1 - 10^{-2}} = \Big(79 + \frac{89}{99} \Big) \frac{1}{100} = \frac{791}{990} $$ \\
+
+
+
+    \item[b)] Para analisar a convergência da série, utilizamos o critério das séries alternadas:
+    
+    \begin{itemize}
+    \item[$\bullet$] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{n \rightarrow \infty} \displaystyle\frac{1}{(2n)!} = 0 $
+    \item[$\bullet$] $|a_{n+1}| = \displaystyle\frac{1}{(2n+2)!} = \displaystyle\frac{1}{(2n+2)(2n+1)(2n)!} = \frac{|a_n|}{(2n+2)(2n+1)} \\ \Rightarrow |a_{n+1}| < |a_n|, \forall n \geq 0  $
+    \end{itemize}
+    
+    Como o módulo do termo geral da série é descrescente e vai a zero, pode-se afirmar que, pelo critério das séries alternadas, a série é convergente.
+    
+    Deseja-se aproximar $\displaystyle\sum_{n=0}^\infty (-1)^n \, \frac{1}{(2n)!}$ por $\displaystyle\sum_{n=0}^k (-1)^n \, \frac{1}{(2n)!}$  com $erro < \varepsilon = 2\cdot 10^{-3}$.
+Para séries alternadas, o erro da aproximação respeita a seguinte relação:
+
+$$ erro = \sum_{n=k+1}^\infty a_n < |a_{k+1}| $$
+
+Repare que se encontrarmos um valor de $k$ que respeite $|a_{k+1}| < \epsilon$, temos que $erro < \epsilon$. Sendo assim, temos:
+
+$$|a_{k+1}| = \frac{1}{(2k+2)!} < 2\cdot 10^{-3} \Rightarrow (2k+2)! > 0,5 \cdot 10^{3} $$
+
+\begin{align*} 
+    k &= 1 \rightarrow (2k+2)! = 4! = 24 < 500 \\ 
+    k &= 2 \rightarrow (2k+2)! = 6! = 720 > 500 \\
+\end{align*}
+
+Portanto: 
+
+$$ \sum_{n=0}^\infty (-1)^n \, \frac{1}{(2n)!}  \simeq \sum_{n=0}^2 (-1)^n \, \frac{1}{(2n)!} = 1 - \frac{1}{2!} + \frac{1}{4!} $$
+
+Com $erro < 2 \cdot 10^{-3}$.
+    
+
+\end{itemize}
+\ \
+
+%---------------------------------------QUESTAO 2-----------------------------------------
+\newpage
+
+\noindent{\bf 2ª Questão:} Decidir se a série dada converge ou não. Em caso afirmativo, dizer se a convergência é absoluta ou condicional.
+
+\begin{itemize}
+\item[a)] (1,0) $\displaystyle\sum_{n=1}^\infty (-1)^{n-1} \, \Big( \frac{n}{2n-1} \Big)^{3n-1}$
+\item[b)] (1,0) $\displaystyle\sum_{n=1}^\infty (-1)^{n-1} \, \frac{e^{3n} (n!)^3}{n^{3n}}$
+\item[c)] (1,0) $\displaystyle\sum_{n=1}^\infty (-1)^{n-1} \, \frac{\ln \frac{n}{2}}{n}$
+\end{itemize}
+
+\noindent{\bf Solução:} \\
+
+\begin{itemize}
+\item[a)] Aplicando o critério da razão:
+
+$$\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \lim_{n\rightarrow\infty} \Big( \frac{n+1}{2n+1} \Big)^{3n+2} \Big( \frac{2n-1}{n} \Big)^{3n-1} = \lim_{n\rightarrow\infty}  \Big( \frac{n+1}{2n+1} \Big)^3 \Big( \frac{n+1}{n} \Big)^{3n-1} \Big( \frac{2n-1}{2n+1} \Big)^{3n-1} $$
+
+\begin{itemize}
+\item[$\bullet$] $\displaystyle\lim_{n\rightarrow\infty}  \Big( \displaystyle\frac{n+1}{2n+1} \Big)^3 = \displaystyle\lim_{n\rightarrow\infty}  \Big( \displaystyle\frac{1+\frac{1}{n}}{2+\frac{1}{n}} \Big)^3 = \displaystyle\frac{1}{2^3} $
+\item[$\bullet$] $\displaystyle\lim_{n\rightarrow\infty} \Big( \displaystyle\frac{n+1}{n} \Big)^{3n-1} = \displaystyle\lim_{n\rightarrow\infty} e^{(3n-1) \ln(\frac{n+1}{n})} = e^3$, pois:
+\begin{itemize}
+\item[--] $\displaystyle\lim_{x\rightarrow\infty} (3x-1) \ln\Big(\frac{x+1}{x}\Big) = \displaystyle\lim_{x\rightarrow\infty} \frac{ \ln\big(\frac{x+1}{x}\big) }{\frac{1}{3x-1}} \underset{u = \frac{1}{x}}{=} \displaystyle\lim_{u\rightarrow 0} \frac{ \ln(u+1) }{\frac{u}{3-u}}$
+
+$\underset{\frac{0}{0}}{\overset{L'H}{=}} \displaystyle\lim_{u\rightarrow 0} \displaystyle \frac{\frac{1}{u+1}}{\frac{1\cdot(3-u)-u\cdot(-1)}{(3-u)^2}}=3$
+\end{itemize}
+\item[$\bullet$] $\displaystyle\lim_{n\rightarrow\infty} \Big( \displaystyle\frac{2n-1}{2n+1} \Big)^{3n-1} = \displaystyle\lim_{n\rightarrow\infty} e^{(3n-1) \ln(\frac{2n-1}{2n+1})} = e^{-3}$, pois:
+\begin{itemize}
+\item[--] $\displaystyle\lim_{x\rightarrow\infty} (3x-1) \ln\Big(\frac{2x-1}{2x+1}\Big) = \displaystyle\lim_{x\rightarrow\infty} \frac{ \ln\big(\frac{2x-1}{2x+1}\big) }{\frac{1}{3x-1}} \underset{u = \frac{1}{x}}{=} \displaystyle\lim_{u\rightarrow 0} \frac{ \ln\big(\frac{2-u}{2+u}\big) }{\frac{u}{3-u}}$
+
+$\underset{\frac{0}{0}}{\overset{L'H}{=}} \displaystyle\lim_{u\rightarrow 0} \displaystyle \frac{\frac{2+u}{2-u} \cdot \frac{(-1)\cdot(2+u)-(2-u)\cdot 1}{(2+u)^2}}{\frac{1\cdot(3-u)-u\cdot(-1)}{(3-u)^2}}= -3$
+\end{itemize}
+\end{itemize}
+
+$$\therefore \lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \frac{1}{2^3} \cdot e^3 \cdot e^{-3} = \frac{1}{8} < 1 $$
+
+Como $\displaystyle\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} < 1$, a série converge absolutamente.
+
+\item[b)] Aplicando o critério da razão:
+
+$$ \frac{|a_{n+1}|}{|a_n|} =  \frac{e^{3n+3}((n+1)!)^3}{(n+1)^{3n+3}} \cdot  \frac{n^{3n}}{e^{3n} (n!)^3} =  \frac{e^{3}(n+1)^3 (n!)^3}{(n+1)^{3} (n+1)^{3n}} \cdot  \frac{n^{3n}}{ (n!)^3} = \Bigg( \frac{e}{(\frac{n+1}{n})^n} \Bigg)^3 $$
+$$\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \lim_{n\rightarrow\infty} \Bigg( \frac{e}{(\frac{n+1}{n})^n} \Bigg)^3 = 1 $$
+
+O critério da razão não leva a nenhuma conclusão, pois $\displaystyle\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = 1 $. Porém sabe-se que:
+
+$$ \frac{|a_{n+1}|}{|a_n|} = \Bigg( \frac{e}{(\frac{n+1}{n})^n} \Bigg)^3 > 1, \forall n > 0 $$
+
+porque sabemos que a sequência $(\frac{n+1}{n})^n$ é crescente e tende a $e$. Isso implica que o termo geral não vai a zero e, portanto, a série diverge.
+
+\item[c)] Para analisar a convergência da série, utilizamos o critério da integral, com $f(x) = \frac{\ln \frac{x}{2}}{x}$. Para isso, precisamos verificar se o termo geral da série vai a zero e se $f$ é decrescente.
+    
+    \begin{itemize}
+    \item[$\bullet$] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{x \rightarrow \infty} f(x) = \lim_{x \rightarrow \infty} \frac{\ln \frac{x}{2}}{x} \underset{\frac{\infty}{\infty}}{ \overset{L'H}{=}} \lim_{x \rightarrow \infty} \frac{\frac{2}{x} \cdot \frac{1}{2}}{1} = 0$
+    \item[$\bullet$] $f'(x) = \frac{\frac{1}{x} \cdot x - \ln(\frac{x}{2}) \cdot 1}{x^2} = \frac{1 - \ln(\frac{x}{2})}{x^2} < 0, \forall x > 2e  \Rightarrow f$ é decrescente $\forall x > 2e$.
+    \end{itemize}
+    
+    $$ \int_{6}^\infty f(x) \, dx = \int_{6}^\infty \frac{\ln \frac{x}{2}}{x}  \, dx \underset{u = \ln \frac{x}{2} \Rightarrow du = \frac{dx}{x} }{=} \int_{\ln 6}^\infty u  \, du = \lim_{u\rightarrow\infty} \frac{u^2}{2} - \frac{(\ln 6)^2}{2} = \infty $$
+    
+    Como a integral imprópria diverge, $\displaystyle\sum_{n=1}^\infty |a_n|$ diverge. Porém, a série alternada converge pelo critério das séries alternadas, pois, como foi visto anteriormente, o módulo do termo geral da série é descrescente e vai a zero. Sendo assim, a série converge condicionalmente.
+
+\end{itemize}
+
+%---------------------------------------QUESTAO 3-----------------------------------------
+
+\newpage
+\noindent{\bf 3ª Questão: }
+\begin{itemize}
+\item[a)] (2,5) Determinar os valores de $x \in \mathbb{R}$ para os quais a série de potências
+
+$$ \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 2^{n+1}} (x-2)^n $$
+
+é convergente.
+
+\item[b)] (1,5) Estudar a convergência em termos de $\alpha > 0$:
+
+$$ \sum_{n=3}^\infty \frac{1}{n (\ln n)(\ln (\ln n))^\alpha} $$
+
+\end{itemize}
+
+
+\noindent{\bf Solução:}
+\\
+
+\begin{itemize}
+\item[a)] Aplicando o critério da razão, temos:
+
+$$\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \lim_{n\rightarrow\infty} \frac{(3n+1) |x-2|^{n+1}}{(n+2)^2 \, 2^{n+2}}  \cdot \frac{(n+1)^2 \, 2^{n+1}}{(3n-2) |x-2|^n} = \lim_{n\rightarrow\infty} \Big( \frac{3n+1}{3n-2} \Big) \Big( \frac{n+1}{n+2} \Big)^2 \frac{|x-2|}{2}  $$
+$$ = \lim_{n\rightarrow\infty} \Bigg( \frac{3+\frac{1}{n}}{3-\frac{2}{n}} \Bigg) \Bigg( \frac{1+\frac{1}{n}}{1+\frac{2}{n}} \Bigg)^2 \frac{|x-2|}{2} = \frac{|x-2|}{2} $$
+
+Para $\frac{|x-2|}{2} < 1 \Leftrightarrow |x-2| < 2$: a série converge absolutamente, pelo critério da razão.
+
+Para $\frac{|x-2|}{2} > 1 \Leftrightarrow |x-2| > 2$: o termo geral não vai a zero e, portanto, a série diverge.
+
+Para $\frac{|x-2|}{2} = 1 \Rightarrow x = 0 \lor x=4$: o critério da razão é inconclusivo, outros critérios devem ser utilizados. \\
+
+Para $x=4$, temos:
+
+$$  \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-2)^n = \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2} $$
+
+Para analisar a convergência desta série, utilizamos o critério da comparação no limite:
+
+$$ L = \lim_{n\rightarrow\infty} \frac{\frac{3n-2}{(n+1)^2 \, 2}}{\frac{1}{n}} = \lim_{n\rightarrow\infty} \frac{3n^2-2n}{(n+1)^2 \, 2} = \lim_{n\rightarrow\infty} \frac{3-\frac{2}{n}}{(1+\frac{1}{n})^2 \, 2} = \frac{3}{2}  $$
+
+Como $0 < L < \infty$, temos que série diverge, pois $\displaystyle\sum_{n=1}^\infty \frac{1}{n}$ é uma série divergente.
+
+Para $x=0$, temos:
+
+$$  \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-2)^n = \sum_{n=1}^\infty \frac{(-1)^n \, (3n-2)}{(n+1)^2 \, 2} $$
+
+Esta série não apresenta convergência absoluta, pois já verificamos que $\displaystyle\sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2}$ diverge. \\
+
+Para verificar se há convergência condicional, utilizamos o critério das séries alternadas: 
+    
+    \begin{itemize}
+    \item[$\bullet$] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{n \rightarrow \infty} \frac{3n-2}{(n+1)^2 \, 2} = \lim_{n \rightarrow \infty} \frac{3n-2}{(n^2 + 2n + 1) \, 2} = \lim_{n \rightarrow \infty} \frac{3-\frac{2}{n}}{(n + \frac{2}{n} + \frac{1}{n^2}) \, 2} = 0 $
+    \item[$\bullet$] $|a_{n}| = f(n) = \displaystyle\frac{3n-2}{(n+1)^2 \, 2}  $
+    
+    $f'(x) = \displaystyle\frac{3 \cdot (x+1)^2 -  (3x-2) \cdot 2 (x+1)}{(x+1)^4} = \frac{7 - 3x}{(x+1)^3} < 0, \forall x > \frac{7}{3}$
+    
+    $\therefore |a_{n}|$ é decrescente $\forall n \geq 3$.  
+    
+    \end{itemize}
+    
+    Como o módulo do termo geral da série é descrescente e vai a zero, pode-se afirmar que, pelo critério das séries alternadas, a série é convergente. Portanto, a série converge condicionalmente. 
+
+\item[b)] Para analisar a convergência da série, utilizamos o critério da integral, com $f(x) = \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}$. Como $\alpha > 0$, o termo geral da série vai a zero e $f$ é claramente positiva e decrescente para $x \geq 3$.
+    
+    $$ \int_{3}^\infty f(x) \, dx = \int_{3}^\infty \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}  \, dx \underset{u = \ln x \Rightarrow du = \frac{dx}{x} }{=} \int_{\ln 3}^\infty \frac{1}{ u(\ln u)^\alpha}  \, du = \underset{v = \ln u \Rightarrow dv = \frac{du}{u} }{=} \int_{\ln(\ln 3)}^\infty \frac{1}{ v^\alpha}  \, dv $$
+    
+    $$
+    \Rightarrow \int_{3}^\infty f(x) \, dx =
+    \begin{cases}
+    \displaystyle \lim_{v\rightarrow\infty} \displaystyle\frac{v^{1-\alpha}}{1-\alpha} - \displaystyle\frac{(\ln(\ln 3))^{1-\alpha}}{1-\alpha}, \; \alpha \neq 1 \\
+    \displaystyle \lim_{v\rightarrow\infty}\ln (v) - \ln (\ln(\ln 3)), \;\;\;\;\; \alpha = 1
+    \end{cases}
+    $$
+    
+    $$
+    \lim_{v\rightarrow\infty} \displaystyle\frac{v^{1-\alpha}}{1-\alpha} =
+    \begin{cases}
+    \infty, \;\; 1-\alpha > 0 \\
+    0, \;\;\;\; 1-\alpha < 0
+    \end{cases}
+    $$
+    
+        $$
+    \therefore \int_{3}^\infty f(x) \, dx =
+    \begin{cases}
+    \infty, \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;  0 < \alpha \leq 1 \\
+    - \displaystyle\frac{(\ln(\ln 3))^{1-\alpha}}{1-\alpha}, \; \alpha > 1
+    \end{cases}
+    $$
+    
+    A série converge se e somente se a integral imprópria converge. Sendo assim, temos que a série converge para $\alpha > 1$ e diverge para $0 < \alpha \leq 1$.
+
+\end{itemize}
+
+\end{document} 
