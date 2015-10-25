@@ -315,46 +315,77 @@ $$y'' + f(x)y' + g(x)y = \frac{\cos(x^2)}{\sqrt{1+x^2}}.$$
 \\
 
 \begin{itemize}
-\item[a)] Aplicando o critério da razão, temos:
+\item[a)] A solução homogênea da equação é a combinação linear das duas soluções homogêneas, $y_1$ e $y_2$:
 
-$$\lim_{n\rightarrow\infty} \frac{|a_{n+1}|}{|a_n|} = \lim_{n\rightarrow\infty} \frac{(3n+1) |x-3|^{n+1}}{(n+2)^2 \, 2^{n+2}}  \cdot \frac{(n+1)^2 \, 2^{n+1}}{(3n-2) |x-3|^n} = \lim_{n\rightarrow\infty} \Big( \frac{3n+1}{3n-2} \Big) \Big( \frac{n+1}{n+2} \Big)^2 \frac{|x-3|}{2}  $$
-$$ = \lim_{n\rightarrow\infty} \Bigg( \frac{3+\frac{1}{n}}{3-\frac{2}{n}} \Bigg) \Bigg( \frac{1+\frac{1}{n}}{1+\frac{2}{n}} \Bigg)^2 \frac{|x-3|}{2} = \frac{|x-3|}{2} $$
+$$ y_h (x) = C_1 \cos(x^2) + C_2 x \cos(x^2), C_1, C_2, \in \re $$
 
-Para $\frac{|x-3|}{2} < 1 \Leftrightarrow |x-3| < 2$: a série converge absolutamente, pelo critério da razão.
+Utilizamos o método da Variação dos Parâmetros para encontrar uma solução particular da seguinte forma:
 
-Para $\frac{|x-3|}{2} > 1 \Leftrightarrow |x-3| > 2$: o termo geral não vai a zero e, portanto, a série diverge.
+$$ y_p (x) = u_1(x) \cos(x^2) + u_2(x) x \cos(x^2) $$
 
-Para $\frac{|x-3|}{2} = 1 \Rightarrow x = 1 \lor x=5$: o critério da razão é inconclusivo, outros critérios devem ser utilizados. \\
+Aplicando o método:
 
-Para $x=5$, temos:
+$$
+\begin{bmatrix}
+y_1 & y_2 \\
+y_1' & y_2'
+\end{bmatrix}
+\begin{bmatrix}
+u_1' \\
+u_2'
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 \\
+q(x)
+\end{bmatrix}
+\Rightarrow
+\begin{bmatrix}
+\cos(x^2) & x\cos(x^2) \\
+-2x\sen(x^2) & -2x\sen(x^2) + \cos(x^2)
+\end{bmatrix}
+\begin{bmatrix}
+u_1' \\
+u_2'
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 \\
+\frac{\cos(x^2)}{\sqrt{1+x^2}}
+\end{bmatrix}
+$$
 
-$$  \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-3)^n = \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2} $$
+Resolvendo o sistema pela regra de Cramer:
 
-Para analisar a convergência desta série, utilizamos o critério da comparação no limite:
+$$ u_1' = \frac{ \begin{vmatrix}
+0 & x\cos(x^2) \\
+\frac{\cos(x^2)}{\sqrt{1+x^2}} & -2x\sen(x^2) + \cos(x^2)
+\end{vmatrix}  }{ \begin{vmatrix}
+\cos(x^2) & x\cos(x^2) \\
+-2x\sen(x^2) & -2x\sen(x^2) + \cos(x^2)
+\end{vmatrix} }
+= \frac{ - \frac{ x \cos^2 (x^2)}{\sqrt{1+x^2}} }{ \cos^2(x^2) } = -\frac{x}{\sqrt{1+x^2}}
+ $$
+ 
+ $$ u_2' = \frac{ \begin{vmatrix}
+\cos(x^2) & 0 \\
+-2x\sen(x^2) & \frac{\cos(x^2)}{\sqrt{1+x^2}}
+\end{vmatrix}  }{ \begin{vmatrix}
+\cos(x^2) & x\cos(x^2) \\
+-2x\sen(x^2) & -2x\sen(x^2) + \cos(x^2)
+\end{vmatrix} }
+= \frac{  \frac{ \cos^2 (x^2)}{\sqrt{1+x^2}} }{ \cos^2(x^2) } = \frac{1}{\sqrt{1+x^2}}
+ $$
 
-$$ L = \lim_{n\rightarrow\infty} \frac{\frac{3n-2}{(n+1)^2 \, 2}}{\frac{1}{n}} = \lim_{n\rightarrow\infty} \frac{3n^2-2n}{(n+1)^2 \, 2} = \lim_{n\rightarrow\infty} \frac{3-\frac{2}{n}}{(1+\frac{1}{n})^2 \, 2} = \frac{3}{2}  $$
+Integrando:
 
-Como $0 < L < \infty$, temos que série diverge, pois $\displaystyle\sum_{n=1}^\infty \frac{1}{n}$ é uma série divergente.
+$$ u_1 = -\int \frac{x}{\sqrt{1+x^2}} \, dx \underset{du = 2x\,dx}{\underset{u = 1+x^2}{=}} - \frac{1}{2} \int \frac{du}{\sqrt{u}} = - \sqrt{u} = -\sqrt{1+x^2}  $$
+$$ u_2 = \int \frac{1}{\sqrt{1+x^2}} \, dx \underset{dx = \sec^2 \theta \, d\theta}{\underset{x = \tan\theta}{=}} \int \sec\theta \, d\theta = \ln|\sec\theta + \tan\theta| = \ln|\sqrt{1+x^2} + x| $$
+$$ \therefore y_p(x) = ( -\sqrt{1+x^2} )\cos(x^2) + (\ln|\sqrt{1+x^2} + x|)x\cos(x^2) $$
 
-Para $x=1$, temos:
+A solução geral é a soma da solução homogênea com a solução particular:
 
-$$  \sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2^{n+1}} (x-3)^n = \sum_{n=1}^\infty \frac{(-1)^n \, (3n-2)}{(n+1)^2 \, 2} $$
-
-Esta série não apresenta convergência absoluta, pois já verificamos que $\displaystyle\sum_{n=1}^\infty \frac{3n-2}{(n+1)^2 \, 2}$ diverge. \\
-
-Para verificar se há convergência condicional, utilizamos o critério das séries alternadas: 
-    
-    \begin{itemize}
-    \item[$\bullet$] $\displaystyle\lim_{n \rightarrow \infty} |a_n| = \lim_{n \rightarrow \infty} \frac{3n-2}{(n+1)^2 \, 2} = \lim_{n \rightarrow \infty} \frac{3n-2}{(n^2 + 2n + 1) \, 2} = \lim_{n \rightarrow \infty} \frac{3-\frac{2}{n}}{(n + \frac{2}{n} + \frac{1}{n^2}) \, 2} = 0 $
-    \item[$\bullet$] $|a_{n}| = f(n) = \displaystyle\frac{3n-2}{(n+1)^2 \, 2}  $
-    
-    $f'(x) = \displaystyle\frac{3 \cdot (x+1)^2 -  (3x-2) \cdot 2 (x+1)}{(x+1)^4} = \frac{7 - 3x}{(x+1)^3} < 0, \forall x > \frac{7}{3}$
-    
-    $\therefore |a_{n}|$ é decrescente $\forall n \geq 3$.  
-    
-    \end{itemize}
-    
-    Como o módulo do termo geral da série é descrescente e vai a zero, pode-se afirmar que, pelo critério das séries alternadas, a série é convergente. Portanto, a série converge condicionalmente. 
+$$ y(x) = ( C_1   -\sqrt{1+x^2} ) \cos(x^2) + (C_2  + \ln|\sqrt{1+x^2} + x|)x\cos(x^2)  , C_1, C_2, \in \re $$
 
 \item[b)] Para analisar a convergência da série, utilizamos o critério da integral, com $f(x) = \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}$. Como $\alpha > 0$, o termo geral da série vai a zero e $f$ é claramente positiva e decrescente para $x \geq 3$.
     
