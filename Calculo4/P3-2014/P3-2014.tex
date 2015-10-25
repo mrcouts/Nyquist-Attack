@@ -384,38 +384,16 @@ $$ u_2 = \int \frac{1}{\sqrt{1+x^2}} \, dx \underset{dx = \sec^2 \theta \, d\the
 $$ \therefore y_p(x) = ( -\sqrt{1+x^2} )\cos(x^2) + (\ln|\sqrt{1+x^2} + x|)x\cos(x^2) $$
 
 A solução geral é a soma da solução homogênea com a solução particular:
-
 $$ y(x) = ( C_1   -\sqrt{1+x^2} ) \cos(x^2) + (C_2  + \ln|\sqrt{1+x^2} + x|)x\cos(x^2)  , C_1, C_2, \in \re $$
 
-\item[b)] Para analisar a convergência da série, utilizamos o critério da integral, com $f(x) = \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}$. Como $\alpha > 0$, o termo geral da série vai a zero e $f$ é claramente positiva e decrescente para $x \geq 3$.
-    
-    $$ \int_{3}^\infty f(x) \, dx = \int_{3}^\infty \frac{1}{x (\ln x)(\ln (\ln x))^\alpha}  \, dx \underset{u = \ln x \Rightarrow du = \frac{dx}{x} }{=} \int_{\ln 3}^\infty \frac{1}{ u(\ln u)^\alpha}  \, du = \underset{v = \ln u \Rightarrow dv = \frac{du}{u} }{=} \int_{\ln(\ln 3)}^\infty \frac{1}{ v^\alpha}  \, dv $$
-    
-    $$
-    \Rightarrow \int_{3}^\infty f(x) \, dx =
-    \begin{cases}
-    \displaystyle \lim_{v\rightarrow\infty} \displaystyle\frac{v^{1-\alpha}}{1-\alpha} - \displaystyle\frac{(\ln(\ln 3))^{1-\alpha}}{1-\alpha}, \; \alpha \neq 1 \\
-    \displaystyle \lim_{v\rightarrow\infty}\ln (v) - \ln (\ln(\ln 3)), \;\;\;\;\; \alpha = 1
-    \end{cases}
-    $$
-    
-    $$
-    \lim_{v\rightarrow\infty} \displaystyle\frac{v^{1-\alpha}}{1-\alpha} =
-    \begin{cases}
-    \infty, \;\; 1-\alpha > 0 \\
-    0, \;\;\;\; 1-\alpha < 0
-    \end{cases}
-    $$
-    
-        $$
-    \therefore \int_{3}^\infty f(x) \, dx =
-    \begin{cases}
-    \infty, \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;  0 < \alpha \leq 1 \\
-    - \displaystyle\frac{(\ln(\ln 3))^{1-\alpha}}{1-\alpha}, \; \alpha > 1
-    \end{cases}
-    $$
-    
-    A série converge se e somente se a integral imprópria converge. Sendo assim, temos que a série converge para $\alpha > 1$ e diverge para $0 < \alpha \leq 1$.
+\item[b)] Pelo seu polinômio característico, trata-se de uma EDO linear de ordem 7. O polinômio apresenta raiz $\lambda = 4$ com multiplicidade 3. A esta raiz, associam-se as soluções:
+$$\{ e^{4x}, x e^{4x}, x^2 e^{4x} \}$$
+
+As outras duas raízes são $\lambda = \frac{8 \pm \sqrt{64-100}}{2} = 4 \pm 3i$, com multiplicidade 2. As soluções associadas a estas raízes são:
+$$\{e^{4x}\cos(3x),e^{4x}\sen(3x),x e^{4x}\cos(3x),x e^{4x}\sen(3x) \} $$
+
+Portanto, as solução geral da EDO é dada por:
+$$ y(x) = e^{4x} (C_1 + C_2 x + C_3 x^2 + (C_4 x + C_5)\cos(3x) + (C_6 x + C_7)\sin(3x) ) , \, C_1, C_2, C_3, C_4, C_5, C_6, C_7 \in \re $$
 
 \end{itemize}
 
