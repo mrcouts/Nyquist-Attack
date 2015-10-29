@@ -1,6 +1,6 @@
 from sympy import *
-import math
-from operator import concat
+#import math
+#from operator import concat
 init_printing(use_unicode=True)
 
 ###############################################################################
@@ -38,67 +38,65 @@ class Serial(object):
     def __init__(self, name, ID, DH_, m_, I__, g_dir_):
         self.name = name
         self.ID = ID
-        self.dof = DH_.rows
+        self.dof = dof = DH_.rows
         self.DH_ = DH_
+        self.m_  = m_
+        self.I__ = I__
+        self.g_dir_ = g_dir_/g_dir_.norm()
+        dof_ = range(dof)
 
         Id = '' if ID == '' else '_' + str(ID)
         
         #Coordenadas Generalizadas
         self.q_ = Matrix([Function('theta_'+str(i+1)+Id)(t) if str(DH_[i,7]) == 'R' else 
-        	              Function('d_'    +str(i+1)+Id)(t) for i in range(self.dof) ])
+        	               Function('d_'    +str(i+1)+Id)(t) for i in dof_ ])
                         
         self.dq_ = self.q_.diff(t)
         
-        self.vel__ = [Matrix([Function('vx'+str(i+1)+Id)(t),Function('vy'+str(i+1)+Id)(t),Function('vz'+str(i+1)+Id)(t)]) for i in range(self.dof)]        
-        self.w__   = [Matrix([Function('wx'+str(i+1)+Id)(t),Function('wy'+str(i+1)+Id)(t),Function('wz'+str(i+1)+Id)(t)]) for i in range(self.dof)]
-        self.w_ = Matrix([self.w__[i] for i in range(self.dof)]) 
-        p_ = Matrix([self.dq_, Matrix([ Matrix([self.vel__[i],self.w__[i]]) for i in range(self.dof)]) ])
+        self.vel__ = [Matrix([Function('vx'+str(i+1)+Id)(t),Function('vy'+str(i+1)+Id)(t),Function('vz'+str(i+1)+Id)(t)]) for i in dof_]        
+        self.w__   = [Matrix([Function('wx'+str(i+1)+Id)(t),Function('wy'+str(i+1)+Id)(t),Function('wz'+str(i+1)+Id)(t)]) for i in dof_]
+        self.w_ = Matrix([self.w__[i] for i in dof_]) 
+        p_ = Matrix([self.dq_, Matrix([ Matrix([self.vel__[i],self.w__[i]]) for i in dof_]) ])
         
         #Cinematica
         self.Hr__ = H_d(DH_[:,0:4])
         
         self.H__ = []
         self.H__.append(self.Hr__[0])
-        for i in range(1,self.dof):
+        for i in range(1,dof):
             self.H__.append(simplify(self.H__[i-1]*self.Hr__[i]))
         
-        self.z__ = [Matrix([0,0,1])] + [self.H__[i][0:3,2] for i in range(self.dof)]
-        self.o__ = [Matrix([0,0,0])] + [self.H__[i][0:3,3] for i in range(self.dof)]
-        self.og__ = [ simplify(Matrix([(self.H__[i]*Matrix([DH_[i,4:7].T,[1]]))[0:3] ]).T) for i in range(self.dof)]
+        self.z__ = [Matrix([0,0,1])] + [self.H__[i][0:3,2] for i in dof_]
+        self.o__ = [Matrix([0,0,0])] + [self.H__[i][0:3,3] for i in dof_]
+        self.og__ = [ simplify(Matrix([(self.H__[i]*Matrix([DH_[i,4:7].T,[1]]))[0:3] ]).T) for i in dof_]
         
         #Jacobianos dos centros de massa
         self.Jv__ = [simplify(Matrix([self.z__[i].cross(self.og__[j]- self.o__[i]).T if str(DH_[i,7]) == 'R' and i <= j else 
                                      (self.z__[i].T if i <= j else 
-                                      zeros(1,3) )
-                                      for i in range(self.dof)]).T ) 
-                                      for j in range(self.dof)]
+                                      zeros(1,3) ) for i in dof_]).T ) for j in dof_]
                                           
         self.Jw__ = [simplify( self.H__[j][0:3,0:3].T*Matrix([self.z__[i].T if str(DH_[i,7]) == 'R' and i <= j else
-                                                              zeros(1,3) 
-                                                              for i in range(self.dof)]).T )
-                                                              for j in range(self.dof)]
+                                                              zeros(1,3) for i in dof_]).T ) for j in dof_]
         
-        self.J_ = Matrix( [Matrix([self.Jv__[i],self.Jw__[i]]) for i in range(self.dof)] )
-        self.Jw_ = Matrix([self.Jw__[i] for i in range(self.dof)])
+        self.J_ = Matrix( [Matrix([self.Jv__[i],self.Jw__[i]]) for i in dof_] )
+        self.Jw_ = Matrix([self.Jw__[i] for i in dof_])
         
         #Jacobianos do efetuador
-        self.Jv_n_ = simplify(Matrix( [self.z__[i].cross(self.o__[self.dof] - self.o__[i]).T if str(DH_[i,7]) == 'R' else
-                                       self.z__[i].T
-                                       for i in range(self.dof) ]).T )
+        self.Jv_n_ = simplify(Matrix( [self.z__[i].cross(self.o__[dof] - self.o__[i]).T if str(DH_[i,7]) == 'R' else
+                                       self.z__[i].T for i in dof_ ]).T )
                                            
-        self.Jw_n_ = simplify( self.H__[self.dof-1][0:3,0:3].T*Matrix( [self.z__[i].T if str(DH_[i,7]) == 'R' else 
-                                                                        zeros(1,3)
-                                                                        for i in range(self.dof) ]).T )
+        self.Jw_n_ = simplify( self.H__[dof-1][0:3,0:3].T*Matrix( [self.z__[i].T if str(DH_[i,7]) == 'R' else 
+                                                                   zeros(1,3) for i in dof_ ]).T )
                                    
         self.J_n_ = Matrix([self.Jv_n_,self.Jw_n_])
         
         #Dinamica
-        C_ = Matrix([eye(self.dof),self.J_])
+        C_ = Matrix([eye(dof),self.J_])
 
         non_null_p_index = []
         null_p_index = []
         for i in range(C_.rows):
-        	if sum([Abs(C_[i,j]) for j in range(C_.cols)]) != 0:
+        	if C_[i,:] != zeros(1,dof):
         		non_null_p_index.append(i)
         	else:
         		null_p_index.append(i)
@@ -109,79 +107,26 @@ class Serial(object):
         self.C_ = C_.extract(non_null_p_index, range(C_.cols))
         self.p_ = p_.extract(non_null_p_index, range(p_.cols))
 
-        self.A_ = Matrix([self.C_[self.dof:,:].T,-eye(self.C_.rows-self.dof).T]).T
+        self.A_ = Matrix([self.C_[dof:,:].T,-eye(self.C_.rows-dof).T]).T
         self.b_ = simplify( -self.A_.diff(t)*self.p_)
         
-        self.M__ = [diag(eye(3)*m_[i], I__[i]) for i in range(self.dof)]
-        self.v__ = [simplify(Matrix([zeros(3,1),self.w__[i].cross(I__[i]*self.w__[i])])) for i in range(self.dof)]
-        self.g__ = [Matrix([-m_[i]*symbols('g')*g_dir_,zeros(3,1)]) for i in range(self.dof)]
+        self.M__ = [diag(eye(3)*m_[i], I__[i]) for i in dof_]
+        self.v__ = [simplify(Matrix([zeros(3,1),self.w__[i].cross(I__[i]*self.w__[i])])) for i in dof_]
+        self.g__ = [Matrix([-m_[i]*symbols('g')*self.g_dir_,zeros(3,1)]) for i in dof_]
         
-        M_ = diag(zeros(self.dof),*self.M__)
-        v_ = Matrix([zeros(self.dof,1), Matrix([self.v__[i] for i in range(self.dof)]) ]).subs(replace)
-        g_ = Matrix([zeros(self.dof,1), Matrix([self.g__[i] for i in range(self.dof)]) ])
-        f_ = Matrix([Matrix([symbols('b'+str(i+1)+Id)*self.dq_[i] + symbols('gamma'+str(i+1)+Id)*tanh(symbols('n'+str(i+1)+Id)*self.dq_[i]) for i in range(self.dof)]), zeros(6*self.dof,1) ])
+        M_ = diag(zeros(dof),*self.M__)
+        v_ = Matrix([zeros(dof,1), Matrix([self.v__[i] for i in dof_]) ]).subs(replace)
+        g_ = Matrix([zeros(dof,1), Matrix([self.g__[i] for i in dof_]) ])
+        f_ = Matrix([Matrix([symbols('b'+str(i+1)+Id)*self.dq_[i] + symbols('gamma'+str(i+1)+Id)*tanh(symbols('n'+str(i+1)+Id)*self.dq_[i]) for i in dof_]), zeros(6*dof,1) ])
         
         self.M_ = M_.extract(non_null_p_index, non_null_p_index)
         self.v_ = v_.extract(non_null_p_index, range(v_.cols))
         self.g_ = g_.extract(non_null_p_index, range(g_.cols))
         self.f_ = f_.extract(non_null_p_index, range(f_.cols))
         
-        v_aux_ = simplify(self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in range(3*self.dof)]))
+        v_aux_ = simplify(self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in range(3*dof)]))
         
         self.Mh_ = simplify(self.C_.T*self.M_*self.C_)
         self.vh_ = simplify(self.C_.T*( v_aux_ + self.M_*self.C_.diff(t)*self.dq_ ))
         self.gh_ = simplify(self.C_.T*self.g_)
         self.fh_ = simplify(self.C_.T*self.f_)
-
-ID = 0
-Id = '' if ID == '' else '_' + str(ID)
-        
-#RR
-DH_ = Matrix([
-[symbols('l_1'), 0, 0, Function('theta_1'+Id)(t), -symbols('l_1')+symbols('lg_1'), 0, 0, 'R'],
-[symbols('l_2'), 0, 0, Function('theta_2'+Id)(t), -symbols('l_2')+symbols('lg_2'), 0, 0, 'R']
-])
-
-m_ = [symbols('m_'+str(i+1)) for i in range(DH_.rows)]
-I__ = [diag(symbols('Jx_'+str(i+1)),
-            symbols('Jy_'+str(i+1)),
-            symbols('Jz_'+str(i+1)) )
-            for i in range(DH_.rows)]
-
-#RRP        
-DH2_ = Matrix([
-[0, +pi/2, symbols('l_1')               , Function('theta_1')(t)+pi/2, 0, -symbols('l_1')+symbols('lg_1'), 0                              , 'R'],
-[0, +pi/2, 0                            , Function('theta_2')(t)+pi/2, 0, 0                              , symbols('lg_2')                , 'R'], 
-[0,  0   , symbols('l_2')+Function('d_3')(t), 0                      , 0, 0                              , -symbols('l_3')+symbols('lg_3'), 'P']
-])
-
-m2_ = [symbols('m_'+str(i+1)) for i in range(DH2_.rows)]
-I2__ = [diag(symbols('Jx_'+str(i+1)),
-             symbols('Jy_'+str(i+1)),
-             symbols('Jz_'+str(i+1)) )
-             for i in range(DH2_.rows)]
-        
-DH3_ = Matrix([
-[0,  pi/2, 0                            , symbols('theta_1')+pi/2, 0, 0                             , symbols('lg_1'), 'R'],
-[0, -pi/2, symbols('l_1')+symbols('l_2'), symbols('theta_2')     , 0, symbols('l_2')-symbols('lg_2'), 0              , 'R'], 
-[0,  pi/2, 0                            , symbols('theta_3')     , 0, 0                             , symbols('lg_3'), 'R'],
-[0, -pi/2, symbols('l_3')+symbols('l_4'), symbols('theta_4')     , 0, symbols('l_4')-symbols('lg_4'), 0              , 'R'] 
-])
-
-m3_ = [symbols('m_'+str(i+1)) for i in range(DH3_.rows)]
-I3__ = [diag(symbols('Jx_'+str(i+1)),
-             symbols('Jy_'+str(i+1)),
-             symbols('Jz_'+str(i+1)) )
-             for i in range(DH3_.rows)]
-
-R = Serial('RR',ID,DH_, m_, I__, Matrix([0,-1,0]))
-
-SUBS = [
-    (sin(R.q_[0]), symbols('s_1')),
-    (cos(R.q_[0]), symbols('c_1')),
-    (sin(R.q_[1]), symbols('s_2')),
-    (cos(R.q_[1]), symbols('c_2')),
-    (sin(R.q_[0]+R.q_[1]), symbols('s_12')),
-    (cos(R.q_[0]+R.q_[1]), symbols('c_12')),
-    (R.q_[0], symbols('theta_1')),
-    (R.q_[1], symbols('theta_2'))]
