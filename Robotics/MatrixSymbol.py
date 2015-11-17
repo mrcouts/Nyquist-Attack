@@ -13,6 +13,12 @@ init_printing(use_unicode=True)
 def union(a, b):
     """ return the union of two lists """
     return list(set(a) | set(b))
+    
+def lsolve(self,other):
+    """ LDLsolve for SMatrix """
+    row1row2_ = union(self.rowl_,other.rowl_)
+    M_ = self.S_(row1row2_,self.coll_).LDLsolve( other.S_(row1row2_,other.coll_) )
+    return SMatrix(M_,self.coll_,other.coll_)    
 
 class SMatrix(object):
     """ Matrizes acessadas por simbolos """
@@ -57,15 +63,35 @@ class SMatrix(object):
         return SMatrix(M_,rowl_,coll_)
         
     def __mul__(self, other):
-        col1row2_ = union(self.coll_,other.rowl_)
-        M_ = self.S_(self.rowl_,col1row2_) * other.S_(col1row2_,other.coll_)
-        return SMatrix(M_,self.rowl_,other.coll_)
+        if not isinstance(other, SMatrix):
+            return SMatrix(other*self.M_,self.rowl_,self.coll_)
+        else:
+            col1row2_ = union(self.coll_,other.rowl_)
+            M_ = self.S_(self.rowl_,col1row2_) * other.S_(col1row2_,other.coll_)
+            return SMatrix(M_,self.rowl_,other.coll_)
+            
+    def __rmul__(self, other):
+        if not isinstance(other, SMatrix):
+            return SMatrix(other*self.M_,self.rowl_,self.coll_)
+        else:
+            col1row2_ = union(self.coll_,other.rowl_)
+            M_ = self.S_(self.rowl_,col1row2_) * other.S_(col1row2_,other.coll_)
+            return SMatrix(M_,self.rowl_,other.coll_)
+            
+    def __mod__(self, other):
+        rowl_ = union(self.rowl_,other.rowl_)
+        coll_ = union(self.coll_,other.coll_)
+        M_ = self.S_(rowl_,coll_).multiply_elementwise(other.S_(rowl_,coll_))
+        return SMatrix(M_,rowl_,coll_)
         
     def T(self):
         return SMatrix(self.M_.T,self.coll_,self.rowl_)
         
     def inv(self):
         return SMatrix(self.M_**-1,self.coll_,self.rowl_)
+        
+    def pinv(self):
+        return SMatrix(self.M_.pinv(),self.coll_,self.rowl_)
         
     def ns(self):
         ns_ = self.M_.nullspace()
@@ -97,7 +123,7 @@ M6_ = Matrix([symbols('b'),symbols('c')])
 rowl6_ = ['b','c']
 sM6_ = SMatrix(M6_,rowl6_)
 
-sM7_ = sM5_ - sM6_
+sM7_ = sM5_ % sM6_
 pprint(sM7_.M_)
 print(sM7_.rowl_)
 
@@ -140,3 +166,5 @@ pprint(sMx_ns_.M_)
 
 One_ = SMatrix(1,['a','b','c','d','e'],['c','b','d','a'])
 pprint(One_.M_)
+
+pprint( lsolve(sM1_,sM2_).M_ )
