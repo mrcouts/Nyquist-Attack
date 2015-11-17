@@ -16,6 +16,11 @@ I__ = [diag(symbols('Jx_'+str(i+1)),
             symbols('Jz_'+str(i+1)) )
             for i in range(dof)]
 
+#Parametros de atrito
+c_     = [symbols('b_'    +str(i+1)) for i in range(dof)]
+gamma_ = [symbols('gamma_'+str(i+1)) for i in range(dof)]
+n_     = [symbols('n_'    +str(i+1)) for i in range(dof)]
+
 #Matriz de parametros de Denavit-Hartemberg
 DH_ = Matrix([
 [l_[0], 0, 0, Function('theta_1'+Id)(t), -l_[0]+lg_[0], 0, 0, 'R'],
