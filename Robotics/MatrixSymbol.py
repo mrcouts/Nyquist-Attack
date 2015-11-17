@@ -22,7 +22,7 @@ def lsolve(self,other):
 
 class SMatrix(object):
     """ Matrizes acessadas por simbolos """
-    def __init__(self, M_, rowl_, coll_=['1']):
+    def __init__(self, M_, rowl_, coll_=['vector']):
         self.rowl_ = rowl_
         self.coll_ = coll_
         self.dic_rowl = {rowl_[i]:i for i in xrange(len(rowl_))}
@@ -34,6 +34,11 @@ class SMatrix(object):
         else:
             self.M_ = M_
         
+    def __repr__(self):
+        if self.coll_ == ['vector']:
+            return pretty(Matrix([ Matrix(self.rowl_).T, self.M_.T ]).T)
+        else:
+            return pretty(Matrix([ Matrix(['_']+self.rowl_).T, Matrix([ Matrix(self.coll_).T, self.M_ ]).T  ]).T)
         
     def S(self,rowl,coll):
         if rowl in self.dic_rowl and coll in self.dic_coll:
@@ -112,8 +117,8 @@ sM3_ = sM1_ + sM2_
 sM4_ = sM1_.T() * sM2_
 pprint(sM1_.S_(['a','b','e'],['c','d','f']))
 pprint(sM2_.S_(['a','b','e'],['c','d','f']))
-pprint(sM3_.M_)
-pprint(sM4_.M_)
+pprint(sM3_)
+pprint(sM4_)
 
 M5_ = Matrix([symbols('a'),symbols('b')])
 rowl5_ = ['a','b']
@@ -124,8 +129,7 @@ rowl6_ = ['b','c']
 sM6_ = SMatrix(M6_,rowl6_)
 
 sM7_ = sM5_ % sM6_
-pprint(sM7_.M_)
-print(sM7_.rowl_)
+pprint(sM7_)
 
 MA_ = Matrix([
     [symbols('A_aw'), symbols('A_ax'), symbols('A_ay')],
@@ -151,20 +155,16 @@ sMB_ = SMatrix(MB_, rowlB_, collB_)
 # pprint(sMB_.M_)
 
 sMC_ = sMA_ + sMB_
-pprint(sMC_.M_)
-pprint(sMC_.rowl_)
-pprint(sMC_.coll_)
+pprint(sMC_)
 
 sMD_ = sMB_ * (sMA_.T())
-pprint(sMD_.M_)
-pprint(sMD_.rowl_)
-pprint(sMD_.coll_)
+pprint(sMD_)
 
 sMx_ = SMatrix(Matrix([1,2,3]).T,['1'],['a','b','c'])
 sMx_ns_ = sMx_.ns()
-pprint(sMx_ns_.M_)
+pprint(sMx_ns_)
 
 One_ = SMatrix(1,['a','b','c','d','e'],['c','b','d','a'])
-pprint(One_.M_)
+pprint(One_)
 
-pprint( lsolve(sM1_,sM2_).M_ )
+pprint( lsolve(sM1_,sM2_) )
