@@ -89,6 +89,12 @@ class SMatrix(object):
         M_ = self.S_(rowl_,coll_).multiply_elementwise(other.S_(rowl_,coll_))
         return SMatrix(M_,rowl_,coll_)
         
+    def __div__(self,other):
+        return SMatrix(self.M_ / other, self.rowl_, self.coll_)
+        
+    def __truediv__(self,other):
+        return SMatrix(self.M_ / other, self.rowl_, self.coll_)
+        
     def T(self):
         return SMatrix(self.M_.T,self.coll_,self.rowl_)
         
