@@ -37,6 +37,10 @@ class Serial(object):
     """Serial robots dynamics."""
     def __init__(self, name, ID, dof, fDH_, g_dir_, l_, lg_, m_, I__, c_, gamma_, n_):
         
+        z = list(zeros(1,dof))
+        if fDH_(z,z,z).rows != dof:
+            raise ValueError("DH_ tem que ter dof colunas!")
+                
         #Identificadores:
         self.name = name
         self.ID = ID
@@ -63,7 +67,6 @@ class Serial(object):
         self.g_dir_ = g_dir_/g_dir_.norm()
         
         #Coordenadas Generalizadas
-        z = list(zeros(1,dof))
         self.q_ = Matrix([Function('theta_'+str(i+1)+Id)(t) if str(fDH_(z,z,z)[i,7]) == 'R' else 
         	               Function('d_'    +str(i+1)+Id)(t) for i in dof_ ])   
                         
@@ -72,8 +75,6 @@ class Serial(object):
                         
         #Matriz dos Parametros de Denavit-Hartemberg
         self.DH_ = fDH_(self.q_, l_, lg_)
-        if self.DH_.rows != self.dof:
-            raise ValueError("DH_ tem que ter dof colunas!")
                         
         #Componentes de velocidades e velocidades angulares de cada corpo rigido do sistema
         self.vel__ = [Matrix([Function('vx'+str(i+1)+Id)(t),Function('vy'+str(i+1)+Id)(t),Function('vz'+str(i+1)+Id)(t)]) for i in dof_]
