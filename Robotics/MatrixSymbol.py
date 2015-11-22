@@ -56,10 +56,22 @@ class SMatrix(object):
         return M
         
     def __add__(self, other):
-        rowl_ = union(self.rowl_,other.rowl_)
-        coll_ = union(self.coll_,other.coll_)
-        M_ = self.S_(rowl_,coll_) + other.S_(rowl_,coll_)
-        return SMatrix(M_,rowl_,coll_)
+        if other == 0:
+            return self
+        else:
+            rowl_ = union(self.rowl_,other.rowl_)
+            coll_ = union(self.coll_,other.coll_)
+            M_ = self.S_(rowl_,coll_) + other.S_(rowl_,coll_)
+            return SMatrix(M_,rowl_,coll_)
+            
+    def __radd__(self, other):
+        if other == 0:
+            return self
+        else:
+            rowl_ = union(self.rowl_,other.rowl_)
+            coll_ = union(self.coll_,other.coll_)
+            M_ = self.S_(rowl_,coll_) + other.S_(rowl_,coll_)
+            return SMatrix(M_,rowl_,coll_)
         
     def __sub__(self, other):
         rowl_ = union(self.rowl_,other.rowl_)
