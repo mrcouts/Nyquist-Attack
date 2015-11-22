@@ -29,7 +29,7 @@ fDH_ = lambda q_,l_,lg_: Matrix([
 
 R = Serial('RR', ID, dof, fDH_, Matrix([0,-1,0]), l_, lg_, m_, I__, c_, gamma_, n_)
 
-SUBS = [
+"""SUBS = [
     (sin(R.q_[0]), symbols('s_1')),
     (cos(R.q_[0]), symbols('c_1')),
     (sin(R.q_[1]), symbols('s_2')),
@@ -37,4 +37,4 @@ SUBS = [
     (sin(R.q_[0]+R.q_[1]), symbols('s_12')),
     (cos(R.q_[0]+R.q_[1]), symbols('c_12')),
     (R.q_[0], symbols('theta_1')),
-    (R.q_[1], symbols('theta_2'))]
+    (R.q_[1], symbols('theta_2'))]"""

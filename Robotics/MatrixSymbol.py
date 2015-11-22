@@ -22,7 +22,11 @@ def lsolve(self,other):
 
 class SMatrix(object):
     """ Matrizes acessadas por simbolos """
-    def __init__(self, M_, rowl_, coll_=['vector']):
+    def __init__(self, M_, rowl_=['svector'], coll_=['vector']):
+        if rowl_ == ['svector'] and M_.cols ==1:
+            rowl_ = M_
+        rowl_ = list(rowl_)
+        coll_ = list(coll_)
         self.rowl_ = rowl_
         self.coll_ = coll_
         self.dic_rowl = {rowl_[i]:i for i in xrange(len(rowl_))}
@@ -35,7 +39,9 @@ class SMatrix(object):
             self.M_ = M_
         
     def __repr__(self):
-        if self.coll_ == ['vector']:
+        if self.rowl_ == list(self.M_):
+            return pretty(self.M_)
+        elif self.coll_ == ['vector']:
             return pretty(Matrix([ Matrix(self.rowl_).T, self.M_.T ]).T)
         else:
             return pretty(Matrix([ Matrix(['_']+self.rowl_).T, Matrix([ Matrix(self.coll_).T, self.M_ ]).T  ]).T)
@@ -111,78 +117,34 @@ class SMatrix(object):
         return SMatrix(self.M_.T,self.coll_,self.rowl_)
         
     def inv(self):
-        return SMatrix(self.M_**-1,self.coll_,self.rowl_)
+        return SMatrix(self.M_.inv(),self.coll_,self.rowl_)
         
     def pinv(self):
         return SMatrix(self.M_.pinv(),self.coll_,self.rowl_)
         
-    def ns(self):
-        ns_ = self.M_.nullspace()
+    def nullspace(self, symplify=False):
+        ns_ = self.M_.nullspace(symplify)
         M_ns_ = Matrix([ns_i.T for ns_i in ns_]).T
         rowl_ = self.coll_
         coll_ = [symbols('pi_' + str(i+1)) for i in xrange(M_ns_.cols)]
         return SMatrix(M_ns_,rowl_,coll_)
-    
-M1_ = Matrix([[1000,2000],[3000,4000]])
-rowl1_ = ['a','b']
-coll1_ = ['c','d']
-M2_ = Matrix([[5,6],[7,8]])
-rowl2_ = ['b','e']
-coll2_ = ['d','f']
-sM1_ = SMatrix(M1_,rowl1_,coll1_)
-sM2_ = SMatrix(M2_,rowl2_,coll2_)
-sM3_ = sM1_ + sM2_
-sM4_ = sM1_.T() * sM2_
-pprint(sM1_.S_(['a','b','e'],['c','d','f']))
-pprint(sM2_.S_(['a','b','e'],['c','d','f']))
-pprint(sM3_)
-pprint(sM4_)
-
-M5_ = Matrix([symbols('a'),symbols('b')])
-rowl5_ = ['a','b']
-sM5_ = SMatrix(M5_,rowl5_)
-
-M6_ = Matrix([symbols('b'),symbols('c')])
-rowl6_ = ['b','c']
-sM6_ = SMatrix(M6_,rowl6_)
-
-sM7_ = sM5_ % sM6_
-pprint(sM7_)
-
-MA_ = Matrix([
-    [symbols('A_aw'), symbols('A_ax'), symbols('A_ay')],
-    [symbols('A_bw'), symbols('A_bx'), symbols('A_by')],
-    [symbols('A_cw'), symbols('A_cx'), symbols('A_cy')],
-    [symbols('A_dw'), symbols('A_dx'), symbols('A_dy')]
-    ])
-rowlA_=['a','b','c','d']
-collA_=['w','x','y']
-sMA_ = SMatrix(MA_, rowlA_, collA_)
-
-MB_ = Matrix([
-    [symbols('B_aq'), symbols('B_aw'), symbols('B_ay'), symbols('B_az')],
-    [symbols('B_cq'), symbols('B_cw'), symbols('B_cy'), symbols('B_cz')],
-    [symbols('B_rq'), symbols('B_rw'), symbols('B_ry'), symbols('B_rz')],
-    [symbols('B_sq'), symbols('B_sw'), symbols('B_sy'), symbols('B_sz')],
-    ])
-rowlB_=['a','c','r','s']
-collB_=['q','w','y','z']
-sMB_ = SMatrix(MB_, rowlB_, collB_)
-
-# pprint(sMA_.M_)
-# pprint(sMB_.M_)
-
-sMC_ = sMA_ + sMB_
-pprint(sMC_)
-
-sMD_ = sMB_ * (sMA_.T())
-pprint(sMD_)
-
-sMx_ = SMatrix(Matrix([1,2,3]).T,['1'],['a','b','c'])
-sMx_ns_ = sMx_.ns()
-pprint(sMx_ns_)
-
-One_ = SMatrix(1,['a','b','c','d','e'],['c','b','d','a'])
-pprint(One_)
-
-pprint( lsolve(sM1_,sM2_) )
+        
+    def LDLsolve(self,other):
+        row1row2_ = union(self.rowl_,other.rowl_)
+        M_ = self.S_(row1row2_,self.coll_).LDLsolve( other.S_(row1row2_,other.coll_) )
+        return SMatrix(M_,self.coll_,other.coll_)   
+        
+    def diff(self, *symbols, **kwargs):
+        return SMatrix(self.M_.diff(*symbols, **kwargs), self.rowl_, self.coll_)
+        
+    def subs(self, *args, **kwargs):
+        return SMatrix(self.M_.subs(*args, **kwargs), self.rowl_, self.coll_)
+        
+    def cols(self):
+        return self.M_.cols
+        
+    def rows(self):
+        return self.M_.rows
+        
+    def extract(self, rowl_, coll_):
+        return SMatrix(self.S_(rowl_,coll_), rowl_, coll_)

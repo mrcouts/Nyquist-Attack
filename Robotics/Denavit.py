@@ -1,7 +1,4 @@
-from sympy import *
-#import math
-#from operator import concat
-init_printing(use_unicode=True)
+from MatrixSymbol import *
 
 ###############################################################################
 
@@ -67,22 +64,23 @@ class Serial(object):
         self.g_dir_ = g_dir_/g_dir_.norm()
         
         #Coordenadas Generalizadas
-        self.q_ = Matrix([Function('theta_'+str(i+1)+Id)(t) if str(fDH_(z,z,z)[i,7]) == 'R' else 
-        	               Function('d_'    +str(i+1)+Id)(t) for i in dof_ ])   
+        self.q_ = SMatrix(Matrix([Function('theta_'+str(i+1)+Id)(t) if str(fDH_(z,z,z)[i,7]) == 'R' else 
+       	               Function('d_'    +str(i+1)+Id)(t) for i in dof_ ]))
                         
         #Quasi-velocidades independentes
         self.dq_ = self.q_.diff(t)
                         
         #Matriz dos Parametros de Denavit-Hartemberg
-        self.DH_ = fDH_(self.q_, l_, lg_)
+        self.DH_ = fDH_(self.q_.M_, l_, lg_)
                         
         #Componentes de velocidades e velocidades angulares de cada corpo rigido do sistema
-        self.vel__ = [Matrix([Function('vx'+str(i+1)+Id)(t),Function('vy'+str(i+1)+Id)(t),Function('vz'+str(i+1)+Id)(t)]) for i in dof_]
-        self.w__   = [Matrix([Function('wx'+str(i+1)+Id)(t),Function('wy'+str(i+1)+Id)(t),Function('wz'+str(i+1)+Id)(t)]) for i in dof_]
-        self.w_ = Matrix([self.w__[i] for i in dof_])
+        self.vel__ = [SMatrix(Matrix([Function('vx'+str(i+1)+Id)(t),Function('vy'+str(i+1)+Id)(t),Function('vz'+str(i+1)+Id)(t)])) for i in dof_]
+        self.w__   = [SMatrix(Matrix([Function('wx'+str(i+1)+Id)(t),Function('wy'+str(i+1)+Id)(t),Function('wz'+str(i+1)+Id)(t)])) for i in dof_]
+        self.vel_ = sum([self.vel__[i] for i in dof_])        
+        self.w_   = sum([self.w__[i]   for i in dof_])
         
         #Quasi-velocidades        
-        p_ = Matrix([self.dq_, Matrix([ Matrix([self.vel__[i],self.w__[i]]) for i in dof_]) ])
+        p_ = self.dq_ + self.vel_ + self.w_
         
         #-----------------------------Cinematica------------------------------#
         
@@ -100,15 +98,16 @@ class Serial(object):
         self.og__= [simplify(Matrix([(self.H__[i]*Matrix([self.DH_[i,4:7].T,[1]]))[0:3]]).T) for i in dof_] #[g]_N
         
         #Jacobianos dos centros de massa
-        self.Jv__ = [simplify(Matrix([self.z__[i].cross(self.og__[j]- self.o__[i]).T if str(self.DH_[i,7]) == 'R' and i <= j else 
+        self.Jv__ = [ SMatrix(simplify(Matrix([self.z__[i].cross(self.og__[j]- self.o__[i]).T if str(self.DH_[i,7]) == 'R' and i <= j else 
                                      (self.z__[i].T if i <= j else 
-                                      zeros(1,3) ) for i in dof_]).T ) for j in dof_]
+                                      zeros(1,3) ) for i in dof_]).T ), self.vel__[j].rowl_, self.dq_.rowl_ ) for j in dof_]
                                           
-        self.Jw__ = [simplify( self.H__[j][0:3,0:3].T*Matrix([self.z__[i].T if str(self.DH_[i,7]) == 'R' and i <= j else
-                                                              zeros(1,3) for i in dof_]).T ) for j in dof_]
+        self.Jw__ = [ SMatrix(simplify( self.H__[j][0:3,0:3].T*Matrix([self.z__[i].T if str(self.DH_[i,7]) == 'R' and i <= j else
+                                                              zeros(1,3) for i in dof_]).T ), self.w__[j].rowl_, self.dq_.rowl_ ) for j in dof_]
         
-        self.J_ = Matrix( [Matrix([self.Jv__[i],self.Jw__[i]]) for i in dof_] )
-        self.Jw_ = Matrix([self.Jw__[i] for i in dof_])
+        self.Jv_ = sum([self.Jv__[i] for i in dof_])
+        self.Jw_ = sum([self.Jw__[i] for i in dof_])
+        self.J_ =  self.Jv_ + self.Jw_
         
         #Jacobianos do efetuador
         self.Jv_n_ = simplify(Matrix( [self.z__[i].cross(self.o__[dof] - self.o__[i]).T if str(self.DH_[i,7]) == 'R' else
@@ -120,42 +119,44 @@ class Serial(object):
         self.J_n_ = Matrix([self.Jv_n_,self.Jw_n_])
         
         #Dinamica
-        C_ = Matrix([eye(dof),self.J_])
+        C_ = SMatrix(1, self.dq_.rowl_, self.dq_.rowl_) + self.J_
 
         non_null_p_index = []
         null_p_index = []
-        for i in xrange(C_.rows):
-        	if C_[i,:] != zeros(1,dof):
-        		non_null_p_index.append(i)
+        for row in C_.rowl_:
+        	if C_.S_([row],C_.coll_) != zeros(1,dof):
+        		non_null_p_index.append(row)
         	else:
-        		null_p_index.append(i)
+        		null_p_index.append(row)
           
-        null_p_ = p_.extract(null_p_index,[0])
-        replace = [(null_p_[i],0) for i in xrange(null_p_.rows)]
+        replace = [(null_p_i,0) for null_p_i in null_p_index]
+        
+        self.non_null_p_index = non_null_p_index
+        self.null_p_index = null_p_index
           
-        self.C_ = C_.extract(non_null_p_index, range(C_.cols))
-        self.p_ = p_.extract(non_null_p_index, range(p_.cols))
+        self.C_ = C_.extract(non_null_p_index, C_.coll_)
+        self.p_ = p_.extract(non_null_p_index, p_.coll_)
 
-        self.A_ = Matrix([self.C_[dof:,:].T,-eye(self.C_.rows-dof).T]).T
-        self.b_ = simplify( -self.A_.diff(t)*self.p_)
+        #self.A_ = Matrix([self.C_[dof:,:].T,-eye(self.C_.rows-dof).T]).T
+        #self.b_ = simplify( -self.A_.diff(t)*self.p_)
         
-        self.M__ = [diag(eye(3)*m_[i], I__[i]) for i in dof_]
-        self.v__ = [simplify(Matrix([zeros(3,1),self.w__[i].cross(I__[i]*self.w__[i])])) for i in dof_]
-        self.g__ = [Matrix([-m_[i]*symbols('g')*self.g_dir_,zeros(3,1)]) for i in dof_]
+        self.M__ = [m_[i]*SMatrix(1, self.vel__[i].rowl_,self.vel__[i].rowl_) + SMatrix(I__[i], self.w__[i].rowl_, self.w__[i].rowl_) for i in dof_]
+        self.v__ = [SMatrix(0, self.vel__[i].rowl_) + SMatrix(self.w__[i].M_.cross(I__[i]*self.w__[i].M_), self.w__[i].rowl_) for i in dof_]
+        self.g__ = [SMatrix(-m_[i]*symbols('g')*self.g_dir_, self.vel__[i].rowl_) + SMatrix(0, self.w__[i].rowl_) for i in dof_]
         
-        M_ = diag(zeros(dof),*self.M__)
-        v_ = Matrix([zeros(dof,1), Matrix([self.v__[i] for i in dof_]) ]).subs(replace)
-        g_ = Matrix([zeros(dof,1), Matrix([self.g__[i] for i in dof_]) ])
-        f_ = Matrix([Matrix([self.c_[i]*self.dq_[i] + self.gamma_[i]*tanh(self.n_[i]*self.dq_[i]) for i in dof_]), zeros(6*dof,1) ])
+        M_ = SMatrix(0, self.dq_.rowl_, self.dq_.rowl_) + sum([self.M__[i] for i in dof_])
+        v_ = sum([self.v__[i] for i in dof_]).subs(replace)
+        g_ = sum([self.g__[i] for i in dof_])
+        #f_ = Matrix([self.c_[i]*self.dq_[i] + self.gamma_[i]*tanh(self.n_[i]*self.dq_[i]) for i in dof_])
         
         self.M_ = M_.extract(non_null_p_index, non_null_p_index)
-        self.v_ = v_.extract(non_null_p_index, range(v_.cols))
-        self.g_ = g_.extract(non_null_p_index, range(g_.cols))
-        self.f_ = f_.extract(non_null_p_index, range(f_.cols))
+        self.v_ = v_.extract(non_null_p_index, v_.coll_)
+        self.g_ = g_.extract(non_null_p_index, g_.coll_)
+        #self.f_ = f_.extract(non_null_p_index, range(f_.cols))
         
-        v_aux_ = simplify(self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in xrange(3*dof)]))
+        #v_aux_ = simplify(self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in xrange(3*dof)]))
         
-        self.Mh_ = simplify(self.C_.T*self.M_*self.C_)
-        self.vh_ = simplify(self.C_.T*( v_aux_ + self.M_*self.C_.diff(t)*self.dq_ ))
-        self.gh_ = simplify(self.C_.T*self.g_)
-        self.fh_ = simplify(self.C_.T*self.f_)
+        #self.Mh_ = simplify(self.C_.T*self.M_*self.C_)
+        #self.vh_ = simplify(self.C_.T*( v_aux_ + self.M_*self.C_.diff(t)*self.dq_ ))
+        #self.gh_ = simplify(self.C_.T*self.g_)
+        #self.fh_ = simplify(self.C_.T*self.f_)
