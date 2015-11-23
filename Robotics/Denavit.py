@@ -141,18 +141,19 @@ class Serial(object):
         #self.b_ = simplify( -self.A_.diff(t)*self.p_)
         
         self.M__ = [m_[i]*SMatrix(1, self.vel__[i].rowl_,self.vel__[i].rowl_) + SMatrix(I__[i], self.w__[i].rowl_, self.w__[i].rowl_) for i in dof_]
-        self.v__ = [SMatrix(0, self.vel__[i].rowl_) + SMatrix(self.w__[i].M_.cross(I__[i]*self.w__[i].M_), self.w__[i].rowl_) for i in dof_]
-        self.g__ = [SMatrix(-m_[i]*symbols('g')*self.g_dir_, self.vel__[i].rowl_) + SMatrix(0, self.w__[i].rowl_) for i in dof_]
+        self.v__ = [SMatrix(self.w__[i].M_.cross(I__[i]*self.w__[i].M_), self.w__[i].rowl_) for i in dof_]
+        self.g__ = [SMatrix(-m_[i]*symbols('g')*self.g_dir_, self.vel__[i].rowl_) for i in dof_]
+        self.f__ = [SMatrix(Matrix([self.c_[i]*self.dq_.M_[i] + self.gamma_[i]*tanh(self.n_[i]*self.dq_.M_[i]) ]), [self.dq_.M_[i]]) for i in dof_]
         
-        M_ = SMatrix(0, self.dq_.rowl_, self.dq_.rowl_) + sum([self.M__[i] for i in dof_])
+        M_ = sum([self.M__[i] for i in dof_])
         v_ = sum([self.v__[i] for i in dof_]).subs(replace)
         g_ = sum([self.g__[i] for i in dof_])
-        #f_ = Matrix([self.c_[i]*self.dq_[i] + self.gamma_[i]*tanh(self.n_[i]*self.dq_[i]) for i in dof_])
+        f_ = sum([self.f__[i] for i in dof_])
         
         self.M_ = M_.extract(non_null_p_index, non_null_p_index)
         self.v_ = v_.extract(non_null_p_index, v_.coll_)
         self.g_ = g_.extract(non_null_p_index, g_.coll_)
-        #self.f_ = f_.extract(non_null_p_index, range(f_.cols))
+        self.f_ = f_.extract(non_null_p_index, f_.coll_)
         
         #v_aux_ = simplify(self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in xrange(3*dof)]))
         

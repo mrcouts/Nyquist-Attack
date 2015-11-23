@@ -126,7 +126,7 @@ class SMatrix(object):
         ns_ = self.M_.nullspace(symplify)
         M_ns_ = Matrix([ns_i.T for ns_i in ns_]).T
         rowl_ = self.coll_
-        coll_ = [symbols('pi_' + str(i+1)) for i in xrange(M_ns_.cols)]
+        coll_ = [Function('pi_' + str(i+1))(t) for i in xrange(M_ns_.cols)]
         return SMatrix(M_ns_,rowl_,coll_)
         
     def LDLsolve(self,other):
@@ -135,7 +135,10 @@ class SMatrix(object):
         return SMatrix(M_,self.coll_,other.coll_)   
         
     def diff(self, *symbols, **kwargs):
-        return SMatrix(self.M_.diff(*symbols, **kwargs), self.rowl_, self.coll_)
+        if self.coll_ == ['vector']:
+            return SMatrix(self.M_.diff(*symbols, **kwargs), list(Matrix(self.rowl_).diff(*symbols,**kwargs)) )
+        else:
+            return SMatrix(self.M_.diff(*symbols, **kwargs), self.rowl_, self.coll_)
         
     def subs(self, *args, **kwargs):
         return SMatrix(self.M_.subs(*args, **kwargs), self.rowl_, self.coll_)
