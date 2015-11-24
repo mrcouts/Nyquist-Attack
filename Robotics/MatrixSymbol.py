@@ -18,7 +18,7 @@ def lsolve(self,other):
     """ LDLsolve for SMatrix """
     row1row2_ = union(self.rowl_,other.rowl_)
     M_ = self.S_(row1row2_,self.coll_).LDLsolve( other.S_(row1row2_,other.coll_) )
-    return SMatrix(M_,self.coll_,other.coll_)    
+    return SMatrix(M_,self.coll_,other.coll_)
 
 class SMatrix(object):
     """ Matrizes acessadas por simbolos """
@@ -151,3 +151,6 @@ class SMatrix(object):
         
     def extract(self, rowl_, coll_):
         return SMatrix(self.S_(rowl_,coll_), rowl_, coll_)
+        
+    def simplify(self, ratio=1.7, measure=count_ops, fu=False):
+        return SMatrix(simplify(self.M_, ratio, measure, fu), self.rowl_, self.coll_)

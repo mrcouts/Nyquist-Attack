@@ -155,9 +155,9 @@ class Serial(object):
         self.g_ = g_.extract(non_null_p_index, g_.coll_)
         self.f_ = f_.extract(non_null_p_index, f_.coll_)
         
-        #v_aux_ = simplify(self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in xrange(3*dof)]))
+        #v_aux_ = (self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in xrange(3*dof)])).simplify()
         
-        #self.Mh_ = simplify(self.C_.T*self.M_*self.C_)
+        self.Mh_ = (self.C_.T()*self.M_*self.C_).simplify()
         #self.vh_ = simplify(self.C_.T*( v_aux_ + self.M_*self.C_.diff(t)*self.dq_ ))
-        #self.gh_ = simplify(self.C_.T*self.g_)
-        #self.fh_ = simplify(self.C_.T*self.f_)
+        self.gh_ = (self.C_.T()*self.g_).simplify()
+        self.fh_ = (self.C_.T()*self.f_).simplify()
