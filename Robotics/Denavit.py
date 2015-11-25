@@ -32,12 +32,12 @@ def H_d(mat):
 
 class Serial(object):
     """Serial robots dynamics."""
-    def __init__(self, name, ID, dof, fDH_, g_dir_, l_, lg_, m_, I__, c_, gamma_, n_):
+    def __init__(self, name, ID, dof, fDH_, g_dir_, l_='default', lg_='default', m_='default', I__='default', c_='default', gamma_='default', n_='default'):
         
         z = list(zeros(1,dof))
         if fDH_(z,z,z).rows != dof:
             raise ValueError("DH_ tem que ter dof colunas!")
-                
+                         
         #Identificadores:
         self.name = name
         self.ID = ID
@@ -48,17 +48,19 @@ class Serial(object):
         dof_ = xrange(dof)
         
         #Parametros geometricos:
-        self.l_ = l_
-        self.lg_ = lg_
+        self.l_  = [symbols('l_' +str(i+1)) for i in xrange(dof)] if l_ == 'default' else l_
+        self.lg_ = [symbols('lg_'+str(i+1)) for i in xrange(dof)] if lg_== 'default' else lg_
         
         #Parametros de inercia:
-        self.m_  = m_
-        self.I__ = I__
+        self.m_  = [symbols('m_'+str(i+1)) for i in xrange(dof)] if m_ == 'default' else m_
+        self.I__ = [diag(symbols('Jx_'+str(i+1)),
+                                        symbols('Jy_'+str(i+1)),
+                                        symbols('Jz_'+str(i+1)) ) for i in xrange(dof)] if I__== 'default' else I__
         
         #Parametros de atrito:
-        self.c_  = c_
-        self.gamma_ = gamma_
-        self.n_ = n_
+        self.c_     = [symbols('b_'    +str(i+1)) for i in xrange(dof)] if c_     == 'default' else c_
+        self.gamma_ = [symbols('gamma_'+str(i+1)) for i in xrange(dof)] if gamma_ == 'default' else gamma_
+        self.n_     = [symbols('n_'    +str(i+1)) for i in xrange(dof)] if  n_    == 'default' else n_        
         
         #Direcao da gravidade
         self.g_dir_ = g_dir_/g_dir_.norm()
@@ -71,7 +73,7 @@ class Serial(object):
         self.dq_ = self.q_.diff(t)
                         
         #Matriz dos Parametros de Denavit-Hartemberg
-        self.DH_ = fDH_(self.q_.M_, l_, lg_)
+        self.DH_ = fDH_(self.q_.M_, self.l_, self.lg_)
                         
         #Componentes de velocidades e velocidades angulares de cada corpo rigido do sistema
         self.vel__ = [SMatrix(Matrix([Function('vx'+str(i+1)+Id)(t),Function('vy'+str(i+1)+Id)(t),Function('vz'+str(i+1)+Id)(t)])) for i in dof_]
@@ -79,8 +81,9 @@ class Serial(object):
         self.vel_ = sum([self.vel__[i] for i in dof_])        
         self.w_   = sum([self.w__[i]   for i in dof_])
         
-        #Quasi-velocidades        
-        p_ = self.dq_ + self.vel_ + self.w_
+        #Quasi-velocidades
+        po_ = self.vel_ + self.w_
+        p_ = self.dq_ + po_
         
         #-----------------------------Cinematica------------------------------#
         
@@ -136,13 +139,14 @@ class Serial(object):
           
         self.C_ = C_.extract(non_null_p_index, C_.coll_)
         self.p_ = p_.extract(non_null_p_index, p_.coll_)
+        self.po_= po_.extract(non_null_p_index, po_.coll_)
 
-        #self.A_ = Matrix([self.C_[dof:,:].T,-eye(self.C_.rows-dof).T]).T
-        #self.b_ = simplify( -self.A_.diff(t)*self.p_)
+        self.A_ = self.C_.extract(self.po_.rowl_, self.C_.coll_) - SMatrix(1,self.po_.rowl_,self.po_.rowl_)
+        self.b_ = (-1*self.A_.diff(t)*self.p_).simplify()
         
-        self.M__ = [m_[i]*SMatrix(1, self.vel__[i].rowl_,self.vel__[i].rowl_) + SMatrix(I__[i], self.w__[i].rowl_, self.w__[i].rowl_) for i in dof_]
-        self.v__ = [SMatrix(self.w__[i].M_.cross(I__[i]*self.w__[i].M_), self.w__[i].rowl_) for i in dof_]
-        self.g__ = [SMatrix(-m_[i]*symbols('g')*self.g_dir_, self.vel__[i].rowl_) for i in dof_]
+        self.M__ = [self.m_[i]*SMatrix(1, self.vel__[i].rowl_,self.vel__[i].rowl_) + SMatrix(self.I__[i], self.w__[i].rowl_, self.w__[i].rowl_) for i in dof_]
+        self.v__ = [SMatrix(self.w__[i].M_.cross(self.I__[i]*self.w__[i].M_), self.w__[i].rowl_) for i in dof_]
+        self.g__ = [SMatrix(-self.m_[i]*symbols('g')*self.g_dir_, self.vel__[i].rowl_) for i in dof_]
         self.f__ = [SMatrix(Matrix([self.c_[i]*self.dq_.M_[i] + self.gamma_[i]*tanh(self.n_[i]*self.dq_.M_[i]) ]), [self.dq_.M_[i]]) for i in dof_]
         
         M_ = sum([self.M__[i] for i in dof_])
@@ -155,9 +159,11 @@ class Serial(object):
         self.g_ = g_.extract(non_null_p_index, g_.coll_)
         self.f_ = f_.extract(non_null_p_index, f_.coll_)
         
-        #v_aux_ = (self.v_.subs([(self.w_[i],(self.Jw_[i,:]*self.dq_)[0] ) for i in xrange(3*dof)])).simplify()
+        w_dq_ = self.Jw_*self.dq_
+        w_dq_replace = [(i, w_dq_.S(i, w_dq_.coll_[0]) ) for i in w_dq_.rowl_]
+        v_aux_ = (self.v_.subs(w_dq_replace)).simplify()
         
         self.Mh_ = (self.C_.T()*self.M_*self.C_).simplify()
-        #self.vh_ = simplify(self.C_.T*( v_aux_ + self.M_*self.C_.diff(t)*self.dq_ ))
+        self.vh_ = (self.C_.T()*(v_aux_ + self.M_*self.C_.diff(t)*self.dq_ )).simplify()
         self.gh_ = (self.C_.T()*self.g_).simplify()
         self.fh_ = (self.C_.T()*self.f_).simplify()

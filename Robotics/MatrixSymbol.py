@@ -10,6 +10,14 @@ from sympy import *
 #from operator import concat
 init_printing(use_unicode=True)
 
+def unique(a):
+    """ return the list with duplicate elements removed """
+    return list(set(a))
+    
+def intersect(a, b):
+    """ return the intersection of two lists """
+    return list(set(a) & set(b))
+
 def union(a, b):
     """ return the union of two lists """
     return list(set(a) | set(b))
@@ -44,7 +52,15 @@ class SMatrix(object):
         elif self.coll_ == ['vector']:
             return pretty(Matrix([ Matrix(self.rowl_).T, self.M_.T ]).T)
         else:
-            return pretty(Matrix([ Matrix(['_']+self.rowl_).T, Matrix([ Matrix(self.coll_).T, self.M_ ]).T  ]).T)
+            return pretty(Matrix([ Matrix([symbols('-')]+self.rowl_).T, Matrix([ Matrix(self.coll_).T, self.M_ ]).T  ]).T)
+            
+    def pr(self):
+        if self.rowl_ == list(self.M_):
+            return (self.M_)
+        elif self.coll_ == ['vector']:
+            return (Matrix([ Matrix(self.rowl_).T, self.M_.T ]).T)
+        else:
+            return (Matrix([ Matrix([symbols('-')]+self.rowl_).T, Matrix([ Matrix(self.coll_).T, self.M_ ]).T  ]).T)
         
     def S(self,rowl,coll):
         if rowl in self.dic_rowl and coll in self.dic_coll:
@@ -107,20 +123,15 @@ class SMatrix(object):
         M_ = self.S_(rowl_,coll_).multiply_elementwise(other.S_(rowl_,coll_))
         return SMatrix(M_,rowl_,coll_)
         
-    def __div__(self,other):
-        return SMatrix(self.M_ / other, self.rowl_, self.coll_)
-        
-    def __truediv__(self,other):
-        return SMatrix(self.M_ / other, self.rowl_, self.coll_)
-        
-    def T(self):
-        return SMatrix(self.M_.T,self.coll_,self.rowl_)
-        
-    def inv(self):
-        return SMatrix(self.M_.inv(),self.coll_,self.rowl_)
-        
-    def pinv(self):
-        return SMatrix(self.M_.pinv(),self.coll_,self.rowl_)
+    __div__ = lambda (self,other): SMatrix(self.M_ / other, self.rowl_, self.coll_)
+    
+    __truediv__ = lambda (self,other): SMatrix(self.M_ / other, self.rowl_, self.coll_)
+    
+    T = lambda (self): SMatrix(self.M_.T,self.coll_,self.rowl_)
+    
+    inv = lambda (self): SMatrix(self.M_.inv(),self.coll_,self.rowl_)
+    
+    pinv = lambda (self): SMatrix(self.M_.pinv(),self.coll_,self.rowl_)
         
     def nullspace(self, symplify=False):
         ns_ = self.M_.nullspace(symplify)
@@ -143,14 +154,14 @@ class SMatrix(object):
     def subs(self, *args, **kwargs):
         return SMatrix(self.M_.subs(*args, **kwargs), self.rowl_, self.coll_)
         
-    def cols(self):
-        return self.M_.cols
-        
-    def rows(self):
-        return self.M_.rows
+    cols = lambda (self): self.M_.cols
+    
+    rows = lambda (self): self.M_.rows
         
     def extract(self, rowl_, coll_):
-        return SMatrix(self.S_(rowl_,coll_), rowl_, coll_)
+        rowl2_ = intersect(rowl_, self.rowl_)
+        coll2_ = intersect(coll_, self.coll_)
+        return SMatrix(self.S_(rowl2_,coll2_), rowl2_, coll2_)
         
     def simplify(self, ratio=1.7, measure=count_ops, fu=False):
         return SMatrix(simplify(self.M_, ratio, measure, fu), self.rowl_, self.coll_)
