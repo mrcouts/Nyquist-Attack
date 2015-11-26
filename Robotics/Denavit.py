@@ -70,7 +70,7 @@ class Serial(object):
        	               Function('d_'    +str(i+1)+Id)(t) for i in dof_ ]))
                         
         #Quasi-velocidades independentes
-        self.dq_ = self.q_.diff(t)
+        self.dq_ = SMatrix(self.q_.M_.diff(t))
                         
         #Matriz dos Parametros de Denavit-Hartemberg
         self.DH_ = fDH_(self.q_.M_, self.l_, self.lg_)
@@ -101,12 +101,12 @@ class Serial(object):
         self.og__= [simplify(Matrix([(self.H__[i]*Matrix([self.DH_[i,4:7].T,[1]]))[0:3]]).T) for i in dof_] #[g]_N
         
         #Jacobianos dos centros de massa
-        self.Jv__ = [ SMatrix(simplify(Matrix([self.z__[i].cross(self.og__[j]- self.o__[i]).T if str(self.DH_[i,7]) == 'R' and i <= j else 
-                                     (self.z__[i].T if i <= j else 
-                                      zeros(1,3) ) for i in dof_]).T ), self.vel__[j].rowl_, self.dq_.rowl_ ) for j in dof_]
+        self.Jv__ = [SMatrix(Matrix([self.z__[i].cross(self.og__[j]- self.o__[i]).T if str(self.DH_[i,7]) == 'R' and i <= j else 
+                                    (self.z__[i].T if i <= j else 
+                                     zeros(1,3) ) for i in dof_]).T , self.vel__[j].rowl_, self.dq_.rowl_ ).simplify() for j in dof_]
                                           
-        self.Jw__ = [ SMatrix(simplify( self.H__[j][0:3,0:3].T*Matrix([self.z__[i].T if str(self.DH_[i,7]) == 'R' and i <= j else
-                                                              zeros(1,3) for i in dof_]).T ), self.w__[j].rowl_, self.dq_.rowl_ ) for j in dof_]
+        self.Jw__ = [SMatrix( self.H__[j][0:3,0:3].T*Matrix([self.z__[i].T if str(self.DH_[i,7]) == 'R' and i <= j else
+                                                             zeros(1,3) for i in dof_]).T , self.w__[j].rowl_, self.dq_.rowl_ ).simplify() for j in dof_]
         
         self.Jv_ = sum([self.Jv__[i] for i in dof_])
         self.Jw_ = sum([self.Jw__[i] for i in dof_])

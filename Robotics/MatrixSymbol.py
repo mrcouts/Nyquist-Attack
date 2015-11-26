@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 14 09:13:11 2015
-
-@author: couto
-"""
-
 from sympy import *
 #import math
 #from operator import concat
@@ -146,10 +139,7 @@ class SMatrix(object):
         return SMatrix(M_,self.coll_,other.coll_)   
         
     def diff(self, *symbols, **kwargs):
-        if self.coll_ == ['vector']:
-            return SMatrix(self.M_.diff(*symbols, **kwargs), list(Matrix(self.rowl_).diff(*symbols,**kwargs)) )
-        else:
-            return SMatrix(self.M_.diff(*symbols, **kwargs), self.rowl_, self.coll_)
+        return SMatrix(self.M_.diff(*symbols, **kwargs), self.rowl_, self.coll_)
         
     def subs(self, *args, **kwargs):
         return SMatrix(self.M_.subs(*args, **kwargs), self.rowl_, self.coll_)
