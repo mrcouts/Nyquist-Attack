@@ -1,0 +1,449 @@
+%---------------------------------------------------------------------------------------%
+%									PACOTES MATEMÁTICOS									%
+%---------------------------------------------------------------------------------------%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{eucal,eufrak,upgreek}
+\usepackage[OMLmathrm,OMLmathbf]{isomath}
+\usepackage[bbgreekl]{mathbbol}
+
+\DeclareSymbolFont{operators}{OT1}{cmss}{m}{n}
+
+\DeclareMathAlphabet{\mathru}{OT1}{cmr}{m}{n}
+\DeclareMathAlphabet{\mathbu}{OT1}{cmr}{b}{n}
+\DeclareMathAlphabet{\mathrs}{U}{BOONDOX-cal}{m}{n}
+% \DeclareMathAlphabet{\mathrs}{U}{rsfso}{m}{n}
+
+
+%---------------------------------------------------------------------------------------%
+%										OPERADORES										%
+%---------------------------------------------------------------------------------------%
+
+\newcommand{\del}{\partial}				% derivada parcial
+\newcommand{\dd}{\mathsf{d}}			% diferencial
+\newcommand{\idd}{\:\mathsf{d}}			% elemento diferencial para uso em integrais
+\newcommand{\dl}{{\updelta}}			% variação
+\newcommand{\plus}{{\scriptscriptstyle +}}
+\newcommand{\pplus}{{\scriptstyle +}}
+\newcommand{\mminus}{{\scriptstyle -}}
+
+\newcommand{\grad}[2]{\nabla_{\! #2 \:} #1}				% gradiente
+\newcommand{\gradc}[2]{\nabla^\circ_{\! #2 \:} #1}		% gradiente calculado em posição de referência
+
+\def\ssin{\mathsf{s}}					% seno
+\def\ccos{\mathsf{c}}					% cosseno
+\def\img{\mathsf{i}}					% unidade imaginária
+\def\eul{\mathsf{e}}					% número de Euler
+
+\newcommand{\noo}[1]{\nu_{\scriptstyle{#1}}} 			% número de ...
+
+\DeclareMathOperator*{\sign}{sign}		% função sinal
+\DeclareMathOperator*{\Rea}{Re}			% parte real
+\DeclareMathOperator*{\Img}{Im}			% parte imaginária
+\DeclareMathOperator{\tr}{tr}			% traço
+
+\def\tc#1{\textcolor{red}{\bf #1}}		% marcador de texto revisado
+
+
+
+%---------------------------------------------------------------------------------------%
+%										SÍMBOLOS										%
+%---------------------------------------------------------------------------------------%
+
+\newcommand{\suphash}{{\scriptscriptstyle \#}}										% #
+\newcommand{\sdia}{{\scriptscriptstyle \diamondsuit}}                               % diamondsuit
+\newcommand{\ud}{{\underline{\phantom{0}} }}                                        % _
+
+\DeclareMathOperator*{\rl}{															% |
+	\mathchoice																			
+	  {\ooalign{\raisebox{.25\height}{\scalebox{.75}{$\displaystyle\vert$}}}}
+	  {\ooalign{\raisebox{.25\height}{\scalebox{.75}{$\textstyle\vert$}}}}
+	  {\ooalign{\raisebox{.25\height}{\scalebox{.75}{$\scriptstyle\vert$}}}}
+	  {\ooalign{\raisebox{.25\height}{\scalebox{.75}{$\scriptstyle\vert$}}}}
+}
+
+\def\nb{\bar}               % barra
+\def\nc{\check}             % check
+\def\nh{\hat}               % chapéu
+\def\nt{\tilde}             % til
+\def\wb{\overline}			% barra longa
+\def\wc{\widecheck}			% check longo
+\def\wh{\widehat}			% chapéu longo
+\def\wt{\widetilde}			% til longo
+\def\wu{\underline}			% sublinhado
+
+
+
+%---------------------------------------------------------------------------------------%
+%										PARÊNTESES										%
+%---------------------------------------------------------------------------------------%
+
+\newcommand{\llb}{\left\llbracket}						%[[
+\newcommand{\rrb}{\right\rrbracket}						%]]
+
+\newcommand{\vct}[1]{\left[ #1 \right]}					% matriz-coluna (parênteses de tamanho ajustável)
+\newcommand{\tvct}[1]{\left[ #1 \right]^\mathsf{T}}		% matriz-linha (parênteses de tamanho ajustável)
+\newcommand{\hvct}[1]{\left[ #1 \right]^\mathsf{H}}		% matriz-coluna de coord. homogêneas (parênteses ajustáveis)
+
+\newcommand{\bvct}[1]{\big[ #1 \big]}					% matriz-coluna (parênteses grandes)
+\newcommand{\btvct}[1]{\big[ #1 \big]^\mathsf{T}}		% matriz-linha (parênteses grandes)
+\newcommand{\bhvct}[1]{\big[ #1 \big]^\mathsf{H}}		% matriz-coluna de coord. homogêneas (parênteses grandes)
+
+\newcommand{\nvct}[1]{[ #1 ]}							% matriz-coluna (parênteses normais)
+\newcommand{\ntvct}[1]{[ #1 ]^\mathsf{T}}				% matriz-linha (parênteses normais)
+\newcommand{\nhvct}[1]{[ #1 ]^\mathsf{H}}				% matriz-coluna de coord. homogêneas (parênteses normais)
+
+\newcommand{\mat}[1]{\left[ #1 \right]}					% matriz (parênteses de tamanho ajustável)
+\newcommand{\imat}[1]{\left[ #1 \right]^\mathsf{-1}}	% matriz inversa (parênteses de tamanho ajustável)
+\newcommand{\tmat}[1]{\left[ #1 \right]^\mathsf{T}}		% matriz transposta (parênteses de tamanho ajustável)
+\newcommand{\dmat}[1]{\left[ #1 \right]^\mathsf{D}}		% matriz diagonal (parênteses de tamanho ajustável)
+\newcommand{\smat}[1]{\left[ #1 \right]^\mathsf{S}}		% matriz antissimétrica (parênteses de tamanho ajustável)
+
+\newcommand{\bmat}[1]{\big[ #1 \big]}					% matriz (parênteses grandes)
+\newcommand{\bimat}[1]{\big[ #1 \big]^\mathsf{-1}}		% matriz inversa (parênteses grandes)
+\newcommand{\btmat}[1]{\big[ #1 \big]^\mathsf{T}}		% matriz transposta (parênteses grandes)
+\newcommand{\bdmat}[1]{\big[ #1 \big]^\mathsf{D}}		% matriz diagonal (parênteses grandes)
+\newcommand{\bsmat}[1]{\big[ #1 \big]^\mathsf{S}}		% matriz antissimétrica (parênteses grandes)
+
+\newcommand{\nmat}[1]{[ #1 ]}							% matriz (parênteses normais)
+\newcommand{\nimat}[1]{[ #1 ]^\mathsf{-1}}				% matriz inversa (parênteses normais)
+\newcommand{\ntmat}[1]{[ #1 ]^\mathsf{T}}				% matriz transposta (parênteses normais)
+\newcommand{\ndmat}[1]{[ #1 ]^\mathsf{D}}				% matriz diagonal (parênteses normais)
+\newcommand{\nsmat}[1]{[ #1 ]^\mathsf{S}}				% matriz antissimétrica (parênteses normais)
+\newcommand{\nomat}[1]{\| #1 \|_\mathsf{\infty}}			% norma infinity
+
+
+
+%---------------------------------------------------------------------------------------%
+%								SUBSCRITOS/SOBRESCRITOS									%
+%---------------------------------------------------------------------------------------%
+
+\newcommand{\ssh}{^{\scriptscriptstyle \#}} 										%^#
+\newcommand{\cir}{^{\scriptstyle \circ}} 										%^#
+\newcommand{\hcir}{^{\scriptscriptstyle \varnothing}} 										%^#
+\newcommand{\ush}{_{\scriptscriptstyle \#}}											%_#
+
+\newcommand{\ssr}[1]{^{\scriptstyle \left\langle #1 \right\rangle}}					%^<>
+\newcommand{\ssrs}[1]{^{\scriptscriptstyle \left\langle #1 \right\rangle}}			%^<> (pequeno)
+\newcommand{\usr}[1]{_{\scriptstyle \left\langle #1 \right\rangle}}					%_<>
+
+
+\newcommand{\ssx}[1]{^{\scriptstyle \left\{ #1 \right\}}}							%^{} 
+\newcommand{\ssxs}[1]{^{\scriptscriptstyle \left\{ #1 \right\}}}					%^{} (pequeno)
+\newcommand{\ssxx}[2]{^{\scriptstyle \left\{ #1 \right\}\left\{ #2 \right\}}}		%^{}{}
+\newcommand{\usx}[1]{_{\scriptstyle \left\{ #1 \right\}}}							%_{}
+\newcommand{\usxx}[2]{_{\scriptstyle \left\{ #1 \right\}\left\{ #2 \right\}}}		%_{}{}
+
+\newcommand{\ssy}[1]{^{\scriptstyle \llb #1 \rrb}}									%^[[]]	
+\newcommand{\ssyy}[2]{^{\scriptstyle \llb #1 \rrb \llb #2 \rrb}}					%^[[]][[]]
+\newcommand{\usy}[1]{_{\scriptstyle \llb #1 \rrb}}									%_[[]]
+\newcommand{\usyy}[2]{_{\scriptstyle \llb #1 \rrb \llb #2 \rrb}}					%_[[]][[]]
+
+
+
+%---------------------------------------------------------------------------------------%
+%										ALFABETOS										%
+%---------------------------------------------------------------------------------------%
+
+% caracteres para designação de vetores físicos
+
+\def\va{\mathsfbfit{a}}
+\def\vb{\mathsfbfit{b}}
+\def\vc{\mathsfbfit{c}}
+\def\vd{\mathsfbfit{d}}
+\def\ve{\mathsfbfit{e}}
+\def\vf{\mathsfbfit{f}}
+\def\vg{\mathsfbfit{g}}
+\def\vh{\mathsfbfit{h}}
+\def\vi{\mathsfbfit{i}}
+\def\vj{\mathsfbfit{j}}
+\def\vk{\mathsfbfit{k}}
+\def\vl{\mathsfbfit{l}}
+\def\vm{\mathsfbfit{m}}
+\def\vn{\mathsfbfit{n}}
+\def\vo{\mathsfbfit{o}}
+\def\vp{\mathsfbfit{p}}
+\def\vq{\mathsfbfit{q}}
+\def\vr{\mathsfbfit{r}}
+\def\vs{\mathsfbfit{s}}
+\def\vt{\mathsfbfit{t}}
+\def\vu{\mathsfbfit{u}}
+\def\vv{\mathsfbfit{v}}
+\def\vw{\mathsfbfit{w}}
+\def\vx{\mathsfbfit{x}}
+\def\vy{\mathsfbfit{y}}
+\def\vz{\mathsfbfit{z}}
+
+\def\valpha{\mathsfbfit{\alpha}}
+\def\vbeta{\mathsfbfit{\beta}}
+\def\vgamma{\mathsfbfit{\gamma}}
+\def\vphi{\mathsfbfit{\phi}}
+\def\vpsi{\mathsfbfit{\psi}}
+\def\vlambda{\mathsfbfit{\lambda}}
+\def\vmu{\mathsfbfit{\mu}}
+\def\vpi{\mathsfbfit{\pi}}
+\def\vrho{\mathsfbfit{\rho}}
+\def\vsigma{\mathsfbfit{\sigma}}
+\def\vtheta{\mathsfbfit{\theta}}
+\def\vomega{\mathsfbfit{\omega}}
+\def\vzeta{\mathsfbfit{\zeta}}
+
+\DeclareMathOperator{\vzr}{										% vetor nulo ou tensor nulo
+\mathchoice%
+  {\ooalign{{\scalebox{1.28}{$\displaystyle\mathsfbfit{0}$}}}}
+  {\ooalign{{\scalebox{1.28}{$\textstyle\mathsfbfit{0}$}}}}
+  {\ooalign{{\scalebox{1.28}{$\scriptstyle\mathsfbfit{0}$}}}}
+  {\ooalign{{\scalebox{1.28}{$\scriptstyle\mathsfbfit{0}$}}}}
+}
+
+
+% caracteres para designação de tensores físicos
+
+\def\vA{\mathbf{A}}
+\def\vB{\mathbf{B}}
+\def\vC{\mathbf{C}}
+\def\vD{\mathbf{D}}
+\def\vE{\mathbf{E}}
+\def\vF{\mathbf{F}}
+\def\vG{\mathbf{G}}
+\def\vH{\mathbf{H}}
+\def\vI{\mathbf{I}}
+\def\vJ{\mathbf{J}}
+\def\vK{\mathbf{K}}
+\def\vL{\mathbf{L}}
+\def\vM{\mathbf{M}}
+\def\vN{\mathbf{N}}
+\def\vO{\mathbf{O}}
+\def\vP{\mathbf{P}}
+\def\vQ{\mathbf{Q}}
+\def\vR{\mathbf{R}}
+\def\vS{\mathbf{S}}
+\def\vT{\mathbf{T}}
+\def\vU{\mathbf{U}}
+\def\vV{\mathbf{V}}
+\def\vW{\mathbf{W}}
+\def\vX{\mathbf{X}}
+\def\vY{\mathbf{Y}}
+\def\vZ{\mathbf{Z}}
+
+\DeclareMathOperator{\vone}{									% tensor identidade
+\mathchoice%
+  {\ooalign{{\scalebox{1.4}{$\displaystyle\mathbf{1}$}}}}
+  {\ooalign{{\scalebox{1.4}{$\textstyle\mathbf{1}$}}}}
+  {\ooalign{{\scalebox{1.4}{$\scriptstyle\mathbf{1}$}}}}
+  {\ooalign{{\scalebox{1.4}{$\scriptstyle\mathbf{1}$}}}}
+}
+
+
+% caracteres para a designação de matrizes-coluna
+
+\def\ma{\mathbb{a}}
+\def\mb{\mathbb{b}}
+\def\mc{\mathbb{c}}
+\def\md{\mathbb{d}}
+\def\me{\mathbb{e}}
+\def\mf{\mathbb{f}}
+\def\mg{\mathbb{g}}
+\def\mh{\mathbb{h}}
+\def\mi{\mathbb{i}}
+\def\mj{\mathbb{j}}
+\def\mk{\mathbb{k}}
+\def\ml{\mathbb{l}}
+\def\mm{\mathbb{m}}
+\def\mn{\mathbb{n}}
+\def\mo{\mathbb{o}}
+\def\mp{\mathbb{p}}
+\def\mq{\mathbb{q}}
+\def\mr{\mathbb{r}}
+\def\ms{\mathbb{s}}
+\def\mt{\mathbb{t}}
+\def\mu{\mathbb{u}}
+\def\mv{\mathbb{v}}
+\def\mw{\mathbb{w}}
+\def\mx{\mathbb{x}}
+\def\my{\mathbb{y}}
+\def\mz{\mathbb{z}}
+
+\def\malpha{\mathbb{\bbalpha}}
+\def\mbeta{\mathbb{\bbbeta}}
+\def\mgamma{\mathbb{\bbgamma}}
+\def\mphi{\mathbb{\bbphi}}
+\def\mpsi{\mathbb{\bbpsi}}
+\def\mlambda{\mathbb{\bblambda}}
+\def\mmu{\mathbb{\bbmu}}
+\def\mpi{\mathbb{\bbpi}}
+\def\mrho{\mathbb{\bbrho}}
+\def\msigma{\mathbb{\bbsigma}}
+\def\mtheta{\mathbb{\bbtheta}}
+\def\momega{\mathbb{\bbomega}}
+\def\mzeta{\mathbb{\bbzeta}}
+
+\def\mzr{\mathbb{0}}					% matriz-coluna ou matriz nula
+
+
+% caracteres para a designação de matrizes
+
+\def\mA{\mathbb{A}}
+\def\mB{\mathbb{B}}
+\def\mC{\mathbb{C}}
+\def\mD{\mathbb{D}}
+\def\mE{\mathbb{E}}
+\def\mF{\mathbb{F}}
+\def\mG{\mathbb{G}}
+\def\mH{\mathbb{H}}
+\def\mI{\mathbb{I}}
+\def\mJ{\mathbb{J}}
+\def\mK{\mathbb{K}}
+\def\mL{\mathbb{L}}
+\def\mM{\mathbb{M}}
+\def\mN{\mathbb{N}}
+\def\mO{\mathbb{O}}
+\def\mP{\mathbb{P}}
+\def\mQ{\mathbb{Q}}
+\def\mR{\mathbb{R}}
+\def\mS{\mathbb{S}}
+\def\mT{\mathbb{T}}
+\def\mU{\mathbb{U}}
+\def\mV{\mathbb{V}}
+\def\mW{\mathbb{W}}
+\def\mX{\mathbb{X}}
+\def\mY{\mathbb{Y}}
+\def\mZ{\mathbb{Z}}
+
+\def\mone{\mathbb{1}}					% matriz identidade
+
+
+% caracteres para serem usados como superescritos de matrizes
+
+\newcommand{\msI}{\mathsf{-1}}	
+\newcommand{\msT}{\mathsf{T}}		
+\newcommand{\msD}{\mathsf{D}}		
+\newcommand{\msS}{\mathsf{S}}
+\newcommand{\msH}{\mathsf{H}}	
+
+
+% caracteres para a designação de sistemas de coordenadas
+
+\def\ttA{\mathtt{A}}
+\def\ttB{\mathtt{B}}
+\def\ttC{\mathtt{C}}
+\def\ttD{\mathtt{D}}
+\def\ttE{\mathtt{E}}
+\def\ttF{\mathtt{F}}
+\def\ttG{\mathtt{G}}
+\def\ttH{\mathtt{H}}
+\def\ttI{\mathtt{I}}
+\def\ttJ{\mathtt{J}}
+\def\ttK{\mathtt{K}}
+\def\ttL{\mathtt{L}}
+\def\ttM{\mathtt{M}}
+\def\ttN{\mathtt{N}}
+\def\ttO{\mathtt{O}}
+\def\ttP{\mathtt{P}}
+\def\ttQ{\mathtt{Q}}
+\def\ttR{\mathtt{R}}
+\def\ttS{\mathtt{S}}
+\def\ttT{\mathtt{T}}
+\def\ttU{\mathtt{U}}
+\def\ttV{\mathtt{V}}
+\def\ttW{\mathtt{W}}
+\def\ttX{\mathtt{X}}
+\def\ttY{\mathtt{Y}}
+\def\ttZ{\mathtt{Z}}
+
+
+% caracteres para a designação de pontos no espaço
+
+\def\tta{\mathtt{a}}
+\def\ttb{\mathtt{b}}
+\def\ttc{\mathtt{c}}
+\def\ttd{\mathtt{d}}
+\def\tte{\mathtt{e}}
+\def\ttf{\mathtt{f}}
+\def\ttg{\mathtt{g}}
+\def\tth{\mathtt{h}}
+\def\tti{\mathtt{i}}
+\def\ttj{\mathtt{j}}
+\def\ttk{\mathtt{k}}
+\def\ttl{\mathtt{l}}
+\def\ttm{\mathtt{m}}
+\def\ttn{\mathtt{n}}
+\def\tto{\mathtt{o}}
+\def\ttp{\mathtt{p}}
+\def\ttq{\mathtt{q}}
+\def\ttr{\mathtt{r}}
+\def\tts{\mathtt{s}}
+\def\ttt{\mathtt{t}}
+\def\ttu{\mathtt{u}}
+\def\ttv{\mathtt{v}}
+\def\ttw{\mathtt{w}}
+\def\ttx{\mathtt{x}}
+\def\tty{\mathtt{y}}
+\def\ttz{\mathtt{z}}
+
+
+% caracteres para a designação de corpos rígidos e referenciais
+
+\def\llA{\mathcal{A}}
+\def\llB{\mathcal{B}}
+\def\llC{\mathcal{C}}
+\def\llD{\mathcal{D}}
+\def\llE{\mathcal{E}}
+\def\llF{\mathcal{F}}
+\def\llG{\mathcal{G}}
+\def\llH{\mathcal{H}}
+\def\llI{\mathcal{I}}
+\def\llJ{\mathcal{J}}
+\def\llK{\mathcal{K}}
+\def\llL{\mathcal{L}}
+\def\llM{\mathcal{M}}
+\def\llN{\mathcal{N}}		% reservado para referencial inercial
+\def\llO{\mathcal{O}}
+\def\llP{\mathcal{P}}
+\def\llQ{\mathcal{Q}}
+\def\llR{\mathcal{R}}
+\def\llS{\mathcal{S}}
+\def\llT{\mathcal{T}}
+\def\llU{\mathcal{U}}
+\def\llV{\mathcal{V}}
+\def\llW{\mathcal{W}}
+\def\llX{\mathcal{X}}
+\def\llY{\mathcal{Y}}
+\def\llZ{\mathcal{Z}}
+
+
+
+% caracteres para a designação de conjuntos e sistemas
+
+\def\ssA{\mathrs{A}}
+\def\ssB{\mathrs{B}}
+\def\ssC{\mathrs{C}}		% reservado para classes de diferenciabilidade
+\def\ssD{\mathrs{D}}
+\def\ssE{\mathrs{E}}
+\def\ssF{\mathrs{F}}
+\def\ssG{\mathrs{G}}
+\def\ssH{\mathrs{H}}
+\def\ssI{\mathrs{I}}		% reservado para conjuntos de índices
+\def\ssJ{\mathrs{J}}
+\def\ssK{\mathrs{K}}
+\def\ssL{\mathrs{L}}
+\def\ssM{\mathrs{M}}
+\def\ssN{\mathrs{N}}
+\def\ssO{\mathrs{O}}		% reservado para ordem de grandeza
+\def\ssP{\mathrs{P}}
+\def\ssQ{\mathrs{Q}}
+\def\ssR{\mathrs{R}}		% reservado para o conjunto de números reais
+\def\ssS{\mathrs{S}}
+\def\ssT{\mathrs{T}}
+\def\ssU{\mathrs{U}}
+\def\ssV{\mathrs{V}}
+\def\ssW{\mathrs{W}}
+\def\ssX{\mathrs{X}}
+\def\ssY{\mathrs{Y}}
+\def\ssZ{\mathrs{Z}}
+
+
+% eliminação de conflitos de notação
+
+\DeclareMathSymbol{\gmu}{\mathalpha}{letters}{22}
+
