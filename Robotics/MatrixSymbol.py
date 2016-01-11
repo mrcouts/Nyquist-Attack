@@ -155,3 +155,5 @@ class SMatrix(object):
         
     def simplify(self, ratio=1.7, measure=count_ops, fu=False):
         return SMatrix(simplify(self.M_, ratio, measure, fu), self.rowl_, self.coll_)
+        
+    #jacobian = lambda (self, other): SMatrix( self.M_.jacobian(other.M_), self.rowl_, other.rowl_ )
