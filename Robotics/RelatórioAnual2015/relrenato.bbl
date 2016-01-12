@@ -10,7 +10,7 @@ Sistemas Mec\^anicos},
   2013.
   
 \bibitem{Andre}
-G. M. Dobriankyj and A. G. Coutinho.
+G. M. Dobriankyj, A. G. Coutinho.
 \newblock Plataforma rob\'otica para reabilita\c{c}\~ao do membro superior humano.
 \newblock {\em Tese (Trabalho de Conclus\~ao de Curso) - Escola Polit\'ecnica da Universidade de
 S\~ao Paulo. Departamento de Engenharia Mecatr\^onica e de
@@ -18,7 +18,7 @@ Sistemas Mec\^anicos}, 2013.
 
 
 %\bibitem{Apostila}
-%R. M. M. Orsino and T. A. H. Coelho.
+%R. M. M. Orsino, T. A. H. Coelho.
 %\newblock Metodologia para An\'alise e S\'intese de Mecanismos.
 %\newblock {\em Material de apoio para as disciplinas PMR2430 e PMR2331 - Escola Polit\'ecnica da Universidade de
 %S\~ao Paulo}, 2013.
@@ -42,7 +42,7 @@ J-P. Merlet.
 \newblock In {\em ASME DETC Conference, {Montreal, 2002}}, 2002.
 
 \bibitem{Orsino2013}
-R. M. M. Orsino and T. A. H. Coelho.
+R. M. M. Orsino, T. A. H. Coelho.
 \newblock A contribution for developing more efficient dynamic modelling
   algorithms of parallel robots.
 \newblock {\em International Journal of Mechanisms and Robotic Systems},
@@ -59,7 +59,7 @@ A.M. Bloch, M. Reyhanoglu, N.H. McClamroch.
 \newblock {\em Automatic Control, IEEE Transactions on}, 1992.
 
 \bibitem{Khalil}
-W. Khalil and E. Dombre.
+W. Khalil, E. Dombre.
 \newblock {\em {Modeling, Identification and Control of Robots}}.
 \newblock Taylor \& Francis, 2002.
 
@@ -74,7 +74,7 @@ V. D. Kumazawa, T. A. Hess Coelho, D. Rinaudi, G. Carbone, M. Ceccarelli.
 \newblock In {\em 20th COBEM, {Gramado, Brazil}}, 2009.
 
 \bibitem{Slotini}
-J-J. E. Slotine and W. Li.
+J-J. E. Slotine, W. Li.
 \newblock {\em {Applied nonlinear control}}.
 \newblock Prentice Hall, 1991.
 
@@ -90,7 +90,7 @@ G. M. Dobrianskyj, A. G. Coutinho, T. A. H. Coelho.
   819 -- 825, 2014.
   
 \bibitem{Denavit}
-J. Denavit and R. S. Hartenberg.
+J. Denavit, R. S. Hartenberg.
 \newblock A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.
 \newblock {\em Journal of Applied Mechanics}, 215--221, June 1955.
   
@@ -115,17 +115,17 @@ H. Abdellatif, B. Heimann, J. Kotlarski, T. Ortmaier.
 \newblock {\em Robotics 2010: Current and Future Challenges}, InTech, 2010.
 
 \bibitem{Li}
-Y. Li and Q. Xu.
+Y. Li, Q. Xu.
 \newblock Dynamic modeling and robust control of a 3-PRC translational parallel kinematic machine
 \newblock {\em Robotics and Computer-Integrated Manufacturing}, 25(3): 630--640, 2009.
 
 \bibitem{Linda}
-O. Linda and M. Manic.
+O. Linda, M. Manic.
 \newblock Uncertainty-robust design of interval type-2 fuzzy logic controller for delta parallel robot
 \newblock {\em Industrial Informatics, IEEE Transactions on}, 7(4): 661--670, 2011.
 
 \bibitem{Chen}
-S-L. Chen and Y-C. Tsai. 
+S-L. Chen, Y-C. Tsai. 
 \newblock Contouring control of a parallel mechanism based on equivalent errors
 \newblock {\em American Control Conference, 2008}, 2384--2388, 2008.
 
@@ -136,21 +136,18 @@ R. M. M. Orsino, T. A. H. Coelho, C. P. Pesce.
 
 \bibitem{22orsino}
 R. M. M. Orsino, A. G. Coutinho, T. A. H. Coelho.
-\newblock Dynamic modelling and control of balanced parallel mechanisms
-\newblock {\em Dynamic Balancing of Mechanisms and Synthesizing of Parallel Robots}, Springer, 2016 (in press).
+\newblock Dynamic Modelling and Control of Balanced Parallel Mechanisms,
+\newblock in {\em Dynamic Balancing of Mechanisms and Synthesizing of Parallel Robots}, Springer, 2016:403--445.
 
 \bibitem{23orsino}
-R. M. M. Orsino and T. A. H. Coelho (2015).
-\newblock A contribution on the modular modelling of multibody systems.
-\newblock Manuscript submitted for publication
+R. M. M. Orsino, T. A. H. Coelho.
+\newblock A contribution on the modular modelling of multibody systems
+\newblock {\em Proc. Royal Society A}, 471(2183), 2015.
 
 \bibitem{Coutinho}
-A. G. Coutinho and T. A. H. Coelho (2015).
-\newblock A new approach for obtaining the dynamic balancing conditions in serial mechanisms.
-\newblock Manuscript submitted for publication
-
-
-
+A. G. Coutinho, T. A. H. Coelho.
+\newblock A new approach for obtaining the dynamic balancing conditions in serial mechanisms
+\newblock {\em International Journal of Mechanisms and Robotic Systems}, 2015. Manuscript accepted for publication
 
 
 \end{thebibliography}
