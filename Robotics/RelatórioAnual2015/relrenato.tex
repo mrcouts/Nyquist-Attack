@@ -34,6 +34,24 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{special-char}
 
+\usepackage[sort=def, nopostdot]{glossaries}
+\usepackage{makeidx} 
+\usepackage{listings}
+
+\renewcommand*{\glossarypreamble}{\vspace{-\baselineskip}}  
+
+\newglossary[cng]{conventions}{cns}{cno}{Convenções de notação}
+\newglossary[syg]{symbols}{sys}{syo}{Lista de símbolos}
+
+\renewcommand*{\arraystretch}{1.3}  % sets the line indent in glossaries
+\setlength{\glsdescwidth}{390pt}   
+\setlength\LTleft{0pt}
+
+\renewcommand*{\glossarypreamble}{\vspace{-\baselineskip}}
+
+\makeindex
+\makeglossaries
+
 \graphicspath{{figuras/}{../figuras/}}
 
 
@@ -60,11 +78,11 @@ da Universidade de São Paulo (EPUSP)}\\[25pt]
 {Área de concentração:}\\[2pt]
 {Engenharia Mecânica}\\[25pt]
 {Orientador:}\\[2pt]
-Prof. Dr. Tarcísio A. Hess Coelho
+Prof. Dr. Tarcisio A. Hess Coelho
 \end{minipage}
 
 \vfill
-{São Paulo \\ 15 de Janeiro de 2016}
+{São Paulo \\ 13 de Janeiro de 2016}
 \end{center}
 \end{titlepage}
 
@@ -83,7 +101,7 @@ Prof. Dr. Tarcísio A. Hess Coelho
 {\bf Bolsista: }{Sim}\\[8pt]
 {\bf Agência de fomento: }{CNPq}\\[8pt]
 {\bf Edital/Chamada: }{Cota Institucional (Demanda Social)}\\[8pt]
-{\bf Data do Exame de Qualificação: }{18/08/2016}\\[8pt]
+{\bf Prazo Máximo para Inscrição no Exame de Qualificação: }{18/08/2016}\\[8pt]
 
 \vspace{2cm}
 \noindent
@@ -169,6 +187,8 @@ Os trabalhos no âmbito da validação experimental das leis de controle sintetizad
 \section{Síntese de Resultados}\label{results}
 
 Esta se\c{c}\~ao apresenta uma s\'intese dos principais resultados te\'oricos obtidos at\'e o momento.
+
+\input{symbols}
 
 %---ALGORITMO PARA MODELAGEM DE PLATAFORMAS ROBÓTICAS------------------------------------------------------------------------------------------
 \subsection{Algoritmo para modelagem de mecanismos seriais}\label{S04-1}

@@ -1,0 +1,1050 @@
+\ifglsentryexists{A001}{}%
+{%
+\gls@defglossaryentry{A001}%
+{%
+name={$a,b, \ldots $},%
+sort={$a,b, \ldots $},%
+type={conventions},%
+first={$a,b, \protect \ldots $},%
+firstplural={$a,b, \protect \ldots $s},%
+text={$a,b, \protect \ldots $},%
+plural={$a,b, \protect \ldots $s},%
+description={Escalares, componentes de matrizes coluna, componentes de matrizes ou \'indices},%
+descriptionplural={Escalares, componentes de matrizes coluna, componentes de matrizes ou \'indices},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A002}{}%
+{%
+\gls@defglossaryentry{A002}%
+{%
+name={$A,B, \ldots $},%
+sort={$A,B, \ldots $},%
+type={conventions},%
+first={$A,B, \protect \ldots $},%
+firstplural={$A,B, \protect \ldots $s},%
+text={$A,B, \protect \ldots $},%
+plural={$A,B, \protect \ldots $s},%
+description={Escalares, componentes de matrizes coluna, componentes de matrizes},%
+descriptionplural={Escalares, componentes de matrizes coluna, componentes de matrizes},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A012}{}%
+{%
+\gls@defglossaryentry{A012}%
+{%
+name={$\ma , \mb , \ldots $},%
+sort={$\ma , \mb , \ldots $},%
+type={conventions},%
+first={$\protect \mathbb {a}, \protect \mathbb {b}, \protect \ldots $},%
+firstplural={$\protect \mathbb {a}, \protect \mathbb {b}, \protect \ldots $s},%
+text={$\protect \mathbb {a}, \protect \mathbb {b}, \protect \ldots $},%
+plural={$\protect \mathbb {a}, \protect \mathbb {b}, \protect \ldots $s},%
+description={Matrizes coluna},%
+descriptionplural={Matrizes coluna},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A013}{}%
+{%
+\gls@defglossaryentry{A013}%
+{%
+name={$\mA , \mB , \ldots $},%
+sort={$\mA , \mB , \ldots $},%
+type={conventions},%
+first={$\protect \mathbb {A}, \protect \mathbb {B}, \protect \ldots $},%
+firstplural={$\protect \mathbb {A}, \protect \mathbb {B}, \protect \ldots $s},%
+text={$\protect \mathbb {A}, \protect \mathbb {B}, \protect \ldots $},%
+plural={$\protect \mathbb {A}, \protect \mathbb {B}, \protect \ldots $s},%
+description={Matrizes},%
+descriptionplural={Matrizes},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A021}{}%
+{%
+\gls@defglossaryentry{A021}%
+{%
+name={$\va , \vb , \ldots $},%
+sort={$\va , \vb , \ldots $},%
+type={conventions},%
+first={$\protect \mathsfbfit {a}, \protect \mathsfbfit {b}, \protect \ldots $},%
+firstplural={$\protect \mathsfbfit {a}, \protect \mathsfbfit {b}, \protect \ldots $s},%
+text={$\protect \mathsfbfit {a}, \protect \mathsfbfit {b}, \protect \ldots $},%
+plural={$\protect \mathsfbfit {a}, \protect \mathsfbfit {b}, \protect \ldots $s},%
+description={Vetores},%
+descriptionplural={Vetores},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A022}{}%
+{%
+\gls@defglossaryentry{A022}%
+{%
+name={$\vA , \vB , \ldots $},%
+sort={$\vA , \vB , \ldots $},%
+type={conventions},%
+first={$\protect \mathbf {A}, \protect \mathbf {B}, \protect \ldots $},%
+firstplural={$\protect \mathbf {A}, \protect \mathbf {B}, \protect \ldots $s},%
+text={$\protect \mathbf {A}, \protect \mathbf {B}, \protect \ldots $},%
+plural={$\protect \mathbf {A}, \protect \mathbf {B}, \protect \ldots $s},%
+description={Tensores},%
+descriptionplural={Tensores},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A031}{}%
+{%
+\gls@defglossaryentry{A031}%
+{%
+name={$\tta , \ttb , \ldots $},%
+sort={$\tta , \ttb , \ldots $},%
+type={conventions},%
+first={$\protect \mathtt {a}, \protect \mathtt {b}, \protect \ldots $},%
+firstplural={$\protect \mathtt {a}, \protect \mathtt {b}, \protect \ldots $s},%
+text={$\protect \mathtt {a}, \protect \mathtt {b}, \protect \ldots $},%
+plural={$\protect \mathtt {a}, \protect \mathtt {b}, \protect \ldots $s},%
+description={Pontos},%
+descriptionplural={Pontos},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A032}{}%
+{%
+\gls@defglossaryentry{A032}%
+{%
+name={$\ttA , \ttB , \ldots $},%
+sort={$\ttA , \ttB , \ldots $},%
+type={conventions},%
+first={$\protect \mathtt {A}, \protect \mathtt {B}, \protect \ldots $},%
+firstplural={$\protect \mathtt {A}, \protect \mathtt {B}, \protect \ldots $s},%
+text={$\protect \mathtt {A}, \protect \mathtt {B}, \protect \ldots $},%
+plural={$\protect \mathtt {A}, \protect \mathtt {B}, \protect \ldots $s},%
+description={Sistemas de coordenadas},%
+descriptionplural={Sistemas de coordenadas},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A041}{}%
+{%
+\gls@defglossaryentry{A041}%
+{%
+name={$\llA , \llB , \ldots $},%
+sort={$\llA , \llB , \ldots $},%
+type={conventions},%
+first={$\protect \EuScript {A}, \protect \EuScript {B}, \protect \ldots $},%
+firstplural={$\protect \EuScript {A}, \protect \EuScript {B}, \protect \ldots $s},%
+text={$\protect \EuScript {A}, \protect \EuScript {B}, \protect \ldots $},%
+plural={$\protect \EuScript {A}, \protect \EuScript {B}, \protect \ldots $s},%
+description={Corpos r\'igidos ou referenciais},%
+descriptionplural={Corpos r\'igidos ou referenciais},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A051}{}%
+{%
+\gls@defglossaryentry{A051}%
+{%
+name={$\ssA , \ssB , \ldots $},%
+sort={$\ssA , \ssB , \ldots $},%
+type={conventions},%
+first={$\protect \mathrs {A}, \protect \mathrs {B}, \protect \ldots $},%
+firstplural={$\protect \mathrs {A}, \protect \mathrs {B}, \protect \ldots $s},%
+text={$\protect \mathrs {A}, \protect \mathrs {B}, \protect \ldots $},%
+plural={$\protect \mathrs {A}, \protect \mathrs {B}, \protect \ldots $s},%
+description={Sistemas ou subsistemas mec\^anicos multicorpos},%
+descriptionplural={Sistemas ou subsistemas mec\^anicos multicorpos},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAA01}{}%
+{%
+\gls@defglossaryentry{CAA01}%
+{%
+name={$\underline {a}$},%
+sort={$\underline {a}$},%
+type={conventions},%
+first={$\relax $\@@underline {\hbox {a}}\mathsurround \z@ $\relax $},%
+firstplural={$\relax $\@@underline {\hbox {a}}\mathsurround \z@ $\relax $s},%
+text={$\relax $\@@underline {\hbox {a}}\mathsurround \z@ $\relax $},%
+plural={$\relax $\@@underline {\hbox {a}}\mathsurround \z@ $\relax $s},%
+description={Matriz diagonal cuja diagonal \'e composta pelos par\^ametros $a_1, a_2, \ldots , a_n$},%
+descriptionplural={Matriz diagonal cuja diagonal \'e composta pelos par\^ametros $a_1, a_2, \ldots , a_n$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAC51}{}%
+{%
+\gls@defglossaryentry{CAC51}%
+{%
+name={$\ssC ^s$},%
+sort={$\ssC ^s$},%
+type={conventions},%
+first={$\protect \mathrs {C}^s$},%
+firstplural={$\protect \mathrs {C}^s$s},%
+text={$\protect \mathrs {C}^s$},%
+plural={$\protect \mathrs {C}^s$s},%
+description={Classe de diferenciabilidade},%
+descriptionplural={Classe de diferenciabilidade},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAC91}{}%
+{%
+\gls@defglossaryentry{CAC91}%
+{%
+name={$\ccos _i$},%
+sort={$\ccos _i$},%
+type={conventions},%
+first={$\protect \mathsf {c}_i$},%
+firstplural={$\protect \mathsf {c}_i$s},%
+text={$\protect \mathsf {c}_i$},%
+plural={$\protect \mathsf {c}_i$s},%
+description={Abrevia\c {c}\~ao de $\cos (\theta _i)$},%
+descriptionplural={Abrevia\c {c}\~ao de $\cos (\theta _i)$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAC92}{}%
+{%
+\gls@defglossaryentry{CAC92}%
+{%
+name={$\ccos _{i \plus j}$},%
+sort={$\ccos _{i \plus j}$},%
+type={conventions},%
+first={$\protect \mathsf {c}_{i {\scriptscriptstyle +}j}$},%
+firstplural={$\protect \mathsf {c}_{i {\scriptscriptstyle +}j}$s},%
+text={$\protect \mathsf {c}_{i {\scriptscriptstyle +}j}$},%
+plural={$\protect \mathsf {c}_{i {\scriptscriptstyle +}j}$s},%
+description={Abrevia\c {c}\~ao de $\cos (\theta _i + \theta _j)$},%
+descriptionplural={Abrevia\c {c}\~ao de $\cos (\theta _i + \theta _j)$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAD91}{}%
+{%
+\gls@defglossaryentry{CAD91}%
+{%
+name={$\dd $},%
+sort={$\dd $},%
+type={conventions},%
+first={$\protect \mathsf {d}$},%
+firstplural={$\protect \mathsf {d}$s},%
+text={$\protect \mathsf {d}$},%
+plural={$\protect \mathsf {d}$s},%
+description={Operador diferencial},%
+descriptionplural={Operador diferencial},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAD92}{}%
+{%
+\gls@defglossaryentry{CAD92}%
+{%
+name={$\diag (.)$},%
+sort={$\diag (.)$},%
+type={conventions},%
+first={$\protect \mathsf {diag}(.)$},%
+firstplural={$\protect \mathsf {diag}(.)$s},%
+text={$\protect \mathsf {diag}(.)$},%
+plural={$\protect \mathsf {diag}(.)$s},%
+description={Matriz coluna cujos elementos s\~ao a diagonal de uma matriz quadrada},%
+descriptionplural={Matriz coluna cujos elementos s\~ao a diagonal de uma matriz quadrada},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CGD91}{}%
+{%
+\gls@defglossaryentry{CGD91}%
+{%
+name={$\dl $},%
+sort={$\dl $},%
+type={conventions},%
+first={${\updelta }$},%
+firstplural={${\updelta }$s},%
+text={${\updelta }$},%
+plural={${\updelta }$s},%
+description={Operador variacional},%
+descriptionplural={Operador variacional},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAG01}{}%
+{%
+\gls@defglossaryentry{CAG01}%
+{%
+name={$g$},%
+sort={$g$},%
+type={conventions},%
+first={$g$},%
+firstplural={$g$s},%
+text={$g$},%
+plural={$g$s},%
+description={Acelera\c {c}\~ao gravitacional},%
+descriptionplural={Acelera\c {c}\~ao gravitacional},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAP21}{}%
+{%
+\gls@defglossaryentry{CAP21}%
+{%
+name={$\vct {\ttp }_{\ttB }$},%
+sort={$\vct {\ttp }_{\ttB }$},%
+type={conventions},%
+first={$\left [ \protect \mathtt {p} \right ]_{\protect \mathtt {B}}$},%
+firstplural={$\left [ \protect \mathtt {p} \right ]_{\protect \mathtt {B}}$s},%
+text={$\left [ \protect \mathtt {p} \right ]_{\protect \mathtt {B}}$},%
+plural={$\left [ \protect \mathtt {p} \right ]_{\protect \mathtt {B}}$s},%
+description={Matriz-coluna formada pelas coordenadas do ponto $\ttp $ no sistema de coordenadas $\ttB $.},%
+descriptionplural={Matriz-coluna formada pelas coordenadas do ponto $\ttp $ no sistema de coordenadas $\ttB $.},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAP22}{}%
+{%
+\gls@defglossaryentry{CAP22}%
+{%
+name={$\hvct {\ttp }_{\ttB }$},%
+sort={$\hvct {\ttp }_{\ttB }$},%
+type={conventions},%
+first={$\left [ \protect \mathtt {p} \right ]^\protect \mathsf {H}_{\protect \mathtt {B}}$},%
+firstplural={$\left [ \protect \mathtt {p} \right ]^\protect \mathsf {H}_{\protect \mathtt {B}}$s},%
+text={$\left [ \protect \mathtt {p} \right ]^\protect \mathsf {H}_{\protect \mathtt {B}}$},%
+plural={$\left [ \protect \mathtt {p} \right ]^\protect \mathsf {H}_{\protect \mathtt {B}}$s},%
+description={Matriz-coluna formada pelas coordenadas do ponto $\ttp $ no sistema de coordenadas $\ttB $ em coordenadas homog\^eneas, ou seja: $\hvct {\ttp }_{\ttB } = \begin {bmatrix} [\ttp ]_{\ttB } \\ 1 \end {bmatrix} $},%
+descriptionplural={Matriz-coluna formada pelas coordenadas do ponto $\ttp $ no sistema de coordenadas $\ttB $ em coordenadas homog\^eneas, ou seja: $\hvct {\ttp }_{\ttB } = \begin {bmatrix} [\ttp ]_{\ttB } \\ 1 \end {bmatrix} $},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAS91}{}%
+{%
+\gls@defglossaryentry{CAS91}%
+{%
+name={$\ssin _i$},%
+sort={$\ssin _i$},%
+type={conventions},%
+first={$\protect \mathsf {s}_i$},%
+firstplural={$\protect \mathsf {s}_i$s},%
+text={$\protect \mathsf {s}_i$},%
+plural={$\protect \mathsf {s}_i$s},%
+description={Abrevia\c {c}\~ao de $\sin (\theta _i)$},%
+descriptionplural={Abrevia\c {c}\~ao de $\sin (\theta _i)$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAS92}{}%
+{%
+\gls@defglossaryentry{CAS92}%
+{%
+name={$\ssin _{i \plus j}$},%
+sort={$\ssin _{i \plus j}$},%
+type={conventions},%
+first={$\protect \mathsf {s}_{i {\scriptscriptstyle +}j}$},%
+firstplural={$\protect \mathsf {s}_{i {\scriptscriptstyle +}j}$s},%
+text={$\protect \mathsf {s}_{i {\scriptscriptstyle +}j}$},%
+plural={$\protect \mathsf {s}_{i {\scriptscriptstyle +}j}$s},%
+description={Abrevia\c {c}\~ao de $\sin (\theta _i + \theta _j)$},%
+descriptionplural={Abrevia\c {c}\~ao de $\sin (\theta _i + \theta _j)$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAV31}{}%
+{%
+\gls@defglossaryentry{CAV31}%
+{%
+name={$[\vv ]_{\ttB }$},%
+sort={$[\vv ]_{\ttB }$},%
+type={conventions},%
+first={$[\protect \mathsfbfit {v}]_{\protect \mathtt {B}}$},%
+firstplural={$[\protect \mathsfbfit {v}]_{\protect \mathtt {B}}$s},%
+text={$[\protect \mathsfbfit {v}]_{\protect \mathtt {B}}$},%
+plural={$[\protect \mathsfbfit {v}]_{\protect \mathtt {B}}$s},%
+description={Vetor $\vv $ escrito na base do sistema de coordenadas $\ttB $},%
+descriptionplural={Vetor $\vv $ escrito na base do sistema de coordenadas $\ttB $},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAV32}{}%
+{%
+\gls@defglossaryentry{CAV32}%
+{%
+name={$\smat {\vv }_{\ttB \rl \ttB }$},%
+sort={$\smat {\vv }_{\ttB \rl \ttB }$},%
+type={conventions},%
+first={$\left [ \protect \mathsfbfit {v} \right ]^\protect \mathsf {S}_{\protect \mathtt {B}\protect \rl \protect \mathtt {B}}$},%
+firstplural={$\left [ \protect \mathsfbfit {v} \right ]^\protect \mathsf {S}_{\protect \mathtt {B}\protect \rl \protect \mathtt {B}}$s},%
+text={$\left [ \protect \mathsfbfit {v} \right ]^\protect \mathsf {S}_{\protect \mathtt {B}\protect \rl \protect \mathtt {B}}$},%
+plural={$\left [ \protect \mathsfbfit {v} \right ]^\protect \mathsf {S}_{\protect \mathtt {B}\protect \rl \protect \mathtt {B}}$s},%
+description={Matriz de produto vetorial, tal que: $ [\vv _1 \wedge \vv _2]_{\ttB } = \smat {\vv _1}_{\ttB \rl \ttB } [\vv _2]_{\ttB }$. \'E dada por: $\smat {\vv }_{\ttB \rl \ttB } = \begin {bmatrix} 0 & -v_z & v_y \\ v_z & 0 & -v_x \\ -v_y & v_x & 0 \end {bmatrix} $, sendo $v_x, v_y$ e $v_z$ as componentes de $[\vv ]_{\ttB }$},%
+descriptionplural={Matriz de produto vetorial, tal que: $ [\vv _1 \wedge \vv _2]_{\ttB } = \smat {\vv _1}_{\ttB \rl \ttB } [\vv _2]_{\ttB }$. \'E dada por: $\smat {\vv }_{\ttB \rl \ttB } = \begin {bmatrix} 0 & -v_z & v_y \\ v_z & 0 & -v_x \\ -v_y & v_x & 0 \end {bmatrix} $, sendo $v_x, v_y$ e $v_z$ as componentes de $[\vv ]_{\ttB }$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAV33}{}%
+{%
+\gls@defglossaryentry{CAV33}%
+{%
+name={$\vct {\mv }^\msD $},%
+sort={$\vct {\mv }^\msD $},%
+type={conventions},%
+first={$\left [ \protect \mathbb {v} \right ]^\protect \mathsf {D}$},%
+firstplural={$\left [ \protect \mathbb {v} \right ]^\protect \mathsf {D}$s},%
+text={$\left [ \protect \mathbb {v} \right ]^\protect \mathsf {D}$},%
+plural={$\left [ \protect \mathbb {v} \right ]^\protect \mathsf {D}$s},%
+description={Matriz diagonal cuja diagonal \'e composta pelos elementos da matriz coluna $\mv $},%
+descriptionplural={Matriz diagonal cuja diagonal \'e composta pelos elementos da matriz coluna $\mv $},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CN011}{}%
+{%
+\gls@defglossaryentry{CN011}%
+{%
+name={$\mzr $},%
+sort={$\mzr $},%
+type={conventions},%
+first={$\protect \mathbb {0}$},%
+firstplural={$\protect \mathbb {0}$s},%
+text={$\protect \mathbb {0}$},%
+plural={$\protect \mathbb {0}$s},%
+description={Matriz coluna nula ou matriz nula},%
+descriptionplural={Matriz coluna nula ou matriz nula},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CN021}{}%
+{%
+\gls@defglossaryentry{CN021}%
+{%
+name={$\vzr $},%
+sort={$\vzr $},%
+type={conventions},%
+first={$\protect \vzr $},%
+firstplural={$\protect \vzr $s},%
+text={$\protect \vzr $},%
+plural={$\protect \vzr $s},%
+description={Vetor nulo ou tensor nulo},%
+descriptionplural={Vetor nulo ou tensor nulo},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CN111}{}%
+{%
+\gls@defglossaryentry{CN111}%
+{%
+name={$\mone $},%
+sort={$\mone $},%
+type={conventions},%
+first={$\protect \mathbb {1}$},%
+firstplural={$\protect \mathbb {1}$s},%
+text={$\protect \mathbb {1}$},%
+plural={$\protect \mathbb {1}$s},%
+description={Matriz identidade},%
+descriptionplural={Matriz identidade},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CN112}{}%
+{%
+\gls@defglossaryentry{CN112}%
+{%
+name={$\nvct {\mone }_{\ttB _i \rl \ttB _j} $},%
+sort={$\nvct {\mone }_{\ttB _i \rl \ttB _j} $},%
+type={conventions},%
+first={$[ \protect \mathbb {1} ]_{\protect \mathtt {B}_i \protect \rl \protect \mathtt {B}_j} $},%
+firstplural={$[ \protect \mathbb {1} ]_{\protect \mathtt {B}_i \protect \rl \protect \mathtt {B}_j} $s},%
+text={$[ \protect \mathbb {1} ]_{\protect \mathtt {B}_i \protect \rl \protect \mathtt {B}_j} $},%
+plural={$[ \protect \mathbb {1} ]_{\protect \mathtt {B}_i \protect \rl \protect \mathtt {B}_j} $s},%
+description={Matriz de mudan\c {c}a de base, i.e. $\nvct {\vv }_{\ttB _i} = \nvct {\mone }_{\ttB _i \rl \ttB _j} \cdot \nvct {\vv }_{\ttB _j} $},%
+descriptionplural={Matriz de mudan\c {c}a de base, i.e. $\nvct {\vv }_{\ttB _i} = \nvct {\mone }_{\ttB _i \rl \ttB _j} \cdot \nvct {\vv }_{\ttB _j} $},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CN113}{}%
+{%
+\gls@defglossaryentry{CN113}%
+{%
+name={$\hvct {\mone }_{\ttB _i \rl \ttB _j}$},%
+sort={$\hvct {\mone }_{\ttB _i \rl \ttB _j}$},%
+type={conventions},%
+first={$\left [ \protect \mathbb {1} \right ]^\protect \mathsf {H}_{\protect \mathtt {B}_i \protect \rl \protect \mathtt {B}_j}$},%
+firstplural={$\left [ \protect \mathbb {1} \right ]^\protect \mathsf {H}_{\protect \mathtt {B}_i \protect \rl \protect \mathtt {B}_j}$s},%
+text={$\left [ \protect \mathbb {1} \right ]^\protect \mathsf {H}_{\protect \mathtt {B}_i \protect \rl \protect \mathtt {B}_j}$},%
+plural={$\left [ \protect \mathbb {1} \right ]^\protect \mathsf {H}_{\protect \mathtt {B}_i \protect \rl \protect \mathtt {B}_j}$s},%
+description={Matriz de transforma\c {c}\~ao homog\^enea, i.e. $\hvct {\ttp }_{\ttB _i} = \hvct {\mone }_{\ttB _i \rl \ttB _j} \cdot \hvct {\ttp }_{\ttB _j}$},%
+descriptionplural={Matriz de transforma\c {c}\~ao homog\^enea, i.e. $\hvct {\ttp }_{\ttB _i} = \hvct {\mone }_{\ttB _i \rl \ttB _j} \cdot \hvct {\ttp }_{\ttB _j}$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CN121}{}%
+{%
+\gls@defglossaryentry{CN121}%
+{%
+name={$\vone $},%
+sort={$\vone $},%
+type={conventions},%
+first={$\protect \vone $},%
+firstplural={$\protect \vone $s},%
+text={$\protect \vone $},%
+plural={$\protect \vone $s},%
+description={Tensor identidade},%
+descriptionplural={Tensor identidade},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SM101}{}%
+{%
+\gls@defglossaryentry{SM101}%
+{%
+name={$\ntmat {\cdot }$},%
+sort={$\ntmat {\cdot }$},%
+type={conventions},%
+first={$[ \cdot ]^\protect \mathsf {T}$},%
+firstplural={$[ \cdot ]^\protect \mathsf {T}$s},%
+text={$[ \cdot ]^\protect \mathsf {T}$},%
+plural={$[ \cdot ]^\protect \mathsf {T}$s},%
+description={Matriz transposta},%
+descriptionplural={Matriz transposta},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SM102}{}%
+{%
+\gls@defglossaryentry{SM102}%
+{%
+name={$\nimat {\cdot }$},%
+sort={$\nimat {\cdot }$},%
+type={conventions},%
+first={$[ \cdot ]^\protect \mathsf {-1}$},%
+firstplural={$[ \cdot ]^\protect \mathsf {-1}$s},%
+text={$[ \cdot ]^\protect \mathsf {-1}$},%
+plural={$[ \cdot ]^\protect \mathsf {-1}$s},%
+description={Matriz inversa},%
+descriptionplural={Matriz inversa},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SM103}{}%
+{%
+\gls@defglossaryentry{SM103}%
+{%
+name={$\npmat {\cdot }$},%
+sort={$\npmat {\cdot }$},%
+type={conventions},%
+first={$[ \cdot ]^\protect \mathsf {\dagger }$},%
+firstplural={$[ \cdot ]^\protect \mathsf {\dagger }$s},%
+text={$[ \cdot ]^\protect \mathsf {\dagger }$},%
+plural={$[ \cdot ]^\protect \mathsf {\dagger }$s},%
+description={Matriz pseudo-inversa},%
+descriptionplural={Matriz pseudo-inversa},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SM104}{}%
+{%
+\gls@defglossaryentry{SM104}%
+{%
+name={$\vct {\varnothing }$},%
+sort={$\vct {\varnothing }$},%
+type={conventions},%
+first={$\left [ \varnothing \right ]$},%
+firstplural={$\left [ \varnothing \right ]$s},%
+text={$\left [ \varnothing \right ]$},%
+plural={$\left [ \varnothing \right ]$s},%
+description={Matriz coluna vazia ou matriz vazia},%
+descriptionplural={Matriz coluna vazia ou matriz vazia},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
