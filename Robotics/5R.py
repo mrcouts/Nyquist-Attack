@@ -41,8 +41,8 @@ H2 = H('y',pi,-symbols('l_0'),0,0)
 #Vinculos de posicao:
 _q_ = SMatrix( Matrix([ qh_.M_ - (H1*Matrix([RR1.o__[2], Matrix([1]) ]))[0:2,0], qh_.M_ - (H2*Matrix([RR2.o__[2], Matrix([1]) ]))[0:2,0] ]) , range(4) )
 
-Jh_ = SMatrix( _q_.M_.jacobian(qh_.M_), _q_.rowl_, rhoh_.rowl_ )
-Jo_ = SMatrix( _q_.M_.jacobian(qo_.M_), _q_.rowl_, rhoo_.rowl_ )
+Jh_ = SMatrix( _q_.M_.jacobian(qh_.M_), _q_.rowl_, list(qh_.M_.diff(symbols('t'))) )
+Jo_ = SMatrix( _q_.M_.jacobian(qo_.M_), _q_.rowl_, list(qo_.M_.diff(symbols('t'))) )
 
 Cch_ = SMatrix(1, ph_.rowl_, ph_.rowl_ ) + (-1*Jo_.inv()*Jh_).simplify()
 C_ = ( (RR1.C_ + RR2.C_ + P.C_)*Cch_ ).simplify()
@@ -79,7 +79,7 @@ def thetai(x,y):
     x2 = -l0 - l1*cos(theta_21)
     y2 = l1*sin(theta_21)
     theta_12 =  (atan2(y - y1, x - x1) - theta_11).evalf()
-    theta_22 = (atan2(y - y2, x - x2) - theta_21).evalf()
+    theta_22 = (Pi -atan2(y - y2, x - x2) - theta_21).evalf()
     return [x, y, theta_11, theta_12, theta_21, theta_22]
     
 PARAMETROS = [(symbols('l_0'), l0),
@@ -127,7 +127,7 @@ y0 = 0.16
 
 v=1.0
 w=v/r
-p=0.6
+p=3*0.6
 dt=0.01
 nt=int(p/dt)+1
 t=[i*dt for i in xrange(nt)]
